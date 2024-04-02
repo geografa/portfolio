@@ -12,6 +12,13 @@
 <style>
 body { margin: 0; padding: 0; }
 #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+ul { 
+    padding: 10px;
+    font-size: 1.25em;
+    list-style-type: none;
+    line-height: 2em;
+
+ }
 </style>
 </head>
 <body>
@@ -46,12 +53,15 @@ body { margin: 0; padding: 0; }
             <li><a href="venues.html">Venues</a></li>
             <li><a href="video.html">Video</a></li>
             <li><a href="weather.html">Weather</a></li>
+            <li><a href="earthquakes.html">Earthquakes</a></li>
+            <li><a href="custom-style.html">Custom Style</a></li>
+            <li><a href="https://geografa.github.io/portland-arch/">Portland Architecture</a></li>
+            <li><a href="https://geografa.github.io/driver-manifests/">Driving Tour</a></li>
             <li><a href="https://geografa.github.io/threebox/examples/starwars.html">Star Wars</a></li>
+            <li><a href="https://geografa.github.io/pubcrawler/">Design Week</a></li>
         </ul>
-        
     </div>
 </div>
-
 
 <script>
 	mapboxgl.accessToken = 'pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2ptYjNtZWxnMDBrdDNwbnVicGJzOWg2NyJ9.9OulyCe3kEqMAXPbx1mKUA';
@@ -68,16 +78,8 @@ body { margin: 0; padding: 0; }
             .getElementById('lightPreset')
             .addEventListener('change', function () {
                 map.setConfigProperty('basemap', 'lightPreset', this.value);
-            });
-
-       
+            });       
     });
-
-    
-
-    
-        
     </script>
-
 </body>
 </html>
