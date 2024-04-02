@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Mapbox Map Game Demos</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<!-- include bootstrap.min.css -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<link href="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.js"></script>
+<style>
+body { margin: 0; padding: 0; }
+#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+</style>
+</head>
+<body>
+<style>
+    .map-overlay {
+        font:
+            12px/20px 'Helvetica Neue',
+            Arial,
+            Helvetica,
+            sans-serif;
+        position: absolute;
+        width: 240px;
+        top: 0;
+        left: 0;
+        padding: 10px;
+        background-color: aliceblue;
+        opacity: 0.8;
+        z-index: 1;
+    }
+</style>
+
+<div id="map"></div>
+
+<div class="map-overlay">
+    <div class="map-overlay-inner">
+        <h1>Map Demos</h1>
+        <ul>
+            <li><a href="avatar.html">Avatar</a></li>
+            <li><a href="dance.html">Dance</a></li>
+            <li><a href="detect.html">Detect</a></li>
+            <li><a href="spin.html">Spin</a></li>
+            <li><a href="venues.html">Venues</a></li>
+            <li><a href="video.html">Video</a></li>
+            <li><a href="weather.html">Weather</a></li>
+            <li><a href="https://geografa.github.io/threebox/examples/starwars.html">Star Wars</a></li>
+        </ul>
+        
+    </div>
+</div>
+
+
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2ptYjNtZWxnMDBrdDNwbnVicGJzOWg2NyJ9.9OulyCe3kEqMAXPbx1mKUA';
+    const map = new mapboxgl.Map({
+        container: 'map', // container ID
+        center: [2.2950397535774414,48.85720928643093], // starting position [lng, lat]
+        zoom: 16.1, // starting zoom
+        pitch: 62, // starting pitch
+        bearing: -200 // starting bearing
+    });
+
+    map.on('style.load', () => {
+        document
+            .getElementById('lightPreset')
+            .addEventListener('change', function () {
+                map.setConfigProperty('basemap', 'lightPreset', this.value);
+            });
+
+       
+    });
+
+    
+
+    
+        
+    </script>
+
+</body>
+</html>
