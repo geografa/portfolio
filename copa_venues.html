@@ -3,8 +3,10 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Olympic Host Cities</title>
+    <title>EPL Stadiums</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <!-- include bootstrap.min.css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <link href="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.js"></script>
@@ -102,12 +104,12 @@
         mapboxgl.accessToken = 'pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2ptYjNtZWxnMDBrdDNwbnVicGJzOWg2NyJ9.9OulyCe3kEqMAXPbx1mKUA';
         const map = new mapboxgl.Map({
             container: 'map', // container ID
-            center: [-2.200409173965454, 53.48315225855606], // starting position [lng, lat]
+            // starting position [lng, lat] of kansas
+            center: [-98.35, 38.5],
             zoom: 2, // starting zoom
             pitch: 0, // starting pitch
             bearing: 0, // starting bearing
-            style: 'mapbox://styles/grafa/clpsmfu4900f901opa8dvh7sn',
-            hash:true
+            style: 'mapbox://styles/grafa/clpsmfu4900f901opa8dvh7sn'
         });
         // add the geocoder to the map
         const geocoder = new MapboxGeocoder({
@@ -118,23 +120,100 @@
         });
         map.addControl(geocoder);
 
+        // create an empty geojson object for the venues
+        const venuesGeojson = {
+            type: 'FeatureCollection',
+            features: []
+        };
 
-        map.on('load', () => {
-            map.setConfigProperty('basemap', 'lightPreset', 'day');
+        const addVenue = (venue) => {
+            venuesGeojson.features.push({
+                type: 'Feature',
+                geometry: {
+                    type: 'Point',
+                    coordinates: [venue.GeoLong, venue.GeoLat]
+                },
+                properties: {
+                    stadium: venue.Name,
+                    description: venue.Surface,
+                    image: venue.Image,
+                    // teams: team.FullName,
+                    // TeamImg: team.WikipediaLogoUrl,
+                    // Nickname1: team.Nickname1,
+                    // Nickname2: team.Nickname2,
+                    // Nickname3: team.Nickname3
+                    // schedule: schedule.DateTime
+                }
+            });
+        };
+        async function getVenue() {
+            // Assume this function fetches a list of projects
+            const response = await fetch('./copa_venues.json');
+            const venues = await response.json();
+            // filter venues to only include those that are in England
+            // const venuesEN = venues.filter((venue) => {
+            //     return venue.Country === 'England';
+            // });
+            // return venuesEN;
+            return venues;
+        }
+        // async function getTeam() {
+        //     // https://api.sportsdata.io/v4/soccer/scores/json/Teams/EPL?key=4d70e1e5065c454395a99aaa25d66eac
+        //     // Assume this function fetches a list of projects
+        //     const response = await fetch('https://api.sportsdata.io/v4/soccer/scores/json/Teams/21?key=4d70e1e5065c454395a99aaa25d66eac');
+        //     const teams = await response.json();
+        //     // filter venues to only include those that are in France
+        //     // const teamsEN = teams.filter((team) => {
+        //     //     return team.AreaName === 'England';
+        //     // });
+        //     // return teamsEN;
+        //     return teams;
+        // }
+
+        // https://api.sportsdata.io/v4/soccer/scores/json/SchedulesBasic/EPL/2024?key=4d70e1e5065c454395a99aaa25d66eac
+        // async function getSchedule() {
+        //     // Assume this function fetches a list of projects
+        //     const response = await fetch('https://api.sportsdata.io/v4/soccer/scores/json/SchedulesBasic/EPL/2024?key=4d70e1e5065c454395a99aaa25d66eac');
+        //     const schedule = await response.json();            
+        //     return schedule;
+        // }
+
+        async function main() {
+            // use the getVenues function to fetch venues and the getTeams function to fetch teams and then add the venues to the map if the venueID is the same in both the venues and teams data
+            const venues = await getVenue();
+            // const teams = await getTeam();
+            // const schedule = await getSchedule();
+            // add the venues to the map where the venueID is the same in both the venues and teams data
+            venues.forEach((venue) => {
+                addVenue(venue);
+                // teams.forEach((team) => {
+                //     if (venue.VenueId === team.VenueId) {
+                //         addVenue(venue, team);
+                //     }
+                // });
+            });
+
             map.addSource('venues', {
                 type: 'geojson',
-                data: './cities.geojson',
+                data: venuesGeojson
             });
             map.addLayer({
                 id: 'venues',
                 type: 'symbol',
                 source: 'venues',
-                // create a filter to only show the the symbols after zoom level 14
-                filter: ['>', ['zoom'], 14],
                 layout: {
-                    'icon-image': 'Olympic_rings_without_rims',
+                    'icon-image': 'soccer',
                     'icon-allow-overlap': true,
-                    'icon-size': 0.5,
+                    'icon-size': [
+                        'interpolate',
+                        ['linear'],
+                        ['zoom'],
+                        0,
+                        0.5,
+                        6,
+                        0.75,
+                        10,
+                        1],
                 },
                 paint: {
                     'icon-halo-width': 10,
@@ -143,44 +222,15 @@
                 }
             });
             map.addLayer({
-                id: 'venue_cirlces',
-                type: 'circle',
-                source: 'venues',
-                filter: ['<', ['zoom'], 14],
-                layout: {},
-                paint: {
-                    // write an expression to determine the radius of the circle based on the Times_Hosted property
-                    'circle-radius': [
-                        'interpolate',
-                        ['linear'],
-                        ['get', 'Times_Hosted'],
-                        1,
-                        5,
-                        2,
-                        10,
-                        3,
-                        20,
-                        4,
-                        30,
-                        // 50,
-                    ],
-                    'circle-color': '#fe5a2b',
-                    'circle-stroke-color': '#fff',
-                    'circle-stroke-width': 1,
-                }
-            });
-            map.addLayer({
                 id: 'venue-labels',
                 type: 'symbol',
                 source: 'venues',
                 layout: {
-                    "text-field": ["concat", ["get", "City"], " ", ["get", "Country"], " ", ["get", "Year"]],
+                    'text-field': ['get', 'stadium'],
                     'text-variable-anchor': ['bottom', 'left', 'right', 'top'],
-                    // 'text-radial-offset': 1,
-                    // offset the anchor of the text to the right 20px
-                    'text-offset': [0, 3],
+                    'text-radial-offset': 1,
                     'text-justify': 'auto',
-                    'text-size': 16,
+                    'text-size': 12,
                     'text-transform': 'uppercase',
                     'text-font': ['Mark SC Offc Pro Black Italic', 'Arial Unicode MS Bold'],
                 },
@@ -192,15 +242,19 @@
             });
             map.on('click', 'venues', (e) => {
                 const coordinates = e.features[0].geometry.coordinates.slice();
-                const { City, Year, Country, Times_Hosted, Season } = e.features[0].properties;
+                // const description = e.features[0].properties.description;
+                // const team = e.features[0].properties.teams;
+                const stadium = e.features[0].properties.stadium;
+                const image = e.features[0].properties.image;
+                // const Nickname1 = e.features[0].properties.Nickname1;
+                // const Nickname2 = e.features[0].properties.Nickname2;
+                // const Nickname3 = e.features[0].properties.Nickname3;
+                console.log(e.features[0].properties)
+                
                 new mapboxgl.Popup()
                     .setLngLat(coordinates)
-                    .setHTML(`<h3>${City}</h3>
-                    <p>${Year}</p>
-                    <p><strong>Host Country: </strong>${Country}</p>
-                    <p><strong>Times Hosted: </strong>${Times_Hosted}</p>
-                    <p><strong>Season: </strong>${Season}</p>
-                    
+                    .setHTML(`<h3>${stadium}</h3>
+                    <img src="${image}" alt="${stadium}" style="width: 100%; height: auto;"/>
                     `)
                     .addTo(map);
                 zoomToVenue(coordinates);
@@ -213,6 +267,10 @@
                     speed: 1.5
                 });
             };
+        }
+        map.on('load', () => {
+            main();
+            map.setConfigProperty('basemap', 'lightPreset', 'day');
         });
     </script>
 </body>
