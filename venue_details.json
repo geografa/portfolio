@@ -1,0 +1,346 @@
+[
+    {
+        "Year": "1896 & 2004 Summer Olympics",
+        "City": "Athens",
+        "Country": "Greece",
+        "Times_Hosted": 2,
+        "Season": "S",
+        "id": 1
+    },
+    {
+        "Year": "1900 & 1924 & 2024 Summer Olympics",
+        "City": "Paris",
+        "Country": "France",
+        "Times_Hosted": 2,
+        "Season": "S",
+        "id": 2
+    },
+    {
+        "Year": "1904 Summer Olympics",
+        "City": "St. Louis",
+        "Country": "United States",
+        "Times_Hosted": 1,
+        "Season": "S",
+        "id": 3
+    },
+    {
+        "Year": "1908 & 1948 & 2012  Summer Olympics",
+        "City": "London",
+        "Country": "England",
+        "Times_Hosted": 3,
+        "Season": "S",
+        "id": 4
+    },
+    {
+        "Year": "1912  Summer Olympics",
+        "City": "Stockholm",
+        "Country": "Sweden",
+        "Times_Hosted": 1,
+        "Season": "S",
+        "id": 5
+    },
+    {
+        "Year": "1920  Summer Olympics",
+        "City": "Antwerp",
+        "Country": "Belgium",
+        "Times_Hosted": 1,
+        "Season": "S",
+        "id": 6
+    },
+    {
+        "Year": "1928  Summer Olympics",
+        "City": "Amsterdam",
+        "Country": "Netherlands",
+        "Times_Hosted": 1,
+        "Season": "S",
+        "id": 7
+    },
+    {
+        "Year": "1932 & 1984 Summer Olympics",
+        "City": "Los Angeles",
+        "Country": "United States",
+        "Times_Hosted": 2,
+        "Season": "S",
+        "id": 8
+    },
+    {
+        "Year": "1936 Summer Olympics",
+        "City": "Berlin",
+        "Country": "Germany",
+        "Times_Hosted": 1,
+        "Season": "S",
+        "id": 9
+    },
+    {
+        "Year": "1952 Summer Olympics",
+        "City": "Helsinki",
+        "Country": "Finland",
+        "Times_Hosted": 1,
+        "Season": "S",
+        "id": 10
+    },
+    {
+        "Year": "1956 Summer Olympics",
+        "City": "Melbourne",
+        "Country": "Australia",
+        "Times_Hosted": 1,
+        "Season": "S",
+        "id": 11
+    },
+    {
+        "Year": "1960 Summer Olympics",
+        "City": "Rome",
+        "Country": "Italy",
+        "Times_Hosted": 1,
+        "Season": "S",
+        "id": 12
+    },
+    {
+        "Year": "1964 & 2021 Summer Olympics",
+        "City": "Tokyo",
+        "Country": "Japan",
+        "Times_Hosted": 2,
+        "Season": "S",
+        "id": 13
+    },
+    {
+        "Year": "1968 Summer Olympics",
+        "City": "Mexico City",
+        "Country": "Mexico",
+        "Times_Hosted": 1,
+        "Season": "S",
+        "id": 14
+    },
+    {
+        "Year": "1972 Summer Olympics",
+        "City": "Munich",
+        "Country": "West Germany",
+        "Times_Hosted": 1,
+        "Season": "S",
+        "id": 15
+    },
+    {
+        "Year": "1976 Summer Olympics",
+        "City": "Montreal",
+        "Country": "Canada",
+        "Times_Hosted": 1,
+        "Season": "S",
+        "id": 16
+    },
+    {
+        "Year": "1980 Summer Olympics",
+        "City": "Moscow",
+        "Country": "USSR",
+        "Times_Hosted": 1,
+        "Season": "S",
+        "id": 17
+    },
+    {
+        "Year": "1988 Summer Olympics",
+        "City": "Seoul",
+        "Country": "South Korea",
+        "Times_Hosted": 1,
+        "Season": "S",
+        "id": 18
+    },
+    {
+        "Year": "1992 Summer Olympics",
+        "City": "Barcelona",
+        "Country": "Spain",
+        "Times_Hosted": 1,
+        "Season": "S",
+        "id": 19
+    },
+    {
+        "Year": "1996 Summer Olympics",
+        "City": "Atlanta",
+        "Country": "United States",
+        "Times_Hosted": 1,
+        "Season": "S",
+        "id": 20
+    },
+    {
+        "Year": "2000 Summer Olympics",
+        "City": "Sydney",
+        "Country": "Australia",
+        "Times_Hosted": 1,
+        "Season": "S",
+        "id": 21
+    },
+    {
+        "Year": "2008 Summer Olympics & 2022 Winter Olympics",
+        "City": "Beijing",
+        "Country": "China",
+        "Times_Hosted": 2,
+        "Season": "B",
+        "id": 22
+    },
+    {
+        "Year": "2016 Summer Olympics",
+        "City": "Rio de Janeiro",
+        "Country": "Brazil",
+        "Times_Hosted": 1,
+        "Season": "S",
+        "id": 23
+    },
+    {
+        "Year": "1924 Winter Olympics",
+        "City": "Chamonix",
+        "Country": "France",
+        "Times_Hosted": 1,
+        "Season": "W",
+        "id": 24
+    },
+    {
+        "Year": "1928 & 1948 Winter Olympics",
+        "City": "St. Moritz",
+        "Country": "Switzerland",
+        "Times_Hosted": 2,
+        "Season": "W",
+        "id": 25
+    },
+    {
+        "Year": "1932 & 1980 Winter Olympics",
+        "City": "Lake Placid",
+        "Country": "United States",
+        "Times_Hosted": 2,
+        "Season": "W",
+        "id": 26
+    },
+    {
+        "Year": "1936 Winter Olympics",
+        "City": "Garmisch-Partenkirchen",
+        "Country": "Germany",
+        "Times_Hosted": 1,
+        "Season": "W",
+        "id": 27
+    },
+    {
+        "Year": "1952 Winter Olympics",
+        "City": "Oslo",
+        "Country": "Norway",
+        "Times_Hosted": 1,
+        "Season": "W",
+        "id": 28
+    },
+    {
+        "Year": "1956 Winter Olympics",
+        "City": "Cortina",
+        "Country": "Italy",
+        "Times_Hosted": 1,
+        "Season": "W",
+        "id": 29
+    },
+    {
+        "Year": "1960 Winter Olympics",
+        "City": "Squaw Valley",
+        "Country": "United States",
+        "Times_Hosted": 1,
+        "Season": "W",
+        "id": 30
+    },
+    {
+        "Year": "1964 & 1976 Winter Olympics",
+        "City": "Innsbruck",
+        "Country": "Austria",
+        "Times_Hosted": 2,
+        "Season": "W",
+        "id": 31
+    },
+    {
+        "Year": "1968 Winter Olympics",
+        "City": "Grenoble",
+        "Country": "France",
+        "Times_Hosted": 1,
+        "Season": "W",
+        "id": 32
+    },
+    {
+        "Year": "1972 Winter Olympics",
+        "City": "Sapporo",
+        "Country": "Japan",
+        "Times_Hosted": 1,
+        "Season": "W",
+        "id": 33
+    },
+    {
+        "Year": "1984 Winter Olympics",
+        "City": "Sarajevo",
+        "Country": "Yugoslavia",
+        "Times_Hosted": 1,
+        "Season": "W",
+        "id": 34
+    },
+    {
+        "Year": "1988 Winter Olympics",
+        "City": "Calgary",
+        "Country": "Canada",
+        "Times_Hosted": 1,
+        "Season": "W",
+        "id": 35
+    },
+    {
+        "Year": "1992 Winter Olympics",
+        "City": "Albertville",
+        "Country": "France",
+        "Times_Hosted": 1,
+        "Season": "W",
+        "id": 36
+    },
+    {
+        "Year": "1994 Winter Olympics",
+        "City": "Lillehammer",
+        "Country": "Norway",
+        "Times_Hosted": 1,
+        "Season": "W",
+        "id": 37
+    },
+    {
+        "Year": "1998 Winter Olympics",
+        "City": "Nagano",
+        "Country": "Japan",
+        "Times_Hosted": 1,
+        "Season": "W",
+        "id": 38
+    },
+    {
+        "Year": "2002 Winter Olympics",
+        "City": "Salt Lake City",
+        "Country": "United States",
+        "Times_Hosted": 1,
+        "Season": "W",
+        "id": 39
+    },
+    {
+        "Year": "2006 Winter Olympics",
+        "City": "Turin",
+        "Country": "Italy",
+        "Times_Hosted": 1,
+        "Season": "W",
+        "id": 40
+    },
+    {
+        "Year": "2010 Winter Olympics",
+        "City": "Vancouver",
+        "Country": "Canada",
+        "Times_Hosted": 1,
+        "Season": "W",
+        "id": 41
+    },
+    {
+        "Year": "2014 Winter Olympics",
+        "City": "Sochi",
+        "Country": "Russia",
+        "Times_Hosted": 1,
+        "Season": "W",
+        "id": 42
+    },
+    {
+        "Year": "2018 Winter Olympics",
+        "City": "Pyeongchang",
+        "Country": "South Korea",
+        "Times_Hosted": 1,
+        "Season": "W",
+        "id": 43
+    }
+]

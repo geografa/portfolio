@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Olympic Host Cities II</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+
+        #map canvas {
+            cursor: crosshair;
+        }
+
+        #features {
+            position: absolute;
+            padding: 20px;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 30%;
+            overflow: auto;
+            background: rgba(255, 255, 255, 0.8);
+            font-size: 1em;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        #features h2 {
+            font-family: "Monoton", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 2em;
+            margin: 0;
+        }
+
+        button {
+            position: absolute;
+            background-color: #4CAF50;
+            color: white;
+            padding: 5px 8px;
+            text-align: right;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 12px;
+            cursor: pointer;
+            border-radius: 10px;
+            border-style: none;
+            z-index: 1;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            right: 20px;
+            top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+    <button id="overview">Overview</button>
+    <div id="features">
+        <h2>Olympic Host Cities</h2>
+    </div>
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2ptYjNtZWxnMDBrdDNwbnVicGJzOWg2NyJ9.9OulyCe3kEqMAXPbx1mKUA';
+        const map = new mapboxgl.Map({
+            container: 'map',
+            // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+            style: 'mapbox://styles/grafa/clv43t0pc00fw01q1gjy7bs9r',
+            center: [1.7481854491305455, 51.572264143826345],
+            zoom: 2,
+            hash: true
+        });
+
+        // create a function that returns the venues from venue_details.json file
+        function getVenues() {
+            return fetch('venue_details.json')
+                .then(response => response.json())
+                .then(data => data);
+        }
+        map.on('load', () => {
+            // Add source for olympic cities
+            map.addSource('cities', {
+                type: 'vector',
+                url: 'mapbox://grafa.cktlnghb'
+            });
+            // create a function that returns the venues from venue_details.json file
+            function getVenues() {
+                return fetch('venue_details.json')
+                    .then(response => response.json())
+                    .then(data => data);
+            };
+
+            // join the properties of the GeoJSON data with the data from the venues 
+            // based on id 
+            map.addLayer({
+                'id': 'cities',
+                'type': 'circle',
+                'source': 'cities',
+                'source-layer': 'cities',
+                'paint': {
+                    'circle-radius': 7,
+                    'circle-color': 'rgba(55,148,179,1)'
+                }
+            });
+            map.on('click', (e) => {
+                const bbox = [
+                    [e.point.x - 5, e.point.y - 5],
+                    [e.point.x + 5, e.point.y + 5]
+                ];
+                const features = map.queryRenderedFeatures(bbox, { layers: ['cities'] });
+
+                // Limit the number of properties we're displaying for
+                // legibility and performance
+                const displayProperties = [
+                    'type',
+                    'properties',
+                    'id',
+                    'layer',
+                    'source',
+                    'sourceLayer'
+                ];
+
+                // create a function that returns the venues from venue_details.json file that matches the feature id 
+                getVenues().then(data => {
+                    const displayFeatures = features.map((feat) => {
+                        const displayFeat = {};
+                        displayProperties.forEach((prop) => {
+                            // if the featue id matches the venue id, add the venue name to the displayFeat object 
+                            if (prop === 'properties') {
+                                displayFeat[prop] = data.find(venue => venue.id === feat[prop].id);
+                            } else {
+                                displayFeat[prop] = feat[prop].id;
+                            }
+                        });
+
+                        return displayFeat;
+                    });
+
+                    // display the venue name in the features div 
+                    const year = displayFeatures[0].properties.Year;
+                    const country = displayFeatures[0].properties.Country;
+                    const city = displayFeatures[0].properties.City;
+                    const hosted = displayFeatures[0].properties.Times_Hosted;
+                    document.getElementById('features').innerHTML = '<h2>' + city + '</h2><br>Country: ' + country + '<br>Year: ' + year + '<br>Times Hosted: ' + hosted;
+                });
+                // fly to the selected feature with a pitch of 60 and a random bearing
+                map.flyTo({
+                    center: features[0].geometry.coordinates,
+                    zoom: 15.5,
+                    bearing: Math.floor(Math.random() * 360),
+                    pitch: 60
+                });
+            });
+            // add a listener to the button that will fly to 0,0 at a zoom of 1
+            document.getElementById('overview').addEventListener('click', () => {
+                map.flyTo({
+                    center: [0, 0],
+                    zoom: 1
+                });
+            });
+
+            // Start spinning the globe after the map loads
+            spinGlobe();
+        });
+        // At low zooms, complete a revolution every two minutes.
+        const secondsPerRevolution = 120;
+        // Above zoom level 5, do not rotate.
+        const maxSpinZoom = 5;
+        // Rotate at intermediate speeds between zoom levels 3 and 5.
+        const slowSpinZoom = 3;
+
+        let userInteracting = false;
+        let spinEnabled = true;
+
+        function spinGlobe() {
+            const zoom = map.getZoom();
+            if (spinEnabled && !userInteracting && zoom < maxSpinZoom) {
+                let distancePerSecond = 360 / secondsPerRevolution;
+                if (zoom > slowSpinZoom) {
+                    // Slow spinning at higher zooms
+                    const zoomDif =
+                        (maxSpinZoom - zoom) / (maxSpinZoom - slowSpinZoom);
+                    distancePerSecond *= zoomDif;
+                }
+                const center = map.getCenter();
+                center.lng -= distancePerSecond;
+                // Smoothly animate the map over one second.
+                // When this animation is complete, it calls a 'moveend' event.
+                map.easeTo({ center, duration: 1000, easing: (n) => n });
+            }
+        }
+
+        // Pause spinning on interaction
+        map.on('mousedown', () => {
+            userInteracting = true;
+        });
+
+        // Restart spinning the globe when interaction is complete
+        map.on('mouseup', () => {
+            userInteracting = false;
+            spinGlobe();
+        });
+
+        // These events account for cases where the mouse has moved
+        // off the map, so 'mouseup' will not be fired.
+        map.on('dragend', () => {
+            userInteracting = false;
+            spinGlobe();
+        });
+        map.on('pitchend', () => {
+            userInteracting = false;
+            spinGlobe();
+        });
+        map.on('rotateend', () => {
+            userInteracting = false;
+            spinGlobe();
+        });
+
+        // When animation is complete, start spinning if there is no ongoing interaction
+        map.on('moveend', () => {
+            spinGlobe();
+        });
+
+        document.getElementById('spin').addEventListener('click', (e) => {
+            spinEnabled = !spinEnabled;
+            if (spinEnabled) {
+                spinGlobe();
+            }
+            else {
+                map.stop(); //
+            }
+        }
+        );
+
+
+    </script>
+
+</body>
+
+</html>

@@ -118,12 +118,32 @@
         });
         map.addControl(geocoder);
 
+        const data = './cities.geojson'
+        
+        let features = [];
+        let arr = [];
+        fetch(data)
+            .then(response => response.json())
+            .then(data => {
+                features = data.features;
+                console.log('Count: ' + features.length);
+                for (let i = 0; i < features.length; i++) {
+                    // console.log(features[i].properties);
+                    // push the properties of each feature to the arr array
+                    // add a unique id to the preperties object
+                    // features[i].properties.id = i;
+                    // arr.push(features[i].properties);
+
+                    
+                };
+                console.log(arr);
+            });
 
         map.on('load', () => {
-            map.setConfigProperty('basemap', 'lightPreset', 'day');
+            map.setConfigProperty('basemap', 'lightPreset', 'dawn');
             map.addSource('venues', {
                 type: 'geojson',
-                data: './cities.geojson',
+                data: data,
             });
             map.addLayer({
                 id: 'venues',
