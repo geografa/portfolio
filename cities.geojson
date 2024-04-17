@@ -8,11 +8,7 @@
        "coordinates":  [ 23.717,37.967 ]
     },
     "properties": {
-    "Year":"1896 & 2004 Summer Olympics",
-    "City":"Athens",
-    "Country":"Greece",
-    "Times_Hosted":2,
-    "Season":"S"
+      "id": 1
     }
   },
   {
@@ -22,11 +18,7 @@
        "coordinates":  [ 2.351,48.857 ]
     },
     "properties": {
-    "Year":"1900 & 1924 & 2024 Summer Olympics",
-    "City":"Paris",
-    "Country":"France",
-    "Times_Hosted":2,
-    "Season":"S"
+      "id": 2
     }
   },
   {
@@ -36,11 +28,7 @@
        "coordinates":  [ -90.198,38.627 ]
     },
     "properties": {
-    "Year":"1904 Summer Olympics",
-    "City":"St. Louis",
-    "Country":"United States",
-    "Times_Hosted":1,
-    "Season":"S"
+      "id": 3
     }
   },
   {
@@ -50,11 +38,7 @@
        "coordinates":  [ -0.123,51.507 ]
     },
     "properties": {
-    "Year":"1908 & 1948 & 2012  Summer Olympics",
-    "City":"London",
-    "Country":"England",
-    "Times_Hosted":3,
-    "Season":"S"
+      "id": 4
     }
   },
   {
@@ -64,11 +48,7 @@
        "coordinates":  [ 18.068,59.329 ]
     },
     "properties": {
-    "Year":"1912  Summer Olympics",
-    "City":"Stockholm",
-    "Country":"Sweden",
-    "Times_Hosted":1,
-    "Season":"S"
+      "id": 5
     }
   },
   {
@@ -78,11 +58,7 @@
        "coordinates":  [ 4.4,51.217 ]
     },
     "properties": {
-    "Year":"1920  Summer Olympics",
-    "City":"Antwerp",
-    "Country":"Belgium",
-    "Times_Hosted":1,
-    "Season":"S"
+      "id": 6
     }
   },
   {
@@ -92,11 +68,7 @@
        "coordinates":  [ 4.9,52.367 ]
     },
     "properties": {
-    "Year":"1928  Summer Olympics",
-    "City":"Amsterdam",
-    "Country":"Netherlands",
-    "Times_Hosted":1,
-    "Season":"S"
+      "id": 7
     }
   },
   {
@@ -106,11 +78,7 @@
        "coordinates":  [ -118.25,34.05 ]
     },
     "properties": {
-    "Year":"1932 & 1984 Summer Olympics",
-    "City":"Los Angeles",
-    "Country":"United States",
-    "Times_Hosted":2,
-    "Season":"S"
+      "id": 8
     }
   },
   {
@@ -120,11 +88,7 @@
        "coordinates":  [ 13.383,52.517 ]
     },
     "properties": {
-    "Year":"1936 Summer Olympics",
-    "City":"Berlin",
-    "Country":"Germany",
-    "Times_Hosted":1,
-    "Season":"S"
+      "id": 9
     }
   },
   {
@@ -134,11 +98,7 @@
        "coordinates":  [ 24.938,60.171 ]
     },
     "properties": {
-    "Year":"1952 Summer Olympics",
-    "City":"Helsinki",
-    "Country":"Finland",
-    "Times_Hosted":1,
-    "Season":"S"
+      "id": 10
     }
   },
   {
@@ -148,11 +108,7 @@
        "coordinates":  [ 144.963,-37.814 ]
     },
     "properties": {
-    "Year":"1956 Summer Olympics",
-    "City":"Melbourne",
-    "Country":"Australia",
-    "Times_Hosted":1,
-    "Season":"S"
+      "id": 11
     }
   },
   {
@@ -162,11 +118,7 @@
        "coordinates":  [ 12.5,41.9 ]
     },
     "properties": {
-    "Year":"1960 Summer Olympics",
-    "City":"Rome",
-    "Country":"Italy",
-    "Times_Hosted":1,
-    "Season":"S"
+      "id": 12
     }
   },
   {
@@ -176,11 +128,7 @@
        "coordinates":  [ 139.683,35.683 ]
     },
     "properties": {
-    "Year":"1964 & 2021 Summer Olympics",
-    "City":"Tokyo",
-    "Country":"Japan",
-    "Times_Hosted":2,
-    "Season":"S"
+      "id": 13
     }
   },
   {
@@ -190,11 +138,7 @@
        "coordinates":  [ -99.133,19.433 ]
     },
     "properties": {
-    "Year":"1968 Summer Olympics",
-    "City":"Mexico City",
-    "Country":"Mexico",
-    "Times_Hosted":1,
-    "Season":"S"
+      "id": 14
     }
   },
   {
@@ -204,11 +148,7 @@
        "coordinates":  [ 11.567,48.133 ]
     },
     "properties": {
-    "Year":"1972 Summer Olympics",
-    "City":"Munich",
-    "Country":"West Germany",
-    "Times_Hosted":1,
-    "Season":"S"
+      "id": 15
     }
   },
   {
@@ -218,11 +158,7 @@
        "coordinates":  [ -73.567,45.502 ]
     },
     "properties": {
-    "Year":"1976 Summer Olympics",
-    "City":"Montreal",
-    "Country":"Canada",
-    "Times_Hosted":1,
-    "Season":"S"
+      "id": 16
     }
   },
   {
@@ -232,11 +168,7 @@
        "coordinates":  [ 37.615,55.75 ]
     },
     "properties": {
-    "Year":"1980 Summer Olympics",
-    "City":"Moscow",
-    "Country":"USSR",
-    "Times_Hosted":1,
-    "Season":"S"
+      "id": 17
     }
   },
   {
@@ -246,11 +178,7 @@
        "coordinates":  [ 126.967,37.567 ]
     },
     "properties": {
-    "Year":"1988 Summer Olympics",
-    "City":"Seoul",
-    "Country":"South Korea",
-    "Times_Hosted":1,
-    "Season":"S"
+      "id": 18
     }
   },
   {
@@ -260,11 +188,7 @@
        "coordinates":  [ 2.183,41.383 ]
     },
     "properties": {
-    "Year":"1992 Summer Olympics",
-    "City":"Barcelona",
-    "Country":"Spain",
-    "Times_Hosted":1,
-    "Season":"S"
+      "id": 19
     }
   },
   {
@@ -274,11 +198,7 @@
        "coordinates":  [ -84.39,33.755 ]
     },
     "properties": {
-    "Year":"1996 Summer Olympics",
-    "City":"Atlanta",
-    "Country":"United States",
-    "Times_Hosted":1,
-    "Season":"S"
+      "id": 20
     }
   },
   {
@@ -288,11 +208,7 @@
        "coordinates":  [ 151.21,-33.865 ]
     },
     "properties": {
-    "Year":"2000 Summer Olympics",
-    "City":"Sydney",
-    "Country":"Australia",
-    "Times_Hosted":1,
-    "Season":"S"
+      "id": 21
     }
   },
   {
@@ -302,11 +218,7 @@
        "coordinates":  [ 116.38,39.917 ]
     },
     "properties": {
-    "Year":"2008 Summer Olympics & 2022 Winter Olympics",
-    "City":"Beijing",
-    "Country":"China",
-    "Times_Hosted":2,
-    "Season":"B"
+      "id": 22
     }
   },
   {
@@ -316,11 +228,7 @@
        "coordinates":  [ -43.173,-22.907 ]
     },
     "properties": {
-    "Year":"2016 Summer Olympics",
-    "City":"Rio de Janeiro",
-    "Country":"Brazil",
-    "Times_Hosted":1,
-    "Season":"S"
+      "id": 23
     }
   },
   {
@@ -330,11 +238,7 @@
        "coordinates":  [ 6.87,45.923 ]
     },
     "properties": {
-    "Year":"1924 Winter Olympics",
-    "City":"Chamonix",
-    "Country":"France",
-    "Times_Hosted":1,
-    "Season":"W"
+      "id": 24
     }
   },
   {
@@ -344,11 +248,7 @@
        "coordinates":  [ 9.833,46.5 ]
     },
     "properties": {
-    "Year":"1928 & 1948 Winter Olympics",
-    "City":"St. Moritz",
-    "Country":"Switzerland",
-    "Times_Hosted":2,
-    "Season":"W"
+      "id": 25
     }
   },
   {
@@ -358,11 +258,7 @@
        "coordinates":  [ -73.985,44.286 ]
     },
     "properties": {
-    "Year":"1932 & 1980 Winter Olympics",
-    "City":"Lake Placid",
-    "Country":"United States",
-    "Times_Hosted":2,
-    "Season":"W"
+      "id": 26
     }
   },
   {
@@ -372,11 +268,7 @@
        "coordinates":  [ 11.15,47.5 ]
     },
     "properties": {
-    "Year":"1936 Winter Olympics",
-    "City":"Garmisch-Partenkirchen",
-    "Country":"Germany",
-    "Times_Hosted":1,
-    "Season":"W"
+      "id": 27
     }
   },
   {
@@ -386,11 +278,7 @@
        "coordinates":  [ 10.75,59.95 ]
     },
     "properties": {
-    "Year":"1952 Winter Olympics",
-    "City":"Oslo",
-    "Country":"Norway",
-    "Times_Hosted":1,
-    "Season":"W"
+      "id": 28
     }
   },
   {
@@ -400,11 +288,7 @@
        "coordinates":  [ 12.133,46.533 ]
     },
     "properties": {
-    "Year":"1956 Winter Olympics",
-    "City":"Cortina",
-    "Country":"Italy",
-    "Times_Hosted":1,
-    "Season":"W"
+      "id": 29
     }
   },
   {
@@ -414,11 +298,7 @@
        "coordinates":  [ -120.235,39.196 ]
     },
     "properties": {
-    "Year":"1960 Winter Olympics",
-    "City":"Squaw Valley",
-    "Country":"United States",
-    "Times_Hosted":1,
-    "Season":"W"
+      "id": 30
     }
   },
   {
@@ -428,11 +308,7 @@
        "coordinates":  [ 11.383,47.267 ]
     },
     "properties": {
-    "Year":"1964 & 1976 Winter Olympics",
-    "City":"Innsbruck",
-    "Country":"Austria",
-    "Times_Hosted":2,
-    "Season":"W"
+      "id": 31
     }
   },
   {
@@ -442,11 +318,7 @@
        "coordinates":  [ 5.722,45.2 ]
     },
     "properties": {
-    "Year":"1968 Winter Olympics",
-    "City":"Grenoble",
-    "Country":"France",
-    "Times_Hosted":1,
-    "Season":"W"
+      "id": 32
     }
   },
   {
@@ -456,11 +328,7 @@
        "coordinates":  [ 141.35,43.067 ]
     },
     "properties": {
-    "Year":"1972 Winter Olympics",
-    "City":"Sapporo",
-    "Country":"Japan",
-    "Times_Hosted":1,
-    "Season":"W"
+      "id": 33
     }
   },
   {
@@ -470,11 +338,7 @@
        "coordinates":  [ 18.417,43.867 ]
     },
     "properties": {
-    "Year":"1984 Winter Olympics",
-    "City":"Sarajevo",
-    "Country":"Yugoslavia",
-    "Times_Hosted":1,
-    "Season":"W"
+      "id": 34
     }
   },
   {
@@ -484,11 +348,7 @@
        "coordinates":  [ -114.071,51.049 ]
     },
     "properties": {
-    "Year":"1988 Winter Olympics",
-    "City":"Calgary",
-    "Country":"Canada",
-    "Times_Hosted":1,
-    "Season":"W"
+      "id": 35
     }
   },
   {
@@ -498,11 +358,7 @@
        "coordinates":  [ 6.393,45.678 ]
     },
     "properties": {
-    "Year":"1992 Winter Olympics",
-    "City":"Albertville",
-    "Country":"France",
-    "Times_Hosted":1,
-    "Season":"W"
+      "id": 36
     }
   },
   {
@@ -512,11 +368,7 @@
        "coordinates":  [ 10.433,61.13 ]
     },
     "properties": {
-    "Year":"1994 Winter Olympics",
-    "City":"Lillehammer",
-    "Country":"Norway",
-    "Times_Hosted":1,
-    "Season":"W"
+      "id": 37
     }
   },
   {
@@ -526,11 +378,7 @@
        "coordinates":  [ 138.1,36.25 ]
     },
     "properties": {
-    "Year":"1998 Winter Olympics",
-    "City":"Nagano",
-    "Country":"Japan",
-    "Times_Hosted":1,
-    "Season":"W"
+      "id": 38
     }
   },
   {
@@ -540,11 +388,7 @@
        "coordinates":  [ -111.88,40.75 ]
     },
     "properties": {
-    "Year":"2002 Winter Olympics",
-    "City":"Salt Lake City",
-    "Country":"United States",
-    "Times_Hosted":1,
-    "Season":"W"
+      "id": 39
     }
   },
   {
@@ -554,11 +398,7 @@
        "coordinates":  [ 7.7,45.067 ]
     },
     "properties": {
-    "Year":"2006 Winter Olympics",
-    "City":"Turin",
-    "Country":"Italy",
-    "Times_Hosted":1,
-    "Season":"W"
+      "id": 40
     }
   },
   {
@@ -568,11 +408,7 @@
        "coordinates":  [ -123.121,49.283 ]
     },
     "properties": {
-    "Year":"2010 Winter Olympics",
-    "City":"Vancouver",
-    "Country":"Canada",
-    "Times_Hosted":1,
-    "Season":"W"
+      "id": 41
     }
   },
   {
@@ -582,11 +418,7 @@
        "coordinates":  [ 39.72,43.585 ]
     },
     "properties": {
-    "Year":"2014 Winter Olympics",
-    "City":"Sochi",
-    "Country":"Russia",
-    "Times_Hosted":1,
-    "Season":"W"
+      "id": 42
     }
   },
   {
@@ -596,11 +428,7 @@
        "coordinates":  [ 128.4,37.367 ]
     },
     "properties": {
-    "Year":"2018 Winter Olympics",
-    "City":"Pyeongchang",
-    "Country":"South Korea",
-    "Times_Hosted":1,
-    "Season":"W"
+      "id": 43
     }
   }
 ]}
