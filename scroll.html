@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Summer Olympics Host Cities</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
+
+</head>
+
+<body>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(180deg, #046CAA 0%, #04538D 100%);
+        }
+
+        .container {
+            /* position: relative; */
+            /* height: 100%; */
+            /* bottom: 60%; */
+            width: 100%;
+            font-family: sans-serif;
+            /* padding: 10px; */
+            color: aliceblue;
+        }
+
+        .container img {
+            max-width: 100%;
+            /* height: 100%; */
+        }
+
+        .container h1 {
+            border-bottom: 1px solid #ddd;
+            font-size: 64px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        }
+
+        .container h2 {
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            font-size: 32px;
+        }
+
+        .container h3 {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .map {
+            position: fixed;
+            width: 100%;
+            height: 50vh;
+            top: 50%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .content-header {
+            margin: 20px;
+        }
+
+        .content {
+            max-width: fit-content;
+            padding: 10px;
+        }
+
+        #features {
+            font-family: sans-serif;
+            /* opacity: 0.2; */
+
+        }
+
+        section {
+            padding: 25px 20px;
+            line-height: 25px;
+            border-bottom: 1px solid #ddd;
+            opacity: 0.25;
+            font-size: 13px;
+            overflow-y: scroll;
+        }
+
+        section.active {
+            opacity: 1;
+        }
+
+        section:last-child {
+            border-bottom: none;
+            margin-bottom: 200px;
+        }
+        button {
+            position: absolute;
+            background-color: #4CAF50;
+            color: white;
+            padding: 5px 8px;
+            text-align: right;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 12px;
+            cursor: pointer;
+            border-radius: 10px;
+            border-style: none;
+            z-index: 1;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            right: 20px;
+            top: 50px;
+            display: none;
+        }
+    </style>
+    <div class="container">
+        <button id="spin">Toggle Spin</button>
+        <div id="map" class="map"></div>
+        <div class="content-header">
+            <h1>Summer Olympic Host Cities</h1>
+            Scroll down to explore the host cities of the Summer Olympics, from Athens in 1896 to Tokyo in
+                2020. As you scroll, the map will fly to each city and display key facts about the Games
+                held there.
+        </div>
+        <div class="content-header">
+            <div class="content">
+                <div id="features">
+                    <section id="0000" class="active">
+                    </section>
+                    <section id="1896" class="active">
+                        <h1>1896</h1>
+                        <h2>Athens, Greece</h2>
+                        <img src="https://cdn.britannica.com/61/18361-050-64BC6B3A/Panathenaic-Stadium-athletics-events-Athens-1896-Olympic-1896.jpg"
+                            alt="1906 athens greece">
+                        <p>
+                        <p>The 1896 Summer Olympics, officially known as the Games of the I Olympiad, were held in
+                            Athens, Greece from April 6-15, 1896. Here are the key facts about these inaugural modern
+                            Olympic Games:</p>
+                        <h3 id="venues">Venues</h3>
+                        <ul>
+                            <li>Panathenaic Stadium (athletics, wrestling)</li>
+                            <li>Neo Phaliron Velodrome (cycling)</li>
+                            <li>Zappeion (fencing)</li>
+                            <li>Open water venues for swimming events</li>
+                        </ul>
+                        <h3 id="participatingcountries">Participating Countries</h3>
+                        <ul>
+                            <li>14 nations participated, with 241 athletes (all male)[2]</li>
+                            <li>Over 65% of athletes were from Greece[2]</li>
+                        </ul>
+                        <h3 id="notableathletes">Notable Athletes</h3>
+                        <ul>
+                            <li>Spyridon Louis (Greece) - Won the marathon, becoming a national hero[4]</li>
+                            <li>Alfréd Hajós (Hungary) - Won swimming events in freezing open water[4][5] </li>
+                            <li>James Connolly (USA) - First Olympic champion in over 1,500 years (triple jump)[4]</li>
+                            <li>Carl Schuhmann (Germany) - Most successful athlete with 4 wrestling/gymnastics wins[2]
+                            </li>
+                        </ul>
+                        <h3 id="newsports">New Sports</h3>
+                        <ul>
+                            <li>None, but swimming events were held in open water for the first time[5]</li>
+                        </ul>
+                        <h3 id="innovations">Innovations</h3>
+                        <ul>
+                            <li>First modern Olympic marathon race[5]</li>
+                            <li>Thomas Burke (USA) used a crouching start in sprint races[5]</li>
+                        </ul>
+                        <h3 id="controversies">Controversies</h3>
+                        <ul>
+                            <li>None major, though some uncertainty over exact athlete numbers[2]</li>
+                        </ul>
+                        <h3 id="worldevents">World Events</h3>
+                        <ul>
+                            <li>Greece had recently gained independence and hosted to affirm nationhood[1]</li>
+                            <li>Financial troubles and political instability initially threatened the Games[2]</li>
+                        </ul>
+                        <h3 id="othernotes">Other Notes</h3>
+                        <ul>
+                            <li>Winners received silver medals, runners-up copper (later amended to
+                                gold/silver/bronze)[2]</li>
+                            <li>Olympic theme song debuted[1]</li>
+                            <li>Torch relay inaugurated, snaking through Athens streets[1]</li>
+                        </ul>
+                        <p>So in summary, the 1896 Athens Games successfully revived the Olympic tradition after 1,500
+                            years, overcoming challenges to host an iconic first edition of the modern
+                            Olympics.[1][2][4][5]</p>
+                        <p>Citations:
+                            [1]
+                            https://origins.osu.edu/milestones/revival-and-reinvention-olympic-games-athens-1896?language<em>content</em>entity=en
+                            [2] https://en.wikipedia.org/wiki/1896<em>Summer</em>Olympics
+                            [3] https://en.wikipedia.org/wiki/Greece<em>at</em>the<em>1896</em>Summer_Olympics
+                            [4] https://olympics.com/en/olympic-games/athens-1896
+                            [5]
+                            https://olympics.com/en/news/top-reasons-why-the-athens-1896-olympics-were-important-for-modern-sport
+                        </p>
+                        </p>
+                    </section>
+                    <section id="1900" class="active">
+                        <h1>1900</h1>
+                        <h2>Paris, France</h2>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Eiffel_Tower_and_general_view_of_the_grounds%2C_Exposition_Universal%2C_1900%2C_Paris%2C_France.jpg" alt="1900 Paris France">
+                        <h3 id="venues">Venues</h3>
+                        <p>The 1900 Paris Exposition took place across several venues spanning 543 acres (216 hectares),
+                            including:</p>
+                        <ul>
+                            <li>Champ de Mars</li>
+                            <li>Trocadéro</li>
+                            <li>Esplanade des Invalides </li>
+                            <li>Along the banks of the Seine river</li>
+                            <li>Bois de Vincennes (for agricultural exhibits and sporting events)[1][2]</li>
+                        </ul>
+                        <h3 id="numberofparticipatingcountries">Number of Participating Countries</h3>
+                        <ul>
+                            <li>40 countries participated with national pavilions[2]</li>
+                            <li>Over 83,000 exhibitors from around the world[1]</li>
+                        </ul>
+                        <h3 id="notableathletes">Notable Athletes</h3>
+                        <ul>
+                            <li>Alvin Kraenzlein (USA) - Won 4 athletics events (60m, 110m hurdles, 200m hurdles, long
+                                jump)[5]</li>
+                            <li>The first female Olympic athletes competed, including Mrs. Brohy and Miss Ohnier of
+                                France in croquet[5]</li>
+                        </ul>
+                        <h3 id="notablefashion">Notable Fashion</h3>
+                        <ul>
+                            <li>Art Nouveau style was prominently featured, with displays by René Lalique, Gaillard,
+                                Guimard, Charpentier and others[1]</li>
+                        </ul>
+                        <h3 id="themesong">Theme Song</h3>
+                        <p>No specific theme song is mentioned.</p>
+                        <h3 id="recordsbroken">Records Broken</h3>
+                        <p>No major world records are cited, though it showcased many technological innovations and
+                            feats of engineering.[1][3]</p>
+                        <h3 id="newsportsintroduced">New Sports Introduced</h3>
+                        <p>The 1900 Paris games were the first Olympics with women's events, including croquet.[5]</p>
+                        <h3 id="innovations">Innovations</h3>
+                        <ul>
+                            <li>Grande Roue de Paris (giant Ferris wheel) </li>
+                            <li>Moving sidewalks</li>
+                            <li>Escalators</li>
+                            <li>Diesel engines</li>
+                            <li>Talking films</li>
+                            <li>Telegraphone (magnetic audio recorder)</li>
+                            <li>First regular passenger trolleybus line[1][3]</li>
+                        </ul>
+                        <h3 id="controversies">Controversies</h3>
+                        <p>No major controversies are mentioned.</p>
+                        <h3 id="worldevents">World Events</h3>
+                        <p>The Exposition celebrated the achievements and progress of the 19th century, showcasing
+                            France as a major colonial power through pavilions at the Trocadéro.[3] It took place during
+                            a period of economic growth and optimism known as the Belle Époque era in France.[2]</p>
+                        <p>Citations:
+                            [1] https://www.parisinsidersguide.com/paris-exposition-1900.html
+                            [2] https://www.bie-paris.org/site/en/1900-paris
+                            [3] https://en.wikipedia.org/wiki/Exposition<em>Universelle</em>%281900%29
+                            [4] https://www.pbs.org/wgbh/americanexperience/features/1900-forward-exposition/
+                            [5] https://olympics.com/en/olympic-games/paris-1900</p>
+                    </section>
+                    <section id="1904" class="active">
+                        <h1>1904</h1>
+                        <h2>St. Louis, USA</h2>
+                        <img src="https://assets.editorial.aetnd.com/uploads/2014/08/gettyimages-1342265815.jpg" alt="1904 St. Louis">
+                        <p>The 1904 Summer Olympics were held in St. Louis, Missouri, United States from July 1 to
+                            November 23, 1904, as part of the Louisiana Purchase Exposition (also known as the St. Louis
+                            World's Fair). Here are the key details:</p>
+                        <h3 id="venues">Venues</h3>
+                        <ul>
+                            <li>Francis Olympic Field (athletics, gymnastics, wrestling, etc.)</li>
+                            <li>Francis Gymnasium (boxing, fencing) </li>
+                            <li>Forest Park (swimming, diving, water polo)</li>
+                            <li>Creve Coeur Lake (rowing)</li>
+                            <li>Glen Echo Country Club (golf)</li>
+                        </ul>
+                        <h3 id="participatingcountries">Participating Countries</h3>
+                        <p>Only 12 countries sent athletes, with 645 men and 6 women competing. The vast majority (526)
+                            were from the United States.[2]</p>
+                        <h3 id="notableathletes">Notable Athletes</h3>
+                        <ul>
+                            <li>George Eyser (USA) - won 6 gymnastics medals despite having a wooden leg</li>
+                            <li>Ray Ewry (USA) - won 8 athletics medals </li>
+                            <li>Thomas Kiely (Ireland) - won decathlon gold medal[3]</li>
+                        </ul>
+                        <h3 id="newsports">New Sports</h3>
+                        <p>Boxing, decathlon, and freestyle wrestling made their Olympic debuts.[2]</p>
+                        <h3 id="recordsbroken">Records Broken</h3>
+                        <p>No world records were officially recognized, as Olympic records were not kept until 1912.[3]
+                        </p>
+                        <h3 id="controversies">Controversies</h3>
+                        <ul>
+                            <li>Anthropology exhibits displayed people from Philippines, Arctic, etc. in recreated
+                                villages.[1]</li>
+                            <li>Many events combined U.S. national championships with Olympic championships due to lack
+                                of international entries.[2]</li>
+                        </ul>
+                        <h3 id="worldevents">World Events</h3>
+                        <p>The Russo-Japanese War limited European participation in the Games.[2][3]</p>
+                        <p>The 1904 St. Louis Olympics were historically significant as the first Olympic Games held
+                            outside Europe, but were marred by poor organization and low international presence.[2][3]
+                        </p>
+                        <p>Citations:
+                            [1] https://www.theatlantic.com/photo/2019/09/the-1904-st-louis-worlds-fair-photos/597658/
+                            [2] https://en.wikipedia.org/wiki/1904<em>Summer</em>Olympics
+                            [3] https://www.britannica.com/event/St-Louis-1904-Olympic-Games
+                            [4] https://www.loc.gov/item/2007633932/
+                            [5]
+                            https://www.slam.org/teachers-students/educator-resource/art-on-display/1904-st-louis-worlds-fair/
+                        </p>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2ptYjNtZWxnMDBrdDNwbnVicGJzOWg2NyJ9.9OulyCe3kEqMAXPbx1mKUA';
+        const map = new mapboxgl.Map({
+            container: 'map',
+            // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+            style: 'mapbox://styles/mapbox/streets-v12',
+            center: [40,0],
+            zoom: 1
+        });
+
+        map.on('load' , () => {
+            map.addSource('cities', {
+                type: 'geojson',
+                data: './cities.geojson'
+            });
+
+            map.addLayer({
+                'id': 'cities',
+                'type': 'circle',
+                'source': 'cities',
+                'paint': {
+                    'circle-radius': 3,
+                    'circle-color': '#ff3300'
+                }
+            });
+            spinGlobe();
+        });
+
+        const chapters = {
+            '0000': {
+                bearing: 27,
+                center: [40,0],
+                zoom: 1,
+                pitch: 20
+            },
+            '1896': {
+                bearing: 27,
+                center: [23.7275, 37.9838],
+                zoom: 12,
+                pitch: 20
+            },
+            '1900': {
+                // duration: 600,
+                center: [2.3482257872522894, 48.85345704116267],
+                bearing: 150,
+                zoom: 15,
+                pitch: 0
+            },
+            '1904': {
+                bearing: 90,
+                center: [-90.1994,38.627],
+                zoom: 13,
+                speed: 0.6,
+                pitch: 40
+            }
+            // 'woolwich': {
+            //     bearing: 90,
+            //     center: [0.05991101, 51.48752939],
+            //     zoom: 12.3
+            // },
+            // 'gloucester': {
+            //     bearing: 45,
+            //     center: [-0.18335806, 51.49439521],
+            //     zoom: 15.3,
+            //     pitch: 20,
+            //     speed: 0.5
+            // },
+            // 'caulfield-gardens': {
+            //     bearing: 180,
+            //     center: [-0.19684993, 51.5033856],
+            //     zoom: 12.3
+            // },
+            // 'telegraph': {
+            //     bearing: 90,
+            //     center: [-0.10669358, 51.51433123],
+            //     zoom: 17.3,
+            //     pitch: 40
+            // },
+            // 'charing-cross': {
+            //     bearing: 90,
+            //     center: [-0.12416858, 51.50779757],
+            //     zoom: 14.3,
+            //     pitch: 20
+            // }
+        };
+
+        let activeChapterName = '0000';
+        // if the chapter name is the same as the active chapter name, return the function 
+        function setActiveChapter(chapterName) {
+            if (chapterName === activeChapterName) return;
+
+            map.flyTo(chapters[chapterName]);
+
+            document.getElementById(chapterName).classList.add('active');
+            document.getElementById(activeChapterName).classList.remove('active');
+
+            activeChapterName = chapterName;
+        }
+        // if the element is on the screen, return the function
+        function isElementOnScreen(id) {
+            const element = document.getElementById(id);
+            const bounds = element.getBoundingClientRect();
+            return bounds.top < window.innerHeight && bounds.bottom > 0;
+        }
+
+        window.onscroll = () => {
+            for (const chapterName in chapters) {
+                if (isElementOnScreen(chapterName)) {
+                    setActiveChapter(chapterName);
+                    break;
+                }
+            }
+        };
+
+        // spin globe 
+
+        // At low zooms, complete a revolution every two minutes.
+        const secondsPerRevolution = 120;
+        // Above zoom level 5, do not rotate.
+        const maxSpinZoom = 5;
+        // Rotate at intermediate speeds between zoom levels 3 and 5.
+        const slowSpinZoom = 3;
+
+        let userInteracting = false;
+        let spinEnabled = true;
+
+        function spinGlobe() {
+            const zoom = map.getZoom();
+            if (spinEnabled && !userInteracting && zoom < maxSpinZoom) {
+                let distancePerSecond = 360 / secondsPerRevolution;
+                if (zoom > slowSpinZoom) {
+                    // Slow spinning at higher zooms
+                    const zoomDif =
+                        (maxSpinZoom - zoom) / (maxSpinZoom - slowSpinZoom);
+                    distancePerSecond *= zoomDif;
+                }
+                const center = map.getCenter();
+                center.lng -= distancePerSecond;
+                // Smoothly animate the map over one second.
+                // When this animation is complete, it calls a 'moveend' event.
+                map.easeTo({ center, duration: 1000, easing: (n) => n });
+            }
+        }
+
+        // Pause spinning on interaction
+        map.on('mousedown', () => {
+            userInteracting = true;
+        });
+
+        // Restart spinning the globe when interaction is complete
+        map.on('mouseup', () => {
+            userInteracting = false;
+            spinGlobe();
+        });
+
+        // These events account for cases where the mouse has moved
+        // off the map, so 'mouseup' will not be fired.
+        map.on('dragend', () => {
+            userInteracting = false;
+            spinGlobe();
+        });
+        map.on('pitchend', () => {
+            userInteracting = false;
+            spinGlobe();
+        });
+        map.on('rotateend', () => {
+            userInteracting = false;
+            spinGlobe();
+        });
+
+        // When animation is complete, start spinning if there is no ongoing interaction
+        map.on('moveend', () => {
+            spinGlobe();
+        });
+
+        document.getElementById('spin').addEventListener('click', (e) => {
+            spinEnabled = !spinEnabled;
+            if (spinEnabled) {
+                spinGlobe();
+            }
+            else {
+                map.stop(); //
+            }
+        }
+        );
+    </script>
+</body>
+
+</html>
