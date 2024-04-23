@@ -1,0 +1,1178 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Demo: Build a store locator using Mapbox GL JS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
+
+    <style>
+        body {
+            color: #404040;
+            font:
+                400 15px/22px 'Source Sans Pro',
+                'Helvetica Neue',
+                sans-serif;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .sidebar {
+            position: absolute;
+            height: 40%;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            overflow: hidden;
+            border-right: 1px solid rgb(0 0 0 / 25%);
+        }
+
+        .map {
+            position: absolute;
+            /* left: 33.3333%; */
+            height: 60%;
+            width: 100%;
+            /* top: 0; */
+        }
+
+        h1 {
+            font-size: 22px;
+            margin: 0;
+            font-weight: 400;
+            line-height: 20px;
+            padding: 20px 2px;
+        }
+
+        a {
+            color: #404040;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #101010;
+        }
+
+        .heading {
+            background: #fff;
+            border-bottom: 1px solid #eee;
+            min-height: 60px;
+            line-height: 60px;
+            padding: 0 10px;
+            background-color: #020548;
+            color: #fff;
+            position: relative;
+            width: 100%;
+            height: fit-content;
+        }
+
+        .listings {
+            height: 80%;
+            overflow: auto;
+            padding-bottom: 60px;
+        }
+
+        .listings .item {
+            display: block;
+            border-bottom: 1px solid #eee;
+            padding: 10px;
+            text-decoration: none;
+        }
+
+        .listings .item:last-child {
+            border-bottom: none;
+        }
+
+        .listings .item .title {
+            display: block;
+            color: #03094d;
+            font-weight: 700;
+        }
+
+        .listings .item .title small {
+            font-weight: 400;
+        }
+
+        .listings .item.active .title,
+        .listings .item .title:hover {
+            color: #3aa6e0;
+        }
+
+        .listings .item.active {
+            background-color: #f8f8f8;
+        }
+
+        ::-webkit-scrollbar {
+            width: 3px;
+            height: 3px;
+            border-left: 0;
+            background: rgb(0 0 0 / 10%);
+        }
+
+        ::-webkit-scrollbar-track {
+            background: none;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #03094d;
+            border-radius: 0;
+        }
+
+        .marker {
+            border: none;
+            cursor: pointer;
+            height: 56px;
+            width: 56px;
+            background-image: url('https://docs.mapbox.com/help/demos/building-a-store-locator/marker.png');
+        }
+
+        /* Marker tweaks */
+        .mapboxgl-popup {
+            padding-bottom: 50px;
+        }
+
+        .mapboxgl-popup-close-button {
+            display: none;
+        }
+
+        .mapboxgl-popup-content {
+            font:
+                400 15px/22px 'Source Sans Pro',
+                'Helvetica Neue',
+                sans-serif;
+            padding: 0;
+            width: 180px;
+        }
+
+        .mapboxgl-popup-content h3 {
+            background: #050848;
+            color: #fff;
+            margin: 0;
+            padding: 10px;
+            border-radius: 3px 3px 0 0;
+            font-weight: 700;
+            margin-top: -15px;
+        }
+
+        .mapboxgl-popup-content h4 {
+            margin: 0;
+            padding: 10px;
+            font-weight: 400;
+        }
+
+        .mapboxgl-popup-content div {
+            padding: 10px;
+        }
+
+        .mapboxgl-popup-anchor-top>.mapboxgl-popup-content {
+            margin-top: 15px;
+        }
+
+        .mapboxgl-popup-anchor-top>.mapboxgl-popup-tip {
+            border-bottom-color: #fff;
+        }
+
+        /* search */
+        #search {
+            position: relative;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            width: 80%;
+            padding: 10px;
+            font-size: 16px;
+            font-family: 'Source Sans Pro', 'Helvetica Neue', sans-serif;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="heading">
+            <h1>Olympic Venues</h1>
+            <!-- add a simple search bar -->
+            <input id="search" type="text" placeholder="Search...">
+            <button id="clear-search">X</button>
+
+        </div>
+        <div id="listings" class="listings"></div>
+    </div>
+    <div id="map" class="map"></div>
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2ptYjNtZWxnMDBrdDNwbnVicGJzOWg2NyJ9.9OulyCe3kEqMAXPbx1mKUA';
+
+        /**
+         * Add the map to the page
+         */
+        const map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v12',
+            center: [-77.034084142948, 38.909671288923],
+            zoom: 1,
+            scrollZoom: true
+        });
+
+        const venues = {
+            "type": "FeatureCollection",
+            "features": [
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            23.717,
+                            37.967
+                        ]
+                    },
+                    "properties": {
+                        "Year": "1896 & 2004 Summer Olympics",
+                        "City": "Athens",
+                        "Country": "Greece",
+                        "Times_Hosted": 2,
+                        "Season": "S"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            2.351,
+                            48.857
+                        ]
+                    },
+                    "properties": {
+                        "Year": "1900 & 1924 & 2024 Summer Olympics",
+                        "City": "Paris",
+                        "Country": "France",
+                        "Times_Hosted": 2,
+                        "Season": "S"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -90.198,
+                            38.627
+                        ]
+                    },
+                    "properties": {
+                        "Year": "1904 Summer Olympics",
+                        "City": "St. Louis",
+                        "Country": "United States",
+                        "Times_Hosted": 1,
+                        "Season": "S"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -0.123,
+                            51.507
+                        ]
+                    },
+                    "properties": {
+                        "Year": "1908 & 1948 & 2012  Summer Olympics",
+                        "City": "London",
+                        "Country": "England",
+                        "Times_Hosted": 3,
+                        "Season": "S"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            18.068,
+                            59.329
+                        ]
+                    },
+                    "properties": {
+                        "Year": "1912  Summer Olympics",
+                        "City": "Stockholm",
+                        "Country": "Sweden",
+                        "Times_Hosted": 1,
+                        "Season": "S"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            4.4,
+                            51.217
+                        ]
+                    },
+                    "properties": {
+                        "Year": "1920  Summer Olympics",
+                        "City": "Antwerp",
+                        "Country": "Belgium",
+                        "Times_Hosted": 1,
+                        "Season": "S"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            4.9,
+                            52.367
+                        ]
+                    },
+                    "properties": {
+                        "Year": "1928  Summer Olympics",
+                        "City": "Amsterdam",
+                        "Country": "Netherlands",
+                        "Times_Hosted": 1,
+                        "Season": "S"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -118.25,
+                            34.05
+                        ]
+                    },
+                    "properties": {
+                        "Year": "1932 & 1984 Summer Olympics",
+                        "City": "Los Angeles",
+                        "Country": "United States",
+                        "Times_Hosted": 2,
+                        "Season": "S"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            13.383,
+                            52.517
+                        ]
+                    },
+                    "properties": {
+                        "Year": "1936 Summer Olympics",
+                        "City": "Berlin",
+                        "Country": "Germany",
+                        "Times_Hosted": 1,
+                        "Season": "S"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            24.938,
+                            60.171
+                        ]
+                    },
+                    "properties": {
+                        "Year": "1952 Summer Olympics",
+                        "City": "Helsinki",
+                        "Country": "Finland",
+                        "Times_Hosted": 1,
+                        "Season": "S"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            144.963,
+                            -37.814
+                        ]
+                    },
+                    "properties": {
+                        "Year": "1956 Summer Olympics",
+                        "City": "Melbourne",
+                        "Country": "Australia",
+                        "Times_Hosted": 1,
+                        "Season": "S"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            12.5,
+                            41.9
+                        ]
+                    },
+                    "properties": {
+                        "Year": "1960 Summer Olympics",
+                        "City": "Rome",
+                        "Country": "Italy",
+                        "Times_Hosted": 1,
+                        "Season": "S"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            139.683,
+                            35.683
+                        ]
+                    },
+                    "properties": {
+                        "Year": "1964 & 2021 Summer Olympics",
+                        "City": "Tokyo",
+                        "Country": "Japan",
+                        "Times_Hosted": 2,
+                        "Season": "S"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -99.133,
+                            19.433
+                        ]
+                    },
+                    "properties": {
+                        "Year": "1968 Summer Olympics",
+                        "City": "Mexico City",
+                        "Country": "Mexico",
+                        "Times_Hosted": 1,
+                        "Season": "S"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            11.567,
+                            48.133
+                        ]
+                    },
+                    "properties": {
+                        "Year": "1972 Summer Olympics",
+                        "City": "Munich",
+                        "Country": "West Germany",
+                        "Times_Hosted": 1,
+                        "Season": "S"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -73.567,
+                            45.502
+                        ]
+                    },
+                    "properties": {
+                        "Year": "1976 Summer Olympics",
+                        "City": "Montreal",
+                        "Country": "Canada",
+                        "Times_Hosted": 1,
+                        "Season": "S"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            37.615,
+                            55.75
+                        ]
+                    },
+                    "properties": {
+                        "Year": "1980 Summer Olympics",
+                        "City": "Moscow",
+                        "Country": "USSR",
+                        "Times_Hosted": 1,
+                        "Season": "S"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            126.967,
+                            37.567
+                        ]
+                    },
+                    "properties": {
+                        "Year": "1988 Summer Olympics",
+                        "City": "Seoul",
+                        "Country": "South Korea",
+                        "Times_Hosted": 1,
+                        "Season": "S"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            2.183,
+                            41.383
+                        ]
+                    },
+                    "properties": {
+                        "Year": "1992 Summer Olympics",
+                        "City": "Barcelona",
+                        "Country": "Spain",
+                        "Times_Hosted": 1,
+                        "Season": "S"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -84.39,
+                            33.755
+                        ]
+                    },
+                    "properties": {
+                        "Year": "1996 Summer Olympics",
+                        "City": "Atlanta",
+                        "Country": "United States",
+                        "Times_Hosted": 1,
+                        "Season": "S"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            151.21,
+                            -33.865
+                        ]
+                    },
+                    "properties": {
+                        "Year": "2000 Summer Olympics",
+                        "City": "Sydney",
+                        "Country": "Australia",
+                        "Times_Hosted": 1,
+                        "Season": "S"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            116.38,
+                            39.917
+                        ]
+                    },
+                    "properties": {
+                        "Year": "2008 Summer Olympics & 2022 Winter Olympics",
+                        "City": "Beijing",
+                        "Country": "China",
+                        "Times_Hosted": 2,
+                        "Season": "B"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -43.173,
+                            -22.907
+                        ]
+                    },
+                    "properties": {
+                        "Year": "2016 Summer Olympics",
+                        "City": "Rio de Janeiro",
+                        "Country": "Brazil",
+                        "Times_Hosted": 1,
+                        "Season": "S"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            6.87,
+                            45.923
+                        ]
+                    },
+                    "properties": {
+                        "Year": "1924 Winter Olympics",
+                        "City": "Chamonix",
+                        "Country": "France",
+                        "Times_Hosted": 1,
+                        "Season": "W"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            9.833,
+                            46.5
+                        ]
+                    },
+                    "properties": {
+                        "Year": "1928 & 1948 Winter Olympics",
+                        "City": "St. Moritz",
+                        "Country": "Switzerland",
+                        "Times_Hosted": 2,
+                        "Season": "W"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -73.985,
+                            44.286
+                        ]
+                    },
+                    "properties": {
+                        "Year": "1932 & 1980 Winter Olympics",
+                        "City": "Lake Placid",
+                        "Country": "United States",
+                        "Times_Hosted": 2,
+                        "Season": "W"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            11.15,
+                            47.5
+                        ]
+                    },
+                    "properties": {
+                        "Year": "1936 Winter Olympics",
+                        "City": "Garmisch-Partenkirchen",
+                        "Country": "Germany",
+                        "Times_Hosted": 1,
+                        "Season": "W"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            10.75,
+                            59.95
+                        ]
+                    },
+                    "properties": {
+                        "Year": "1952 Winter Olympics",
+                        "City": "Oslo",
+                        "Country": "Norway",
+                        "Times_Hosted": 1,
+                        "Season": "W"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            12.133,
+                            46.533
+                        ]
+                    },
+                    "properties": {
+                        "Year": "1956 Winter Olympics",
+                        "City": "Cortina",
+                        "Country": "Italy",
+                        "Times_Hosted": 1,
+                        "Season": "W"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -120.235,
+                            39.196
+                        ]
+                    },
+                    "properties": {
+                        "Year": "1960 Winter Olympics",
+                        "City": "Squaw Valley",
+                        "Country": "United States",
+                        "Times_Hosted": 1,
+                        "Season": "W"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            11.383,
+                            47.267
+                        ]
+                    },
+                    "properties": {
+                        "Year": "1964 & 1976 Winter Olympics",
+                        "City": "Innsbruck",
+                        "Country": "Austria",
+                        "Times_Hosted": 2,
+                        "Season": "W"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            5.722,
+                            45.2
+                        ]
+                    },
+                    "properties": {
+                        "Year": "1968 Winter Olympics",
+                        "City": "Grenoble",
+                        "Country": "France",
+                        "Times_Hosted": 1,
+                        "Season": "W"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            141.35,
+                            43.067
+                        ]
+                    },
+                    "properties": {
+                        "Year": "1972 Winter Olympics",
+                        "City": "Sapporo",
+                        "Country": "Japan",
+                        "Times_Hosted": 1,
+                        "Season": "W"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            18.417,
+                            43.867
+                        ]
+                    },
+                    "properties": {
+                        "Year": "1984 Winter Olympics",
+                        "City": "Sarajevo",
+                        "Country": "Yugoslavia",
+                        "Times_Hosted": 1,
+                        "Season": "W"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -114.071,
+                            51.049
+                        ]
+                    },
+                    "properties": {
+                        "Year": "1988 Winter Olympics",
+                        "City": "Calgary",
+                        "Country": "Canada",
+                        "Times_Hosted": 1,
+                        "Season": "W"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            6.393,
+                            45.678
+                        ]
+                    },
+                    "properties": {
+                        "Year": "1992 Winter Olympics",
+                        "City": "Albertville",
+                        "Country": "France",
+                        "Times_Hosted": 1,
+                        "Season": "W"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            10.433,
+                            61.13
+                        ]
+                    },
+                    "properties": {
+                        "Year": "1994 Winter Olympics",
+                        "City": "Lillehammer",
+                        "Country": "Norway",
+                        "Times_Hosted": 1,
+                        "Season": "W"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            138.1,
+                            36.25
+                        ]
+                    },
+                    "properties": {
+                        "Year": "1998 Winter Olympics",
+                        "City": "Nagano",
+                        "Country": "Japan",
+                        "Times_Hosted": 1,
+                        "Season": "W"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -111.88,
+                            40.75
+                        ]
+                    },
+                    "properties": {
+                        "Year": "2002 Winter Olympics",
+                        "City": "Salt Lake City",
+                        "Country": "United States",
+                        "Times_Hosted": 1,
+                        "Season": "W"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            7.7,
+                            45.067
+                        ]
+                    },
+                    "properties": {
+                        "Year": "2006 Winter Olympics",
+                        "City": "Turin",
+                        "Country": "Italy",
+                        "Times_Hosted": 1,
+                        "Season": "W"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -123.121,
+                            49.283
+                        ]
+                    },
+                    "properties": {
+                        "Year": "2010 Winter Olympics",
+                        "City": "Vancouver",
+                        "Country": "Canada",
+                        "Times_Hosted": 1,
+                        "Season": "W"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            39.72,
+                            43.585
+                        ]
+                    },
+                    "properties": {
+                        "Year": "2014 Winter Olympics",
+                        "City": "Sochi",
+                        "Country": "Russia",
+                        "Times_Hosted": 1,
+                        "Season": "W"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            128.4,
+                            37.367
+                        ]
+                    },
+                    "properties": {
+                        "Year": "2018 Winter Olympics",
+                        "City": "Pyeongchang",
+                        "Country": "South Korea",
+                        "Times_Hosted": 1,
+                        "Season": "W"
+                    }
+                }
+            ]
+        };
+        /**
+         * Assign a unique id to each store. You'll use this `id`
+         * later to associate each point on the map with a listing
+         * in the sidebar.
+         */
+        venues.features.forEach((venue, i) => {
+            venue.properties.id = i;
+        });
+
+        /**
+         * Wait until the map loads to make changes to the map.
+         */
+        map.on('load', () => {
+            /**
+             * This is where your '.addLayer()' used to be, instead
+             * add only the source without styling a layer
+             */
+            map.addSource('places', {
+                'type': 'geojson',
+                'data': venues
+            });
+
+            /**
+             * Add all the things to the page:
+             * - The location listings on the side of the page
+             * - The markers onto the map
+             */
+            buildLocationList(venues);
+            addMarkers();
+        });
+
+        /**
+         * Add a marker to the map for every store listing.
+         **/
+        function addMarkers() {
+            /* For each feature in the GeoJSON object above: */
+            for (const marker of venues.features) {
+                /* Create a div element for the marker. */
+                const el = document.createElement('div');
+                /* Assign a unique `id` to the marker. */
+                el.id = `marker-${marker.properties.id}`;
+                /* Assign the `marker` class to each marker for styling. */
+                el.className = 'marker';
+
+                /**
+                 * Create a marker using the div element
+                 * defined above and add it to the map.
+                 **/
+                new mapboxgl.Marker(el, { offset: [0, -23] })
+                    .setLngLat(marker.geometry.coordinates)
+                    .addTo(map);
+
+                /**
+                 * Listen to the element and when it is clicked, do three things:
+                 * 1. Fly to the point
+                 * 2. Close all other popups and display popup for clicked store
+                 * 3. Highlight listing in sidebar (and remove highlight for all other listings)
+                 **/
+                el.addEventListener('click', (e) => {
+                    buildLocationList(venues);
+                    /* Fly to the point */
+                    flyToVenue(marker);
+                    /* Close all other popups and display popup for clicked store */
+                    createPopUp(marker);
+                    /* Highlight listing in sidebar */
+                    const activeItem = document.getElementsByClassName('active');
+                    e.stopPropagation();
+                    if (activeItem[0]) {
+                        activeItem[0].classList.remove('active');
+                    }
+                    const listing = document.getElementById(
+                        `listing-${marker.properties.id}`
+                    );
+                    listing.classList.add('active');
+                    /* Scroll the listing to the top of the list */
+                    listing.scrollIntoView({ behavior: 'smooth' });
+                });
+            }
+        }
+
+        /**
+         * Add a listing for each venue to the sidebar.
+         **/
+        function buildLocationList(venues) {
+            for (const venue of venues.features) {
+                /* Add a new listing section to the sidebar. */
+                const listings = document.getElementById('listings');
+                const listing = listings.appendChild(document.createElement('div'));
+                /* Assign a unique `id` to the listing. */
+                listing.id = `listing-${venue.properties.id}`;
+                /* Assign the `item` class to each listing for styling. */
+                listing.className = 'item';
+
+                /* Add the link to the individual listing created above. */
+                const link = listing.appendChild(document.createElement('a'));
+                link.href = '#';
+                link.className = 'title';
+                link.id = `link-${venue.properties.id}`;
+                link.innerHTML = `${venue.properties.City}` + ' &middot; ' + `${venue.properties.Country}`;
+
+                /* Add details to the individual listing. */
+                const details = listing.appendChild(document.createElement('div'));
+                // details.innerHTML = `${venue.properties.Times_Hosted}` + ' &middot; ' + `${venue.properties.Season}`;
+                if (venue.properties.Year) {
+                    details.innerHTML += `${venue.properties.Year}`;
+                }
+
+                /**
+                 * Listen to the element and when it is clicked, do four things:
+                 * 1. Update the `currentFeature` to the store associated with the clicked link
+                 * 2. Fly to the point
+                 * 3. Close all other popups and display popup for clicked store
+                 * 4. Highlight listing in sidebar (and remove highlight for all other listings)
+                 **/
+                link.addEventListener('click', function () {
+                    for (const feature of venues.features) {
+                        if (this.id === `link-${feature.properties.id}`) {
+                            flyToVenue(feature);
+                            createPopUp(feature);
+                        }
+                    }
+                    const activeItem = document.getElementsByClassName('active');
+                    if (activeItem[0]) {
+                        activeItem[0].classList.remove('active');
+                    }
+                    this.parentNode.classList.add('active');
+                });
+            }
+        }
+
+        /**
+         * Use Mapbox GL JS's `flyTo` to move the camera smoothly
+         * a given center point.
+         **/
+        function flyToVenue(currentFeature) {
+            console.log(currentFeature);
+            map.flyTo({
+                center: currentFeature.geometry.coordinates,
+                zoom: 15
+            });
+        }
+
+        /**
+         * Create a Mapbox GL JS `Popup`.
+         **/
+        function createPopUp(currentFeature) {
+            const popUps = document.getElementsByClassName('mapboxgl-popup');
+            if (popUps[0]) popUps[0].remove();
+            const popup = new mapboxgl.Popup({ closeOnClick: false })
+                .setLngLat(currentFeature.geometry.coordinates)
+                .setHTML(
+                    `<h3>${currentFeature.properties.City}</h3><h4>${currentFeature.properties.Year}</h4>`
+                )
+                .addTo(map);
+        }
+
+        // search
+        const searchElement = document.getElementById('search');
+        const clearButton = document.getElementById('clear-search');
+
+        clearButton.addEventListener('click', function () {
+            // Clear the search input
+            searchElement.value = '';
+            // Clear the listings
+            const listings = document.getElementById('listings');
+            listings.innerHTML = '';
+            // Clear the markers
+            venues.features.forEach((venue) => {
+                const marker = document.getElementById(`marker-${venue.properties.id}`);
+                if (marker) {
+                    marker.remove();
+                }
+            });
+            // Add the markers again
+            // addMarkers();
+            // add the listings again
+            buildLocationList(venues);
+            addMarkers();
+        });
+
+
+
+        searchElement.addEventListener('input', function (e) {
+            const value = e.target.value;
+
+            const listings = document.getElementById('listings');
+            listings.innerHTML = '';
+            venues.features.forEach((venue, i) => {
+                if (venue.properties.City.toLowerCase().includes(value.toLowerCase())) {
+                    const listing = listings.appendChild(document.createElement('div'));
+                    listing.id = `listing-${venue.properties.id}`;
+                    listing.className = 'item';
+                    const link = listing.appendChild(document.createElement('a'));
+                    link.href = '#';
+                    link.className = 'title';
+                    link.id = `link-${venue.properties.id}`;
+                    link.innerHTML = `${venue.properties.City}` + ' &middot; ' + `${venue.properties.Country}`;
+                    const details = listing.appendChild(document.createElement('div'));
+                    if (venue.properties.Year) {
+                        details.innerHTML += `${venue.properties.Year}`;
+                    }
+                    link.addEventListener('click', function () {
+                        for (const feature of venues.features) {
+                            if (this.id === `link-${feature.properties.id}`) {
+                                flyToVenue(feature);
+                                createPopUp(feature);
+                            }
+                        }
+                        const activeItem = document.getElementsByClassName('active');
+                        if (activeItem[0]) {
+                            activeItem[0].classList.remove('active');
+                        }
+                        this.parentNode.classList.add('active');
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
