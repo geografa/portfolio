@@ -1,0 +1,313 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-84.401075, 33.755406]
+      },
+      "properties": {
+        "VenueId": 950,
+        "Name": "Mercedes-Benz Stadium",
+        "Image": "https://upload.wikimedia.org/wikipedia/commons/1/10/Mercedes_Benz_Stadium_time_lapse_capture_2017-08-13.jpg",
+        "Address": "1 AMB Drive North West",
+        "City": "Atlanta, GA",
+        "Zip": "30313",
+        "Country": "United States",
+        "Open": true,
+        "Opened": null,
+        "Nickname1": "New Atlanta Stadium",
+        "Nickname2": null,
+        "Capacity": 42500,
+        "Surface": "Artificial Turf"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-80.23884, 25.957919]
+      },
+      "properties": {
+        "VenueId": 1150,
+        "Name": "Hard Rock Stadium",
+        "Image": "https://upload.wikimedia.org/wikipedia/commons/f/f7/200127-H-PX819-0092.jpg",
+        "Address": "2269 Dan Marino Boulevard",
+        "City": "Miami Gardens, FL",
+        "Zip": "33169",
+        "Country": "United States",
+        "Open": true,
+        "Opened": null,
+        "Nickname1": "Sun Life Stadium",
+        "Nickname2": "New Miami Stadium",
+        "Capacity": 74916,
+        "Surface": "Grass"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-94.823191, 39.121599]
+      },
+      "properties": {
+        "VenueId": 1000,
+        "Name": "GEHA Field at Arrowhead Stadium",
+        "Image": "https://upload.wikimedia.org/wikipedia/commons/a/ac/Aerial_view_of_Arrowhead_Stadium_08-31-2013.jpg",
+        "Address": "",
+        "City": "Kansas City, MO",
+        "Zip": "",
+        "Country": "United States",
+        "Open": true,
+        "Opened": null,
+        "Nickname1": "",
+        "Nickname2": "",
+        "Capacity": 21650,
+        "Surface": "Grass"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-97.719483, 30.387712]
+      },
+      "properties": {
+        "VenueId": 2501,
+        "Name": "Q2 Stadium",
+        "Image": "https://upload.wikimedia.org/wikipedia/commons/9/9f/Austin_FC_Stadium_vs._Columbus_Crew.jpg",
+        "Address": "10414 McKalla Place",
+        "City": "Austin, TX",
+        "Zip": "78758",
+        "Country": "United States",
+        "Open": true,
+        "Opened": null,
+        "Nickname1": null,
+        "Nickname2": null,
+        "Capacity": 20500,
+        "Surface": "Grass"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-97.092778, 32.747778]
+      },
+      "properties": {
+        "VenueId": 918,
+        "Name": "AT&T Stadium",
+        "Image": "https://upload.wikimedia.org/wikipedia/commons/1/11/Arlington_June_2020_4_%28AT%26T_Stadium%29.jpg",
+        "Address": "1 AT&T Way",
+        "City": "Arlington, TX",
+        "Zip": "76001",
+        "Country": "United States",
+        "Open": true,
+        "Opened": null,
+        "Nickname1": "Cowboys Stadium",
+        "Nickname2": null,
+        "Capacity": 105121,
+        "Surface": "Artificial Turf"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-80.852873, 35.225823]
+      },
+      "properties": {
+        "VenueId": 535,
+        "Name": "Bank of America Stadium",
+        "Image": "https://upload.wikimedia.org/wikipedia/commons/a/aa/Bank_of_America_Stadium.jpg",
+        "Address": "800 South Mint Street",
+        "City": "Charlotte, NC",
+        "Zip": "28202",
+        "Country": "United States",
+        "Open": true,
+        "Opened": null,
+        "Nickname1": null,
+        "Nickname2": null,
+        "Capacity": 73778,
+        "Surface": "Grass"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-74.074367, 40.813553]
+      },
+      "properties": {
+        "VenueId": 434,
+        "Name": "MetLife Stadium",
+        "Image": "https://upload.wikimedia.org/wikipedia/commons/2/24/Giants_Stadium_Hosts_the_1994_World_Cup.jpg",
+        "Address": "1 MetLife Stadium Drive",
+        "City": "East Rutherford, NJ",
+        "Zip": "07073",
+        "Country": "United States",
+        "Open": true,
+        "Opened": null,
+        "Nickname1": "The Meadowlands",
+        "Nickname2": "New Meadowlands Stadium",
+        "Capacity": 82566,
+        "Surface": "Grass"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-112.262522, 33.527626]
+      },
+      "properties": {
+        "VenueId": 438,
+        "Name": "State Farm Stadium",
+        "Image": "https://upload.wikimedia.org/wikipedia/commons/d/d1/State_Farm_Stadium_2022.jpg",
+        "Address": "1 Cardinals Drive",
+        "City": "Glendale, AZ",
+        "Zip": "85305",
+        "Country": "United States",
+        "Open": true,
+        "Opened": null,
+        "Nickname1": "University of Phoenix Stadium",
+        "Nickname2": null,
+        "Capacity": 63400,
+        "Surface": "Grass"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-95.410938, 29.684827]
+      },
+      "properties": {
+        "VenueId": 436,
+        "Name": "NRG Stadium",
+        "Image": "https://nrgprk.wpenginepowered.com/wp-content/uploads/Mexico.jpg",
+        "Address": "One Reliant Park",
+        "City": "Houston, TX",
+        "Zip": "77054",
+        "Country": "United States",
+        "Open": true,
+        "Opened": null,
+        "Nickname1": "Reliant Stadium",
+        "Nickname2": null,
+        "Capacity": 71054,
+        "Surface": "Grass"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-118.3409, 33.953389]
+      },
+      "properties": {
+        "VenueId": 8725,
+        "Name": "SoFi Stadium",
+        "Image": "https://upload.wikimedia.org/wikipedia/commons/b/b3/SoFi_Stadium_2023.jpg",
+        "Address": "1000 S Prairie Ave",
+        "City": "Inglewood, CA",
+        "Zip": "90301",
+        "Country": "United States",
+        "Open": true,
+        "Opened": null,
+        "Nickname1": null,
+        "Nickname2": null,
+        "Capacity": 70240,
+        "Surface": "Artificial Turf"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-94.823191, 39.121599]
+      },
+      "properties": {
+        "VenueId": 197,
+        "Name": "Children's Mercy Park",
+        "Address": "One Sporting Way",
+        "Image": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Children%27s_Mercy_Park_Aerial.jpg",
+        "City": "Kansas City, MO",
+        "Zip": "66111",
+        "Country": "United States",
+        "Open": true,
+        "Opened": null,
+        "Nickname1": "Sporting Kansas City Stadium",
+        "Nickname2": "Sporting Park",
+        "Capacity": 21650,
+        "Surface": "Grass"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-115.185388, 36.09087]
+      },
+      "properties": {
+        "VenueId": 2573,
+        "Name": "Allegiant Stadium",
+        "Image": "./copa/img/allegiant.jpg",
+        "Address": "3333 Al Davis Way",
+        "City": "Las Vegas, NV",
+        "Zip": "89118",
+        "Country": "United States",
+        "Open": true,
+        "Opened": null,
+        "Nickname1": null,
+        "Nickname2": null,
+        "Capacity": 6100,
+        "Surface": "Grass"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-81.4714707, 28.5411579]
+      },
+      "properties": {
+        "VenueId": 1000,
+        "Name": "Inter Miami CF Stadium (Chase Stadium)",
+        "Image": "https://upload.wikimedia.org/wikipedia/commons/4/4b/DRV_PNK_Stadium_%2851704895544%29_%28cropped%29.jpg",
+        "Address": "655 W Church St",
+        "City": "Orlando, FL",
+        "Zip": "32805",
+        "Country": "United States",
+        "Open": true,
+        "Opened": null,
+        "Nickname1": "Lockhart Stadium",
+        "Nickname2": "Fort Lauderdale Stadium",
+        "Capacity": 18000,
+        "Surface": "Grass"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-121.969776, 37.403227]
+      },
+      "properties": {
+        "VenueId": 435,
+        "Name": "Levi's Stadium",
+        "Image": "https://upload.wikimedia.org/wikipedia/commons/6/6a/160201-H-NI589-1353_%2824398261729%29.jpg",
+        "Address": "4900 Marie P DeBartolo Boulevard",
+        "City": "Santa Clara, CA",
+        "Zip": null,
+        "Country": "United States",
+        "Open": true,
+        "Opened": null,
+        "Nickname1": "The Field of Jeans",
+        "Nickname2": null,
+        "Capacity": 68500,
+        "Surface": "Grass"
+      }
+    }
+  ]
+}
