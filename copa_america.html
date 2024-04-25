@@ -170,67 +170,18 @@
             background-image: url('./img/torch.png');
         }
 
-        /* Marker tweaks */
-        /* .mapboxgl-popup {
-            padding-bottom: 60px;
-        }
-
-        .mapboxgl-popup-close-button {
-            display: none;
-        }
-
-        .mapboxgl-popup-content {
-            font:
-                400 15px/22px 'Source Sans Pro',
-                'Helvetica Neue',
-                sans-serif;
-            padding: 0;
-            width: 180px;
-            border-radius: 10px;
-        }
-
-        .mapboxgl-popup-content h3 {
-            background: #050848;
-            color: #fff;
-            margin: 0;
-            padding: 10px;
-            border-radius: 10px 10px 0 0;
-            font-weight: 700;
-            margin-top: -15px;
-        }
-
-        .mapboxgl-popup-content h4 {
-            margin: 0;
-            padding: 10px;
-            font-weight: 400;
-        }
-
-        .mapboxgl-popup-content div {
-            padding: 10px;
-        }
-
-        .mapboxgl-popup-anchor-top>.mapboxgl-popup-content {
-            margin-top: 15px;
-        }
-
-        .mapboxgl-popup-anchor-top>.mapboxgl-popup-tip {
-            border-bottom-color: #fff;
-        } */
-
         /* search */
         #search {
             margin: 0 25%;
             display: inline;
-            /* z-index: 1; */
-            width: 50%;
             padding: 8px 12px;
-            font-size: 10px;
+            font-size: 12px;
             font-family: 'Source Sans Pro', 'Helvetica Neue', sans-serif;
             border-radius: 10px;
+            width: 35%;
         }
 
         #search-listings {
-            /* make this a flexbox */
             padding: 40px 20px;
             opacity: 0.7;
             display: flex;
@@ -247,19 +198,18 @@
             color: whitesmoke;        
         }
         #clear-search {
-            position: absolute;
-            display: inline;
-            /* z-index: 1; */
-            right: 74px;
-            top: 124px;
-            font-size: 8px;
-            border-radius: 10px;
-            background-color: #f8f8f8;
-            border: 1px solid #ccc;
+            position: relative;
+            right: 25%;
+            top: 0;
+            padding: 8px 12px;
+            font-size: 10px;
+            font-family: 'Source Sans Pro', 'Helvetica Neue', sans-serif;
+            color: #fff;
+            background: none;
+            border: none;
         }
 
         /* polaroid */
-
         /* Polaroid Frame on Images by masmalven.com */
         figure,
         figcaption {
@@ -284,7 +234,6 @@
             position: relative;
             width: auto;
             max-width: 600px;
-            /* Lebar maksimal gambar */
             margin: 20px auto 0px;
             padding: 6px 8px 10px 8px;
             display: inline-block;
@@ -357,22 +306,16 @@
     <div id="heading">
         <h1>Venues</h1>
         <h2>of Copa America</h2>
-        <!-- add a simple search bar -->
         <input id="search" type="text" placeholder="Search...">
-        <button id="clear-search">x</button>
+        <button id="clear-search">Clear</button>
         <div id="search-listings"></div>
     </div>
     <div class="sidebar">
-
         <div id="listings" class="listings"></div>
     </div>
     <div id="map" class="map"></div>
     <script>
         mapboxgl.accessToken = 'pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2ptYjNtZWxnMDBrdDNwbnVicGJzOWg2NyJ9.9OulyCe3kEqMAXPbx1mKUA';
-
-        /**
-         * Add the map to the page
-         */
         const map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/grafa/clvcti9gb00ue01rjhg1n7y5d',
@@ -735,14 +678,12 @@
             addMarkers();
         });
 
-
         map.on('mouseenter', 'clusters', () => {
             map.getCanvas().style.cursor = 'pointer';
         });
         map.on('mouseleave', 'clusters', () => {
             map.getCanvas().style.cursor = '';
         });
-
 
         /**
          * Add a marker to the map for every venue listing.
@@ -881,13 +822,6 @@
             searchElement.value = '';
             // Clear the listings
             const listings = document.getElementById('listings');
-            // listings.innerHTML = '';
-            // Clear the markers
-            // Add the markers again
-            // addMarkers();
-            // add the listings again
-            // buildLocationList(venues);
-            // addMarkers();
         });
 
         searchElement.addEventListener('input', function (e) {
