@@ -47,7 +47,7 @@
             height: 30%;
             width: 100%;
             bottom: 0;
-            border-top: 5px solid #696969;
+            /* border-top: 5px solid #696969; */
         }
 
         h2 {
@@ -106,7 +106,8 @@
 
 
         }
-        #heading h2 {   
+
+        #heading h2 {
             padding: 20px 0;
             font-size: 32px;
             /* shadow */
@@ -123,6 +124,24 @@
             opacity: 0.4;
             z-index: -1;
         }
+
+        .border-gradient {
+            border: 5px solid;
+            border-image-slice: 1;
+            border-width: 5px;
+        }
+
+        .border-gradient-red-blue {
+            border-image-source: linear-gradient(to bottom right, red, rgb(34, 0, 255));
+        }
+
+        .only-top {
+            border-left: 0;
+            border-right: 0;
+            border-bottom: 0;
+        }
+
+        /* listing */
 
         .listings {
             position: relative;
@@ -337,19 +356,42 @@
     <div class="sidebar">
         <div id="listings" class="listings"></div>
     </div>
-    <div id="map" class="map"></div>
+    <div id="map" class="map border-gradient border-gradient-red-blue only-top"></div>
     <script>
         mapboxgl.accessToken = 'pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2ptYjNtZWxnMDBrdDNwbnVicGJzOWg2NyJ9.9OulyCe3kEqMAXPbx1mKUA';
         const map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/grafa/clvcti9gb00ue01rjhg1n7y5d',
-            center: [-98.96178243926614, 30.027462326144516],
-            zoom: 2.4
+            center: [-100, 35.5],
+            zoom: 2
         });
 
         const venues = {
             "type": "FeatureCollection",
             "features": [
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [-84.401075, 33.755406]
+                    },
+                    "properties": {
+                        "VenueId": 950,
+                        "Name": "USA",
+                        "Image": "https://upload.wikimedia.org/wikipedia/commons/1/10/Mercedes_Benz_Stadium_time_lapse_capture_2017-08-13.jpg",
+                        "Address": "1 AMB Drive North West",
+                        "City": "Atlanta, GA",
+                        "Zip": "30313",
+                        "Country": "United States",
+                        "Open": true,
+                        "Opened": null,
+                        "Nickname1": "New Atlanta Stadium",
+                        "Nickname2": null,
+                        "CityNick": "USA",
+                        "Capacity": 42500,
+                        "Surface": "Artificial Turf"
+                    }
+                },
                 {
                     "type": "Feature",
                     "geometry": {
