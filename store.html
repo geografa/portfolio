@@ -187,6 +187,7 @@
             font-family: 'Source Sans Pro', 'Helvetica Neue', sans-serif;
             border-radius: 10px;
         }
+
         #clear-search {
             position: relative;
             top: 0;
@@ -976,10 +977,6 @@
          * Wait until the map loads to make changes to the map.
          */
         map.on('load', () => {
-            /**
-             * This is where your '.addLayer()' used to be, instead
-             * add only the source without styling a layer
-             */
             map.addSource('places', {
                 'type': 'geojson',
                 'data': venues
@@ -992,7 +989,40 @@
              */
             buildLocationList(venues);
             addMarkers();
-        });
+            });
+
+            // When a click event occurs on a feature in
+            // the unclustered-point layer, open a popup at
+            // the location of the feature, with
+            // description HTML from its properties.
+            map.on('click', 'unclustered-point', (e) => {
+                const coordinates = e.features[0].geometry.coordinates.slice();
+                const mag = e.features[0].properties.mag;
+                const tsunami =
+                    e.features[0].properties.tsunami === 1 ? 'yes' : 'no';
+
+                // Ensure that if the map is zoomed out such that
+                // multiple copies of the feature are visible, the
+                // popup appears over the copy being pointed to.
+                while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                    coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+                }
+
+                new mapboxgl.Popup()
+                    .setLngLat(coordinates)
+                    .setHTML(
+                        `magnitude: ${mag}<br>Was there a tsunami?: ${tsunami}`
+                    )
+                    .addTo(map);
+            });
+
+            map.on('mouseenter', 'clusters', () => {
+                map.getCanvas().style.cursor = 'pointer';
+            });
+            map.on('mouseleave', 'clusters', () => {
+                map.getCanvas().style.cursor = '';
+            });
+        
 
         /**
          * Add a marker to the map for every venue listing.
