@@ -57,7 +57,7 @@
             font-size: 40px;
             margin: 0px;
             font-weight: 800;
-            line-height: 40px;
+            /* line-height: 40px; */
             /* padding: 20px 2px; */
         }
 
@@ -78,16 +78,22 @@
 
 
         #heading {
-            line-height: 40px;
+            /* line-height: 40px; */
             padding: 40px 10px;
-            background-color: #0e0e1e;
+            background-image: linear-gradient(to bottom right, red, rgb(34, 0, 255));
             color: #fff;
             position: fixed;
             width: 100%;
             z-index: 1;
             top: 0;
-            height: 190px;
+            /* dropshadow for the div */
+            -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+
+
         }
+
         #heading h1 {
             font-family: "Nanum Pen Script", cursive;
             text-transform: uppercase;
@@ -95,9 +101,16 @@
             font-size: 100px;
             margin: 0px;
             font-weight: 800;
-            z-index: 1;
-            /* line-height: 20px; */
-            /* padding: 20px 2px; */
+            z-index: 10;
+            text-shadow: 4px 4px 7px #333;
+
+
+        }
+        #heading h2 {   
+            padding: 20px 0;
+            font-size: 32px;
+            /* shadow */
+            text-shadow: 2px 2px 4px #333;
         }
 
         #heading img {
@@ -108,7 +121,7 @@
             height: 100px;
             top: 20px;
             opacity: 0.4;
-
+            z-index: -1;
         }
 
         .listings {
@@ -205,9 +218,11 @@
             display: none;
             border-radius: 10px;
         }
+
         #search-listings a {
-            color: whitesmoke;        
+            color: whitesmoke;
         }
+
         #clear-search {
             position: relative;
             right: 25%;
@@ -315,12 +330,9 @@
 
 <body>
     <div id="heading">
-        <img src="./copa/img/ball_logo.png" alt="football">
+        <h2>Copa 🇺🇸 America</h2>
         <h1>Venues</h1>
-        <h2>of Copa America</h2>
-        <input id="search" type="text" placeholder="Search...">
-        <button id="clear-search">Clear</button>
-        <div id="search-listings"></div>
+        <img src="./copa/img/ball_logo.png" alt="football">
     </div>
     <div class="sidebar">
         <div id="listings" class="listings"></div>
@@ -332,8 +344,7 @@
             container: 'map',
             style: 'mapbox://styles/grafa/clvcti9gb00ue01rjhg1n7y5d',
             center: [-98.96178243926614, 30.027462326144516],
-            zoom: 2.4,
-            // scrollZoom: true
+            zoom: 2.4
         });
 
         const venues = {
@@ -787,7 +798,7 @@
                  * 3. Close all other popups and display popup for clicked venue
                  * 4. Highlight listing in sidebar (and remove highlight for all other listings)
                  **/
-                
+
                 link.addEventListener('click', function (e) {
                     // Prevent the default action
                     e.preventDefault();
@@ -805,7 +816,7 @@
                         listing.classList.add('active');
 
                         // Scroll the listing into view
-                        listing.scrollIntoView({ behavior: 'smooth', block: 'center'});
+                        listing.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     }
 
                     // Fly to the venue and create a popup
@@ -871,14 +882,13 @@
                         listing.classList.add('active');
 
                         // Scroll the listing into view
-                        listing.scrollIntoView({ behavior: 'smooth', block: 'center'});
+                        listing.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     }
 
                     // Fly to the venue and create a popup
                     flyToVenue(venue);
                 });
             });
-
         });
     </script>
 </body>
