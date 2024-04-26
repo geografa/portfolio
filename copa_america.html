@@ -50,17 +50,6 @@
             border-top: 5px solid #696969;
         }
 
-        h1 {
-            font-family: "Nanum Pen Script", cursive;
-            text-transform: uppercase;
-            text-align: center;
-            font-size: 100px;
-            margin: 0px;
-            font-weight: 800;
-            /* line-height: 20px; */
-            /* padding: 20px 2px; */
-        }
-
         h2 {
             font-family: "Nanum Pen Script", cursive;
             text-transform: uppercase;
@@ -98,6 +87,28 @@
             z-index: 1;
             top: 0;
             height: 190px;
+        }
+        #heading h1 {
+            font-family: "Nanum Pen Script", cursive;
+            text-transform: uppercase;
+            text-align: center;
+            font-size: 100px;
+            margin: 0px;
+            font-weight: 800;
+            z-index: 1;
+            /* line-height: 20px; */
+            /* padding: 20px 2px; */
+        }
+
+        #heading img {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 100px;
+            top: 20px;
+            opacity: 0.4;
+
         }
 
         .listings {
@@ -304,6 +315,7 @@
 
 <body>
     <div id="heading">
+        <img src="./copa/img/ball_logo.png" alt="football">
         <h1>Venues</h1>
         <h2>of Copa America</h2>
         <input id="search" type="text" placeholder="Search...">
