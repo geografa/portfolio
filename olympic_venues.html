@@ -58,16 +58,17 @@
 
         .title-bar {
             position: absolute;
-            opacity: 0.8;
+            opacity: 0.5;
             top: 8px;
             line-height: 60px;
             padding: 0 10px;
-            background-color: #000000;
+            background-color: #212121;
             color: #fff;
             width: 100%;
             height: 60px;
             z-index: 1;
             display: inline-block;
+            text-align: center;
         }
 
         .title-bar h1 {
@@ -80,6 +81,7 @@
             font-weight: 400;
             line-height: 20px;
             padding: 20px 2px;
+            text-align: center;
         }
 
         .title-bar img {
@@ -87,6 +89,20 @@
             top: 5px;
             left: 0;
             display: inline;
+        }
+
+        .detail-bar {
+            position: absolute;
+            opacity: 0.5;
+            top: 74px;
+            line-height: 60px;
+            padding: 0 10px;
+            background-color: #212121;
+            color: #fff;
+            width: 100%;
+            height: 160px;
+            z-index: 1;
+            overflow-y: scroll;
         }
 
         .heading {
@@ -240,6 +256,7 @@
         <img src="./olympics/img/menu.svg" alt="menu">
         <h1>The Olympic Journey</h1>
     </div>
+    <div class="detail-bar" style="display: none;">Details</div>
     <div class="sidebar">
         <div class="heading">
             <!-- add a simple search bar -->
@@ -264,7 +281,7 @@
             scrollZoom: true
         });
 
-        const venues = {
+        const summerVenues = {
             "type": "FeatureCollection",
             "features": [
                 {
@@ -634,11 +651,11 @@
                         ]
                     },
                     "properties": {
-                        "Year": "2008 Summer Olympics & 2022 Winter Olympics",
+                        "Year": "2008 Summer Olympics",
                         "City": "Beijing",
                         "Country": "China",
                         "Times_Hosted": 2,
-                        "Season": "B"
+                        "Season": "S"
                     }
                 },
                 {
@@ -656,6 +673,48 @@
                         "Country": "Brazil",
                         "Times_Hosted": 1,
                         "Season": "S"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            2.35611,
+                            48.8682
+                        ]
+                    },
+                    "properties": {
+                        "Year": "2024 Summer Olympics",
+                        "City": "Paris",
+                        "Country": "France",
+                        "Times_Hosted": 2,
+                        "Season": "S",
+                        "Details": "The 1896 Summer Olympics, officially known as the Games of the I Olympiad, were held in Athens, Greece from April 6-15, 1896. Here are the key facts about these inaugural modern Olympic Games.",
+                        "Image": "./olympics/img/2024-france.png"
+                    }
+                },
+            ]
+        };
+
+        const winterVenues = {
+            "type": "FeatureCollection",
+            "features": [
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            116.38,
+                            39.917
+                        ]
+                    },
+                    "properties": {
+                        "Year": "2022 Winter Olympics",
+                        "City": "Beijing",
+                        "Country": "China",
+                        "Times_Hosted": 2,
+                        "Season": "W"
                     }
                 },
                 {
@@ -997,56 +1056,54 @@
                         "Times_Hosted": 1,
                         "Season": "W"
                     }
-                }
-            ]
+                }]
         };
         /**
          * Assign a unique id to each venue. You'll use this `id`
          * later to associate each point on the map with a listing
          * in the sidebar.
          */
-        venues.features.forEach((venue, i) => {
-            venue.properties.id = i;
+        summerVenues.features.forEach((summerVenue, i) => {
+            summerVenue.properties.id = i;
+        });
+        winterVenues.features.forEach((winterVenue, i) => {
+            winterVenue.properties.id = i;
         });
 
         /**
          * Wait until the map loads to make changes to the map.
          */
         map.on('load', () => {
-            map.addSource('places', {
-                'type': 'geojson',
-                'data': venues
-            });
-
             // make sidebar listings
-            buildLocationList(venues);
+            buildLocationList(summerVenues);
+            buildLocationList(winterVenues);
             // add source and layer for venues
-            map.addSource('olympic_venues', {
+            map.addSource('summer_venues', {
                 type: 'geojson',
-                data: venues,
+                data: summerVenues,
                 cluster: true,
                 clusterMaxZoom: 14, // Max zoom to cluster points on
-                clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
+                clusterRadius: 50, // Radius of each cluster when clustering points (defaults to 50)
+                generateId: true
             });
+            map.addSource('winter_venues', {
+                type: 'geojson',
+                data: winterVenues,
+                cluster: true,
+                clusterMaxZoom: 14, // Max zoom to cluster points on
+                clusterRadius: 50, // Radius of each cluster when clustering points (defaults to 50)
+                generateId: true
+            });
+
+            // +++++++++++++ SUMMER VENUES +++++++++++++
             // add the layers for the clusters and unclustered points
             map.addLayer({
-                id: 'clusters',
+                id: 'summer_clusters',
                 type: 'circle',
-                source: 'olympic_venues',
-                // filter: ['all', ['>', 'point_count', 0]],
+                source: 'summer_venues',
+                filter: ['all', ['>', 'point_count', 0]],
                 paint: {
-                    'circle-color':
-                    [
-                        'match',
-                        ['get','Season'],
-                        'S',
-                        '#FEB710',
-                        'W',
-                        '#3bc4ff',
-                        'B',
-                        '#805380',
-                        /* other */ '#805380'
-                    ],
+                    'circle-color': '#FEB710',
                     'circle-radius': [
                         'step',
                         ['get', 'point_count'],
@@ -1055,136 +1112,132 @@
                         16,
                         3,
                         24
-                    ]
-                }
-            });
-            map.addLayer({
-                id: 'unclustered-point',
-                type: 'circle',
-                source: 'olympic_venues',
-                paint: {
-                    'circle-color': [
-                        'match',
-                        ['get', 'Season'],
-                        'S',
-                        '#FEB710',
-                        'W',
-                        '#3bc4ff',
-                        'B',
-                        'green',
-                        /* other */ '#333'
                     ],
-                    'circle-radius': 8,
-                    'circle-stroke-width': 1,
-                    'circle-stroke-color': '#fff'
+                    'circle-stroke-width': 2,
+                    'circle-stroke-color': '#000'
                 }
             });
-
-            // inspect a cluster on click
-            map.on('click', 'clusters', (e) => {
+            // add the unclustered points layer
+            map.addLayer({
+                id: 'summer_unclustered_points',
+                type: 'symbol',
+                source: 'summer_venues',
+                // create a filter that will hide the clusters and only show the points
+                filter: ['!', ['has', 'point_count']],
+                layout: {
+                    'icon-image': 'summer_marker',
+                    'icon-size': 0.5,
+                    'icon-allow-overlap': true
+                }
+            });
+            // add a label layer for the clusters
+            map.addLayer({
+                id: 'summer_cluster_count',
+                type: 'symbol',
+                source: 'summer_venues',
+                filter: ['has', 'point_count'],
+                layout: {
+                    'text-field': '{point_count_abbreviated}',
+                    'text-font': ['Arial Unicode MS Bold', 'DIN Offc Pro Medium'],
+                    'text-size': 12
+                }
+            });
+            // add a listener for the click event on the clusters to expand the cluster and zoom in
+            map.on('click', 'summer_clusters', (e) => {
                 const features = map.queryRenderedFeatures(e.point, {
-                    layers: ['clusters']
+                    layers: ['summer_clusters']
                 });
-                console.log(features);
                 const clusterId = features[0].properties.cluster_id;
-                console.log(clusterId);
-                map.getSource('olympic_venues').getClusterExpansionZoom(
-                    clusterId,
-                    (err, zoom) => {
-                        if (err) return;
-
-                        map.easeTo({
-                            center: features[0].geometry.coordinates,
-                            zoom: zoom
-                        });
-                    }
-                );
-            });
-
-            // When a click event occurs on a feature in
-            // the unclustered-point layer, open a popup at
-            // the location of the feature, with
-            // description HTML from its properties.
-            map.on('click', 'unclustered-point', (e) => {
-                const coordinates = e.features[0].geometry.coordinates.slice();
-                const city = e.features[0].properties.City;
-
-                // Ensure that if the map is zoomed out such that
-                // multiple copies of the feature are visible, the
-                // popup appears over the copy being pointed to.
-                while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-                    coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-                }
-
-                new mapboxgl.Popup()
-                    .setLngLat(coordinates)
-                    .setHTML(
-                        `City: ${City}<br>`
-                    )
-                    .addTo(map);
-            });
-
-            map.on('mouseenter', 'clusters', () => {
-                map.getCanvas().style.cursor = 'pointer';
-            });
-            map.on('mouseleave', 'clusters', () => {
-                map.getCanvas().style.cursor = '';
-            });
-        });
-
-        /**
-         * Add a marker to the map for every venue listing.
-         **/
-        function addMarkers() {
-            /* For each feature in the GeoJSON object above: */
-            for (const marker of venues.features) {
-                /* Create a div element for the marker. */
-                const el = document.createElement('div');
-                /* Assign a unique `id` to the marker. */
-                el.id = `marker-${marker.properties.id}`;
-                /* Assign the `marker` class to each marker for styling. */
-                el.className = 'marker';
-
-                /**
-                 * Create a marker using the div element
-                 * defined above and add it to the map.
-                 **/
-                new mapboxgl.Marker(el, { offset: [0, -25] })
-                    .setLngLat(marker.geometry.coordinates)
-                    .addTo(map);
-
-                /**
-                 * Listen to the element and when it is clicked, do three things:
-                 * 1. Fly to the point
-                 * 2. Close all other popups and display popup for clicked venue
-                 * 3. Highlight listing in sidebar (and remove highlight for all other listings)
-                 **/
-                el.addEventListener('click', (e) => {
-                    /* Fly to the point */
-                    flyToVenue(marker);
-                    /* Close all other popups and display popup for clicked venue */
-                    createPopUp(marker);
-                    /* Highlight listing in sidebar */
-                    const activeItem = document.getElementsByClassName('active');
-                    e.stopPropagation();
-                    if (activeItem[0]) {
-                        activeItem[0].classList.remove('active');
-                    }
-                    const listing = document.getElementById(
-                        `listing-${marker.properties.id}`
-                    );
-                    listing.classList.add('active');
-                    /* Scroll the listing to the top of the list */
-                    listing.scrollIntoView({ behavior: 'smooth' });
+                map.getSource('summer_venues').getClusterExpansionZoom(clusterId, (err, zoom) => {
+                    if (err) return;
+                    map.easeTo({
+                        center: features[0].geometry.coordinates,
+                        zoom: zoom
+                    });
                 });
-            }
-        }
+            });
+
+            // +++++++++++++ WINTER VENUES +++++++++++++
+            // add the layers for the clusters and unclustered points
+            map.addLayer({
+                id: 'winter_clusters',
+                type: 'circle',
+                source: 'winter_venues',
+                filter: ['all', ['>', 'point_count', 0]],
+                paint: {
+                    'circle-color': '#3BC4FF',
+                    'circle-radius': [
+                        'step',
+                        ['get', 'point_count'],
+                        8,
+                        1,
+                        16,
+                        3,
+                        24
+                    ],
+                    'circle-stroke-width': 2,
+                    'circle-stroke-color': '#000'
+                }
+            });
+            // add the unclustered points layer
+            map.addLayer({
+                id: 'winter_unclustered_points',
+                type: 'symbol',
+                source: 'winter_venues',
+                // create a filter that will hide the clusters and only show the points
+                filter: ['!', ['has', 'point_count']],
+                layout: {
+                    'icon-image': 'winter_marker',
+                    'icon-size': 0.5,
+                    'icon-allow-overlap': true
+                }
+            });
+            // add a label layer for the clusters
+            map.addLayer({
+                id: 'winter_cluster_count',
+                type: 'symbol',
+                source: 'winter_venues',
+                filter: ['has', 'point_count'],
+                layout: {
+                    'text-field': '{point_count_abbreviated}',
+                    'text-font': ['Arial Unicode MS Bold', 'DIN Offc Pro Medium'],
+                    'text-size': 12
+                }
+            });
+            // add a listener for the click event on the clusters to expand the cluster and zoom in
+            map.on('click', 'winter_clusters', (e) => {
+                const features = map.queryRenderedFeatures(e.point, {
+                    layers: ['winter_clusters']
+                });
+                const clusterId = features[0].properties.cluster_id;
+                map.getSource('winter_venues').getClusterExpansionZoom(clusterId, (err, zoom) => {
+                    if (err) return;
+                    map.easeTo({
+                        center: features[0].geometry.coordinates,
+                        zoom: zoom
+                    });
+                });
+            });
+
+            // add a listener for the click event on the unclustered points to display a popup
+            map.on('click', 'summer_unclustered_points', (e) => {
+                const coordinates = e.features[0].geometry.coordinates.slice();
+                const { Year, City, Country, Times_Hosted, Season } = e.features[0].properties;
+                const details = e.features[0].properties.Details;
+                const description = `<h3>${City}, ${Country}</h3><h4>${Year}</h4><p>${details}</p>`;
+                // add the description to the details container
+                // display the details container
+                document.querySelector('.detail-bar').style.display = 'block';
+                document.querySelector('.detail-bar').innerHTML = description;
+            });
+
+        });
 
         /**
          * Add a listing for each venue to the sidebar.
          **/
-        function buildLocationList(venues) {
-            for (const venue of venues.features) {
+        function buildLocationList(season) {
+            for (const venue of season.features) {
                 /* Add a new listing section to the sidebar. */
                 const listings = document.getElementById('listings');
                 const listing = listings.appendChild(document.createElement('div'));
@@ -1215,10 +1268,10 @@
                  * 4. Highlight listing in sidebar (and remove highlight for all other listings)
                  **/
                 link.addEventListener('click', function () {
-                    for (const feature of venues.features) {
+                    for (const feature of summerVenues.features) {
                         if (this.id === `link-${feature.properties.id}`) {
                             flyToVenue(feature);
-                            createPopUp(feature);
+                            // createPopUp(feature);
                         }
                     }
                     const activeItem = document.getElementsByClassName('active');
@@ -1242,19 +1295,6 @@
             });
         }
 
-        /**
-         * Create a Mapbox GL JS `Popup`.
-         **/
-        function createPopUp(currentFeature) {
-            const popUps = document.getElementsByClassName('mapboxgl-popup');
-            if (popUps[0]) popUps[0].remove();
-            const popup = new mapboxgl.Popup({ closeOnClick: false })
-                .setLngLat(currentFeature.geometry.coordinates)
-                .setHTML(
-                    `<h3>${currentFeature.properties.City}</h3><h4>${currentFeature.properties.Year}</h4>`
-                )
-                .addTo(map);
-        }
 
         // search
         const searchElement = document.getElementById('search');
@@ -1267,7 +1307,7 @@
             const listings = document.getElementById('listings');
 
             // display all listings again
-            venues.features.forEach((venue, i) => {
+            summerVenues.features.forEach((venue, i) => {
                 document.getElementById(`listing-${venue.properties.id}`).style.display = 'block';
             });
         });
