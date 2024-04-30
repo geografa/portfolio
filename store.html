@@ -125,7 +125,7 @@
             cursor: pointer;
             height: 56px;
             width: 56px;
-            background-image: url('./img/torch.png');
+            background-image: url('./olympics/img/torch.png');
         }
 
         /* Marker tweaks */
@@ -1131,7 +1131,8 @@
             console.log(currentFeature);
             map.flyTo({
                 center: currentFeature.geometry.coordinates,
-                zoom: 12
+                zoom: 12,
+                pitch: 60
             });
         }
 
@@ -1141,7 +1142,7 @@
         function createPopUp(currentFeature) {
             const popUps = document.getElementsByClassName('mapboxgl-popup');
             if (popUps[0]) popUps[0].remove();
-            const popup = new mapboxgl.Popup({ closeOnClick: false })
+            const popup = new mapboxgl.Popup({ closeOnClick: true })
                 .setLngLat(currentFeature.geometry.coordinates)
                 .setHTML(
                     `<h3>${currentFeature.properties.City}</h3><h4>${currentFeature.properties.Year}</h4>`
