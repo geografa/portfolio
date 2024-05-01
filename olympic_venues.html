@@ -5,18 +5,19 @@
     <meta charset="utf-8" />
     <title>The Olympic Journey</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wdth,wght@0,75..100,300..800;1,75..100,300..800&display=swap"
+        rel="stylesheet">
     <link href="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
 
     <style>
         body {
-            color: #404040;
-            font:
-                400 15px/22px 'Open Sans',
-                'Helvetica Neue',
-                sans-serif;
             margin: 0;
             padding: 0;
+            font-family: 'Open Sans', sans-serif;
             -webkit-font-smoothing: antialiased;
         }
 
@@ -39,14 +40,6 @@
             width: 100%;
         }
 
-        h1 {
-            font-size: 22px;
-            margin: 0;
-            font-weight: 400;
-            line-height: 20px;
-            padding: 20px 2px;
-        }
-
         a {
             color: #404040;
             text-decoration: none;
@@ -58,63 +51,89 @@
 
         .title-bar {
             position: absolute;
-            opacity: 0.5;
-            top: 8px;
-            line-height: 60px;
-            padding: 0 10px;
-            background-color: #212121;
+            padding: 8px;
             color: #fff;
             width: 100%;
-            height: 60px;
             z-index: 1;
-            display: inline-block;
-            text-align: center;
+            display: inline;
+        }
+
+        .title-bar-back {
+            background-color: rgb(0 0 0 / 60%)
+        }
+
+        .title-bar .menu {
+            position: absolute;
+            padding: 16px 16px;
+        }
+
+        .title-bar .share {
+            position: fixed;
+            top: 24px;
+            right: 20px;
         }
 
         .title-bar h1 {
-            display: inline;
-            font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
-            font-style: italic;
+            font-family: "Open Sans", sans-serif;
+            font-size: 1.25em;
+            font-optical-sizing: auto;
             font-weight: 700;
+            font-style: italic;
+            font-variation-settings:
+                "wdth" 75;
             text-transform: uppercase;
             margin: 0;
-            font-weight: 400;
             line-height: 20px;
             padding: 20px 2px;
             text-align: center;
         }
 
-        .title-bar img {
-            position: relative;
-            top: 5px;
-            left: 0;
-            display: inline;
-        }
-
         .detail-bar {
             position: absolute;
-            opacity: 0.5;
+            opacity: 0.60;
             top: 74px;
-            line-height: 60px;
-            padding: 0 10px;
             background-color: #212121;
             color: #fff;
-            width: 100%;
-            height: 160px;
+            width: 96%;
             z-index: 1;
+            margin: 8px;
+            padding: 16px 18px;
+            font-size: 14px;
+            margin-bottom: 10px;
+            max-height: 400px;
             overflow-y: scroll;
         }
 
-        .heading {
-            background: #fff;
-            border-bottom: 1px solid #eee;
-            line-height: 60px;
-            padding: 0 10px;
-            background-color: #020548;
-            color: #fff;
-            position: relative;
-            width: 100%;
-            height: fit-content;
+        .poster {
+            float: left;
+            margin-right: 8px;
+            max-width: 72px;
+        }
+
+        .detail-bar .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .detail-bar .year h3 {
+            font-weight: 300;
+            font-variation-settings:
+                "wdth" 75;
+            text-transform: uppercase;
+            line-height: 0.5em;
+        }
+
+        .detail-bar .city h3 {
+            font-weight: 700;
+            font-variation-settings:
+                "wdth" 100;
+            line-height: 0;
+        }
+
+        .detail-bar #expand {
+            font-weight: 700;
+            text-align: center;
         }
 
         .listings {
@@ -128,7 +147,9 @@
             border-bottom: 1px solid #eee;
             padding: 10px;
             text-decoration: none;
+            font-size: 0.75em;
         }
+
 
         .listings .item:last-child {
             border-bottom: none;
@@ -167,14 +188,6 @@
         ::-webkit-scrollbar-thumb {
             background: #03094d;
             border-radius: 0;
-        }
-
-        .marker {
-            border: none;
-            cursor: pointer;
-            height: 56px;
-            width: 56px;
-            background-image: url('./olympics/img/torch.png');
         }
 
         /* Marker tweaks */
@@ -223,47 +236,21 @@
         .mapboxgl-popup-anchor-top>.mapboxgl-popup-tip {
             border-bottom-color: #fff;
         }
-
-        /* search */
-        #search {
-            position: relative;
-            top: 0;
-            left: 0;
-            z-index: 1;
-            width: 80%;
-            padding: 10px;
-            font-size: 16px;
-            font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
-            border-radius: 10px;
-        }
-
-        #clear-search {
-            position: relative;
-            top: 0;
-            left: 0;
-            z-index: 1;
-            padding: 10px;
-            font-size: 10px;
-            font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
-            border-radius: 40px;
-        }
     </style>
 </head>
 
 <body>
     <div class="title-bar">
-        <!-- add a hamburger menu to the left of the heading using ./olympics/img/menu.svg -->
-        <img src="./olympics/img/menu.svg" alt="menu">
-        <h1>The Olympic Journey</h1>
+        <div class="title-bar-back">
+            <!-- add a hamburger menu to the left of the search-bar using ./olympics/img/menu.svg -->
+            <img src="./olympics/img/menu.svg" alt="menu" class="menu">
+            <h1>The Olympic Journey</h1>
+            <img src="./olympics/img/share.svg" alt="menu" class="share">
+        </div>
     </div>
+
     <div class="detail-bar" style="display: none;">Details</div>
     <div class="sidebar">
-        <div class="heading">
-            <!-- add a simple search bar -->
-            <input id="search" type="text" placeholder="Search...">
-            <button id="clear-search">reset</button>
-
-        </div>
         <div id="listings" class="listings"></div>
     </div>
     <div id="map" class="map"></div>
@@ -296,9 +283,12 @@
                     "properties": {
                         "Year": "1896 & 2004 Summer Olympics",
                         "City": "Athens",
-                        "Country": "Greece",
+                        "Country": "Greece 🇬🇷",
                         "Times_Hosted": 2,
-                        "Season": "S"
+                        "Season": "S",
+                        "Summary": "The 1896 Athens Games successfully revived the Olympic tradition after 1,500 years, overcoming challenges to host an iconic first edition of the modern Olympics.",
+                        "Details": "<h3 id='venues'>Venues</h3><ul><li>Panathenaic Stadium (athletics, wrestling)</li><li>Neo Phaliron Velodrome (cycling) </li><li>Zappeion (fencing)</li><li>Open water venues for swimming events</li></ul><h3 id='participatingcountries'>Participating Countries</h3><ul><li>14 nations participated, with 241 athletes (all male)</li><li>Over 65% of athletes were from Greece</li></ul><h3 id='notableathletes'>Notable Athletes</h3><ul><li>Spyridon Louis (Greece) - Won the marathon, becoming a national hero</li><li>Alfréd Hajós (Hungary) - Won swimming events in freezing open water</li><li>James Connolly (USA) - First Olympic champion in over 1,500 years (triple jump)</li><li>Carl Schuhmann (Germany) - Most successful athlete with 4 wrestling/gymnastics wins</li></ul><h3 id='newsports'>New Sports</h3><ul><li>None, but swimming events were held in open water for the first time</li></ul><h3 id='innovations'>Innovations</h3><ul><li>First modern Olympic marathon race</li><li>Thomas Burke (USA) used a crouching start in sprint races</li></ul><h3 id='controversies'>Controversies</h3><ul><li>None major, though some uncertainty over exact athlete numbers</li></ul><h3 id='worldevents'>World Events</h3><ul><li>Greece had recently gained independence and hosted to affirm nationhood</li><li>Financial troubles and political instability initially threatened the Games</li></ul><h3 id='othernotes'>Other Notes</h3><ul><li>Winners received silver medals, runners-up copper (later amended to gold/silver/bronze)</li><li>Olympic theme song debuted</li><li>Torch relay inaugurated, snaking through Athens streets</li></ul>",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/ibebbeb35a8c282b4/version/1678041382/image.png"
                     }
                 },
                 {
@@ -313,9 +303,12 @@
                     "properties": {
                         "Year": "1900 & 1924 & 2024 Summer Olympics",
                         "City": "Paris",
-                        "Country": "France",
+                        "Country": "France 🇫🇷",
                         "Times_Hosted": 2,
-                        "Season": "S"
+                        "Season": "S",
+                        "Summary": "The 1900 Paris Exposition took place across several venues spanning 543 acres (216 hectares). The Exposition celebrated the achievements and progress of the 19th century, showcasing France as a major colonial power through pavilions at the Trocadéro. It took place during a period of economic growth and optimism known as the Belle Époque era in France.",
+                        "Details": "<h3 id='numberofparticipatingcountries'>Number of Participating Countries</h3><ul><li>40 countries participated with national pavilions[2]</li><li>Over 83,000 exhibitors from around the world[1]</li></ul><h3 id='notableathletes'>Notable Athletes</h3><ul><li>Alvin Kraenzlein (USA) - Won 4 athletics events (60m, 110m hurdles, 200m hurdles, long jump)[5]</li><li>The first female Olympic athletes competed, including Mrs. Brohy and Miss Ohnier of France in croquet[5]</li></ul><h3 id='notablefashion'>Notable Fashion</h3><ul><li>Art Nouveau style was prominently featured, with displays by René Lalique, Gaillard, Guimard, Charpentier and others[1]</li></ul><h3 id='themesong'>Theme Song</h3><p>No specific theme song is mentioned.</p><h3 id='recordsbroken'>Records Broken</h3><p>No major world records are cited, though it showcased many technological innovations and feats of engineering.[1][3]</p><h3 id='newsportsintroduced'>New Sports Introduced</h3><p>The 1900 Paris games were the first Olympics with women's events, including croquet.[5]</p><h3 id='innovations'>Innovations</h3><ul><li>Grande Roue de Paris (giant Ferris wheel) </li><li>Moving sidewalks</li><li>Escalators</li><li>Diesel engines</li><li>Talking films</li><li>Telegraphone (magnetic audio recorder)</li><li>First regular passenger trolleybus line[1][3]</li></ul><h3 id='controversies'>Controversies</h3><p>No major controversies are mentioned.</p><h3 id='worldevents'>World Events</h3><p>The Exposition celebrated the achievements and progress of the 19th century, showcasing France as a major colonial power through pavilions at the Trocadéro.[3] It took place during a period of economic growth and optimism known as the Belle Époque era in France.[2]</p>",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/i22ccd639204c6c0b/version/1678041369/image.png"
                     }
                 },
                 {
@@ -330,9 +323,12 @@
                     "properties": {
                         "Year": "1904 Summer Olympics",
                         "City": "St. Louis",
-                        "Country": "United States",
+                        "Country": "United States 🇺🇸",
                         "Times_Hosted": 1,
-                        "Season": "S"
+                        "Season": "S",
+                        "Summary": "The 1904 Summer Olympics were held in St. Louis, Missouri, United States from July 1 to November 23, 1904, as part of the Louisiana Purchase Exposition (also known as the St. Louis World's Fair).",
+                        "Details": "<h3 id='venues'>Venues</h3><ul><li>Francis Olympic Field (athletics, gymnastics, wrestling, etc.)</li><li>Francis Gymnasium (boxing, fencing)  </li><li>Forest Park (swimming, diving, water polo)</li><li>Creve Coeur Lake (rowing)</li><li>Glen Echo Country Club (golf)</li></ul><h3 id='participatingcountries'>Participating Countries</h3><p>Only 12 countries sent athletes, with 645 men and 6 women competing. The vast majority (526) were from the United States.[2]</p><h3 id='notableathletes'>Notable Athletes</h3><ul><li>George Eyser (USA) - won 6 gymnastics medals despite having a wooden leg</li><li>Ray Ewry (USA) - won 8 athletics medals </li><li>Thomas Kiely (Ireland) - won decathlon gold medal[3]</li></ul><h3 id='newsports'>New Sports</h3><p>Boxing, decathlon, and freestyle wrestling made their Olympic debuts.[2]</p><h3 id='recordsbroken'>Records Broken</h3><p>No world records were officially recognized, as Olympic records were not kept until 1912.[3]</p><h3 id='controversies'>Controversies</h3><ul><li>Anthropology exhibits displayed people from Philippines, Arctic, etc. in recreated villages.[1]</li><li>Many events combined U.S. national championships with Olympic championships due to lack of international entries.[2]</li></ul><h3 id='worldevents'>World Events</h3><p>The Russo-Japanese War limited European participation in the Games.[2][3]</p><p>The 1904 St. Louis Olympics were historically significant as the first Olympic Games held outside Europe, but were marred by poor organization and low international presence.[2][3]</p><p>Citations:[1] https://www.theatlantic.com/photo/2019/09/the-1904-st-louis-worlds-fair-photos/597658/[2] https://en.wikipedia.org/wiki/1904<em>Summer</em>Olympics[3] https://www.britannica.com/event/St-Louis-1904-Olympic-Games[4] https://www.loc.gov/item/2007633932/[5] https://www.slam.org/teachers-students/educator-resource/art-on-display/1904-st-louis-worlds-fair/</p>",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=136x10000:format=png/path/s293f5a94d3403280/image/ic30b9e00d12ff5b6/version/1678041355/image.png"
                     }
                 },
                 {
@@ -345,11 +341,14 @@
                         ]
                     },
                     "properties": {
-                        "Year": "1908 & 1948 & 2012  Summer Olympics",
+                        "Year": "1908 & 1948 & 2012 Summer Olympics",
                         "City": "London",
-                        "Country": "England",
+                        "Country": "England 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
                         "Times_Hosted": 3,
-                        "Season": "S"
+                        "Season": "S",
+                        "Summary": "The 1908 Summer Olympics were held in London, England from April 27 to October 31, 1908.",
+                        "Details": "<h3 id='venues'>Venues</h3><ul><li>White City Stadium was built specifically for the Games and hosted the opening ceremony, athletics, gymnastics, and other events. It had a capacity of 68,000.[2]</li><li>Other venues included Bisley Ranges (shooting), Franco-British Exhibition (fencing), and Knightsbridge (figure skating).[2]</li></ul><h3 id='participatingcountries'>Participating Countries</h3><ul><li>22 countries participated, with around 2,000 athletes (1,971 men and 37 women).[2]</li></ul><h3 id='notableathletes'>Notable Athletes</h3><ul><li>Dorando Pietri of Italy collapsed near the finish of the marathon but was helped across the line first, before being disqualified for receiving aid. He was awarded a special cup by Queen Alexandra.[3]</li><li>John Taylor of Great Britain won three gold medals in swimming events.[3]</li></ul><h3 id='fashion'>Fashion</h3><ul><li>No notable fashion trends are mentioned in the sources.</li></ul><h3 id='themesong'>Theme Song</h3><ul><li>The sources do not mention an official theme song.</li></ul><h3 id='recordsbroken'>Records Broken</h3><ul><li>The sources do not provide details on specific records broken.</li></ul><h3 id='newsports'>New Sports</h3><ul><li>Diving, motorboating, indoor tennis, and field hockey were introduced as new Olympic sports.[3]</li></ul><h3 id='innovations'>Innovations</h3><ul><li>It was the first Olympic Games to have an official opening ceremony.[4]</li></ul><h3 id='controversies'>Controversies</h3><ul><li>The Finnish team protested by refusing to march behind the Russian flag due to Russian rule over Finland.[3][4]</li><li>Many Irish athletes boycotted the Games as subjects of the British crown.[3][4] </li><li>American athlete Ralph Rose refused to dip the U.S. flag to King Edward VII, starting a tradition.[3][4]</li><li>Disputes arose between American and British officials over track events like the 400m final.[3][4]</li></ul><h3 id='worldevents'>World Events</h3><ul><li>The 1906 eruption of Mount Vesuvius caused the Games to be relocated from Rome to London due to financial constraints in Italy.[2][5]</li></ul><p>Citations:[1] https://en.wikipedia.org/wiki/1908<em>in</em>the<em>United</em>Kingdom[2] https://en.wikipedia.org/wiki/1908<em>Summer</em>Olympics[3] https://www.britannica.com/event/London-1908-Olympic-Games[4] https://www.britannica.com/sports/Olympic-Games/London-England-1908[5] https://www.insidethegames.biz/articles/3391/1908-london</p>",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=140x10000:format=png/path/s293f5a94d3403280/image/ifd2e95b215e6028b/version/1678041336/image.png"
                     }
                 },
                 {
@@ -362,11 +361,14 @@
                         ]
                     },
                     "properties": {
-                        "Year": "1912  Summer Olympics",
+                        "Year": "1912 Summer Olympics",
                         "City": "Stockholm",
-                        "Country": "Sweden",
+                        "Country": "Sweden 🇸🇪",
                         "Times_Hosted": 1,
-                        "Season": "S"
+                        "Season": "S",
+                        "Summary": "",
+                        "Details": "",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=152x10000:format=png/path/s293f5a94d3403280/image/i328f7fbb3d84ddd1/version/1678041323/image.png"
                     }
                 },
                 {
@@ -379,11 +381,14 @@
                         ]
                     },
                     "properties": {
-                        "Year": "1920  Summer Olympics",
+                        "Year": "1920 Summer Olympics",
                         "City": "Antwerp",
-                        "Country": "Belgium",
+                        "Country": "Belgium 🇧🇪",
                         "Times_Hosted": 1,
-                        "Season": "S"
+                        "Season": "S",
+                        "Summary": "",
+                        "Details": "",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/i01e09f47553f7bc1/version/1678041281/image.png"
                     }
                 },
                 {
@@ -396,11 +401,14 @@
                         ]
                     },
                     "properties": {
-                        "Year": "1928  Summer Olympics",
+                        "Year": "1928 Summer Olympics",
                         "City": "Amsterdam",
-                        "Country": "Netherlands",
+                        "Country": "Netherlands 🇳🇱",
                         "Times_Hosted": 1,
-                        "Season": "S"
+                        "Season": "S",
+                        "Summary": "",
+                        "Details": "",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/i18eff07c1abb2d97/version/1678041212/image.png"
                     }
                 },
                 {
@@ -415,9 +423,12 @@
                     "properties": {
                         "Year": "1932 & 1984 Summer Olympics",
                         "City": "Los Angeles",
-                        "Country": "United States",
+                        "Country": "United States 🇺🇸",
                         "Times_Hosted": 2,
-                        "Season": "S"
+                        "Season": "S",
+                        "Summary": "",
+                        "Details": "",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/i2917d7c9b19424af/version/1678041186/image.png"
                     }
                 },
                 {
@@ -432,9 +443,12 @@
                     "properties": {
                         "Year": "1936 Summer Olympics",
                         "City": "Berlin",
-                        "Country": "Germany",
+                        "Country": "Germany 🇩🇪",
                         "Times_Hosted": 1,
-                        "Season": "S"
+                        "Season": "S",
+                        "Summary": "",
+                        "Details": "",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/ice3b1f621af162bf/version/1678041161/image.png"
                     }
                 },
                 {
@@ -449,9 +463,12 @@
                     "properties": {
                         "Year": "1952 Summer Olympics",
                         "City": "Helsinki",
-                        "Country": "Finland",
+                        "Country": "Finland 🇫🇮",
                         "Times_Hosted": 1,
-                        "Season": "S"
+                        "Season": "S",
+                        "Summary": "",
+                        "Details": "",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/ic87e32fe2fd4dca9/version/1678041014/image.png"
                     }
                 },
                 {
@@ -466,9 +483,12 @@
                     "properties": {
                         "Year": "1956 Summer Olympics",
                         "City": "Melbourne",
-                        "Country": "Australia",
+                        "Country": "Australia 🇦🇺",
                         "Times_Hosted": 1,
-                        "Season": "S"
+                        "Season": "S",
+                        "Summary": "",
+                        "Details": "",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/ia6c24e1c572615d5/version/1678040961/image.png"
                     }
                 },
                 {
@@ -483,9 +503,12 @@
                     "properties": {
                         "Year": "1960 Summer Olympics",
                         "City": "Rome",
-                        "Country": "Italy",
+                        "Country": "Italy 🇮🇹",
                         "Times_Hosted": 1,
-                        "Season": "S"
+                        "Season": "S",
+                        "Summary": "",
+                        "Details": "",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/i5b75a0fc41e3b25d/version/1678040931/image.png"
                     }
                 },
                 {
@@ -500,9 +523,12 @@
                     "properties": {
                         "Year": "1964 & 2021 Summer Olympics",
                         "City": "Tokyo",
-                        "Country": "Japan",
+                        "Country": "Japan 🇯🇵",
                         "Times_Hosted": 2,
-                        "Season": "S"
+                        "Season": "S",
+                        "Summary": "",
+                        "Details": "",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=123x10000:format=png/path/s293f5a94d3403280/image/i32405b868c58e6f3/version/1678040893/image.png"
                     }
                 },
                 {
@@ -517,9 +543,12 @@
                     "properties": {
                         "Year": "1968 Summer Olympics",
                         "City": "Mexico City",
-                        "Country": "Mexico",
+                        "Country": "Mexico 🇲🇽",
                         "Times_Hosted": 1,
-                        "Season": "S"
+                        "Season": "S",
+                        "Summary": "",
+                        "Details": "",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/i7b583b47a67e05de/version/1678040864/image.png"
                     }
                 },
                 {
@@ -534,9 +563,12 @@
                     "properties": {
                         "Year": "1972 Summer Olympics",
                         "City": "Munich",
-                        "Country": "West Germany",
+                        "Country": "West Germany 🇩🇪",
                         "Times_Hosted": 1,
-                        "Season": "S"
+                        "Season": "S",
+                        "Summary": "",
+                        "Details": "",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/i91de4dc42b8962c9/version/1678040831/image.png"
                     }
                 },
                 {
@@ -551,9 +583,12 @@
                     "properties": {
                         "Year": "1976 Summer Olympics",
                         "City": "Montreal",
-                        "Country": "Canada",
+                        "Country": "Canada 🇨🇦",
                         "Times_Hosted": 1,
-                        "Season": "S"
+                        "Season": "S",
+                        "Summary": "",
+                        "Details": "",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/i4e89c0014c5192e9/version/1678040795/image.png"
                     }
                 },
                 {
@@ -568,9 +603,12 @@
                     "properties": {
                         "Year": "1980 Summer Olympics",
                         "City": "Moscow",
-                        "Country": "USSR",
+                        "Country": "USSR 🇷🇺",
                         "Times_Hosted": 1,
-                        "Season": "S"
+                        "Season": "S",
+                        "Summary": "",
+                        "Details": "",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/i1ca2c77942bd5238/version/1678040756/image.png"
                     }
                 },
                 {
@@ -585,9 +623,12 @@
                     "properties": {
                         "Year": "1988 Summer Olympics",
                         "City": "Seoul",
-                        "Country": "South Korea",
+                        "Country": "South Korea 🇰🇷",
                         "Times_Hosted": 1,
-                        "Season": "S"
+                        "Season": "S",
+                        "Summary": "",
+                        "Details": "",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/i3bf65532f0a62810/version/1678040685/image.png"
                     }
                 },
                 {
@@ -602,9 +643,12 @@
                     "properties": {
                         "Year": "1992 Summer Olympics",
                         "City": "Barcelona",
-                        "Country": "Spain",
+                        "Country": "Spain 🇪🇸",
                         "Times_Hosted": 1,
-                        "Season": "S"
+                        "Season": "S",
+                        "Summary": "",
+                        "Details": "",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/i90daa0442cede026/version/1678040655/image.png"
                     }
                 },
                 {
@@ -619,9 +663,12 @@
                     "properties": {
                         "Year": "1996 Summer Olympics",
                         "City": "Atlanta",
-                        "Country": "United States",
+                        "Country": "United States 🇺🇸",
                         "Times_Hosted": 1,
-                        "Season": "S"
+                        "Season": "S",
+                        "Summary": "",
+                        "Details": "",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/i2ffeb81adc677bd9/version/1678040538/image.png"
                     }
                 },
                 {
@@ -636,9 +683,12 @@
                     "properties": {
                         "Year": "2000 Summer Olympics",
                         "City": "Sydney",
-                        "Country": "Australia",
+                        "Country": "Australia 🇦🇺",
                         "Times_Hosted": 1,
-                        "Season": "S"
+                        "Season": "S",
+                        "Summary": "",
+                        "Details": "",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/ia400b343d16c4bbc/version/1678040510/image.png"
                     }
                 },
                 {
@@ -653,9 +703,12 @@
                     "properties": {
                         "Year": "2008 Summer Olympics",
                         "City": "Beijing",
-                        "Country": "China",
+                        "Country": "China 🇨🇳",
                         "Times_Hosted": 2,
-                        "Season": "S"
+                        "Season": "S",
+                        "Summary": "",
+                        "Details": "",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/id6da11388975fbaa/version/1678040450/image.png"
                     }
                 },
                 {
@@ -670,9 +723,12 @@
                     "properties": {
                         "Year": "2016 Summer Olympics",
                         "City": "Rio de Janeiro",
-                        "Country": "Brazil",
+                        "Country": "Brazil 🇧🇷",
                         "Times_Hosted": 1,
-                        "Season": "S"
+                        "Season": "S",
+                        "Summary": "",
+                        "Details": "",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=jpg/path/s293f5a94d3403280/image/i4d7405d5d15b89d5/version/1678040226/image.jpg"
                     }
                 },
                 {
@@ -687,7 +743,7 @@
                     "properties": {
                         "Year": "2024 Summer Olympics",
                         "City": "Paris",
-                        "Country": "France",
+                        "Country": "France 🇫🇷",
                         "Times_Hosted": 2,
                         "Season": "S",
                         "Details": "The 1896 Summer Olympics, officially known as the Games of the I Olympiad, were held in Athens, Greece from April 6-15, 1896. Here are the key facts about these inaugural modern Olympic Games.",
@@ -705,23 +761,6 @@
                     "geometry": {
                         "type": "Point",
                         "coordinates": [
-                            116.38,
-                            39.917
-                        ]
-                    },
-                    "properties": {
-                        "Year": "2022 Winter Olympics",
-                        "City": "Beijing",
-                        "Country": "China",
-                        "Times_Hosted": 2,
-                        "Season": "W"
-                    }
-                },
-                {
-                    "type": "Feature",
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [
                             6.87,
                             45.923
                         ]
@@ -729,9 +768,11 @@
                     "properties": {
                         "Year": "1924 Winter Olympics",
                         "City": "Chamonix",
-                        "Country": "France",
+                        "Country": "France 🇫🇷",
                         "Times_Hosted": 1,
-                        "Season": "W"
+                        "Season": "W",
+                        "Details": "The 1896 Summer Olympics, officially known as the Games of the I Olympiad, were held in Athens, Greece from April 6-15, 1896. Here are the key facts about these inaugural modern Olympic Games.",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/iea94e04661f1a820/version/1678041264/image.png"
                     }
                 },
                 {
@@ -746,9 +787,11 @@
                     "properties": {
                         "Year": "1928 & 1948 Winter Olympics",
                         "City": "St. Moritz",
-                        "Country": "Switzerland",
+                        "Country": "Switzerland 🇨🇭",
                         "Times_Hosted": 2,
-                        "Season": "W"
+                        "Season": "W",
+                        "Details": "The 1896 Summer Olympics, officially known as the Games of the I Olympiad, were held in Athens, Greece from April 6-15, 1896. Here are the key facts about these inaugural modern Olympic Games.",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=142x10000:format=png/path/s293f5a94d3403280/image/ia61dc0ad97d38f27/version/1678041229/image.png"
                     }
                 },
                 {
@@ -763,9 +806,11 @@
                     "properties": {
                         "Year": "1932 & 1980 Winter Olympics",
                         "City": "Lake Placid",
-                        "Country": "United States",
+                        "Country": "United States 🇺🇸",
                         "Times_Hosted": 2,
-                        "Season": "W"
+                        "Season": "W",
+                        "Details": "The 1896 Summer Olympics, officially known as the Games of the I Olympiad, were held in Athens, Greece from April 6-15, 1896. Here are the key facts about these inaugural modern Olympic Games.",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/idf93b9256de506ec/version/1678041200/image.png"
                     }
                 },
                 {
@@ -780,9 +825,11 @@
                     "properties": {
                         "Year": "1936 Winter Olympics",
                         "City": "Garmisch-Partenkirchen",
-                        "Country": "Germany",
+                        "Country": "Germany 🇩🇪",
                         "Times_Hosted": 1,
-                        "Season": "W"
+                        "Season": "W",
+                        "Details": "The 1896 Summer Olympics, officially known as the Games of the I Olympiad, were held in Athens, Greece from April 6-15, 1896. Here are the key facts about these inaugural modern Olympic Games.",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/i675f3afaaabcb919/version/1678041174/image.png"
                     }
                 },
                 {
@@ -797,9 +844,11 @@
                     "properties": {
                         "Year": "1952 Winter Olympics",
                         "City": "Oslo",
-                        "Country": "Norway",
+                        "Country": "Norway 🇳🇴",
                         "Times_Hosted": 1,
-                        "Season": "W"
+                        "Season": "W",
+                        "Details": "The 1896 Summer Olympics, officially known as the Games of the I Olympiad, were held in Athens, Greece from April 6-15, 1896. Here are the key facts about these inaugural modern Olympic Games.",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/i647cfa8ec34780e4/version/1678041030/image.png"
                     }
                 },
                 {
@@ -814,9 +863,11 @@
                     "properties": {
                         "Year": "1956 Winter Olympics",
                         "City": "Cortina",
-                        "Country": "Italy",
+                        "Country": "Italy 🇮🇹",
                         "Times_Hosted": 1,
-                        "Season": "W"
+                        "Season": "W",
+                        "Details": "The 1896 Summer Olympics, officially known as the Games of the I Olympiad, were held in Athens, Greece from April 6-15, 1896. Here are the key facts about these inaugural modern Olympic Games.",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/i4a0c4c4f3517dd49/version/1678040995/image.png"
                     }
                 },
                 {
@@ -831,9 +882,11 @@
                     "properties": {
                         "Year": "1960 Winter Olympics",
                         "City": "Squaw Valley",
-                        "Country": "United States",
+                        "Country": "United States 🇺🇸",
                         "Times_Hosted": 1,
-                        "Season": "W"
+                        "Season": "W",
+                        "Details": "The 1896 Summer Olympics, officially known as the Games of the I Olympiad, were held in Athens, Greece from April 6-15, 1896. Here are the key facts about these inaugural modern Olympic Games.",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/ie8994374d685f94a/version/1678040944/image.png"
                     }
                 },
                 {
@@ -848,9 +901,11 @@
                     "properties": {
                         "Year": "1964 & 1976 Winter Olympics",
                         "City": "Innsbruck",
-                        "Country": "Austria",
+                        "Country": "Austria 🇦🇹",
                         "Times_Hosted": 2,
-                        "Season": "W"
+                        "Season": "W",
+                        "Details": "The 1896 Summer Olympics, officially known as the Games of the I Olympiad, were held in Athens, Greece from April 6-15, 1896. Here are the key facts about these inaugural modern Olympic Games.",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/i1e51f97f7f8a1ac2/version/1678040810/image.png"
                     }
                 },
                 {
@@ -865,9 +920,11 @@
                     "properties": {
                         "Year": "1968 Winter Olympics",
                         "City": "Grenoble",
-                        "Country": "France",
+                        "Country": "France 🇫🇷",
                         "Times_Hosted": 1,
-                        "Season": "W"
+                        "Season": "W",
+                        "Details": "The 1896 Summer Olympics, officially known as the Games of the I Olympiad, were held in Athens, Greece from April 6-15, 1896. Here are the key facts about these inaugural modern Olympic Games.",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/i39b21367ea7e7151/version/1678040880/image.png"
                     }
                 },
                 {
@@ -882,9 +939,11 @@
                     "properties": {
                         "Year": "1972 Winter Olympics",
                         "City": "Sapporo",
-                        "Country": "Japan",
+                        "Country": "Japan 🇯🇵",
                         "Times_Hosted": 1,
-                        "Season": "W"
+                        "Season": "W",
+                        "Details": "The 1896 Summer Olympics, officially known as the Games of the I Olympiad, were held in Athens, Greece from April 6-15, 1896. Here are the key facts about these inaugural modern Olympic Games.",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/i3635415c3aa552b3/version/1678040846/image.png"
                     }
                 },
                 {
@@ -901,7 +960,9 @@
                         "City": "Sarajevo",
                         "Country": "Yugoslavia",
                         "Times_Hosted": 1,
-                        "Season": "W"
+                        "Season": "W",
+                        "Details": "The 1896 Summer Olympics, officially known as the Games of the I Olympiad, were held in Athens, Greece from April 6-15, 1896. Here are the key facts about these inaugural modern Olympic Games.",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=123x10000:format=png/path/s293f5a94d3403280/image/i6e9ee3cd9b13ce0b/version/1678040742/image.png"
                     }
                 },
                 {
@@ -916,9 +977,11 @@
                     "properties": {
                         "Year": "1988 Winter Olympics",
                         "City": "Calgary",
-                        "Country": "Canada",
+                        "Country": "Canada 🇨🇦",
                         "Times_Hosted": 1,
-                        "Season": "W"
+                        "Season": "W",
+                        "Details": "The 1896 Summer Olympics, officially known as the Games of the I Olympiad, were held in Athens, Greece from April 6-15, 1896. Here are the key facts about these inaugural modern Olympic Games.",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/i4189cb627cfe1568/version/1678040701/image.png"
                     }
                 },
                 {
@@ -933,9 +996,11 @@
                     "properties": {
                         "Year": "1992 Winter Olympics",
                         "City": "Albertville",
-                        "Country": "France",
+                        "Country": "France 🇫🇷",
                         "Times_Hosted": 1,
-                        "Season": "W"
+                        "Season": "W",
+                        "Details": "The 1896 Summer Olympics, officially known as the Games of the I Olympiad, were held in Athens, Greece from April 6-15, 1896. Here are the key facts about these inaugural modern Olympic Games.",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/i5f920adeccaa4f2f/version/1678040669/image.png"
                     }
                 },
                 {
@@ -950,9 +1015,11 @@
                     "properties": {
                         "Year": "1994 Winter Olympics",
                         "City": "Lillehammer",
-                        "Country": "Norway",
+                        "Country": "Norway 🇳🇴",
                         "Times_Hosted": 1,
-                        "Season": "W"
+                        "Season": "W",
+                        "Details": "The 1896 Summer Olympics, officially known as the Games of the I Olympiad, were held in Athens, Greece from April 6-15, 1896. Here are the key facts about these inaugural modern Olympic Games.",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/if6897192859168fa/version/1678040551/image.png"
                     }
                 },
                 {
@@ -967,9 +1034,11 @@
                     "properties": {
                         "Year": "1998 Winter Olympics",
                         "City": "Nagano",
-                        "Country": "Japan",
+                        "Country": "Japan 🇯🇵",
                         "Times_Hosted": 1,
-                        "Season": "W"
+                        "Season": "W",
+                        "Details": "The 1896 Summer Olympics, officially known as the Games of the I Olympiad, were held in Athens, Greece from April 6-15, 1896. Here are the key facts about these inaugural modern Olympic Games.",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/ib16302976a8c7aff/version/1678040524/image.png"
                     }
                 },
                 {
@@ -984,9 +1053,11 @@
                     "properties": {
                         "Year": "2002 Winter Olympics",
                         "City": "Salt Lake City",
-                        "Country": "United States",
+                        "Country": "United States 🇺🇸",
                         "Times_Hosted": 1,
-                        "Season": "W"
+                        "Season": "W",
+                        "Details": "The 1896 Summer Olympics, officially known as the Games of the I Olympiad, were held in Athens, Greece from April 6-15, 1896. Here are the key facts about these inaugural modern Olympic Games.",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/id6ded27d5049e78f/version/1678040497/image.png"
                     }
                 },
                 {
@@ -1001,9 +1072,11 @@
                     "properties": {
                         "Year": "2006 Winter Olympics",
                         "City": "Turin",
-                        "Country": "Italy",
+                        "Country": "Italy 🇮🇹",
                         "Times_Hosted": 1,
-                        "Season": "W"
+                        "Season": "W",
+                        "Details": "The 1896 Summer Olympics, officially known as the Games of the I Olympiad, were held in Athens, Greece from April 6-15, 1896. Here are the key facts about these inaugural modern Olympic Games.",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/ib77eddcd0ca99b66/version/1678040466/image.png"
                     }
                 },
                 {
@@ -1018,9 +1091,11 @@
                     "properties": {
                         "Year": "2010 Winter Olympics",
                         "City": "Vancouver",
-                        "Country": "Canada",
+                        "Country": "Canada 🇨🇦",
                         "Times_Hosted": 1,
-                        "Season": "W"
+                        "Season": "W",
+                        "Details": "The 1896 Summer Olympics, officially known as the Games of the I Olympiad, were held in Athens, Greece from April 6-15, 1896. Here are the key facts about these inaugural modern Olympic Games.",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/ia3b78df67903e42f/version/1678040429/image.png"
                     }
                 },
                 {
@@ -1035,9 +1110,11 @@
                     "properties": {
                         "Year": "2014 Winter Olympics",
                         "City": "Sochi",
-                        "Country": "Russia",
+                        "Country": "Russia 🇷🇺",
                         "Times_Hosted": 1,
-                        "Season": "W"
+                        "Season": "W",
+                        "Details": "The 1896 Summer Olympics, officially known as the Games of the I Olympiad, were held in Athens, Greece from April 6-15, 1896. Here are the key facts about these inaugural modern Olympic Games.",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/i80a4f96e2bf47420/version/1678040253/image.png"
                     }
                 },
                 {
@@ -1052,9 +1129,30 @@
                     "properties": {
                         "Year": "2018 Winter Olympics",
                         "City": "Pyeongchang",
-                        "Country": "South Korea",
+                        "Country": "South Korea 🇰🇷",
                         "Times_Hosted": 1,
-                        "Season": "W"
+                        "Season": "W",
+                        "Details": "The 1896 Summer Olympics, officially known as the Games of the I Olympiad, were held in Athens, Greece from April 6-15, 1896. Here are the key facts about these inaugural modern Olympic Games.",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=jpg/path/s293f5a94d3403280/image/i7e2263e7f371720f/version/1678040211/image.jpg"
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            116.38,
+                            39.917
+                        ]
+                    },
+                    "properties": {
+                        "Year": "2022 Winter Olympics",
+                        "City": "Beijing",
+                        "Country": "China 🇨🇳",
+                        "Times_Hosted": 2,
+                        "Season": "W",
+                        "Details": "The 1896 Summer Olympics, officially known as the Games of the I Olympiad, were held in Athens, Greece from April 6-15, 1896. Here are the key facts about these inaugural modern Olympic Games.",
+                        "Image": "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/i167eea9ce554ff40/version/1678040150/image.png"
                     }
                 }]
         };
@@ -1222,9 +1320,16 @@
             // add a listener for the click event on the unclustered points to display a popup
             map.on('click', 'summer_unclustered_points', (e) => {
                 const coordinates = e.features[0].geometry.coordinates.slice();
-                const { Year, City, Country, Times_Hosted, Season } = e.features[0].properties;
-                const details = e.features[0].properties.Details;
-                const description = `<h3>${City}, ${Country}</h3><h4>${Year}</h4><p>${details}</p>`;
+                const { Year, City, Country, Summary, Image, Details } = e.features[0].properties;
+                // const details = e.features[0].properties.Details;
+                const description = `
+                    <img src='./olympics/img/close.svg' class='close' onclick='closeDetails()'/>
+                    <img src='${Image}' class='poster' />
+                    <span class='year'><h3>${Year}</h3></span>
+                    <span class='city'><h3>${City}, ${Country}</h3></span>
+                    <p>${Summary}</p>
+                    <div id='expand' onclick='expandDetails()'>EXPAND ⌄</div>
+                    <div id='details' style='display:none'>${Details}</div>`;
                 // add the description to the details container
                 // display the details container
                 document.querySelector('.detail-bar').style.display = 'block';
@@ -1295,36 +1400,16 @@
             });
         }
 
+        // create a function that expands the details-bar when clicked
+        const expandDetails = () => {
+            document.getElementById('details').style.display = 'block';
+        }
 
-        // search
-        const searchElement = document.getElementById('search');
-        const clearButton = document.getElementById('clear-search');
+        const closeDetails = () => {
+            // document.getElementById('details').style.display = 'none';
+            document.querySelector('.detail-bar').style.display = 'none';
+        }
 
-        clearButton.addEventListener('click', function () {
-            // Clear the search input
-            searchElement.value = '';
-            // Clear the listings
-            const listings = document.getElementById('listings');
-
-            // display all listings again
-            summerVenues.features.forEach((venue, i) => {
-                document.getElementById(`listing-${venue.properties.id}`).style.display = 'block';
-            });
-        });
-
-        searchElement.addEventListener('input', function (e) {
-            const value = e.target.value;
-
-            venues.features.forEach((venue, i) => {
-                if (venue.properties.City.toLowerCase().includes(value.toLowerCase())) {
-                    // make the corresponding listing visible and active
-                    document.getElementById(`listing-${venue.properties.id}`).style.display = 'block';
-                } else {
-                    // hide the listing
-                    document.getElementById(`listing-${venue.properties.id}`).style.display = 'none';
-                }
-            });
-        });
     </script>
 </body>
 
