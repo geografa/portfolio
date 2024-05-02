@@ -1434,7 +1434,7 @@
                  * 4. Highlight listing in sidebar (and remove highlight for all other listings)
                  **/
                 listing.addEventListener('click', function () {
-                    for (const feature of summerVenues.features || winterVenues.features) {
+                    for (const feature of season.features) {
                         if (this.id === `listing-${feature.properties.id}`) {
                             flyToVenue(feature);
                             // open the details for the clicked venue
@@ -1454,6 +1454,7 @@
 
                         }
                     }
+
                     const activeItem = document.getElementsByClassName('active');
                     if (activeItem[0]) {
                         activeItem[0].classList.remove('active');
@@ -1472,11 +1473,10 @@
          * a given center point.
          **/
         function flyToVenue(currentFeature) {
-            console.log(currentFeature);
             map.flyTo({
                 center: currentFeature.geometry.coordinates,
                 zoom: 14,
-                pitch: 45
+                pitch: 60
             });
         }
 
