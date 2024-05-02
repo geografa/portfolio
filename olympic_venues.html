@@ -27,12 +27,15 @@
 
         #sidebar {
             position: absolute;
-            height: 40%;
-            width: 100%;
+            top: 80px;
             bottom: 0;
-            left: 0;
+            right: 0;
+            width: 100%;
             overflow: hidden;
             z-index: 1;
+            background-color: rgb(0, 0, 0, 0.6);
+            /* blur the background */
+            backdrop-filter: blur(5px);
         }
 
         .map {
@@ -108,8 +111,6 @@
             display: none;
         }
 
-        /* sdkfjbnsdkjfnbsjdfnbkjsdn */
-
         .title-bar .share {
             position: fixed;
             top: 24px;
@@ -145,6 +146,9 @@
             max-height: 400px;
             overflow-y: scroll;
         }
+        .detail-bar.on {
+            display: block;
+        }
 
         .poster {
             float: left;
@@ -179,39 +183,39 @@
         }
 
         .listings {
-            height: 84%;
-            overflow: auto;
-            padding-bottom: 0;
+            height: 100%;
+            overflow-y: scroll;
+            padding-bottom: 80px;
         }
 
         .listings .item {
             display: block;
-            border-bottom: 1px solid #eee;
+            /* border-bottom: 1px solid #eee; */
             padding: 10px;
             text-decoration: none;
             font-size: 0.75em;
+            color: #fff;
         }
+
         .listings .item:last-child {
             border-bottom: none;
         }
 
-        .listings .item .title {
-            display: block;
-            color: #03094d;
+        .listings .item .year {
+            display: inline;
+            color: #FEB710;
+            font-weight: 800;
+            font-style: italic;
+        }
+
+        .listings .item .city {
+            display: inline;
+            color: #ffffff;
             font-weight: 700;
         }
 
-        .listings .item .title small {
-            font-weight: 400;
-        }
-
-        .listings .item.active .title,
-        .listings .item .title:hover {
-            color: #3BC4FF;
-        }
-
         .listings .item.active {
-            background-color: #f8f8f8;
+            background-color: rgb(0, 0, 0, 0.6)
         }
 
         ::-webkit-scrollbar {
@@ -289,10 +293,6 @@
                 <div class="three"></div>
             </div>
 
-            <div id="menu">
-                Hello, I'm a menu!
-            </div>
-
             <h1>The Olympic Journey</h1>
             <img src="./olympics/img/share.svg" alt="menu" class="share">
         </div>
@@ -330,7 +330,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "1896 & 2004 Summer Olympics",
+                        "Year": "1896",
                         "City": "Athens",
                         "Country": "Greece 🇬🇷",
                         "Times_Hosted": 2,
@@ -350,7 +350,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "1900 & 1924 & 2024 Summer Olympics",
+                        "Year": "1900",
                         "City": "Paris",
                         "Country": "France 🇫🇷",
                         "Times_Hosted": 2,
@@ -370,7 +370,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "1904 Summer Olympics",
+                        "Year": "1904",
                         "City": "St. Louis",
                         "Country": "United States 🇺🇸",
                         "Times_Hosted": 1,
@@ -390,7 +390,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "1908 & 1948 & 2012 Summer Olympics",
+                        "Year": "1908",
                         "City": "London",
                         "Country": "England 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
                         "Times_Hosted": 3,
@@ -410,7 +410,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "1912 Summer Olympics",
+                        "Year": "1912",
                         "City": "Stockholm",
                         "Country": "Sweden 🇸🇪",
                         "Times_Hosted": 1,
@@ -430,7 +430,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "1920 Summer Olympics",
+                        "Year": "1920",
                         "City": "Antwerp",
                         "Country": "Belgium 🇧🇪",
                         "Times_Hosted": 1,
@@ -450,7 +450,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "1928 Summer Olympics",
+                        "Year": "1928",
                         "City": "Amsterdam",
                         "Country": "Netherlands 🇳🇱",
                         "Times_Hosted": 1,
@@ -470,7 +470,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "1932 & 1984 Summer Olympics",
+                        "Year": "1932",
                         "City": "Los Angeles",
                         "Country": "United States 🇺🇸",
                         "Times_Hosted": 2,
@@ -490,7 +490,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "1936 Summer Olympics",
+                        "Year": "1936",
                         "City": "Berlin",
                         "Country": "Germany 🇩🇪",
                         "Times_Hosted": 1,
@@ -510,7 +510,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "1952 Summer Olympics",
+                        "Year": "1952",
                         "City": "Helsinki",
                         "Country": "Finland 🇫🇮",
                         "Times_Hosted": 1,
@@ -530,7 +530,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "1956 Summer Olympics",
+                        "Year": "1956",
                         "City": "Melbourne",
                         "Country": "Australia 🇦🇺",
                         "Times_Hosted": 1,
@@ -550,7 +550,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "1960 Summer Olympics",
+                        "Year": "1960",
                         "City": "Rome",
                         "Country": "Italy 🇮🇹",
                         "Times_Hosted": 1,
@@ -570,7 +570,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "1964 & 2021 Summer Olympics",
+                        "Year": "1964",
                         "City": "Tokyo",
                         "Country": "Japan 🇯🇵",
                         "Times_Hosted": 2,
@@ -590,7 +590,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "1968 Summer Olympics",
+                        "Year": "1968",
                         "City": "Mexico City",
                         "Country": "Mexico 🇲🇽",
                         "Times_Hosted": 1,
@@ -610,7 +610,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "1972 Summer Olympics",
+                        "Year": "1972",
                         "City": "Munich",
                         "Country": "West Germany 🇩🇪",
                         "Times_Hosted": 1,
@@ -630,7 +630,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "1976 Summer Olympics",
+                        "Year": "1976",
                         "City": "Montreal",
                         "Country": "Canada 🇨🇦",
                         "Times_Hosted": 1,
@@ -650,7 +650,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "1980 Summer Olympics",
+                        "Year": "1980",
                         "City": "Moscow",
                         "Country": "USSR 🇷🇺",
                         "Times_Hosted": 1,
@@ -670,7 +670,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "1988 Summer Olympics",
+                        "Year": "1988",
                         "City": "Seoul",
                         "Country": "South Korea 🇰🇷",
                         "Times_Hosted": 1,
@@ -690,7 +690,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "1992 Summer Olympics",
+                        "Year": "1992",
                         "City": "Barcelona",
                         "Country": "Spain 🇪🇸",
                         "Times_Hosted": 1,
@@ -710,7 +710,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "1996 Summer Olympics",
+                        "Year": "1996",
                         "City": "Atlanta",
                         "Country": "United States 🇺🇸",
                         "Times_Hosted": 1,
@@ -730,7 +730,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "2000 Summer Olympics",
+                        "Year": "2000",
                         "City": "Sydney",
                         "Country": "Australia 🇦🇺",
                         "Times_Hosted": 1,
@@ -750,7 +750,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "2008 Summer Olympics",
+                        "Year": "2008",
                         "City": "Beijing",
                         "Country": "China 🇨🇳",
                         "Times_Hosted": 2,
@@ -770,7 +770,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "2016 Summer Olympics",
+                        "Year": "2016",
                         "City": "Rio de Janeiro",
                         "Country": "Brazil 🇧🇷",
                         "Times_Hosted": 1,
@@ -790,7 +790,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "2024 Summer Olympics",
+                        "Year": "2024",
                         "City": "Paris",
                         "Country": "France 🇫🇷",
                         "Times_Hosted": 2,
@@ -815,7 +815,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "1924 Winter Olympics",
+                        "Year": "1924",
                         "City": "Chamonix",
                         "Country": "France 🇫🇷",
                         "Times_Hosted": 1,
@@ -834,7 +834,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "1928 & 1948 Winter Olympics",
+                        "Year": "1928",
                         "City": "St. Moritz",
                         "Country": "Switzerland 🇨🇭",
                         "Times_Hosted": 2,
@@ -853,7 +853,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "1932 & 1980 Winter Olympics",
+                        "Year": "1932",
                         "City": "Lake Placid",
                         "Country": "United States 🇺🇸",
                         "Times_Hosted": 2,
@@ -872,7 +872,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "1936 Winter Olympics",
+                        "Year": "1936",
                         "City": "Garmisch-Partenkirchen",
                         "Country": "Germany 🇩🇪",
                         "Times_Hosted": 1,
@@ -891,7 +891,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "1952 Winter Olympics",
+                        "Year": "1952",
                         "City": "Oslo",
                         "Country": "Norway 🇳🇴",
                         "Times_Hosted": 1,
@@ -910,7 +910,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "1956 Winter Olympics",
+                        "Year": "1956",
                         "City": "Cortina",
                         "Country": "Italy 🇮🇹",
                         "Times_Hosted": 1,
@@ -929,7 +929,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "1960 Winter Olympics",
+                        "Year": "1960",
                         "City": "Squaw Valley",
                         "Country": "United States 🇺🇸",
                         "Times_Hosted": 1,
@@ -948,7 +948,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "1964 & 1976 Winter Olympics",
+                        "Year": "1964",
                         "City": "Innsbruck",
                         "Country": "Austria 🇦🇹",
                         "Times_Hosted": 2,
@@ -967,7 +967,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "1968 Winter Olympics",
+                        "Year": "1968",
                         "City": "Grenoble",
                         "Country": "France 🇫🇷",
                         "Times_Hosted": 1,
@@ -986,7 +986,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "1972 Winter Olympics",
+                        "Year": "1972",
                         "City": "Sapporo",
                         "Country": "Japan 🇯🇵",
                         "Times_Hosted": 1,
@@ -1005,7 +1005,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "1984 Winter Olympics",
+                        "Year": "1984",
                         "City": "Sarajevo",
                         "Country": "Yugoslavia",
                         "Times_Hosted": 1,
@@ -1024,7 +1024,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "1988 Winter Olympics",
+                        "Year": "1988",
                         "City": "Calgary",
                         "Country": "Canada 🇨🇦",
                         "Times_Hosted": 1,
@@ -1043,7 +1043,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "1992 Winter Olympics",
+                        "Year": "1992",
                         "City": "Albertville",
                         "Country": "France 🇫🇷",
                         "Times_Hosted": 1,
@@ -1062,7 +1062,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "1994 Winter Olympics",
+                        "Year": "1994",
                         "City": "Lillehammer",
                         "Country": "Norway 🇳🇴",
                         "Times_Hosted": 1,
@@ -1081,7 +1081,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "1998 Winter Olympics",
+                        "Year": "1998",
                         "City": "Nagano",
                         "Country": "Japan 🇯🇵",
                         "Times_Hosted": 1,
@@ -1100,7 +1100,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "2002 Winter Olympics",
+                        "Year": "2002",
                         "City": "Salt Lake City",
                         "Country": "United States 🇺🇸",
                         "Times_Hosted": 1,
@@ -1119,7 +1119,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "2006 Winter Olympics",
+                        "Year": "2006",
                         "City": "Turin",
                         "Country": "Italy 🇮🇹",
                         "Times_Hosted": 1,
@@ -1138,7 +1138,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "2010 Winter Olympics",
+                        "Year": "2010",
                         "City": "Vancouver",
                         "Country": "Canada 🇨🇦",
                         "Times_Hosted": 1,
@@ -1157,7 +1157,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "2014 Winter Olympics",
+                        "Year": "2014",
                         "City": "Sochi",
                         "Country": "Russia 🇷🇺",
                         "Times_Hosted": 1,
@@ -1176,7 +1176,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "2018 Winter Olympics",
+                        "Year": "2018",
                         "City": "Pyeongchang",
                         "Country": "South Korea 🇰🇷",
                         "Times_Hosted": 1,
@@ -1195,7 +1195,7 @@
                         ]
                     },
                     "properties": {
-                        "Year": "2022 Winter Olympics",
+                        "Year": "2022",
                         "City": "Beijing",
                         "Country": "China 🇨🇳",
                         "Times_Hosted": 2,
@@ -1394,26 +1394,24 @@
             for (const venue of season.features) {
                 /* Add a new listing section to the sidebar. */
                 const listings = document.getElementById('listings');
-                const listing = listings.appendChild(document.createElement('div'));
+                const listing = listings.appendChild(document.createElement('a'));
                 /* Assign a unique `id` to the listing. */
-                listing.id = `listing-${venue.properties.id}`;
+                
                 /* Assign the `item` class to each listing for styling. */
                 listing.className = 'item';
+                listing.href = '#';
+                listing.id = `listing-${venue.properties.id}`;
 
-                /* Add the link to the individual listing created above. */
-                const link = listing.appendChild(document.createElement('a'));
-                link.href = '#';
-                link.className = 'title';
-                link.id = `link-${venue.properties.id}`;
-                link.innerHTML = `${venue.properties.City}` + ' &middot; ' + `${venue.properties.Country}`;
+                /* Add the year to the individual listing created above. */
+                const year = listing.appendChild(document.createElement('p'));
+                year.className = 'year';
+                year.innerHTML = `${venue.properties.Year}` + ' ';
+                
+                const city = listing.appendChild(document.createElement('p'));
+                city.className = 'city';
+                city.innerHTML += `${venue.properties.City}` + ', ' + `${venue.properties.Country}`;
 
-                /* Add details to the individual listing. */
-                const details = listing.appendChild(document.createElement('div'));
-                // details.innerHTML = `${venue.properties.Times_Hosted}` + ' &middot; ' + `${venue.properties.Season}`;
-                if (venue.properties.Year) {
-                    details.innerHTML += `${venue.properties.Year}`;
-                }
-
+                
                 /**
                  * Listen to the element and when it is clicked, do four things:
                  * 1. Update the `currentFeature` to the venue associated with the clicked link
@@ -1421,11 +1419,25 @@
                  * 3. Close all other popups and display popup for clicked venue
                  * 4. Highlight listing in sidebar (and remove highlight for all other listings)
                  **/
-                link.addEventListener('click', function () {
-                    for (const feature of summerVenues.features) {
-                        if (this.id === `link-${feature.properties.id}`) {
+                listing.addEventListener('click', function () {
+                    for (const feature of summerVenues.features || winterVenues.features) {
+                        if (this.id === `listing-${feature.properties.id}`) {
                             flyToVenue(feature);
-                            // createPopUp(feature);
+                            // open the details for the clicked venue
+                            const { Year, City, Country, Summary, Image, Details } = feature.properties;
+                            const description = `
+                                <img src='./olympics/img/close.svg' class='close' onclick='closeDetails()'/>
+                                <img src='${Image}' class='poster' />
+                                <span class='year'><h3>${Year}</h3></span>
+                                <span class='city'><h3>${City}, ${Country}</h3></span>
+                                <p>${Summary}</p>
+                                <div id='expand' onclick='expandDetails()'>EXPAND ⌄</div>
+                                <div id='details' style='display:none'>${Details}</div>`;
+                            // add the description to the details container
+                            // display the details container
+                            document.querySelector('.detail-bar').style.display = 'block';
+                            document.querySelector('.detail-bar').innerHTML = description;
+
                         }
                     }
                     const activeItem = document.getElementsByClassName('active');
@@ -1433,6 +1445,10 @@
                         activeItem[0].classList.remove('active');
                     }
                     this.parentNode.classList.add('active');
+                    // hide the sidebar and toggle menu back
+                    document.getElementById('sidebar').style.display = 'none';
+                    document.getElementById('toggle').classList.remove('on');
+                    
                 });
             }
         }
