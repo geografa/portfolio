@@ -146,9 +146,6 @@
             max-height: 400px;
             overflow-y: scroll;
         }
-        .detail-bar.on {
-            display: block;
-        }
 
         .poster {
             float: left;
@@ -1384,6 +1381,23 @@
                 document.querySelector('.detail-bar').style.display = 'block';
                 document.querySelector('.detail-bar').innerHTML = description;
             });
+            map.on('click', 'winter_unclustered_points', (e) => {
+                const coordinates = e.features[0].geometry.coordinates.slice();
+                const { Year, City, Country, Summary, Image, Details } = e.features[0].properties;
+                // const details = e.features[0].properties.Details;
+                const description = `
+                    <img src='./olympics/img/close.svg' class='close' onclick='closeDetails()'/>
+                    <img src='${Image}' class='poster' />
+                    <span class='year'><h3>${Year}</h3></span>
+                    <span class='city'><h3>${City}, ${Country}</h3></span>
+                    <p>${Summary}</p>
+                    <div id='expand' onclick='expandDetails()'>EXPAND ⌄</div>
+                    <div id='details' style='display:none'>${Details}</div>`;
+                // add the description to the details container
+                // display the details container
+                document.querySelector('.detail-bar').style.display = 'block';
+                document.querySelector('.detail-bar').innerHTML = description;
+            });
             spinGlobe();
         });
 
@@ -1461,7 +1475,8 @@
             console.log(currentFeature);
             map.flyTo({
                 center: currentFeature.geometry.coordinates,
-                zoom: 12
+                zoom: 14,
+                pitch: 45
             });
         }
 
