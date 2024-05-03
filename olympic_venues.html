@@ -185,9 +185,17 @@
             padding-bottom: 80px;
         }
 
+        .vl {
+            position: absolute;
+            border-left: 2px solid #797979;
+            opacity: 0.6;
+            height: 100%;
+            left: 28px;
+            z-index: -1;
+        }
+
         .listings .item {
             display: block;
-            /* border-bottom: 1px solid #eee; */
             padding: 10px;
             text-decoration: none;
             font-size: 0.75em;
@@ -305,7 +313,10 @@
 
     <div class="detail-bar" style="display: none;">Details</div>
     <div id="sidebar" style="display:none">
-        <div id="listings" class="listings"></div>
+        <div class="vl"></div>
+        <div id="listings" class="listings">
+        </div>
+        
     </div>
     <div id="map" class="map"></div>
     <script>
