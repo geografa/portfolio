@@ -344,6 +344,13 @@
             letter-spacing: 0.09em;
             margin-top: 10px;
         }
+        #polaroid .details {
+            font-size: 0.75em;
+            color: #454f40;
+            margin-top: 10px;
+            text-align: left;
+            padding: 40px;
+        }
     </style>
 </head>
 
@@ -363,8 +370,11 @@
             container: 'map',
             style: 'mapbox://styles/grafa/clvcti9gb00ue01rjhg1n7y5d',
             center: [-100, 35.5],
-            zoom: 2
+            zoom: 2,
+            scrollZoom: false
         });
+
+        map.addControl(new mapboxgl.NavigationControl());
 
         const venues = {
             "type": "FeatureCollection",
@@ -377,8 +387,8 @@
                     },
                     "properties": {
                         "VenueId": 950,
-                        "Name": "USA",
-                        "Image": "https://upload.wikimedia.org/wikipedia/commons/1/10/Mercedes_Benz_Stadium_time_lapse_capture_2017-08-13.jpg",
+                        "Name": "2024 Copa America",
+                        "Image": "./copa/img/trophy.jpg",
                         "Address": "1 AMB Drive North West",
                         "City": "Atlanta, GA",
                         "Zip": "30313",
@@ -387,9 +397,10 @@
                         "Opened": null,
                         "Nickname1": "New Atlanta Stadium",
                         "Nickname2": null,
-                        "CityNick": "USA",
-                        "Capacity": 42500,
-                        "Surface": "Artificial Turf"
+                        "CityNick": "2024 Copa America",
+                        "Capacity": null, 
+                        "Surface": "Artificial Turf",
+                        "Details": "The 2024 Copa América will be the 48th edition of the Copa América, the quadrennial international men's soccer championship organized by South America's soccer ruling body CONMEBOL.[1] The tournament will be held in the United States and co-organized by CONCACAF.[2] The United States will host the tournament for the second time, having hosted the Copa América Centenario in 2016. The tournament will be held from June 20 to July 14, 2024, and the winner will later compete in the 2025 CONMEBOL–UEFA Cup of Champions against the UEFA Euro 2024 winner.[3]"
                     }
                 },
                 {
@@ -821,13 +832,14 @@
                 /* Add details to the individual listing. */
                 const details = listing.appendChild(document.createElement('div'));
                 // if there's an image, add it to the listing 
-                if (venue.properties.Image) {
+                if (venue.properties.Image && venue.properties.Capacity) {
                     details.innerHTML += `
                     <div id="polaroid">
                     <figure>
                         <img src="${venue.properties.Image}" alt="${venue.properties.Name}" title="${venue.properties.Name}"/>
                         <h3>${venue.properties.Name}</h3>
                         <p>Capacity: ${venue.properties.Capacity}</p>
+                        <p class="details">${venue.properties.Details}</p>
                     </figure>
                     </div>
                     <br/><br/>`
