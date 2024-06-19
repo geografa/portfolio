@@ -154,7 +154,7 @@
                 closeOnClick: true
             });
 
-            map.on('mouseover', 'marine', function (e) {
+            map.on('click', 'marine', function (e) {
                 console.log(e.features[0].properties);
                 popup.setLngLat(e.lngLat)
                     .setHTML('<h3>' + e.features[0].properties.name + '</h3>' +
