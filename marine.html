@@ -94,44 +94,50 @@
         }
 
         .mapboxgl-popup-content {
-            color: #FEFFD6;
-            background: #55688f;
+            color: #333;
+            background: #ffffff;
+            opacity: 0.9;
+        }
+
+        /* add an opacity of 0.8 to the content but leave the image at 1 */
+        .mapboxgl-popup-content img {
+            opacity: 1;
         }
 
         .mapboxgl-popup-tip {
-            border-top-color: #55688f;
+            border-top-color: #ffffff;
         }
 
         .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
-            border-top-color: #55688f;
+            border-top-color: #ffffff;
         }
 
         .mapboxgl-popup-anchor-top .mapboxgl-popup-tip {
-            border-bottom-color: #55688f;
+            border-bottom-color: #ffffff;
         }
 
         .mapboxgl-popup-anchor-left .mapboxgl-popup-tip {
-            border-right-color: #55688f;
+            border-right-color: #ffffff;
         }
 
         .mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
-            border-left-color: #55688f;
+            border-left-color: #ffffff;
         }
 
         .mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip {
-            border-bottom-color: #55688f;
+            border-bottom-color: #ffffff;
         }
 
         .mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip {
-            border-bottom-color: #55688f;
+            border-bottom-color: #ffffff;
         }
 
         .mapboxgl-popup-anchor-bottom-left .mapboxgl-popup-tip {
-            border-top-color: #55688f;
+            border-top-color: #ffffff;
         }
 
         .mapboxgl-popup-anchor-bottom-right .mapboxgl-popup-tip {
-            border-top-color: #55688f;
+            border-top-color: #ffffff;
         }
     </style>
 </head>
@@ -174,7 +180,7 @@
                 'source': 'marine',
                 'layout': {
                     'icon-image': 'shark',
-                    'icon-size': 0.25
+                    // 'icon-size': 0.25
                 }
             });
 
@@ -205,26 +211,7 @@
                     throw new Error(err);
                 }
             }
-            // when the marine layer is clicked, open a popup at the location of the click, with description HTML from its properties.
-            // add the following properties:
-            // category
-            // category_name
-            // gender
-            // id
-            // image
-            // image_data
-            // is_published
-            // last_move_datetime
-            // last_update
-            // length
-            // name
-            // slug
-            // species
-            // stage_of_life
-            // tag_location
-            // weight
-            // zping
-            // zping_datetime
+            
             let popup = new mapboxgl.Popup({
                 closeButton: false,
                 closeOnClick: true
