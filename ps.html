@@ -37,16 +37,16 @@
 
     <script>
         mapboxgl.accessToken = 'pk.eyJ1IjoibXRiMjMiLCJhIjoiY2x1eDZxdnE1MGxydjJqbGw0em40Y3NpbiJ9.MMJSFnpRLogoiXRHYJGCJg';
-            const map = new mapboxgl.Map({
-                container: 'map',
+        const map = new mapboxgl.Map({
+            container: 'map',
             style: 'mapbox://styles/mapbox/streets-v12',
             center: [-65.017, -16.457],
             zoom: 1
-});
+        });
 
-            // Create a function that creates the swim marker
-            function createSwimMarker() {
-    const marker = document.createElement('div');
+        // Create a function that creates the swim marker
+        function createSwimMarker() {
+            const marker = document.createElement('div');
             marker.className = 'marker';
             marker.style.backgroundImage = 'url(swim.png)';
             marker.style.width = '189px';
@@ -54,15 +54,15 @@
 
             // Create a new marker and add it to the map
             new mapboxgl.Marker(marker)
-            .setLngLat([-65.017, -16.457]) // Initial position
-            .addTo(map);
+                .setLngLat([-65.017, -16.457]) // Initial position
+                .addTo(map);
 
             return marker;
-}
+        }
 
-            // Define the animation.
-            function animateMarker(marker, timestamp) {
-    const radius = 20;
+        // Define the animation.
+        function animateMarker(marker, timestamp) {
+            const radius = 20;
 
             // Update the data to a new position based on the animation timestamp.
             const lng = Math.cos(timestamp / 1000) * radius - 65.017;
@@ -70,18 +70,18 @@
 
             // Ensure the marker is added to the map.
             new mapboxgl.Marker(marker)
-            .setLngLat([lng, lat])
-            .addTo(map);
+                .setLngLat([lng, lat])
+                .addTo(map);
 
-    // Request the next frame of the animation.
-    requestAnimationFrame((timestamp) => animateMarker(marker, timestamp));
-}
+            // Request the next frame of the animation.
+            requestAnimationFrame((timestamp) => animateMarker(marker, timestamp));
+        }
 
-            // Create the marker
-            const swimMarker = createSwimMarker();
+        // Create the marker
+        const swimMarker = createSwimMarker();
 
-// Start the animation with the created marker.
-requestAnimationFrame((timestamp) => animateMarker(swimMarker, timestamp));
+        // Start the animation with the created marker.
+        requestAnimationFrame((timestamp) => animateMarker(swimMarker, timestamp));
     </script>
 
 </body>
