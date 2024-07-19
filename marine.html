@@ -73,6 +73,11 @@
                 background-position: 0% 50%;
             }
         }
+        h2 {
+            font-family: "Bebas Neue", sans-serif;
+            font-size: 2em;
+            margin-bottom: 0;
+        }
         .heading {
             line-height: 1em;
         }
@@ -90,13 +95,13 @@
         /* Styles for blue popup */
         .mapboxgl-popup {
             max-width: 250px;
-            border-radius: 10px;
         }
 
         .mapboxgl-popup-content {
             color: #333;
             background: #ffffff;
             opacity: 0.9;
+            border-radius: 10px;
         }
 
         /* add an opacity of 0.8 to the content but leave the image at 1 */
@@ -213,18 +218,37 @@
             }
             
             let popup = new mapboxgl.Popup({
-                closeButton: false,
-                closeOnClick: true
+                closeButton: true,
+                // closeOnClick: true
             });
 
             map.on('click', 'marine', function (e) {
+                //  if any of the features properties are undefined, set them to 'Unknown'
+                for (let key in e.features[0].properties) {
+                    if (e.features[0].properties[key] === undefined) {
+                        e.features[0].properties[key] = 'Unknown';
+                    }
+                }
+
+                if (e.features[0].properties.weight === undefined) {
+                    e.features[0].properties.weight = 'Unknown';
+                }
+                if (e.features[0].properties.length === undefined) {
+                    e.features[0].properties.length = 'Unknown';
+                }
+                e.features[0].properties.weight = e.features[0].properties.weight.replace(/['"]+/g, '');
+                e.features[0].properties.length = e.features[0].properties.length.replace(/['"]+/g, '');
+                
                 console.log(e.features[0].properties);
+                // strip out the quotes from the weight and length with regex
+
                 popup.setLngLat(e.lngLat)
-                    .setHTML('<h3>' + e.features[0].properties.name + '</h3>' +
-                        e.features[0].properties.species + '<br>' +
-                        e.features[0].properties.stage_of_life + '<br>' +
-                        e.features[0].properties.weight + '<br>' +
-                        e.features[0].properties.length + '<br>' +
+                    .setHTML('<h2>' + e.features[0].properties.name + '</h2>' +
+                        "Species: " + e.features[0].properties.species + '<br>' +
+                        "Stage of life: " + e.features[0].properties.stage_of_life + '<br>' +
+                        
+                        "Weight: " + e.features[0].properties.weight + '<br>' +
+                        "Length: " + e.features[0].properties.length + '<br>' +
                         '<img src=' + e.features[0].properties.image + ' width="200px"/>')
                     .addTo(map);
             });
