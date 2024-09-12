@@ -39,23 +39,20 @@
         color: #333;
         text-decoration: none;
       }
+      .map-overlay {
+        /* position the overlay to the left with about 20px padding and allow it to scroll */
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 20px;
+        overflow-y: auto;
+        background: rgba(255, 255, 255, 0.8);
+        z-index: 1;
+        max-height: 100%;
+      }
     </style>
   </head>
   <body>
-    <style>
-      .map-overlay {
-        font: 12px/20px "Helvetica Neue", Arial, Helvetica, sans-serif;
-        position: absolute;
-        width: 240px;
-        top: 0;
-        left: 0;
-        padding: 10px;
-        background-color: aliceblue;
-        opacity: 0.8;
-        z-index: 1;
-      }
-    </style>
-
     <div id="map"></div>
 
     <div class="map-overlay">
