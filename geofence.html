@@ -36,8 +36,10 @@
         container: "map", // container ID
         // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
         style: "mapbox://styles/mapbox/streets-v12", // style URL
-        center: [-122.66384128393554, 45.55100995529233], // starting center in [lng, lat]
-        zoom: 16, // starting zoom
+        center: [-122.67111163209071, 45.551542037038786],
+        zoom: 17.366798265146404,
+        bearing: -119.3883717248114,
+        pitch: 61.00000000000004,
       });
 
       // make a geofence polygon
@@ -98,6 +100,46 @@
           },
           "aeroway-line"
         );
+
+        // add a model layer to the map
+        map.addSource("model-source", {
+          type: "geojson",
+          data: {
+            type: "FeatureCollection",
+            features: [
+              {
+                type: "Feature",
+                geometry: {
+                  coordinates: [-122.67086522999035, 45.55150804789898],
+                  type: "Point",
+                },
+                properties: {},
+              },
+            ],
+          },
+        });
+
+        // I see that a network request is made to this URL.
+        map.addModel("house", "./models/little_house.glb");
+
+        // No models show up on the map. No errors are thrown. What's missing?
+        map.addLayer({
+          id: "model-layer",
+          type: "model",
+          source: "model-source",
+          layout: {
+            "model-id": "house",
+            visibility: "none",
+          },
+          paint: {
+            "model-scale": [3, 3, 3],
+            "model-rotation": [0, 0, 180],
+            "model-translation": [0, 0, 0],
+          },
+        });
+        // set the model layer to  display none
+
+        map.getLayer("model-layer").scope = "";
         // Initialize the map and other necessary variables
         // Function to check if the user is inside the geofence
         function checkGeofence(position) {
@@ -110,7 +152,8 @@
           if (!isInside) {
             // alert("You are outside the fence");
           } else {
-            alert("You are inside the fence");
+            map.setLayoutProperty("model-layer", "visibility", "visible");
+
             console.log("You are IN!!!");
           }
         }
@@ -128,9 +171,9 @@
           }
         );
         // Optionally, you can still use the moveend event to log the user's position
-        map.on("moveend", function (e) {
-          console.log("User's position is:", e.coords);
-        });
+        // map.on("moveend", function (e) {
+        //   console.log("User's position is:", e.coords);
+        // });
       });
     </script>
   </body>
