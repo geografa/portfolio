@@ -309,23 +309,11 @@
         // add a model layer to the map
         map.addSource("model-source", {
           type: "geojson",
-          data: {
-            type: "FeatureCollection",
-            features: [
-              {
-                type: "Feature",
-                geometry: {
-                  coordinates: [-122.67086522999035, 45.55150804789898],
-                  type: "Point",
-                },
-                properties: {},
-              },
-            ],
-          },
+          data: stops,
         });
 
         // I see that a network request is made to this URL.
-        map.addModel("house", "./models/pumpkin.glb");
+        map.addModel("pumpkin", "./models/pumpkin.glb");
 
         // No models show up on the map. No errors are thrown. What's missing?
         map.addLayer({
@@ -333,12 +321,12 @@
           type: "model",
           source: "model-source",
           layout: {
-            "model-id": "house",
+            "model-id": "pumpkin",
             visibility: "none",
           },
           paint: {
-            "model-scale": [3, 3, 3],
-            "model-rotation": [0, 0, 180],
+            "model-scale": [2, 2, 2],
+            "model-rotation": [0, 0, 0],
             "model-translation": [0, 0, 0],
           },
         });
@@ -357,8 +345,8 @@
           if (!isInside) {
             // alert("You are outside the fence");
           } else {
+            // set the visibility of the model layer to visible but just for the feature that is inside the fence and not the whole layer
             map.setLayoutProperty("model-layer", "visibility", "visible");
-
             console.log("You are IN!!!");
           }
           map.setCenter([longitude, latitude]);
