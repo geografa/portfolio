@@ -1,37 +1,50 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<title>Mapbox Map Game Demos</title>
-<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-<!-- include bootstrap.min.css -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <head>
+    <meta charset="utf-8" />
+    <title>Mapbox Demos</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <!-- include bootstrap.min.css -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
 
-<link href="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.css" rel="stylesheet">
-<script src="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.js"></script>
-<style>
-body { margin: 0; padding: 0; }
-#map { position: absolute; top: 0; bottom: 0; width: 100%; }
-ul { 
-    padding: 10px;
-    font-size: 1em;
-    list-style-type: none;
-    line-height: 2em;
- }
- ul a {
-    color: #333;
-    text-decoration: none;
- }
-</style>
-</head>
-<body>
-<style>
-    .map-overlay {
-        font:
-            12px/20px 'Helvetica Neue',
-            Arial,
-            Helvetica,
-            sans-serif;
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+      ul {
+        padding: 10px;
+        font-size: 1em;
+        list-style-type: none;
+        line-height: 2em;
+      }
+      ul a {
+        color: #333;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <style>
+      .map-overlay {
+        font: 12px/20px "Helvetica Neue", Arial, Helvetica, sans-serif;
         position: absolute;
         width: 240px;
         top: 0;
@@ -40,69 +53,124 @@ ul {
         background-color: aliceblue;
         opacity: 0.8;
         z-index: 1;
-    }
-</style>
+      }
+    </style>
 
-<div id="map"></div>
+    <div id="map"></div>
 
-<div class="map-overlay">
-    <div class="map-overlay-inner">
+    <div class="map-overlay">
+      <div class="map-overlay-inner">
         <h1>Map Demos</h1>
         <ul>
-            <li><a href="avatar.html">🤖 Avatar</a></li>
-            <li><a href="dance.html">👯‍♀️ Dance</a></li>
-            <li><a href="spin.html">🌐 Spin</a></li>
-            <li><a href="copa_america.html">🏟️ ⚽️  Copa America Venues</a></li>
-            <li><a href="video.html">🎥 Video</a></li>
-            <li><a href="weather.html">☔️ Weather</a></li>
-            <li><a href="earthquakes.html">🫨 Earthquakes</a></li>
-            <li><a href="custom-style.html">🎨 Custom Style</a></li>
-            <li><a href="marine.html">🦈 Realtime Marine Tracking</a></li>
-            <li><a href="https://api.mapbox.com/styles/v1/grafa/clux2129f003901og97oj8nnk.html?title=view&access_token=pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2ptYjNtZWxnMDBrdDNwbnVicGJzOWg2NyJ9.9OulyCe3kEqMAXPbx1mKUA&zoomwheel=true&fresh=true#2.63/34.69/-96.49">🗝️ Vintage Style</a></li>
-            <li><a href="https://geografa.github.io/portland-arch/">🏛️ Portland Architecture</a></li>
-            <li><a href="https://geografa.github.io/driver-manifests/">🚗 Driving Tour</a></li>
-            <li><a href="https://geografa.github.io/threebox/examples/starwars.html">🚀 Star Wars</a></li>
-            <li><a href="https://geografa.github.io/pubcrawler/">👩‍🎨 Design Week</a></li>
-            <li><a href="scroll.html">🏅 Olympic Venues</a></li>
-            <li><a href="summer_games.html">🏅 Olympic Venues II </a></li>
-            <li><a href="https://geografa.github.io/olympics/">🏅 Olympic Venues III </a></li>
-            <li><a href="copa_venues.html">🏟️ ⚽️  Copa America Venues</a></li>
-            <li><a href="https://pdxtraffic.com/optimization/ride.html#15.83/45.526466/-122.656704">🏃‍♂️🚴🏽‍♂️ Make a walk/run route</a></li>
-            <li><a href="detect.html">📌 Point editor</a></li>
-            <li><a href="https://geografa.github.io/earth-day/">🌎 Earth Day</a></li>
-            <li><a href="marine.html">🦈 Shark Week</a></li>
+          <li><a href="avatar.html">🤖 Avatar</a></li>
+          <li><a href="dance.html">👯‍♀️ Dance</a></li>
+          <li><a href="spin.html">🌐 Spin</a></li>
+          <li><a href="copa_america.html">🏟️ ⚽️ Copa America Venues</a></li>
+          <li><a href="video.html">🎥 Video</a></li>
+          <li><a href="weather.html">☔️ Weather</a></li>
+          <li><a href="earthquakes.html">🫨 Earthquakes</a></li>
+          <li><a href="custom-style.html">🎨 Custom Style</a></li>
+          <li><a href="marine.html">🦈 Realtime Marine Tracking</a></li>
+          <li>
+            <a
+              href="https://api.mapbox.com/styles/v1/grafa/clux2129f003901og97oj8nnk.html?title=view&access_token=pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2ptYjNtZWxnMDBrdDNwbnVicGJzOWg2NyJ9.9OulyCe3kEqMAXPbx1mKUA&zoomwheel=true&fresh=true#2.63/34.69/-96.49"
+              >🗝️ Vintage Style</a
+            >
+          </li>
+          <li>
+            <a href="https://geografa.github.io/portland-arch/"
+              >🏛️ Portland Architecture</a
+            >
+          </li>
+          <li>
+            <a href="https://geografa.github.io/driver-manifests/"
+              >🚗 Driving Tour</a
+            >
+          </li>
+          <li>
+            <a href="https://geografa.github.io/threebox/examples/starwars.html"
+              >🚀 Star Wars</a
+            >
+          </li>
+          <li>
+            <a href="https://geografa.github.io/pubcrawler/">👩‍🎨 Design Week</a>
+          </li>
+          <li><a href="scroll.html">🏅 Olympic Venues</a></li>
+          <li><a href="summer_games.html">🏅 Olympic Venues II </a></li>
+          <li>
+            <a href="https://geografa.github.io/olympics/"
+              >🏅 Olympic Venues III
+            </a>
+          </li>
+          <li><a href="copa_venues.html">🏟️ ⚽️ Copa America Venues</a></li>
+          <li>
+            <a
+              href="https://pdxtraffic.com/optimization/ride.html#15.83/45.526466/-122.656704"
+              >🏃‍♂️🚴🏽‍♂️ Make a walk/run route</a
+            >
+          </li>
+          <li><a href="detect.html">📌 Point editor</a></li>
+          <li>
+            <a href="https://geografa.github.io/earth-day/">🌎 Earth Day</a>
+          </li>
+          <li><a href="marine.html">🦈 Shark Week</a></li>
+          <li><a href="trails.html">🥾 Hoyt Arboretum Trails</a></li>
         </ul>
-        <ul><strong>Other Demos</strong>
-            <li><a href="https://history-maps.com/">🗝️ History Maps</a></li>
-            <li><a href="https://caracassoundscape.web.app/">🎧 Soundscapes of Caracas</a></li>
-            <li><a href="https://livemaps360.com/DigitalTwin/HongKong/">🚍 Hong Kong Live</a></li>
-            <li><a href="https://nycguessr.com/">🚇 NYC Guessr</a></li>
-            <li><a href="https://brisbane2032mobility.smashdelta.com/">🏟️ Mobility Brisbane Olympics</a></li>
-            <li><a href="https://labs.mapbox.com/map-quiz/">🗺️ Country Map Quiz</a></li>
-            <li><a href="https://apps.mapbox.com/cartogram/#11.95/45.48317/-122.67735">📸 Cartogram</a></li>
-            <li><a href="https://tjukanovt.github.io/notable-people">🙋🏽‍♂️ Notable People</a></li>
-            
+        <ul>
+          <strong>Other Demos</strong>
+          <li><a href="https://history-maps.com/">🗝️ History Maps</a></li>
+          <li>
+            <a href="https://caracassoundscape.web.app/"
+              >🎧 Soundscapes of Caracas</a
+            >
+          </li>
+          <li>
+            <a href="https://livemaps360.com/DigitalTwin/HongKong/"
+              >🚍 Hong Kong Live</a
+            >
+          </li>
+          <li><a href="https://nycguessr.com/">🚇 NYC Guessr</a></li>
+          <li>
+            <a href="https://brisbane2032mobility.smashdelta.com/"
+              >🏟️ Mobility Brisbane Olympics</a
+            >
+          </li>
+          <li>
+            <a href="https://labs.mapbox.com/map-quiz/">🗺️ Country Map Quiz</a>
+          </li>
+          <li>
+            <a
+              href="https://apps.mapbox.com/cartogram/#11.95/45.48317/-122.67735"
+              >📸 Cartogram</a
+            >
+          </li>
+          <li>
+            <a href="https://tjukanovt.github.io/notable-people"
+              >🙋🏽‍♂️ Notable People</a
+            >
+          </li>
         </ul>
+      </div>
     </div>
-</div>
 
-<script>
-	mapboxgl.accessToken = 'pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2ptYjNtZWxnMDBrdDNwbnVicGJzOWg2NyJ9.9OulyCe3kEqMAXPbx1mKUA';
-    const map = new mapboxgl.Map({
-        container: 'map', // container ID
-        center: [2.2950397535774414,48.85720928643093], // starting position [lng, lat]
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2ptYjNtZWxnMDBrdDNwbnVicGJzOWg2NyJ9.9OulyCe3kEqMAXPbx1mKUA";
+      const map = new mapboxgl.Map({
+        container: "map", // container ID
+        center: [2.2950397535774414, 48.85720928643093], // starting position [lng, lat]
         zoom: 16.1, // starting zoom
         pitch: 62, // starting pitch
-        bearing: -200 // starting bearing
-    });
+        bearing: -200, // starting bearing
+      });
 
-    map.on('style.load', () => {
+      map.on("style.load", () => {
         document
-            .getElementById('lightPreset')
-            .addEventListener('change', function () {
-                map.setConfigProperty('basemap', 'lightPreset', this.value);
-            });       
-    });
+          .getElementById("lightPreset")
+          .addEventListener("change", function () {
+            map.setConfigProperty("basemap", "lightPreset", this.value);
+          });
+      });
     </script>
-</body>
+  </body>
 </html>
