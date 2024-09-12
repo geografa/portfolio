@@ -173,7 +173,7 @@
       });
 
       //   create a function that retrieves the data from the GeoJSON file wa_park_trails.geojson and adds it to the map source wa_park_trails
-      fetch("wa_park_trails.geojson")
+      fetch("./data/wa_park_trails.geojson")
         .then((response) => response.json())
         .then((data) => {
           map.on("load", function () {
