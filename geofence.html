@@ -162,11 +162,7 @@
           map.setZoom(17);
           // Set the pitch and bearing of the map
           map.setPitch(60); // Adjust the pitch as needed
-          if (heading !== null) {
-            console.log("No speed");
-          } else {
-            map.setBearing(heading);
-          }
+          heading !== null ? console.log("No speed") : map.setBearing(heading);
         }
 
         // Watch the user's position
