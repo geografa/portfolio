@@ -262,7 +262,7 @@
 
       // buffer each stop by 100 meters
       const bufferedStops = stops.features.map((stop) => {
-        return turf.buffer(stop, 0.1);
+        return turf.buffer(stop, 0.05);
       });
 
       // create a feature collection of the buffered stops
@@ -322,7 +322,7 @@
           source: "model-source",
           layout: {
             "model-id": "pumpkin",
-            visibility: "none",
+            visibility: "visible",
           },
           paint: {
             "model-scale": [2, 2, 2],
@@ -346,13 +346,13 @@
             // alert("You are outside the fence");
           } else {
             // set the visibility of the model layer to visible but just for the feature that is inside the fence and not the whole layer
-            map.setLayoutProperty("model-layer", "visibility", "visible");
+            map.setLayoutProperty("model-layer", "visibility", "none");
             console.log("You are IN!!!");
           }
-          map.setCenter([longitude, latitude]);
-          map.setZoom(17);
-          // Set the pitch and bearing of the map
-          map.setPitch(60); // Adjust the pitch as needed
+          //   map.setCenter([longitude, latitude]);
+          //   map.setZoom(17);
+          //   // Set the pitch and bearing of the map
+          //   map.setPitch(60); // Adjust the pitch as needed
           heading !== null ? console.log("No speed") : map.setBearing(heading);
         }
 
