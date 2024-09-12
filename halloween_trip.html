@@ -260,9 +260,9 @@
         ],
       };
 
-      // buffer each stop by 10 meters
+      // buffer each stop by 100 meters
       const bufferedStops = stops.features.map((stop) => {
-        return turf.buffer(stop, 0.01);
+        return turf.buffer(stop, 0.1);
       });
 
       // create a feature collection of the buffered stops
