@@ -35,7 +35,7 @@
       const map = new mapboxgl.Map({
         container: "map", // container ID
         // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-        style: "mapbox://styles/mapbox/streets-v12", // style URL
+        style: "mapbox://styles/mapbox/standard", // style URL
         center: [-122.67111163209071, 45.551542037038786],
         zoom: 17.366798265146404,
         bearing: -119.3883717248114,
@@ -65,20 +65,20 @@
         ],
       };
 
+      const geolocate = new mapboxgl.GeolocateControl({
+        positionOptions: {
+          enableHighAccuracy: true,
+        },
+        // When active the map will receive updates to the device's location as it changes.
+        trackUserLocation: true,
+        // Draw an arrow next to the location dot to indicate which direction the device is heading.
+        showUserHeading: true,
+        showAccuracyCircle: false,
+        fitBoundsOptions: { maxZoom: 17 },
+      });
+
       // Add geolocate control to the map.
-      map.addControl(
-        // add position of the control in the top left corner of the map
-        new mapboxgl.GeolocateControl({
-          positionOptions: {
-            enableHighAccuracy: true,
-          },
-          // When active the map will receive updates to the device's location as it changes.
-          trackUserLocation: true,
-          // Draw an arrow next to the location dot to indicate which direction the device is heading.
-          showUserHeading: true,
-        }),
-        "top-left"
-      );
+      map.addControl(geolocate, "top-left");
 
       // watch the user's location until they're inside the fence and then open an alert box
       map.on("load", function () {
@@ -87,19 +87,21 @@
           data: fence,
         });
 
-        map.addLayer(
-          {
-            id: "fence",
-            type: "fill",
-            source: "fence",
-            layout: {},
-            paint: {
-              "fill-color": "#088",
-              "fill-opacity": 0.25,
-            },
+        map.addLayer({
+          id: "fence",
+          type: "fill-extrusion",
+          source: "fence",
+          slot: "middle",
+          layout: {},
+          paint: {
+            "fill-extrusion-color": "#aaa",
+            "fill-extrusion-height": 20,
+            "fill-extrusion-base": 0,
+            "fill-extrusion-opacity": 0.6,
           },
-          "aeroway-line"
-        );
+        });
+
+        // set the lights  on the map to make the model visible in the dark
 
         // add a model layer to the map
         map.addSource("model-source", {
@@ -143,7 +145,7 @@
         // Initialize the map and other necessary variables
         // Function to check if the user is inside the geofence
         function checkGeofence(position) {
-          const { longitude, latitude } = position.coords;
+          const { longitude, latitude, heading } = position.coords;
           console.log(longitude, latitude);
           const isInside = turf.booleanPointInPolygon(
             [longitude, latitude],
@@ -156,10 +158,20 @@
 
             console.log("You are IN!!!");
           }
+          map.setCenter([longitude, latitude]);
+          map.setZoom(17);
+          // Set the pitch and bearing of the map
+          map.setPitch(60); // Adjust the pitch as needed
+          if (heading !== null) {
+            console.log("No speed");
+          } else {
+            map.setBearing(heading);
+          }
         }
 
         // Watch the user's position
         navigator.geolocation.watchPosition(
+          // when position is found set the pitch and bearing of the map
           checkGeofence,
           function (error) {
             console.error("Error watching position:", error);
@@ -170,10 +182,14 @@
             timeout: 5000,
           }
         );
-        // Optionally, you can still use the moveend event to log the user's position
-        // map.on("moveend", function (e) {
-        //   console.log("User's position is:", e.coords);
-        // });
+      });
+      map.on("geolocate", function (e) {
+        map.flyTo({
+          center: [e.coords.longitude, e.coords.latitude],
+          zoom: 17,
+          bearing: e.coords.heading,
+          pitch: 60,
+        });
       });
     </script>
   </body>
