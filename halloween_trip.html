@@ -54,199 +54,7 @@
             properties: {},
             geometry: {
               type: "Point",
-              coordinates: [-122.66889388626122, 45.569919702663015],
-            },
-          },
-          {
-            type: "Feature",
-            properties: {},
-            geometry: {
-              type: "Point",
-              coordinates: [-122.66884871972314, 45.5690109858341],
-            },
-          },
-          {
-            type: "Feature",
-            properties: {},
-            geometry: {
-              type: "Point",
-              coordinates: [-122.66887017739555, 45.567749171017084],
-            },
-          },
-          {
-            type: "Feature",
-            properties: {},
-            geometry: {
-              type: "Point",
-              coordinates: [-122.66880580437918, 45.56647981679805],
-            },
-          },
-          {
-            type: "Feature",
-            properties: {},
-            geometry: {
-              type: "Point",
-              coordinates: [-122.6687976615375, 45.56517421613222],
-            },
-          },
-          {
-            type: "Feature",
-            properties: {},
-            geometry: {
-              type: "Point",
-              coordinates: [-122.66874401735689, 45.563889780923205],
-            },
-          },
-          {
-            type: "Feature",
-            properties: {},
-            geometry: {
-              type: "Point",
-              coordinates: [-122.66874789095769, 45.56274318316841],
-            },
-          },
-          {
-            type: "Feature",
-            properties: {},
-            geometry: {
-              type: "Point",
-              coordinates: [-122.66857622958057, 45.561653996963486],
-            },
-          },
-          {
-            type: "Feature",
-            properties: {},
-            geometry: {
-              type: "Point",
-              coordinates: [-122.66841529703964, 45.560512206686354],
-            },
-          },
-          {
-            type: "Feature",
-            properties: {},
-            geometry: {
-              type: "Point",
-              coordinates: [-122.66834444734161, 45.55982079640813],
-            },
-          },
-          {
-            type: "Feature",
-            properties: {},
-            geometry: {
-              type: "Point",
-              coordinates: [-122.66825861665325, 45.55910715691968],
-            },
-          },
-          {
-            type: "Feature",
-            properties: {},
-            geometry: {
-              type: "Point",
-              coordinates: [-122.66822643014507, 45.55823575325414],
-            },
-          },
-          {
-            type: "Feature",
-            properties: {},
-            geometry: {
-              type: "Point",
-              coordinates: [-122.66819424363689, 45.55791272949665],
-            },
-          },
-          {
-            type: "Feature",
-            properties: {},
-            geometry: {
-              type: "Point",
-              coordinates: [-122.66810841294854, 45.55755214264346],
-            },
-          },
-          {
-            type: "Feature",
-            properties: {},
-            geometry: {
-              type: "Point",
-              coordinates: [-122.66810841294854, 45.557086381199866],
-            },
-          },
-          {
-            type: "Feature",
-            properties: {},
-            geometry: {
-              type: "Point",
-              coordinates: [-122.66806549760415, 45.556830961995246],
-            },
-          },
-          {
-            type: "Feature",
-            properties: {},
-            geometry: {
-              type: "Point",
-              coordinates: [-122.66804026308328, 45.55639853661995],
-            },
-          },
-          {
-            type: "Feature",
-            properties: {},
-            geometry: {
-              type: "Point",
-              coordinates: [-122.66802953424707, 45.55603042759711],
-            },
-          },
-          {
-            type: "Feature",
-            properties: {},
-            geometry: {
-              type: "Point",
-              coordinates: [-122.66798661890311, 45.55549704085715],
-            },
-          },
-          {
-            type: "Feature",
-            properties: {},
-            geometry: {
-              type: "Point",
-              coordinates: [-122.6679651612307, 45.554588017985196],
-            },
-          },
-          {
-            type: "Feature",
-            properties: {},
-            geometry: {
-              type: "Point",
-              coordinates: [-122.66796174252363, 45.55333335912121],
-            },
-          },
-          {
-            type: "Feature",
-            properties: {},
-            geometry: {
-              type: "Point",
-              coordinates: [-122.66796174252363, 45.552048653209624],
-            },
-          },
-          {
-            type: "Feature",
-            properties: {},
-            geometry: {
-              type: "Point",
-              coordinates: [-122.66795637810576, 45.55146639035851],
-            },
-          },
-          {
-            type: "Feature",
-            properties: {},
-            geometry: {
-              type: "Point",
-              coordinates: [-122.66792955601544, 45.55080899685811],
-            },
-          },
-          {
-            type: "Feature",
-            properties: {},
-            geometry: {
-              type: "Point",
-              coordinates: [-122.66858484253618, 45.55079936253287],
+              coordinates: [-122.66901796043301, 45.55204558297328],
             },
           },
           {
@@ -338,14 +146,12 @@
           const { longitude, latitude, heading } = position.coords;
           const fences = fence.features;
           console.log(fences);
-
-          // if the user is inside the geofence, show console log message
+          // if the user is inside the geofence, show the model
           fences.forEach((fence) => {
             if (turf.booleanPointInPolygon([longitude, latitude], fence)) {
-              console.log("You are inside the geofence");
               map.setLayoutProperty("model-layer", "visibility", "visible");
             } else {
-              console.log("You are outside the geofence");
+              map.setLayoutProperty("model-layer", "visibility", "none");
             }
           });
         }
@@ -364,14 +170,14 @@
           }
         );
       });
-      map.on("geolocate", function (e) {
-        map.flyTo({
-          center: [e.coords.longitude, e.coords.latitude],
-          zoom: 17,
-          bearing: e.coords.heading,
-          pitch: 60,
-        });
-      });
+      //   map.on("geolocate", function (e) {
+      //     map.flyTo({
+      //       center: [e.coords.longitude, e.coords.latitude],
+      //       zoom: 17,
+      //       bearing: e.coords.heading,
+      //       pitch: 60,
+      //     });
+      //   });
     </script>
   </body>
 </html>
