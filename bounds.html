@@ -32,11 +32,6 @@
     <script>
       mapboxgl.accessToken =
         "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2ptYjNtZWxnMDBrdDNwbnVicGJzOWg2NyJ9.9OulyCe3kEqMAXPbx1mKUA";
-      // Set to ri
-      // const bounds = [
-      //   [-73.96387801201328, 40.74864264056541], // Southwest coordinates
-      //   [-73.93897256239173, 40.77364923853389], // Northeast coordinates
-      // ];
 
       const map = new mapboxgl.Map({
         container: "map", // container ID
@@ -48,7 +43,7 @@
       });
 
       map.on("moveend", () => {
-        const ri = {
+        const island = {
           type: "FeatureCollection",
           features: [
             {
@@ -73,43 +68,9 @@
         const center = map.getCenter().toArray();
 
         // if the map center is outside the bounds, move it back in using easeTo or panTo
-        if (!turf.booleanPointInPolygon(center, ri.features[0])) {
+        if (!turf.booleanPointInPolygon(center, island.features[0])) {
           map.panTo([-73.94180906101252, 40.77081225345441]);
         }
-      });
-
-      map.on("load", () => {
-        // var canvas = map.getCanvas(),
-        //   w = canvas.width,
-        //   h = canvas.height,
-        //   cUL = map.unproject([0, 0]).toArray(),
-        //   cUR = map.unproject([w, 0]).toArray(),
-        //   cLR = map.unproject([w, h]).toArray(),
-        //   cLL = map.unproject([0, h]).toArray();
-        // var coordinates = [cUL, cUR, cLR, cLL, cUL];
-        // // create a bounding box from the coordinates
-        // map.fitBounds(bounds, {
-        //   padding: 20,
-        //   bearing: 35,
-        // });
-        // map.setMaxBounds(bounds);
-        // var canvasFence = turf.polygon([coordinates]);
-        // map.addSource("canvas-fence", {
-        //   type: "geojson",
-        //   data: canvasFence,
-        // });
-        // map.addLayer({
-        //   id: "canvas-fence",
-        //   type: "line",
-        //   source: "canvas-fence",
-        //   slot: "top",
-        //   layout: {},
-        //   paint: {
-        //     "line-color": "blue",
-        //     "line-width": 4,
-        //     "line-opacity": 1,
-        //   },
-        // });
       });
     </script>
   </body>
