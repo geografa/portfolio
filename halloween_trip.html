@@ -43,7 +43,7 @@
       });
       // set to dusk style
       map.on("style.load", () => {
-        map.setConfigProperty("basemap", "lightPreset", "day");
+        map.setConfigProperty("basemap", "lightPreset", "dawn");
       });
 
       const stops = {
@@ -158,7 +158,7 @@
 
       // buffer each stop by 100 meters
       const bufferedStops = stops.features.map((stop) => {
-        return turf.buffer(stop, 0.01);
+        return turf.buffer(stop, 0.05);
       });
 
       // create a feature collection of the buffered stops
@@ -179,6 +179,9 @@
       // Add geolocate control to the map.
       map.addControl(geolocate, "top-left");
 
+      // Update map bearing based on user's heading
+      geolocate.on("geolocate", function (e) {});
+
       // watch the user's location until they're inside the fence and then open an alert box
       map.on("load", function () {
         // create a featureCollection with the coordinates and add it to the map as a source and layer
@@ -189,15 +192,27 @@
         });
 
         map.addLayer({
+          id: "fence-blur",
+          type: "line",
+          source: "fence",
+          slot: "top",
+          layout: {},
+          paint: {
+            "line-color": "#f30",
+            "line-width": 12,
+            "line-opacity": 0.6,
+            "line-blur": 5,
+          },
+        });
+        map.addLayer({
           id: "fence",
           type: "line",
           source: "fence",
           slot: "top",
           layout: {},
           paint: {
-            "line-color": "red",
-            "line-width": 4,
-            "line-opacity": 1,
+            "line-color": "#f30",
+            "line-width": 2,
           },
         });
 
@@ -235,7 +250,6 @@
         function checkGeofence(position) {
           const { longitude, latitude, heading } = position.coords;
           const fences = fence.features;
-          console.log(fences);
           // if the user is inside the geofence, show the model
           fences.forEach((fence) => {
             if (turf.booleanPointInPolygon([longitude, latitude], fence)) {
@@ -244,6 +258,9 @@
               map.setLayoutProperty("model-layer", "visibility", "none");
             }
           });
+          if (position.coords.heading) {
+            map.setBearing(position.coords.heading);
+          }
         }
 
         // Watch the user's position
@@ -260,15 +277,6 @@
           }
         );
       });
-
-      //   map.on("geolocate", function (e) {
-      //     map.flyTo({
-      //       center: [e.coords.longitude, e.coords.latitude],
-      //       zoom: 17,
-      //       bearing: e.coords.heading,
-      //       pitch: 60,
-      //     });
-      //   });
     </script>
   </body>
 </html>
