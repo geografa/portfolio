@@ -43,7 +43,7 @@
       });
       // set to dusk style
       map.on("style.load", () => {
-        map.setConfigProperty("basemap", "lightPreset", "dusk");
+        map.setConfigProperty("basemap", "lightPreset", "day");
       });
 
       const stops = {
@@ -51,26 +51,114 @@
         features: [
           {
             type: "Feature",
-            properties: {},
             geometry: {
               type: "Point",
-              coordinates: [-122.66901796043301, 45.55204558297328],
+              coordinates: [-122.63067240374896, 45.540632836227786],
             },
+            properties: { title: "one" },
           },
           {
             type: "Feature",
-            properties: {},
             geometry: {
               type: "Point",
-              coordinates: [-122.6695834518103, 45.55078972820763],
+              coordinates: [-122.63066567261487, 45.54213092319736],
             },
+            properties: { title: "knott" },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [-122.63065868158156, 45.54368978390161],
+            },
+            properties: { title: "stanton" },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [-122.63065837253693, 45.54677792081725],
+            },
+            properties: { title: "klick" },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [-122.6306933220879, 45.548295424415784],
+            },
+            properties: { title: "fremont" },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [-122.63732469981815, 45.54829168145392],
+            },
+            properties: { title: "alameda" },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [-122.64111312555481, 45.54827797471481],
+            },
+            properties: { title: "madeleine" },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [-122.6497783220203, 45.54829522853473],
+            },
+            properties: { title: "Whole Foods" },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [-122.65700840591396, 45.5483223673597],
+            },
+            properties: { title: "Irving Park" },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [-122.66151565451867, 45.54830616967604],
+            },
+            properties: { title: "MLK" },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [-122.6659638818486, 45.54831935836515],
+            },
+            properties: { title: "Williams" },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [-122.66704597964275, 45.55084244454315],
+            },
+            properties: { title: "Failing" },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [-122.66956964291985, 45.55138660798295],
+            },
+            properties: { title: "home" },
           },
         ],
       };
 
       // buffer each stop by 100 meters
       const bufferedStops = stops.features.map((stop) => {
-        return turf.buffer(stop, 0.05);
+        return turf.buffer(stop, 0.01);
       });
 
       // create a feature collection of the buffered stops
@@ -93,6 +181,8 @@
 
       // watch the user's location until they're inside the fence and then open an alert box
       map.on("load", function () {
+        // create a featureCollection with the coordinates and add it to the map as a source and layer
+
         map.addSource("fence", {
           type: "geojson",
           data: fence,
@@ -170,6 +260,7 @@
           }
         );
       });
+
       //   map.on("geolocate", function (e) {
       //     map.flyTo({
       //       center: [e.coords.longitude, e.coords.latitude],
