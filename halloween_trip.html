@@ -267,7 +267,6 @@
 
       // create a feature collection of the buffered stops
       const fence = turf.featureCollection(bufferedStops);
-      console.log(fence);
 
       const geolocate = new mapboxgl.GeolocateControl({
         positionOptions: {
@@ -295,7 +294,7 @@
           id: "fence",
           type: "line",
           source: "fence",
-          slot: "middle",
+          slot: "top",
           layout: {},
           paint: {
             "line-color": "red",
@@ -322,7 +321,7 @@
           source: "model-source",
           layout: {
             "model-id": "pumpkin",
-            visibility: "visible",
+            visibility: "none",
           },
           paint: {
             "model-scale": [2, 2, 2],
@@ -337,23 +336,18 @@
         // Function to check if the user is inside the geofence
         function checkGeofence(position) {
           const { longitude, latitude, heading } = position.coords;
-          console.log(longitude, latitude);
-          const isInside = turf.booleanPointInPolygon(
-            [longitude, latitude],
-            fence.features[0]
-          );
-          if (!isInside) {
-            // alert("You are outside the fence");
-          } else {
-            // set the visibility of the model layer to visible but just for the feature that is inside the fence and not the whole layer
-            map.setLayoutProperty("model-layer", "visibility", "none");
-            console.log("You are IN!!!");
-          }
-          //   map.setCenter([longitude, latitude]);
-          //   map.setZoom(17);
-          //   // Set the pitch and bearing of the map
-          //   map.setPitch(60); // Adjust the pitch as needed
-          heading !== null ? console.log("No speed") : map.setBearing(heading);
+          const fences = fence.features;
+          console.log(fences);
+
+          // if the user is inside the geofence, show console log message
+          fences.forEach((fence) => {
+            if (turf.booleanPointInPolygon([longitude, latitude], fence)) {
+              console.log("You are inside the geofence");
+              map.setLayoutProperty("model-layer", "visibility", "visible");
+            } else {
+              console.log("You are outside the geofence");
+            }
+          });
         }
 
         // Watch the user's position
