@@ -1,203 +1,204 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <title>Olympic Host Cities II</title>
-    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
-    <link href="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet">
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Monoton&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-        }
+      body {
+        margin: 0;
+        padding: 0;
+      }
 
-        #map {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 100%;
-        }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
 
-        #features {
-            position: absolute;
-            padding: 20px;
-            top: 0;
-            right: 0;
-            bottom: 600px;
-            width: 30%;
-            overflow: auto;
-            background: rgba(255, 255, 255, 0.8);
-            font-size: 1em;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+      #features {
+        position: absolute;
+        padding: 20px;
+        top: 0;
+        right: 0;
+        bottom: 600px;
+        width: 30%;
+        overflow: auto;
+        background: rgba(255, 255, 255, 0.8);
+        font-size: 1em;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
 
-        #features h2 {
-            font-family: "Impact", sans-serif;
-            font-weight: 400;
-            font-style: normal;
-            font-size: 2em;
-            margin: 0;
-        }
+      #features h2 {
+        font-family: "Impact", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 2em;
+        margin: 0;
+      }
 
-        button {
-            position: absolute;
-            background-color: #4CAF50;
-            color: white;
-            padding: 5px 8px;
-            text-align: right;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 12px;
-            border-radius: 10px;
-            border-style: none;
-            z-index: 1;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-            right: 20px;
-            top: 50px;
-        }
+      button {
+        position: absolute;
+        background-color: #4caf50;
+        color: white;
+        padding: 5px 8px;
+        text-align: right;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 12px;
+        border-radius: 10px;
+        border-style: none;
+        z-index: 1;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        right: 20px;
+        top: 50px;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="map"></div>
-    <button id="overview">Overview</button>
     <div id="features">
-        <h2>Olympic Host Cities</h2>
+      <h2>Olympic Host Cities</h2>
     </div>
     <script>
-        mapboxgl.accessToken = 'pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2ptYjNtZWxnMDBrdDNwbnVicGJzOWg2NyJ9.9OulyCe3kEqMAXPbx1mKUA';
-        const map = new mapboxgl.Map({
-            container: 'map',
-            // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-            style: 'mapbox://styles/grafa/clvcti9gb00ue01rjhg1n7y5d',
-            center: [12.954041490599337,47.89503963677046],
-            zoom: 5,
-            // hash: true
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2ptYjNtZWxnMDBrdDNwbnVicGJzOWg2NyJ9.9OulyCe3kEqMAXPbx1mKUA";
+      const map = new mapboxgl.Map({
+        container: "map",
+        // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+        style: "mapbox://styles/grafa/clvcti9gb00ue01rjhg1n7y5d",
+        center: [12.954041490599337, 47.89503963677046],
+        zoom: 5,
+        // hash: true
+      });
+
+      map.on("load", () => {
+        // Add source for olympic cities
+        map.addSource("cities", {
+          type: "geojson",
+          data: "./data/cities_full.geojson",
+          cluster: true,
+          clusterMaxZoom: 14, // Max zoom to cluster points on
+          clusterRadius: 30, // Radius of each cluster when clustering points (defaults to 50)
+          generateId: true,
+        });
+        // add the clusters layer
+        map.addLayer({
+          id: "clusters",
+          type: "circle",
+          source: "cities",
+          filter: ["has", "point_count"],
+          paint: {
+            "circle-color": [
+              "step",
+              ["get", "point_count"],
+              "#51bbd6",
+              2,
+              "#55688f",
+              3,
+              "#fdab3c",
+            ],
+            "circle-radius": [
+              "step",
+              ["get", "point_count"],
+              20,
+              1,
+              30,
+              2,
+              40,
+              3,
+              50,
+            ],
+          },
+        });
+        map.addLayer({
+          id: "cluster-count",
+          type: "symbol",
+          source: "cities",
+          filter: ["has", "point_count"],
+          layout: {
+            "text-field": ["get", "point_count"],
+            "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
+            "text-size": 12,
+          },
         });
 
-        map.on('load', () => {
-            // Add source for olympic cities
-            map.addSource('cities', {
-                type: 'geojson',
-                data: './cities_full.geojson',
-                cluster: true,
-                clusterMaxZoom: 14, // Max zoom to cluster points on
-                clusterRadius: 30, // Radius of each cluster when clustering points (defaults to 50)
-                generateId: true
-            });
-            // add the clusters layer
-            map.addLayer({
-                'id': 'clusters',
-                'type': 'circle',
-                'source': 'cities',
-                'filter': ['has', 'point_count'],
-                'paint': {
-                    'circle-color': [
-                        'step',
-                        ['get', 'point_count'],
-                        '#51bbd6',
-                        2,
-                        '#55688f',
-                        3,
-                        '#fdab3c'
-                    ],
-                    'circle-radius': [
-                        'step',
-                        ['get', 'point_count'],
-                        20,
-                        1,
-                        30,
-                        2,
-                        40,
-                        3,
-                        50
-                    ]
-                }
-            });
-            map.addLayer({
-                id: 'cluster-count',
-                type: 'symbol',
-                source: 'cities',
-                filter: ['has', 'point_count'],
-                layout: {
-                    'text-field': ['get', 'point_count'],
-                    'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
-                    'text-size': 12
-                }
-            });
-
-            map.addLayer({
-                id: 'unclustered-point',
-                type: 'circle',
-                source: 'cities',
-                filter: ['!', ['has', 'point_count']],
-                paint: {
-                    'circle-color': '#ff3300',
-                    'circle-radius': 8,
-                    'circle-stroke-width': 1,
-                    'circle-stroke-color': '#fff'
-                }
-            });
-
-            // inspect a cluster on click
-            map.on('click', 'clusters', (e) => {
-                const features = map.queryRenderedFeatures(e.point, {
-                    layers: ['clusters']
-                });
-                const clusterId = features[0].properties.cluster_id;
-                console.log(clusterId);
-                map.getSource('cities').getClusterExpansionZoom(
-                    clusterId,
-                    (err, zoom) => {
-                        if (err) return;
-
-                        map.easeTo({
-                            center: features[0].geometry.coordinates,
-                            zoom: zoom
-                        });
-                    }
-                );
-            });
-
-            // When a click event occurs on a feature in
-            // the unclustered-point layer, open a popup at
-            // the location of the feature, with
-            // description HTML from its properties.
-            map.on('click', 'unclustered-point', (e) => {
-                const coordinates = e.features[0].geometry.coordinates.slice();
-                const timesHosted =
-                    e.features[0].properties['Times_Hosted'];
-
-                // Ensure that if the map is zoomed out such that
-                // multiple copies of the feature are visible, the
-                // popup appears over the copy being pointed to.
-                while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-                    coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-                }
-
-                new mapboxgl.Popup()
-                    .setLngLat(coordinates)
-                    .setHTML(
-                        `Times hosted: ${timesHosted}`
-                    )
-                    .addTo(map);
-            });
-
-            // map.on('mouseenter', 'clusters', () => {
-            //     map.getCanvas().style.cursor = 'pointer';
-            // });
-            // map.on('mouseleave', 'clusters', () => {
-            //     map.getCanvas().style.cursor = '';
-            // });
-
+        map.addLayer({
+          id: "unclustered-point",
+          type: "circle",
+          source: "cities",
+          filter: ["!", ["has", "point_count"]],
+          paint: {
+            "circle-color": "#ff3300",
+            "circle-radius": 8,
+            "circle-stroke-width": 1,
+            "circle-stroke-color": "#fff",
+          },
         });
+
+        // inspect a cluster on click
+        map.on("click", "clusters", (e) => {
+          const features = map.queryRenderedFeatures(e.point, {
+            layers: ["clusters"],
+          });
+          const clusterId = features[0].properties.cluster_id;
+          console.log(clusterId);
+          map
+            .getSource("cities")
+            .getClusterExpansionZoom(clusterId, (err, zoom) => {
+              if (err) return;
+
+              map.easeTo({
+                center: features[0].geometry.coordinates,
+                zoom: zoom,
+              });
+            });
+        });
+
+        // When a click event occurs on a feature in
+        // the unclustered-point layer, open a popup at
+        // the location of the feature, with
+        // description HTML from its properties.
+        map.on("click", "unclustered-point", (e) => {
+          const coordinates = e.features[0].geometry.coordinates.slice();
+          const timesHosted = e.features[0].properties["Times_Hosted"];
+
+          // Ensure that if the map is zoomed out such that
+          // multiple copies of the feature are visible, the
+          // popup appears over the copy being pointed to.
+          while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+          }
+
+          new mapboxgl.Popup()
+            .setLngLat(coordinates)
+            .setHTML(`Times hosted: ${timesHosted}`)
+            .addTo(map);
+        });
+
+        // map.on('mouseenter', 'clusters', () => {
+        //     map.getCanvas().style.cursor = 'pointer';
+        // });
+        // map.on('mouseleave', 'clusters', () => {
+        //     map.getCanvas().style.cursor = '';
+        // });
+      });
     </script>
-
-</body>
-
+  </body>
 </html>

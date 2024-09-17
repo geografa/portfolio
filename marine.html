@@ -1,266 +1,292 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <title>Shark Week!</title>
-    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-    <link href="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet">
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+      .title-bar {
+        font-family: "Bebas Neue", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 1.8em;
+        padding: 8px;
+        color: #fff;
+        z-index: 1;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        background-color: rgba(0, 0, 0, 0.8);
+        align-items: flex-start;
+        height: 75px;
+      }
+
+      .gradient-border {
+        --borderWidth: 3px;
+        background: #1d1f20;
+        position: relative;
+        border-radius: var(--borderWidth);
+      }
+
+      .gradient-border:after {
+        content: "";
+        position: absolute;
+        top: calc(-1 * var(--borderWidth));
+        left: calc(-1 * var(--borderWidth));
+        height: calc(100% + var(--borderWidth) * 2);
+        width: calc(100% + var(--borderWidth) * 2);
+        background: linear-gradient(
+          60deg,
+          #a166ab,
+          #5073b8,
+          #1098ad,
+          #3c3783,
+          #48c1fa
+        );
+        border-radius: calc(2 * var(--borderWidth));
+        z-index: -1;
+        animation: animatedgradient 8s ease alternate infinite;
+        background-size: 300% 300%;
+      }
+
+      @keyframes animatedgradient {
+        0% {
+          background-position: 0% 50%;
         }
 
-        #map {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 100%;
-        }
-        .title-bar {
-            font-family: "Bebas Neue", sans-serif;
-            font-weight: 400;
-            font-style: normal;
-            font-size: 1.8em;
-            padding: 8px;
-            color: #fff;
-            z-index: 1;
-            display: flex;
-            flex-direction: row;
-            flex-wrap: nowrap;
-            justify-content: center;
-            background-color: rgba(0, 0, 0, 0.8);
-            align-items: flex-start;
-            height: 75px;
+        50% {
+          background-position: 100% 50%;
         }
 
-        .gradient-border {
-            --borderWidth: 3px;
-            background: #1D1F20;
-            position: relative;
-            border-radius: var(--borderWidth);
+        100% {
+          background-position: 0% 50%;
         }
+      }
+      h2 {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 2em;
+        margin-bottom: 0;
+      }
+      .heading {
+        line-height: 1em;
+      }
+      .logo {
+        margin: 14px 30px 14px 0;
+      }
+      .logo-shark {
+        position: absolute;
+        z-index: 2;
+        /* margin: 14px; */
+        font-size: 1.8em;
+        right: 20px;
+      }
 
-        .gradient-border:after {
-            content: '';
-            position: absolute;
-            top: calc(-1 * var(--borderWidth));
-            left: calc(-1 * var(--borderWidth));
-            height: calc(100% + var(--borderWidth) * 2);
-            width: calc(100% + var(--borderWidth) * 2);
-            background: linear-gradient(60deg, #a166ab, #5073b8, #1098ad, #3c3783, #48c1fa);
-            border-radius: calc(2 * var(--borderWidth));
-            z-index: -1;
-            animation: animatedgradient 8s ease alternate infinite;
-            background-size: 300% 300%;
-        }
+      /* Styles for blue popup */
+      .mapboxgl-popup {
+        max-width: 250px;
+      }
 
-        @keyframes animatedgradient {
-            0% {
-                background-position: 0% 50%;
-            }
+      .mapboxgl-popup-content {
+        color: #333;
+        background: #ffffff;
+        opacity: 0.9;
+        border-radius: 10px;
+      }
 
-            50% {
-                background-position: 100% 50%;
-            }
+      /* add an opacity of 0.8 to the content but leave the image at 1 */
+      .mapboxgl-popup-content img {
+        opacity: 1;
+      }
 
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-        h2 {
-            font-family: "Bebas Neue", sans-serif;
-            font-size: 2em;
-            margin-bottom: 0;
-        }
-        .heading {
-            line-height: 1em;
-        }
-        .logo {
-            margin: 14px 30px 14px 0;
-        }
-        .logo-shark {
-            position: absolute;
-            z-index: 2;
-            /* margin: 14px; */
-            font-size: 1.8em;
-            right: 20px;
-        }
+      .mapboxgl-popup-tip {
+        border-top-color: #ffffff;
+      }
 
-        /* Styles for blue popup */
-        .mapboxgl-popup {
-            max-width: 250px;
-        }
+      .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
+        border-top-color: #ffffff;
+      }
 
-        .mapboxgl-popup-content {
-            color: #333;
-            background: #ffffff;
-            opacity: 0.9;
-            border-radius: 10px;
-        }
+      .mapboxgl-popup-anchor-top .mapboxgl-popup-tip {
+        border-bottom-color: #ffffff;
+      }
 
-        /* add an opacity of 0.8 to the content but leave the image at 1 */
-        .mapboxgl-popup-content img {
-            opacity: 1;
-        }
+      .mapboxgl-popup-anchor-left .mapboxgl-popup-tip {
+        border-right-color: #ffffff;
+      }
 
-        .mapboxgl-popup-tip {
-            border-top-color: #ffffff;
-        }
+      .mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
+        border-left-color: #ffffff;
+      }
 
-        .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
-            border-top-color: #ffffff;
-        }
+      .mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip {
+        border-bottom-color: #ffffff;
+      }
 
-        .mapboxgl-popup-anchor-top .mapboxgl-popup-tip {
-            border-bottom-color: #ffffff;
-        }
+      .mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip {
+        border-bottom-color: #ffffff;
+      }
 
-        .mapboxgl-popup-anchor-left .mapboxgl-popup-tip {
-            border-right-color: #ffffff;
-        }
+      .mapboxgl-popup-anchor-bottom-left .mapboxgl-popup-tip {
+        border-top-color: #ffffff;
+      }
 
-        .mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
-            border-left-color: #ffffff;
-        }
-
-        .mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip {
-            border-bottom-color: #ffffff;
-        }
-
-        .mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip {
-            border-bottom-color: #ffffff;
-        }
-
-        .mapboxgl-popup-anchor-bottom-left .mapboxgl-popup-tip {
-            border-top-color: #ffffff;
-        }
-
-        .mapboxgl-popup-anchor-bottom-right .mapboxgl-popup-tip {
-            border-top-color: #ffffff;
-        }
+      .mapboxgl-popup-anchor-bottom-right .mapboxgl-popup-tip {
+        border-top-color: #ffffff;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="title-bar gradient-border">
-        <span class="logo"><a href="https://betamtb.mytoibox.com/"><img src="./olympics/img/mtb-logo-transparent.svg" alt="back to My TOIbox"
-            class="mtb-logo-transparent"></a>
-        </span>
-        <span class="heading">
-            <h1>Shark Week</h1>
-        </span>
-        <span class="logo-shark">🦈</span>
+      <span class="heading">
+        <h1>Shark Week</h1>
+      </span>
+      <span class="logo-shark">🦈</span>
     </div>
     <div id="map"></div>
 
     <script>
-        mapboxgl.accessToken = 'pk.eyJ1IjoibXRiMjMiLCJhIjoiY2x1eDZxdnE1MGxydjJqbGw0em40Y3NpbiJ9.MMJSFnpRLogoiXRHYJGCJg';
-        const map = new mapboxgl.Map({
-            container: 'map',
-            // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-            style: 'mapbox://styles/mtb23/cly9apibs001d01rb36qx83ci',
-            zoom: 2.5,
-            center: [-63.29382117050238, 12.998746575435348]
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoibXRiMjMiLCJhIjoiY2x1eDZxdnE1MGxydjJqbGw0em40Y3NpbiJ9.MMJSFnpRLogoiXRHYJGCJg";
+      const map = new mapboxgl.Map({
+        container: "map",
+        // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+        style: "mapbox://styles/mtb23/cly9apibs001d01rb36qx83ci",
+        zoom: 2.5,
+        center: [-63.29382117050238, 12.998746575435348],
+      });
+
+      map.on("load", async () => {
+        // Get the initial location of the International Space Station (ISS).
+        const geojson = await getLocation();
+        console.log(geojson);
+        // Add the marine animals location as a source.
+        map.addSource("marine", {
+          type: "geojson",
+          data: geojson,
+        });
+        // Add the shark symbol layer to the map.
+        map.addLayer({
+          id: "marine",
+          type: "symbol",
+          source: "marine",
+          layout: {
+            "icon-image": "shark",
+            // 'icon-size': 0.25
+          },
         });
 
-        map.on('load', async () => {
-            // Get the initial location of the International Space Station (ISS).
-            const geojson = await getLocation();
-            console.log(geojson);
-            // Add the marine animals location as a source.
-            map.addSource('marine', {
-                type: 'geojson',
-                data: geojson
-            });
-            // Add the shark symbol layer to the map.
-            map.addLayer({
-                'id': 'marine',
-                'type': 'symbol',
-                'source': 'marine',
-                'layout': {
-                    'icon-image': 'shark',
-                    // 'icon-size': 0.25
-                }
-            });
+        // Update the source from the API every 100 seconds.
+        const updateSource = setInterval(async () => {
+          const geojson = await getLocation(updateSource);
+          map.getSource("marine").setData(geojson);
+        }, 100000);
 
-            // Update the source from the API every 100 seconds.
-            const updateSource = setInterval(async () => {
-                const geojson = await getLocation(updateSource);
-                map.getSource('marine').setData(geojson);
-            }, 100000);
+        async function getLocation(updateSource) {
+          // Make a GET request to the API and return the location of the ISS.
+          try {
+            const response = await fetch(
+              "https://www.mapotic.com/api/v1/maps/3413/pois.geojson/",
+              { method: "GET" }
+            );
+            const features = await response.json();
+            // Fly the map to the location.
+            // map.flyTo({
+            //     center: [longitude, latitude],
+            //     speed: 0.5
+            // });
+            // Return the location of the ISS as GeoJSON.
+            return features;
+          } catch (err) {
+            // If the updateSource interval is defined, clear the interval to stop updating the source.
+            if (updateSource) clearInterval(updateSource);
+            throw new Error(err);
+          }
+        }
 
-            async function getLocation(updateSource) {
-                // Make a GET request to the API and return the location of the ISS.
-                try {
-                    const response = await fetch(
-                        'https://www.mapotic.com/api/v1/maps/3413/pois.geojson/',
-                        { method: 'GET' }
-                    );
-                    const features = await response.json();
-                    // Fly the map to the location.
-                    // map.flyTo({
-                    //     center: [longitude, latitude],
-                    //     speed: 0.5
-                    // });
-                    // Return the location of the ISS as GeoJSON.
-                    return features;
-                } catch (err) {
-                    // If the updateSource interval is defined, clear the interval to stop updating the source.
-                    if (updateSource) clearInterval(updateSource);
-                    throw new Error(err);
-                }
+        let popup = new mapboxgl.Popup({
+          closeButton: true,
+          // closeOnClick: true
+        });
+
+        map.on("click", "marine", function (e) {
+          //  if any of the features properties are undefined, set them to 'Unknown'
+          for (let key in e.features[0].properties) {
+            if (e.features[0].properties[key] === undefined) {
+              e.features[0].properties[key] = "Unknown";
             }
-            
-            let popup = new mapboxgl.Popup({
-                closeButton: true,
-                // closeOnClick: true
-            });
+          }
 
-            map.on('click', 'marine', function (e) {
-                //  if any of the features properties are undefined, set them to 'Unknown'
-                for (let key in e.features[0].properties) {
-                    if (e.features[0].properties[key] === undefined) {
-                        e.features[0].properties[key] = 'Unknown';
-                    }
-                }
+          if (e.features[0].properties.weight === undefined) {
+            e.features[0].properties.weight = "Unknown";
+          }
+          if (e.features[0].properties.length === undefined) {
+            e.features[0].properties.length = "Unknown";
+          }
+          e.features[0].properties.weight =
+            e.features[0].properties.weight.replace(/['"]+/g, "");
+          e.features[0].properties.length =
+            e.features[0].properties.length.replace(/['"]+/g, "");
 
-                if (e.features[0].properties.weight === undefined) {
-                    e.features[0].properties.weight = 'Unknown';
-                }
-                if (e.features[0].properties.length === undefined) {
-                    e.features[0].properties.length = 'Unknown';
-                }
-                e.features[0].properties.weight = e.features[0].properties.weight.replace(/['"]+/g, '');
-                e.features[0].properties.length = e.features[0].properties.length.replace(/['"]+/g, '');
-                
-                console.log(e.features[0].properties);
-                // strip out the quotes from the weight and length with regex
+          console.log(e.features[0].properties);
+          // strip out the quotes from the weight and length with regex
 
-                popup.setLngLat(e.lngLat)
-                    .setHTML('<h2>' + e.features[0].properties.name + '</h2>' +
-                        "Species: " + e.features[0].properties.species + '<br>' +
-                        "Stage of life: " + e.features[0].properties.stage_of_life + '<br>' +
-                        
-                        "Weight: " + e.features[0].properties.weight + '<br>' +
-                        "Length: " + e.features[0].properties.length + '<br>' +
-                        '<img src=' + e.features[0].properties.image + ' width="200px"/>')
-                    .addTo(map);
-            });
-            // close the popup when the mouse leaves the marine layer.
-            map.on('mouseleave', 'marine', function () {
-                map.getCanvas().style.cursor = '';
-                popup.remove();
-            });
-
+          popup
+            .setLngLat(e.lngLat)
+            .setHTML(
+              "<h2>" +
+                e.features[0].properties.name +
+                "</h2>" +
+                "Species: " +
+                e.features[0].properties.species +
+                "<br>" +
+                "Stage of life: " +
+                e.features[0].properties.stage_of_life +
+                "<br>" +
+                "Weight: " +
+                e.features[0].properties.weight +
+                "<br>" +
+                "Length: " +
+                e.features[0].properties.length +
+                "<br>" +
+                "<img src=" +
+                e.features[0].properties.image +
+                ' width="200px"/>'
+            )
+            .addTo(map);
         });
+        // close the popup when the mouse leaves the marine layer.
+        map.on("mouseleave", "marine", function () {
+          map.getCanvas().style.cursor = "";
+          popup.remove();
+        });
+      });
     </script>
-
-</body>
-
+  </body>
 </html>
