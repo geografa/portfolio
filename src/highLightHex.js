@@ -18,7 +18,6 @@ export function highLightHex(map) {
     // if the user clicks the feature that matches the randomFeature.id, console.log the feature's id
     map.on("click", "hexagons-layer", (e) => {
       if (e.features[0].id === randomFeature.id) {
-        console.log("Winner!" + e.features[0].id);
       }
     });
   }, 10000);
