@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>The Summer Games</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wdth,wght@0,75..100,300..800;1,75..100,300..800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.4.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.4.0/mapbox-gl.js"></script>
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Open Sans", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      #sidebar {
+        position: absolute;
+        top: 76px;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        overflow-y: scroll;
+        z-index: 1;
+        background-color: rgb(0, 0, 0, 0.6);
+        /* blur the background */
+        backdrop-filter: blur(5px);
+      }
+
+      .map {
+        position: fixed;
+        top: 75px;
+        bottom: 0;
+        width: 100%;
+        z-index: 0;
+      }
+
+      a {
+        color: #404040;
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: #101010;
+      }
+
+      .title-bar {
+        padding: 8px;
+        color: #fff;
+        z-index: 1;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        background-color: rgba(0, 0, 0, 0.8);
+        align-items: flex-start;
+        height: 75px;
+      }
+
+      .gradient-border {
+        --borderWidth: 3px;
+        background: #1d1f20;
+        position: relative;
+        border-radius: var(--borderWidth);
+      }
+
+      .gradient-border:after {
+        content: "";
+        position: absolute;
+        top: calc(-1 * var(--borderWidth));
+        left: calc(-1 * var(--borderWidth));
+        height: calc(100% + var(--borderWidth) * 2);
+        width: calc(100% + var(--borderWidth) * 2);
+        background: linear-gradient(
+          60deg,
+          #f79533,
+          #f37055,
+          #ef4e7b,
+          #a166ab,
+          #5073b8,
+          #1098ad,
+          #07b39b,
+          #6fba82
+        );
+        border-radius: calc(2 * var(--borderWidth));
+        z-index: -1;
+        animation: animatedgradient 8s ease alternate infinite;
+        background-size: 300% 300%;
+      }
+
+      @keyframes animatedgradient {
+        0% {
+          background-position: 0% 50%;
+        }
+
+        50% {
+          background-position: 100% 50%;
+        }
+
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* make key frames to animate the border from red to green to blue
+        @keyframes colorchange {
+            0% {
+                border-bottom: #0081C8 3px solid;
+            }
+
+            20% {
+                border-bottom: #FCB131 3px solid;
+            }
+
+            40% {
+                border-bottom: #000000 3px solid;
+            }
+
+            60% {
+                border-bottom: #00A651 3px solid;
+            }
+
+            100% {
+                border-bottom: #EE334E 3px solid;
+            }
+        } */
+
+      /* create a toggle switch from .title-bar .menu  */
+      .toggle {
+        position: absolute;
+        /* top: 10px; */
+        /* left: 10px; */
+        width: 20px;
+        /* height: 30px; */
+        margin: 16px 8px;
+      }
+
+      .toggle div {
+        width: 100%;
+        height: 3px;
+        background: white;
+        margin: 6px auto;
+        transition: all 0.3s;
+        backface-visibility: hidden;
+      }
+
+      .toggle.on .one {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+
+      .toggle.on .two {
+        opacity: 0;
+      }
+
+      .toggle.on .three {
+        transform: rotate(-45deg) translate(7px, -8px);
+      }
+
+      #menu {
+        color: white;
+        border: 1px solid white;
+        width: 150px;
+        height: 100px;
+        padding: 10px;
+        border-radius: 3px;
+        font-family: "Segoe UI", Candara, "Bitstream Vera Sans", "DejaVu Sans",
+          "Bitstream Vera Sans", "Trebuchet MS", Verdana, "Verdana Ref",
+          sans-serif;
+        line-height: 100px;
+        text-align: center;
+        margin: auto;
+        display: none;
+      }
+
+      .title-bar .share {
+        width: 40px;
+        height: 40px;
+        margin: 6px 9px 0 0;
+      }
+
+      .title-bar h1 {
+        font-family: "Open Sans", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 700;
+        font-style: italic;
+        font-variation-settings: "wdth" 75;
+        text-transform: uppercase;
+        margin: 0;
+        line-height: 20px;
+        padding: 20px 2px;
+        text-align: center;
+      }
+
+      .detail-bar {
+        position: absolute;
+        top: 76px;
+        background: rgb(0, 0, 0, 0.6);
+        color: #fff;
+        width: 100%;
+        z-index: 1;
+        padding: 16px 18px;
+        font-size: 14px;
+        max-height: 100%;
+        overflow-y: scroll;
+      }
+
+      .poster {
+        float: left;
+        margin-right: 8px;
+      }
+
+      .detail-bar .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+
+      .detail-bar .year h3 {
+        font-weight: 300;
+        font-variation-settings: "wdth" 75;
+        text-transform: uppercase;
+      }
+
+      .detail-bar .city h3 {
+        font-weight: 700;
+        font-variation-settings: "wdth" 100;
+        line-height: 1.2em;
+      }
+
+      .detail-bar #expand {
+        font-weight: 700;
+        text-align: center;
+      }
+
+      .scroll-down {
+        border: solid rgb(255, 255, 255);
+        border-width: 0 3px 3px 0;
+        display: inline-block;
+        padding: 3px;
+        position: absolute;
+        left: 50%;
+        bottom: 10px;
+        -webkit-transform: translate(-50%, 0%) rotate(45deg);
+        -moz-transform: translate(-50%, 0%) rotate(45deg);
+        transform: translate(-50%, 0%) rotate(45deg);
+        -webkit-animation: fade_move_down 4s ease-in-out infinite;
+        -moz-animation: fade_move_down 4s ease-in-out infinite;
+        animation: fade_move_down 2s ease-in-out infinite;
+      }
+
+      /*animated scroll arrow animation*/
+      @-webkit-keyframes fade_move_down {
+        0% {
+          -webkit-transform: translate(0, -5px) rotate(45deg);
+          opacity: 0;
+        }
+
+        50% {
+          opacity: 1;
+        }
+
+        100% {
+          -webkit-transform: translate(0, 5px) rotate(45deg);
+          opacity: 0;
+        }
+      }
+
+      @-moz-keyframes fade_move_down {
+        0% {
+          -moz-transform: translate(0, -5px) rotate(45deg);
+          opacity: 0;
+        }
+
+        50% {
+          opacity: 1;
+        }
+
+        100% {
+          -moz-transform: translate(0, 5px) rotate(45deg);
+          opacity: 0;
+        }
+      }
+
+      @keyframes fade_move_down {
+        0% {
+          transform: translate(0, -5px) rotate(45deg);
+          opacity: 0;
+        }
+
+        50% {
+          opacity: 1;
+        }
+
+        100% {
+          transform: translate(0, 5px) rotate(45deg);
+          opacity: 0;
+        }
+      }
+
+      .listings {
+        height: 100%;
+        overflow-y: scroll;
+        padding-bottom: 80px;
+      }
+
+      .vl {
+        position: absolute;
+        border-left: 2px solid #797979;
+        opacity: 0.6;
+        height: 100%;
+        left: 28px;
+        z-index: -1;
+      }
+
+      .listings .item {
+        display: block;
+        padding: 10px;
+        text-decoration: none;
+        font-size: 0.75em;
+        color: #fff;
+      }
+
+      .listings .item:last-child {
+        border-bottom: none;
+      }
+
+      .listings .item .year {
+        display: inline;
+        font-weight: 800;
+        font-style: italic;
+      }
+
+      .summer {
+        color: #feb710;
+      }
+
+      .listings .item .city {
+        display: inline;
+        color: #ffffff;
+        font-weight: 700;
+      }
+
+      .listings .item.active {
+        background-color: rgb(0, 0, 0, 0.6);
+      }
+
+      ::-webkit-scrollbar {
+        width: 3px;
+        height: 3px;
+        border-left: 0;
+        background: rgb(0 0 0 / 10%);
+      }
+
+      ::-webkit-scrollbar-track {
+        background: none;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #03094d;
+        border-radius: 0;
+      }
+
+      /* Marker tweaks */
+      .mapboxgl-popup {
+        padding-bottom: 60px;
+      }
+
+      .mapboxgl-popup-close-button {
+        display: none;
+      }
+
+      .mapboxgl-popup-content {
+        font: 400 15px/22px "Open Sans", "Helvetica Neue", sans-serif;
+        padding: 0;
+        width: 180px;
+        border-radius: 10px;
+      }
+
+      .mapboxgl-popup-content h3 {
+        background: #050848;
+        color: #fff;
+        margin: 0;
+        padding: 10px;
+        border-radius: 10px 10px 0 0;
+        font-weight: 700;
+        margin-top: -15px;
+      }
+
+      .mapboxgl-popup-content h4 {
+        margin: 0;
+        padding: 10px;
+        font-weight: 400;
+      }
+
+      .mapboxgl-popup-content div {
+        padding: 10px;
+      }
+
+      .mapboxgl-popup-anchor-top > .mapboxgl-popup-content {
+        margin-top: 15px;
+      }
+
+      .mapboxgl-popup-anchor-top > .mapboxgl-popup-tip {
+        border-bottom-color: #fff;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="title-bar gradient-border">
+      <!-- insert a toggle switch  -->
+      <span class="heading">
+        <div class="toggle">
+          <div class="one"></div>
+          <div class="two"></div>
+          <div class="three"></div>
+        </div>
+      </span>
+
+      <span class="heading">
+        <h1>The Summer Games</h1>
+      </span>
+    </div>
+
+    <div class="detail-bar" style="display: none">Details</div>
+    <div id="sidebar" style="display: none">
+      <div class="vl"></div>
+      <div id="listings" class="listings"></div>
+    </div>
+    <div id="map" class="map"></div>
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoibXRiMjMiLCJhIjoiY2x1eDZxdnE1MGxydjJqbGw0em40Y3NpbiJ9.MMJSFnpRLogoiXRHYJGCJg";
+
+      /**
+       * Add the map to the page
+       */
+      const map = new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/mtb23/cly6bkd2900fd01oe30wf5wc3",
+        center: [-77.034084142948, 38.909671288923],
+        zoom: 2,
+        scrollZoom: true,
+        hash: true,
+      });
+
+      const summerVenues = {
+        type: "FeatureCollection",
+        features: [
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [23.74105, 37.96829],
+            },
+            properties: {
+              Year: "1896",
+              City: "Athens",
+              Country: "Greece 🇬🇷 ",
+              Times_Hosted: 2,
+              Season: "S",
+              Summary:
+                "The inaugural 1896 Summer Olympics were held in Athens, Greece from April 6-15. 14 nations and 241 male athletes participated. Winners received silver medals, later upgraded to gold by the IOC. The highlight was Greek Spyridon Louis' marathon victory. The United States won the most gold medals with 11, while Greece won the most overall with 47.",
+              Details:
+                "<h3 id='venues'>Venues</h3><ul><li>Panathenaic Stadium (athletics, wrestling)</li><li>Neo Phaliron Velodrome (cycling) </li><li>Zappeion (fencing)</li><li>Open water venues for swimming events</li></ul><h3 id='participatingcountries'>Participating Countries</h3><ul><li>14 nations participated, with 241 athletes (all male)</li><li>Over 65% of athletes were from Greece</li></ul><h3 id='notableathletes'>Notable Athletes</h3><ul><li>Spyridon Louis (Greece) - Won the marathon, becoming a national hero</li><li>Alfréd Hajós (Hungary) - Won swimming events in freezing open water</li><li>James Connolly (USA) - First Olympic champion in over 1,500 years (triple jump)</li><li>Carl Schuhmann (Germany) - Most successful athlete with 4 wrestling/gymnastics wins</li></ul><h3 id='newsports'>New Sports</h3><ul><li>None, but swimming events were held in open water for the first time</li></ul><h3 id='innovations'>Innovations</h3><ul><li>First modern Olympic marathon race</li><li>Thomas Burke (USA) used a crouching start in sprint races</li></ul><h3 id='controversies'>Controversies</h3><ul><li>None major, though some uncertainty over exact athlete numbers</li></ul><h3 id='worldevents'>World Events</h3><ul><li>Greece had recently gained independence and hosted to affirm nationhood</li><li>Financial troubles and political instability initially threatened the Games</li></ul><h3 id='othernotes'>Other Notes</h3><ul><li>Winners received silver medals, runners-up copper (later amended to gold/silver/bronze)</li><li>Olympic theme song debuted</li><li>Torch relay inaugurated, snaking through Athens streets</li></ul>",
+              Image:
+                "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/ibebbeb35a8c282b4/version/1678041382/image.png",
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [2.350999999999999, 48.857],
+            },
+            properties: {
+              Year: "1900",
+              City: "Paris",
+              Country: "France 🇫🇷 ",
+              Times_Hosted: 2,
+              Season: "S",
+              Summary:
+                "The 1900 Paris Olympics were overshadowed by the World's Fair, with women competing for the first time in select sports like tennis and golf. Swimming events were held in the Seine River. Notable performances included American athletes winning 9 of the 12 athletics events.",
+              Details:
+                "<h3 id='numberofparticipatingcountries'>Number of Participating Countries</h3><ul><li>40 countries participated with national pavilions</li><li>Over 83,000 exhibitors from around the world</li></ul><h3 id='notableathletes'>Notable Athletes</h3><ul><li>Alvin Kraenzlein (USA) - Won 4 athletics events (60m, 110m hurdles, 200m hurdles, long jump)</li><li>The first female Olympic athletes competed, including Mrs. Brohy and Miss Ohnier of France in croquet</li></ul><h3 id='notablefashion'>Notable Fashion</h3><ul><li>Art Nouveau style was prominently featured, with displays by René Lalique, Gaillard, Guimard, Charpentier and others</li></ul><h3 id='themesong'>Theme Song</h3><p>No specific theme song is mentioned.</p><h3 id='recordsbroken'>Records Broken</h3><p>No major world records are cited, though it showcased many technological innovations and feats of engineering.</p><h3 id='newsportsintroduced'>New Sports Introduced</h3><p>The 1900 Paris games were the first Olympics with women's events, including croquet.</p><h3 id='innovations'>Innovations</h3><ul><li>Grande Roue de Paris (giant Ferris wheel) </li><li>Moving sidewalks</li><li>Escalators</li><li>Diesel engines</li><li>Talking films</li><li>Telegraphone (magnetic audio recorder)</li><li>First regular passenger trolleybus line</li></ul><h3 id='controversies'>Controversies</h3><p>No major controversies are mentioned.</p><h3 id='worldevents'>World Events</h3><p>The Exposition celebrated the achievements and progress of the 19th century, showcasing France as a major colonial power through pavilions at the Trocadéro. It took place during a period of economic growth and optimism known as the Belle Époque era in France.</p>",
+              Image:
+                "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/i22ccd639204c6c0b/version/1678041369/image.png",
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [-90.313611, 38.647778],
+            },
+            properties: {
+              Year: "1904",
+              City: "St. Louis",
+              Country: "United States 🇺🇸 ",
+              Times_Hosted: 1,
+              Season: "S",
+              Summary:
+                "The 1904 Summer Olympics were held in St. Louis, Missouri, United States from July 1 to November 23, 1904, as part of the Louisiana Purchase Exposition (also known as the St. Louis World's Fair).",
+              Details:
+                "<h3 id='venues'>Venues</h3><ul><li>Francis Olympic Field (athletics, gymnastics, wrestling, etc.)</li><li>Francis Gymnasium (boxing, fencing)  </li><li>Forest Park (swimming, diving, water polo)</li><li>Creve Coeur Lake (rowing)</li><li>Glen Echo Country Club (golf)</li></ul><h3 id='participatingcountries'>Participating Countries</h3><p>Only 12 countries sent athletes, with 645 men and 6 women competing. The vast majority (526) were from the United States.</p><h3 id='notableathletes'>Notable Athletes</h3><ul><li>George Eyser (USA) - won 6 gymnastics medals despite having a wooden leg</li><li>Ray Ewry (USA) - won 8 athletics medals </li><li>Thomas Kiely (Ireland) - won decathlon gold medal</li></ul><h3 id='newsports'>New Sports</h3><p>Boxing, decathlon, and freestyle wrestling made their Olympic debuts.</p><h3 id='recordsbroken'>Records Broken</h3><p>No world records were officially recognized, as Olympic records were not kept until 1912.</p><h3 id='controversies'>Controversies</h3><ul><li>Anthropology exhibits displayed people from Philippines, Arctic, etc. in recreated villages.</li><li>Many events combined U.S. national championships with Olympic championships due to lack of international entries.</li></ul><h3 id='worldevents'>World Events</h3><p>The Russo-Japanese War limited European participation in the Games.</p><p>The 1904 St. Louis Olympics were historically significant as the first Olympic Games held outside Europe, but were marred by poor organization and low international presence.</p>",
+              Image:
+                "https://image.jimcdn.com/app/cms/image/transf/dimension=136x10000:format=png/path/s293f5a94d3403280/image/ic30b9e00d12ff5b6/version/1678041355/image.png",
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [-0.2322259183584947, 51.50916298708566],
+            },
+            properties: {
+              Year: "1908",
+              City: "London",
+              Country: "England 🏴󠁧󠁢󠁥󠁮󠁧󠁿 ",
+              Times_Hosted: 3,
+              Season: "S",
+              Summary:
+                "The 1908 London Games introduced the first official opening ceremony. New events included diving, motorboating, indoor tennis and field hockey. Italian Dorando Pietri collapsed near the finish of the marathon.",
+              Details:
+                "<h3 id='venues'>Venues</h3><ul><li>White City Stadium was built specifically for the Games and hosted the opening ceremony, athletics, gymnastics, and other events. It had a capacity of 68,000.</li><li>Other venues included Bisley Ranges (shooting), Franco-British Exhibition (fencing), and Knightsbridge (figure skating).</li></ul><h3 id='participatingcountries'>Participating Countries</h3><ul><li>22 countries participated, with around 2,000 athletes (1,971 men and 37 women).</li></ul><h3 id='notableathletes'>Notable Athletes</h3><ul><li>Dorando Pietri of Italy collapsed near the finish of the marathon but was helped across the line first, before being disqualified for receiving aid. He was awarded a special cup by Queen Alexandra.</li><li>John Taylor of Great Britain won three gold medals in swimming events.</li></ul><h3 id='fashion'>Fashion</h3><ul><li>No notable fashion trends are mentioned in the sources.</li></ul><h3 id='themesong'>Theme Song</h3><ul><li>The sources do not mention an official theme song.</li></ul><h3 id='recordsbroken'>Records Broken</h3><ul><li>The sources do not provide details on specific records broken.</li></ul><h3 id='newsports'>New Sports</h3><ul><li>Diving, motorboating, indoor tennis, and field hockey were introduced as new Olympic sports.</li></ul><h3 id='innovations'>Innovations</h3><ul><li>It was the first Olympic Games to have an official opening ceremony.</li></ul><h3 id='controversies'>Controversies</h3><ul><li>The Finnish team protested by refusing to march behind the Russian flag due to Russian rule over Finland.</li><li>Many Irish athletes boycotted the Games as subjects of the British crown. </li><li>American athlete Ralph Rose refused to dip the U.S. flag to King Edward VII, starting a tradition.</li><li>Disputes arose between American and British officials over track events like the 400m final.</li></ul><h3 id='worldevents'>World Events</h3><ul><li>The 1906 eruption of Mount Vesuvius caused the Games to be relocated from Rome to London due to financial constraints in Italy.</li></ul>",
+              Image:
+                "https://image.jimcdn.com/app/cms/image/transf/dimension=140x10000:format=png/path/s293f5a94d3403280/image/ifd2e95b215e6028b/version/1678041336/image.png",
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [18.07911803495014, 59.34505820716265],
+            },
+            properties: {
+              Year: "1912",
+              City: "Stockholm",
+              Country: "Sweden 🇸🇪 ",
+              Times_Hosted: 1,
+              Season: "S",
+              Summary:
+                "The 1912 Stockholm Olympics had representatives from all inhabited continents for the first time. New sports included boxing, cycling, swimming, tennis and the modern pentathlon.",
+              Details:
+                "<h3 id='venues'>Venues</h3><p>The 1912 Summer Olympics were held in Stockholm, Sweden. The main venue was the Stockholm Olympic Stadium, which hosted the opening and closing ceremonies as well as the athletics, gymnastics, and equestrian events.</p><h3 id='participatingcountries'>Participating Countries</h3><p>A total of 28 nations participated in the 1912 Summer Olympics, with 2,406 athletes (2,359 men and 47 women) competing in 102 events across 14 sports.</p><h3 id='notableathletes'>Notable Athletes</h3><ul><li>Jim Thorpe (USA) won gold medals in the pentathlon and decathlon, though he was later stripped of his medals and then reinstated in 1982.</li><li>Hugo Wieslander (SWE) originally won silver in the decathlon, but was later awarded the gold medal after Thorpe's disqualification. In 2022, the IOC reinstated Thorpe as the sole winner.</li><li>Arvid Åberg (SWE) won a silver medal in the triple jump.</li></ul><h3 id='notablefashion'>Notable Fashion</h3><p>The 1912 Olympics saw the introduction of women's swimming and diving events, with female athletes competing in more revealing swimsuits compared to previous games.</p><h3 id='themesong'>Theme Song</h3><p>There does not appear to be any information about an official theme song for the 1912 Summer Olympics in Stockholm.</p><h3 id='recordsbroken'>Records Broken</h3><p>The 1912 Olympics introduced electronic timing for athletics events, allowing for more accurate record-keeping. Several new events were also added, including the decathlon and pentathlon.</p><h3 id='newsportsintroduced'>New Sports Introduced</h3><p>The 1912 Summer Olympics featured the debut of the decathlon and pentathlon events.</p><h3 id='innovationsinsports'>Innovations in Sports</h3><p>The 1912 Olympics saw the introduction of electronic timing devices for athletics events, as well as the first public address system used at the games.</p><h3 id='controversies'>Controversies</h3><p>There were no major controversies reported for the 1912 Summer Olympics in Stockholm.</p><h3 id='currentworldevents'>Current World Events</h3><p>In 1912, the year of the Stockholm Olympics, major world events included the sinking of the RMS Titanic, the First Balkan War, and the beginning of the Mexican Revolution.</p>",
+              Image:
+                "https://image.jimcdn.com/app/cms/image/transf/dimension=152x10000:format=png/path/s293f5a94d3403280/image/i328f7fbb3d84ddd1/version/1678041323/image.png",
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [4.382222, 51.185],
+            },
+            properties: {
+              Year: "1920",
+              City: "Antwerp",
+              Country: "Belgium 🇧🇪 ",
+              Times_Hosted: 1,
+              Season: "S",
+              Summary:
+                "After World War I, the 1920 Antwerp Games welcomed Germany but not the other defeated nations. The Olympic Anthem was played for the first time during the opening ceremony.",
+              Details:
+                "<h3 id='venues'>Venues</h3><p>The main venue was the Olympisch Stadion in Antwerp, which was reconstructed from the existing Beerschot Stadium. The sailing events were held in Ostend, Belgium and Amsterdam, Netherlands.</p><h3 id='participatingcountries'>Participating Countries</h3><p>A total of 29 countries participated in the 1920 Antwerp Olympics. The defeated nations from World War I - Germany, Austria, Hungary, Bulgaria, and the Ottoman Empire - were banned from competing. The newly formed Soviet Union also chose not to attend.</p><h3 id='notableathletes'>Notable Athletes</h3><ul><li>Paavo Nurmi of Finland won 3 gold medals in track and field events.</li><li>Italian fencer Nedo Nadi won 5 gold medals, including individual titles in foil and sabre.</li><li>American swimmers Duke Kahanamoku (2 golds), Ethelda Bleibtrey (3 golds), and 14-year-old Aileen Riggin (1 gold in diving) had standout performances.</li><li>French tennis player Suzanne Lenglen, nicknamed 'La Divine', won gold in singles, mixed doubles, and bronze in women's doubles.</li></ul><h3 id='notablefashion'>Notable Fashion</h3><p>The 1920 Olympics saw the introduction of the Olympic flag with its five interlocking rings, representing the five continents. </p><h3 id='themesong'>Theme Song</h3><p>There does not appear to be a specific theme song associated with the 1920 Antwerp Olympics.</p><h3 id='recordsbroken'>Records Broken</h3><p>The Finnish team had a historic performance, winning 9 gold medals in athletics, just one fewer than the dominant American team. </p><h3 id='newsportsintroduced'>New Sports Introduced</h3><p>Ice hockey made its Olympic debut at the 1920 Antwerp Games, though it was the only time this winter sport appeared in a Summer Olympics. </p><h3 id='innovations'>Innovations</h3><p>The 1920 Olympics introduced the Olympic oath, with Belgian fencer Victor Boin taking the oath 'in a spirit of chivalry, for the honor of our country and for the glory of sport'. </p><h3 id='controversies'>Controversies</h3><p>There were some controversies around football matches, with the Swedish team nearly withdrawing in protest over a referee decision, and the Czechoslovakian team leaving the field in their final match against Belgium after a disputed penalty call. </p><h3 id='worldevents'>World Events</h3><p>The 1920 Olympics took place just 9 months after the end of World War I, and the host city of Antwerp was still recovering from the devastation of the war. This was reflected in the architecture and ceremonies, which celebrated military might as much as peace. </p>",
+              Image:
+                "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/i01e09f47553f7bc1/version/1678041281/image.png",
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [2.248056, 48.929444],
+            },
+            properties: {
+              Year: "1924",
+              City: "Paris",
+              Country: "France 🇫🇷 ",
+              Times_Hosted: 2,
+              Season: "S",
+              Summary:
+                'The 1924 Paris Olympics debuted the Olympic motto "Citius, Altius, Fortius" and the Olympic Code. It was the first Games with a closing ceremony and the Olympic flame.',
+              Details:
+                "<h3 id='venues'>Venues</h3><p>The 1924 Summer Olympics in Paris, France were held from July 5 to July 27, 1924. The main venue was the Olympic Stadium of Colombes, which had a capacity of 45,000 and hosted the opening ceremony as well as several sporting events.</p><h3 id='participatingcountries'>Participating Countries</h3><p>A total of 44 countries participated in the 1924 Paris Olympics, which was a record at the time. This included the debut of several countries such as Ecuador, Ireland, and Uruguay.</p><h3 id='notableathletes'>Notable Athletes</h3><ul><li>Paavo Nurmi of Finland dominated the long-distance running events, winning the 1500m, 5000m, and cross-country races. </li><li>Ville Ritola of Finland won the 10,000m and 3000m steeplechase events.</li><li>Johnny Weissmuller of the United States won 3 gold medals in swimming and also won a bronze medal as part of the water polo team.</li><li>Helen Wills of the United States won gold medals in singles and doubles tennis.</li></ul><h3 id='notablefashion'>Notable Fashion</h3><p>The 1924 Olympics saw the introduction of the first Olympic Village, where athletes were housed together for the first time. This allowed for more interaction and cultural exchange between athletes from different countries.</p><h3 id='themesong'>Theme Song</h3><p>There does not appear to be any information about an official theme song for the 1924 Paris Olympics in the given search results.</p><h3 id='recordsbroken'>Records Broken</h3><p>The 'Flying Finns' Paavo Nurmi and Ville Ritola set new world records in several long-distance running events. Swimming also saw a high caliber of competition, with stars like Johnny Weissmuller and Andrew 'Boy' Charlton setting new marks.</p><h3 id='newsportsintroduced'>New Sports Introduced</h3><p>Fencing was added to the women's events for the first time at the 1924 Olympics. However, the total number of events decreased compared to previous games due to a reduction in shooting and yachting competitions.</p><h3 id='innovations'>Innovations</h3><p>The 1924 Olympics were the first to feature an Olympic Village where athletes were housed together. This allowed for more interaction and cultural exchange between competitors.</p><h3 id='controversies'>Controversies</h3><p>The search results do not mention any major controversies surrounding the 1924 Paris Olympics.</p><h3 id='worldevents'>World Events</h3><p>The 1924 Olympics took place just a few years after World War I ended. France, as the host nation, was still recovering from the devastation of the war.</p>",
+              Image:
+                "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/i615d8f5d40525eb4/version/1678041247/image.png",
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [4.854167, 52.343333],
+            },
+            properties: {
+              Year: "1928",
+              City: "Amsterdam",
+              Country: "Netherlands 🇳🇱 ",
+              Times_Hosted: 1,
+              Season: "S",
+              Summary:
+                "The 1928 Amsterdam Games saw the first Olympic flame lit during the ceremonies. A new medal design by Giuseppe Cassioli was introduced and used until 1968.",
+              Details:
+                "<h3 id='venues'>Venues</h3><ul><li>The main venue was the Olympic Stadium, designed by architect Jan Wils. It hosted the opening and closing ceremonies, athletics, and other events.</li><li>Other venues included the Netherlands Sports Park, temporary halls for boxing/weightlifting/fencing, and facilities for rowing, shooting, sailing, road cycling, marathon, and equestrian events.</li></ul><h3 id='participation'>Participation</h3><ul><li>46 nations participated, with 2,883 athletes (2,606 men, 277 women).</li><li>This was the first Olympics to feature a significant increase in women's participation, with 5 new women's athletics events added.</li><li>Asian athletes won gold medals for the first time, including Mikio Oda of Japan in the triple jump and Yoshiyuki Tsuruta of Japan in the 200m breaststroke.</li><li>The Indian field hockey team began a streak of 6 consecutive gold medals in the sport.</li></ul><h3 id='notableevents'>Notable Events</h3><ul><li>The Olympic flame was lit for the first time in the modern era, though the torch relay would not debut until the 1936 Olympics.</li><li>The parade of nations started with Greece and ended with the host Netherlands, a tradition that continues today.</li><li>Coca-Cola made its first appearance as an official Olympic sponsor.</li><li>Parking signs with the iconic white 'P' on blue background were introduced to accommodate the growing number of cars.</li></ul><h3 id='recordsandnewsports'>Records and New Sports</h3><ul><li>Athletics events were held on a standardized 400m track.</li><li>Women's athletics events were introduced, including 100m, 800m, high jump, discus, and 400m hurdles.</li><li>Germany returned to the Olympics for the first time since 1912 after being banned in 1920 and 1924.</li></ul><h3 id='controversies'>Controversies</h3><ul><li>There was some objection to the inclusion of women's athletics events, with the former IOC president Pierre de Coubertin opposing them.</li><li>The 800m women's race was criticized as the competitors finished in a state of exhaustion, leading to the distance being banned for women until 1960.</li></ul><h3 id='worldevents'>World Events</h3><ul><li>The 1920s was a period of economic prosperity and cultural dynamism in the Netherlands and Europe following World War I.</li></ul>",
+              Image:
+                "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/i18eff07c1abb2d97/version/1678041212/image.png",
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [-118.168, 34.161],
+            },
+            properties: {
+              Year: "1932",
+              City: "Los Angeles",
+              Country: "United States 🇺🇸 ",
+              Times_Hosted: 2,
+              Season: "S",
+              Summary:
+                "The 1932 Los Angeles Olympics featured the first Olympic Village for male athletes only. It was also the first time the duration was set at 16 days.",
+              Details:
+                "<h3 id='venues'>Venues</h3><p>The main venue was the Los Angeles Memorial Coliseum, which was known as the Olympic Stadium in 1932. An Olympic Village was built for the first time to house the male athletes, while female athletes were housed at the Chapman Park Hotel on Wilshire Boulevard.</p><h3 id='participation'>Participation</h3><p>37 nations participated in the 1932 Olympics, down from 46 in the previous 1928 Games, due to the impact of the Great Depression. A total of 1,332 athletes (1,206 men and 126 women) competed.</p><h3 id='notableathletes'>Notable Athletes</h3><ul><li>Babe Didrikson won gold medals in the javelin throw and 80m hurdles, and a silver medal in the high jump. She was the only athlete, male or female, to win medals in running, throwing, and jumping events.</li><li>Eddie Tolan of the United States won gold medals in the 100m and 200m sprint events.</li></ul><h3 id='fashion'>Fashion</h3><p>There are no notable details about the fashion at the 1932 Olympics mentioned in the search results.</p><h3 id='themesong'>Theme Song</h3><p>There is no information about a theme song for the 1932 Olympics in the search results.</p><h3 id='recordsbroken'>Records Broken</h3><p>The search results do not mention any specific records that were broken at the 1932 Olympics.</p><h3 id='newsports'>New Sports</h3><p>The 1932 Olympics introduced several new events, including the women's 80m hurdles and javelin throw.</p><h3 id='innovations'>Innovations</h3><p>The 1932 Olympics introduced several innovations, including the first Olympic Village to house male athletes, the first use of a victory podium, and the first Olympic mascot (an unofficial Scottish Terrier named Smoky).</p><h3 id='controversies'>Controversies</h3><p>The search results mention that Babe Didrikson was controversially denied a gold medal in the high jump, despite winning the event, due to her 'illegal' technique.</p><h3 id='worldevents'>World Events</h3><p>The 1932 Olympics took place during the Great Depression, which significantly impacted participation, with only 37 nations competing compared to 46 in the previous 1928 Games.</p>",
+              Image:
+                "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/i2917d7c9b19424af/version/1678041186/image.png",
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [13.239444, 52.514722],
+            },
+            properties: {
+              Year: "1936",
+              City: "Berlin",
+              Country: "Germany 🇩🇪 ",
+              Times_Hosted: 1,
+              Season: "S",
+              Summary:
+                "The 1936 Berlin Olympics were a major propaganda event for Nazi Germany under Adolf Hitler. The Nazis attempted to showcase Aryan racial superiority, but African-American athlete Jesse Owens won four gold medals, undermining their ideology. Germany removed anti-Semitic signs and cleaned up Berlin for the Games, but resumed persecution of Jews and other minorities immediately after. The Olympics were broadcast on television for the first time, with 25 viewing rooms in Berlin. New Olympic traditions like the torch relay were introduced. While Germany topped the medal count, the Games are remembered for the Nazis' use of them as a facade to camouflage their racist and militaristic policies.",
+              Details:
+                "<h3 id='venues'>Venues</h3><p>The 1936 Berlin Olympic Games were held in a newly constructed sports complex called the Reichssportfeld, which covered 325 acres and included four stadiums. This complex was draped in Nazi banners and symbols to showcase the regime's ideology.</p><h3 id='participatingcountries'>Participating Countries</h3><p>A total of 49 countries participated in the 1936 Berlin Olympics, the most ever at that point. Germany had the largest team with 348 athletes, followed by the United States with 312 athletes, including 18 African Americans.</p><h3 id='notableathletes'>Notable Athletes</h3><ul><li>Jesse Owens, an African-American athlete, won 4 gold medals and set world records in the 100m, 200m, and long jump. The Nazis considered his race to be 'subhuman', but he became a hero to the rest of the world.</li><li>Robert Fein, an Austrian Jewish weightlifter, broke the lightweight world record.</li><li>Several Jewish athletes from other countries also won medals, despite the Nazi regime's antisemitic policies.</li></ul><h3 id='notablefashion'>Notable Fashion</h3><p>There were no notable fashion trends reported for the 1936 Berlin Olympics.</p><h3 id='themesong'>Theme Song</h3><p>Richard Strauss composed a special anthem to celebrate the Berlin Olympics.</p><h3 id='recordsbroken'>Records Broken</h3><ul><li>Jesse Owens set world records in the 100m, 200m, and long jump.</li><li>The American 4x100m relay team set an Olympic record.</li></ul><h3 id='newsportsintroduced'>New Sports Introduced</h3><p>No new sports were introduced at the 1936 Berlin Olympics.</p><h3 id='innovationsinsports'>Innovations in Sports</h3><p>The 1936 Olympics saw the first use of technology like slow-motion cameras and telephoto lenses to capture the events.</p><h3 id='controversies'>Controversies</h3><ul><li>There was worldwide pressure to boycott the 1936 Olympics due to the Nazi regime's antisemitic and racist policies, but the boycott movement ultimately failed.</li><li>The Nazis temporarily removed anti-Jewish signs and hid their persecution of Jews and other minorities to present a tolerant image to foreign visitors.</li><li>Hitler refused to put the gold medal around Jesse Owens' neck, as he did not want to honor an African-American athlete.</li></ul><h3 id='worldevents'>World Events</h3><p>The 1936 Berlin Olympics took place just two years after Adolf Hitler became Chancellor of Germany and consolidated his power as Führer. The Nazi regime used the Games as a major propaganda opportunity to showcase their vision of a strong, united, and 'Aryan' Germany to the world, even as they were intensifying their persecution of Jews, Roma, and other groups.</p>",
+              Image:
+                "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/ice3b1f621af162bf/version/1678041161/image.png",
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [24.927222, 60.186944],
+            },
+            properties: {
+              Year: "1952",
+              City: "Helsinki",
+              Country: "Finland 🇫🇮 ",
+              Times_Hosted: 1,
+              Season: "S",
+              Summary:
+                "The 1952 Summer Olympics, officially known as the Games of the XV Olympiad, were held in Helsinki, Finland from July 19 to August 3. It was the first Olympic Games to include the Soviet Union and other newly independent nations after World War II. A total of 69 countries participated with 4,932 athletes (4,411 men and 521 women) competing in 149 events across 17 sports. Notable achievements included Emil Zátopek's incredible treble in the 5,000m, 10,000m, and marathon, and Marjorie Jackson's double gold in the 100m and 200m sprints for women. The Games were praised for their organization and for promoting international brotherhood during the early stages of the Cold War.",
+              Details:
+                "<h3 id='venues'>Venues</h3><p>The 1952 Summer Olympics were held in Helsinki, Finland. The main venue was the Helsingin Olympiastadion (Helsinki Olympic Stadium), which hosted the opening and closing ceremonies as well as track and field events. Other venues included the Töölön Pallokenttä for football, the Messuhalli for boxing, and the Otaniemi campus for the athletes from the Soviet-led Eastern Bloc.</p><h3 id='participatingcountries'>Participating Countries</h3><p>A total of 69 countries participated in the 1952 Helsinki Olympics, including the Soviet Union, People's Republic of China, Hong Kong, Indonesia, Israel, Thailand, and Saarland, which were making their Olympic debuts.</p><h3 id='notableathletes'>Notable Athletes</h3><ul><li>Emil Zátopek of Czechoslovakia won gold medals in the 5,000m, 10,000m, and marathon, becoming the only person to achieve this feat in a single Olympics.</li><li>Emil Zátopek's wife, Dana Zátopková, also won a gold medal in the women's javelin throw.</li><li>Paavo Nurmi, the legendary Finnish distance runner, lit the Olympic flame during the opening ceremony.</li><li>Lindy Remigino of the United States won the 100m in a photo finish, with four athletes tied for the same time of 10.4 seconds.</li><li>Pat McCormick of the United States won two gold medals in diving.</li><li>Henri St. Cyr of Sweden won gold medals in both individual and team dressage events in equestrian.</li></ul><h3 id='notablefashion'>Notable Fashion</h3><p>There are no significant reports of notable fashion trends or innovations at the 1952 Helsinki Olympics.</p><h3 id='themesong'>Theme Song</h3><p>The 1952 Helsinki Olympics did not have an official theme song. Instead, the organizers held a competition to select an Olympic anthem, which was won</p>",
+              Image:
+                "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/ic87e32fe2fd4dca9/version/1678041014/image.png",
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [144.983333, -37.82],
+            },
+            properties: {
+              Year: "1956",
+              City: "Melbourne",
+              Country: "Australia 🇦🇺 ",
+              Times_Hosted: 1,
+              Season: "S",
+              Summary:
+                "The 1956 Summer Olympics, held in Melbourne, Australia from November 22 to December 8, were the first Games staged in the Southern Hemisphere and Oceania. They were also the first Olympics held outside Europe and North America. Notable events included the \"Blood in the Water\" water polo match between Hungary and the Soviet Union, the introduction of the athletes' parade during the closing ceremony, and Australia's strong performance with 13 gold medals, including Betty Cuthbert's sprint triple gold. The equestrian events were held in Stockholm due to quarantine regulations.Nine countries boycotted the Games due to the Suez Crisis and Soviet invasion of Hungary.",
+              Details:
+                "<h3 id='1956melbourneolympics'>1956 Melbourne Olympics</h3><h3 id='venues'>Venues</h3><p>The 1956 Summer Olympics were held in Melbourne, Australia, with the exception of the equestrian events which were held in Stockholm, Sweden due to Australia's strict quarantine regulations.</p><h3 id='participatingcountries'>Participating Countries</h3><p>72 countries participated in the 1956 Melbourne Olympics. This was a relatively low number due to the remoteness of Australia and two international crises at the time - the Suez Crisis and the Hungarian Revolution. Egypt, Lebanon, Iraq, the Netherlands, Spain, and Switzerland boycotted the Games in protest.</p><h3 id='notableathletes'>Notable Athletes</h3><ul><li>Betty Cuthbert (Australia) - Won gold medals in the 100m, 200m, and 4x100m relay, becoming the first Australian woman to win 3 gold medals at a single Olympics.</li><li>Dawn Fraser (Australia) - Won gold medals in the 100m freestyle, 4x100m freestyle relay, and silver in the 400m freestyle.</li><li>Murray Rose (Australia) - Won gold medals in the 400m freestyle, 1500m freestyle, and 4x200m freestyle relay.</li><li>Bobby Joe Morrow (USA) - Won 3 gold medals in the 100m, 200m, and 4x100m relay.</li><li>Al Oerter (USA) - Won the first of his 4 consecutive gold medals in the discus throw.</li><li>Vladimir Kuts (Soviet Union) - Won gold medals in the 5000m and 10,000m.</li></ul><h3 id='fashion'>Fashion</h3><p>There were no notable fashion trends reported from the 1956 Melbourne Olympics.</p><h3 id='themesong'>Theme Song</h3><p>There does not appear to be a specific theme song associated with the 1956 Melbourne Olympics.</p><h3 id='recordsbroken'>Records Broken</h3><p>Several world records were broken at the 1956 Melbourne Olympics, including in swimming events by Australian stars Dawn Fraser and Murray Rose.</p><h3 id='newsports'>New Sports</h3><p>No new sports were introduced at the 1956 Melbourne Olympics.</p><h3 id='innovations'>Innovations</h3><p>The 1956 Games introduced the tradition of athletes marching together in the closing ceremony, rather than by country, as a symbol of global unity.</p><h3 id='controversies'>Controversies</h3><p>The 1956 Olympics were affected by several boycotts due to international crises at the time, including the Suez Crisis and the Hungarian Revolution. The water polo match between Hungary and the Soviet Union, known as the 'Blood in the Water Match', also became infamous for its violent brawl.</p><h3 id='worldevents'>World Events</h3><p>The 1956 Olympics took place during the Suez Crisis, in which Egypt was invaded by Israel, France and the United Kingdom, as well as the Hungarian Revolution against Soviet-imposed policies.</p>",
+              Image:
+                "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/ia6c24e1c572615d5/version/1678040961/image.png",
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [12.454722, 41.933889],
+            },
+            properties: {
+              Year: "1960",
+              City: "Rome",
+              Country: "Italy 🇮🇹 ",
+              Times_Hosted: 1,
+              Season: "S",
+              Summary:
+                "The 1960 Rome Olympics were the first to be televised globally. Ancient Roman venues like the Basilica of Maxentius hosted wrestling, while gymnastics took place at the Baths of Caracalla. Ethiopian Abebe Bikila made history by winning the marathon barefoot. Other standouts included Danish sailor Paul Elvstrom's fourth straight gold and Hungarian fencer Aladar Gerevich's sixth consecutive team sabre gold.",
+              Details:
+                "<h3>Venues</h3><p>The Olympics featured the construction of a new Olympic Stadium for the opening/closing ceremonies and track-and-field events. Several ancient sites were also restored and utilized as venues, including the Basilica of Maxentius for wrestling and the Baths of Caracalla for gymnastics. The marathon course followed the Appian Way, culminating under the Arch of Constantine.</p><p>Participation: A total of 5,338 athletes from 83 different countries participated in the Rome Games, including 611 women.</p><h3>Notable Athletes</h3><ul><li>Abebe Bikila of Ethiopia became the first Black African to win an Olympic gold medal, winning the marathon running barefoot. </li><li>American sprinter Wilma Rudolph dominated women's athletics, winning 3 gold medals.</li><li>The decathlon featured a tight competition between Rafer Johnson of the U.S. and Yang Chuan-kwang of Taiwan, with Johnson winning the gold.</li><li>New Zealand's Peter Snell claimed the first of his 3 career gold medals in middle-distance events.</li><li>American boxer Cassius Clay (later Muhammad Ali) made his international debut as the light heavyweight champion.</li></ul><h3>Fashion</h3><p>There were no notable fashion trends reported for these Olympics.</p><h3>Theme Song</h3><p>No official theme song is mentioned in the search results.</p><h3>Records Broken</h3><p>The search results do not provide details on specific records broken at the 1960 Rome Olympics.</p><h3>New Sports</h3><p>No new sports were introduced at the 1960 Rome Olympics according to the information provided.</p><h3>Innovations</h3><p>The 1960 Rome Olympics were the first to be extensively covered by television, with taped footage flown to New York for broadcast in the U.S. and live telecasts throughout Europe.</p><h3>Controversies</h3><p>The search results do not mention any major controversies from the 1960 Rome Olympics.</p><h3>World Events</h3><p>The search results do not provide information about world events occurring at the time of the 1960 Rome Olympics.</p>",
+              Image:
+                "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/i5b75a0fc41e3b25d/version/1678040931/image.png",
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [139.714722, 35.678056],
+            },
+            properties: {
+              Year: "1964",
+              City: "Tokyo",
+              Country: "Japan 🇯🇵 ",
+              Times_Hosted: 2,
+              Season: "S",
+              Summary:
+                "The 1964 Tokyo Games introduced improved timing/scoring technology and saw the Olympic debuts of volleyball and judo. South Africa was banned due to apartheid. Notable performances included Dutch judoka Anton Geesink's upset gold, Kiwi runners Peter Snell and Murray Halberg's double golds, and Soviet sisters Tamara and Irina Press dominating shot put and discus.",
+              Details:
+                "<h3 id='venues'>Venues</h3><p>The 1964 Summer Olympics were held in Tokyo, Japan from October 10-24, 1964. The main venue was the National Stadium, which hosted the opening and closing ceremonies as well as the athletics events. Other major venues included the Komazawa Olympic Park, Yoyogi National Gymnasium, and Nippon Budokan.</p><h3 id='participatingcountries'>Participating Countries</h3><p>A total of 93 countries participated in the 1964 Tokyo Olympics. This was the first time the Olympics were held in Asia. South Africa was excluded from the games due to its apartheid policies.</p><h3 id='notableathletes'>Notable Athletes</h3><ul><li>Abebe Bikila of Ethiopia won his second consecutive Olympic marathon gold medal. </li><li>Peter Snell of New Zealand won gold medals in both the 800m and 1500m track events.</li><li>Bob Hayes of the United States won gold in the 100m sprint.</li><li>Billy Mills of the United States won the surprise gold medal in the 10,000m.</li><li>Vera Caslavska of Czechoslovakia won her first individual gold medal in gymnastics.</li><li>Soviet gymnasts Boris Shakhlin and Larisa Latynina ended their Olympic careers with gold medal performances.</li><li>Anton Geesink of the Netherlands won the open division of the judo competition, the first non-Japanese to do so.</li></ul><h3 id='notablefashion'>Notable Fashion</h3><p>The 1964 Tokyo Olympics introduced the use of pictograms to represent different sports, a design innovation that has been used in every Olympics since.</p><h3 id='themesong'>Theme Song</h3><p>There does not appear to be a widely known official theme song for the 1964 Tokyo Olympics based on the search results.</p><h3 id='recordsbroken'>Records Broken</h3><p>New Olympic records were set in 27 of the 36 track and field events. Numerous world records were also broken in the swimming competition.</p><h3 id='newsportsintroduced'>New Sports Introduced</h3><p>Volleyball and judo were added as new Olympic sports for the 1964 Tokyo Games.</p><h3 id='innovations'>Innovations</h3><p>The 1964 Olympics were the first to be televised internationally in color, albeit partially. They also saw the first use of computers to keep sports statistics.</p><h3 id='controversies'>Controversies</h3><p>Indonesia and North Korea withdrew from the 1964 Olympics after some of their athletes were declared ineligible by the IOC following their participation in the rival Games of the New Emerging Forces (GANEFO) competition.</p><h3 id='worldevents'>World Events</h3><p>The 1964 Tokyo Olympics took place during the Cold War, with the United States and Soviet Union competing for dominance on the world stage. It was also a time of rapid economic growth and modernization in Japan following World War II.</p>",
+              Image:
+                "https://image.jimcdn.com/app/cms/image/transf/dimension=123x10000:format=png/path/s293f5a94d3403280/image/i32405b868c58e6f3/version/1678040893/image.png",
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [-99.192222, 19.331944],
+            },
+            properties: {
+              Year: "1968",
+              City: "Mexico City",
+              Country: "Mexico 🇲🇽 ",
+              Times_Hosted: 1,
+              Season: "S",
+              Summary:
+                "The 1968 Mexico City Olympics marked the first time East and West Germany competed separately. Milestones included Bob Beamon's incredible long jump world record, American sprinters Tommie Smith and John Carlos's Black Power salute on the podium, and Czech gymnast Vera Caslavska's four gold medals despite Soviet invasion of Czechoslovakia.",
+              Details:
+                "<h3 id='venues'>Venues</h3><p>The 1968 Summer Olympics were held in Mexico City, Mexico. The main venue was the Estadio Olímpico Universitario, which hosted the opening and closing ceremonies as well as track and field events. Other venues included the Palacio de los Deportes for basketball, the Alberca Olímpica Francisco Márquez for swimming, and the Campo Militar No. 1 for equestrian events.</p><h3 id='participatingcountries'>Participating Countries</h3><p>A total of 112 countries participated in the 1968 Summer Olympics. This was the first time that East and West Germany competed as separate countries.</p><h3 id='notableathletes'>Notable Athletes</h3><ul><li>Tommie Smith and John Carlos, American sprinters who won gold and bronze medals in the 200m and made a Black Power salute on the podium. </li><li>Bob Beamon, American long jumper who set a world record that stood for 23 years.</li><li>Lee Evans, American sprinter who set a world record in the 400m.</li><li>Debbie Meyer, American swimmer who won 3 gold medals in freestyle events.</li><li>Klaus Dibiasi, Italian diver who won the first of his 3 career gold medals in platform diving.</li></ul><h3 id='notablefashion'>Notable Fashion</h3><p>There were no notable fashion trends reported from the 1968 Mexico City Olympics.</p><h3 id='themesong'>Theme Song</h3><p>The official theme song for the 1968 Olympics was 'México 68' composed by Silvestre Revueltas.</p><h3 id='recordsbroken'>Records Broken</h3><p>Several world records were broken at the 1968 Olympics, including:</p><ul><li>Bob Beamon's long jump record of 8.90m, which stood for 23 years. </li><li>Lee Evans' 400m record of 43.86 seconds.</li></ul><h3 id='newsportsintroduced'>New Sports Introduced</h3><p>No new sports were introduced at the 1968 Mexico City Olympics.</p><h3 id='innovationsinsports'>Innovations in Sports</h3><p>The 1968 Olympics were the first to use an all-weather (smooth) track for track and field events instead of the traditional cinder track. They were also the first to exclusively use electronic timekeeping equipment.</p><h3 id='controversies'>Controversies</h3><p>The 1968 Olympics were marked by political controversy, as they took place just days after the Mexican government violently suppressed student protests, killing hundreds. At the medal ceremony for the men's 200m, American medalists Tommie Smith and John Carlos made a Black Power salute, which was seen as a political statement and led to their suspension from the Games.</p><h3 id='currentworldevents'>Current World Events</h3><p>In 1968, major world events included the Vietnam War, the Prague Spring in Czechoslovakia, and the assassinations of Martin Luther King Jr. and Robert F. Kennedy in the United States.</p>",
+              Image:
+                "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/i7b583b47a67e05de/version/1678040864/image.png",
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [11.546667, 48.173056],
+            },
+            properties: {
+              Year: "1972",
+              City: "Munich",
+              Country: "West Germany 🇩🇪 ",
+              Times_Hosted: 1,
+              Season: "S",
+              Summary:
+                "Tragedy struck the 1972 Munich Olympics when Palestinian terrorists took Israeli athletes hostage, resulting in their deaths. On the field, American swimmer Mark Spitz won seven gold medals, while Soviet gymnast Olga Korbut captured hearts with her acrobatic performances.",
+              Details:
+                "<h3 id='venues'>Venues</h3><p>The 1972 Summer Olympics were held in Munich, West Germany. The main Olympic venues were located in the Oberwiesenfeld area of Munich, including the Olympic Stadium, Olympic Village, and Olympic Sports Hall.</p><h3 id='participatingcountries'>Participating Countries</h3><p>A total of 121 National Olympic Committees participated in the 1972 Munich Olympics, making it the largest Olympic Games to date. This included the debut of the People's Republic of China, which had been excluded from the Olympics since 1952.</p><h3 id='notableathletes'>Notable Athletes</h3><p>Some of the most notable athletes at the 1972 Munich Olympics included:</p><ul><li>Mark Spitz (USA) - Won 7 gold medals in swimming, setting new world records in each event.</li><li>Olga Korbut (USSR) - Gymnast who won 3 gold medals and 1 silver, captivating audiences with her innovative routines. </li><li>Lasse Virén (Finland) - Won gold medals in the 5,000m and 10,000m track events.</li></ul><h3 id='notablefashion'>Notable Fashion</h3><p>The official uniforms for the West German Olympic team were designed by Willy Bogner, featuring a distinctive blue and white color scheme. The uniforms were praised for their modern, sleek look.</p><h3 id='themesong'>Theme Song</h3><p>The official theme song for the 1972 Munich Olympics was 'Olympia-Fanfare und-Hymne' composed by Herbert Rehbein.</p><h3 id='recordsbroken'>Records Broken</h3><p>A total of 34 world records were broken at the 1972 Munich Olympics, including Mark Spitz's 7 individual gold medals and world records.</p><h3 id='newsportsintroduced'>New Sports Introduced</h3><p>The 1972 Munich Olympics saw the introduction of several new sports, including handball, canoeing, and modern pentathlon.</p><h3 id='innovations'>Innovations</h3><p>The 1972 Munich Olympics pioneered the use of new technologies, including electronic timing and scoring systems, as well as the first live television broadcasts of the Games in color.</p><h3 id='controversies'>Controversies</h3><p>The 1972 Munich Olympics were marred by the tragic Munich massacre, in which 11 Israeli athletes were taken hostage and killed by Palestinian terrorists from the Black September group.</p><h3 id='worldevents'>World Events</h3><p>The 1972 Munich Olympics took place during the Cold War, with heightened tensions between the United States and Soviet Union. This geopolitical context contributed to the security challenges faced by the Games.</p><p>https://en.wikipedia.org/wiki/Munich_massacre https://www.npr.org/2022/09/04/1116641214/munich-olympics-massacre-hostage-terrorism-israel-germany https://www.britannica.com/event/Munich-Massacre https://www.rfi.fr/en/sports/20231031-olympics-1972-tragic-hostage-taking-casts-deep-shadow-over-munich-olympics</p>",
+              Image:
+                "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/i91de4dc42b8962c9/version/1678040831/image.png",
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [-73.552, 45.558],
+            },
+            properties: {
+              Year: "1976",
+              City: "Montreal",
+              Country: "Canada 🇨🇦 ",
+              Times_Hosted: 1,
+              Season: "S",
+              Summary:
+                "The 1976 Montreal Games were marred by a African nation boycott and financial troubles for the host city. However, Romanian teenager Nadia Comaneci scored the first perfect 10 in gymnastics, while 14-year-old Russian Olga Korbut added three golds.",
+              Details:
+                "<h3 id='venues'>Venues</h3><p>The 1976 Summer Olympics were held in Montreal, Canada. The main venue was the Olympic Stadium, which was designed by French architect Roger Taillibert. It was nicknamed 'The Big O' and had a retractable roof that was never fully completed. Other venues included the Olympic Village, the Olympic Velodrome, and the Olympic Pool.</p><h3 id='participatingcountries'>Participating Countries</h3><p>A total of 92 countries participated in the 1976 Summer Olympics in Montreal. However, 29 countries, mostly African, boycotted the games when the International Olympic Committee (IOC) refused to ban New Zealand, whose national rugby union team had toured South Africa earlier that year in defiance of the United Nations' sanctions against apartheid.</p><h3 id='notableathletes'>Notable Athletes</h3><ul><li>Nadia Comaneci of Romania scored the first perfect 10 in Olympic gymnastics history.</li><li>The United States fielded its best ever boxing team at the time.</li></ul><h3 id='notablefashion'>Notable Fashion</h3><p>There does not appear to be any notable information about fashion at the 1976 Montreal Olympics in the given search results.</p><h3 id='themesong'>Theme Song</h3><p>The music for the opening and closing ceremonies consisted mainly of adaptations of the work of the late Québécois composer, André Mathieu.</p><h3 id='recordsbroken'>Records Broken</h3><p>The search results do not provide information about any specific records broken at the 1976 Montreal Olympics.</p><h3 id='newsportsintroduced'>New Sports Introduced</h3><p>The 1976 Olympics saw women's events held for the first time in basketball, handball and rowing.</p><h3 id='innovationsinsports'>Innovations in Sports</h3><p>The search results do not mention any specific innovations in sports at the 1976 Montreal Olympics.</p><h3 id='controversies'>Controversies</h3><p>The 1976 Montreal Olympics were marred by a boycott from 29 mostly African countries over the IOC's refusal to ban New Zealand. The games were also extremely costly, with the final bill coming in at over $1.5 billion, 13 times the original estimate. This led to a string of corruption scandals and the Olympic Stadium becoming known as 'The Big Owe'.</p><h3 id='currentworldevents'>Current World Events</h3><p>In the mid-1970s, there was a heightened fear of international and domestic terrorism, with over 4,340 terrorist attacks recorded between 1970 and 1976. This led to an unprecedented security operation at the Montreal Olympics, with over 17,000 personnel involved.</p>",
+              Image:
+                "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/i4e89c0014c5192e9/version/1678040795/image.png",
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [37.553611, 55.715833],
+            },
+            properties: {
+              Year: "1980",
+              City: "Moscow",
+              Country: "USSR 🇷🇺 ",
+              Times_Hosted: 1,
+              Season: "S",
+              Summary:
+                "The 1980 Moscow Olympics were disrupted by a U.S.-led boycott over the Soviet invasion of Afghanistan. The Soviets dominated the depleted competition, with athletes like weightlifter Nikolai Kolesnikov and gymnast Nellie Kim excelling.",
+              Details:
+                "<h3>Venues</h3><p>The main venue was the Central Lenin Stadium area, including the Grand Arena which hosted the opening/closing ceremonies, athletics, and football.</p><h3>Participating Countries</h3><p>80 countries participated, the smallest number since 1956. This was due to a boycott led by the United States and 65 other countries in protest of the Soviet invasion of Afghanistan.</p><h3>Notable Athletes</h3><p>Soviet gymnast Aleksandr Dityatin won 8 medals, becoming the first athlete to win that many at a single Olympics. Cuban boxer Teófilo Stevenson won his third consecutive gold medal in the super-heavyweight division. British middle-distance runners Steve Ovett and Sebastian Coe had a memorable rivalry, each winning gold in different events.</p><h3>Records Broken</h3><p>36 world records, 39 European records, and 74 Olympic records were set at these games.</p><h3>Controversies</h3><p>The Soviet Union was accused of tampering with athletes' drug tests to avoid positive results, with KGB agents allegedly replacing urine samples. The US-led boycott was a major controversy that overshadowed the games.</p><h3>World Events</h3><p>These Olympics took place during the Cold War, with tensions heightened by the Soviet invasion of Afghanistan in 1979 which prompted the boycott.</p><p>In summary, the 1980 Moscow Olympics were marked by the US-led boycott, Soviet domination of the medal count, and allegations of doping cover-ups, all set against the backdrop of the Cold War geopolitical climate.</p>",
+              Image:
+                "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/i1ca2c77942bd5238/version/1678040756/image.png",
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [-118.287778, 34.014167],
+            },
+            properties: {
+              Year: "1984",
+              City: "Los Angeles",
+              Country: "United States 🇺🇸 ",
+              Season: "S",
+              Summary:
+                "After the Moscow boycott, the 1984 Los Angeles Olympics saw a Soviet-led Eastern Bloc boycott in response. American stars like Carl Lewis and Mary Lou Retton shone, while the Games were the first with commercial sponsorship and professional athletes.",
+              Details:
+                "<h3 id='venues'>Venues</h3><p>The 1984 Summer Olympics were held in Los Angeles, California, United States. The main venue was the Los Angeles Memorial Coliseum, which had previously hosted the 1932 Summer Olympics. Other key venues included the Rose Bowl in Pasadena, which was used for the men's football competition, and the UCLA campus, which hosted the Olympic Village.</p><h3 id='participatingcountries'>Participating Countries</h3><p>Despite a boycott by 14 Eastern Bloc countries, including the Soviet Union and East Germany, a record 140 National Olympic Committees participated in the 1984 Summer Olympics. Romania was the only Soviet Bloc country to attend.</p><h3 id='notableathletes'>Notable Athletes</h3><ul><li>Carl Lewis (USA) won 4 gold medals in track and field, matching the record set by Jesse Owens in 1936.</li><li>Mary Lou Retton (USA) became the first American woman to win the individual all-around gold medal in gymnastics. </li><li>Sebastian Coe (Great Britain) and Daley Thompson (Great Britain) each repeated their gold medal performances from the 1980 Olympics in the 1,500m run and decathlon, respectively.</li><li>Li Ning (China) won 3 gold medals in gymnastics.</li><li>Ecaterina Szabo (Romania) won 4 gold medals in gymnastics.</li></ul><h3 id='notablefashion'>Notable Fashion</h3><p>The 1984 Olympics saw the introduction of the 'Coca-Cola' look, with athletes wearing colorful, branded uniforms provided by corporate sponsors.</p><h3 id='themesong'>Theme Song</h3><p>The theme song for the 1984 Olympics was 'Like to Get to Know You Well' by British pop star Howard Jones, which was released the same week the Games began.</p><h3 id='recordsbroken'>Records Broken</h3><p>The 1984 Olympics set new records for television viewership, with over 180 million Americans watching and 90% of U.S. households tuning in at some point. The Games also generated a profit of over $250 million, setting a new benchmark for financial success.</p><h3 id='newsportsintroduced'>New Sports Introduced</h3><p>Women's events were expanded at the 1984 Olympics, with the addition of cycling, rhythmic gymnastics, synchronized swimming, and several new track and field events including the women's marathon.</p><h3 id='innovations'>Innovations</h3><p>The 1984 Olympics saw the increased commercialization of the Games, with corporate sponsors allowed to market their products as 'official' Olympic items. This model of product exclusivity would inspire the creation of the IOC's Olympic Partner program.</p><h3 id='controversies'>Controversies</h3><p>The 1984 Olympics were boycotted by 14 Eastern Bloc countries, including the Soviet Union and East Germany, in retaliation for the U.S.-led boycott of the 1980 Moscow Olympics. This significantly impacted several events, leaving many competitions less competitive.</p><h3 id='worldevents'>World Events</h3><p>The 1984 Olympics took place during the Cold War, with tensions between the United States and Soviet Union still high following the Soviet invasion of Afghanistan in 1979. The boycotts reflected the ongoing geopolitical rivalry between the two superpowers.</p>",
+              Image: "./olympics/img/la.png",
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [127.07275, 37.515889],
+            },
+            properties: {
+              Year: "1988",
+              City: "Seoul",
+              Country: "South Korea 🇰🇷 ",
+              Times_Hosted: 1,
+              Season: "S",
+              Summary:
+                "The 1988 Seoul Olympics marked the end of Cold War boycotts, with all nations participating. Highlights included Ben Johnson's 100m world record win and subsequent disqualification, Soviet gymnast Svetlana Boginskaya's three golds, and American diver Greg Louganis's comeback from a head injury.",
+              Details:
+                '<h3>Venues</h3><p>The main venue was the Seoul Olympic Stadium, which hosted the opening and closing ceremonies as well as track and field events. Other venues included the Jamsil Sports Complex, Olympic Park, and newly constructed facilities across Seoul.</p><p>Participating Countries: 159 nations were represented at the games by a total of 8,391 athletes (6,197 men and 2,194 women).</p><h3>Notable Athletes</h3><ul><li>Florence Griffith Joyner (USA) won 3 gold medals in track and field events. </li><li>Jackie Joyner-Kersee (USA) won gold medals in the heptathlon and long jump.</li><li>Sergey Bubka (Soviet Union) won his first Olympic gold medal in pole vault.</li><li>Kristin Otto (East Germany) won 6 gold medals in swimming.</li><li>Greg Louganis (USA) swept the men\'s diving competition, winning gold in both events.</li></ul><h3>Notable Fashion</h3><p>The official posters and branding for the games featured traditional Korean "samtaeguk" patterns, blending modern computer graphics with classic Korean design elements.</p><h3>Theme Song</h3><p>The official theme song was "Hand in Hand" performed by various Korean and international artists.</p><h3>Records Broken</h3><p>Several world records were broken across track and field, swimming, and other events.</p><h3>New Sports</h3><p>Tennis returned to the Olympics after being dropped in 1924. Table tennis and team archery events were also added.</p><h3>Innovations</h3><p>The games utilized advanced computer graphics and technology for the first time in Olympic branding and broadcasting.</p><h3>Controversies</h3><p>There were violent student riots in Seoul in the months leading up to the games. North Korea boycotted the Olympics, as did several other countries in solidarity.</p><h3>World Events</h3><p>This was one of the last Olympic Games of the Cold War era, with the Soviet Union and East Germany dominating the medal count. The 1988 Olympics also came during a period of political turmoil in South Korea, with protests and a presidential scandal.</p>',
+              Image:
+                "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/i3bf65532f0a62810/version/1678040685/image.png",
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [2.155556, 41.364722],
+            },
+            properties: {
+              Year: "1992",
+              City: "Barcelona",
+              Country: "Spain 🇪🇸 ",
+              Times_Hosted: 1,
+              Season: "S",
+              Summary:
+                "The 1992 Barcelona Olympics ushered in a new era after the end of the Cold War and Soviet Union. The Unified Team topped the medal table, while the U.S.'s Dream Team of NBA stars like Michael Jordan dominated basketball.",
+              Details:
+                "<h3 id='venues'>Venues</h3><p>The main Olympic venues were located in Barcelona, with some events held in other cities in Catalonia. The centerpiece was the Olympic Ring on Montjuïc, which included the Olympic Stadium, Olympic swimming pools, and other facilities. The Olympic Port was built to host the sailing events.</p><h3 id='participation'>Participation</h3><p>A total of 169 National Olympic Committees participated in the 1992 Summer Olympics, the highest number at the time. This included the debut of several new NOCs following the dissolution of the Soviet Union and Yugoslavia.</p><h3 id='notableathletes'>Notable Athletes</h3><p>The 1992 Olympics featured the debut of the 'Dream Team', the first U.S. men's basketball team to include active NBA players. Led by superstars like Michael Jordan, Magic Johnson, and Charles Barkley, the Dream Team dominated the competition, winning the gold medal by an average of 44 points per game. </p><h3 id='fashion'>Fashion</h3><p>The opening ceremony featured traditional Catalan dances and costumes, as well as a performance of the song 'Barcelona' by Freddie Mercury and Montserrat Caballé.</p><h3 id='themesong'>Theme Song</h3><p>The official theme song of the 1992 Olympics was 'Barcelona' performed by Freddie Mercury and Montserrat Caballé.</p><h3 id='recordsandnewsports'>Records and New Sports</h3><p>No major world records were broken at the 1992 Olympics. Women's baseball and women's judo were introduced as new Olympic sports.</p><h3 id='innovations'>Innovations</h3><p>The 1992 Olympics saw the introduction of the Olympic Torch Relay, with the cauldron lit by an archer shooting a flaming arrow. This was a dramatic and innovative way to light the Olympic flame.</p><h3 id='controversies'>Controversies</h3><p>There were no major controversies at the 1992 Olympics. The Games were the first since 1972 to be boycott-free, with the dissolution of the Soviet Union and Yugoslavia allowing for more unified participation.</p><h3 id='worldevents'>World Events</h3><p>The 1992 Olympics took place shortly after the end of the Cold War, with the fall of the Berlin Wall in 1989 and the dissolution of the Soviet Union in 1991. This geopolitical backdrop contributed to the sense of unity and optimism at the Barcelona Games.</p>",
+              Image:
+                "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/i90daa0442cede026/version/1678040655/image.png",
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [-84.39277942522055, 33.75922752127701],
+            },
+            properties: {
+              Year: "1996",
+              City: "Atlanta",
+              Country: "United States 🇺🇸 ",
+              Times_Hosted: 1,
+              Season: "S",
+              Summary:
+                "Centennial host Atlanta overcame bombing tragedy at the 1996 Games. Michael Johnson's double 200m/400m golds, Donovan Bailey's 100m world record, and Kerri Strug's vault on an injured ankle provided iconic moments.",
+              Details:
+                "<h3 id='venues'>Venues</h3><p>The 1996 Summer Olympics were held in Atlanta, Georgia, United States. The main venue was the Centennial Olympic Stadium, which was later converted into the current home stadium of the Atlanta Braves baseball team, Turner Field.</p><h3 id='participatingcountries'>Participating Countries</h3><p>A total of 197 countries participated in the 1996 Atlanta Olympics, which was the highest number of participating countries at the time. This included the debut of 24 countries, many of which were former Soviet republics competing independently for the first time.</p><h3 id='notableathletes'>Notable Athletes</h3><ul><li>Andre Agassi won the gold medal in men's tennis, which was followed by his French Open title in 1999.</li><li>American swimmer Amy Van Dyken won 4 gold medals, the most by any athlete at the 1996 Games.</li><li>Irish swimmer Michelle Smith won 3 gold medals, but was later embroiled in a doping controversy.</li><li>Michael Johnson of the United States won gold in both the 200m and 400m track events, setting a world record in the 200m.</li><li>Carl Lewis of the United States won his 4th consecutive gold medal in the long jump, matching the discus record set by Al Oerter.</li></ul><h3 id='notablefashion'>Notable Fashion</h3><p>The 1996 Olympics saw the debut of beach volleyball, which featured athletes wearing more revealing uniforms compared to traditional Olympic sports.</p><h3 id='themesong'>Theme Song</h3><p>The official theme song for the 1996 Atlanta Olympics was 'The World Has One Dream' commissioned by the Atlanta Organizing Committee.</p><h3 id='recordsbroken'>Records Broken</h3><p>A total of 39 world records were broken at the 1996 Atlanta Olympics across various sports.</p><h3 id='newsportsintroduced'>New Sports Introduced</h3><p>The 1996 Olympics saw the debut of several new sports, including beach volleyball, mountain biking, softball, and women's soccer.</p><h3 id='innovations'>Innovations</h3><p>The 1996 Olympics were the first to use a web-based system for event results and information, pioneering the use of technology at the Games.</p><h3 id='controversies'>Controversies</h3><p>The 1996 Olympics were marred by the Centennial Olympic Park bombing, which killed 2 people and injured over 100 others. The perpetrator, Eric Rudolph, was not arrested until 2003.</p><h3 id='worldevents'>World Events</h3><p>The 1996 Olympics took place during a period of transition, with the end of the Cold War and the dissolution of the Soviet Union. This was reflected in the participation of many former Soviet republics as independent nations for the first time.</p>",
+              Image:
+                "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/i2ffeb81adc677bd9/version/1678040538/image.png",
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [151.063056, -33.847222],
+            },
+            properties: {
+              Year: "2000",
+              City: "Sydney",
+              Country: "Australia 🇦🇺 ",
+              Times_Hosted: 1,
+              Season: "S",
+              Summary:
+                "The 2000 Sydney Games featured Cathy Freeman's 400m triumph, Ian Thorpe's swimming dominance, and a Unified Team's last Olympic appearance before reverting to Russia. They were also the first Olympics with a significant anti-doping program.",
+              Details:
+                "<h3 id='venues'>Venues</h3><ul><li>The main venue was Stadium Australia, which hosted the opening and closing ceremonies as well as track and field events.</li><li>Other major venues included the Sydney SuperDome for basketball, the Sydney International Aquatic Centre for swimming, and the Sydney Convention and Exhibition Centre for gymnastics.</li></ul><h3 id='participatingcountries'>Participating Countries</h3><ul><li>A total of 199 countries participated in the 2000 Olympics, which was a record at the time.</li></ul><h3 id='notableathletes'>Notable Athletes</h3><ul><li>Cathy Freeman, an Aboriginal Australian runner who lit the Olympic cauldron and won gold in the 400m.</li><li>Marion Jones of the United States, who won 3 gold and 2 bronze medals in track and field, though her results were later stripped due to doping.</li><li>Ian Thorpe of Australia, nicknamed the 'Thorpedo', who won 3 gold and 1 silver medal in swimming.</li><li>Inge de Bruijn of the Netherlands, who won 3 gold medals in swimming.</li><li>Steven Redgrave of Great Britain, who won his 5th consecutive gold medal in rowing, an unmatched feat.</li></ul><h3 id='fashion'>Fashion</h3><ul><li>The opening ceremony featured costumes and performances celebrating Australian culture and history, including the unique contributions of Aboriginal peoples.</li></ul><h3 id='themesong'>Theme Song</h3><ul><li>The official theme song was 'Dare to Dream' by Australian singer Deni Hines.</li></ul><h3 id='recordsbroken'>Records Broken</h3><ul><li>Several new events were introduced, including men's and women's taekwondo, trampoline, triathlon, and synchronized diving.</li><li>New women's events included weightlifting, modern pentathlon, and pole vault.</li></ul><h3 id='controversies'>Controversies</h3><ul><li>There were some issues with doping, including the case of American shot putter C.J. Hunter, husband of Marion Jones, who tested positive.</li><li>The Olympic bribery scandal that hit the 2002 Winter Olympics in Salt Lake City also cast a shadow over the Sydney Games.</li></ul><h3 id='worldevents'>World Events</h3><ul><li><p>The 2000 Olympics took place during a relatively peaceful period, with no major global conflicts or crises occurring at the time.</p><p>https://en.wikipedia.org/wiki/2000<em>Summer</em>Olympicshttps://www.britannica.com/event/Sydney-2000-Olympic-Gameshttps://www.olympedia.org/editions/25</p></li></ul>",
+              Image:
+                "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/ia400b343d16c4bbc/version/1678040510/image.png",
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [23.7876, 38.036068],
+            },
+            properties: {
+              Year: "2004",
+              City: "Athens",
+              Country: "Greece 🇬🇷 ",
+              Times_Hosted: 2,
+              Season: "S",
+              Summary:
+                "The 2004 Athens Olympics returned to their birthplace after 108 years. Michael Phelps won his first six golds, while the Games were unfortunately marred by a drop in attendance and security concerns.",
+              Details:
+                "<h3 id='venues'>Venues</h3><p>The 2004 Summer Olympics were held in Athens, Greece. The main venue was the Athens Olympic Sports Complex, which included the Athens Olympic Stadium that hosted the opening and closing ceremonies, athletics events, and football matches. Other key venues included the Athens Olympic Aquatic Centre for swimming, diving, synchronized swimming, and water polo, as well as the Athens Olympic Velodrome for track cycling.</p><h3 id='participatingcountries'>Participating Countries</h3><p>A record 201 National Olympic Committees participated in the 2004 Athens Olympics, with 10,625 athletes competing. </p><h3 id='notableathletes'>Notable Athletes</h3><ul><li>Michael Phelps (USA) won a record-tying 8 medals (6 gold, 2 bronze) in swimming, cementing his status as one of the greatest Olympians of all time. </li><li>Kelly Holmes (Great Britain) won gold medals in both the 800m and 1500m track events.  </li><li>Hicham El Guerrouj (Ethiopia) won gold in both the 1500m and 5000m track events. </li><li>Liu Xiang (China) won China's first ever gold medal in men's track and field by winning the 110m hurdles. </li></ul><h3 id='notablefashion'>Notable Fashion</h3><p>The 2004 Athens Olympics introduced a new medal design, replacing the long-used Cassioli design with a new obverse featuring the Panathenaic Stadium. </p><h3 id='themesong'>Theme Song</h3><p>The official theme song for the 2004 Athens Olympics was 'Reach' performed by Greek singer Sakis Rouvas. </p><h3 id='recordsbroken'>Records Broken</h3><p>A total of 8 world records and 25 Olympic records were set during the swimming competition at the 2004 Athens Olympics. </p><h3 id='newsportsintroduced'>New Sports Introduced</h3><p>Women's freestyle wrestling and women's sabre fencing made their Olympic debuts in Athens 2004. </p><h3 id='innovations'>Innovations</h3><p>The 2004 Olympics saw the introduction of a three-phase format (heats, semifinals, and final) for all short-distance swimming races of 200m and under. </p><h3 id='controversies'>Controversies</h3><p>Over 20 athletes were disqualified after failing performance-enhancing drug tests, and there were controversies over scoring in gymnastics and fencing events.  Additionally, the 2004 Olympics were marked by security concerns due to Athens' proximity to the politically volatile Middle East. </p><h3 id='worldevents'>World Events</h3><p>The 2004 Athens Olympics took place against the backdrop of the War in Afghanistan and the Iraq War, which had begun in 2001 and 2003 respectively. The games were also the first to be held since the September 11 attacks in 2001, leading to heightened security measures. </p>",
+              Image:
+                "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/i1c28331751c187d6/version/1678040479/image.png",
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [116.39032075243722, 39.99034678049142],
+            },
+            properties: {
+              Year: "2008",
+              City: "Beijing",
+              Country: "China 🇨🇳 ",
+              Times_Hosted: 2,
+              Season: "S",
+              Summary:
+                "The 2008 Beijing Olympics showcased China's emergence, from the spectacular opening ceremony to Michael Phelps's record eight golds and Usain Bolt's 100m/200m world records. Concerns over pollution and human rights persisted.",
+              Details:
+                "<h3 id='venues'>Venues</h3><p>The 2008 Summer Olympics were held in Beijing, China from August 8-24, 2008. A total of 37 venues were used to host the events, including 12 constructed specifically for the 2008 Games. The equestrian events were held in Hong Kong, while the sailing events took place in Qingdao and the football events were spread across several different cities.</p><h3 id='participatingcountries'>Participating Countries</h3><p>A total of 204 National Olympic Committees (NOCs) participated in the 2008 Beijing Olympics, surpassing the previous record of 201 set at the 2004 Athens Games. This was the first time China had hosted the Olympic Games.</p><h3 id='notableathletes'>Notable Athletes</h3><ul><li>Michael Phelps (USA) broke the record for most gold medals won in a single Olympics, taking 8 golds. </li><li>Usain Bolt (Jamaica) set new world records in the 100m and 200m sprints.</li><li>Abhinav Bindra (India) won the country's first ever individual Olympic gold medal in the men's 10m air rifle event.</li></ul><h3 id='notablefashion'>Notable Fashion</h3><p>The official uniforms for the Chinese Olympic team were designed and produced by Chinese sportswear company Li-Ning. Other major sponsors included Nike, Adidas, and Yonex.</p><h3 id='themesong'>Theme Song</h3><p>The official theme song for the 2008 Beijing Olympics was 'You and Me' performed by Chinese singer Liu Huan and British singer Sarah Brightman.</p><h3 id='recordsbroken'>Records Broken</h3><p>In addition to Phelps and Bolt's records, the 2008 Beijing Olympics set numerous other world and Olympic records across various sports.</p><h3 id='newsportsintroduced'>New Sports Introduced</h3><p>New sports added to the 2008 Summer Olympics program included the 10km marathon swim and BMX bicycle motocross racing.</p><h3 id='innovations'>Innovations</h3><p>The Beijing organizing committee was praised for the high-quality facilities constructed for the Games, including the iconic National Stadium (Bird's Nest) and National Aquatics Center (Water Cube).</p><h3 id='controversies'>Controversies</h3><p>In the months leading up to the Games, there was international focus on China's pollution problems, as well as protests over the country's human rights record and Tibet. The Chinese government was also criticized for not ensuring complete media freedom for visiting reporters.</p><h3 id='worldevents'>World Events</h3><p>The 2008 Beijing Olympics took place against the backdrop of a devastating earthquake in China's Sichuan province earlier that year.</p>",
+              Image:
+                "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/id6da11388975fbaa/version/1678040450/image.png",
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [-0.016389, 51.538611],
+            },
+            properties: {
+              Year: "2012",
+              City: "London",
+              Country: "England 🏴󠁧󠁢󠁥󠁮󠁧󠁿 ",
+              Times_Hosted: 3,
+              Season: "S",
+              Summary:
+                "London became the first three-time Olympic host city in 2012. Highlights included Usain Bolt's repeat sprint doubles, Michael Phelps's career medal records, and the introduction of women's boxing.",
+              Details:
+                "<h3 id='venues'>Venues</h3><p>The main focus was a new 200-hectare Olympic Park constructed in Stratford, East London. The Games also utilized existing venues such as Wembley Stadium, the All-England Club in Wimbledon, and Lord's Cricket Ground.</p><h3 id='participatingcountries'>Participating Countries</h3><p>204 National Olympic Committees participated, a record at the time. This included Saudi Arabia, Qatar, and Brunei entering female athletes for the first time.</p><h3 id='notableathletes'>Notable Athletes</h3><ul><li>Jamaican sprinter Usain Bolt became the first man to win the 100m and 200m sprints in consecutive Olympics. </li><li>American swimmer Michael Phelps became the most decorated Olympian of all time, winning 22 total medals.</li></ul><h3 id='fashion'>Fashion</h3><p>The 2012 Olympics featured the debut of women's boxing, with three weight classes added to the program.</p><h3 id='themesong'>Theme Song</h3><p>The official theme song was 'Survival' by the British rock band Muse.</p><h3 id='recordsbroken'>Records Broken</h3><p>The United States topped the medal table, winning 46 gold medals and 104 total medals, its best performance at a non-boycotted Olympics since 1904. Teenage American swimmer Missy Franklin won 4 gold medals.</p><h3 id='newsports'>New Sports</h3><p>Women's boxing made its Olympic debut at the 2012 Games.</p><h3 id='innovations'>Innovations</h3><p>The Olympic Park featured a network of footbridges and walkways to enhance the spectator experience.</p><h3 id='controversies'>Controversies</h3><p>In the weeks before the Games, there were security concerns after a private security firm failed to provide enough personnel, requiring the government to deploy military personnel.</p><h3 id='worldevents'>World Events</h3><p>The 2012 Olympics took place against the backdrop of the 2011 England riots, which raised some safety concerns leading up to the Games.</p>",
+              Image:
+                "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=png/path/s293f5a94d3403280/image/i379fbd6f2498d31c/version/1678040407/image.png",
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [-43.230278, -22.912222],
+            },
+            properties: {
+              Year: "2016",
+              City: "Rio de Janeiro",
+              Country: "Brazil 🇧🇷 ",
+              Times_Hosted: 1,
+              Season: "S",
+              Summary:
+                "The 2016 Rio Games were the first in South America, with golf and rugby returning after long absences. Michael Phelps added five more golds to his tally, while Simone Biles dominated gymnastics with four golds.",
+              Details:
+                "<h3 id='venues'>Venues</h3><ul><li>The main Olympic venues were located in four zones across Rio de Janeiro: Barra da Tijuca, Copacabana, Deodoro, and Maracanã.</li><li>Nine new venues were constructed specifically for the 2016 Olympics, while other existing venues underwent renovations.</li><li>The Maracanã Stadium hosted the opening and closing ceremonies, as well as the football competition.</li></ul><h3 id='participation'>Participation</h3><ul><li>11,238 athletes from 207 National Olympic Committees participated in the 2016 Olympics, including first-time entrants Kosovo, South Sudan, and the Refugee Olympic Team.</li></ul><h3 id='notableathletes'>Notable Athletes</h3><ul><li>Usain Bolt of Jamaica won gold medals in the 100m, 200m, and 4x100m relay, completing his 'triple triple' of gold medals in those events across three consecutive Olympics.</li><li>Michael Phelps of the United States won 5 gold medals and 1 silver, cementing his status as the greatest Olympian of all time with 23 gold medals and 28 total medals.</li><li>Simone Biles of the United States won 4 gold medals and 1 bronze in gymnastics.</li></ul><h3 id='fashion'>Fashion</h3><ul><li>The opening ceremony featured elaborate costumes and presentations highlighting Brazilian culture and history.</li></ul><h3 id='themesong'>Theme Song</h3><ul><li>The official theme song for the 2016 Olympics was 'Alma e Coração' (Soul and Heart) performed by Thiaguinho and Anitta.</li></ul><h3 id='records'>Records</h3><ul><li>27 world records and 91 Olympic records were set during the 2016 Olympics.</li></ul><h3 id='newsports'>New Sports</h3><ul><li>Rugby sevens and golf made their return to the Olympic program for the first time since 1924 and 1904 respectively.</li></ul><h3 id='innovations'>Innovations</h3><ul><li>The 2016 Olympics were the first to be held entirely within the host country's winter season.</li></ul><h3 id='controversies'>Controversies</h3><ul><li>The Zika virus outbreak in Brazil caused significant concerns leading up to the Games, though no Zika cases were ultimately linked to Olympic participants.</li><li>Russian athletes faced a partial ban from the Olympics due to a state-sponsored doping scandal.</li></ul><h3 id='worldevents'>World Events</h3><ul><li>The 2016 Olympics took place against the backdrop of the European migrant crisis, which led to the formation of the first Refugee Olympic Team.</li></ul>",
+              Image:
+                "https://image.jimcdn.com/app/cms/image/transf/dimension=156x10000:format=jpg/path/s293f5a94d3403280/image/i4d7405d5d15b89d5/version/1678040226/image.jpg",
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [139.714583, 35.678194],
+            },
+            properties: {
+              Year: "2021",
+              City: "Tokyo",
+              Country: "Japan 🇯🇵 ",
+              Times_Hosted: 2,
+              Season: "S",
+              Summary:
+                "Delayed a year by COVID-19, the 2020 Tokyo Olympics barred spectators but saw Caeleb Dressel emerge as a swimming star and the debut of new sports like skateboarding and surfing.",
+              Details:
+                "Delayed a year by COVID-19, the 2020 Tokyo Olympics barred spectators but saw Caeleb Dressel emerge as a swimming star and the debut of new sports like skateboarding and surfing.",
+              Image: "./olympics/img/2024-france.png",
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [2.29, 48.860833],
+            },
+            properties: {
+              Year: "2024",
+              City: "Paris",
+              Country: "France 🇫🇷 ",
+              Times_Hosted: 2,
+              Season: "S",
+              Summary:
+                "The 2024 Paris Olympics will mark the third time the French capital has hosted the Games, after 1900 and 1924. New sports like breakdancing and 3x3 basketball will debut as the program continues evolving.",
+              Details:
+                "The 2024 Paris Olympics will mark the third time the French capital has hosted the Games, after 1900 and 1924. New sports like breakdancing and 3x3 basketball will debut as the program continues evolving.",
+              Image: "./olympics/img/2024-france.png",
+            },
+          },
+        ],
+      };
+
+      /**
+       * Assign a unique id to each venue. You'll use this `id`
+       * later to associate each point on the map with a listing
+       * in the sidebar.
+       */
+      summerVenues.features.forEach((summerVenue, i) => {
+        summerVenue.properties.id = i;
+      });
+
+      /**
+       * Wait until the map loads to make changes to the map.
+       */
+      map.on("load", () => {
+        // make sidebar listings
+        buildLocationList(summerVenues);
+        // add source and layer for venues
+        map.addSource("summer_venues", {
+          type: "geojson",
+          data: summerVenues,
+          cluster: true,
+          clusterMaxZoom: 14, // Max zoom to cluster points on
+          clusterRadius: 50, // Radius of each cluster when clustering points (defaults to 50)
+          generateId: true,
+        });
+
+        // +++++++++++++ SUMMER VENUES +++++++++++++
+        // add the layers for the clusters and unclustered points
+        map.addLayer({
+          id: "summer_clusters",
+          type: "circle",
+          source: "summer_venues",
+          filter: ["all", [">", "point_count", 0]],
+          paint: {
+            "circle-color": "#FEB710",
+            "circle-radius": ["step", ["get", "point_count"], 8, 1, 16, 3, 24],
+            "circle-stroke-width": 2,
+            "circle-stroke-color": "#000",
+          },
+        });
+        // add the unclustered points layer
+        map.addLayer({
+          id: "summer_unclustered_points",
+          type: "symbol",
+          source: "summer_venues",
+          // create a filter that will hide the clusters and only show the points
+          filter: ["!", ["has", "point_count"]],
+          layout: {
+            "icon-image": "summer_marker",
+            "icon-size": 0.5,
+            "icon-allow-overlap": true,
+            "icon-anchor": "bottom",
+          },
+        });
+        // add a label layer for the clusters
+        map.addLayer({
+          id: "summer_cluster_count",
+          type: "symbol",
+          source: "summer_venues",
+          filter: ["has", "point_count"],
+          layout: {
+            "text-field": "{point_count_abbreviated}",
+            "text-font": ["Arial Unicode MS Bold", "DIN Offc Pro Medium"],
+            "text-size": 12,
+          },
+        });
+        // add a listener for the click event on the clusters to expand the cluster and zoom in
+        map.on("click", "summer_clusters", (e) => {
+          const features = map.queryRenderedFeatures(e.point, {
+            layers: ["summer_clusters"],
+          });
+          const clusterId = features[0].properties.cluster_id;
+          map
+            .getSource("summer_venues")
+            .getClusterExpansionZoom(clusterId, (err, zoom) => {
+              if (err) return;
+              map.easeTo({
+                center: features[0].geometry.coordinates,
+                zoom: zoom,
+              });
+            });
+        });
+
+        // add a listener for the click event on the unclustered points to display a popup
+        map.on("click", "summer_unclustered_points", (e) => {
+          const coordinates = e.features[0].geometry.coordinates.slice();
+          const { Year, City, Country, Summary, Image, Details } =
+            e.features[0].properties;
+          // const details = e.features[0].properties.Details;
+          const description = `
+                    <img src='./olympics/img/close.svg' class='close' onclick='closeDetails()'/>
+                    <img src='${Image}' class='poster' />
+                    <span class='city'><h3>${City}, ${Country}</h3></span>
+                    <span class='year'><h3>${Year}</h3></span>
+                    <p>${Summary}</p>
+                    <div onclick='expandDetails()' class='scroll-down'></div>
+                    <div id='details' style='display:none'>${Details}</div>`;
+          // add the description to the details container
+          // display the details container
+          document.querySelector(".detail-bar").style.display = "block";
+          document.querySelector(".detail-bar").innerHTML = description;
+        });
+
+        // spinGlobe();
+      });
+
+      /**
+       * Add a listing for each venue to the sidebar.
+       **/
+      function buildLocationList(summer) {
+        const venues = summer.features;
+
+        for (const venue of venues) {
+          /* Add a new listing section to the sidebar. */
+          const listings = document.getElementById("listings");
+          const listing = listings.appendChild(document.createElement("a"));
+          /* Assign a unique `id` to the listing. */
+
+          /* Assign the `item` class to each listing for styling. */
+          listing.className = "item";
+          listing.href = "#";
+          listing.id = `listing-${venue.properties.id}`;
+
+          const city = listing.appendChild(document.createElement("p"));
+          city.className = "city";
+          city.innerHTML +=
+            `${venue.properties.City}` + ", " + `${venue.properties.Country}`;
+
+          /* Add the year to the individual listing created above. */
+          const year = listing.appendChild(document.createElement("p"));
+          year.className = "year summer";
+          year.innerHTML = `${venue.properties.Year}` + " ";
+
+          /**
+           * Listen to the element and when it is clicked, do four things:
+           * 1. Update the `currentFeature` to the venue associated with the clicked link
+           * 2. Fly to the point
+           * 3. Close all other popups and display popup for clicked venue
+           * 4. Highlight listing in sidebar (and remove highlight for all other listings)
+           **/
+          listing.addEventListener("click", function () {
+            for (const feature of venues) {
+              if (this.id === `listing-${feature.properties.id}`) {
+                flyToVenue(feature);
+                // open the details for the clicked venue
+                const { Year, City, Country, Summary, Image, Details } =
+                  feature.properties;
+                const description = `
+                                <img src='./olympics/img/close.svg' class='close' onclick='closeDetails()'/>
+                                <img src='${Image}' class='poster' />
+                                <span class='city'><h3>${City}, ${Country}</h3></span>
+                                <span class='year'><h3>${Year}</h3></span>
+                                <p>${Summary}</p>
+                                <div onclick='expandDetails()' class='scroll-down'></div>
+                                <br /><div id='details' style='display:none; clear:both'>${Details}</div>`;
+                // add the description to the details container
+                // display the details container
+                document.querySelector(".detail-bar").style.display = "block";
+                document.querySelector(".detail-bar").innerHTML = description;
+              }
+            }
+
+            const activeItem = document.getElementsByClassName("active");
+            if (activeItem[0]) {
+              activeItem[0].classList.remove("active");
+            }
+            this.parentNode.classList.add("active");
+            // hide the sidebar and toggle menu back
+            document.getElementById("sidebar").style.display = "none";
+            document.querySelector(".toggle").classList.toggle("on");
+          });
+        }
+      }
+
+      /**
+       * Use Mapbox GL JS's `flyTo` to move the camera smoothly
+       * a given center point.
+       **/
+      function flyToVenue(currentFeature) {
+        map.flyTo({
+          center: currentFeature.geometry.coordinates,
+          zoom: 16,
+          pitch: 60,
+        });
+      }
+
+      // control visibility of details
+
+      // create a function that expands the details-bar when clicked
+      const expandDetails = () => {
+        document.getElementById("details").style.display = "block";
+        document.querySelector(".scroll-down").style.display = "none";
+      };
+
+      const closeDetails = () => {
+        // document.getElementById('details').style.display = 'none';
+        document.querySelector(".detail-bar").style.display = "none";
+      };
+
+      // spin globe
+      // At low zooms, complete a revolution every two minutes.
+      const secondsPerRevolution = 120;
+      // Above zoom level 5, do not rotate.
+      const maxSpinZoom = 5;
+      // Rotate at intermediate speeds between zoom levels 3 and 5.
+      const slowSpinZoom = 3;
+
+      let userInteracting = false;
+      let spinEnabled = true;
+
+      // function spinGlobe() {
+      //     const zoom = map.getZoom();
+      //     if (spinEnabled && !userInteracting && zoom < maxSpinZoom) {
+      //         let distancePerSecond = 360 / secondsPerRevolution;
+      //         if (zoom > slowSpinZoom) {
+      //             // Slow spinning at higher zooms
+      //             const zoomDif =
+      //                 (maxSpinZoom - zoom) / (maxSpinZoom - slowSpinZoom);
+      //             distancePerSecond *= zoomDif;
+      //         }
+      //         const center = map.getCenter();
+      //         center.lng -= distancePerSecond;
+      //         // Smoothly animate the map over one second.
+      //         // When this animation is complete, it calls a 'moveend' event.
+      //         map.easeTo({ center, duration: 1000, easing: (n) => n });
+      //     }
+      // }
+      // Pause spinning on interaction
+      map.on("mousedown", () => {
+        userInteracting = true;
+        spinEnabled = false;
+      });
+
+      // Restart spinning the globe when interaction is complete
+      map.on("mouseup", () => {
+        userInteracting = false;
+        // spinGlobe();
+      });
+
+      // These events account for cases where the mouse has moved
+      // off the map, so 'mouseup' will not be fired.
+      map.on("dragend", () => {
+        userInteracting = false;
+        // spinGlobe();
+      });
+      map.on("pitchend", () => {
+        userInteracting = false;
+        // spinGlobe();
+      });
+      map.on("rotateend", () => {
+        userInteracting = false;
+        // spinGlobe();
+      });
+
+      // When animation is complete, start spinning if there is no ongoing interaction
+      map.on("moveend", () => {
+        userInteracting = false;
+        // spinGlobe();
+      });
+      document.querySelector(".toggle").addEventListener("click", function () {
+        this.classList.toggle("on");
+        const menu = document.getElementById("sidebar");
+        menu.style.display = menu.style.display === "none" ? "block" : "none";
+      });
+    </script>
+  </body>
+</html>

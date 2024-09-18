@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Restrict map panning to an area</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@7/turf.min.js"></script>
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2ptYjNtZWxnMDBrdDNwbnVicGJzOWg2NyJ9.9OulyCe3kEqMAXPbx1mKUA";
+
+      const map = new mapboxgl.Map({
+        container: "map", // container ID
+        // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+        style: "mapbox://styles/mapbox/streets-v12", // style URL
+        center: [-122.433247, 37.742646], // starting position
+        zoom: 12, // starting zoom
+        hash: true,
+      });
+
+      map.on("moveend", () => {
+        const island = {
+          type: "FeatureCollection",
+          features: [
+            {
+              type: "Feature",
+              properties: {},
+              geometry: {
+                coordinates: [
+                  [
+                    [-73.93928441501308, 40.77364923853389],
+                    [-73.94253694075891, 40.77317666222203],
+                    [-73.96387801201328, 40.750195536571226],
+                    [-73.95960116060067, 40.74864264056541],
+                    [-73.93897256239173, 40.770005108629874],
+                    [-73.93928441501308, 40.77364923853389],
+                  ],
+                ],
+                type: "Polygon",
+              },
+            },
+          ],
+        };
+        const center = map.getCenter().toArray();
+
+        // if the map center is outside the bounds, move it back in using easeTo or panTo
+        if (!turf.booleanPointInPolygon(center, island.features[0])) {
+          map.panTo([-73.94180906101252, 40.77081225345441]);
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Trails in WA park</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@7/turf.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Open Sans", sans-serif;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+      #legend {
+        color: #575958;
+        position: absolute;
+        bottom: 0px;
+        height: 100%;
+        background-color: #f3f5f4;
+        padding: 20px;
+        overflow-y: scroll;
+        border-radius: 5px;
+        padding-bottom: 100px;
+        z-index: 1;
+      }
+      @media (max-width: 600px) {
+        /*         make the legend a modal */
+        #legend {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: #f3f5f4;
+          padding: 20px;
+          overflow-y: scroll;
+          border-radius: 5px;
+          padding-bottom: 100px;
+          z-index: 1;
+        }
+      }
+      #legend .heading {
+        font-size: 1em;
+        display: inline-block;
+        margin-left: 10px;
+      }
+      /* The container */
+      .container {
+        display: block;
+        position: relative;
+        padding-left: 45px;
+        margin-bottom: 12px;
+        margin-right: 50px;
+        cursor: pointer;
+        font-size: 12px;
+        line-height: 2em;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        /* scroll overflow */
+      }
+
+      /* Hide the browser's default radio button */
+      .container input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+      }
+
+      /* Create a custom radio button */
+      .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 25px;
+        width: 25px;
+        background-color: #ddd;
+        border-radius: 50%;
+      }
+
+      /* On mouse-over, add a grey background color */
+      .container:hover input ~ .checkmark {
+        background-color: #939393;
+      }
+
+      /* When the radio button is checked, add a blue background */
+      .container input:checked ~ .checkmark {
+        background-color: #2196f3;
+      }
+
+      /* Create the indicator (the dot/circle - hidden when not checked) */
+      .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+      }
+
+      /* Show the indicator (dot/circle) when checked */
+      .container input:checked ~ .checkmark:after {
+        display: block;
+      }
+
+      /* Style the indicator (dot/circle) */
+      .container .checkmark:after {
+        top: 9px;
+        left: 9px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: white;
+      }
+    </style>
+  </head>
+  <body>
+    <script id="__bs_script__">
+      //<![CDATA[
+      (function () {
+        try {
+          var script = document.createElement("script");
+          if ("async") {
+            script.async = true;
+          }
+          script.src = "/browser-sync/browser-sync-client.js?v=3.0.2".replace(
+            "HOST",
+            location.hostname
+          );
+          if (document.body) {
+            document.body.appendChild(script);
+          } else if (document.head) {
+            document.head.appendChild(script);
+          }
+        } catch (e) {
+          console.error("Browsersync: could not append script tag", e);
+        }
+      })();
+      //]]>
+    </script>
+
+    <!--  inactive legend for demo purposes only  -->
+    <div id="legend">
+      <h2>Trails of Washington Park</h2>
+      <h3>Portland Oregon</h3>
+    </div>
+    <div id="map"></div>
+
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiZmlyZWZseWhlYWx0aCIsImEiOiJjbHE1ZXAwNDUwMHhlMmxqc2tmMGV6cjRtIn0.dTlIXwpuOO1XJaK8tNihPw";
+      const map = new mapboxgl.Map({
+        container: "map",
+        // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+        style: "mapbox://styles/grafa/clolobt8m002l01r73orkhrgu",
+        zoom: 16,
+        pitch: 60,
+        center: [-122.71197034995811, 45.51360311249525],
+        maxZoom: 17,
+        // hash: true,
+      });
+
+      //   create a function that retrieves the data from the GeoJSON file wa_park_trails.geojson and adds it to the map source wa_park_trails
+      fetch("./data/wa_park_trails.geojson")
+        .then((response) => response.json())
+        .then((data) => {
+          map.on("load", function () {
+            map.addSource("wa_park_trails", {
+              type: "geojson",
+              data: data,
+            });
+
+            // create an array based on all the unique values in the "name" property
+            const uniqueNames = [
+              ...new Set(
+                data.features
+                  .map(
+                    (feature) => feature.properties.name
+                    // sort the names alphabetically
+                  )
+                  .sort((a, b) =>
+                    a.localeCompare(b, "en", { sensitivity: "base" })
+                  )
+              ),
+            ];
+
+            // add the unique names to the legend div where
+            uniqueNames.forEach((name) => {
+              const container = document.createElement("div");
+              container.className = "container";
+              // if name is undefined, remove the container else set the value to the name property
+              container.innerHTML = name === undefined ? "" : name;
+
+              const input = document.createElement("input");
+              input.type = "radio";
+              input.name = "path";
+
+              if (name === undefined) {
+                container.remove();
+              }
+              input.value = name;
+
+              input.checked = false;
+              container.appendChild(input);
+              const span = document.createElement("span");
+              span.className = "checkmark";
+              container.appendChild(span);
+              document.getElementById("legend").appendChild(container);
+            });
+            // evaluate if the checkmark is checked and filter the data based on the name property
+            // if it is checked, set the filter to null
+            // if it is not checked, set the filter to the name property
+            document.querySelectorAll(".container").forEach((container) => {
+              container.addEventListener("click", function () {
+                const name = this.querySelector("input").value;
+                const filter = this.querySelector("input").checked
+                  ? null
+                  : ["==", "name", name];
+                map.setFilter("wa_park_trails", filter);
+                map.setFilter("wa_park_trails_casing", filter);
+                // hide modal when a trail is clicked
+                document.getElementById("legend").style.display = "none";
+
+                // if the checkmark is already checked, set the line width to back to 3
+                if (this.querySelector("input").checked) {
+                  map
+                    .setPaintProperty("wa_park_trails", "line-width", 3)
+                    .setPaintProperty("wa_park_trails", "line-color", "#333")
+                    .setPaintProperty(
+                      "wa_park_trails_casing",
+                      "line-color",
+                      "#fff"
+                    );
+                  // map.fitBounds all the trails
+                  map.fitBounds(
+                    turf.bbox(
+                      data.features.find(
+                        (feature) => feature.properties.name === name
+                      )
+                    ),
+                    {
+                      pitch: 60,
+                      padding: { right: 50 },
+                    }
+                  );
+                } else {
+                  map
+                    .setPaintProperty("wa_park_trails", "line-width", 4)
+                    .setPaintProperty("wa_park_trails", "line-color", "#ddd")
+                    .setPaintProperty(
+                      "wa_park_trails",
+                      "line-dasharray",
+                      [1, 3]
+                    )
+                    .setPaintProperty("wa_park_trails_casing", "line-width", 8)
+                    // .setPaintProperty("wa_park_trails", "line-color", "#333")
+                    .setPaintProperty(
+                      "wa_park_trails_casing",
+                      "line-color",
+                      "#ec6157"
+                    );
+                  // fly to the bounds of the trail when the checkmark is clicked
+                  map.fitBounds(
+                    turf.bbox(
+                      data.features.find(
+                        (feature) => feature.properties.name === name
+                      )
+                    ),
+                    {
+                      //   pitch: 60,
+                      padding: 50,
+                    }
+                  );
+                }
+                // set the checkmark to the opposite of its current state
+                this.querySelector("input").checked =
+                  !this.querySelector("input").checked;
+              });
+            });
+            // add casing to the trails
+            map.addLayer({
+              id: "wa_park_trails_casing",
+              type: "line",
+              source: "wa_park_trails",
+              paint: {
+                "line-color": "#fff",
+                "line-width": 6,
+              },
+              layout: {
+                "line-join": "round",
+                "line-cap": "round",
+              },
+            });
+            map.addLayer({
+              id: "wa_park_trails",
+              type: "line",
+              source: "wa_park_trails",
+              layout: {
+                "line-join": "round",
+                "line-cap": "round",
+                // dash the line based on the trail type
+              },
+              paint: {
+                // write an expression to set the line color based on the trail type
+                "line-color": [
+                  "match",
+                  ["get", "highway"], // for footways and paths
+                  "footway",
+                  "#333",
+                  "path",
+                  "green",
+                  "#000",
+                ],
+                "line-width": 3,
+                "line-dasharray": [
+                  "match",
+                  ["get", "highway"], // for footways and paths
+                  "footway",
+                  [1, 2],
+                  "path",
+                  [1, 2],
+                  [0, 0],
+                ],
+              },
+            });
+
+            map.addLayer({
+              id: "wa_park_trails_labels",
+              type: "symbol",
+              source: "wa_park_trails",
+              layout: {
+                "text-field": ["get", "name"],
+                "text-font": ["Open Sans Regular"],
+                "text-size": 12,
+                // orient the text to the line
+                "symbol-placement": "line",
+              },
+              paint: {
+                "text-color": "#000",
+                "text-halo-color": "#fff",
+                "text-halo-width": 5,
+                "text-halo-blur": 1,
+              },
+            });
+            // add popup to the map to show the name of the trail
+            map.on("click", "wa_park_trails", function (e) {
+              new mapboxgl.Popup()
+                .setLngLat(e.lngLat)
+                .setHTML(e.features[0].properties.name)
+                .addTo(map);
+            });
+          });
+          // if map is clicked anywhere else on the map, show the legend again
+          map.on("click", function () {
+            document.getElementById("legend").style.display = "block";
+          });
+        });
+    </script>
+  </body>
+</html>

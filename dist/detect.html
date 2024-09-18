@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>get the coordinates of a mouse click on a canvas element?</title>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
+    <script src='https://unpkg.com/@turf/turf@6/turf.min.js'></script>
+
+    <!-- include bootstrap.min.css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        canvas {
+            border: 1px solid black;
+        }
+        #map {
+            width: 400px;
+            height: 300px;
+            position: relative;
+        }
+        .menu button {
+            background-color: aquamarine;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 20px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+    <!-- add a button for clearing the points   -->
+    <button id="clear">Clear Points</button>
+    <!-- add a button to insert the points -->
+    <button id="insert">Insert Points</button>
+    <!-- add a button to update the points -->
+    <button id="update">Update Points</button>
+    <!-- add input field -->
+    <input type="text" id="point" placeholder="Enter the point number">
+    <!-- add  abutton to save the points -->
+    <button id="save">Save Points</button>
+    </div>
+    <div id="map"></div>
+	<canvas width="400" height="300"
+			style="background-color: #ddd">
+	</canvas>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyDICAI7HsQ-zv09tcuBK7FqAQfBbITgKwM",
+          authDomain: "imposing-fx-141406.firebaseapp.com",
+          projectId: "imposing-fx-141406",
+          storageBucket: "imposing-fx-141406.appspot.com",
+          messagingSenderId: "1028066469605",
+          appId: "1:1028066469605:web:4e223b0ac69ee6050c960c",
+          measurementId: "G-BX9P5QXBHK"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+
+        import {getDatabase, set, get, update, remove, ref, child}
+        from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+        const db = getDatabase();
+        
+    </script>
+	<script type="text/javascript">
+		let canvasElem = document.querySelector("canvas");
+        // after getting the coordinates, you can use them to draw a 10px by 10px rectangle at the position of the mouse click
+        // create an empty array to store the number of each point
+        let imageIDs = [];
+        canvasElem.addEventListener("mousedown", function (e) {
+            imageIDs.push(String(imageIDs.length + 1));
+            let rect = canvasElem.getBoundingClientRect();
+            let x = e.clientX - rect.left;
+            let y = e.clientY - rect.top;
+            let ctx = canvasElem.getContext("2d");
+            ctx.fillStyle = "red";
+            ctx.fillRect(x, y, 10, 10);
+            // add a text label to the rectangle that increments for each click
+            ctx.font = "10px Arial";
+            ctx.fillStyle = "black";
+            // get the last element of the array from imageIDs and use it for the text label
+            ctx.fillText(imageIDs[imageIDs.length - 1], x, y);
+        });
+
+        mapboxgl.accessToken = 'pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2xuMjR1dTc3MDRpdDJxbmJsdzg1N2FwZiJ9.2ObUDqtp5JOpIdwgD68Q7A';
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/satellite-streets-v12',
+            center: [-122.6765, 45.5231],
+            zoom: 18
+        });
+        // create an empty array to store the coordinates of each mouse click
+        var coordinates = [];
+        var coordIDs = [];
+        // create an empty map layer to display the coordinates as circles with a radius of 12 and that are numbered
+        map.on('load', function() {
+            map.addSource('point', {
+                'type': 'geojson',
+                'data': {
+                    'type': 'FeatureCollection',
+                    'features': []
+                }
+            });
+            map.addLayer({
+                'id': 'point',
+                'source': 'point',
+                'type': 'circle',
+                'paint': {
+                    'circle-radius': 10,
+                    'circle-color': '#fff'
+                }
+            });
+            // add another layer to display the number of each point and center it on the point
+            map.addLayer({
+                'id': 'point-labels',
+                'type': 'symbol',
+                'source': 'point',
+                'layout': {
+                    'text-field': ['get', 'id'],
+                    'text-size': 8,
+                    'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'],
+                    // 'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+                    // 'text-justify': 'auto'
+                },
+                'paint': {
+                    'text-color': '#000'
+                }
+            });
+            
+        });
+        map.on('click', function(e) {
+            console.log('Latitude: ' + e.lngLat.lat);
+            console.log('Longitude: ' + e.lngLat.lng);
+            // when the map is clicked, the coordinates of the click are logged to the console
+            coordinates.push([e.lngLat.lng, e.lngLat.lat]);
+            coordIDs.push(String(coordinates.length));
+            // the coordinates are then added to the array
+            map.getSource('point').setData({
+                'type': 'FeatureCollection',
+                'features': coordinates.map(function (coordinate) {
+                    return {
+                        'type': 'Feature',
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': coordinate
+                        },
+                        'properties': {
+                            // increment the count for each point
+                            'id': coordIDs[coordinates.indexOf(coordinate)]
+                        }
+                    };
+                })
+            });
+        });
+        // add a button to clear the points
+        document.getElementById('clear').addEventListener('click', function() {
+            coordinates = [];
+            coordIDs = [];
+            map.getSource('point').setData({
+                'type': 'FeatureCollection',
+                'features': []
+            });
+        });
+
+        // add a button to save the points
+        document.getElementById('save').addEventListener('click', function() {
+            // create a GeoJSON object from the coordinates array
+            var geojson = {
+                'type': 'FeatureCollection',
+                'features': coordinates.map(function (coordinate) {
+                    return {
+                        'type': 'Feature',
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': coordinate
+                        },
+                        'properties': {
+                            'id': coordIDs[coordinates.indexOf(coordinate)]
+                        }
+                    };
+                })
+            };
+            // create a blob from the GeoJSON object
+            var blob = new Blob([JSON.stringify(geojson)], {type: 'application/json'});
+            // create a URL for the blob
+            var url = URL.createObjectURL(blob);
+            // create a link to the URL
+            var a = document.createElement('a');
+            a.download = 'data.geojson';
+            a.href = url;
+            a.textContent = 'Download data.geojson';
+            // append the link to the body
+            document.body.appendChild(a);
+        });
+
+	</script>
+</body>
+</html>

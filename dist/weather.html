@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Add a video</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.js"></script>
+<style>
+body { margin: 0; padding: 0; }
+#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+</style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2ptYjNtZWxnMDBrdDNwbnVicGJzOWg2NyJ9.9OulyCe3kEqMAXPbx1mKUA';
+    const videoStyle = {
+        'version': 8,
+        'sources': {
+            'satellite': {
+                'type': 'raster',
+                'url': 'mapbox://mapbox.satellite',
+                'tileSize': 256
+            },
+            'video': {
+                'type': 'video',
+                'urls': [
+                    './img/pwat_noaa.mp4'
+                ], // add coordinates to the video source to make it a 360 video
+                'coordinates': [
+                    [-180, 80],
+                    [180, 80],
+                    [180, -80],
+                    [-180, -80]
+                ]
+            }
+        },
+        'layers': [
+            {
+                'id': 'background',
+                'type': 'background',
+                'paint': {
+                    'background-color': 'rgb(4,7,14)'
+                }
+            },
+            {
+                'id': 'satellite',
+                'type': 'raster',
+                'source': 'satellite'
+            },
+            {
+                'id': 'video',
+                'type': 'raster',
+                'source': 'video'
+            }
+        ]
+    };
+
+    // create a geojson polygon bounding box that has four corners of the video source that span the globe
+
+
+
+
+
+    const map = new mapboxgl.Map({
+        container: 'map',
+        minZoom: 0,
+        zoom: 1,
+        center: [-122.514426, 37.562984],
+        // bearing: -96,
+        style: videoStyle,
+        projection: 'globe'
+    });
+
+    let playingVideo = true;
+
+    map.on('click', () => {
+        playingVideo = !playingVideo;
+
+        if (playingVideo) {
+            map.getSource('video').play();
+        } else {
+            map.getSource('video').pause();
+        }
+    });
+</script>
+
+</body>
+</html>
