@@ -1,31 +1,39 @@
-name: Deploy to GitHub Pages
+name: Node.js App Deployment
 
 on:
   push:
     branches:
-      - main
+      - main # Change this to your main branch name
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          node-version: "14"
+          node-version: "20" # Specify your Node.js version
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: npm install
-
-      - name: Build project
-        run: npm run build
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20" # Specify your Node.js version
+      - name: Install Dependencies
+        run: npm install
+      - name: Build with webpack
+        run: npx webpack --config webpack.config.js
+      - name: List Contents of dist Directory
+        run: ls -l ./dist # List contents of the dist directory
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
