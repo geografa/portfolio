@@ -1,1 +1,0 @@
-console.error("\n/Users/rafagutierrez/Documents/htdocs/demos/app.js:1\nimport mapboxgl from \"mapbox-gl\";\n^\nParseError: 'import' and 'export' may appear only with 'sourceType: module'");
