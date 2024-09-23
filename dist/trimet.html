@@ -32,9 +32,7 @@
     <script>
       // URL restricted token. Get your own here: https://account.mapbox.com/access-tokens/
       mapboxgl.accessToken =
-        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2ptYjNtZWxnMDBrdDNwbnVicGJzOWg2NyJ9.9OulyCe3kEqMAXPbx1mKUA";
-      //   mapboxgl.accessToken =
-      //     "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
+        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
       const map = new mapboxgl.Map({
         container: "map",
         style: "mapbox://styles/grafa/cm1ecpofg067v01pq6e7q680w",
@@ -180,9 +178,9 @@
               // Move the camera to follow the train
               map.easeTo({
                 center: newCoordinates,
-                zoom: 17.942189720967555,
-                bearing: 92.80540270100664,
-                pitch: 77.00000000000004,
+                zoom: 18,
+                bearing: 92,
+                pitch: 77,
                 // set the duration of the camera movement to match the speed of the train
                 duration: 100,
                 // smooth the camera movement
