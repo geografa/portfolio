@@ -58,13 +58,10 @@
       const map = new mapboxgl.Map({
         container: "map", // container ID
         style: "mapbox://styles/grafa/clux6tz6j003x01q14lv0h482", // style URL
-        center: [-82.40026992161837, 25.363467088439393], // starting position [lng, lat]
-        zoom: 6, // starting zoom
-        // pitch: 62, // starting pitch
+        center: [-80.295, 28.12],
+        zoom: 6.47,
         bearing: 0,
-        hash: true,
-        projection: "globe",
-        // minZoom: 6,
+        pitch: 70,
       });
 
       function rotateCamera(timestamp) {
@@ -111,7 +108,7 @@
         });
 
         // I see that a network request is made to this URL.
-        map.addModel("dstar", "dstar.glb");
+        map.addModel("dstar", "./models/dstar.glb");
 
         // dstar
         map.addLayer({
@@ -150,7 +147,7 @@
         });
 
         // m falcon
-        map.addModel("falcon", "falcon.glb");
+        map.addModel("falcon", "./models/falcon.glb");
 
         // m falcon
         map.addLayer({
