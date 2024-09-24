@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Waffles</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+      button {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="fly">zoom to feature</button>
+    <div id="map"></div>
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
+      const map = new mapboxgl.Map({
+        container: "map", // container ID
+        center: [-84.35961982657636, 33.768037782141406],
+        zoom: 10.246041914952606,
+        bearing: 0,
+        pitch: 0,
+      });
+
+      // Set the map's standard style to 'night'
+      map.on("style.load", () => {
+        map.setConfigProperty("basemap", "lightPreset", "night");
+      });
+
+      const waffles = {
+        type: "FeatureCollection",
+        features: [
+          {
+            type: "Feature",
+            properties: {},
+            geometry: {
+              coordinates: [-84.24422588528103, 33.84775316997576],
+              type: "Point",
+            },
+          },
+        ],
+      };
+      map.on("load", () => {
+        // clip the orig building out
+        map.addSource("eraser", {
+          type: "geojson",
+          data: {
+            type: "FeatureCollection",
+            features: [
+              {
+                type: "Feature",
+                properties: {},
+                geometry: {
+                  coordinates: [
+                    [
+                      [-84.24439424502802, 33.84783068847902],
+                      [-84.24434548530697, 33.84770920065344],
+                      [-84.24401045883432, 33.84779019255606],
+                      [-84.24405449987279, 33.84793650031577],
+                      [-84.24439424502802, 33.84783068847902],
+                    ],
+                  ],
+                  type: "Polygon",
+                },
+              },
+            ],
+          },
+        });
+        map.addLayer({
+          id: "eraser",
+          type: "clip",
+          source: "eraser",
+          layout: {
+            "clip-layer-types": ["symbol", "model"],
+          },
+        });
+
+        // Add a model source and layer displaying the location
+        // Extract coordinates from the data
+        // Add the source
+        map.addSource("waffle-source", {
+          type: "geojson",
+          data: waffles,
+        });
+        // Add the  model (exported GLB from Spline)
+        map.addModel("waffle-model", "./models/waffle_house.glb");
+        // Make a layer with the model source
+        map.addLayer({
+          id: "waffle-layer",
+          type: "model",
+          source: "waffle-source",
+          layout: {
+            "model-id": "waffle-model",
+          },
+          paint: {
+            // scale it to the right size and set the rotation
+            "model-scale": [1, 1, 1],
+            "model-rotation": [0, 0, 163],
+            "model-translation": [3, -8, 0],
+            "model-emissive-strength": 0.5,
+          },
+        });
+        // Add the  model (exported GLB from Spline)
+        map.addModel(
+          "waffle-model-windows",
+          "./models/waffle_house_windows.glb"
+        );
+        // Make a layer with the model source
+        map.addLayer({
+          id: "waffle-layer-windows",
+          type: "model",
+          source: "waffle-source",
+          layout: {
+            "model-id": "waffle-model-windows",
+          },
+          paint: {
+            "model-scale": [1, 1, 1],
+            "model-rotation": [0, 0, 163],
+            "model-translation": [3, -8, 0],
+            "model-emissive-strength": 3,
+          },
+        });
+        map.addModel("waffle-light-model", "./models/waffle-light.glb");
+        // Make a train layer with the model source
+        map.addLayer({
+          id: "waffle-light-layer",
+          type: "model",
+          source: "waffle-source",
+          layout: {
+            "model-id": "waffle-light-model",
+          },
+          paint: {
+            "model-scale": [1, 1, 1],
+            "model-rotation": [0, 0, 163],
+            "model-translation": [3, -8, 0],
+            "model-emissive-strength": 3,
+            // "model-height-based-emissive-strength-multiplier": [1, 1, 1, 1, 0],
+          },
+        });
+      });
+      document.getElementById("fly").addEventListener("click", function () {
+        map.flyTo({
+          center: [-84.24423955818719, 33.847842857680206],
+          zoom: 20.5,
+          bearing: 109,
+          pitch: 72,
+          essential: true,
+        });
+      });
+      map.on("moveend", () => {
+        // when the map is done moving, make the "model-emissive-strength" property of the layer
+        // equal a random number from 1 to 5 (inclusive) on a 1 second interval to make the model "pulse"
+        setInterval(() => {
+          map.setPaintProperty(
+            "waffle-light-layer",
+            "model-emissive-strength",
+            Math.random() * 4
+          );
+        }, 100);
+      });
+    </script>
+  </body>
+</html>
