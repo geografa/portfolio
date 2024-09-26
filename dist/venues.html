@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Global Football Stadiums</title>
+    <title>⚽️ Global Football Stadiums 🏟️</title>
     <meta
       name="viewport"
       content="initial-scale=1,maximum-scale=1,user-scalable=no"
@@ -25,9 +25,25 @@
       href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.3/mapbox-gl-geocoder.css"
       type="text/css"
     />
-
     <script src="https://cdn.jsdelivr.net/npm/@turf/turf@7/turf.min.js"></script>
     <style>
+      :root {
+        --primary-light: #8abdff;
+        --primary: #1b4f26;
+        --primary-dark: #0ea127;
+        --white: #ffffff;
+        --greyLight-1: #e4ebf5;
+        --greyLight-2: #c8d0e7;
+        --greyLight-3: #bec8e4;
+        --greyDark: #7c7c7c;
+      }
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: inherit;
+      }
       body {
         margin: 0;
         padding: 0;
@@ -38,6 +54,7 @@
         bottom: 0;
         width: 100%;
       }
+      /* MAPBOX */
       .mapboxgl-popup {
         max-width: 400px;
         font: 12px/20px "Helvetica Neue", Arial, Helvetica, sans-serif;
@@ -94,39 +111,16 @@
       .mapboxgl-popup-anchor-bottom-right .mapboxgl-popup-tip {
         border-top-color: rgba(233, 233, 12, 0.78);
       }
-      :root {
-        --primary-light: #8abdff;
-        --primary: #1b4f26;
-        --primary-dark: #0ea127;
-        --white: #ffffff;
-        --greyLight-1: #e4ebf5;
-        --greyLight-2: #c8d0e7;
-        --greyLight-3: #bec8e4;
-        --greyDark: #7c7c7c;
-      }
-
-      *,
-      *::before,
-      *::after {
-        margin: 0;
-        padding: 0;
-        box-sizing: inherit;
-      }
-
+      /* HEADER */
       .container {
         text-align: center;
         margin-top: 10px;
-        /* center this container at the top of the map */
         position: absolute;
         font-family: "Poppins", sans-serif;
         background-color: #fff;
-        /* background-image: url("./img/football.svg"); */
-        background-image: url("./img/football.svg");
+        background-image: url("./img/football-player.svg");
         background-repeat: no-repeat;
-        /* opacity: 0.9; */
-        /* center the background image */
         background-position: center;
-
         padding: 10px;
         border-radius: 10px;
         top: 0;
@@ -228,17 +222,24 @@
         transform: translateX(13.6rem);
         transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
       }
+      /* GEOCODER */
       .geocoder {
         position: absolute;
         z-index: 1;
         bottom: 200px;
-        width: 60%;
         left: 50%;
         transform: translateX(-50%);
       }
       .mapboxgl-ctrl-geocoder {
         font-size: 0.8rem;
-        min-width: 100%;
+      }
+      /* media queries */
+      @media only screen and (max-width: 600px) {
+        .geocoder {
+          /* center the geocoder */
+          width: 80%;
+          bottom: 80px;
+        }
       }
     </style>
   </head>
@@ -250,18 +251,11 @@
       </div>
       <div id="viz-menu" class="segmented-control">
         <input type="radio" name="radio2" value="3" id="tab-1" checked />
-        <label for="tab-1" class="segmented-control__1">
-          <p>Aggregate</p></label
-        >
-
+        <label for="tab-1" class="segmented-control__1"> <p>Grouped</p></label>
         <input type="radio" name="radio2" value="4" id="tab-2" />
-        <label for="tab-2" class="segmented-control__2"> <p>Density</p></label>
-
+        <label for="tab-2" class="segmented-control__2"> <p>Location</p></label>
         <input type="radio" name="radio2" value="5" id="tab-3" />
-        <label for="tab-3" class="segmented-control__3">
-          <p>Graduated</p></label
-        >
-
+        <label for="tab-3" class="segmented-control__3"> <p>Capacity</p></label>
         <div class="segmented-control__color"></div>
       </div>
       <span class="byline"
@@ -281,8 +275,10 @@
         zoom: 3,
         bearing: 0,
         pitch: 0,
+        hash: true,
       });
-      // fetch the venue data from this API : https://sportsdata.io/developers/api-documentation/soccer#venues
+
+      // If you use the API, fetch the venue data from this API : https://sportsdata.io/developers/api-documentation/soccer#venues
       //   create a function to fetch the hexagon data
       //   const fetchHexagons = async () => {
       //     const response = await fetch("./data/hexagons.geojson");
@@ -307,7 +303,6 @@
         fetch("./data/venues-sportsdata.json")
           .then((response) => response.json())
           .then((data) => {
-            console.log(data);
             // for each data point, create a GeoJSON feature with the venue icon and add it to the venuesIcons feature collection
             // then add the icons to the map as a circle layer
             // ignore data features where GeoLong and GeoLat are null
@@ -350,16 +345,6 @@
                   8,
                 ],
                 "circle-color": "#e9e90c",
-                // make a zoom level expression to change the opacity of the icons
-                // "circle-opacity": [
-                //   "interpolate",
-                //   ["linear"],
-                //   ["zoom"],
-                //   5,
-                //   0,
-                //   10,
-                //   1,
-                // ],
                 "circle-stroke-width": 2,
                 "circle-stroke-color": "#fff",
                 "circle-stroke-opacity": [
@@ -430,7 +415,6 @@
                   data[i].GeoLong,
                   3
                 );
-
                 const hexBoundary = h3
                   .cellToBoundary(h3Index)
                   .map((coord) => [coord[1], coord[0]]); // Ensure coordinates are in [lng, lat] format
@@ -449,12 +433,12 @@
                 });
               }
             }
-            // wait for the data to be fetched and then add the venues to the map
+            // add the venues source to the map
             map.addSource("venues", {
               type: "geojson",
               data: venuesHex,
             });
-            // add a fill layer
+            // add it as a fill layer
             map.addLayer(
               {
                 id: "venues-hex-layer",
@@ -469,8 +453,8 @@
                     ["zoom"],
                     0,
                     0.8,
-                    5,
-                    0.1,
+                    7,
+                    0,
                   ],
                 },
                 layout: {
@@ -486,7 +470,6 @@
               closeOnClick: true,
             });
             map.on("click", "venues-icons-layer", (e) => {
-              console.log(e);
               map.getCanvas().style.cursor = "pointer";
               const coordinates = e.lngLat;
               const name = e.features[0].properties.name;
@@ -507,13 +490,12 @@
               const coordinates = e.lngLat;
               map.flyTo({
                 center: coordinates,
-                zoom: 8,
+                zoom: 5,
               });
             });
-
             return data;
           });
-
+        // supplement the geocoder with the venues data
         function forwardGeocoder(query) {
           const matchingFeatures = [];
           for (const feature of venuesIcons.features) {
@@ -524,12 +506,11 @@
                 .toLowerCase()
                 .includes(query.toLowerCase())
             ) {
-              // Add a tree emoji as a prefix for custom
+              // Add an emoji as a prefix for custom
               // data results using carmen geojson format:
               // https://github.com/mapbox/carmen/blob/master/carmen-geojson.md
               feature["place_name"] = `⚽️ ${feature.properties.name}`;
               feature["center"] = feature.geometry.coordinates;
-              feature["place_type"] = ["park"];
               matchingFeatures.push(feature);
             }
           }
@@ -540,7 +521,7 @@
           accessToken: mapboxgl.accessToken,
           localGeocoder: forwardGeocoder,
           types: "place",
-          zoom: 14,
+          zoom: 9,
           marker: false,
           placeholder: "City or Stadium Name",
           mapboxgl: mapboxgl,
@@ -551,12 +532,23 @@
           if (
             map.getLayoutProperty("venues-icons-layer", "visibility") === "none"
           ) {
+            // set the location radio button to checked and make the icons layer visible
             map.setLayoutProperty(
               "venues-icons-layer",
               "visibility",
               "visible"
             );
             document.getElementById("tab-2").checked = true;
+            // set the hex radio button to not checked and make the hex layer not visible
+            map.setLayoutProperty("venues-hex-layer", "visibility", "none");
+            document.getElementById("tab-1").checked = false;
+            // set the graduated radio button to not checked and make the graduated layer not visible
+            map.setLayoutProperty(
+              "venues-graduated-layer",
+              "visibility",
+              "none"
+            );
+            document.getElementById("tab-3").checked = false;
           }
         });
 
@@ -566,11 +558,14 @@
       // create a listener that changes the visibility of the layers based on the radio button selected
       document.getElementById("viz-menu").addEventListener("change", (e) => {
         const visibility = e.target.value;
-        console.log(e.target.value);
         if (visibility === "3") {
           map.setLayoutProperty("venues-hex-layer", "visibility", "visible");
           map.setLayoutProperty("venues-icons-layer", "visibility", "none");
           map.setLayoutProperty("venues-graduated-layer", "visibility", "none");
+          // set zoom level to 5
+          map.flyTo({
+            zoom: 5,
+          });
         } else if (visibility === "4") {
           map.setLayoutProperty("venues-hex-layer", "visibility", "none");
           map.setLayoutProperty("venues-icons-layer", "visibility", "visible");
