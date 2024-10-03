@@ -3,3 +3,4 @@ node_modules
 tmp
 archive
 /dist/exports
+/dist/data/archive
