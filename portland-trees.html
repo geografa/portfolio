@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>City of Portland Street Tree Inventory</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
+      const map = new mapboxgl.Map({
+        container: "map", // container ID
+        center: [-122.63581085028551, 45.52508375963012],
+        zoom: 18.7,
+        bearing: -24,
+        pitch: 60.7,
+        hash: true,
+      });
+
+      map.on("style.load", () => {
+        map.addSource("tree-source", {
+          type: "vector",
+          url: "mapbox://grafa.czics6j7",
+        });
+
+        map.addModel("model-conifer", "./models/tree-conifer.glb");
+        map.addModel("model-deciduous", "./models/tree-deciduous.glb");
+
+        // if the FUNCTIONAL_TYPE is "Broadleaf deciduous" use the "model-deciduous" model
+        // if the FUNCTIONAL_TYPE is "Coniferous evergreen" use the "model-conifer" model
+        map.addLayer({
+          id: "trees",
+          type: "model",
+          source: "tree-source",
+          "source-layer": "Street_Trees-7ger91",
+          layout: {
+            "model-id": [
+              "match",
+              ["get", "FunctionalType"],
+              "BD",
+              "model-deciduous",
+              "CE",
+              "model-conifer",
+              "BE",
+              "model-conifer",
+              "CD",
+              "model-conifer",
+              "model-deciduous",
+            ],
+          },
+          paint: {
+            "model-scale": [
+              // get the Size S, M, L and then set height to a value based on the size
+              "match",
+              ["get", "Size"],
+              "S",
+              [1, 1, 1],
+              "M",
+              [2, 2, 2],
+              "L",
+              [3, 3, 3],
+              [1, 1, 1],
+            ],
+          },
+        });
+      });
+      function zoomToFeature(e) {
+        map.easeTo({
+          center: [-122.67809578098382, 45.52366767466373],
+          zoom: 16.78824324735485,
+          bearing: -153.7804270109654,
+          pitch: 73.99999999999997,
+          duration: 15000,
+          speed: 0.2,
+          curve: 1.5,
+          easing(t) {
+            return t;
+          },
+        });
+      }
+    </script>
+  </body>
+</html>
