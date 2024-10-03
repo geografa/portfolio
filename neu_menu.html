@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Display a map on a webpage</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.js"></script>
+    <style>
+      :root {
+        --primary-light: #8abdff;
+        --primary: #6d5dfc;
+        --primary-dark: #5b0eeb;
+        --white: #ffffff;
+        --greyLight-1: #e4ebf5;
+        --greyLight-2: #c8d0e7;
+        --greyLight-3: #bec8e4;
+        --greyDark: #9baacf;
+      }
+
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: inherit;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+
+      #menu {
+        position: absolute;
+        background: #fff;
+        padding: 10px;
+        font-family: "Open Sans", sans-serif;
+        z-index: 1;
+      }
+      /*  SEGMENTED-CONTROL */
+      .segmented-control {
+        grid-column: 3/4;
+        grid-row: 1/2;
+        width: 20.4rem;
+        height: 4rem;
+        box-shadow: 0.3rem 0.3rem 0.6rem var(--greyLight-2),
+          -0.2rem -0.2rem 0.5rem var(--white);
+        border-radius: 1rem;
+        display: flex;
+        align-items: center;
+        position: relative;
+      }
+      .segmented-control input {
+        display: none;
+      }
+      .segmented-control > input:checked + label {
+        transition: all 0.5s ease;
+        color: var(--primary);
+      }
+      .segmented-control__1,
+      .segmented-control__2,
+      .segmented-control__3 {
+        width: 6.8rem;
+        height: 3.6rem;
+        font-size: 1.4rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        color: var(--greyDark);
+        transition: all 0.5s ease;
+      }
+      .segmented-control__1:hover,
+      .segmented-control__2:hover,
+      .segmented-control__3:hover {
+        color: var(--primary);
+      }
+      .segmented-control__color {
+        position: absolute;
+        height: 3.4rem;
+        width: 6.2rem;
+        margin-left: 0.3rem;
+        border-radius: 0.8rem;
+        box-shadow: inset 0.2rem 0.2rem 0.5rem var(--greyLight-2),
+          inset -0.2rem -0.2rem 0.5rem var(--white);
+        pointer-events: none;
+      }
+
+      #tab-1:checked ~ .segmented-control__color {
+        transform: translateX(0);
+        transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+      }
+
+      #tab-2:checked ~ .segmented-control__color {
+        transform: translateX(6.8rem);
+        transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+      }
+
+      #tab-3:checked ~ .segmented-control__color {
+        transform: translateX(13.6rem);
+        transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="menu" class="segmented-control">
+      <input type="radio" name="radio2" value="3" id="tab-1" checked />
+      <label for="tab-1" class="segmented-control__1"> <p>Tab 1</p></label>
+
+      <input type="radio" name="radio2" value="4" id="tab-2" />
+      <label for="tab-2" class="segmented-control__2"> <p>Tab 2</p></label>
+
+      <input type="radio" name="radio2" value="5" id="tab-3" />
+      <label for="tab-3" class="segmented-control__3"> <p>Tab 3</p></label>
+
+      <div class="segmented-control__color"></div>
+    </div>
+    <div id="map"></div>
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2ptYjNtZWxnMDBrdDNwbnVicGJzOWg2NyJ9.9OulyCe3kEqMAXPbx1mKUA";
+      const map = new mapboxgl.Map({
+        container: "map", // container ID
+        center: [-74.5, 40], // starting position [lng, lat]
+        zoom: 9, // starting zoom
+      });
+    </script>
+  </body>
+</html>
