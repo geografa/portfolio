@@ -1,9 +1,13 @@
 export function highLightHex(map) {
   // create a setInterval that will run every 1000 milliseconds and console.log a random hexagon feature's id
+
+  // wait for all the features to load before running the setIntervall function below
+
   setInterval(() => {
     const features = map.querySourceFeatures("hexagons");
+
+    console.log(features.length);
     const randomFeature = features[Math.floor(Math.random() * features.length)];
-    console.log(randomFeature.id);
 
     map.setPaintProperty(
       "hexagons-layer",
@@ -20,5 +24,5 @@ export function highLightHex(map) {
       if (e.features[0].id === randomFeature.id) {
       }
     });
-  }, 10000);
+  }, 1000);
 }
