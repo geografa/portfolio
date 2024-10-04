@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drag and drop GPX with Map Matching</title>
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.js"></script>
+    <script src="./togeojson.js"></script>
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        width: 100vw;
+        height: 100vh;
+      }
+      #container {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 10px;
+        background-color: #a4aa35;
+        opacity: 0.8;
+        border-radius: 10px;
+        width: 250px;
+        height: 40vh;
+        overflow-y: auto;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 10px;
+      }
+      #dropzone {
+        position: relative;
+
+        color: #fff;
+        background-color: #333;
+        border: 2px dashed #ccc;
+
+        height: 100px;
+        text-align: center;
+        line-height: 90px;
+      }
+      #carbonOffset {
+        position: relative;
+        top: 20px;
+        left: 10px;
+        padding: 10px;
+
+        /* width: 200px;
+        height: 50px; */
+        text-align: center;
+        line-height: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <div id="container">
+      <div id="dropzone">Drag & Drop GPX File</div>
+      <div id="carbonOffset"></div>
+    </div>
+
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2ptYjNtZWxnMDBrdDNwbnVicGJzOWg2NyJ9.9OulyCe3kEqMAXPbx1mKUA"; // Replace with your Mapbox token
+      const map = new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/mapbox/dark-v11",
+        center: [-98.5795, 39.8283], // Center of the US
+        zoom: 3,
+        hash: true,
+      });
+
+      // Handle drag and drop events
+      const dropzone = document.getElementById("dropzone");
+
+      dropzone.addEventListener("dragover", (event) => {
+        event.preventDefault();
+        dropzone.style.backgroundColor = "#e0e0e0";
+      });
+
+      dropzone.addEventListener("dragleave", (event) => {
+        event.preventDefault();
+        dropzone.style.backgroundColor = "white";
+      });
+
+      dropzone.addEventListener("drop", (event) => {
+        event.preventDefault();
+        dropzone.style.backgroundColor = "white";
+
+        const file = event.dataTransfer.files[0];
+        if (file && file.name.endsWith(".gpx")) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            const gpxText = e.target.result;
+            parseGPX(gpxText);
+          };
+          reader.readAsText(file);
+        } else {
+          alert("Please upload a valid GPX file.");
+        }
+      });
+
+      // Conversion from GPX to GeoJSON
+      function parseGPX(gpxText) {
+        const parser = new DOMParser();
+        const gpx = parser.parseFromString(gpxText, "text/xml");
+        const geojson = toGeoJSON.gpx(gpx);
+
+        // Visualize the GeoJSON on the map
+        // if the source already exists, use setData else addSource
+        if (map.getSource("route")) {
+          map.getSource("route").setData(geojson);
+        } else {
+          map.addSource("route", {
+            type: "geojson",
+            data: geojson,
+          });
+        }
+
+        // if the layers already exist, use setLayoutProperty else addLayer
+        if (map.getLayer("route")) {
+          map.setLayoutProperty("route", "visibility", "visible");
+        } else {
+          map.addLayer({
+            id: "route-blur",
+            type: "line",
+            source: "route",
+            layout: {
+              "line-join": "round",
+              "line-cap": "round",
+            },
+            paint: {
+              "line-color": "#bada55",
+              "line-width": 10,
+              "line-opacity": 0.8,
+              "line-blur": 5,
+            },
+          });
+          map.addLayer({
+            id: "route",
+            type: "line",
+            source: "route",
+            layout: {
+              "line-join": "round",
+              "line-cap": "round",
+            },
+            paint: {
+              "line-color": "#bada55",
+              "line-width": 2,
+            },
+          });
+        }
+
+        map.fitBounds(geojson.features[0].geometry.coordinates, {
+          padding: 20,
+        });
+
+        // Now, call the Map Matching API
+        matchRoute(geojson);
+      }
+
+      // Map Matching API
+      function matchRoute(geojson) {
+        const coords = geojson.features[0].geometry.coordinates;
+
+        // Convert to the format required by the Map Matching API
+        const coordinates = coords.map((coord) => coord.join(",")).join(";");
+
+        const mapMatchingUrl = `https://api.mapbox.com/matching/v5/mapbox/cycling/${coordinates}?access_token=pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2ptYjNtZWxnMDBrdDNwbnVicGJzOWg2NyJ9.9OulyCe3kEqMAXPbx1mKUA&geometries=geojson&overview=full`;
+
+        // Calculate the carbon offset (you can add parameters from the algorithm here)
+        const carbonOffset = coords.length * 0.21;
+
+        fetch(mapMatchingUrl)
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.code === "Ok") {
+              const matchedGeojson = data.matchings[0].geometry;
+
+              // Visualize the matched route on the map
+              map.getSource("route").setData({
+                type: "Feature",
+                properties: {},
+                geometry: matchedGeojson,
+              });
+            }
+            document.getElementById(
+              "carbonOffset"
+            ).innerHTML = `Carbon Offset: ${carbonOffset.toFixed(2)} kg`;
+          })
+          .catch((error) =>
+            console.error("Error with Map Matching API:", error)
+          );
+      }
+    </script>
+  </body>
+</html>

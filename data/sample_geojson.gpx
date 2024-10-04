@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<gpx version="1.1" creator="GDAL 3.8.3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.topografix.com/GPX/1/1" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+<metadata>
+<bounds minlat="49.271716561280812" minlon="-123.129776023691008" maxlat="49.289827255754147" maxlon="-123.110962412415475"/>                                   
+</metadata>
+<rte>
+  <rtept lat="49.289827255754147" lon="-123.129563681749062">
+  </rtept>
+  <rtept lat="49.28573459068221" lon="-123.123200089608645">
+  </rtept>
+  <rtept lat="49.287519731051447" lon="-123.120463299981822">
+  </rtept>
+  <rtept lat="49.286852125146055" lon="-123.118305018731206">
+  </rtept>
+  <rtept lat="49.282164116044555" lon="-123.110962412415475">
+  </rtept>
+  <rtept lat="49.278883696036473" lon="-123.115924234259438">
+  </rtept>
+  <rtept lat="49.280135177547407" lon="-123.117980051754671">
+  </rtept>
+  <rtept lat="49.275925576210994" lon="-123.124210141962038">
+  </rtept>
+  <rtept lat="49.273181884020033" lon="-123.128393202529807">
+  </rtept>
+  <rtept lat="49.271716561280812" lon="-123.129776023691008">
+  </rtept>
+</rte>
+</gpx>
