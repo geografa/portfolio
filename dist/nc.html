@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Display a map on a webpage</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
+      const map = new mapboxgl.Map({
+        container: "map", // container ID
+        style: "mapbox://styles/grafa/cm1zn9e9o000301re1arr1dne", // style URL
+        center: [-82.03398762255955, 35.65480974098976],
+        zoom: 7.472965009138001,
+        bearing: 0,
+        pitch: 0,
+        hash: true,
+      });
+
+      map.on("load", () => {
+        map.addSource("nc", {
+          type: "geojson",
+          data: "./data/NC_DOT_Incidents.geojson",
+        });
+
+        map.addLayer(
+          {
+            id: "nc",
+            type: "circle",
+            source: "nc",
+            paint: {
+              // create zoom expression
+              "circle-radius": [
+                "interpolate",
+                ["linear"],
+                ["zoom"],
+                0,
+                1,
+                7,
+                4,
+              ],
+              "circle-color": [
+                "match",
+                ["get", "Condition"],
+                "Road Closed",
+                "#f30",
+                "Road Impassable",
+                "orange",
+                "Road Closed with Detour",
+                "yellow",
+                "Lane Closed",
+                "#bada55",
+                "Lanes Closed",
+                "#333",
+                "white",
+              ],
+              "circle-stroke-width": [
+                "interpolate",
+                ["linear"],
+                ["zoom"],
+                0,
+                0.1,
+                7,
+                1,
+              ],
+              "circle-stroke-color": "#fff",
+            },
+          },
+          "poi-label"
+        );
+        map.setFilter("nc", ["==", "EventName", "2024 Hurricane Helene"]);
+      });
+      // add a popup to the map
+      const popup = new mapboxgl.Popup({
+        closeButton: false,
+        closeOnClick: true,
+      });
+      map.on("click", "nc", (e) => {
+        const props = e.features[0].properties;
+
+        // create values for these properties:
+        // IncidentID
+        // RoadName
+        // CommonName
+        // Direction
+        // CrossStreetCommonName
+        // InNearCity
+        // City
+        // IncidentTypeDesc
+        // Condition
+        // LanesClosed
+        // LanesTotal
+        // Reason
+        // Severity
+        // LastUpdateDate (ET)
+
+        const coordinates = e.features[0].geometry.coordinates.slice();
+        const description = `
+          <h2>${props.CommonName}</h2>
+          <p>${props.RoadName}</p>
+          <p>${props.Direction}</p>
+          <p>${"Cross street: " + props.CrossStreetCommonName}</p>
+          <p>${props.InNearCity + " " + props.City}</p>
+          
+          <p>${"Incident type: " + props.IncidentTypeDesc}</p>
+          <p>${"Condition: " + props.Condition}</p>
+          <p>${"Reason: " + props.Reason}</p>
+          <p>${"Severity: " + props.Severity}</p>
+        `;
+        popup.setLngLat(coordinates).setHTML(description).addTo(map);
+      });
+    </script>
+  </body>
+</html>
