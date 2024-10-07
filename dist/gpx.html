@@ -33,7 +33,7 @@
         width: 250px;
         height: 40vh;
         overflow-y: auto;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-family: "Helvetica Neue", Arial, sans-serif;
         margin: 10px;
       }
       #dropzone {
@@ -45,18 +45,27 @@
         text-align: center;
         line-height: 90px;
       }
+      #layerManager {
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+        line-height: 2em;
+      }
     </style>
   </head>
   <body>
     <div id="map"></div>
     <div id="container">
       <div id="dropzone">Drag & Drop GPX File</div>
-      <input
-        type="checkbox"
-        id="toggle"
-        onclick="toggleLayer('heartRatePoly-layer')"
-      />
-      <label for="toggle">Toggle Heart Rate</label>;
+      <div id="layerManager">
+        <input
+          type="checkbox"
+          id="toggle"
+          onclick="toggleLayer('heartRatePoly-layer')"
+        />
+        <label for="toggle">Toggle Heart Rate</label>
+        <p><a href="./data/strava/strava_SUP.gpx">Sample GPX file</a></p>
+      </div>
     </div>
 
     <script>
