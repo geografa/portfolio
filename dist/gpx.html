@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drag and drop GPX with Map Matching</title>
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@7/turf.min.js"></script>
+    <script src="https://unpkg.com/h3-js"></script>
+    <script src="./togeojson.js"></script>
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        width: 100vw;
+        height: 100vh;
+      }
+      #container {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 10px;
+        background-color: #a4aa35;
+        opacity: 0.8;
+        border-radius: 10px;
+        width: 250px;
+        height: 40vh;
+        overflow-y: auto;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 10px;
+      }
+      #dropzone {
+        position: relative;
+        color: #fff;
+        background-color: #333;
+        border: 2px dashed #ccc;
+        height: 100px;
+        text-align: center;
+        line-height: 90px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <div id="container">
+      <div id="dropzone">Drag & Drop GPX File</div>
+      <input
+        type="checkbox"
+        id="toggle"
+        onclick="toggleLayer('heartRatePoly-layer')"
+      />
+      <label for="toggle">Toggle Heart Rate</label>;
+    </div>
+
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg"; // Replace with your Mapbox token
+      const map = new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/mapbox/dark-v11",
+        center: [-98.5795, 39.8283], // Center of the US
+        zoom: 9,
+        hash: true,
+      });
+
+      // Handle drag and drop events
+      const dropzone = document.getElementById("dropzone");
+
+      dropzone.addEventListener("dragover", (event) => {
+        event.preventDefault();
+        dropzone.style.backgroundColor = "#e0e0e0";
+      });
+
+      dropzone.addEventListener("dragleave", (event) => {
+        event.preventDefault();
+        dropzone.style.backgroundColor = "#ddd";
+      });
+
+      dropzone.addEventListener("drop", (event) => {
+        event.preventDefault();
+        dropzone.style.backgroundColor = "#ddd";
+
+        const file = event.dataTransfer.files[0];
+        if (file && file.name.endsWith(".gpx")) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            const gpxText = e.target.result;
+            parseGPX(gpxText);
+          };
+          reader.readAsText(file);
+        } else {
+          alert("Please upload a valid GPX file.");
+        }
+      });
+
+      // Conversion from GPX to GeoJSON
+      function parseGPX(gpxText) {
+        const parser = new DOMParser();
+        const gpx = parser.parseFromString(gpxText, "text/xml");
+        const geojson = toGeoJSON.gpx(gpx);
+
+        // create an empty geojson object
+        const heartRateGeojson = {
+          type: "FeatureCollection",
+          features: [],
+        };
+        const heartRatePolys = {
+          type: "FeatureCollection",
+          features: [],
+        };
+        const total = geojson.features[0].properties.coordTimes.length;
+
+        // divide the total length by the 'total' variable
+        for (let i = 0; i < total; i++) {
+          const coords = geojson.features[0].geometry.coordinates[i];
+          const coordTime = geojson.features[0].properties.coordTimes[i];
+          const heartrate = geojson.features[0].properties.heartRates[i];
+          //   console.log(coords);
+          const h3Index = h3.latLngToCell(coords[1], coords[0], 14);
+          //   console.log(h3Index);
+          // cellToBoundary returns an array of coordinates
+          const hexBoundary = h3.cellToBoundary(h3Index);
+          //   console.log(hexBoundary);
+
+          // push the coords to the heartRateGeojson object
+          heartRateGeojson.features.push({
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: coords,
+            },
+            properties: {
+              coordTimes: coordTime,
+              heartRates: heartrate,
+            },
+          });
+          heartRatePolys.features.push({
+            type: "Feature",
+            geometry: {
+              type: "Polygon",
+              coordinates: [hexBoundary.map((coord) => [coord[1], coord[0]])],
+            },
+            properties: {
+              coordTimes: coordTime,
+              heartRates: heartrate,
+            },
+          });
+          console.log(heartRatePolys);
+        }
+
+        // get the length of the route in meters
+        const length = turf.length(geojson, { units: "meters" });
+        // console.log(length);
+
+        // Visualize the GeoJSON on the map
+        // if the source already exists, use setData else addSource
+        if (map.getSource("route")) {
+          map.getSource("route").setData(geojson);
+        } else {
+          map.addSource("route", {
+            type: "geojson",
+            data: geojson,
+          });
+        }
+
+        // if the layers already exist, use setLayoutProperty else addLayer
+        if (map.getLayer("route")) {
+          map.setLayoutProperty("route", "visibility", "visible");
+        } else {
+          map.addLayer({
+            id: "route-blur",
+            type: "line",
+            source: "route",
+            layout: {
+              "line-join": "round",
+              "line-cap": "round",
+            },
+            paint: {
+              "line-color": "#bada55",
+              "line-width": 10,
+              "line-opacity": 0.8,
+              "line-blur": 5,
+            },
+          });
+          map.addLayer({
+            id: "route",
+            type: "line",
+            source: "route",
+            layout: {
+              "line-join": "round",
+              "line-cap": "round",
+            },
+            paint: {
+              "line-color": "#bada55",
+              "line-width": 2,
+            },
+          });
+
+          // create a map layer for the heartRateGeojson object
+          map.addSource("heartRate", {
+            type: "geojson",
+            data: heartRateGeojson,
+          });
+          map.addLayer({
+            id: "heartRate",
+            type: "circle",
+            source: "heartRate",
+            paint: {
+              "circle-radius": 5,
+              "circle-color": [
+                "interpolate",
+                ["linear"],
+                ["get", "heartRates"],
+                90,
+                "#bada55",
+                150,
+                "yellow",
+                200,
+                "#ff0000",
+              ],
+            },
+          });
+          map.addSource("heartRatePoly-source", {
+            type: "geojson",
+            data: heartRatePolys,
+          });
+          map.addLayer({
+            id: "heartRatePoly-layer",
+            type: "fill-extrusion",
+            source: "heartRatePoly-source",
+            paint: {
+              // use the heart rate to determine the color of the extrusion
+              "fill-extrusion-color": [
+                "interpolate",
+                ["linear"],
+                ["get", "heartRates"],
+                90,
+                "#bada55",
+                150,
+                "yellow",
+                200,
+                "#ff0000",
+              ],
+              "fill-extrusion-opacity": 0.5,
+              // use the heart rate to determine the height of the extrusion
+              "fill-extrusion-height": ["*", ["get", "heartRates"], 0.2],
+            },
+          });
+          document.getElementById("toggle").checked = true;
+
+          const popup = new mapboxgl.Popup({
+            closeButton: false,
+            closeOnClick: false,
+          });
+          // create a popup on hover for the heartRatePoly-layer layer
+          map.on("mouseenter", "heartRatePoly-layer", (e) => {
+            console.log(e);
+            map.getCanvas().style.cursor = "pointer";
+            const coordinates = e.lngLat;
+            const heartRate = e.features[0].properties.heartRates;
+            const coordTime = e.features[0].properties.coordTimes;
+            const html = `<h3>Heart Rate: ${heartRate}</h3><p>Time: ${coordTime}</p>`;
+            popup.setLngLat(coordinates).setHTML(html).addTo(map);
+          });
+          map.on("mouseleave", "heartRatePoly-layer", () => {
+            map.getCanvas().style.cursor = "";
+            popup.remove();
+          });
+        }
+      }
+
+      function toggleLayer(layerId) {
+        const visibility = map.getLayoutProperty(layerId, "visibility");
+        if (visibility === "visible") {
+          map.setLayoutProperty(layerId, "visibility", "none");
+          document.getElementById("toggle").checked = false;
+        } else {
+          map.setLayoutProperty(layerId, "visibility", "visible");
+          document.getElementById("toggle").checked = true;
+        }
+      }
+    </script>
+  </body>
+</html>
