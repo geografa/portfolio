@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Autzen Field</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+      button {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 120px;
+        z-index: 1;
+        background-color: aliceblue;
+        border-radius: 10px;
+        border: 0.5px solid #333;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="fly">Kick it 🏈</button>
+    <div id="map"></div>
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
+      const map = (window.map = new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/grafa/cm26j1xiz002f01ps3v6d3wb4",
+        center: [-123.06856618028587, 44.05821073571144],
+        zoom: 17.33163132527265,
+        bearing: -76.80000000000064,
+        pitch: 68.49999999999987,
+        hash: true,
+      }));
+
+      // Set the map's standard style to 'night'
+      map.on("style.load", () => {
+        map.setConfigProperty("basemap", "lightPreset", "day");
+      });
+
+      const autzenLocation = {
+        type: "FeatureCollection",
+        features: [
+          {
+            type: "Feature",
+            properties: {},
+            geometry: {
+              type: "Point",
+              coordinates: [-123.06845226894232, 44.05819903797001],
+            },
+          },
+        ],
+      };
+      const logo = {
+        type: "FeatureCollection",
+        features: [
+          {
+            type: "Feature",
+            properties: {},
+            geometry: {
+              type: "Point",
+              coordinates: [-123.06851135355066, 44.05827622232778],
+            },
+          },
+        ],
+      };
+      map.on("load", () => {
+        // add a GeoJSON layer called "field" with a polygon that represents the field
+        const field = {
+          type: "FeatureCollection",
+          features: [
+            {
+              type: "Feature",
+              properties: {},
+              geometry: {
+                coordinates: [
+                  [
+                    [-123.06926620626595, 44.05818803217085],
+                    [-123.06792231699704, 44.05792336217553],
+                    [-123.06775581155519, 44.058364915278105],
+                    [-123.06910007622689, 44.05862980216159],
+                    [-123.06926620626595, 44.05818803217085],
+                  ],
+                ],
+                type: "Polygon",
+              },
+            },
+            {
+              type: "Feature",
+              properties: {
+                class: "pitch",
+              },
+              geometry: {
+                coordinates: [
+                  [
+                    [-123.06913307958975, 44.05867269332535],
+                    [-123.06932567141361, 44.05816464084788],
+                    [-123.06788901203474, 44.05788155558784],
+                    [-123.06769835557222, 44.058387250945714],
+                    [-123.06913307958975, 44.05867269332535],
+                  ],
+                ],
+                type: "Polygon",
+              },
+              id: 1,
+            },
+          ],
+        };
+        // add the field to the map
+        map.addSource("field", {
+          type: "geojson",
+          data: field,
+        });
+        map.addLayer({
+          id: "field",
+          type: "fill",
+          source: "field",
+          layout: {},
+          paint: {
+            "fill-color": "#057450",
+          },
+        });
+
+        // clip the orig building out
+        map.addSource("eraser", {
+          type: "geojson",
+          data: {
+            type: "FeatureCollection",
+            features: [
+              {
+                type: "Feature",
+                properties: {},
+                geometry: {
+                  coordinates: [
+                    [
+                      [-123.06992415632078, 44.05749025210207],
+                      [-123.06881168497702, 44.05702159591861],
+                      [-123.06730025839228, 44.057214572416655],
+                      [-123.0668245809903, 44.05800852122053],
+                      [-123.06739232498659, 44.05884657825342],
+                      [-123.06777209968638, 44.05914154647608],
+                      [-123.06839738530367, 44.05932624616899],
+                      [-123.06960192324183, 44.05902300790538],
+                      [-123.07009294507606, 44.058416521406315],
+                      [-123.06992415632078, 44.05749025210207],
+                    ],
+                  ],
+                  type: "Polygon",
+                },
+              },
+            ],
+          },
+        });
+        map.addLayer({
+          id: "eraser",
+          type: "clip",
+          source: "eraser",
+          layout: {
+            "clip-layer-types": ["symbol", "model"],
+          },
+        });
+
+        // Add a model source and layer displaying the location
+        // Extract coordinates from the data
+        // Add the source
+        map.addSource("stadium-source", {
+          type: "geojson",
+          data: autzenLocation,
+        });
+        map.addSource("logo-source", {
+          type: "geojson",
+          data: logo,
+        });
+        // Add the  model
+        map.addModel("stadium-model", "./models/autzen.glb");
+        // Make a layer with the model source
+        map.addLayer({
+          id: "stadium-layer",
+          type: "model",
+          source: "stadium-source",
+          layout: {
+            "model-id": "stadium-model",
+          },
+          paint: {
+            // scale it to the right size and set the rotation
+            "model-scale": [0.8, 0.8, 0.8],
+            "model-color-mix-intensity": 1,
+            "model-color": "#ccbfa9",
+            "model-translation": [-7, 1, 0],
+            "model-cast-shadows": true,
+            "model-emissive-strength": 0.1,
+          },
+        });
+        map.addLayer({
+          id: "logo",
+          type: "symbol",
+          source: "logo-source",
+          layout: {
+            "icon-image": "uofo_logo",
+            "icon-size": [
+              "interpolate",
+              ["linear"],
+              ["zoom"],
+              12,
+              0.01,
+              17,
+              1,
+              20,
+              3,
+            ],
+            "icon-allow-overlap": true,
+            "icon-pitch-alignment": "map",
+            "icon-rotation-alignment": "map",
+            "icon-rotate": 16,
+          },
+          paint: {},
+        });
+
+        // add american football model
+        map.addModel("football", "./models/american_football_ball.glb");
+        map.addSource("football-source", {
+          type: "geojson",
+          data: {
+            type: "FeatureCollection",
+            features: [
+              {
+                type: "Feature",
+                properties: {},
+                geometry: {
+                  type: "Point",
+                  coordinates: [-123.06845226894232, 44.05819903797001],
+                },
+              },
+            ],
+          },
+        });
+
+        // add the football model to the map
+        map.addLayer({
+          id: "football-layer",
+          type: "model",
+          source: "football-source",
+          layout: {
+            "model-id": "football",
+          },
+          paint: {
+            "model-scale": [50, 50, 50],
+          },
+        });
+        // create a function to animate the football model over the stadium model
+        function animateFootball(duration) {
+          const coordinates = [];
+          for (let i = 0; i < 100; i++) {
+            const dimension_z = Math.sin((i / 100) * Math.PI) * 50;
+            coordinates.push([i, i, dimension_z]);
+          }
+          let i = 0;
+          const interval = setInterval(() => {
+            map.setPaintProperty("football-layer", "model-translation", [
+              coordinates[i][0],
+              coordinates[i][1],
+              coordinates[i][2],
+            ]);
+            i++;
+            if (i === 100) {
+              clearInterval(interval);
+            }
+          }, duration / 100);
+        }
+        document
+          .getElementById("fly")
+          .addEventListener("click", () => animateFootball(1));
+      });
+    </script>
+  </body>
+</html>

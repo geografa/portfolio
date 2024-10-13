@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Display a map on a webpage</title>
+    <title>NC DOT Road Closure Snapshot Oct 7, 2024</title>
     <meta
       name="viewport"
       content="initial-scale=1,maximum-scale=1,user-scalable=no"
@@ -12,6 +12,13 @@
       rel="stylesheet"
     />
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.3/mapbox-gl-geocoder.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.3/mapbox-gl-geocoder.css"
+      type="text/css"
+    />
+
     <style>
       body {
         margin: 0;
@@ -39,6 +46,14 @@
         pitch: 0,
         hash: true,
       });
+
+      // Add the control to the map.
+      map.addControl(
+        new MapboxGeocoder({
+          accessToken: mapboxgl.accessToken,
+          mapboxgl: mapboxgl,
+        })
+      );
 
       map.on("load", () => {
         map.addSource("nc", {
@@ -119,17 +134,17 @@
 
         const coordinates = e.features[0].geometry.coordinates.slice();
         const description = `
-          <h2>${props.CommonName}</h2>
-          <p>${props.RoadName}</p>
-          <p>${props.Direction}</p>
-          <p>${"Cross street: " + props.CrossStreetCommonName}</p>
-          <p>${props.InNearCity + " " + props.City}</p>
-          
-          <p>${"Incident type: " + props.IncidentTypeDesc}</p>
-          <p>${"Condition: " + props.Condition}</p>
-          <p>${"Reason: " + props.Reason}</p>
-          <p>${"Severity: " + props.Severity}</p>
-        `;
+            <h2>${props.CommonName}</h2>
+            <p>${props.RoadName}</p>
+            <p>${props.Direction}</p>
+            <p>${"Cross street: " + props.CrossStreetCommonName}</p>
+            <p>${props.InNearCity + " " + props.City}</p>
+
+            <p>${"Incident type: " + props.IncidentTypeDesc}</p>
+            <p>${"Condition: " + props.Condition}</p>
+            <p>${"Reason: " + props.Reason}</p>
+            <p>${"Severity: " + props.Severity}</p>
+          `;
         popup.setLngLat(coordinates).setHTML(description).addTo(map);
       });
     </script>
