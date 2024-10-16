@@ -18,7 +18,6 @@
       href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.3/mapbox-gl-geocoder.css"
       type="text/css"
     />
-
     <style>
       body {
         margin: 0;
@@ -58,7 +57,7 @@
       map.on("load", () => {
         map.addSource("nc", {
           type: "geojson",
-          data: "./data/NC_DOT_Incidents.geojson",
+          data: "./data/NC_DOT_Incidents.geojson", // via https://ncdot.maps.arcgis.com/apps/dashboards/d16841a31ea3487f803384f7233c6d53
         });
 
         map.addLayer(
@@ -72,25 +71,25 @@
                 "interpolate",
                 ["linear"],
                 ["zoom"],
-                0,
-                1,
+                3,
+                2,
                 7,
-                4,
+                6,
               ],
               "circle-color": [
                 "match",
                 ["get", "Condition"],
                 "Road Closed",
-                "#f30",
+                "#952127",
                 "Road Impassable",
-                "orange",
+                "#ec6157",
                 "Road Closed with Detour",
-                "yellow",
+                "orange",
                 "Lane Closed",
-                "#bada55",
+                "#0d47a1",
                 "Lanes Closed",
+                "#0d47a1",
                 "#333",
-                "white",
               ],
               "circle-stroke-width": [
                 "interpolate",
@@ -115,23 +114,6 @@
       });
       map.on("click", "nc", (e) => {
         const props = e.features[0].properties;
-
-        // create values for these properties:
-        // IncidentID
-        // RoadName
-        // CommonName
-        // Direction
-        // CrossStreetCommonName
-        // InNearCity
-        // City
-        // IncidentTypeDesc
-        // Condition
-        // LanesClosed
-        // LanesTotal
-        // Reason
-        // Severity
-        // LastUpdateDate (ET)
-
         const coordinates = e.features[0].geometry.coordinates.slice();
         const description = `
             <h2>${props.CommonName}</h2>
