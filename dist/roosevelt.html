@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Animate a model along a line</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.js"></script>
+    <!-- include turf -->
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@7/turf.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      // URL restricted token. Get your own here: https://account.mapbox.com/access-tokens/
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
+      const map = new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/grafa/cm19njdfz03xj01r745v921nx",
+        center: [-73.9476124207415, 40.764188545927084],
+        zoom: 17.51914627878748,
+        bearing: -8.015013832885643,
+        pitch: 43.20676444579841,
+      });
+
+      // Set the map's standard style to 'dawn'
+      map.on("style.load", () => {
+        map.setConfigProperty("basemap", "lightPreset", "dawn");
+      });
+
+      // Fetch the GeoJSON from whatever linestring you have for now. Later, use an API to fetch the data.
+      async function fetchGeoJSON() {
+        const response = await fetch("./data/roosevelt.geojson");
+        const data = await response.json();
+        return data;
+      }
+      map.on("load", () => {
+        // Add a model source and layer displaying the path and the feature model which will be animated
+        fetchGeoJSON().then((data) => {
+          map.addSource("path", {
+            type: "geojson",
+            data: data,
+          });
+
+          map.addLayer({
+            id: "path",
+            source: "path",
+            type: "line",
+            slot: "middle",
+            paint: {
+              "line-color": "#f30",
+              "line-width": 12,
+              "line-opacity": 0.4,
+              "line-blur": 3,
+            },
+          });
+          // Extract coordinates from the route data
+          const coordinates = data.features[0].geometry.coordinates;
+          // Add the train source
+          map.addSource("bus-source", {
+            type: "geojson",
+            data: {
+              type: "FeatureCollection",
+              features: [
+                {
+                  type: "Feature",
+                  geometry: {
+                    // start the train at the first coordinate
+                    coordinates: coordinates[0],
+                    type: "Point",
+                  },
+                  properties: {},
+                },
+              ],
+            },
+          });
+          // Add the train model (exported GLB from Spline)
+          map.addModel("bus-model", "./models/bus.glb");
+          // Make a train layer with the model source
+          map.addLayer({
+            id: "bus-layer",
+            type: "model",
+            source: "bus-source",
+            layout: {
+              "model-id": "bus-model",
+            },
+            paint: {
+              // scale it to the right size and set the rotation
+              "model-scale": [5, 5, 5],
+              "model-rotation": [0, 0, 155],
+              "model-translation": [0, 0, 0],
+            },
+          });
+          // Set up the animation
+          let frameCount = 0;
+          const speedFactor = 1; // Adjust this value to control the speed (higher value = slower animation)
+          const interpolationSteps = 10; // Number of steps to interpolate between points
+          let currentIndex = 0;
+          let t = 0; // Interpolation factor
+          // Function to interpolate between two points
+          function interpolate(point1, point2, t) {
+            const x = point1[0] + (point2[0] - point1[0]) * t;
+            const y = point1[1] + (point2[1] - point1[1]) * t;
+            return [x, y];
+          }
+          // Function to animate the train
+          function animateTrain() {
+            frameCount++;
+            if (frameCount % speedFactor === 0) {
+              t += 0.1 / interpolationSteps;
+              if (t > 1) {
+                t = 0;
+                currentIndex = (currentIndex + 1) % coordinates.length;
+              }
+              const nextIndex = (currentIndex + 1) % coordinates.length;
+              const newCoordinates = interpolate(
+                coordinates[currentIndex],
+                coordinates[nextIndex],
+                t
+              );
+              // Set the train's position to the new coordinates
+              map.getSource("bus-source").setData({
+                type: "FeatureCollection",
+                features: [
+                  {
+                    type: "Feature",
+                    geometry: {
+                      type: "Point",
+                      coordinates: newCoordinates,
+                    },
+                    properties: {},
+                  },
+                ],
+              });
+              // Iterate over the path to get the bearing from the current point to the next point and then set the train's rotation
+              const bearing = turf.bearing(
+                turf.point(coordinates[currentIndex]),
+                turf.point(coordinates[nextIndex])
+              );
+              // Your model will have a different origin point so you may need to adjust the rotation
+              const rotation = bearing - 180;
+              map.setPaintProperty(
+                "bus-layer",
+                "model-rotation",
+                // set the train's rotation
+                [0, 0, rotation]
+              );
+              // Move the camera to follow the train
+              //   map.easeTo({
+              //     center: newCoordinates,
+              //     bearing: rotation + 270,
+              //     pitch: 60,
+              //     zoom: 18,
+              //   });
+            }
+            // Request the next frame of the animation
+            requestAnimationFrame(animateTrain);
+          }
+          // Start the animation
+          animateTrain();
+        });
+      });
+    </script>
+  </body>
+</html>
