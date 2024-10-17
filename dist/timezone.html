@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Find Timezones</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@7/turf.min.js"></script>
+    <!-- include the Mapbox GL Geocoder plugin CSS -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css"
+      type="text/css"
+    />
+    <!-- include moment.js -->
+    <script src="./js/moment-with-locales.js"></script>
+    <script src="./js/moment-timezone-with-data.js"></script>
+
+    <script src="http://unpkg.com/browser-geo-tz@latest/dist/geotz.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+      .map-overlay {
+        font-family: Arial, sans-serif;
+        position: absolute;
+        background-color: #ffeacc;
+        top: 0;
+        width: 100%;
+        padding: 20px;
+        z-index: 1;
+        max-height: 100%;
+        font-family: "Geologica", sans-serif;
+        font-size: 2em;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      }
+      .current-time {
+        font-size: 0.5em;
+        color: #333;
+      }
+      /* make a media query for the header so the text is centered and the banner is larger to accomodate the search bar */
+      @media (max-width: 600px) {
+        .map-overlay {
+          font-size: 1.5em;
+          padding-top: 20%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="map-overlay">
+      <div id="meetingTime"></div>
+      <div class="current-time">
+        Current Time:
+        <span id="currentTime"></span>
+      </div>
+    </div>
+    <div id="map"></div>
+    <script>
+      var currentTime = moment(Date.now());
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
+      const map = new mapboxgl.Map({
+        container: "map", // container ID
+        style: "mapbox://styles/grafa/ckzssvb5u007n15p7tsvox2ax", // style URL
+        center: [-28.96142553159092, 27.564252471839268],
+        zoom: 1.5,
+        bearing: 0,
+        pitch: 0,
+      });
+
+      fetch("./data/timezones_wVVG8.geojson")
+        .then((response) => response.json())
+        .then((data) => {
+          map.on("load", () => {
+            setInterval(() => {
+              document.getElementById("currentTime").innerHTML =
+                moment().format("h:mm:ss a");
+            }, 1000);
+            map.addSource("timezone-source", {
+              type: "geojson",
+              data: data,
+            });
+
+            map.addLayer({
+              id: "timezone-highlighted",
+              type: "fill",
+              source: "timezone-source",
+              paint: {
+                "fill-color": "#088",
+                "fill-outline-color": "#000",
+                // use feature state to show a tooltip when the user hovers over a timezone
+                // create a zoom expression to make opacity 0.7 at z3 and 0.1 at z10
+                "fill-opacity": [
+                  "interpolate",
+                  ["linear"],
+                  ["zoom"],
+                  3,
+                  0.7,
+                  5,
+                  0.1,
+                ],
+              },
+              filter: ["in", "name", ""],
+            });
+            map.addLayer({
+              id: "timezone-fill",
+              type: "fill",
+              source: "timezone-source",
+              paint: {
+                "fill-color": "#088",
+                "fill-outline-color": "#000",
+                "fill-opacity": 0,
+              },
+            });
+            map.addLayer({
+              id: "timezone-line",
+              type: "line",
+              source: "timezone-source",
+              paint: {
+                "line-color": "#3a9e9e",
+                "line-width": 1,
+                "line-opacity": 0.5,
+                "line-join": "round",
+                "line-cap": "round",
+              },
+            });
+          });
+        });
+      // add geocoder to the map
+      const geocoder = new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        mapboxgl: mapboxgl,
+        type: "place",
+      });
+      map.addControl(geocoder);
+
+      // create an event listener for the geocoder result and set the meetingTime div to the timezone of geocoded location
+      geocoder.on("result", (e) => {
+        // check if a timezone is already highlighted and remove the highlight
+        map.setFilter("timezone-highlighted", ["in", "name", ""]);
+        const coords = e.result.geometry.coordinates;
+        GeoTZ.find(coords[1], coords[0]).then((tz) => {
+          const targetTime = currentTime.clone().tz(tz[0]).format("h:mm a");
+          const targetTZ = currentTime.clone().tz(tz[0]).format("z");
+          document.getElementById(
+            "meetingTime"
+          ).innerHTML = `${targetTime} ${targetTZ}`;
+        });
+        map.flyTo({
+          center: coords,
+          zoom: 5,
+        });
+      });
+
+      // when the map is clicked, get the timezone of the clicked point
+      map.on("click", (e) => {
+        const coords = e.lngLat;
+        const features = map.queryRenderedFeatures(e.point, {
+          layers: ["timezone-fill"],
+        });
+        console.log(features);
+        map.setFilter("timezone-highlighted", [
+          "in",
+          "name",
+          features[0].properties.name,
+        ]);
+        GeoTZ.find(coords.lat, coords.lng).then((tz) => {
+          const targetTime = currentTime.clone().tz(tz[0]).format("h:mm a");
+          const targetTZ = currentTime.clone().tz(tz[0]).format("z");
+          document.getElementById(
+            "meetingTime"
+          ).innerHTML = `${targetTime} ${targetTZ}`;
+        });
+      });
+    </script>
+  </body>
+</html>
