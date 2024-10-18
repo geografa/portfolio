@@ -59,6 +59,10 @@
         font-size: 0.5em;
         color: #333;
       }
+      .target-time {
+        font-size: 1.5em;
+        color: #088;
+      }
       /* make a media query for the header so the text is centered and the banner is larger to accomodate the search bar */
       @media (max-width: 600px) {
         .map-overlay {
@@ -70,7 +74,7 @@
   </head>
   <body>
     <div class="map-overlay">
-      <div id="meetingTime"></div>
+      <div id="targetTime" class="target-time"></div>
       <div class="current-time">
         Current Time:
         <span id="currentTime"></span>
@@ -78,7 +82,6 @@
     </div>
     <div id="map"></div>
     <script>
-      var currentTime = moment(Date.now());
       mapboxgl.accessToken =
         "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
       const map = new mapboxgl.Map({
@@ -156,8 +159,9 @@
       });
       map.addControl(geocoder);
 
-      // create an event listener for the geocoder result and set the meetingTime div to the timezone of geocoded location
+      // create an event listener for the geocoder result and set the targetTime div to the timezone of geocoded location
       geocoder.on("result", (e) => {
+        const currentTime = moment();
         // check if a timezone is already highlighted and remove the highlight
         map.setFilter("timezone-highlighted", ["in", "name", ""]);
         const coords = e.result.geometry.coordinates;
@@ -165,7 +169,7 @@
           const targetTime = currentTime.clone().tz(tz[0]).format("h:mm a");
           const targetTZ = currentTime.clone().tz(tz[0]).format("z");
           document.getElementById(
-            "meetingTime"
+            "targetTime"
           ).innerHTML = `${targetTime} ${targetTZ}`;
         });
         map.flyTo({
@@ -176,11 +180,16 @@
 
       // when the map is clicked, get the timezone of the clicked point
       map.on("click", (e) => {
-        const coords = e.lngLat;
+        const currentTime = moment();
+        // keep the currentTime updated every second
+        let coords = e.lngLat;
+        // Normalize the longitude to be within the range of -180 to 180
+        coords.lng = ((((coords.lng + 180) % 360) + 360) % 360) - 180;
+
         const features = map.queryRenderedFeatures(e.point, {
           layers: ["timezone-fill"],
         });
-        console.log(features);
+        // console.log(features);
         map.setFilter("timezone-highlighted", [
           "in",
           "name",
@@ -190,7 +199,7 @@
           const targetTime = currentTime.clone().tz(tz[0]).format("h:mm a");
           const targetTZ = currentTime.clone().tz(tz[0]).format("z");
           document.getElementById(
-            "meetingTime"
+            "targetTime"
           ).innerHTML = `${targetTime} ${targetTZ}`;
         });
       });
