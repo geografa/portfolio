@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Swipe between maps</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <style>
+      body {
+        overflow: hidden;
+      }
+
+      body * {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      .map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+    </style>
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.4.0/mapbox-gl-compare.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.4.0/mapbox-gl-compare.css"
+      type="text/css"
+    />
+    <div id="comparison-container">
+      <div id="TCP" class="map"></div>
+      <div id="mapbox" class="map"></div>
+    </div>
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
+
+      const TCPMap = new mapboxgl.Map({
+        container: "TCP",
+        // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+        style: "mapbox://styles/grafa/cm2kpsiex001n01q1f4t6fzxi",
+        center: [-73.93871400252102, 40.770872069981635],
+        zoom: 15.151757812416122,
+        bearing: 35,
+        pitch: 0,
+        hash: true,
+      });
+
+      const mapboxMap = new mapboxgl.Map({
+        container: "mapbox",
+        style: "mapbox://styles/grafa/cm2j8r92p00o001poad6rcgx1",
+        center: [-73.93871400252102, 40.770872069981635],
+        zoom: 15.151757812416122,
+        bearing: 35,
+        pitch: 0,
+        hash: true,
+      });
+
+      // create a GeoJSON point at -73.9877250694322, 40.75628141310625
+      const randomPoints = {
+        type: "FeatureCollection",
+        features: [
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [-73.94205, 40.7739],
+            },
+            properties: {},
+            id: 0,
+          },
+        ],
+      };
+
+      TCPMap.on("load", () => {
+        // add a model layer to the map
+        TCPMap.addSource("model-source", {
+          type: "geojson",
+          data: randomPoints,
+        });
+
+        // I see that a network request is made to this URL.
+        TCPMap.addModel("ri_model", "./models/model.glb");
+
+        TCPMap.addLayer({
+          id: "model-layer",
+          type: "model",
+          source: "model-source",
+          layout: {
+            "model-id": "ri_model",
+          },
+          paint: {
+            "model-scale": [37.4, 37.4, 37.4],
+            "model-rotation": [0, 0, 35],
+            // "model-translation": [0, 0, 10],
+            // "model-emissive-strength": 1,
+          },
+        });
+      });
+
+      // A selector or reference to HTML element
+      const container = "#comparison-container";
+
+      const map = new mapboxgl.Compare(TCPMap, mapboxMap, container, {
+        // Set this to enable comparing two maps by mouse movement:
+        // mousemove: true
+      });
+    </script>
+  </body>
+</html>
