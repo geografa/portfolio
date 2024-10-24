@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Locate the user</title>
+    <title>Trick or Treat</title>
     <meta
       name="viewport"
       content="initial-scale=1,maximum-scale=1,user-scalable=no"
@@ -31,188 +31,42 @@
     <div id="map"></div>
     <script>
       mapboxgl.accessToken =
-        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2ptYjNtZWxnMDBrdDNwbnVicGJzOWg2NyJ9.9OulyCe3kEqMAXPbx1mKUA";
+        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
       const map = new mapboxgl.Map({
         container: "map", // container ID
         // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-        style: "mapbox://styles/mapbox/standard", // style URL
-        center: [-122.66798450718653, 45.554541754807644],
-        zoom: 16.108447756099206,
-        bearing: 0,
-        pitch: 63.20471569530193,
+        style: "mapbox://styles/grafa/cm2ctot6900vn01om655a5yda",
+        center: [-122.65951, 45.54797],
+        zoom: 16.254,
+        bearing: 118.82,
+        pitch: 72.499,
       });
-      // set to dusk style
-      map.on("style.load", () => {
-        map.setConfigProperty("basemap", "lightPreset", "dawn");
-      });
+      let hoveredPolygonId = null;
 
-      const stops = {
-        type: "FeatureCollection",
-        features: [
-          {
-            type: "Feature",
-            geometry: {
-              type: "Point",
-              coordinates: [-122.67229104591583, 45.55088269770067],
-            },
-            properties: { title: "SEI" },
-          },
-          {
-            type: "Feature",
-            geometry: {
-              type: "Point",
-              coordinates: [-122.67448603106035, 45.550862760182866],
-            },
-            properties: { title: "Albina" },
-          },
-          {
-            type: "Feature",
-            geometry: {
-              type: "Point",
-              coordinates: [-122.67553906310988, 45.55172502978769],
-            },
-            properties: { title: "Store" },
-          },
-          {
-            type: "Feature",
-            geometry: {
-              type: "Point",
-              coordinates: [-122.67339604013566, 45.55212347060535],
-            },
-            properties: { title: "Borthwick" },
-          },
-          {
-            type: "Feature",
-            geometry: {
-              type: "Point",
-              coordinates: [-122.63067240374896, 45.540632836227786],
-            },
-            properties: { title: "one" },
-          },
-          {
-            type: "Feature",
-            geometry: {
-              type: "Point",
-              coordinates: [-122.63066567261487, 45.54213092319736],
-            },
-            properties: { title: "knott" },
-          },
-          {
-            type: "Feature",
-            geometry: {
-              type: "Point",
-              coordinates: [-122.63065868158156, 45.54368978390161],
-            },
-            properties: { title: "stanton" },
-          },
-          {
-            type: "Feature",
-            geometry: {
-              type: "Point",
-              coordinates: [-122.63065837253693, 45.54677792081725],
-            },
-            properties: { title: "klick" },
-          },
-          {
-            type: "Feature",
-            geometry: {
-              type: "Point",
-              coordinates: [-122.6306933220879, 45.548295424415784],
-            },
-            properties: { title: "fremont" },
-          },
-          {
-            type: "Feature",
-            geometry: {
-              type: "Point",
-              coordinates: [-122.63732469981815, 45.54829168145392],
-            },
-            properties: { title: "alameda" },
-          },
-          {
-            type: "Feature",
-            geometry: {
-              type: "Point",
-              coordinates: [-122.64111312555481, 45.54827797471481],
-            },
-            properties: { title: "madeleine" },
-          },
-          {
-            type: "Feature",
-            geometry: {
-              type: "Point",
-              coordinates: [-122.6497783220203, 45.54829522853473],
-            },
-            properties: { title: "Whole Foods" },
-          },
-          {
-            type: "Feature",
-            geometry: {
-              type: "Point",
-              coordinates: [-122.65700840591396, 45.5483223673597],
-            },
-            properties: { title: "Irving Park" },
-          },
-          {
-            type: "Feature",
-            geometry: {
-              type: "Point",
-              coordinates: [-122.66151565451867, 45.54830616967604],
-            },
-            properties: { title: "MLK" },
-          },
-          {
-            type: "Feature",
-            geometry: {
-              type: "Point",
-              coordinates: [-122.6659638818486, 45.54831935836515],
-            },
-            properties: { title: "Williams" },
-          },
-          {
-            type: "Feature",
-            geometry: {
-              type: "Point",
-              coordinates: [-122.66704597964275, 45.55084244454315],
-            },
-            properties: { title: "Failing" },
-          },
-          {
-            type: "Feature",
-            geometry: {
-              type: "Point",
-              coordinates: [-122.66956964291985, 45.55138660798295],
-            },
-            properties: { title: "home" },
-          },
-        ],
-      };
+      // set to night style
+      map.on("style.load", () => {
+        map.setConfigProperty("basemap", "lightPreset", "night");
+      });
+      // use turf random to generate random points in the area of the map
+      const randomPoints = turf.randomPoint(1000, {
+        bbox: [-122.6837, 45.52104, -122.59608, 45.57118],
+      });
 
       // buffer each stop by 100 meters
-      const bufferedStops = stops.features.map((stop) => {
+      const bufferedStops = randomPoints.features.map((stop) => {
         return turf.buffer(stop, 0.05);
       });
 
-      // create a feature collection of the buffered stops
-      const fence = turf.featureCollection(bufferedStops);
-
-      const geolocate = new mapboxgl.GeolocateControl({
-        positionOptions: {
-          enableHighAccuracy: true,
-        },
-        // When active the map will receive updates to the device's location as it changes.
-        trackUserLocation: true,
-        // Draw an arrow next to the location dot to indicate which direction the device is heading.
-        showUserHeading: true,
-        showAccuracyCircle: true,
-        fitBoundsOptions: { maxZoom: 17 },
-      });
-
-      // Add geolocate control to the map.
-      map.addControl(geolocate, "top-left");
-
-      // Update map bearing based on user's heading
-      geolocate.on("geolocate", function (e) {});
+      // create a feature collection of the buffered stops and add a unique id to each feature
+      const fence = {
+        type: "FeatureCollection",
+        features: bufferedStops.map((feature, index) => {
+          return {
+            ...feature,
+            id: index,
+          };
+        }),
+      };
 
       // watch the user's location until they're inside the fence and then open an alert box
       map.on("load", function () {
@@ -233,11 +87,12 @@
             "line-color": "#f30",
             "line-width": 12,
             "line-opacity": 0.6,
-            "line-blur": 5,
+            "line-blur": 2,
+            "line-emissive-strength": 1,
           },
         });
         map.addLayer({
-          id: "fence",
+          id: "fence-layer",
           type: "line",
           source: "fence",
           slot: "top",
@@ -245,6 +100,7 @@
           paint: {
             "line-color": "#f30",
             "line-width": 2,
+            "line-emissive-strength": 1,
           },
         });
 
@@ -253,11 +109,11 @@
         // add a model layer to the map
         map.addSource("model-source", {
           type: "geojson",
-          data: stops,
+          data: randomPoints,
         });
 
         // I see that a network request is made to this URL.
-        map.addModel("pumpkin", "./models/pumpkin.glb");
+        map.addModel("ghost", "./models/ghost.glb");
 
         // No models show up on the map. No errors are thrown. What's missing?
         map.addLayer({
@@ -265,49 +121,15 @@
           type: "model",
           source: "model-source",
           layout: {
-            "model-id": "pumpkin",
-            visibility: "none",
+            "model-id": "ghost",
           },
           paint: {
-            "model-scale": [2, 2, 2],
-            "model-rotation": [0, 0, 0],
-            "model-translation": [0, 0, 0],
+            "model-scale": [10, 10, 10],
+            "model-rotation": [0, 0, 90],
+            "model-translation": [0, 0, 10],
+            "model-emissive-strength": 1,
           },
         });
-        // set the model layer to  display none
-
-        map.getLayer("model-layer").scope = "";
-        // Initialize the map and other necessary variables
-        // Function to check if the user is inside the geofence
-        function checkGeofence(position) {
-          const { longitude, latitude, heading } = position.coords;
-          const fences = fence.features;
-          // if the user is inside the geofence, show the model
-          fences.forEach((fence) => {
-            if (turf.booleanPointInPolygon([longitude, latitude], fence)) {
-              map.setLayoutProperty("model-layer", "visibility", "visible");
-            } else {
-              map.setLayoutProperty("model-layer", "visibility", "none");
-            }
-          });
-          if (position.coords.heading) {
-            map.setBearing(position.coords.heading);
-          }
-        }
-
-        // Watch the user's position
-        navigator.geolocation.watchPosition(
-          // when position is found set the pitch and bearing of the map
-          checkGeofence,
-          function (error) {
-            console.error("Error watching position:", error);
-          },
-          {
-            enableHighAccuracy: true,
-            maximumAge: 0,
-            timeout: 5000,
-          }
-        );
       });
     </script>
   </body>
