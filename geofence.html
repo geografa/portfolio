@@ -13,7 +13,6 @@
     />
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@turf/turf@7/turf.min.js"></script>
-
     <style>
       body {
         margin: 0;
@@ -34,22 +33,20 @@
         "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
       const map = new mapboxgl.Map({
         container: "map", // container ID
-        // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
         style: "mapbox://styles/grafa/cm2ctot6900vn01om655a5yda",
-        center: [-122.65951, 45.54797],
-        zoom: 16.254,
-        bearing: 118.82,
-        pitch: 72.499,
+        center: [-122.6562941, 45.54706036],
+        zoom: 16.6,
+        bearing: 133.9,
+        pitch: 67,
       });
-      let hoveredPolygonId = null;
 
       // set to night style
       map.on("style.load", () => {
         map.setConfigProperty("basemap", "lightPreset", "night");
       });
       // use turf random to generate random points in the area of the map
-      const randomPoints = turf.randomPoint(1000, {
-        bbox: [-122.6837, 45.52104, -122.59608, 45.57118],
+      const randomPoints = turf.randomPoint(100, {
+        bbox: [-122.65899, 45.53488, -122.63639, 45.54851],
       });
 
       // buffer each stop by 100 meters
@@ -67,16 +64,11 @@
           };
         }),
       };
-
-      // watch the user's location until they're inside the fence and then open an alert box
       map.on("load", function () {
-        // create a featureCollection with the coordinates and add it to the map as a source and layer
-
         map.addSource("fence", {
           type: "geojson",
           data: fence,
         });
-
         map.addLayer({
           id: "fence-blur",
           type: "line",
@@ -103,19 +95,12 @@
             "line-emissive-strength": 1,
           },
         });
-
-        // set the lights  on the map to make the model visible in the dark
-
         // add a model layer to the map
         map.addSource("model-source", {
           type: "geojson",
           data: randomPoints,
         });
-
-        // I see that a network request is made to this URL.
         map.addModel("ghost", "./models/ghost.glb");
-
-        // No models show up on the map. No errors are thrown. What's missing?
         map.addLayer({
           id: "model-layer",
           type: "model",
@@ -130,6 +115,17 @@
             "model-emissive-strength": 1,
           },
         });
+        let ghostHeight = 10;
+        function ghostFloat(timestamp) {
+          ghostHeight = Math.cos(timestamp / 1000) * 10;
+          map.setPaintProperty("model-layer", "model-translation", [
+            0,
+            0,
+            ghostHeight,
+          ]);
+          requestAnimationFrame(ghostFloat);
+        }
+        requestAnimationFrame(ghostFloat);
       });
     </script>
   </body>
