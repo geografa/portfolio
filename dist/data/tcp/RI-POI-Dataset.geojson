@@ -1,0 +1,6721 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "0",
+        "place_name": "Jupioca",
+        "mapbox_id": "dXJuOm1ieGFkcjo0ZWViMmFkMS0xNzc3LTQyOTEtYjVlMC0wZWEwYmQyNzA0MDA",
+        "thumbnail": "Jupioca.png",
+        "maki": "beer",
+        "address": "455 Main St, New York, NY 10044",
+        "title": "Jupioca",
+        "images": "Jupioca/Jupioca-1.jpg,Jupioca/Jupioca-2.jpg",
+        "tags": "Tea,Cafe",
+        "description": "Jupioca is a refreshing oasis offering a variety of smoothies, juices, and bubble tea options. Their menu caters to those looking for a health-conscious treat or a refreshing drink on the go.",
+        "category": "Dining"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.952538,
+          40.759268
+        ],
+        "type": "Point"
+      },
+      "id": "00a829a9d97f3b33d02ed937ea37ec75"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "1",
+        "place_name": "Tramway Plaza",
+        "thumbnail": "tram.png",
+        "maki": "transportation",
+        "address": "W Main Street, New York, 10044, United States",
+        "title": "Tramway Plaza",
+        "images": "Tram/tram-1.jpeg",
+        "link": "https://rioc.ny.gov",
+        "description": "The iconic Roosevelt Island Tramway connecting the island to Manhattan, offering stunning aerial views of the city and the East River during the ride.",
+        "category": "Transportation",
+        "subcategory": ""
+      },
+      "geometry": {
+        "coordinates": [
+          -73.954178,
+          40.757446
+        ],
+        "type": "Point"
+      },
+      "id": "01eec24e32a8b02f24d61135f76c8d65"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "2",
+        "place_name": "Foodtown of Roosevelt Island",
+        "mapbox_id": "dXJuOm1ieHBvaTpiYTZkZjc1Ny1iMTgwLTQwNWQtOGFhMy0wODliYzI2M2JlOTc",
+        "thumbnail": "Foodtown.png",
+        "maki": "grocery",
+        "address": "686 East Main Street, New York, New York 10044, United States",
+        "title": "Foodtown of Roosevelt Island",
+        "images": "Foodtown/foodtown-1.jpeg,Foodtown/foodtown-2.jpeg",
+        "tags": "Groceries",
+        "link": "https://www.foodtown.com/stores/foodtown-of-roosevelt-island",
+        "description": "A local grocery store providing fresh produce, household items, and a wide selection of groceries, serving the needs of the Roosevelt Island community.",
+        "category": "Retail & Convenience"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.946994,
+          40.76477
+        ],
+        "type": "Point"
+      },
+      "id": "023709cb7f69ab746a63c537161e397a"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "3",
+        "place_name": "Island OM Yoga and Barre Studio",
+        "mapbox_id": "dXJuOm1ieHBvaTplNDY2ZGRkZC04NzYwLTQ0M2YtYTdjOC1lYjRmYmVmNWIwYjY",
+        "thumbnail": "IslandOM.png",
+        "maki": "marker",
+        "address": "521 Main Street, New York, New York 10044, United States",
+        "title": "OM Yoga & Barre Studio",
+        "images": "Yoga/yoga-1.jpeg,Yoga/yoga-2.jpeg,Yoga/yoga-3.jpeg",
+        "tags": "Activity, Yoga",
+        "link": "https://www.islandomnyc.com/",
+        "description": "A fitness studio offering a variety of yoga and barre classes, promoting wellness, balance, and community in a peaceful setting.",
+        "category": "Retail & Convenience",
+        "subcategory": ""
+      },
+      "geometry": {
+        "coordinates": [
+          -73.950746,
+          40.761196
+        ],
+        "type": "Point"
+      },
+      "id": "077ccfe2335194d59499e96ea2253ffd"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "4",
+        "place_name": "Meditation Steps",
+        "mapbox_id": "dXJuOm1ieHBvaTo0NjgzMDEzMS04MTBkLTQ0MzctOGQ3Yi1hZTQ3OWM2OGEyZmY",
+        "thumbnail": "MeditationSteps.png",
+        "maki": "marker",
+        "address": "New York, NY 10044",
+        "title": "Meditation Steps",
+        "images": "MeditationSteps/meditation-2.jpeg,MeditationSteps/meditation-3.jpeg",
+        "tags": "Relaxation, Water views, Public Space",
+        "link": "https://rooseveltislander.blogspot.com/2012/11/roosevelt-island-meditation-steps.html",
+        "description": "Located along the river, the Meditation Steps provide a peaceful space for quiet reflection and mindfulness. It’s a serene spot to take a break and enjoy the island’s natural beauty.",
+        "category": "Parks & Recreation",
+        "subcategory": "Things to do"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.95203,
+          40.760786
+        ],
+        "type": "Point"
+      },
+      "id": "0ab99ae90eeb6703bf09a9a87afd8c78"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "5",
+        "place_name": "Granny Annie's Bar & Kitchen",
+        "mapbox_id": "dXJuOm1ieHBvaTozZTY4YzRjNi05MmUxLTQ4ZTQtYWY2Ni0zZTE2NWZhMTg4Y2U",
+        "thumbnail": "GrannyAnnie.png",
+        "maki": "restaurant",
+        "address": "425 Main Street, New York, New York 10044, United States",
+        "title": "Granny Annie's Bar & Kitchen",
+        "images": "GrannyAnniesKitchenAndBar/granny-annie-1.jpeg,GrannyAnniesKitchenAndBar/granny-annie-2.jpeg,GrannyAnniesKitchenAndBar/granny-annie-3.jpeg",
+        "tags": "Italian, American",
+        "link": "https://grannyanniesnyc.com/",
+        "description": "A welcoming neighborhood pub, Granny Annie’s serves up American comfort food alongside a great selection of drinks. It’s a favorite for casual dining, with a cozy, laid-back atmosphere.",
+        "category": "Dining"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.952842,
+          40.75861
+        ],
+        "type": "Point"
+      },
+      "id": "0ed317adc998800c80ef9f7738836286"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "6",
+        "place_name": "NYC Ferry",
+        "thumbnail": "Ferry.png",
+        "maki": "ferry",
+        "address": "E Main St, New York, NY 10044",
+        "title": "NYC Ferry",
+        "images": "Ferry/ferry-2.jpg",
+        "tags": "Ferry terminal",
+        "link": "https://www.ferry.nyc/routes-and-schedules/landing/roosevelt-island/",
+        "description": "A ferry service offering scenic transportation between Roosevelt Island and other city destinations, providing a unique way to travel.",
+        "category": "Transportation"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.95293,
+          40.756942
+        ],
+        "type": "Point"
+      },
+      "id": "0ee13bf5ca8e98b62af4a183f0ddf47d"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "7",
+        "place_name": "Library",
+        "mapbox_id": "dXJuOm1ieHBvaTpkNWVmZWNlMS05OTU3LTRkMWMtYWRlOS03ZGM2ZTdiNTllMGQ",
+        "thumbnail": "Library.png",
+        "maki": "library",
+        "address": "504 Main Street, New York, New York 10044, United States",
+        "title": "Library",
+        "images": "Library/library-1.jpeg,Library/library-2.jpeg,Library/library-3.jpeg",
+        "tags": "Library",
+        "link": "https://en.wikipedia.org/wiki/Franklin_D._Roosevelt_Presidential_Library_and_Museum",
+        "description": "Roosevelt Island’s public library offers a wide range of books, media, and educational programs for all ages. It’s a hub of knowledge and a welcoming space for lifelong learning.",
+        "category": "Parks & Recreation",
+        "subcategory": "Things to do"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.950674,
+          40.760821
+        ],
+        "type": "Point"
+      },
+      "id": "18f6e244e90ae49f0d3556dc02763e51"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "8",
+        "place_name": "Jack McManus Field",
+        "mapbox_id": "dXJuOm1ieHBvaTozNWJjMmJlZi1jNzlmLTQ1MWMtOWRhMy04YzMyZmRjZDZjYzI",
+        "thumbnail": "Jack.png",
+        "maki": "playground",
+        "address": "729 Main St, New York, NY 10044",
+        "title": "Jack McManus Field",
+        "images": "Jack/jack-1.jpeg,Jack/jack-2.jpeg,Jack/jack-3.jpeg",
+        "tags": "Activity, Soccer, Exercise",
+        "link": "https://rioc.ny.gov/285/Fields",
+        "description": "McManus Field (formerly known as Octagon Field). Permits are available for specific times. Apply online.",
+        "category": "Things to do",
+        "subcategory": "Things to do"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.945717,
+          40.767239
+        ],
+        "type": "Point"
+      },
+      "id": "1a1983d6d10915d9c796a9bcced5c767"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "9",
+        "place_name": "Rivercross",
+        "mapbox_id": "dXJuOm1ieGFkci1pdHA6ZXlKMlpYSnphVzl1SWpvMUxDSmpZV3hzWW1GamF5STZiblZzYkN3aWNTSTZJalV6TVNCdFlXbHVJSE4wTENCT1pYY2dXVzl5YXlKOTox",
+        "thumbnail": "Rivercross.png",
+        "maki": "home",
+        "address": "531 Main Street, New York, New York 10044, United States",
+        "title": "Rivercross",
+        "images": "Rivercross/rivercross-1.png",
+        "tags": "Apartment, Residence",
+        "description": "One of Roosevelt Island’s earliest co-op buildings, Rivercross offers residents a tranquil and spacious living environment. Its large apartments and beautiful views make it a highly sought-after place to live.",
+        "category": "Hotels & Residences"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.950255,
+          40.761756
+        ],
+        "type": "Point"
+      },
+      "id": "1c8450056b983f0ecfe62e114259fdef"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "10",
+        "place_name": "Motorgate Garage",
+        "mapbox_id": "dXJuOm1ieHBvaToxYWQ5MmE4Yy0wYWE1LTRhYjMtYjg2OS05NDljZjFlYTM1ZmI",
+        "thumbnail": "MotorgateGarage.png",
+        "maki": "parking-garage",
+        "address": "688 Main Street, New York, New York 10044, United States",
+        "title": "Motorgate Garage",
+        "images": "MotorgateGarage/motorgate-1.jpg,MotorgateGarage/motorgate-2.jpeg,MotorgateGarage/motorgate-3.jpeg",
+        "tags": "Parking, Electric Charging",
+        "link": "https://rioc.ny.gov/299/Driving",
+        "description": "The island’s main parking facility, offering secure parking for residents and visitors, conveniently located near public transportation.",
+        "category": "Transportation"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.947285,
+          40.764146
+        ],
+        "type": "Point"
+      },
+      "id": "226cedacb3d716ae6ef876b3a75ad9c5"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "11",
+        "place_name": "China 1 Kitchen",
+        "mapbox_id": "dXJuOm1ieHBvaTplMzc1YzA2YS04MzIxLTRkNWEtOWNhOC1hZjY1NzI4YTI2NjM",
+        "thumbnail": "China1.png",
+        "maki": "restaurant",
+        "address": "609 Main Street, New York, New York 10044, United States",
+        "title": "China 1 Kitchen",
+        "images": "China1/china1-1.jpeg,China1/china1-2.jpeg,China1/china1-3.jpeg",
+        "tags": "Chinese",
+        "link": "https://www.china1kitchennewyork.com/?utm_source=gmb&utm_medium=website",
+        "description": "Offering a variety of flavorful Chinese take-out options, China 1 Kitchen is a go-to for quick, tasty meals. Specialties include savory stir-fries, fried rice, and dumplings.",
+        "category": "Dining",
+        "subcategory": ""
+      },
+      "geometry": {
+        "coordinates": [
+          -73.948998,
+          40.763191
+        ],
+        "type": "Point"
+      },
+      "id": "25b62e7c6750352be99f8b99d5d7e371"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "12",
+        "place_name": "Roosevelt Island Lighthouse",
+        "mapbox_id": "dXJuOm1ieHBvaTozZmY0MjIzNy0yMDg0LTQ5MGItYjQyZi0yYmU3ZDlhMzgzMWQ",
+        "thumbnail": "Lighthouse.png",
+        "maki": "lighthouse",
+        "address": "Lighthouse Park, Roosevelt Island, New York, 10044, United States",
+        "title": "RI Lighthouse",
+        "images": "LightHouse/lighthouse-1.jpg,LightHouse/lighthouse-2.jpeg,LightHouse/lighthouse-3.jpeg",
+        "tags": "Landmark",
+        "link": "https://rioc.ny.gov/179/The-Lighthouse",
+        "description": "A historical lighthouse located at the northern tip of the island, offering picturesque views of the river and the city. It’s a popular landmark for visitors and locals alike.",
+        "category": "Parks & Recreation",
+        "subcategory": "Highlights"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.940185,
+          40.772838
+        ],
+        "type": "Point"
+      },
+      "id": "25f534bf237ee52137487eeb78658db2"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "13",
+        "place_name": "NYC Health & Hospital / Coler ",
+        "mapbox_id": "dXJuOm1ieHBvaTpiZTQ2YzE4My1hYWYwLTQ1ZTAtYWJlYS0xZjM2Yjg2MDQzMTA",
+        "thumbnail": "Coler.png",
+        "maki": "hospital",
+        "address": "900 Main Street, New York, New York 10044, United States",
+        "title": "NYC Health & Hospital / Coler ",
+        "images": "Coler/coler-1.jpeg,Coler/coler-2.jpeg",
+        "tags": "Rehab",
+        "link": "https://www.nychealthandhospitals.org/locations/coler/",
+        "description": "A healthcare facility offering long-term care and rehabilitation services for the community, with a focus on patient care and recovery.",
+        "category": "Public Services"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.942155,
+          40.770289
+        ],
+        "type": "Point"
+      },
+      "id": "279376f2ed06180caab16aca64999488"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "14",
+        "place_name": "Anything At All",
+        "mapbox_id": "dXJuOm1ieHBvaTo5OTgzZDIyYS02ZDA0LTQ5OTYtOTRhYS02M2YwOTI2MDhkODQ",
+        "thumbnail": "AnythingAtAll.png",
+        "maki": "restaurant",
+        "address": "22 North Loop Road, New York, New York 10044, United States",
+        "title": "Anything At All",
+        "images": "AnythingAtAll/anything-at-all-1.jpeg,AnythingAtAll/anything-at-all-2.jpeg,AnythingAtAll/anything-at-all-3.jpeg",
+        "tags": "",
+        "link": "https://graduatehotels.com/new-york/restaurant/anything-at-all/",
+        "description": "A trendy, contemporary American restaurant offering creative seasonal dishes and craft cocktails. Located within the Graduate Hotel, it’s perfect for a stylish meal with scenic views of the East River.",
+        "category": "Dining",
+        "subcategory": ""
+      },
+      "geometry": {
+        "coordinates": [
+          -73.955658,
+          40.756274
+        ],
+        "type": "Point"
+      },
+      "id": "286ddb2e9722972d1ab83c3f7a79acc4"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "15",
+        "place_name": "Pickleball Courts",
+        "mapbox_id": "",
+        "thumbnail": "Pickleball-Court.png",
+        "maki": "playground",
+        "address": "895 E Main St, New York, NY 10044",
+        "title": "Pickleball Courts",
+        "images": "Pickleball/pickleball-1.jpeg,Pickleball/pickleball-2.jpeg",
+        "tags": "Activity, Pickleball",
+        "link": "https://rioc.ny.gov/661/Pickleball-Courts",
+        "description": "Designated courts for pickleball, a popular paddle sport that combines elements of tennis, badminton, and ping-pong. The courts are a great spot for players of all skill levels to enjoy this fast-growing sport.",
+        "category": "Parks & Recreation",
+        "subcategory": "Things to do"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.954135,
+          40.755942
+        ],
+        "type": "Point"
+      },
+      "id": "2a9df9c767fd9368e1f01d4599b628d8"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "16",
+        "place_name": "Roosevelt Island Cleaners",
+        "mapbox_id": "dXJuOm1ieGFkcjo0OGRhZGIwNi1iOGZjLTQ4NjAtOTUzYy00NDQwZjY5Yjc1MGE",
+        "thumbnail": "Cleaners.png",
+        "address": "571 Main St, New York, NY 10044",
+        "title": "Roosevelt Island Cleaners",
+        "images": "Cleaners/IslandCleaners-1.jpg",
+        "tags": "",
+        "description": "Another local dry cleaning service known for efficient and professional clothing care services, catering to the island’s residents.",
+        "category": "Retail & Convenience",
+        "subcategory": ""
+      },
+      "geometry": {
+        "coordinates": [
+          -73.949661,
+          40.762464
+        ],
+        "type": "Point"
+      },
+      "id": "2d72efec965bddc7f87ea49d58fca1a5"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "17",
+        "place_name": "Wildlife Santuary",
+        "mapbox_id": "dXJuOm1ieHBvaTowMmIyY2ZjMi00YWE4LTRmOGUtODM3ZC0xZThjZGI0YjAxNmI",
+        "thumbnail": "Wildlife.png",
+        "maki": "animal-shelter",
+        "address": "1 Southpoint Park, New York, New York 10044, United States",
+        "title": "Wildlife Santuary",
+        "images": "Wildlife/wildlife-1.jpg,Wildlife/wildlife-2.jpeg,Wildlife/wildlife-3.jpeg",
+        "tags": "Nature, Animals",
+        "link": "https://www.wildlifefreedomfoundation.org/",
+        "description": "A protected natural space where visitors can observe and appreciate the island’s diverse wildlife, including a variety of bird species.",
+        "category": "Parks & Recreation",
+        "subcategory": "Things to do"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.959239,
+          40.751701
+        ],
+        "type": "Point"
+      },
+      "id": "2f44dce2e2463adfab6df7fc39b8334d"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "18",
+        "place_name": "Theater and Dance Alliance",
+        "mapbox_id": "dXJuOm1ieHBvaTo5MzBhZjlhNS1hNzA3LTQ0Y2ItYjdhZC04MDY4MGI0Y2FlZGY",
+        "thumbnail": "Mainstreet.png",
+        "maki": "theatre",
+        "address": "548 Main St, New York, NY 10044",
+        "title": "Theater and Dance Alliance",
+        "images": "Mainstreet/mainstreet-2.png",
+        "tags": "Theatre",
+        "link": "https://www.mstda.org/",
+        "description": "A performing arts organization offering classes, workshops, and performances in theater and dance for all ages. It’s a cultural hub for artistic expression on the island.",
+        "category": "Parks & Recreation",
+        "subcategory": "Things to do"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.949531,
+          40.761758
+        ],
+        "type": "Point"
+      },
+      "id": "3619dc32e131cd43fb9c30c6c191f32a"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "19",
+        "place_name": "Riverwalk Commons",
+        "mapbox_id": "dXJuOm1ieHBvaToyM2QyYjliMi1mNDBkLTRkMmMtYTEyMC04YjIyMzE3NzAxNWQ",
+        "thumbnail": "RiverwalkCommons.png",
+        "maki": "dog-park",
+        "address": "431 Main St, New York, NY 10044",
+        "title": "RW Commons",
+        "images": "RiverwalkCommons/riverwalk-commons-2.jpeg,RiverwalkCommons/riverwalk-commons-3.jpeg",
+        "tags": "Relaxation, Pets, Dog Run, Grill, Picnic",
+        "link": "",
+        "description": "A beautifully landscaped park in the heart of the Riverwalk neighborhood. It’s the perfect place to relax outdoors, with seating areas, walking paths, and peaceful green spaces.",
+        "category": "Parks & Recreation",
+        "subcategory": "Things to do"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.952794,
+          40.759049
+        ],
+        "type": "Point"
+      },
+      "id": "367160969f3b0047c47dafc545fb7b7b"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "20",
+        "place_name": "Capobianco Field",
+        "mapbox_id": "dXJuOm1ieGFkcjo1YTc5ZmRkYS0zZjBkLTRmMTItODU0ZC03MWMyMWM2ODljY2M",
+        "thumbnail": "Capobianco.png",
+        "maki": "baseball",
+        "address": "Capobianco Field",
+        "title": "Capobianco Field",
+        "images": "Capobianco/capobianco-1.jpeg,Capobianco/capobianco-2.jpeg",
+        "tags": "Activity, Baseball",
+        "link": "https://rioc.ny.gov/285/Fields",
+        "description": "A large, open green space often used for sports, community events, and recreational activities. It’s a popular gathering spot for both organized games and casual outdoor fun.",
+        "category": "Parks & Recreation",
+        "subcategory": "Things to do"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.948326,
+          40.762884
+        ],
+        "type": "Point"
+      },
+      "id": "368f0892b279a2e7dc0e1d4b7e73137b"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "21",
+        "place_name": "The Graduate Hotel",
+        "mapbox_id": "dXJuOm1ieHBvaTo4ZWNiNjg4Yy1jYmZjLTRmMjctYjhmNi02MDEwYzA0ZjJkYjI",
+        "thumbnail": "GraduateHotel.png",
+        "maki": "lodging",
+        "address": "22 North Loop Road, New York, New York 10044, United States",
+        "title": "Graduate Hotel",
+        "images": "Graduate/graduate-1.jpeg,Graduate/graduate-2.jpeg,Graduate/graduate-3.jpeg",
+        "tags": "Hotel",
+        "link": "https://graduatehotels.com/new-york/",
+        "description": "A stylish and modern hotel on the Cornell Tech campus, The Graduate is known for its creative design, tech-forward amenities, and sweeping views of the city and river. It’s a favorite for both short-term stays and events.",
+        "category": "Hotels & Residences",
+        "subcategory": "Highlights"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.955518,
+          40.756229
+        ],
+        "type": "Point"
+      },
+      "id": "39b2889d253927bf81dad45c701927a0"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "22",
+        "place_name": "Prestige Garment Care",
+        "mapbox_id": "dXJuOm1ieGFkcjo0ZWViMmFkMS0xNzc3LTQyOTEtYjVlMC0wZWEwYmQyNzA0MDA",
+        "thumbnail": "Prestige.png",
+        "address": "455 Main Street, New York, New York 10044, United States",
+        "title": "Prestige Garment Care",
+        "images": "PrestigeGarments/PrestigeCleaners-1.png",
+        "tags": "",
+        "description": "A local dry cleaning service offering expert garment care, laundry, and alterations for the Roosevelt Island community.",
+        "category": "Retail & Convenience",
+        "subcategory": ""
+      },
+      "geometry": {
+        "coordinates": [
+          -73.952538,
+          40.759268
+        ],
+        "type": "Point"
+      },
+      "id": "3bc72941bd20bcdcaf7c85e4701fbbf7"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "23",
+        "place_name": "Blackwell House",
+        "mapbox_id": "dXJuOm1ieHBvaToyZWQxZGMwOS0zNDhmLTQ4NjgtYTVlNC1lYmQ0ZWMxN2MxOGM",
+        "thumbnail": "BlackwellHouse.png",
+        "maki": "marker",
+        "address": "500 Main Street, New York, 10044, United States",
+        "title": "Blackwell House",
+        "images": "TheBlackwellHouse/blackwell-1.jpeg,TheBlackwellHouse/blackwell-2.jpeg,TheBlackwellHouse/blackwell-3.jpeg",
+        "tags": "Landmark, Historical",
+        "link": "https://rihs.us/landmark-structures/blackwell-house/",
+        "description": "One of Roosevelt Island’s oldest buildings, Blackwell House is a historical gem that offers a glimpse into the island’s rich past. It now serves as a museum and community gathering spot, preserving its historical significance.",
+        "category": "Parks & Recreation",
+        "subcategory": "Highlights"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.951127,
+          40.760359
+        ],
+        "type": "Point"
+      },
+      "id": "3bfad38a45927f5b3309ec5dfe4ce959"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "24",
+        "place_name": "Subway Restaurant",
+        "mapbox_id": "dXJuOm1ieGFkcjo3NWEwNDFkMS1hMGVmLTQyMTEtOGYzZi04ZWM4Nzc3ZGI0ZWM",
+        "thumbnail": "Subway.png",
+        "maki": "restaurant",
+        "address": "513 Main St, Roosevelt Island, NY 10044",
+        "title": "Subway Restaurant",
+        "images": "Subway/subway-1.jpeg,Subway/subway-2.png",
+        "tags": "Fast Food",
+        "link": "https://restaurants.subway.com/united-states/ny/roosevelt-island/513-main-street?utm_source=yxt-goog&utm_medium=local&utm_term=acq&utm_content=53750&utm_campaign=evergreen-2020",
+        "description": "A well-known chain offering customizable sandwiches and salads made to order. It’s a quick and affordable option for lunch or dinner, conveniently located for island residents and visitors.",
+        "category": "Dining"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.950913,
+          40.761063
+        ],
+        "type": "Point"
+      },
+      "id": "42dfecd79d9cbc5bd69bfa10f0923c8a"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "25",
+        "place_name": "Visitor Center",
+        "mapbox_id": "dXJuOm1ieHBvaTo4NTUyMzcyZS05NjY0LTQzZTItODYzYS04NWQ4MTgyOTI5Y2M",
+        "thumbnail": "VisitorCenter.png",
+        "maki": "marker",
+        "address": "Main St, New York, NY 10044",
+        "title": "Visitor Center",
+        "images": "VisitorKiosk/visitor-kiosk-1.jpeg,VisitorKiosk/visitor-kiosk-2.jpeg,VisitorKiosk/visitor-kiosk-3.jpeg",
+        "tags": "",
+        "link": "https://rihs.us/visitor-center-kiosk/",
+        "description": "The island’s main information hub, providing maps, brochures, and guidance for tourists and new residents exploring the area.",
+        "category": "Public Services",
+        "subcategory": "Things to do"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.954673,
+          40.757627
+        ],
+        "type": "Point"
+      },
+      "id": "4308b09abe551d0b444dc0d29cb17db3"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "26",
+        "place_name": "Girl Puzzle Monument Honoring Nellie Bly",
+        "mapbox_id": "dXJuOm1ieHBvaTo4ZjU2MTYxZi0zMGNlLTRhZTgtYjkxNC0wY2IyMDBhMWU3NjM",
+        "thumbnail": "Puzzle.png",
+        "maki": "monument",
+        "address": "900 Main Street, New York, New York 10044, United States",
+        "title": "Girls Puzzle Monument",
+        "images": "Puzzle/puzzle-1.jpeg,Puzzle/puzzle-2.jpeg,Puzzle/puzzle-3.jpeg",
+        "tags": "Art",
+        "link": "https://www.thegirlpuzzle.com/",
+        "description": "This striking monument honors journalist Nellie Bly and highlights women’s contributions to society. The Girl Puzzle is both an art installation and a symbol of resilience, courage, and empowerment.",
+        "category": "Parks & Recreation",
+        "subcategory": "Highlights"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.940468,
+          40.772477
+        ],
+        "type": "Point"
+      },
+      "id": "439309b4acf8a0f2f41e127bfae7588d"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "27",
+        "place_name": "Racket Club",
+        "mapbox_id": "dXJuOm1ieHBvaTpmZTJkMDgwYS0zZTI3LTQ5NmMtYTc4My0xMjgxMTFkYzI4ZGY",
+        "thumbnail": "RacquetClub.png",
+        "maki": "tennis",
+        "address": "281 W Main St, New York, NY 10044",
+        "title": "Racket Club",
+        "images": "RacquetClub/racquetclub-1.jpeg,RacquetClub/racquetclub-2.jpeg,RacquetClub/racquetclub-3.jpeg",
+        "tags": "Activity, Tennis",
+        "link": "https://advantagetennisclubs.com/",
+        "description": "A private tennis and squash club offering lessons, court rentals, and social events for members. The club provides a welcoming environment for players of all levels to enjoy their favorite racquet sports.",
+        "category": "Parks & Recreation",
+        "subcategory": "Things to do"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.955186,
+          40.756953
+        ],
+        "type": "Point"
+      },
+      "id": "43cfd972524e94c75c68ff6c6a963bad"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "28",
+        "place_name": "Riverwalk Point",
+        "mapbox_id": "dXJuOm1ieHBvaToxNDdhMDAyZi0yN2FhLTRmM2EtYWY4Zi03MjE1MTMyMTc1ZDc",
+        "thumbnail": "RiverwalkPoint.png",
+        "maki": "home",
+        "address": "480 Main Street, New York, New York 10044, United States",
+        "title": "Riverwalk Point",
+        "images": "RiverwalkPoint/riverwalk-point-1.jpeg,RiverwalkPoint/riverwalk-point-2.jpeg,RiverwalkPoint/riverwalk-point-3.jpeg",
+        "tags": "Residential Building",
+        "link": "https://www.relatedrentals.com/apartment-rentals/new-york-city/roosevelt-island/riverwalk-point",
+        "description": "This luxury residential building is part of the Riverwalk complex, offering upscale rental apartments with top-tier amenities and impressive river views, all within a vibrant, walkable community.",
+        "category": "Hotels & Residences"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.95124,
+          40.759485
+        ],
+        "type": "Point"
+      },
+      "id": "471ae22984c1cf77367ccc738a05c994"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "29",
+        "place_name": "North Path",
+        "color": "#fc2c03",
+        "path": "Tramway Station, Lighthouse Park, The Girl Puzzle Monument, Ship Pier",
+        "labelOffset": "-100,-100",
+        "pathHighlightImages": "Tram/tram-1.jpeg,LightHouse/lighthouse-1.jpg, Puzzle/puzzle-1.jpeg,ShipPier/shippier-1.jpeg",
+        "labelAnchor": "bottom-right",
+        "pathHighlightCoordinates": "-73.954116,40.757496;-73.941158,40.771773;-73.940468,40.772477;-73.945783,40.768293",
+        "thumbnail": "NorthPath.png",
+        "title": "North Path",
+        "images": "WalkingPaths/NorthPath.jpg",
+        "category": "Walking Paths",
+        "subcategory": "Walking Paths"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            -73.954183,
+            40.757447
+          ],
+          [
+            -73.954123,
+            40.757474
+          ],
+          [
+            -73.954118,
+            40.757477
+          ],
+          [
+            -73.954075,
+            40.757461
+          ],
+          [
+            -73.954029,
+            40.757443
+          ],
+          [
+            -73.953937,
+            40.757407
+          ],
+          [
+            -73.953782,
+            40.757345
+          ],
+          [
+            -73.953764,
+            40.757333
+          ],
+          [
+            -73.953685,
+            40.75727
+          ],
+          [
+            -73.953578,
+            40.757383
+          ],
+          [
+            -73.953638,
+            40.757429
+          ],
+          [
+            -73.95362,
+            40.757501
+          ],
+          [
+            -73.953608,
+            40.757579
+          ],
+          [
+            -73.953608,
+            40.757633
+          ],
+          [
+            -73.952739,
+            40.758273
+          ],
+          [
+            -73.952529,
+            40.758491
+          ],
+          [
+            -73.951334,
+            40.759753
+          ],
+          [
+            -73.951318,
+            40.759814
+          ],
+          [
+            -73.951318,
+            40.759859
+          ],
+          [
+            -73.951353,
+            40.75998
+          ],
+          [
+            -73.951398,
+            40.760097
+          ],
+          [
+            -73.951425,
+            40.760171
+          ],
+          [
+            -73.951427,
+            40.76026
+          ],
+          [
+            -73.951392,
+            40.7604
+          ],
+          [
+            -73.95145,
+            40.760428
+          ],
+          [
+            -73.951467,
+            40.760439
+          ],
+          [
+            -73.951581,
+            40.7605
+          ],
+          [
+            -73.951309,
+            40.760686
+          ],
+          [
+            -73.951218,
+            40.760749
+          ],
+          [
+            -73.951758,
+            40.761014
+          ],
+          [
+            -73.951723,
+            40.761292
+          ],
+          [
+            -73.951687,
+            40.761421
+          ],
+          [
+            -73.951516,
+            40.761688
+          ],
+          [
+            -73.951304,
+            40.761952
+          ],
+          [
+            -73.950998,
+            40.762322
+          ],
+          [
+            -73.950479,
+            40.762927
+          ],
+          [
+            -73.950367,
+            40.763055
+          ],
+          [
+            -73.950265,
+            40.763172
+          ],
+          [
+            -73.949918,
+            40.763524
+          ],
+          [
+            -73.949377,
+            40.763925
+          ],
+          [
+            -73.949024,
+            40.764173
+          ],
+          [
+            -73.948973,
+            40.764243
+          ],
+          [
+            -73.948659,
+            40.764668
+          ],
+          [
+            -73.94831,
+            40.765116
+          ],
+          [
+            -73.948084,
+            40.765403
+          ],
+          [
+            -73.947388,
+            40.766279
+          ],
+          [
+            -73.947102,
+            40.766636
+          ],
+          [
+            -73.946773,
+            40.767051
+          ],
+          [
+            -73.946499,
+            40.767374
+          ],
+          [
+            -73.946168,
+            40.767823
+          ],
+          [
+            -73.945931,
+            40.768107
+          ],
+          [
+            -73.945785,
+            40.768147
+          ],
+          [
+            -73.945722,
+            40.768166
+          ],
+          [
+            -73.945637,
+            40.768217
+          ],
+          [
+            -73.945623,
+            40.768287
+          ],
+          [
+            -73.945621,
+            40.768379
+          ],
+          [
+            -73.945448,
+            40.768609
+          ],
+          [
+            -73.945334,
+            40.768742
+          ],
+          [
+            -73.945232,
+            40.768762
+          ],
+          [
+            -73.945196,
+            40.768823
+          ],
+          [
+            -73.945104,
+            40.76914
+          ],
+          [
+            -73.944842,
+            40.769544
+          ],
+          [
+            -73.944557,
+            40.769853
+          ],
+          [
+            -73.94422,
+            40.770147
+          ],
+          [
+            -73.944015,
+            40.770266
+          ],
+          [
+            -73.943892,
+            40.77034
+          ],
+          [
+            -73.943549,
+            40.770639
+          ],
+          [
+            -73.943128,
+            40.771022
+          ],
+          [
+            -73.942674,
+            40.771524
+          ],
+          [
+            -73.942136,
+            40.772005
+          ],
+          [
+            -73.941806,
+            40.772137
+          ],
+          [
+            -73.941372,
+            40.772294
+          ],
+          [
+            -73.940932,
+            40.772353
+          ],
+          [
+            -73.940822,
+            40.772372
+          ],
+          [
+            -73.940764,
+            40.772402
+          ],
+          [
+            -73.940686,
+            40.772465
+          ],
+          [
+            -73.940537,
+            40.772382
+          ],
+          [
+            -73.940317,
+            40.772309
+          ],
+          [
+            -73.940272,
+            40.772497
+          ],
+          [
+            -73.94015,
+            40.77271
+          ],
+          [
+            -73.940358,
+            40.772795
+          ],
+          [
+            -73.940424,
+            40.772717
+          ],
+          [
+            -73.940603,
+            40.772547
+          ],
+          [
+            -73.940732,
+            40.772429
+          ],
+          [
+            -73.940811,
+            40.772379
+          ],
+          [
+            -73.941367,
+            40.772296
+          ],
+          [
+            -73.94174,
+            40.772161
+          ],
+          [
+            -73.942096,
+            40.772025
+          ],
+          [
+            -73.942537,
+            40.771649
+          ],
+          [
+            -73.942765,
+            40.771423
+          ],
+          [
+            -73.94305,
+            40.771093
+          ],
+          [
+            -73.943325,
+            40.770834
+          ],
+          [
+            -73.943733,
+            40.770479
+          ],
+          [
+            -73.943894,
+            40.770332
+          ],
+          [
+            -73.944162,
+            40.77018
+          ],
+          [
+            -73.944521,
+            40.769899
+          ],
+          [
+            -73.944696,
+            40.769703
+          ],
+          [
+            -73.944536,
+            40.769708
+          ],
+          [
+            -73.944298,
+            40.769552
+          ],
+          [
+            -73.944262,
+            40.769557
+          ],
+          [
+            -73.943902,
+            40.76935
+          ],
+          [
+            -73.943748,
+            40.769277
+          ],
+          [
+            -73.943635,
+            40.769228
+          ],
+          [
+            -73.943539,
+            40.769204
+          ],
+          [
+            -73.943455,
+            40.769199
+          ],
+          [
+            -73.943271,
+            40.769104
+          ],
+          [
+            -73.943284,
+            40.769079
+          ],
+          [
+            -73.943175,
+            40.769011
+          ],
+          [
+            -73.942992,
+            40.768802
+          ],
+          [
+            -73.942794,
+            40.768597
+          ],
+          [
+            -73.942794,
+            40.768563
+          ],
+          [
+            -73.942855,
+            40.768492
+          ],
+          [
+            -73.943058,
+            40.768322
+          ],
+          [
+            -73.943427,
+            40.767937
+          ],
+          [
+            -73.944019,
+            40.767309
+          ],
+          [
+            -73.944259,
+            40.767057
+          ],
+          [
+            -73.944385,
+            40.767005
+          ],
+          [
+            -73.944928,
+            40.766929
+          ],
+          [
+            -73.945151,
+            40.766901
+          ],
+          [
+            -73.945304,
+            40.766858
+          ],
+          [
+            -73.945404,
+            40.7668
+          ],
+          [
+            -73.9459,
+            40.766271
+          ],
+          [
+            -73.946021,
+            40.766116
+          ],
+          [
+            -73.945949,
+            40.766085
+          ],
+          [
+            -73.946285,
+            40.765696
+          ],
+          [
+            -73.946635,
+            40.765309
+          ],
+          [
+            -73.94802,
+            40.763771
+          ],
+          [
+            -73.948068,
+            40.763708
+          ],
+          [
+            -73.948086,
+            40.763685
+          ],
+          [
+            -73.948129,
+            40.763655
+          ],
+          [
+            -73.94862,
+            40.763286
+          ],
+          [
+            -73.949113,
+            40.762874
+          ],
+          [
+            -73.949235,
+            40.76275
+          ],
+          [
+            -73.949524,
+            40.762197
+          ],
+          [
+            -73.949694,
+            40.761883
+          ],
+          [
+            -73.949857,
+            40.761564
+          ],
+          [
+            -73.950491,
+            40.761106
+          ],
+          [
+            -73.950799,
+            40.76086
+          ],
+          [
+            -73.951127,
+            40.760625
+          ],
+          [
+            -73.951336,
+            40.760475
+          ],
+          [
+            -73.951391,
+            40.760399
+          ],
+          [
+            -73.951427,
+            40.760261
+          ],
+          [
+            -73.951424,
+            40.760171
+          ],
+          [
+            -73.951399,
+            40.760097
+          ],
+          [
+            -73.951354,
+            40.759979
+          ],
+          [
+            -73.951318,
+            40.759857
+          ],
+          [
+            -73.951318,
+            40.759812
+          ],
+          [
+            -73.951334,
+            40.759754
+          ],
+          [
+            -73.952588,
+            40.758433
+          ],
+          [
+            -73.952711,
+            40.758294
+          ],
+          [
+            -73.953253,
+            40.7579
+          ],
+          [
+            -73.95359,
+            40.757651
+          ],
+          [
+            -73.953636,
+            40.757442
+          ],
+          [
+            -73.953575,
+            40.757384
+          ],
+          [
+            -73.953685,
+            40.757269
+          ],
+          [
+            -73.953766,
+            40.757334
+          ],
+          [
+            -73.953783,
+            40.757346
+          ],
+          [
+            -73.953851,
+            40.757373
+          ],
+          [
+            -73.953938,
+            40.757406
+          ],
+          [
+            -73.954076,
+            40.757461
+          ],
+          [
+            -73.954117,
+            40.757477
+          ],
+          [
+            -73.954182,
+            40.757446
+          ]
+        ],
+        "type": "LineString"
+      },
+      "id": "4c39ce037b024f850c7fa2870c70cae7"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "30",
+        "place_name": "Lighthouse Park Public Restroom",
+        "thumbnail": "LighthouseRR.png",
+        "maki": "toilet",
+        "address": "Lighthouse Park, 900 Main St, New York, NY 10044",
+        "title": "Lighthouse Park Public Restroom",
+        "images": "LighthouseRestroom/lighthouse-restroom-1.jpeg,LighthouseRestroom/lighthouse-restroom-2.jpeg",
+        "tags": "",
+        "description": "There is no current description for this point of interest.  Work in progress with island partners to provide an accurate description.",
+        "category": "Restrooms"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.940418,
+          40.771106
+        ],
+        "type": "Point"
+      },
+      "id": "4e184399b9edbf2fb8968bd186b55a87"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "31",
+        "place_name": "Manhattan Healing Forest",
+        "mapbox_id": "",
+        "thumbnail": "ManhattanHealingForest.png",
+        "maki": "natural",
+        "address": "Southpoint Park, Roosevelt Island, NY 10044",
+        "title": "Healing Forest",
+        "images": "ManhattanHealingForest/manhattan-healing-forest-1.jpg",
+        "tags": "Forest, nature",
+        "link": "https://www.sugiproject.com/forests/manhattan-healing-forest",
+        "description": "A tranquil escape on the island, the Manhattan Healing Forest features peaceful walking paths and a serene natural setting. It’s designed to promote relaxation and wellness through nature.",
+        "category": "Parks & Recreation",
+        "subcategory": "Highlights"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.958003,
+          40.752624
+        ],
+        "type": "Point"
+      },
+      "id": "59d743d094a43695421df136eb2bceac"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "32",
+        "place_name": "Octagon Tennis Courts",
+        "mapbox_id": "dXJuOm1ieHBvaTpmZjc0YzYyMS1mNjk2LTRhMWMtOGE1Ny1iMTUyYWQ5Mjk5MDM",
+        "thumbnail": "OctagonTennisCourt.png",
+        "maki": "tennis",
+        "address": "888 Main St, New York, NY 10044",
+        "title": "Octagon Tennis Courts",
+        "images": "OctagonTennisCourt/octagon-tennis-1.jpeg,OctagonTennisCourt/octagon-tennis-3.jpeg",
+        "tags": "Activity, Tennis",
+        "link": "https://www.rioc.ny.gov/399/Tennis-Information",
+        "description": "Public tennis courts located near The Octagon, offering residents and visitors a well-maintained space for recreational tennis. The courts are available for reservation and offer scenic views.",
+        "category": "Parks & Recreation",
+        "subcategory": "Things to do"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.943183,
+          40.768334
+        ],
+        "type": "Point"
+      },
+      "id": "5ad9b4d171f64a1008e1d33bf2853c79"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "33",
+        "place_name": "Panorama Room",
+        "mapbox_id": "dXJuOm1ieHBvaTphZTFlMzgyYS02YWU2LTRkM2MtODMyMC0wYWRlZDVjZTc1MTM",
+        "thumbnail": "PanoramaRoom.png",
+        "maki": "bar",
+        "address": "22 North Loop Road, New York, New York 10044, United States",
+        "title": "Panorama Room",
+        "images": "PanoramaRoom/panorama-room-1.jpeg,PanoramaRoom/panorama-room-3.jpeg",
+        "tags": "Bar, Water Views",
+        "link": "https://graduatehotels.com/new-york/restaurant/panorama-room/",
+        "description": "Located at the top of The Graduate Hotel, the Panorama Room is a rooftop bar offering stunning 360-degree views of Manhattan and the East River. It’s known for its craft cocktails and luxurious atmosphere.",
+        "category": "Dining",
+        "subcategory": "Things to do"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.95563,
+          40.756347
+        ],
+        "type": "Point"
+      },
+      "id": "5d74316f3f609c979b7cfe0d937001dd"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "34",
+        "place_name": "Fusion Salon",
+        "mapbox_id": "dXJuOm1ieGFkcjo3Njc1ZDFkZi01Y2E1LTRhMzEtOTk0ZS1jOGFkY2ZjNDkxNmE",
+        "thumbnail": "FusionSalon.png",
+        "address": "523 Main Street, New York, New York 10044, United States",
+        "title": "Fusion Salon",
+        "images": "FusionSalon/FusionSalon-1.png,FusionSalon/FusionSalon-2.png",
+        "tags": "",
+        "description": "A full-service salon offering haircuts, coloring, and beauty treatments, providing professional services for men and women.",
+        "category": "Retail & Convenience",
+        "subcategory": ""
+      },
+      "geometry": {
+        "coordinates": [
+          -73.950601,
+          40.761242
+        ],
+        "type": "Point"
+      },
+      "id": "5e3553af6294a2a2de90b2c13909ed71"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "35",
+        "place_name": "Riverwalk Crossing",
+        "mapbox_id": "dXJuOm1ieHBvaToxNGNlYzI1NS1mZWY0LTRlZDMtOTIxNS00NTZkZjAxN2Q2Y2I",
+        "thumbnail": "RiverwalkCrossings.png",
+        "maki": "home",
+        "address": "405 Main St, New York, NY 10044",
+        "title": "Riverwalk Crossing",
+        "images": "RiverwalkCrossing/riverwalk-crossing-3.jpeg",
+        "tags": "Apartment, Residence",
+        "link": "https://www.relatedrentals.com/apartment-rentals/new-york-city/roosevelt-island/riverwalk-crossing",
+        "description": "A residential tower offering luxurious living spaces with modern amenities. Riverwalk Crossing is part of the Riverwalk complex, providing scenic views and a vibrant community atmosphere.",
+        "category": "Hotels & Residences",
+        "subcategory": ""
+      },
+      "geometry": {
+        "coordinates": [
+          -73.953716,
+          40.757858
+        ],
+        "type": "Point"
+      },
+      "id": "63cf3179beb127a67af077naexb47de0f"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "36",
+        "place_name": "Four Freedoms Park Public Restrooms",
+        "thumbnail": "FourFreedomRR.png",
+        "maki": "toilet",
+        "address": "Southpoint Park, S Loop Rd, W Loop Rd, New York, NY 10044",
+        "title": "Four Freedoms Park Public Restrooms",
+        "images": "FourFreedom/four-freedom-1.jpeg,FourFreedom/four-freedom-2.jpeg,FourFreedom/four-freedom-3.jpeg",
+        "tags": "",
+        "description": "There is no current description for this point of interest.  Work in progress with island partners to provide an accurate description.",
+        "category": "Restrooms"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.960523,
+          40.75061
+        ],
+        "type": "Point"
+      },
+      "id": "65b7a4228f982a68514b3e4af226232d"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "37",
+        "place_name": "Roosevelt Island Ship Pier",
+        "mapbox_id": "dXJuOm1ieHBvaTo0NjExZjdjZS04NTMyLTQyMTctYWFiNy02OGIwZGM5ZTFhNzc",
+        "thumbnail": "ShipPier.png",
+        "maki": "marker",
+        "address": "851 Main Street, New York, New York 10044, United States",
+        "title": "RI Ship Pier",
+        "images": "ShipPier/shippier-2.jpeg,ShipPier/shippier-3.jpeg",
+        "tags": "",
+        "link": "",
+        "description": "A small pier offering a spot to enjoy waterfront views and access to recreational boating activities along the East River.",
+        "category": "Parks & Recreation",
+        "subcategory": "Highlights"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.945759,
+          40.76824
+        ],
+        "type": "Point"
+      },
+      "id": "69677e0e2b75a14bc550681cdc3c66ad"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "38",
+        "place_name": "Cornell Tech Campus",
+        "mapbox_id": "dXJuOm1ieHBvaTo0MjVjYTdkMi1hYTc1LTQ5YTQtOTc4OC1lM2E3YTI0OTZlOTY",
+        "thumbnail": "Cornell-Tech.png",
+        "maki": "college",
+        "address": "2 W Loop Road, New York, New York 10044, United States",
+        "title": "Cornell Tech",
+        "images": "CornellTech/cornell-tech-1.jpeg,CornellTech/cornell-tech-2.jpeg,CornellTech/cornell-tech-3.jpeg",
+        "tags": "University, Architecture",
+        "link": "https://tech.cornell.edu/campus/",
+        "description": "A state-of-the-art educational institution, Cornell Tech is a hub of innovation and technology research. Its sleek, modern campus offers a glimpse into the future of education and tech development.",
+        "category": "Parks & Recreation",
+        "subcategory": "Highlights"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.956233,
+          40.755779
+        ],
+        "type": "Point"
+      },
+      "id": "6b3689e871b2f75bbe4071765085cd7d"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "39",
+        "place_name": "Starbucks",
+        "mapbox_id": "dXJuOm1ieHBvaTpjMjZlY2Q3MS1hODgyLTRmMjYtOGNiNS0xMmViZDUyMjUwODk",
+        "thumbnail": "Starbucks.png",
+        "maki": "cafe",
+        "address": "455 Main St, New York, NY 10044",
+        "title": "Starbucks",
+        "images": "Starbucks/starbucks-1.jpeg,Starbucks/starbucks-2.jpeg,Starbucks/starbucks-3.jpg",
+        "tags": "Cafe, Coffee ",
+        "link": "https://www.starbucks.com/store-locator/store/7098/roosevelt-island-455-main-street-new-york-ny-10044-us",
+        "description": "The world-renowned coffeehouse offers its signature coffee drinks, teas, and snacks. With a relaxed vibe, it’s an ideal place for a quick caffeine fix or to unwind with friends.",
+        "category": "Dining"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.952929,
+          40.75931
+        ],
+        "type": "Point"
+      },
+      "id": "6ce0e241f78990e25eca0ac3d075b03e"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "40",
+        "place_name": "Zhongzhong Noodles",
+        "mapbox_id": "dXJuOm1ieHBvaTowYzdiYzA2Ni0yYmVkLTQ3MmMtOGNmNy00ODg1MWU2NjY4YTE",
+        "thumbnail": "Zhongzhong.png",
+        "maki": "restaurant",
+        "address": "568 Main Street, New York, New York 10044, United States",
+        "title": "Zhongzhong Noodles",
+        "images": "ZhongZhongNoodles/zhongzhong-1.jpeg,ZhongZhongNoodles/zhongzhong-3.jpeg",
+        "tags": "Fast Food",
+        "link": "https://www.zhongzhong.us/",
+        "description": "Offering authentic Chinese noodle dishes, Zhongzhong Noodles specializes in hand-pulled noodles and flavorful broths. It’s a cozy spot that’s perfect for warming up with a hearty meal.",
+        "category": "Dining"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.949209,
+          40.762602
+        ],
+        "type": "Point"
+      },
+      "id": "701322e29a0eabb0740cca563a27ce85"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "41",
+        "place_name": "Island Rolls N Bowls",
+        "mapbox_id": "dXJuOm1ieGFkcjphNzZiMDljNy0xZWMyLTQzN2QtYmMxYy1lOGE1NmY2N2U1MTI",
+        "thumbnail": "RollsNBowls.png",
+        "address": "503 Main Street, New York, New York 10044, United States",
+        "title": "Island Rolls N Bowls",
+        "images": "RollsNBowls/rb-1.png,RollsNBowls/rb-2.jpg",
+        "description": "Specializing in customizable sushi rolls and fresh poke bowls, this spot is perfect for a quick, healthy meal. The vibrant flavors and fresh ingredients make it a standout choice for island dining.",
+        "category": "Dining"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.951156,
+          40.760832
+        ],
+        "type": "Point"
+      },
+      "id": "70965c2b737a63c451f57da8fee1b682"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "42",
+        "place_name": "Octagon Park",
+        "mapbox_id": "dXJuOm1ieGFkcjo5ZWM3NzZmZC1lOWVkLTQ2ZTgtOTdlOS1mY2NjNmIzMThhOGM",
+        "thumbnail": "OctagonPark.png",
+        "maki": "park-alt1",
+        "address": "851 Main Street, New York, New York 10044, United States",
+        "title": "Octagon Park",
+        "images": "OctagonPlayground/octagon-park-1.avif,OctagonPlayground/octagon-park-3.jpeg",
+        "tags": "Park, Picnic, Activity, Children",
+        "link": "https://rioc.ny.gov/180/The-Octagon",
+        "description": "A community park near The Octagon, offering playgrounds, sports facilities, and open spaces for picnics or casual outdoor activities. It’s a great spot for families and active residents.",
+        "category": "Parks & Recreation",
+        "subcategory": "Things to do"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.944769,
+          40.769131
+        ],
+        "type": "Point"
+      },
+      "id": "721d54b392341e0f1d3676b08681987f"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "43",
+        "place_name": "Firefighters Field",
+        "mapbox_id": "dXJuOm1ieHBvaTo5ZjA3Njk2NC0xNTMwLTQxYzEtOGRlNi0zMDUxYjliNDk1MTY",
+        "thumbnail": "FirefightersField.png",
+        "maki": "baseball",
+        "address": "405 Main St, New York, NY 10044",
+        "title": "Firefighters Field",
+        "images": "Firefighters/firefighters-2.jpeg,Firefighters/firefighters-3.jpeg",
+        "tags": "Park, Activity, Baseball, Soccer",
+        "link": "https://rioc.ny.gov/facilities/facility/details/Firefighters-Field-4",
+        "description": "A wide-open field used for a variety of sports and recreational activities, Firefighters Field is a great space for community events, local sports leagues, and casual outdoor fun.",
+        "category": "Parks & Recreation",
+        "subcategory": "Things to do"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.953065,
+          40.757481
+        ],
+        "type": "Point"
+      },
+      "id": "72be67218daaa5b21728ad7f67ad2333"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "44",
+        "place_name": "Roosevelt Island Gardens",
+        "mapbox_id": "dXJuOm1ieHBvaToyMGE5ZTkyNS03NGYyLTRhYjMtYjgzNi1iMmIyNmE1ZmJlMmU",
+        "thumbnail": "Garden.png",
+        "maki": "garden",
+        "address": "Main St, New York, NY, 10044",
+        "title": "RI Gardens",
+        "images": "Garden/garden-1.jpg",
+        "tags": "Garden",
+        "link": "https://www.rigarden.org/",
+        "description": "A series of lovely garden spaces offering a peaceful environment for relaxation, surrounded by seasonal flowers, greenery, and open areas for enjoyment.",
+        "category": "Parks & Recreation",
+        "subcategory": "Highlights"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.944883,
+          40.767184
+        ],
+        "type": "Point"
+      },
+      "id": "73956a7a0fb84cfd6f3284829bb4d882"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "45",
+        "place_name": "Octagon Dog Run",
+        "mapbox_id": "dXJuOm1ieHBvaTo4ZGVlZDg5Ni0zMzJiLTRhYzAtOGMxOC0wNThhZTNhNjU2N2U",
+        "thumbnail": "OctagonDogRun.png",
+        "maki": "dog-park",
+        "address": "East Road, New York, New York 10044, United States",
+        "title": "Octagon Dog Run",
+        "images": "OctagonDogRun/octagon-dogrun-3.jpeg",
+        "tags": "Pets",
+        "link": "https://trysincere.com/dog-park/octagon-dog-run-10044",
+        "description": "A fenced-in dog run located near The Octagon, offering plenty of space for dogs to play off-leash. Benches and water stations make it a convenient spot for pet owners to relax while their dogs socialize.",
+        "category": "Parks & Recreation",
+        "subcategory": "Things to do"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.941391,
+          40.769405
+        ],
+        "type": "Point"
+      },
+      "id": "7652077680b2b10a08212e5e82f6245c"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "46",
+        "place_name": "Public Safety Department",
+        "mapbox_id": "dXJuOm1ieGFkcjpmMGUzYTdjZC03YzNlLTQwM2UtYmFkMi0wMGNlNmI3NzdmN2Q",
+        "thumbnail": "PublicSafetyDept.png",
+        "maki": "",
+        "address": "550 Main Street, New York, New York 10044, United States",
+        "title": "Public Safety Department",
+        "images": "PublicSafetyDept/psd-1.jpg",
+        "description": "The island’s dedicated law enforcement and public safety team, ensuring a safe and secure environment for residents and visitors.",
+        "category": "Public Services",
+        "subcategory": ""
+      },
+      "geometry": {
+        "coordinates": [
+          -73.949649,
+          40.761878
+        ],
+        "type": "Point"
+      },
+      "id": "7661868f396038f6ae7350f11f21fbf6"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "47",
+        "place_name": "Gallery RIVAA",
+        "mapbox_id": "dXJuOm1ieHBvaTowZmViMzFlOC1jNWI2LTQ4ZDUtOTc2ZS1jODI2OThjOWQzODc",
+        "thumbnail": "RIVAA.png",
+        "maki": "art-gallery",
+        "address": "527 Main Street, New York, New York 10044, United States",
+        "title": "Gallery RIVAA",
+        "images": "RIVAA/rivaa-3.jpeg",
+        "tags": "Arts, Culture",
+        "link": "https://www.rivaagallery.org/",
+        "description": "A contemporary art gallery showcasing works from local and international artists, fostering a creative space for art lovers and collectors.",
+        "category": "Retail & Convenience",
+        "subcategory": "Things to do"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.950493,
+          40.761394
+        ],
+        "type": "Point"
+      },
+      "id": "77506a4081a2b2a2a430f9512a3f288d"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "48",
+        "place_name": "We Are One Boutique and Gifts",
+        "mapbox_id": "dXJuOm1ieGFkcjoyMDg2YjNiMi1kZDlmLTRhYzEtOGQ5ZS02MDJjNzIwZTA4MTM",
+        "thumbnail": "oneBoutique.png",
+        "address": "599 Main Street, New York, New York 10044, United States",
+        "title": "We Are One Boutique and Gifts",
+        "images": "WeAreOneBoutique/onBoutique-1.jpg",
+        "tags": "",
+        "description": "A charming boutique offering unique gifts, home decor, and accessories, perfect for finding thoughtful and creative items.",
+        "category": "Retail & Convenience",
+        "subcategory": ""
+      },
+      "geometry": {
+        "coordinates": [
+          -73.94913,
+          40.763069
+        ],
+        "type": "Point"
+      },
+      "id": "7c32082a470ae8f9e695d2d467f84bcb"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "49",
+        "place_name": "Citi Bike: Southpoint Park",
+        "mapbox_id": "dXJuOm1ieHBvaTphNmJjMzk4ZC00OWI0LTQyYjYtYWFjMi0wYmU2ZTRmMWZkYWE",
+        "thumbnail": "CitibikeSouthpoint.png",
+        "maki": "bicycle",
+        "address": "New York, NY 10044",
+        "title": "Citi Bike Southpoint",
+        "images": "CitibikeSouthPoint/citibike-southpt-3.jpeg",
+        "tags": "Biking, Activity",
+        "link": "",
+        "description": "A bike-sharing station located near Southpoint Park, providing quick access to scenic rides around the island.",
+        "category": "Transportation",
+        "subcategory": "Things to do"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.958619,
+          40.753722
+        ],
+        "type": "Point"
+      },
+      "id": "8066ca635a922c8cd3b529c97c56040e"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "50",
+        "place_name": "Chapel of The Good Shepherd Bell",
+        "mapbox_id": "dXJuOm1ieHBvaTo4M2ZiZDU1NS04YjRmLTRjNzItYjhhMS02MWM0ZjgzOTZkNjg",
+        "thumbnail": "Chapel.png",
+        "maki": "religious-christian",
+        "address": "543 Main Street, New York, 10044, United States",
+        "title": "Chapel of Good Shepherd",
+        "images": "Chapel/chapel-1.jpeg,Chapel/chapel-2.jpeg,Chapel/chapel-3.jpeg",
+        "tags": "Landmark, Historical",
+        "link": "https://en.wikipedia.org/wiki/Chapel_of_the_Good_Shepherd_(Roosevelt_Island)",
+        "description": "A historical chapel located on the island, this serene space is used for religious services, community gatherings, and moments of quiet reflection. The bell is a unique feature that adds to its charm.",
+        "category": "Parks & Recreation",
+        "subcategory": "Highlights"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.950042,
+          40.761786
+        ],
+        "type": "Point"
+      },
+      "id": "83f3179beb127a67af077daeab57da0f"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "51",
+        "place_name": "Pony Baseball Field",
+        "mapbox_id": "dXJuOm1ieHBvaTo3MzMyZmJiYy0wZjAwLTRkMzctODQ1ZS0xNjA1Njk0MjRkNzQ",
+        "thumbnail": "Pony.png",
+        "maki": "playground",
+        "address": "888 Main Street, New York, New York 10044, United States",
+        "title": "Pony Baseball Field",
+        "images": "Pony/pony-1.jpeg,Pony/pony-2.jpeg,Pony/pony-3.jpeg",
+        "tags": "Activity, Baseball, Playground",
+        "link": "https://rioc.ny.gov/285/Fields",
+        "description": "A youth baseball field that hosts local leagues and community events. It’s a space that fosters teamwork, sportsmanship, and a love for the game in young players.",
+        "category": "Parks & Recreation",
+        "subcategory": "Things to do"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.943622,
+          40.767822
+        ],
+        "type": "Point"
+      },
+      "id": "8922d469fc5e73b2cd06180e5c94e680"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "52",
+        "place_name": "PS 217 Roosevelt Island School",
+        "mapbox_id": "dXJuOm1ieHBvaTpkMDJlMTlhMC1jMjRhLTQ5NzUtYTFkNS0yOTllMjUwMWJjYWU",
+        "thumbnail": "School.png",
+        "maki": "school",
+        "address": "645 Main Street, New York, New York 10044, United States",
+        "title": "PS 217 School",
+        "images": "School/school-1.jpeg,School/school-2.jpeg,School/school-3.jpeg",
+        "tags": "",
+        "link": "https://www.schools.nyc.gov/schools/M217",
+        "description": "",
+        "category": "School"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.948049,
+          40.764064
+        ],
+        "type": "Point"
+      },
+      "id": "8cb7b5a2f2aebfc089e6000d663957bb"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "53",
+        "place_name": "Art Path",
+        "color": "#0a7eff",
+        "path": "Tramway Station, The Girl Puzzle Monument, Visual Arts Association, Cornell Tech",
+        "labelOffset": "500,-50",
+        "pathHighlightImages": "Tram/tram-1.jpeg, Puzzle/puzzle-1.jpeg,RIVAA/rivaa-3.jpeg,CornellTech/cornell-tech-1.jpeg",
+        "labelAnchor": "left",
+        "pathHighlightCoordinates": "-73.954116,40.757496;-73.940468,40.772477; -73.950493,40.761394;-73.95623,40.75563",
+        "thumbnail": "ArtPath.png",
+        "title": "Art Path",
+        "images": "WalkingPaths/ArtPath.jpg",
+        "category": "Walking Paths",
+        "subcategory": "Walking Paths"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            -73.954181,
+            40.757445
+          ],
+          [
+            -73.954117,
+            40.757476
+          ],
+          [
+            -73.953822,
+            40.757361
+          ],
+          [
+            -73.953801,
+            40.757353
+          ],
+          [
+            -73.953782,
+            40.757345
+          ],
+          [
+            -73.953763,
+            40.757332
+          ],
+          [
+            -73.953748,
+            40.757319
+          ],
+          [
+            -73.953684,
+            40.757269
+          ],
+          [
+            -73.953584,
+            40.757387
+          ],
+          [
+            -73.953636,
+            40.757442
+          ],
+          [
+            -73.953628,
+            40.757489
+          ],
+          [
+            -73.953622,
+            40.757522
+          ],
+          [
+            -73.9536,
+            40.757623
+          ],
+          [
+            -73.953198,
+            40.757933
+          ],
+          [
+            -73.952735,
+            40.75827
+          ],
+          [
+            -73.952517,
+            40.758502
+          ],
+          [
+            -73.951936,
+            40.759117
+          ],
+          [
+            -73.951615,
+            40.759445
+          ],
+          [
+            -73.951334,
+            40.759752
+          ],
+          [
+            -73.951312,
+            40.759835
+          ],
+          [
+            -73.951417,
+            40.760156
+          ],
+          [
+            -73.95143,
+            40.76026
+          ],
+          [
+            -73.951395,
+            40.7604
+          ],
+          [
+            -73.951579,
+            40.760502
+          ],
+          [
+            -73.951216,
+            40.760753
+          ],
+          [
+            -73.951754,
+            40.761013
+          ],
+          [
+            -73.951696,
+            40.761415
+          ],
+          [
+            -73.951469,
+            40.76175
+          ],
+          [
+            -73.950295,
+            40.763145
+          ],
+          [
+            -73.949924,
+            40.763516
+          ],
+          [
+            -73.949019,
+            40.76418
+          ],
+          [
+            -73.948733,
+            40.76457
+          ],
+          [
+            -73.948289,
+            40.765141
+          ],
+          [
+            -73.94795,
+            40.765572
+          ],
+          [
+            -73.947176,
+            40.766541
+          ],
+          [
+            -73.946746,
+            40.767073
+          ],
+          [
+            -73.946369,
+            40.767532
+          ],
+          [
+            -73.945926,
+            40.7681
+          ],
+          [
+            -73.945723,
+            40.76817
+          ],
+          [
+            -73.945624,
+            40.768223
+          ],
+          [
+            -73.945621,
+            40.768369
+          ],
+          [
+            -73.945488,
+            40.768554
+          ],
+          [
+            -73.945323,
+            40.768749
+          ],
+          [
+            -73.945231,
+            40.768763
+          ],
+          [
+            -73.945189,
+            40.768832
+          ],
+          [
+            -73.945107,
+            40.76914
+          ],
+          [
+            -73.944858,
+            40.769519
+          ],
+          [
+            -73.944663,
+            40.769752
+          ],
+          [
+            -73.944242,
+            40.770119
+          ],
+          [
+            -73.944065,
+            40.770234
+          ],
+          [
+            -73.943888,
+            40.770331
+          ],
+          [
+            -73.943484,
+            40.7707
+          ],
+          [
+            -73.943065,
+            40.771079
+          ],
+          [
+            -73.942584,
+            40.771612
+          ],
+          [
+            -73.942122,
+            40.772023
+          ],
+          [
+            -73.941345,
+            40.772304
+          ],
+          [
+            -73.940828,
+            40.772375
+          ],
+          [
+            -73.940789,
+            40.772387
+          ],
+          [
+            -73.940739,
+            40.772427
+          ],
+          [
+            -73.940713,
+            40.77245
+          ],
+          [
+            -73.940693,
+            40.772469
+          ],
+          [
+            -73.940651,
+            40.772443
+          ],
+          [
+            -73.940611,
+            40.772417
+          ],
+          [
+            -73.940531,
+            40.772376
+          ],
+          [
+            -73.94059,
+            40.772406
+          ],
+          [
+            -73.940611,
+            40.772417
+          ],
+          [
+            -73.940651,
+            40.772443
+          ],
+          [
+            -73.940692,
+            40.772468
+          ],
+          [
+            -73.940714,
+            40.77245
+          ],
+          [
+            -73.940739,
+            40.772426
+          ],
+          [
+            -73.940764,
+            40.772407
+          ],
+          [
+            -73.940789,
+            40.772388
+          ],
+          [
+            -73.941342,
+            40.772302
+          ],
+          [
+            -73.942115,
+            40.772019
+          ],
+          [
+            -73.942574,
+            40.771619
+          ],
+          [
+            -73.942819,
+            40.771336
+          ],
+          [
+            -73.94306,
+            40.771083
+          ],
+          [
+            -73.943795,
+            40.77041
+          ],
+          [
+            -73.94397,
+            40.770286
+          ],
+          [
+            -73.94423,
+            40.770134
+          ],
+          [
+            -73.944459,
+            40.769936
+          ],
+          [
+            -73.944703,
+            40.769708
+          ],
+          [
+            -73.944528,
+            40.769705
+          ],
+          [
+            -73.944396,
+            40.769618
+          ],
+          [
+            -73.9443,
+            40.769552
+          ],
+          [
+            -73.944265,
+            40.769558
+          ],
+          [
+            -73.944029,
+            40.769421
+          ],
+          [
+            -73.943787,
+            40.769293
+          ],
+          [
+            -73.94364,
+            40.769231
+          ],
+          [
+            -73.943543,
+            40.769204
+          ],
+          [
+            -73.943451,
+            40.769196
+          ],
+          [
+            -73.943269,
+            40.769102
+          ],
+          [
+            -73.943283,
+            40.769073
+          ],
+          [
+            -73.943177,
+            40.769014
+          ],
+          [
+            -73.942994,
+            40.768811
+          ],
+          [
+            -73.942801,
+            40.768607
+          ],
+          [
+            -73.942793,
+            40.768557
+          ],
+          [
+            -73.942932,
+            40.76842
+          ],
+          [
+            -73.943087,
+            40.768294
+          ],
+          [
+            -73.943373,
+            40.767989
+          ],
+          [
+            -73.944256,
+            40.767038
+          ],
+          [
+            -73.94446,
+            40.766989
+          ],
+          [
+            -73.944374,
+            40.766839
+          ],
+          [
+            -73.944355,
+            40.766799
+          ],
+          [
+            -73.944355,
+            40.766748
+          ],
+          [
+            -73.944408,
+            40.766676
+          ],
+          [
+            -73.944424,
+            40.766568
+          ],
+          [
+            -73.944508,
+            40.766439
+          ],
+          [
+            -73.945435,
+            40.765383
+          ],
+          [
+            -73.946351,
+            40.764329
+          ],
+          [
+            -73.946909,
+            40.763693
+          ],
+          [
+            -73.947247,
+            40.763302
+          ],
+          [
+            -73.948085,
+            40.763714
+          ],
+          [
+            -73.948168,
+            40.763771
+          ],
+          [
+            -73.948489,
+            40.763527
+          ],
+          [
+            -73.948569,
+            40.763416
+          ],
+          [
+            -73.94895,
+            40.763139
+          ],
+          [
+            -73.949156,
+            40.762995
+          ],
+          [
+            -73.949079,
+            40.762963
+          ],
+          [
+            -73.949308,
+            40.762669
+          ],
+          [
+            -73.949519,
+            40.762342
+          ],
+          [
+            -73.949973,
+            40.761643
+          ],
+          [
+            -73.950401,
+            40.761347
+          ],
+          [
+            -73.950539,
+            40.761239
+          ],
+          [
+            -73.950436,
+            40.761154
+          ],
+          [
+            -73.950917,
+            40.760769
+          ],
+          [
+            -73.951102,
+            40.760634
+          ],
+          [
+            -73.950882,
+            40.760497
+          ],
+          [
+            -73.951017,
+            40.760191
+          ],
+          [
+            -73.950865,
+            40.759886
+          ],
+          [
+            -73.950739,
+            40.759727
+          ],
+          [
+            -73.950598,
+            40.759639
+          ],
+          [
+            -73.951161,
+            40.759006
+          ],
+          [
+            -73.951214,
+            40.758984
+          ],
+          [
+            -73.951225,
+            40.758955
+          ],
+          [
+            -73.951225,
+            40.75893
+          ],
+          [
+            -73.951321,
+            40.758816
+          ],
+          [
+            -73.951558,
+            40.758673
+          ],
+          [
+            -73.951581,
+            40.758632
+          ],
+          [
+            -73.951756,
+            40.758469
+          ],
+          [
+            -73.9518,
+            40.758457
+          ],
+          [
+            -73.951877,
+            40.758335
+          ],
+          [
+            -73.95215,
+            40.757976
+          ],
+          [
+            -73.952168,
+            40.757937
+          ],
+          [
+            -73.952206,
+            40.757896
+          ],
+          [
+            -73.95225,
+            40.7576
+          ],
+          [
+            -73.952321,
+            40.757465
+          ],
+          [
+            -73.952746,
+            40.756928
+          ],
+          [
+            -73.952824,
+            40.756847
+          ],
+          [
+            -73.953048,
+            40.756831
+          ],
+          [
+            -73.953335,
+            40.756643
+          ],
+          [
+            -73.953712,
+            40.756246
+          ],
+          [
+            -73.953902,
+            40.756004
+          ],
+          [
+            -73.954093,
+            40.755828
+          ],
+          [
+            -73.954171,
+            40.755777
+          ],
+          [
+            -73.954264,
+            40.755759
+          ],
+          [
+            -73.954417,
+            40.755697
+          ],
+          [
+            -73.954465,
+            40.75574
+          ],
+          [
+            -73.954626,
+            40.755658
+          ],
+          [
+            -73.954673,
+            40.755626
+          ],
+          [
+            -73.954732,
+            40.755587
+          ],
+          [
+            -73.95507,
+            40.755624
+          ],
+          [
+            -73.955237,
+            40.755637
+          ],
+          [
+            -73.955408,
+            40.755628
+          ],
+          [
+            -73.95548,
+            40.755624
+          ],
+          [
+            -73.955533,
+            40.755613
+          ],
+          [
+            -73.955614,
+            40.755599
+          ],
+          [
+            -73.955764,
+            40.755624
+          ],
+          [
+            -73.955916,
+            40.755667
+          ],
+          [
+            -73.955814,
+            40.755637
+          ],
+          [
+            -73.955687,
+            40.75561
+          ],
+          [
+            -73.955615,
+            40.755598
+          ],
+          [
+            -73.95548,
+            40.755624
+          ],
+          [
+            -73.955408,
+            40.755629
+          ],
+          [
+            -73.955247,
+            40.755637
+          ],
+          [
+            -73.955069,
+            40.755625
+          ],
+          [
+            -73.954731,
+            40.755587
+          ],
+          [
+            -73.954675,
+            40.755625
+          ],
+          [
+            -73.954628,
+            40.755656
+          ],
+          [
+            -73.954465,
+            40.75574
+          ],
+          [
+            -73.954418,
+            40.755696
+          ],
+          [
+            -73.954263,
+            40.755759
+          ],
+          [
+            -73.954215,
+            40.755767
+          ],
+          [
+            -73.954167,
+            40.755779
+          ],
+          [
+            -73.954094,
+            40.755828
+          ],
+          [
+            -73.953997,
+            40.755917
+          ],
+          [
+            -73.953902,
+            40.756004
+          ],
+          [
+            -73.953807,
+            40.756127
+          ],
+          [
+            -73.953712,
+            40.756246
+          ],
+          [
+            -73.953524,
+            40.756445
+          ],
+          [
+            -73.953337,
+            40.756642
+          ],
+          [
+            -73.953048,
+            40.756831
+          ],
+          [
+            -73.953012,
+            40.756852
+          ],
+          [
+            -73.952983,
+            40.756895
+          ],
+          [
+            -73.952974,
+            40.756936
+          ],
+          [
+            -73.952971,
+            40.756976
+          ],
+          [
+            -73.952986,
+            40.757054
+          ],
+          [
+            -73.953025,
+            40.757102
+          ],
+          [
+            -73.953086,
+            40.757148
+          ],
+          [
+            -73.953152,
+            40.757186
+          ],
+          [
+            -73.953216,
+            40.757215
+          ],
+          [
+            -73.953304,
+            40.757099
+          ],
+          [
+            -73.953399,
+            40.757141
+          ],
+          [
+            -73.953527,
+            40.757197
+          ],
+          [
+            -73.95359,
+            40.757226
+          ],
+          [
+            -73.953685,
+            40.757268
+          ],
+          [
+            -73.953748,
+            40.75732
+          ],
+          [
+            -73.953764,
+            40.757332
+          ],
+          [
+            -73.953783,
+            40.757345
+          ],
+          [
+            -73.953823,
+            40.757361
+          ],
+          [
+            -73.953896,
+            40.75739
+          ],
+          [
+            -73.953969,
+            40.757419
+          ],
+          [
+            -73.954117,
+            40.757476
+          ],
+          [
+            -73.954146,
+            40.757462
+          ],
+          [
+            -73.954181,
+            40.757445
+          ]
+        ],
+        "type": "LineString"
+      },
+      "id": "8d38e2c1b5d3da34ae1664be252cf57f"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "54",
+        "place_name": "Manhattan Park Pool Club",
+        "mapbox_id": "dXJuOm1ieHBvaTo4MzgzMmU3NS1jYmM5LTQ4NDEtOWJkMy04ZTNjMWE0YTk4ZDE",
+        "thumbnail": "Pool.png",
+        "maki": "swimming",
+        "address": "36 River Road, New York, New York 10044, United States",
+        "title": "Pool Club",
+        "images": "PoolClub/poolclub-1.jpg,PoolClub/poolclub-2.jpg,PoolClub/poolclub-3.jpeg",
+        "tags": "Pool, Activity",
+        "link": "https://secretnyc.co/roosevelt-island-pool/",
+        "description": "A seasonal retreat offering a large pool, sun lounges, and a vibrant atmosphere. The Manhattan Park Pool Club is the perfect summer spot for relaxation and social events.",
+        "category": "Parks & Recreation",
+        "subcategory": "Things to do"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.946778,
+          40.766279
+        ],
+        "type": "Point"
+      },
+      "id": "9cd664dc2b4563788716cb7ae2461578"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "55",
+        "place_name": "Manhattan Park",
+        "mapbox_id": "dXJuOm1ieHBvaTowYWFlNTgxNC00ZWI0LTQwODYtYmVlMi0zYWEzYzdkNWI5YjU",
+        "thumbnail": "ManhattanPark.png",
+        "maki": "home",
+        "address": "30 River Road, New York, New York 10044, United States",
+        "title": "Manhattan Park",
+        "images": "ManhattanPark/manhattan-park-1.jpeg,ManhattanPark/manhattan-park-2.jpeg",
+        "tags": "Residential Building",
+        "link": "https://manhattanpark.com/",
+        "description": "A vibrant residential community, Manhattan Park is known for its colorful public art installations, modern apartments, and expansive outdoor spaces. It’s an ideal living spot for those seeking a mix of culture and convenience.",
+        "category": "Hotels & Residences"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.946942,
+          40.766044
+        ],
+        "type": "Point"
+      },
+      "id": "9d85ca25c8c1771477d1653745d7227e"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "56",
+        "place_name": "Sportspark Athletic Complex",
+        "mapbox_id": "dXJuOm1ieHBvaToxMTNjODVkZi04MmY3LTRlZGItOWFiNS1kMDcwN2ZjODc5N2U",
+        "thumbnail": "Sportspark.png",
+        "maki": "swimming",
+        "address": "250 Main St, New York, NY 10044",
+        "title": "Sportspark Athletic Complex",
+        "images": "Sportspark/sportspark-2.jpeg",
+        "tags": "Activity, Basketball, Swimming",
+        "link": "https://rioc.ny.gov/290/SportsPark",
+        "description": "A versatile indoor athletic facility offering a range of recreational activities, including swimming, basketball, and fitness programs for all ages.",
+        "category": "Parks & Recreation",
+        "subcategory": "Things to do"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.954992,
+          40.756444
+        ],
+        "type": "Point"
+      },
+      "id": "9e3b547f7acbfd78492058e6abb9f07e"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "57",
+        "place_name": "The Sanctuary",
+        "mapbox_id": "dXJuOm1ieHBvaTpkY2QxMjIxNS05OTQyLTRkNzAtYjY2My01YmFiMjYxNjlkYjY",
+        "thumbnail": "Sanctuary.png",
+        "maki": "restaurant",
+        "address": "851 Main Street, New York, New York 10044, United States",
+        "title": "The Sanctuary",
+        "images": "Sanctuary/sanctuary-1.jpeg,Sanctuary/sanctuary-2.jpeg,Sanctuary/sanctuary-3.jpeg",
+        "tags": "",
+        "link": "https://thesanctuaryri.com/",
+        "description": "A unique event space, The Sanctuary is a former church repurposed to host weddings, concerts, and community events in a stunning and historical setting.",
+        "category": "Parks & Recreation",
+        "subcategory": ""
+      },
+      "geometry": {
+        "coordinates": [
+          -73.945064,
+          40.768505
+        ],
+        "type": "Point"
+      },
+      "id": "9e6ee7295511386ed3b4a2151ed0906b"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "58",
+        "place_name": "F Train Subway Station",
+        "thumbnail": "SubwayStation.png",
+        "maki": "rail",
+        "address": "New York, NY 10044",
+        "title": "Subway Station",
+        "images": "Subway-TrainStation/subway-ri-1.jpeg,Subway-TrainStation/subway-ri-2.jpeg",
+        "tags": "subway",
+        "description": "The Roosevelt Island subway station, providing access to the F train for easy travel between Manhattan and Queens.",
+        "category": "Transportation"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.953313,
+          40.759153
+        ],
+        "type": "Point"
+      },
+      "id": "9f1e1b7c5b21dee4d34972afa50bd5ef"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "59",
+        "place_name": "Smallpox Memorial Hospital",
+        "mapbox_id": "dXJuOm1ieHBvaTpkYjA2Mzk5Zi1jMmE1LTQ1NmEtODUwZi1hNTA4MDc0NTEzNjQ",
+        "thumbnail": "SmallpoxHospital.png",
+        "maki": "marker",
+        "address": "E Rd, New York, NY 10044",
+        "title": "Smallpox Memorial Hospital",
+        "images": "Smallpox/smallpox-1.png,Smallpox/smallpox-2.png",
+        "tags": "Landmark",
+        "link": "https://www.theruin.org/",
+        "description": "The haunting ruins of a 19th-century hospital that once treated smallpox patients. It’s a fascinating historical site that evokes the island’s past.",
+        "category": "Parks & Recreation",
+        "subcategory": "Highlights"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.959683,
+          40.751643
+        ],
+        "type": "Point"
+      },
+      "id": "a21065676aaa4357933b4060c63b5cf3"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "60",
+        "place_name": "Blackwell Playground",
+        "mapbox_id": "dXJuOm1ieHBvaToyM2RjNzNmZC05MDZmLTRlNWQtOTcyNC00OGVlNzE0NWY5MTE",
+        "thumbnail": "BlackwellPlayground-1.png",
+        "maki": "playground",
+        "address": " 500 Main St, New York, NY 10044",
+        "title": "Blackwell Playground",
+        "images": "BlackwellPlayground/blackwell-playground-2.jpeg,BlackwellPlayground/blackwell-playground-3.jpeg",
+        "tags": "Activity, Children",
+        "link": "",
+        "description": "This family-friendly playground offers slides, swings, and climbing structures, making it a favorite spot for children and parents alike. It’s the perfect place for outdoor fun and active play.",
+        "category": "Parks & Recreation",
+        "subcategory": "Things to do"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.950403,
+          40.760168
+        ],
+        "type": "Point"
+      },
+      "id": "a3dd67994810cf04237726b00b7cc3ae"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "61",
+        "place_name": "Riverwalk Park",
+        "mapbox_id": "dXJuOm1ieHBvaTpiNTVjMzZhMC02NGM5LTQwOTQtODliMC1lZGZiMTRkMzcxMmU",
+        "thumbnail": "RiverwalkPark.png",
+        "maki": "home",
+        "address": "460 Main St, New York, NY 10044",
+        "title": "Riverwalk Park",
+        "images": "RiverwalkPark/riverwalk-park-2.jpeg,RiverwalkPark/riverwalk-park-3.jpeg",
+        "tags": "Residence",
+        "link": "https://www.liveriverwalkpark.com/",
+        "description": "Riverwalk Park offers modern, elegantly designed homes with East River views. Residents enjoy exclusive amenities, including a fitness center, children’s playroom, riverfront terrace, and attended lobby, all in a vibrant neighborhood.",
+        "category": "Hotels & Residences"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.951903,
+          40.759033
+        ],
+        "type": "Point"
+      },
+      "id": "a4989b62907ab9066a89dd8297415a5f"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "62",
+        "place_name": "Riverwalk Heights",
+        "mapbox_id": "dXJuOm1ieGFkcjo0OWNlOTViMC01YzNlLTQ0ZjItOGJkNi0xYjIxYWU4NzFkYWE",
+        "thumbnail": "RiverwalkHeights.png",
+        "address": "430 Main Street, New York, New York 10044, United States",
+        "title": "Riverwalk Heights",
+        "images": "RiverwalkHeights/RiverwalkHeights-1.jpg,RiverwalkHeights/RiverwalkHeights-3.jpg",
+        "tags": "Residential Building, Apartment",
+        "description": "A luxury residential tower that combines modern living with exceptional amenities, Riverwalk Heights offers stunning views, high-end finishes, and a convenient location within the Riverwalk neighborhood.",
+        "category": "Hotels & Residences",
+        "subcategory": "Residences"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.95192,
+          40.75845
+        ],
+        "type": "Point"
+      },
+      "id": "b0f13e21de9576488f51483d6e7f5d35"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "63",
+        "place_name": "Day Nursery",
+        "mapbox_id": "dXJuOm1ieHBvaTpmNDY3YmQ0OS00M2ZmLTQ0NzgtYTU4NC03NjlkMWJjYmM1OGY",
+        "thumbnail": "Nursery.png",
+        "maki": "marker",
+        "address": "4 River Road, New York, New York 10044, United States",
+        "title": "Day Nursery",
+        "images": "Nursery/nursery-2.jpeg",
+        "tags": "Daycare",
+        "link": "http://www.ridn.org/",
+        "description": "At Roosevelt Island Day Nursery, we believe children are born competent and curious, and that school is a place where children grow emotionally, socially and intellectually in a warm and supportive environment.",
+        "category": "Nursery"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.947992,
+          40.764432
+        ],
+        "type": "Point"
+      },
+      "id": "b352b3cdc3662a6f3d2e7683fb44278b"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "64",
+        "place_name": "Bread and Butter Market",
+        "mapbox_id": "dXJuOm1ieGFkcjo2OTNhOWYyZC1iNDdmLTQ4YWUtOThkYi0wMzQyMzNjN2ExMTU",
+        "thumbnail": "BreadnButter.png",
+        "address": "579 Main Street, New York, New York 10044, United States",
+        "title": "Bread and Butter Market",
+        "images": "BreadAndButter/BreadNButter-2.png",
+        "tags": "Food",
+        "description": "This cozy neighborhood grocery store provides fresh produce, pantry staples, and gourmet snacks. It's a convenient stop for residents and visitors alike, catering to everyday needs.",
+        "category": "Dining"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.949551,
+          40.762617
+        ],
+        "type": "Point"
+      },
+      "id": "b4538f051961387beba81e68cd1695e1"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "65",
+        "place_name": "Table Tennis Court",
+        "thumbnail": "TTCourt.png",
+        "maki": "table-tennis",
+        "address": "New York, NY 10044",
+        "title": "Table Tennis Court",
+        "images": "TTCourt/ttcourt-3.jpeg",
+        "tags": "Activity, Table Tennis",
+        "link": "https://www.georgebraithwaite.com/",
+        "description": "An outdoor space with tables for ping-pong, providing a fun and active spot for recreational play. It’s a popular area for social games.",
+        "category": "Parks & Recreation",
+        "subcategory": "Things to do"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.94802,
+          40.763506
+        ],
+        "type": "Point"
+      },
+      "id": "b5938b0891c1dd7c3699b09211fb829c"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "66",
+        "place_name": "Lighthouse Park",
+        "mapbox_id": "dXJuOm1ieGFkcjo2OTE2ZTNmYi00ZGQxLTQ3NTMtYjljZi00ZTg4MGI0ZDQzNmQ",
+        "thumbnail": "LighthousePark.png",
+        "maki": "park-alt1",
+        "address": "910 Main St, New York, NY 10044",
+        "title": "Lighthouse Park",
+        "images": "LightHouse/lighthouse-1.jpg,LightHouse/lighthouse-2.jpeg,LightHouse/lighthouse-3.jpeg",
+        "tags": "Landmark",
+        "link": "https://rioc.ny.gov/179/The-Lighthouse",
+        "description": "Above the waters of the East River at the northernmost stretch of Roosevelt Island, shines the fifty foot high Lighthouse. It was built in 1872 by inmates of the penitentiary with stone extracted from the island.",
+        "category": "Highlights",
+        "subcategory": ""
+      },
+      "geometry": {
+        "coordinates": [
+          -73.941158,
+          40.771773
+        ],
+        "type": "Point"
+      },
+      "id": "bd2495e171a1bc05e0d9c78e9a41c01f"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "67",
+        "place_name": "Roosevelt Island",
+        "city": "New York",
+        "postal_code": 10044,
+        "country": "United States",
+        "mapbox_id": "dXJuOm1ieHBsYzpJT0VNN0E"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -73.961508,
+              40.749741
+            ],
+            [
+              -73.961408,
+              40.749682
+            ],
+            [
+              -73.961302,
+              40.749623
+            ],
+            [
+              -73.961174,
+              40.749753
+            ],
+            [
+              -73.961164,
+              40.749779
+            ],
+            [
+              -73.961202,
+              40.749801
+            ],
+            [
+              -73.961178,
+              40.749822
+            ],
+            [
+              -73.961087,
+              40.749784
+            ],
+            [
+              -73.961044,
+              40.749773
+            ],
+            [
+              -73.960966,
+              40.749767
+            ],
+            [
+              -73.960881,
+              40.749837
+            ],
+            [
+              -73.960712,
+              40.749994
+            ],
+            [
+              -73.960557,
+              40.75015
+            ],
+            [
+              -73.960511,
+              40.750185
+            ],
+            [
+              -73.960373,
+              40.750283
+            ],
+            [
+              -73.960104,
+              40.750437
+            ],
+            [
+              -73.959987,
+              40.750519
+            ],
+            [
+              -73.959913,
+              40.750588
+            ],
+            [
+              -73.959876,
+              40.750625
+            ],
+            [
+              -73.959832,
+              40.750654
+            ],
+            [
+              -73.95955,
+              40.750847
+            ],
+            [
+              -73.959492,
+              40.750879
+            ],
+            [
+              -73.959459,
+              40.75091
+            ],
+            [
+              -73.959074,
+              40.75128
+            ],
+            [
+              -73.959022,
+              40.751408
+            ],
+            [
+              -73.958926,
+              40.751455
+            ],
+            [
+              -73.958629,
+              40.751631
+            ],
+            [
+              -73.958509,
+              40.75171
+            ],
+            [
+              -73.958213,
+              40.751904
+            ],
+            [
+              -73.958012,
+              40.752039
+            ],
+            [
+              -73.957939,
+              40.752097
+            ],
+            [
+              -73.957927,
+              40.752115
+            ],
+            [
+              -73.957913,
+              40.752137
+            ],
+            [
+              -73.957888,
+              40.752173
+            ],
+            [
+              -73.957856,
+              40.752207
+            ],
+            [
+              -73.957848,
+              40.752222
+            ],
+            [
+              -73.957813,
+              40.752256
+            ],
+            [
+              -73.957751,
+              40.752305
+            ],
+            [
+              -73.957633,
+              40.752377
+            ],
+            [
+              -73.957372,
+              40.752606
+            ],
+            [
+              -73.957284,
+              40.752669
+            ],
+            [
+              -73.957197,
+              40.752759
+            ],
+            [
+              -73.957195,
+              40.75277
+            ],
+            [
+              -73.957191,
+              40.752779
+            ],
+            [
+              -73.957179,
+              40.752794
+            ],
+            [
+              -73.957174,
+              40.752795
+            ],
+            [
+              -73.957155,
+              40.752806
+            ],
+            [
+              -73.957139,
+              40.752809
+            ],
+            [
+              -73.95711,
+              40.752823
+            ],
+            [
+              -73.956943,
+              40.75297
+            ],
+            [
+              -73.956899,
+              40.753004
+            ],
+            [
+              -73.95686,
+              40.75303
+            ],
+            [
+              -73.956809,
+              40.753062
+            ],
+            [
+              -73.956512,
+              40.753373
+            ],
+            [
+              -73.956325,
+              40.753568
+            ],
+            [
+              -73.956105,
+              40.753814
+            ],
+            [
+              -73.955983,
+              40.753941
+            ],
+            [
+              -73.955741,
+              40.75422
+            ],
+            [
+              -73.955619,
+              40.754321
+            ],
+            [
+              -73.955459,
+              40.754493
+            ],
+            [
+              -73.955226,
+              40.754764
+            ],
+            [
+              -73.955172,
+              40.754792
+            ],
+            [
+              -73.955052,
+              40.754817
+            ],
+            [
+              -73.954731,
+              40.755109
+            ],
+            [
+              -73.95437,
+              40.755439
+            ],
+            [
+              -73.954214,
+              40.755609
+            ],
+            [
+              -73.954122,
+              40.755678
+            ],
+            [
+              -73.953982,
+              40.755791
+            ],
+            [
+              -73.953801,
+              40.755959
+            ],
+            [
+              -73.953556,
+              40.756131
+            ],
+            [
+              -73.953419,
+              40.756254
+            ],
+            [
+              -73.953137,
+              40.756473
+            ],
+            [
+              -73.953018,
+              40.756582
+            ],
+            [
+              -73.952892,
+              40.756734
+            ],
+            [
+              -73.952892,
+              40.756808
+            ],
+            [
+              -73.952841,
+              40.756817
+            ],
+            [
+              -73.952796,
+              40.756827
+            ],
+            [
+              -73.952709,
+              40.756919
+            ],
+            [
+              -73.952486,
+              40.757141
+            ],
+            [
+              -73.952355,
+              40.757311
+            ],
+            [
+              -73.952186,
+              40.757599
+            ],
+            [
+              -73.95216,
+              40.75782
+            ],
+            [
+              -73.952068,
+              40.757989
+            ],
+            [
+              -73.951938,
+              40.758188
+            ],
+            [
+              -73.951789,
+              40.758394
+            ],
+            [
+              -73.951781,
+              40.758422
+            ],
+            [
+              -73.951727,
+              40.758479
+            ],
+            [
+              -73.951699,
+              40.758476
+            ],
+            [
+              -73.951672,
+              40.75849
+            ],
+            [
+              -73.951376,
+              40.758752
+            ],
+            [
+              -73.951229,
+              40.758837
+            ],
+            [
+              -73.950684,
+              40.759485
+            ],
+            [
+              -73.950325,
+              40.759882
+            ],
+            [
+              -73.949884,
+              40.760208
+            ],
+            [
+              -73.949501,
+              40.760497
+            ],
+            [
+              -73.949366,
+              40.760623
+            ],
+            [
+              -73.94881,
+              40.761279
+            ],
+            [
+              -73.948468,
+              40.761666
+            ],
+            [
+              -73.947848,
+              40.762434
+            ],
+            [
+              -73.947339,
+              40.763023
+            ],
+            [
+              -73.947155,
+              40.763228
+            ],
+            [
+              -73.946994,
+              40.763411
+            ],
+            [
+              -73.946848,
+              40.763614
+            ],
+            [
+              -73.946693,
+              40.763799
+            ],
+            [
+              -73.946499,
+              40.764006
+            ],
+            [
+              -73.946419,
+              40.764098
+            ],
+            [
+              -73.946227,
+              40.764321
+            ],
+            [
+              -73.946055,
+              40.764519
+            ],
+            [
+              -73.946017,
+              40.764561
+            ],
+            [
+              -73.945811,
+              40.764768
+            ],
+            [
+              -73.945676,
+              40.764931
+            ],
+            [
+              -73.945572,
+              40.765055
+            ],
+            [
+              -73.945492,
+              40.765149
+            ],
+            [
+              -73.945371,
+              40.765284
+            ],
+            [
+              -73.945301,
+              40.765361
+            ],
+            [
+              -73.945265,
+              40.765394
+            ],
+            [
+              -73.945085,
+              40.765575
+            ],
+            [
+              -73.94482,
+              40.765853
+            ],
+            [
+              -73.944703,
+              40.766005
+            ],
+            [
+              -73.944677,
+              40.766051
+            ],
+            [
+              -73.944593,
+              40.766197
+            ],
+            [
+              -73.944415,
+              40.766433
+            ],
+            [
+              -73.944297,
+              40.766595
+            ],
+            [
+              -73.944121,
+              40.766839
+            ],
+            [
+              -73.944023,
+              40.766983
+            ],
+            [
+              -73.943928,
+              40.767119
+            ],
+            [
+              -73.943885,
+              40.76719
+            ],
+            [
+              -73.943851,
+              40.767228
+            ],
+            [
+              -73.943829,
+              40.767257
+            ],
+            [
+              -73.943765,
+              40.767318
+            ],
+            [
+              -73.943729,
+              40.767358
+            ],
+            [
+              -73.943636,
+              40.767452
+            ],
+            [
+              -73.943472,
+              40.767647
+            ],
+            [
+              -73.943249,
+              40.767854
+            ],
+            [
+              -73.943093,
+              40.768039
+            ],
+            [
+              -73.943031,
+              40.76813
+            ],
+            [
+              -73.942921,
+              40.768262
+            ],
+            [
+              -73.942841,
+              40.768339
+            ],
+            [
+              -73.942755,
+              40.7684
+            ],
+            [
+              -73.942356,
+              40.768685
+            ],
+            [
+              -73.942298,
+              40.768726
+            ],
+            [
+              -73.942215,
+              40.768786
+            ],
+            [
+              -73.942058,
+              40.768894
+            ],
+            [
+              -73.94194,
+              40.768982
+            ],
+            [
+              -73.941822,
+              40.769066
+            ],
+            [
+              -73.94179,
+              40.769084
+            ],
+            [
+              -73.941756,
+              40.769101
+            ],
+            [
+              -73.941676,
+              40.769137
+            ],
+            [
+              -73.941614,
+              40.769167
+            ],
+            [
+              -73.941579,
+              40.769185
+            ],
+            [
+              -73.941543,
+              40.769201
+            ],
+            [
+              -73.941257,
+              40.769335
+            ],
+            [
+              -73.941164,
+              40.769402
+            ],
+            [
+              -73.941117,
+              40.769461
+            ],
+            [
+              -73.941055,
+              40.769572
+            ],
+            [
+              -73.940969,
+              40.769714
+            ],
+            [
+              -73.940863,
+              40.769894
+            ],
+            [
+              -73.940792,
+              40.77001
+            ],
+            [
+              -73.940727,
+              40.770096
+            ],
+            [
+              -73.940653,
+              40.770178
+            ],
+            [
+              -73.940559,
+              40.770286
+            ],
+            [
+              -73.940459,
+              40.770396
+            ],
+            [
+              -73.940399,
+              40.770501
+            ],
+            [
+              -73.940358,
+              40.770577
+            ],
+            [
+              -73.940314,
+              40.770655
+            ],
+            [
+              -73.940293,
+              40.77069
+            ],
+            [
+              -73.940274,
+              40.770727
+            ],
+            [
+              -73.94027,
+              40.77077
+            ],
+            [
+              -73.940251,
+              40.770816
+            ],
+            [
+              -73.940229,
+              40.770931
+            ],
+            [
+              -73.940227,
+              40.771013
+            ],
+            [
+              -73.940224,
+              40.771075
+            ],
+            [
+              -73.940227,
+              40.771105
+            ],
+            [
+              -73.940228,
+              40.771117
+            ],
+            [
+              -73.940229,
+              40.771125
+            ],
+            [
+              -73.940229,
+              40.771134
+            ],
+            [
+              -73.940229,
+              40.77114
+            ],
+            [
+              -73.94023,
+              40.771143
+            ],
+            [
+              -73.940229,
+              40.771148
+            ],
+            [
+              -73.940231,
+              40.771155
+            ],
+            [
+              -73.940231,
+              40.771178
+            ],
+            [
+              -73.940233,
+              40.771189
+            ],
+            [
+              -73.940238,
+              40.77121
+            ],
+            [
+              -73.940242,
+              40.77124
+            ],
+            [
+              -73.940252,
+              40.771292
+            ],
+            [
+              -73.940257,
+              40.771362
+            ],
+            [
+              -73.940281,
+              40.771497
+            ],
+            [
+              -73.940291,
+              40.771582
+            ],
+            [
+              -73.940295,
+              40.771666
+            ],
+            [
+              -73.940336,
+              40.771825
+            ],
+            [
+              -73.940345,
+              40.77189
+            ],
+            [
+              -73.940352,
+              40.771955
+            ],
+            [
+              -73.940346,
+              40.772006
+            ],
+            [
+              -73.940339,
+              40.772063
+            ],
+            [
+              -73.940325,
+              40.772133
+            ],
+            [
+              -73.940321,
+              40.772168
+            ],
+            [
+              -73.940319,
+              40.772192
+            ],
+            [
+              -73.94032,
+              40.772272
+            ],
+            [
+              -73.94031,
+              40.772353
+            ],
+            [
+              -73.940289,
+              40.772414
+            ],
+            [
+              -73.94026,
+              40.772506
+            ],
+            [
+              -73.940208,
+              40.772593
+            ],
+            [
+              -73.940165,
+              40.772664
+            ],
+            [
+              -73.940091,
+              40.772755
+            ],
+            [
+              -73.940045,
+              40.772828
+            ],
+            [
+              -73.940047,
+              40.772861
+            ],
+            [
+              -73.940067,
+              40.772896
+            ],
+            [
+              -73.940088,
+              40.772915
+            ],
+            [
+              -73.940118,
+              40.772929
+            ],
+            [
+              -73.940208,
+              40.772944
+            ],
+            [
+              -73.940233,
+              40.77294
+            ],
+            [
+              -73.9403,
+              40.77289
+            ],
+            [
+              -73.940382,
+              40.772789
+            ],
+            [
+              -73.940434,
+              40.772725
+            ],
+            [
+              -73.940534,
+              40.772628
+            ],
+            [
+              -73.940637,
+              40.772528
+            ],
+            [
+              -73.940779,
+              40.772404
+            ],
+            [
+              -73.940822,
+              40.772382
+            ],
+            [
+              -73.940854,
+              40.772375
+            ],
+            [
+              -73.941039,
+              40.77236
+            ],
+            [
+              -73.941366,
+              40.772321
+            ],
+            [
+              -73.941459,
+              40.772288
+            ],
+            [
+              -73.941629,
+              40.772227
+            ],
+            [
+              -73.941901,
+              40.772121
+            ],
+            [
+              -73.942094,
+              40.772052
+            ],
+            [
+              -73.94226,
+              40.77192
+            ],
+            [
+              -73.942373,
+              40.771824
+            ],
+            [
+              -73.942417,
+              40.771784
+            ],
+            [
+              -73.94263,
+              40.771588
+            ],
+            [
+              -73.942663,
+              40.77155
+            ],
+            [
+              -73.942782,
+              40.771409
+            ],
+            [
+              -73.9429,
+              40.771272
+            ],
+            [
+              -73.942963,
+              40.771195
+            ],
+            [
+              -73.943066,
+              40.771082
+            ],
+            [
+              -73.943174,
+              40.770985
+            ],
+            [
+              -73.943356,
+              40.770821
+            ],
+            [
+              -73.943453,
+              40.770734
+            ],
+            [
+              -73.943554,
+              40.770639
+            ],
+            [
+              -73.943716,
+              40.770494
+            ],
+            [
+              -73.943837,
+              40.770399
+            ],
+            [
+              -73.943968,
+              40.770295
+            ],
+            [
+              -73.944125,
+              40.770208
+            ],
+            [
+              -73.94426,
+              40.770132
+            ],
+            [
+              -73.944358,
+              40.770051
+            ],
+            [
+              -73.944559,
+              40.769859
+            ],
+            [
+              -73.944677,
+              40.769748
+            ],
+            [
+              -73.944761,
+              40.769654
+            ],
+            [
+              -73.944924,
+              40.76944
+            ],
+            [
+              -73.945029,
+              40.769285
+            ],
+            [
+              -73.945094,
+              40.769171
+            ],
+            [
+              -73.945122,
+              40.769112
+            ],
+            [
+              -73.94522,
+              40.768795
+            ],
+            [
+              -73.945321,
+              40.768774
+            ],
+            [
+              -73.945398,
+              40.768687
+            ],
+            [
+              -73.945466,
+              40.768597
+            ],
+            [
+              -73.945595,
+              40.768421
+            ],
+            [
+              -73.945673,
+              40.768317
+            ],
+            [
+              -73.945708,
+              40.768302
+            ],
+            [
+              -73.945738,
+              40.768286
+            ],
+            [
+              -73.945795,
+              40.768313
+            ],
+            [
+              -73.945796,
+              40.768255
+            ],
+            [
+              -73.945841,
+              40.768233
+            ],
+            [
+              -73.945887,
+              40.768211
+            ],
+            [
+              -73.945984,
+              40.768081
+            ],
+            [
+              -73.946091,
+              40.767936
+            ],
+            [
+              -73.946211,
+              40.767775
+            ],
+            [
+              -73.946324,
+              40.767625
+            ],
+            [
+              -73.946415,
+              40.767503
+            ],
+            [
+              -73.946481,
+              40.767413
+            ],
+            [
+              -73.946516,
+              40.767367
+            ],
+            [
+              -73.946652,
+              40.767215
+            ],
+            [
+              -73.946867,
+              40.766976
+            ],
+            [
+              -73.947041,
+              40.766784
+            ],
+            [
+              -73.947336,
+              40.766441
+            ],
+            [
+              -73.94739,
+              40.766309
+            ],
+            [
+              -73.947469,
+              40.766288
+            ],
+            [
+              -73.94766,
+              40.766039
+            ],
+            [
+              -73.947976,
+              40.765633
+            ],
+            [
+              -73.948129,
+              40.765415
+            ],
+            [
+              -73.948279,
+              40.765195
+            ],
+            [
+              -73.948544,
+              40.76487
+            ],
+            [
+              -73.948737,
+              40.764612
+            ],
+            [
+              -73.948881,
+              40.76442
+            ],
+            [
+              -73.948963,
+              40.764314
+            ],
+            [
+              -73.949045,
+              40.764233
+            ],
+            [
+              -73.949193,
+              40.764253
+            ],
+            [
+              -73.949729,
+              40.763818
+            ],
+            [
+              -73.949874,
+              40.76369
+            ],
+            [
+              -73.950019,
+              40.763575
+            ],
+            [
+              -73.950063,
+              40.763519
+            ],
+            [
+              -73.950208,
+              40.763327
+            ],
+            [
+              -73.950338,
+              40.763154
+            ],
+            [
+              -73.950405,
+              40.763069
+            ],
+            [
+              -73.950481,
+              40.762992
+            ],
+            [
+              -73.950679,
+              40.762758
+            ],
+            [
+              -73.950886,
+              40.76257
+            ],
+            [
+              -73.95097,
+              40.762483
+            ],
+            [
+              -73.950998,
+              40.762451
+            ],
+            [
+              -73.95101,
+              40.762435
+            ],
+            [
+              -73.951019,
+              40.762426
+            ],
+            [
+              -73.951024,
+              40.76242
+            ],
+            [
+              -73.951036,
+              40.762402
+            ],
+            [
+              -73.951073,
+              40.762352
+            ],
+            [
+              -73.951212,
+              40.762117
+            ],
+            [
+              -73.951377,
+              40.761867
+            ],
+            [
+              -73.951515,
+              40.761687
+            ],
+            [
+              -73.951623,
+              40.761541
+            ],
+            [
+              -73.95185,
+              40.761164
+            ],
+            [
+              -73.951941,
+              40.761014
+            ],
+            [
+              -73.952044,
+              40.760866
+            ],
+            [
+              -73.952298,
+              40.760581
+            ],
+            [
+              -73.952459,
+              40.760437
+            ],
+            [
+              -73.952647,
+              40.760261
+            ],
+            [
+              -73.952779,
+              40.760111
+            ],
+            [
+              -73.952847,
+              40.760041
+            ],
+            [
+              -73.952924,
+              40.759978
+            ],
+            [
+              -73.953008,
+              40.759977
+            ],
+            [
+              -73.953112,
+              40.759992
+            ],
+            [
+              -73.953216,
+              40.759909
+            ],
+            [
+              -73.953299,
+              40.759818
+            ],
+            [
+              -73.953273,
+              40.759763
+            ],
+            [
+              -73.953401,
+              40.75964
+            ],
+            [
+              -73.953533,
+              40.759524
+            ],
+            [
+              -73.953567,
+              40.759484
+            ],
+            [
+              -73.9536,
+              40.759444
+            ],
+            [
+              -73.953661,
+              40.759379
+            ],
+            [
+              -73.9537,
+              40.759346
+            ],
+            [
+              -73.953735,
+              40.759322
+            ],
+            [
+              -73.953749,
+              40.759308
+            ],
+            [
+              -73.953763,
+              40.759294
+            ],
+            [
+              -73.953792,
+              40.759265
+            ],
+            [
+              -73.953859,
+              40.759193
+            ],
+            [
+              -73.953967,
+              40.759076
+            ],
+            [
+              -73.954073,
+              40.758958
+            ],
+            [
+              -73.954499,
+              40.758503
+            ],
+            [
+              -73.954754,
+              40.758214
+            ],
+            [
+              -73.955006,
+              40.757933
+            ],
+            [
+              -73.955181,
+              40.757698
+            ],
+            [
+              -73.955549,
+              40.7572
+            ],
+            [
+              -73.955684,
+              40.757028
+            ],
+            [
+              -73.955913,
+              40.756773
+            ],
+            [
+              -73.956117,
+              40.756551
+            ],
+            [
+              -73.956385,
+              40.756255
+            ],
+            [
+              -73.956678,
+              40.755932
+            ],
+            [
+              -73.957052,
+              40.755491
+            ],
+            [
+              -73.957308,
+              40.755182
+            ],
+            [
+              -73.957673,
+              40.754772
+            ],
+            [
+              -73.957861,
+              40.754576
+            ],
+            [
+              -73.958052,
+              40.754382
+            ],
+            [
+              -73.958231,
+              40.754166
+            ],
+            [
+              -73.958431,
+              40.753959
+            ],
+            [
+              -73.958435,
+              40.753927
+            ],
+            [
+              -73.958528,
+              40.753848
+            ],
+            [
+              -73.958648,
+              40.753757
+            ],
+            [
+              -73.958784,
+              40.753659
+            ],
+            [
+              -73.958815,
+              40.753633
+            ],
+            [
+              -73.958846,
+              40.753608
+            ],
+            [
+              -73.958919,
+              40.75356
+            ],
+            [
+              -73.958935,
+              40.753549
+            ],
+            [
+              -73.95896,
+              40.753549
+            ],
+            [
+              -73.959203,
+              40.753318
+            ],
+            [
+              -73.959293,
+              40.753201
+            ],
+            [
+              -73.959311,
+              40.753169
+            ],
+            [
+              -73.959331,
+              40.753141
+            ],
+            [
+              -73.959369,
+              40.753081
+            ],
+            [
+              -73.95945,
+              40.752931
+            ],
+            [
+              -73.959618,
+              40.752578
+            ],
+            [
+              -73.959704,
+              40.752396
+            ],
+            [
+              -73.959794,
+              40.752196
+            ],
+            [
+              -73.959843,
+              40.752092
+            ],
+            [
+              -73.959851,
+              40.752066
+            ],
+            [
+              -73.959863,
+              40.752041
+            ],
+            [
+              -73.959874,
+              40.752016
+            ],
+            [
+              -73.959877,
+              40.752008
+            ],
+            [
+              -73.959879,
+              40.752002
+            ],
+            [
+              -73.959883,
+              40.751993
+            ],
+            [
+              -73.959887,
+              40.751984
+            ],
+            [
+              -73.95991,
+              40.75194
+            ],
+            [
+              -73.959937,
+              40.751897
+            ],
+            [
+              -73.959968,
+              40.751856
+            ],
+            [
+              -73.959985,
+              40.751833
+            ],
+            [
+              -73.959999,
+              40.751814
+            ],
+            [
+              -73.960018,
+              40.751797
+            ],
+            [
+              -73.960037,
+              40.751779
+            ],
+            [
+              -73.960215,
+              40.751586
+            ],
+            [
+              -73.960421,
+              40.7514
+            ],
+            [
+              -73.960609,
+              40.751195
+            ],
+            [
+              -73.960721,
+              40.751064
+            ],
+            [
+              -73.960773,
+              40.750995
+            ],
+            [
+              -73.960829,
+              40.750926
+            ],
+            [
+              -73.960997,
+              40.750686
+            ],
+            [
+              -73.96115,
+              40.750409
+            ],
+            [
+              -73.961189,
+              40.75031
+            ],
+            [
+              -73.961235,
+              40.750212
+            ],
+            [
+              -73.961253,
+              40.750186
+            ],
+            [
+              -73.961273,
+              40.750162
+            ],
+            [
+              -73.961312,
+              40.750112
+            ],
+            [
+              -73.961346,
+              40.750062
+            ],
+            [
+              -73.961381,
+              40.750016
+            ],
+            [
+              -73.961373,
+              40.749962
+            ],
+            [
+              -73.961289,
+              40.749896
+            ],
+            [
+              -73.961317,
+              40.749871
+            ],
+            [
+              -73.961346,
+              40.749842
+            ],
+            [
+              -73.961385,
+              40.749863
+            ],
+            [
+              -73.961508,
+              40.749741
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "c11728c578e7271cdab27ad52b31d3fc"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "68",
+        "place_name": "Nisi",
+        "mapbox_id": "dXJuOm1ieHBvaTplMDkzYTBiYS00MDc2LTQ1OWYtOTQ2MS05OWY1ZjZjOTAwN2Y",
+        "thumbnail": "NISI.png",
+        "maki": "restaurant",
+        "address": "549 Main Street, New York, New York 10044, United States",
+        "title": "Nisi",
+        "images": "Nisi/nisi-1.jpeg",
+        "tags": "American",
+        "link": "http://www.nisikitchen.com/",
+        "description": "A modern diner with a diverse menu, Nisi blends classic American diner fare with Greek specialties. From hearty breakfasts to satisfying dinners, it’s a reliable spot for any meal of the day.",
+        "category": "Dining",
+        "subcategory": ""
+      },
+      "geometry": {
+        "coordinates": [
+          -73.949935,
+          40.762023
+        ],
+        "type": "Point"
+      },
+      "id": "c40be9e73c8a0c34fe37e6d70d9bfdd6"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "69",
+        "place_name": "Island House",
+        "mapbox_id": "dXJuOm1ieHBvaToxZGQ1ZGVhNC1mNmEzLTQ5MTItYjY1MS01ZDAxNmU1YmExNmM",
+        "thumbnail": "IslandHouse.png",
+        "maki": "home",
+        "address": "555 Main Street,New York 10044, United States",
+        "title": "Island House",
+        "images": "IslandHouse/island-house-1.jpeg,IslandHouse/island-house-3.jpeg",
+        "tags": "Residential Building",
+        "link": "https://www.islandhousenyc.com/",
+        "description": "A residential complex offering spacious apartments and a range of amenities, Island House provides a peaceful living environment with spectacular views of the East River and Manhattan skyline.",
+        "category": "Hotels & Residences"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.950455,
+          40.762395
+        ],
+        "type": "Point"
+      },
+      "id": "c4154679efc1decf3e535f894932483e"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "70",
+        "place_name": "The Cafe at Cornell Tech",
+        "mapbox_id": "dXJuOm1ieHBvaTo0OGY3NDA5Ny0wODFlLTRlYTItYTJhMC00NGVmZGM2ZGYwNDE",
+        "thumbnail": "Cornell-Cafe.png",
+        "maki": "cafe",
+        "address": "2 West Loop Road, New York, New York 10044, United States",
+        "title": "The Cafe at Cornell Tech",
+        "images": "CornellCafe/cornell-cafe-1.jpeg,CornellCafe/cornell-cafe-2.jpeg,CornellCafe/cornell-cafe-3.jpeg",
+        "tags": "Coffee",
+        "link": "https://thecafe.tech.cornell.edu/",
+        "description": "Operated by Constellation Culinary Group, The Café @ Cornell Tech brings to Roosevelt Island tasty and hearty options for breakfast, and lunch. This bright and sunny café offers a chance to start the day off with a strong cup of Parliament Coffee or Espresso. Breakfast options ranging from croissants and muffins to eggs and pancakes. For lunch, sandwiches, salads, personal gluten free crust pizzas/flat-breads, soups, bowls and hot entrees.",
+        "category": "Cafe"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.952663,
+          40.759201
+        ],
+        "type": "Point"
+      },
+      "id": "c4a72990c84d0a18d8d477f3f833ab71"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "71",
+        "place_name": "Duane Reade Pharmacy",
+        "mapbox_id": "dXJuOm1ieHBvaTo3MWI3MjZiYi0xYTk0LTQ4MTgtOWFiOS0yYzE4ZjEyYTBhNGM",
+        "thumbnail": "Duane-Reade.png",
+        "maki": "pharmacy",
+        "address": "425 Main Street, New York, New York 10044, United States",
+        "title": "Duane Reade Pharmacy",
+        "images": "DuaneReade/duanereade-1.jpeg,DuaneReade/duanereade-2.jpeg",
+        "tags": "Pharmacy",
+        "link": "https://www.walgreens.com/locator/walgreens-425+main+st-new+york-ny-10044/id=14386",
+        "description": "A local pharmacy offering a wide range of health products, prescriptions, and everyday essentials for residents and visitors.",
+        "category": "Retail & Convenience"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.953366,
+          40.758867
+        ],
+        "type": "Point"
+      },
+      "id": "c9bb71c618b06d942e18ad75cf0591d1"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "72",
+        "place_name": "Roosevelt Landings",
+        "mapbox_id": "dXJuOm1ieHBvaToxNDdhMDAyZi0yN2FhLTRmM2EtYWY4Zi03MjE1MTMyMTc1ZDc",
+        "thumbnail": "Landings.png",
+        "maki": "home",
+        "address": "510 Main Street,New York 10044, United States",
+        "title": "The Landings",
+        "images": "Landings/landings-2.jpeg,Landings/landings-3.jpeg",
+        "tags": "Residential Building",
+        "link": "https://quintetnyc.com/the-landings/",
+        "description": "A sprawling residential complex offering affordable housing options, Roosevelt Landings is conveniently located and provides spacious apartments with easy access to public transportation and the waterfront.",
+        "category": "Hotels & Residences"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.950271,
+          40.761021
+        ],
+        "type": "Point"
+      },
+      "id": "cadcad42acce1e88b7c15b132e6b920c"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "73",
+        "place_name": "ND Nails Spa",
+        "mapbox_id": "dXJuOm1ieGFkcjo4MjIyODM4MS1hZTA1LTQwMzQtYTk4ZS04ODJmYjc2ZGZhMDE",
+        "thumbnail": "NDNails.png",
+        "address": "570 Main Street, New York, New York 10044, United States",
+        "title": "ND Nails Spa",
+        "images": "NDNails/no_image.png",
+        "tags": "",
+        "description": "A nail salon offering manicures, pedicures, and beauty treatments in a relaxing and welcoming atmosphere.",
+        "category": "Retail & Convenience",
+        "subcategory": ""
+      },
+      "geometry": {
+        "coordinates": [
+          -73.949252,
+          40.762654
+        ],
+        "type": "Point"
+      },
+      "id": "cc37e5afdf1d0db52910325cef058538"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "74",
+        "place_name": "Citi Bike Motorgate",
+        "mapbox_id": "",
+        "thumbnail": "Citibike-Motorgate.png",
+        "maki": "bicycle",
+        "address": "New York, NY 10044",
+        "title": "Citi Bike Motorgate",
+        "images": "CitibikeMotorgate/citibike-motorgate-1.jpeg,CitibikeMotorgate/citibike-motorgate-2.jpeg",
+        "tags": "Biking, Activity",
+        "link": "",
+        "description": "A convenient bike-sharing station located near the Motorgate Garage, offering an easy way to explore the island by bike.",
+        "category": "Transportation",
+        "subcategory": "Things to do"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.947752,
+          40.763919
+        ],
+        "type": "Point"
+      },
+      "id": "cee1dee42c92585fe43736fd15d58213"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "75",
+        "place_name": "Piccolo Trattoria",
+        "mapbox_id": "dXJuOm1ieHBvaTo5ZDNhNTVkYi0zN2RhLTRkZmQtODI5Yi1jYTYyZGQ3NTRlOGY",
+        "thumbnail": "Piccolo.png",
+        "maki": "restaurant",
+        "address": "455 Main St, New York, NY 10044",
+        "title": "Piccolo Trattoria",
+        "images": "Piccolo/piccolo-2.jpeg",
+        "tags": "Pizza",
+        "link": "https://piccolopizza.online/",
+        "description": "Piccolo Trattoria brings authentic Italian flavors to the island, offering everything from wood-fired pizzas to homemade pasta. The warm, inviting ambiance makes it perfect for a romantic night out or family dinner.",
+        "category": "Dining"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.952663,
+          40.759201
+        ],
+        "type": "Point"
+      },
+      "id": "cf56d00f1f9d3bf55ec7648696dd688b"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "76",
+        "place_name": "Westview",
+        "mapbox_id": "dXJuOm1ieGFkcjo3Y2ZiMWM3MS1mZmNkLTQwODQtYjUxOS00ZDhkNjAwMzBhZWY",
+        "thumbnail": "WestView.png",
+        "address": "625 Main Street, New York, New York 10044, United States",
+        "title": "Westview",
+        "images": "WestView/WestView-1.jpg,WestView/WestView-2.jpg",
+        "description": "A residential community providing modern, affordable living on Roosevelt Island, Westview offers spacious apartments with family-friendly facilities and scenic views, making it a popular choice for city dwellers.",
+        "category": "Hotels & Residences",
+        "subcategory": ""
+      },
+      "geometry": {
+        "coordinates": [
+          -73.948748,
+          40.763432
+        ],
+        "type": "Point"
+      },
+      "id": "cf94e70d2215534f0fff152309cccc17"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "77",
+        "place_name": "Handball Courts",
+        "mapbox_id": "",
+        "thumbnail": "HandballCourt.png",
+        "maki": "baseball",
+        "address": "New York, NY 10044",
+        "title": "Handball Courts",
+        "images": "HandballCourt/handball-1.jpeg,HandballCourt/handball-2.jpeg",
+        "tags": "Activity, Table Tennis",
+        "link": "",
+        "description": "Outdoor handball courts providing a space for local players to enjoy this fast-paced, competitive sport. It’s a popular spot for both casual games and serious play.",
+        "category": "Parks & Recreation",
+        "subcategory": "Things to do"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.947793,
+          40.763302
+        ],
+        "type": "Point"
+      },
+      "id": "d3835e709e74ef280a5a528ecdaab40a"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "78",
+        "place_name": "United States Postal Service",
+        "mapbox_id": "dXJuOm1ieHBvaToyYzM2NmRmOS02NWIzLTQ5NDEtODgwMi1kNGRlYmVhZjBjOTM",
+        "thumbnail": "USPS.png",
+        "maki": "marker",
+        "address": "694 Main St, New York, NY 10044",
+        "title": "United States Postal Service",
+        "images": "USPS/usps-1.png",
+        "tags": "Postal service",
+        "link": "https://www.usps.com/",
+        "description": "Providing essential postal services for the island’s residents, including mailing, shipping, and package handling.",
+        "category": "Retail & Convenience"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.946579,
+          40.765152
+        ],
+        "type": "Point"
+      },
+      "id": "d4af39ec5d2ace15784226f97e5fd576"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "79",
+        "place_name": "Roosevelt Pups",
+        "mapbox_id": "dXJuOm1ieGFkcjo0N2FiMDM5Yy0zMTI3LTQ4NTctYTE2YS0zZGMzZmQ3NmMyZTg",
+        "thumbnail": "pups.png",
+        "address": "544 Main Street, New York, New York 10044, United States",
+        "title": "Roosevelt Pups",
+        "images": "Pups/pups-1.jpeg,Pups/pups-2.jpg,Pups/pups-3.jpeg",
+        "tags": "",
+        "description": "A dog grooming salon offering a range of grooming services to keep pets looking and feeling their best.",
+        "category": "Retail & Convenience",
+        "subcategory": ""
+      },
+      "geometry": {
+        "coordinates": [
+          -73.949739,
+          40.761705
+        ],
+        "type": "Point"
+      },
+      "id": "d5920caa6bee81536f937f1d1a0221eb"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "80",
+        "place_name": "Franklin D. Roosevelt Four Freedoms Park",
+        "mapbox_id": "dXJuOm1ieHBvaTo3NWY2ZGJjNC1iZmNmLTRkMDUtODE3NS04MTgwZjVjNmQwYTU",
+        "thumbnail": "FourFreedom.png",
+        "maki": "park-alt1",
+        "address": "1 FDR Four Freedoms Park",
+        "title": "Four Freedoms Park",
+        "images": "FourFreedom/four-freedom-2.jpeg,FourFreedom/four-freedom-3.jpeg,FourFreedom/four-freedom-1.jpeg",
+        "tags": "Park, Picnic",
+        "link": "https://www.fdrfourfreedomspark.org/",
+        "description": "A stunning waterfront park located at the southern tip of Roosevelt Island, this memorial is dedicated to FDR’s Four Freedoms speech. The park offers sweeping views of Manhattan and a peaceful space for reflection.",
+        "category": "Parks & Recreation",
+        "subcategory": "Highlights"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.960523,
+          40.75061
+        ],
+        "type": "Point"
+      },
+      "id": "d9851b95c7437d8b589fcb223248490d"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "81",
+        "place_name": "RI Letters",
+        "thumbnail": "RI-Letters.png",
+        "address": "Main St, New York, NY 10044",
+        "title": "RI Letters",
+        "images": "RiLetters/ri-1.jpeg,RiLetters/ri-2.jpeg,RiLetters/ri-3.jpeg",
+        "description": "An iconic Roosevelt Island photo opportunity, these oversized letters spell out \"RI\" and capture the island’s identity. Visitors and locals alike stop here to snap photos with this fun, symbolic landmark.",
+        "category": "Parks & Recreation",
+        "subcategory": "Highlights"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.954615,
+          40.757395
+        ],
+        "type": "Point"
+      },
+      "id": "daf3b874cdaeb71742043491398bca89"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "82",
+        "place_name": "Historical Path",
+        "color": "#fc036b",
+        "path": "Tramway Station, Episcopal Church of Goodshepherd, Visual Arts Association, Island Wine n spirits",
+        "labelOffset": "100,200",
+        "pathHighlightImages": "Tram/tram-1.jpeg,Chapel/chapel-1.jpeg,RIVAA/rivaa-3.jpeg,IslandWine/island-1.jpeg",
+        "labelAnchor": "bottom-left",
+        "pathHighlightCoordinates": "-73.954116,40.757496;-73.950263,40.761611;-73.950475,40.761357;-73.949034,40.76317",
+        "thumbnail": "HistoricalPath.png",
+        "title": "Historical Path",
+        "images": "WalkingPaths/HistoricalWalk.png",
+        "category": "Walking Paths",
+        "subcategory": "Walking Paths"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            -73.954176,
+            40.757445
+          ],
+          [
+            -73.954114,
+            40.757475
+          ],
+          [
+            -73.95396,
+            40.757415
+          ],
+          [
+            -73.953769,
+            40.757341
+          ],
+          [
+            -73.953687,
+            40.757272
+          ],
+          [
+            -73.953581,
+            40.757385
+          ],
+          [
+            -73.953634,
+            40.757432
+          ],
+          [
+            -73.953598,
+            40.757634
+          ],
+          [
+            -73.953485,
+            40.757716
+          ],
+          [
+            -73.953173,
+            40.757945
+          ],
+          [
+            -73.952732,
+            40.758269
+          ],
+          [
+            -73.952384,
+            40.758648
+          ],
+          [
+            -73.95194,
+            40.759103
+          ],
+          [
+            -73.951338,
+            40.759744
+          ],
+          [
+            -73.951311,
+            40.759828
+          ],
+          [
+            -73.951415,
+            40.760154
+          ],
+          [
+            -73.951429,
+            40.760272
+          ],
+          [
+            -73.95133,
+            40.760468
+          ],
+          [
+            -73.951238,
+            40.760538
+          ],
+          [
+            -73.950887,
+            40.760787
+          ],
+          [
+            -73.950434,
+            40.761149
+          ],
+          [
+            -73.950555,
+            40.761253
+          ],
+          [
+            -73.950411,
+            40.761351
+          ],
+          [
+            -73.950228,
+            40.761465
+          ],
+          [
+            -73.950129,
+            40.761539
+          ],
+          [
+            -73.950042,
+            40.761595
+          ],
+          [
+            -73.949981,
+            40.761654
+          ],
+          [
+            -73.949789,
+            40.762011
+          ],
+          [
+            -73.949529,
+            40.76249
+          ],
+          [
+            -73.949313,
+            40.762872
+          ],
+          [
+            -73.949151,
+            40.763005
+          ],
+          [
+            -73.948965,
+            40.763122
+          ],
+          [
+            -73.949152,
+            40.763002
+          ],
+          [
+            -73.949309,
+            40.762874
+          ],
+          [
+            -73.949356,
+            40.762805
+          ],
+          [
+            -73.9496,
+            40.762363
+          ],
+          [
+            -73.949973,
+            40.761661
+          ],
+          [
+            -73.949834,
+            40.761595
+          ],
+          [
+            -73.949866,
+            40.761552
+          ],
+          [
+            -73.950389,
+            40.761176
+          ],
+          [
+            -73.951142,
+            40.760608
+          ],
+          [
+            -73.951333,
+            40.760464
+          ],
+          [
+            -73.951429,
+            40.760269
+          ],
+          [
+            -73.951417,
+            40.76016
+          ],
+          [
+            -73.951313,
+            40.759829
+          ],
+          [
+            -73.951338,
+            40.759748
+          ],
+          [
+            -73.952014,
+            40.759027
+          ],
+          [
+            -73.952741,
+            40.758262
+          ],
+          [
+            -73.95317,
+            40.757947
+          ],
+          [
+            -73.9536,
+            40.757633
+          ],
+          [
+            -73.953635,
+            40.757431
+          ],
+          [
+            -73.953578,
+            40.757386
+          ],
+          [
+            -73.953686,
+            40.757269
+          ],
+          [
+            -73.953769,
+            40.757339
+          ],
+          [
+            -73.953961,
+            40.757413
+          ],
+          [
+            -73.954111,
+            40.757473
+          ],
+          [
+            -73.954174,
+            40.757446
+          ]
+        ],
+        "type": "LineString"
+      },
+      "id": "de8a1397245ed2228eddd25e904d0e29"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "83",
+        "place_name": "Park Path",
+        "color": "#fcba03",
+        "path": "Tramway Station, Blackwell House, Smallpox Hospital, Four Freedoms Park, Cornell Tech",
+        "labelOffset": "-100,200",
+        "pathHighlightImages": "Tram/tram-1.jpeg,TheBlackwellHouse/blackwell-1.jpeg,Smallpox/smallpox-1.jpeg,FourFreedom/four-freedom-1.jpeg,CornellTech/cornell-tech-1.jpeg",
+        "labelAnchor": "right",
+        "pathHighlightCoordinates": "-73.954116,40.757496;-73.951127,40.760359;-73.959683,40.751643;-73.960523,40.75061;-73.956233,40.755779",
+        "thumbnail": "ParkPath.png",
+        "title": "Park Path",
+        "images": "WalkingPaths/ParkPathWay.jpg",
+        "category": "Walking Paths",
+        "subcategory": "Walking Paths"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            -73.954178,
+            40.757446
+          ],
+          [
+            -73.954111,
+            40.757476
+          ],
+          [
+            -73.953764,
+            40.757336
+          ],
+          [
+            -73.953687,
+            40.757272
+          ],
+          [
+            -73.953572,
+            40.757391
+          ],
+          [
+            -73.953633,
+            40.757438
+          ],
+          [
+            -73.953593,
+            40.757629
+          ],
+          [
+            -73.953383,
+            40.757796
+          ],
+          [
+            -73.953122,
+            40.757996
+          ],
+          [
+            -73.952733,
+            40.758265
+          ],
+          [
+            -73.952376,
+            40.758656
+          ],
+          [
+            -73.951767,
+            40.759295
+          ],
+          [
+            -73.951333,
+            40.759752
+          ],
+          [
+            -73.951319,
+            40.759833
+          ],
+          [
+            -73.951374,
+            40.760046
+          ],
+          [
+            -73.951423,
+            40.760173
+          ],
+          [
+            -73.951429,
+            40.76026
+          ],
+          [
+            -73.951395,
+            40.760396
+          ],
+          [
+            -73.951368,
+            40.760438
+          ],
+          [
+            -73.951334,
+            40.760464
+          ],
+          [
+            -73.951395,
+            40.760396
+          ],
+          [
+            -73.95146,
+            40.760386
+          ],
+          [
+            -73.951504,
+            40.760423
+          ],
+          [
+            -73.951863,
+            40.76035
+          ],
+          [
+            -73.952113,
+            40.760316
+          ],
+          [
+            -73.952262,
+            40.760286
+          ],
+          [
+            -73.952344,
+            40.760246
+          ],
+          [
+            -73.952999,
+            40.759741
+          ],
+          [
+            -73.953367,
+            40.759394
+          ],
+          [
+            -73.953611,
+            40.759078
+          ],
+          [
+            -73.953848,
+            40.758967
+          ],
+          [
+            -73.954024,
+            40.758848
+          ],
+          [
+            -73.954132,
+            40.758751
+          ],
+          [
+            -73.954576,
+            40.758258
+          ],
+          [
+            -73.954754,
+            40.758009
+          ],
+          [
+            -73.954803,
+            40.757849
+          ],
+          [
+            -73.95487,
+            40.757746
+          ],
+          [
+            -73.955079,
+            40.75748
+          ],
+          [
+            -73.95545,
+            40.757071
+          ],
+          [
+            -73.955544,
+            40.756965
+          ],
+          [
+            -73.955651,
+            40.756925
+          ],
+          [
+            -73.955723,
+            40.756869
+          ],
+          [
+            -73.955765,
+            40.756779
+          ],
+          [
+            -73.955699,
+            40.756757
+          ],
+          [
+            -73.9559,
+            40.756538
+          ],
+          [
+            -73.955839,
+            40.756508
+          ],
+          [
+            -73.956521,
+            40.75578
+          ],
+          [
+            -73.956599,
+            40.755729
+          ],
+          [
+            -73.956843,
+            40.755409
+          ],
+          [
+            -73.957106,
+            40.755148
+          ],
+          [
+            -73.957593,
+            40.754529
+          ],
+          [
+            -73.957847,
+            40.754172
+          ],
+          [
+            -73.957994,
+            40.753986
+          ],
+          [
+            -73.958153,
+            40.753806
+          ],
+          [
+            -73.958311,
+            40.753628
+          ],
+          [
+            -73.958342,
+            40.753578
+          ],
+          [
+            -73.958354,
+            40.753553
+          ],
+          [
+            -73.958362,
+            40.753528
+          ],
+          [
+            -73.958372,
+            40.753517
+          ],
+          [
+            -73.958391,
+            40.7535
+          ],
+          [
+            -73.958432,
+            40.753487
+          ],
+          [
+            -73.958486,
+            40.753494
+          ],
+          [
+            -73.958542,
+            40.753495
+          ],
+          [
+            -73.958667,
+            40.753499
+          ],
+          [
+            -73.958541,
+            40.753495
+          ],
+          [
+            -73.958485,
+            40.753494
+          ],
+          [
+            -73.958433,
+            40.753487
+          ],
+          [
+            -73.958391,
+            40.7535
+          ],
+          [
+            -73.958361,
+            40.753527
+          ],
+          [
+            -73.958272,
+            40.753543
+          ],
+          [
+            -73.958165,
+            40.753564
+          ],
+          [
+            -73.957891,
+            40.753615
+          ],
+          [
+            -73.957185,
+            40.753749
+          ],
+          [
+            -73.957139,
+            40.75387
+          ],
+          [
+            -73.957074,
+            40.753993
+          ],
+          [
+            -73.95696,
+            40.754206
+          ],
+          [
+            -73.956903,
+            40.754282
+          ],
+          [
+            -73.956842,
+            40.754374
+          ],
+          [
+            -73.95681,
+            40.754419
+          ],
+          [
+            -73.956677,
+            40.754566
+          ],
+          [
+            -73.956594,
+            40.754654
+          ],
+          [
+            -73.956573,
+            40.75468
+          ],
+          [
+            -73.956535,
+            40.754723
+          ],
+          [
+            -73.956379,
+            40.754892
+          ],
+          [
+            -73.956276,
+            40.754988
+          ],
+          [
+            -73.956225,
+            40.755067
+          ],
+          [
+            -73.956183,
+            40.755133
+          ],
+          [
+            -73.956103,
+            40.755252
+          ],
+          [
+            -73.956064,
+            40.755308
+          ],
+          [
+            -73.955986,
+            40.755427
+          ],
+          [
+            -73.955937,
+            40.755582
+          ],
+          [
+            -73.955885,
+            40.755792
+          ],
+          [
+            -73.955865,
+            40.755874
+          ],
+          [
+            -73.955842,
+            40.756052
+          ],
+          [
+            -73.955809,
+            40.756191
+          ],
+          [
+            -73.955794,
+            40.756282
+          ],
+          [
+            -73.955779,
+            40.756376
+          ],
+          [
+            -73.955814,
+            40.756531
+          ],
+          [
+            -73.955837,
+            40.756511
+          ],
+          [
+            -73.9559,
+            40.756539
+          ],
+          [
+            -73.955703,
+            40.756754
+          ],
+          [
+            -73.955759,
+            40.756785
+          ],
+          [
+            -73.955722,
+            40.756871
+          ],
+          [
+            -73.95565,
+            40.756923
+          ],
+          [
+            -73.955538,
+            40.756964
+          ],
+          [
+            -73.955449,
+            40.75707
+          ],
+          [
+            -73.95508,
+            40.757482
+          ],
+          [
+            -73.954894,
+            40.757713
+          ],
+          [
+            -73.954828,
+            40.75769
+          ],
+          [
+            -73.95476,
+            40.757716
+          ],
+          [
+            -73.954707,
+            40.757709
+          ],
+          [
+            -73.954341,
+            40.757567
+          ],
+          [
+            -73.954146,
+            40.757488
+          ],
+          [
+            -73.954177,
+            40.757445
+          ]
+        ],
+        "type": "LineString"
+      },
+      "id": "e0427b3a13af5eb132f08c039fc83d69"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "84",
+        "place_name": "Wholesome Factory Market",
+        "mapbox_id": "dXJuOm1ieHBvaTo3YTQwNTUxNy03YjYwLTQwOGQtYTg3OC03YWZmYWQ1MTliNGU",
+        "thumbnail": "Wholesome.png",
+        "maki": "grocery",
+        "address": "530 Main Street, New York, New York 10044, United States",
+        "title": "Wholesome Factory Market",
+        "images": "Wholesome/wholesome-1.jpeg,Wholesome/wholesome-2.jpeg,Wholesome/wholesome-3.jpeg",
+        "tags": "",
+        "link": "",
+        "description": "This organic grocery store is known for its selection of healthy, natural products. Shoppers can find everything from fresh produce to specialty organic items, making it a go-to spot for mindful eating.",
+        "category": "Dining"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.950102,
+          40.761345
+        ],
+        "type": "Point"
+      },
+      "id": "e29fce6c7c8280e916fed5d379139d79"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "85",
+        "place_name": "ME Mediterranean Eatery",
+        "mapbox_id": "dXJuOm1ieGFkcjo2NDExNjk5ZS1jNjI3LTRkODktYjdhYy05OWE5ODAxZTFlNjY",
+        "thumbnail": "Med-Eatery.png",
+        "address": "548 Main Street, New York, New York 10044, United States",
+        "title": "ME Mediterranean Eatery",
+        "images": "Mediterranean/Med-eatery-1.jpg",
+        "tags": "Food",
+        "link": "https://www.eatatme.com/",
+        "description": "This local gem offers an array of Mediterranean delights, from fresh salads to hearty shawarma plates. With its flavorful dishes and friendly atmosphere, it’s a favorite among residents and visitors.",
+        "category": "Dining"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.949378,
+          40.761732
+        ],
+        "type": "Point"
+      },
+      "id": "e473b9559eb5312d77ed2ea22bd22a90"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "86",
+        "place_name": "Island Kids",
+        "mapbox_id": "dXJuOm1ieHBvaTo2ZTljZjhlNi04N2U0LTRkNDctOWVhZC03YWU5YjdkM2QzNTY",
+        "thumbnail": "IslandKids.png",
+        "maki": "marker",
+        "address": "536 Main St, New York, NY 10044",
+        "title": "Island Kids",
+        "images": "IslandKids/IslandKids.png",
+        "tags": "Club",
+        "link": "http://www.islandkids.org/",
+        "description": "A community-focused children’s center offering educational programs, daycare, and fun activities. It’s a nurturing environment where kids can learn, play, and grow.",
+        "category": "Parks & Recreation",
+        "subcategory": ""
+      },
+      "geometry": {
+        "coordinates": [
+          -73.949329,
+          40.761045
+        ],
+        "type": "Point"
+      },
+      "id": "eb3f6833e6a96a805a74254aaff9e611"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "87",
+        "place_name": "Nature Path",
+        "color": "#5C4033",
+        "path": "Tramway Station, Garden Club, Southpoint Park",
+        "labelOffset": "-50,-100",
+        "pathHighlightImages": "Tram/tram-1.jpeg,Garden/garden-1.jpg,SouthpointPark/southpoint-1.jpeg",
+        "labelAnchor": "top-right",
+        "pathHighlightCoordinates": "-73.954116,40.757496;-73.944883,40.767184;-73.958135,40.752406",
+        "thumbnail": "NaturePath.png",
+        "title": "Nature Path",
+        "images": "WalkingPaths/NatureWalk.png",
+        "category": "Walking Paths",
+        "subcategory": "Walking Paths"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            -73.954141,
+            40.757495
+          ],
+          [
+            -73.954047,
+            40.757622
+          ],
+          [
+            -73.954622,
+            40.757836
+          ],
+          [
+            -73.954667,
+            40.757865
+          ],
+          [
+            -73.954696,
+            40.757907
+          ],
+          [
+            -73.9547,
+            40.757957
+          ],
+          [
+            -73.954679,
+            40.758009
+          ],
+          [
+            -73.954527,
+            40.758205
+          ],
+          [
+            -73.95438,
+            40.758396
+          ],
+          [
+            -73.954229,
+            40.758551
+          ],
+          [
+            -73.954087,
+            40.758698
+          ],
+          [
+            -73.953938,
+            40.758827
+          ],
+          [
+            -73.953816,
+            40.758909
+          ],
+          [
+            -73.953701,
+            40.75896
+          ],
+          [
+            -73.953545,
+            40.759009
+          ],
+          [
+            -73.953235,
+            40.759371
+          ],
+          [
+            -73.953472,
+            40.759499
+          ],
+          [
+            -73.953442,
+            40.759569
+          ],
+          [
+            -73.953288,
+            40.759736
+          ],
+          [
+            -73.953192,
+            40.759746
+          ],
+          [
+            -73.952956,
+            40.759952
+          ],
+          [
+            -73.952826,
+            40.760072
+          ],
+          [
+            -73.952696,
+            40.760192
+          ],
+          [
+            -73.952001,
+            40.76091
+          ],
+          [
+            -73.95143,
+            40.761798
+          ],
+          [
+            -73.95088,
+            40.762418
+          ],
+          [
+            -73.950338,
+            40.763075
+          ],
+          [
+            -73.949938,
+            40.763509
+          ],
+          [
+            -73.949083,
+            40.764119
+          ],
+          [
+            -73.948712,
+            40.764548
+          ],
+          [
+            -73.947783,
+            40.764084
+          ],
+          [
+            -73.947108,
+            40.764839
+          ],
+          [
+            -73.946758,
+            40.765223
+          ],
+          [
+            -73.946411,
+            40.765624
+          ],
+          [
+            -73.945959,
+            40.766117
+          ],
+          [
+            -73.945676,
+            40.766449
+          ],
+          [
+            -73.945428,
+            40.766739
+          ],
+          [
+            -73.94532,
+            40.766827
+          ],
+          [
+            -73.945169,
+            40.766877
+          ],
+          [
+            -73.94483,
+            40.766921
+          ],
+          [
+            -73.94445,
+            40.76698
+          ],
+          [
+            -73.944352,
+            40.766802
+          ],
+          [
+            -73.944353,
+            40.766749
+          ],
+          [
+            -73.944406,
+            40.766677
+          ],
+          [
+            -73.944423,
+            40.766573
+          ],
+          [
+            -73.944565,
+            40.766347
+          ],
+          [
+            -73.944621,
+            40.76623
+          ],
+          [
+            -73.944732,
+            40.76608
+          ],
+          [
+            -73.945016,
+            40.76572
+          ],
+          [
+            -73.945299,
+            40.765415
+          ],
+          [
+            -73.945548,
+            40.765153
+          ],
+          [
+            -73.946027,
+            40.764628
+          ],
+          [
+            -73.946328,
+            40.764266
+          ],
+          [
+            -73.946641,
+            40.763912
+          ],
+          [
+            -73.947054,
+            40.763423
+          ],
+          [
+            -73.947373,
+            40.763039
+          ],
+          [
+            -73.947893,
+            40.762423
+          ],
+          [
+            -73.948182,
+            40.762084
+          ],
+          [
+            -73.948502,
+            40.761705
+          ],
+          [
+            -73.948993,
+            40.761124
+          ],
+          [
+            -73.949444,
+            40.760576
+          ],
+          [
+            -73.949647,
+            40.760428
+          ],
+          [
+            -73.94995,
+            40.760195
+          ],
+          [
+            -73.95034,
+            40.759922
+          ],
+          [
+            -73.950878,
+            40.759329
+          ],
+          [
+            -73.95117,
+            40.759
+          ],
+          [
+            -73.951212,
+            40.758984
+          ],
+          [
+            -73.951226,
+            40.758926
+          ],
+          [
+            -73.951325,
+            40.758811
+          ],
+          [
+            -73.951559,
+            40.758675
+          ],
+          [
+            -73.951573,
+            40.758641
+          ],
+          [
+            -73.951633,
+            40.758586
+          ],
+          [
+            -73.951761,
+            40.758463
+          ],
+          [
+            -73.951802,
+            40.758453
+          ],
+          [
+            -73.951995,
+            40.758174
+          ],
+          [
+            -73.952153,
+            40.757976
+          ],
+          [
+            -73.952209,
+            40.757901
+          ],
+          [
+            -73.952246,
+            40.7576
+          ],
+          [
+            -73.952504,
+            40.757216
+          ],
+          [
+            -73.952805,
+            40.756859
+          ],
+          [
+            -73.953026,
+            40.75683
+          ],
+          [
+            -73.953332,
+            40.756643
+          ],
+          [
+            -73.953651,
+            40.7563
+          ],
+          [
+            -73.953662,
+            40.756124
+          ],
+          [
+            -73.953969,
+            40.755838
+          ],
+          [
+            -73.954196,
+            40.755653
+          ],
+          [
+            -73.954468,
+            40.755421
+          ],
+          [
+            -73.954933,
+            40.754996
+          ],
+          [
+            -73.955096,
+            40.754862
+          ],
+          [
+            -73.95522,
+            40.754821
+          ],
+          [
+            -73.955633,
+            40.754396
+          ],
+          [
+            -73.956081,
+            40.753907
+          ],
+          [
+            -73.956764,
+            40.753364
+          ],
+          [
+            -73.957277,
+            40.752904
+          ],
+          [
+            -73.957382,
+            40.752887
+          ],
+          [
+            -73.957702,
+            40.75305
+          ],
+          [
+            -73.957931,
+            40.753182
+          ],
+          [
+            -73.958147,
+            40.753289
+          ],
+          [
+            -73.958306,
+            40.753376
+          ],
+          [
+            -73.958413,
+            40.753448
+          ],
+          [
+            -73.95843,
+            40.753467
+          ],
+          [
+            -73.958351,
+            40.75353
+          ],
+          [
+            -73.9583,
+            40.753614
+          ],
+          [
+            -73.957816,
+            40.754216
+          ],
+          [
+            -73.957368,
+            40.754825
+          ],
+          [
+            -73.957553,
+            40.754902
+          ],
+          [
+            -73.956977,
+            40.755546
+          ],
+          [
+            -73.956205,
+            40.756391
+          ],
+          [
+            -73.955883,
+            40.756791
+          ],
+          [
+            -73.955763,
+            40.756765
+          ],
+          [
+            -73.955612,
+            40.756722
+          ],
+          [
+            -73.955314,
+            40.757061
+          ],
+          [
+            -73.955063,
+            40.757351
+          ],
+          [
+            -73.954836,
+            40.757688
+          ],
+          [
+            -73.954757,
+            40.757716
+          ],
+          [
+            -73.954704,
+            40.75771
+          ],
+          [
+            -73.95458,
+            40.757658
+          ],
+          [
+            -73.954373,
+            40.757581
+          ],
+          [
+            -73.954146,
+            40.757489
+          ]
+        ],
+        "type": "LineString"
+      },
+      "id": "ee6da53b02e5874dcb61a64019b78348"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "88",
+        "place_name": "Fuji East Japanese Bistro",
+        "mapbox_id": "dXJuOm1ieHBvaTo3OTNhOTFiZS1hOWMxLTRmN2MtOTE5OS1iNzE2N2M5YTdmMDI",
+        "thumbnail": "FujiBistro.png",
+        "maki": "restaurant-sushi",
+        "address": "455 Main Street, New York, New York 10044, United States",
+        "title": "Fuji East Japanese Bistro",
+        "images": "FujiBistro/fuji-bistro-1.jpeg,FujiBistro/fuji-bistro-2.jpeg,FujiBistro/fuji-bistro-3.jpeg",
+        "tags": "Restaurant, Japanese",
+        "link": "https://www.fujieast.com/",
+        "description": "Japanese bistro with a sleek, clubby vibe serving sushi, teriyaki, udon, soba & tempura.",
+        "category": "Restaurant"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.952383,
+          40.759082
+        ],
+        "type": "Point"
+      },
+      "id": "f0db823d8eabe3f3969efe0a22a355cc"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "89",
+        "place_name": "FDR Hope Memorial",
+        "thumbnail": "HopeMemorial.png",
+        "address": "Roosevelt Island, NY 10044",
+        "title": "FDR Hope Memorial",
+        "images": "FDRHopeMemorial/HopeMemorial-1.jpg,FDRHopeMemorial/HopeMemorial-2.png",
+        "tags": "",
+        "description": "This poignant monument honors Franklin D. Roosevelt and his legacy of perseverance. It’s a beautiful space dedicated to FDR’s impact on human rights and his enduring message of hope.",
+        "category": "Parks & Recreation",
+        "subcategory": "Highlights"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.959305,
+          40.752235
+        ],
+        "type": "Point"
+      },
+      "id": "f176598146e708bf6ae989c676412f03"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "90",
+        "place_name": "Strecker Memorial Laboratory",
+        "mapbox_id": "dXJuOm1ieHBvaTozN2FjZWMwNi1jMTc1LTQ3NGUtYThmYS1hZWUxOTZjZDUwMDk",
+        "thumbnail": "Strecker.png",
+        "maki": "marker",
+        "address": "Southern Roosevelt Island, New York, 10044, US",
+        "title": "Strecker Memorial Lab",
+        "images": "Strecker/strecker-1.jpeg,Strecker/strecker-2.jpeg,Strecker/strecker-3.jpeg",
+        "tags": "History",
+        "link": "https://en.wikipedia.org/wiki/Strecker_Memorial_Laboratory",
+        "description": "A historical building that once served as a medical research facility, now a reminder of Roosevelt Island’s rich medical history.",
+        "category": "Parks & Recreation",
+        "subcategory": "Highlights"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.958229,
+          40.752334
+        ],
+        "type": "Point"
+      },
+      "id": "f1963a5ccdfb947b8a42699c2f5c72bd"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "91",
+        "place_name": "Island Wine and Spirits",
+        "mapbox_id": "dXJuOm1ieHBvaTo0ZjA2Yzc1MC1mODgxLTRlMjctYjU5MS05NTRmMTRlZjMzYmM",
+        "thumbnail": "islandWine.png",
+        "maki": "beer",
+        "address": "605 Main Street, New York, New York 10044, United States",
+        "title": "Island Wine and Spirits",
+        "images": "IslandWine/island-1.png",
+        "tags": "Wine, Spirits",
+        "link": "",
+        "description": "A local shop specializing in a curated selection of wines, liquors, and craft spirits, perfect for finding the right drink for any occasion.",
+        "category": "Retail & Convenience"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.949035,
+          40.763167
+        ],
+        "type": "Point"
+      },
+      "id": "f690df8c6b2974e3cfb6c99d935064a2"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "92",
+        "place_name": "Island Discount Store",
+        "mapbox_id": "dXJuOm1ieGFkcjo4YmMzMzIzOS1mNjI3LTQ0ZjQtOTU0Ni1mZWViZmM5MzVhYWM",
+        "thumbnail": "IslandDiscount.png",
+        "address": "563 Main Street, New York, New York 10044, United States",
+        "title": "Island Discount Store",
+        "images": "IslandDiscount/IslandDiscount-1.png,IslandDiscount/IslandDiscount-2.png",
+        "tags": "",
+        "description": "A neighborhood shop offering a range of affordable products, from household goods to clothing, making everyday shopping easy and accessible.",
+        "category": "Retail & Convenience",
+        "subcategory": ""
+      },
+      "geometry": {
+        "coordinates": [
+          -73.949725,
+          40.762307
+        ],
+        "type": "Point"
+      },
+      "id": "f6a82b54b42c8556884c44c443b7e2d5"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "93",
+        "place_name": "The Octagon",
+        "mapbox_id": "dXJuOm1ieHBvaTpjODJmNWE3Ni0zOGYzLTQ5MmQtOWU2Zi0yMjU2Y2ZhZjk0MWE",
+        "thumbnail": "Octagon.png",
+        "maki": "home",
+        "address": "888 Main Street,New York 10044, United States",
+        "title": "The Octagon",
+        "images": "Octagon/octagon-1.jpeg,Octagon/octagon-2.jpeg,Octagon/octagon-3.jpeg",
+        "tags": "Residence",
+        "link": "https://octagonnyc.com/",
+        "description": "Housed in a historical landmark, The Octagon offers eco-friendly luxury apartments surrounded by lush green spaces. It boasts high-end amenities, including a pool and fitness center, while maintaining its historic charm.",
+        "category": "Hotels & Residences"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.942912,
+          40.768884
+        ],
+        "type": "Point"
+      },
+      "id": "f7da32c6b96719131bd7673c6ecc750a"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "94",
+        "place_name": "Music and Playstation",
+        "mapbox_id": "",
+        "thumbnail": "Music.png",
+        "maki": "music",
+        "address": "507 Main St, New York, NY 10044",
+        "title": "Playstation",
+        "images": "Music/music-1.JPG",
+        "tags": "Music",
+        "link": "https://www.mstda.org/",
+        "description": "A community space providing music lessons, creative play, and performing arts programs for children, encouraging creativity and learning.",
+        "category": "Retail & Convenience",
+        "subcategory": "Things to do"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.951014,
+          40.761041
+        ],
+        "type": "Point"
+      },
+      "id": "fb77da10856580bfd6282fe287079672"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "95",
+        "place_name": "Eleanor's Pier",
+        "mapbox_id": "",
+        "thumbnail": "EleanorsPier.png",
+        "maki": "marker",
+        "address": "W Rd, New York, NY 10044",
+        "title": "Eleanor's Pier",
+        "images": "EleanorPier/eleanor-1.jpeg,EleanorPier/eleanor-2.jpeg",
+        "tags": "Relaxation, Water views, Public Space",
+        "link": "https://rooseveltislander.blogspot.com/2014/07/eleanors-pier-roosevelt-islands-version.html",
+        "description": "A scenic spot along the East River, Elenor’s Pier is ideal for peaceful walks, fishing, or simply enjoying views of the water. It’s a quiet escape from the city’s hustle and bustle.",
+        "category": "Parks & Recreation",
+        "subcategory": "Things to do"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.953204,
+          40.759898
+        ],
+        "type": "Point"
+      },
+      "id": "fc8bd5aa7cc9f93160751834a8e48207"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "RI_id": "96",
+        "place_name": "Southpoint Park",
+        "mapbox_id": "dXJuOm1ieGFkcjo0N2Q4ZjI1OS0yZTJlLTQzNjQtYmVmNi05NGIyMWZjYjlkY2U",
+        "thumbnail": "SouthpointPark.png",
+        "maki": "park-alt1",
+        "address": "Southpoint Park, Roosevelt Island",
+        "title": "Southpoint Park",
+        "images": "SouthpointPark/southpoint-2.jpeg,SouthpointPark/southpoint-3.jpeg",
+        "tags": "Park, Picnic",
+        "link": "https://rioc.ny.gov/516/Southpoint-Park-Public-Walkthroughs",
+        "description": "A spacious park offering scenic waterfront views, walking paths, and open green areas for recreation. It’s a peaceful spot for a leisurely stroll or a family outing.",
+        "category": "Parks & Recreation",
+        "subcategory": "Things to do"
+      },
+      "geometry": {
+        "coordinates": [
+          -73.957929,
+          40.752692
+        ],
+        "type": "Point"
+      },
+      "id": "fe8db8dbcb488e7f608f76cd27ae802b"
+    }
+  ],
+  "type": "FeatureCollection"
+}
