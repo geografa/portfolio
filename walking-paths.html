@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Find times between two points</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.js"></script>
+    <link
+      href="https://api.tiles.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.3/mapbox-gl-geocoder.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.3/mapbox-gl-geocoder.css"
+      type="text/css"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+      .sidebar {
+        font-family: "Inter", sans-serif;
+        background: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        position: absolute;
+        top: 20px;
+        left: 10px;
+        padding: 5px 10px;
+        margin: 0;
+        font-size: 11px;
+        line-height: 18px;
+        border-radius: 3px;
+        width: 200px;
+        visibility: hidden;
+        border-radius: 10px;
+      }
+      .sidebar h2 {
+        font-size: 2em;
+        line-height: 24px;
+        margin: 0;
+      }
+      #details {
+        line-height: 18px;
+      }
+      #durations {
+        font-size: 12px;
+        line-height: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <div id="sidebar" class="sidebar">
+      <div id="details"></div>
+      <div id="durations"></div>
+    </div>
+
+    <script>
+      const coordinates = document.getElementById("coordinates");
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
+      const map = new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/grafa/cm326pivu00ds01q23zrl2gui",
+        center: [-73.944832, 40.767566],
+        zoom: 15.7380866,
+        bearing: 32.8,
+        pitch: 14.5,
+      });
+
+      let customData;
+
+      const fetchCustomData = () => {
+        return fetch("./data/tcp/RI-POI-Dataset.geojson")
+          .then((response) => response.json())
+          .then((data) => {
+            customData = data;
+          });
+      };
+
+      function forwardGeocoder(query) {
+        const matchingFeatures = [];
+        for (const feature of customData.features) {
+          // Handle queries with different capitalization
+          // than the source data by calling toLowerCase().
+          if (
+            // if the "type": "Point" then use only these features
+            feature.geometry.type === "Point" &&
+            feature.properties.title.toLowerCase().includes(query.toLowerCase())
+          ) {
+            feature["place_name"] = `🚶 ${feature.properties.title}`;
+            feature.center = feature.geometry.coordinates;
+            feature.place_type = ["poi"];
+            matchingFeatures.push(feature);
+          }
+        }
+        return matchingFeatures;
+      }
+
+      fetchCustomData().then(() => {
+        map.addControl(
+          new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken,
+            localGeocoder: forwardGeocoder,
+            zoom: 14,
+            placeholder: "Enter search e.g. Lighthouse",
+            mapboxgl: mapboxgl,
+          })
+        );
+      });
+
+      const start = {
+        type: "FeatureCollection",
+        features: [
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [-73.95965272127452, 40.751512823617645],
+            },
+          },
+        ],
+      };
+      const end = {
+        type: "FeatureCollection",
+        features: [
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [-73.9516809852737, 40.7615546518505],
+            },
+          },
+        ],
+      };
+
+      let coords;
+
+      const route = {
+        type: "FeatureCollection",
+        features: [
+          {
+            type: "Feature",
+            properties: {},
+            geometry: coords,
+          },
+        ],
+      };
+      const getDirections = (start, end) => {
+        const url =
+          "https://api.mapbox.com/directions/v5/mapbox/walking/" +
+          start +
+          ";" +
+          end +
+          "?access_token=pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2oyamZ0cTVqMDIwYzMybWU4N25kenpjMCJ9.9clBFPj-fOP8ZToWfis7rQ&geometries=geojson&overview=full&walkway_bias=1";
+        fetch(url)
+          .then((response) => response.json())
+          .then((data) => {
+            map.getSource("route").setData(data.routes[0].geometry);
+            // fit the bounsds of the map to the route
+            const bounds = new mapboxgl.LngLatBounds();
+            data.routes[0].geometry.coordinates.forEach(function (point) {
+              bounds.extend(point);
+            });
+            // find the middle point of the route and set the map center to it
+            const middle = bounds.getCenter();
+            map.flyTo({
+              center: middle,
+              zoom: 15,
+              speed: 0.5,
+              curve: 1,
+            });
+            // fly to the start of the route
+            // map.flyTo({
+            //   center: data.routes[0].geometry.coordinates[0],
+            //   zoom: 16,
+            //   speed: 0.5,
+            //   curve: 1,
+            // });
+            durations.innerHTML =
+              "<p>" + Math.floor(data.routes[0].duration / 60) + " minutes</p>";
+          });
+      };
+
+      function onMoveStart(e) {
+        const coords = e.lngLat;
+        // Set a UI indicator for dragging.
+        canvas.style.cursor = "grabbing";
+
+        // Update the Point feature in `start` coordinates
+        // and call setData to the source layer `point` on it.
+        start.features[0].geometry.coordinates = [coords.lng, coords.lat];
+        map.getSource("start").setData(start);
+        if (map.getSource("route")) {
+          map.getSource("route").setData({
+            type: "FeatureCollection",
+            features: [],
+          });
+        }
+      }
+
+      function onMoveEnd(e) {
+        const coords = e.lngLat;
+        canvas.style.cursor = "grabbing";
+      }
+
+      function onUp(e) {
+        canvas.style.cursor = "";
+
+        // Unbind mouse/touch events
+        map.off("mousemove", onMoveStart);
+        map.off("touchmove", onMoveStart);
+
+        // Unbind mouse/touch events
+        map.off("mousemove", onMoveEnd);
+        map.off("touchmove", onMoveEnd);
+
+        const source = start.features[0].geometry.coordinates;
+        // set the destination to the last feature clicked
+        const dest = end.features[0].geometry.coordinates;
+      }
+      const canvas = map.getCanvasContainer();
+      map.on("load", function () {
+        // add POIs to the map
+        map.addSource("POIs", {
+          type: "geojson",
+          data: "./data/tcp/RI-POI-Dataset.geojson",
+        });
+        map.addLayer({
+          id: "POIs",
+          type: "symbol",
+          source: "POIs",
+          layout: {
+            // use the maki icon from its properties
+            "icon-image": ["get", "maki"],
+            "icon-allow-overlap": true,
+          },
+          //   filter: ["==", "$type", "Point"],
+        });
+        // Add a single point to the map
+        map.addSource("start", {
+          type: "geojson",
+          data: start,
+        });
+
+        map.addLayer({
+          id: "start",
+          type: "circle",
+          source: "start",
+          paint: {
+            "circle-radius": 10,
+            "circle-color": "#f02432",
+            "circle-stroke-width": 3,
+            "circle-stroke-color": "#fff",
+          },
+        });
+
+        // // Add a single point to the map
+        map.addSource("end", {
+          type: "geojson",
+          data: end,
+        });
+
+        map.addLayer({
+          id: "end",
+          type: "circle",
+          source: "end",
+          paint: {
+            "circle-radius": 10,
+            "circle-color": "#f30",
+          },
+          layout: {
+            visibility: "none",
+          },
+        });
+
+        map.addSource("route", {
+          type: "geojson",
+          data: route,
+        });
+
+        map.addLayer({
+          id: "route",
+          type: "line",
+          source: "route",
+          layout: {
+            "line-join": "round",
+            "line-cap": "round",
+          },
+          paint: {
+            "line-color": "#f02432",
+            "line-width": 8,
+            "line-opacity": 0.7,
+          },
+        });
+
+        // add popup to POIs layer
+        map.on("click", "POIs", function (e) {
+          const coordinates = e.lngLat;
+          const props = e.features[0].properties;
+          const place_name = props.place_name;
+          const address = props.address;
+          const title = props.title;
+          const images = props.images;
+          const tags = props.tags;
+          const description = props.description;
+          // set the contents of the sidebar to the html content
+          // unhide the sidebar by setting the visibility to visible
+          sidebar.style.visibility = "visible";
+          details.innerHTML =
+            "<h2>" +
+            title +
+            "</h2>" +
+            "</p><p>" +
+            address +
+            "</p><p>" +
+            description +
+            "</p><p>Tags: " +
+            tags +
+            "</p>";
+          // when the point is clicked, use getDirections to get the route
+          getDirections(
+            `${start.features[0].geometry.coordinates[0]},${start.features[0].geometry.coordinates[1]}`,
+            `${coordinates.lng},${coordinates.lat}`
+          );
+        });
+
+        // When the cursor enters a feature in the start layer, prepare for dragging.
+        map.on("mouseenter", "start", function () {
+          map.setPaintProperty("start", "circle-color", "#fc9286");
+          canvas.style.cursor = "move";
+        });
+
+        map.on("mouseleave", "start", function () {
+          map.setPaintProperty("start", "circle-color", "#f02432");
+          canvas.style.cursor = "";
+        });
+
+        map.on("mousedown", "start", function (e) {
+          // Prevent the default map drag behavior.
+          e.preventDefault();
+
+          canvas.style.cursor = "grab";
+
+          map.on("mousemove", onMoveStart);
+          map.once("mouseup", onUp);
+        });
+
+        map.on("touchstart", "start", function (e) {
+          if (e.points.length !== 1) return;
+
+          // Prevent the default map drag behavior.
+          e.preventDefault();
+
+          map.on("touchmove", onMoveStart);
+          map.once("touchend", onUp);
+        });
+      });
+    </script>
+  </body>
+</html>
