@@ -73,10 +73,10 @@
       const map = new mapboxgl.Map({
         container: "map",
         style: "mapbox://styles/grafa/cm326pivu00ds01q23zrl2gui",
-        center: [-73.944832, 40.767566],
-        zoom: 15.7380866,
-        bearing: 32.8,
-        pitch: 14.5,
+        center: [-73.9523978138401, 40.756920244873356],
+        zoom: 16.09311528392821,
+        bearing: 0,
+        pitch: 34.99999999999987,
       });
 
       let customData;
@@ -97,12 +97,16 @@
           if (
             // if the "type": "Point" then use only these features
             feature.geometry.type === "Point" &&
+            //   feature.properties.tags
+            //     .toLowerCase()
+            //     .includes(query.toLowerCase())) ||
             feature.properties.title.toLowerCase().includes(query.toLowerCase())
           ) {
             feature["place_name"] = `🚶 ${feature.properties.title}`;
             feature.center = feature.geometry.coordinates;
             feature.place_type = ["poi"];
             matchingFeatures.push(feature);
+            console.log(matchingFeatures);
           }
         }
         return matchingFeatures;
@@ -120,6 +124,30 @@
         );
       });
 
+      const lighthouse = {
+        type: "FeatureCollection",
+        features: [
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [-73.94018294138814, 40.772842357109596],
+            },
+            properties: {},
+            id: 0,
+          },
+        ],
+      };
+
+      // fetch the ri_trees.geojson from ./data/tcp/ri_trees.geojson
+      const getTrees = async () => {
+        const response = await fetch("./data/tcp/ri_trees.geojson");
+        const data = await response.json();
+        // get the count of the features in the GeoJSON
+        console.log(data.features.length);
+        return data;
+      };
+
       const start = {
         type: "FeatureCollection",
         features: [
@@ -127,7 +155,7 @@
             type: "Feature",
             geometry: {
               type: "Point",
-              coordinates: [-73.95965272127452, 40.751512823617645],
+              coordinates: [-73.9523978138401, 40.756920244873356],
             },
           },
         ],
@@ -231,7 +259,85 @@
         const dest = end.features[0].geometry.coordinates;
       }
       const canvas = map.getCanvasContainer();
+
       map.on("load", function () {
+        // add lighthouse and trees to the map
+
+        getTrees().then((data) => {
+          // add tree model source
+          map.addSource("tree-model-source", {
+            type: "geojson",
+            data: data,
+          });
+          map.addModel("tree_model", "./models/tree-deciduous.glb");
+          map.addLayer({
+            id: "tree-model-layer",
+            type: "model",
+            source: "tree-model-source",
+            layout: {
+              "model-id": "tree_model",
+            },
+            paint: {
+              "model-scale": [1, 1, 1],
+              "model-rotation": [0, 0, 0],
+              "model-emissive-strength": 0.1,
+            },
+          });
+        });
+        map.addSource("eraser", {
+          type: "geojson",
+          data: {
+            type: "FeatureCollection",
+            features: [
+              {
+                type: "Feature",
+                properties: {},
+                geometry: {
+                  coordinates: [
+                    [
+                      [-73.94022837812295, 40.77287184858454],
+                      [-73.94022837812295, 40.77280639744333],
+                      [-73.94013056617861, 40.77280639744333],
+                      [-73.94013056617861, 40.77287184858454],
+                      [-73.94022837812295, 40.77287184858454],
+                    ],
+                  ],
+                  type: "Polygon",
+                },
+              },
+            ],
+          },
+        });
+        map.addLayer({
+          id: "eraser",
+          type: "clip",
+          source: "eraser",
+          layout: {
+            "clip-layer-types": ["symbol", "model"],
+          },
+        });
+        // add a model layer to the map
+        map.addSource("model-source", {
+          type: "geojson",
+          data: lighthouse,
+        });
+
+        // I see that a network request is made to this URL.
+        map.addModel("lh_model", "./models/roosevelt_island_lighthouse.glb");
+
+        map.addLayer({
+          id: "lh-model-layer",
+          type: "model",
+          source: "model-source",
+          layout: {
+            "model-id": "lh_model",
+          },
+          paint: {
+            "model-scale": [100, 100, 100],
+            "model-rotation": [0, 0, 0],
+            "model-emissive-strength": 0.8,
+          },
+        });
         // add POIs to the map
         map.addSource("POIs", {
           type: "geojson",
