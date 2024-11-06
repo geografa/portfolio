@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Live MTA Bus Positions</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      // TO MAKE THE MAP APPEAR YOU MUST
+      // ADD YOUR ACCESS TOKEN FROM
+      // https://account.mapbox.com
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
+      const map = new mapboxgl.Map({
+        container: "map",
+        // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+        style: "mapbox://styles/grafa/cm2j8r92p00o001poad6rcgx1",
+        center: [-73.94918451252114, 40.766370360271196],
+        zoom: 12.296732090632224,
+        bearing: 0,
+        pitch: 0,
+        hash: true,
+      });
+      map.on("load", async () => {
+        map.addSource("bus-source", {
+          type: "geojson",
+          data: {
+            type: "FeatureCollection",
+            features: [],
+          },
+        });
+        // Add the bus model (exported GLB from Spline)
+        map.addModel("bus-model", "./models/bus.glb");
+        map.addLayer({
+          id: "bus-layer",
+          type: "model",
+          source: "bus-source",
+          layout: {
+            "model-id": "bus-model",
+          },
+          paint: {
+            "model-scale": [5, 5, 5],
+            "model-rotation": [0, 0, 0],
+            "model-translation": [0, 0, 0],
+          },
+        });
+        // Replace with your actual API key
+        const MTA_API_KEY = "2e3a2a47-da8b-401f-a290-47ca4145858f";
+        const BASE_URL =
+          "http://bustime.mta.info/api/siri/vehicle-monitoring.json";
+        // Parameters for the API request
+        const params = new URLSearchParams({
+          key: MTA_API_KEY,
+          VehicleMonitoringDetailLevel: "calls",
+          LineRef: "MTABC_Q102", // Replace with the desired bus line
+        });
+        async function updateBusLocations() {
+          try {
+            const response = await fetch(`${BASE_URL}?${params.toString()}`);
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            const features =
+              data.Siri.ServiceDelivery.VehicleMonitoringDelivery[0].VehicleActivity.map(
+                (vehicle) => {
+                  const { Longitude, Latitude } =
+                    vehicle.MonitoredVehicleJourney.VehicleLocation;
+                  return {
+                    type: "Feature",
+                    geometry: {
+                      type: "Point",
+                      coordinates: [Longitude, Latitude],
+                    },
+                    properties: {
+                      id: vehicle.MonitoredVehicleJourney.VehicleRef,
+                      line: vehicle.MonitoredVehicleJourney.PublishedLineName,
+                      destination:
+                        vehicle.MonitoredVehicleJourney.DestinationName,
+                      // get the bearing from the direction of the bus
+                      bearing: vehicle.MonitoredVehicleJourney.Bearing,
+                    },
+                  };
+                }
+              );
+            map.getSource("bus-source").setData({
+              type: "FeatureCollection",
+              features: features,
+            });
+          } catch (error) {
+            console.error("Error:", error);
+          }
+        }
+        // Initial call to update bus locations
+        updateBusLocations();
+        // Update bus locations every 5 seconds
+        setInterval(updateBusLocations, 5000);
+      });
+    </script>
+  </body>
+</html>
