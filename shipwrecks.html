@@ -12,6 +12,12 @@
       rel="stylesheet"
     />
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
     <style>
       body {
         margin: 0;
@@ -47,10 +53,25 @@
       #details {
         line-height: 18px;
       }
+      #upper-right {
+        font-family: "Merriweather";
+        /* drop shadow */
+        text-shadow: 1px 1px 6px #000000;
+        font-size: 4em;
+        position: absolute;
+        text-align: right;
+        top: 10px;
+        right: 10px;
+        color: #f0ece5;
+        text-decoration: none;
+      }
     </style>
   </head>
   <body>
     <div id="map"></div>
+    <!-- create an upper right div -->
+    <div id="upper-right">Astoria Shipwrecks</div>
+    <!-- create a sidebar div -->
     <div id="sidebar" class="sidebar">
       <div id="details"></div>
     </div>
