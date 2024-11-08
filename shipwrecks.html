@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>The Pacific Graveyard</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+      .sidebar {
+        font-family: "Inter", sans-serif;
+        background: rgb(0 79 96 / 85%);
+        color: #fff;
+        position: absolute;
+        top: 20px;
+        left: 10px;
+        padding: 15px 10px;
+        margin: 0;
+        font-size: 11px;
+        line-height: 10px;
+        border-radius: 3px;
+        width: 300px;
+        visibility: hidden;
+        border-radius: 10px;
+      }
+      .sidebar h2 {
+        font-size: 2em;
+        line-height: 24px;
+        margin: 0;
+      }
+      #details {
+        line-height: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <div id="sidebar" class="sidebar">
+      <div id="details"></div>
+    </div>
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
+      const map = new mapboxgl.Map({
+        container: "map", // container ID
+        style: "mapbox://styles/grafa/clxjqrxpm008101rn4f576jzd", // style URL
+        center: [-122.59653751047995, 45.50109851654432],
+        zoom: 10.988853792470117,
+        bearing: 0,
+        pitch: 1,
+        hash: true,
+      });
+      map.on("load", () => {
+        map.addSource("shipwrecks", {
+          type: "geojson",
+          data: "./data/shipwrecks.geojson",
+        });
+
+        map.addLayer({
+          id: "shipwrecks",
+          type: "heatmap",
+          source: "shipwrecks",
+          maxzoom: 22,
+          paint: {
+            // Increase the heatmap weight
+            // Color ramp for heatmap.  Domain is 0 (low) to 1 (high).
+            // Begin color ramp
+            "heatmap-color": [
+              "interpolate",
+              ["linear"],
+              ["heatmap-density"],
+              // from 0 to 1 density, create rgb values that go from light blue to dark red
+              0,
+              "rgba(33,102,172,0)",
+              0.2,
+              "rgb(103,169,207)",
+              0.4,
+              "rgb(209,229,240)",
+              0.6,
+              "rgb(253,219,199)",
+              0.8,
+              "rgb(239,138,98)",
+              1,
+              "rgb(178,24,43)",
+            ],
+            // Adjust the heatmap radius by zoom level
+            "heatmap-radius": [
+              "interpolate",
+              ["linear"],
+              ["zoom"],
+              7,
+              15,
+              15,
+              30,
+            ],
+            // Transition from heatmap to circle layer by zoom level
+            "heatmap-opacity": [
+              "interpolate",
+              ["linear"],
+              ["zoom"],
+              7,
+              1,
+              15,
+              0,
+            ],
+          },
+        });
+        map.addLayer({
+          id: "shipwreck-icons",
+          type: "symbol",
+          source: "shipwrecks",
+          layout: {
+            // expression use shipwreck-icon-blk if "color": "No deaths", otherwise use shipwreck-icon-red
+            "icon-image": [
+              "case",
+              ["==", ["get", "color"], "No deaths"],
+              "shipwreck-icon-blk",
+              "shipwreck-icon-red",
+            ],
+            // if z=12 0.5, z>=15 1.5
+            "icon-size": ["interpolate", ["linear"], ["zoom"], 12, 0.5, 15, 1],
+            "icon-allow-overlap": true,
+          },
+          paint: {
+            "icon-opacity": ["interpolate", ["linear"], ["zoom"], 10, 0, 12, 1],
+          },
+        });
+
+        // when the feature is clicked, add the details to the sidebar
+        map.on("click", "shipwrecks", (e) => {
+          const props = e.features[0].properties;
+          document.getElementById("details").innerHTML = `
+            <h2>${props.ship_name}</h2>
+            <p><strong>Deaths:</strong> ${props.deaths}</p>
+            <p><strong>Salvaged:</strong> ${props.salvaged}</p>
+            <p><strong>Decade:</strong> ${props.decade}</p>
+            <p><strong>Cansler Year:</strong> ${props.cansler_year}</p>
+            <p><strong>Cansler Date:</strong> ${props.cansler_date}</p>
+            <p><strong>Ship Name:</strong> ${props.ship_name2}</p>
+            <p><strong>Type of Ship:</strong> ${props.type_of_ship}</p>
+            <p><strong>Tons:</strong> ${props.tons}</p>
+            <p><strong>Detailed Notes by Gibbs:</strong> ${props.detailed_notes_by_gibbs}</p>
+            <img src="${props.photo_link}" alt="${props.ship_name}" width="300" height="200">        
+          `;
+          document.getElementById("sidebar").style.visibility = "visible";
+        });
+      });
+    </script>
+  </body>
+</html>
