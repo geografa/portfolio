@@ -1,203 +1,312 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Drag and drop GPX with Map Matching</title>
+    <meta charset="utf-8" />
+    <title>Display a map on a webpage</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
     <link
-      href="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.css"
+      href="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.css"
       rel="stylesheet"
     />
-    <script src="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.js"></script>
-    <script src="./togeojson.js"></script>
-
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.js"></script>
+    <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
     <style>
       body {
         margin: 0;
         padding: 0;
       }
       #map {
-        width: 100vw;
-        height: 100vh;
-      }
-      #container {
         position: absolute;
         top: 0;
-        right: 0;
+        bottom: 0;
+        width: 100%;
+      }
+      h2 {
+        font-size: 2rem;
+      }
+      h3 {
+        font-size: 1.5rem;
+      }
+      h4 {
+        font-size: 1rem;
+      }
+      /* toggle layer menu */
+      #menu {
+        background: #fff;
+        position: absolute;
+        z-index: 1;
+        top: 10px;
+        right: 10px;
+        border-radius: 3px;
+        width: 120px;
+        border: 1px solid rgba(0, 0, 0, 0.4);
+        font-family: "Open Sans", sans-serif;
+      }
+      #menu a {
+        font-size: 13px;
+        color: #404040;
+        display: block;
+        margin: 0;
+        padding: 0;
         padding: 10px;
-        background-color: #a4aa35;
-        opacity: 0.8;
-        border-radius: 10px;
-        width: 250px;
-        height: 40vh;
-        overflow-y: auto;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        margin: 10px;
-      }
-      #dropzone {
-        position: relative;
-
-        color: #fff;
-        background-color: #333;
-        border: 2px dashed #ccc;
-
-        height: 100px;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.25);
         text-align: center;
-        line-height: 90px;
       }
-      #carbonOffset {
-        position: relative;
+
+      #menu a:last-child {
+        border: none;
+      }
+
+      #menu a:hover {
+        background-color: #f8f8f8;
+        color: #404040;
+      }
+
+      #menu a.active {
+        background-color: #3887be;
+        color: #ffffff;
+      }
+
+      #menu a.active:hover {
+        background: #3074a4;
+      }
+
+      /* sidebar */
+      .sidebar {
+        font-family: "Inter", sans-serif;
+        background: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        position: absolute;
         top: 20px;
         left: 10px;
-        padding: 10px;
-
-        /* width: 200px;
-        height: 50px; */
-        text-align: center;
-        line-height: 40px;
+        padding: 5px 10px;
+        margin: 0;
+        font-size: 11px;
+        line-height: 18px;
+        border-radius: 3px;
+        width: 200px;
+        visibility: hidden;
+        border-radius: 10px;
+      }
+      .sidebar h2 {
+        font-size: 2em;
+        line-height: 24px;
+        margin: 0;
+      }
+      #details {
+        line-height: 18px;
+      }
+      #durations {
+        font-size: 12px;
+        line-height: 18px;
       }
     </style>
   </head>
   <body>
+    <nav id="menu"></nav>
     <div id="map"></div>
-    <div id="container">
-      <div id="dropzone">Drag & Drop GPX File</div>
-      <div id="carbonOffset"></div>
+    <div id="sidebar" class="sidebar">
+      <div id="details"></div>
+      <div id="durations"></div>
     </div>
-
     <script>
       mapboxgl.accessToken =
-        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2ptYjNtZWxnMDBrdDNwbnVicGJzOWg2NyJ9.9OulyCe3kEqMAXPbx1mKUA"; // Replace with your Mapbox token
+        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
       const map = new mapboxgl.Map({
-        container: "map",
-        style: "mapbox://styles/mapbox/dark-v11",
-        center: [-98.5795, 39.8283], // Center of the US
-        zoom: 3,
+        container: "map", // container ID
+        style: "mapbox://styles/mapbox/dark-v11", // style URL
+        center: [-122.65640379807041, 45.53316039686476],
+        zoom: 13.298084073693808,
+        bearing: 0,
+        pitch: 0,
         hash: true,
       });
 
-      // Handle drag and drop events
-      const dropzone = document.getElementById("dropzone");
-
-      dropzone.addEventListener("dragover", (event) => {
-        event.preventDefault();
-        dropzone.style.backgroundColor = "#e0e0e0";
-      });
-
-      dropzone.addEventListener("dragleave", (event) => {
-        event.preventDefault();
-        dropzone.style.backgroundColor = "white";
-      });
-
-      dropzone.addEventListener("drop", (event) => {
-        event.preventDefault();
-        dropzone.style.backgroundColor = "white";
-
-        const file = event.dataTransfer.files[0];
-        if (file && file.name.endsWith(".gpx")) {
-          const reader = new FileReader();
-          reader.onload = function (e) {
-            const gpxText = e.target.result;
-            parseGPX(gpxText);
-          };
-          reader.readAsText(file);
-        } else {
-          alert("Please upload a valid GPX file.");
-        }
-      });
-
-      // Conversion from GPX to GeoJSON
-      function parseGPX(gpxText) {
-        const parser = new DOMParser();
-        const gpx = parser.parseFromString(gpxText, "text/xml");
-        const geojson = toGeoJSON.gpx(gpx);
-
-        // Visualize the GeoJSON on the map
-        // if the source already exists, use setData else addSource
-        if (map.getSource("route")) {
-          map.getSource("route").setData(geojson);
-        } else {
-          map.addSource("route", {
-            type: "geojson",
-            data: geojson,
-          });
-        }
-
-        // if the layers already exist, use setLayoutProperty else addLayer
-        if (map.getLayer("route")) {
-          map.setLayoutProperty("route", "visibility", "visible");
-        } else {
-          map.addLayer({
-            id: "route-blur",
-            type: "line",
-            source: "route",
-            layout: {
-              "line-join": "round",
-              "line-cap": "round",
-            },
-            paint: {
-              "line-color": "#bada55",
-              "line-width": 10,
-              "line-opacity": 0.8,
-              "line-blur": 5,
-            },
-          });
-          map.addLayer({
-            id: "route",
-            type: "line",
-            source: "route",
-            layout: {
-              "line-join": "round",
-              "line-cap": "round",
-            },
-            paint: {
-              "line-color": "#bada55",
-              "line-width": 2,
-            },
-          });
-        }
-
-        map.fitBounds(geojson.features[0].geometry.coordinates, {
-          padding: 20,
-        });
-
-        // Now, call the Map Matching API
-        matchRoute(geojson);
-      }
-
-      // Map Matching API
-      function matchRoute(geojson) {
-        const coords = geojson.features[0].geometry.coordinates;
-
-        // Convert to the format required by the Map Matching API
-        const coordinates = coords.map((coord) => coord.join(",")).join(";");
-
-        const mapMatchingUrl = `https://api.mapbox.com/matching/v5/mapbox/cycling/${coordinates}?access_token=pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2ptYjNtZWxnMDBrdDNwbnVicGJzOWg2NyJ9.9OulyCe3kEqMAXPbx1mKUA&geometries=geojson&overview=full`;
-
-        // Calculate the carbon offset (you can add parameters from the algorithm here)
-        const carbonOffset = coords.length * 0.21;
-
-        fetch(mapMatchingUrl)
+      const fetchCustomData = () => {
+        return fetch(
+          "./data/cykel/selected_pdx-routes-data-for-all-vehicles-in-2024-Q3.geojson"
+        )
           .then((response) => response.json())
           .then((data) => {
-            if (data.code === "Ok") {
-              const matchedGeojson = data.matchings[0].geometry;
-
-              // Visualize the matched route on the map
-              map.getSource("route").setData({
-                type: "Feature",
-                properties: {},
-                geometry: matchedGeojson,
-              });
-            }
-            document.getElementById(
-              "carbonOffset"
-            ).innerHTML = `Carbon Offset: ${carbonOffset.toFixed(2)} kg`;
-          })
-          .catch((error) =>
-            console.error("Error with Map Matching API:", error)
+            customData = data;
+          });
+      };
+      map.on("load", () => {
+        fetchCustomData().then(() => {
+          // only returns data that has a count
+          const filteredData = customData.features.filter(
+            (feature) => feature.properties.count
           );
-      }
+          map.addSource("rideReportData", {
+            type: "geojson",
+            data: {
+              type: "FeatureCollection",
+              features: filteredData,
+            },
+          });
+          map.addLayer({
+            id: "counts-layer",
+            type: "line",
+            source: "rideReportData",
+            layout: {
+              "line-join": "round",
+              "line-cap": "round",
+            },
+            paint: {
+              "line-color": [
+                "interpolate",
+                ["linear"],
+                ["get", "count"],
+                // make the colors go from 0 to 10000 in increments of 1000 from a cool to warm color palette
+                0,
+                "#0000ff",
+                1000,
+                "#00ff00",
+                2000,
+                "#ffff00",
+                3000,
+                "#ffcc00",
+                4000,
+                "#ff9900",
+                5000,
+                "#ff6600",
+                6000,
+                "#ff3300",
+                7000,
+                "#ff0000",
+                8000,
+                "#ff0000",
+                9000,
+                "#ff0000",
+                10000,
+                "#ff0000",
+              ],
+              "line-width": [
+                "interpolate",
+                ["linear"],
+                ["get", "count"],
+                0,
+                1,
+                10000,
+                5,
+              ],
+            },
+          });
+
+          // make a single layer that shows only the lines that have a count of 1000
+          map.addLayer({
+            id: "counts-layer-1000",
+            type: "line",
+            source: "rideReportData",
+            layout: {
+              "line-join": "round",
+              "line-cap": "round",
+            },
+            paint: {
+              "line-color": "magenta",
+              "line-width": 15,
+            },
+            filter: ["==", ["get", "count"], 1000],
+          });
+
+          // add a popup to the map
+          const popup = new mapboxgl.Popup({
+            closeButton: false,
+            closeOnClick: false,
+          });
+          // calculate the length of a line segment in meters
+          const lineDistance = (line) => {
+            return turf.length(line, { units: "kilometers" });
+          };
+          // write a function that gets the length of a line segment divided by 1000 to get the km
+          // then multiply by 252 then multiply by the count rounded to the nearest 2 decimal points
+
+          const calculateOffset = (line) => {
+            return lineDistance(line) * 0.252 * line.properties.count;
+          };
+          // change the cursor to a pointer when the mouse is over the places layer and make the clickable area a bit bigger
+          map.on("mouseenter", "counts-layer", function () {
+            map.getCanvas().style.cursor = "pointer";
+          });
+          map.on("mouseleave", "counts-layer", function () {
+            map.getCanvas().style.cursor = "";
+          });
+          // add a click event to the map
+          map.on("click", "counts-layer", function (e) {
+            const coordinates = e.lngLat;
+            const props = e.features[0].properties;
+            const count = props.count;
+            const description =
+              `<h2>kg CO2: ${calculateOffset(e.features[0]).toFixed(2)}</h2>` +
+              `<h3>Count: ${count}</h3>`;
+            // add the details to the sidebar and make it visible
+            document.getElementById("details").innerHTML = description;
+            document.getElementById("sidebar").style.visibility = "visible";
+          });
+        });
+      });
+      map.on("idle", () => {
+        // If these two layers were not added to the map, abort
+        if (
+          !map.getLayer("counts-layer") ||
+          !map.getLayer("counts-layer-1000")
+        ) {
+          return;
+        }
+        const toggleableLayerIds = ["counts-layer", "counts-layer-1000"];
+        // Set up the corresponding toggle button for each layer.
+        for (let id of toggleableLayerIds) {
+          // Skip layers that already have a button set up.
+          if (document.getElementById(id)) {
+            continue;
+          }
+
+          // Create a link.
+          const link = document.createElement("a");
+          link.id = id;
+          link.href = "#";
+          link.textContent = id;
+          // rename the menu items to be more descriptive
+          if (id === "counts-layer") {
+            link.textContent = "All routes";
+          } else if (id === "counts-layer-1000") {
+            link.textContent = "Routes with 1000 counts";
+          }
+          link.className = "active";
+
+          // Show or hide layer when the toggle is clicked.
+          link.onclick = function (e) {
+            const clickedLayer = this.id;
+            e.preventDefault();
+            e.stopPropagation();
+
+            const visibility = map.getLayoutProperty(
+              clickedLayer,
+              "visibility"
+            );
+
+            // Toggle layer visibility by changing the layout object's visibility property.
+            if (visibility === "visible") {
+              map.setLayoutProperty(clickedLayer, "visibility", "none");
+              this.className = "";
+            } else {
+              this.className = "active";
+              map.setLayoutProperty(clickedLayer, "visibility", "visible");
+            }
+          };
+
+          const layers = document.getElementById("menu");
+          layers.appendChild(link);
+          // make the counts-layer-1000 not visible by default
+          map.setLayoutProperty("counts-layer-1000", "visibility", "none");
+          // toggle the counts-layer-1000 to be not visible by default
+          // document.getElementById("counts-layer-1000").className = "";
+        }
+      });
     </script>
   </body>
 </html>
