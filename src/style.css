@@ -22,6 +22,17 @@ ul a {
     text-decoration: none;
 }
 
+/* 
+#logo {
+    position: absolute;
+    color: rgb(255, 255, 255);
+    font-family: "Geologica", sans-serif;
+    top: 0;
+    right: 0;
+    padding: 20px;
+    z-index: 1;
+} */
+
 .map-overlay {
     /* position the overlay to the left with about 20px padding and allow it to scroll */
     position: absolute;
@@ -32,8 +43,14 @@ ul a {
     max-height: 100%;
 }
 
+.map-overlay img {
+    margin: 0 auto;
+    display: block;
+    box-shadow: 0 0 50px -25px black;
+}
+
 .rounded-rect {
-    background: rgba(2, 33, 54, 0.6);
+    background: rgba(2, 33, 54, 0.8);
     border-radius: 10px;
     box-shadow: 0 0 50px -25px black;
 }
@@ -75,8 +92,10 @@ ul a {
 .sidebar h1 {
     font-size: 3em;
     font-weight: 800;
-    margin: 0;
+    margin-top: 20px;
+    margin-bottom: 0;
     padding: 0;
+    text-align: center;
 }
 
 .sidebar li {
