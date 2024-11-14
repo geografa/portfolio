@@ -1,0 +1,3288 @@
+{
+  "type": "FeatureCollection",
+  "name": "RI-POI",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "00a829a9d97f3b33d02ed937ea37ec75",
+        "RI_id": "0",
+        "place_name": "Jupioca",
+        "mapbox_id": "dXJuOm1ieGFkcjo0ZWViMmFkMS0xNzc3LTQyOTEtYjVlMC0wZWEwYmQyNzA0MDA",
+        "thumbnail": "Jupioca.png",
+        "maki": "beer",
+        "address": "455 Main St, New York, NY 10044",
+        "title": "Jupioca",
+        "images": "Jupioca/Jupioca-1.jpg,Jupioca/Jupioca-2.jpg",
+        "tags": "Tea,Cafe",
+        "description": "Jupioca is a refreshing oasis offering a variety of smoothies, juices, and bubble tea options. Their menu caters to those looking for a health-conscious treat or a refreshing drink on the go.",
+        "category": "Dining,Restaurant",
+        "link": null,
+        "subcategory": null,
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.952538,
+          40.759268
+        ]
+      },
+      "id": 0
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "01eec24e32a8b02f24d61135f76c8d65",
+        "RI_id": "1",
+        "place_name": "Tramway Plaza",
+        "mapbox_id": null,
+        "thumbnail": "tram.png",
+        "maki": "transportation",
+        "address": "W Main Street, New York, 10044, United States",
+        "title": "Tramway Plaza",
+        "images": "Tram/tram-1.jpeg",
+        "tags": null,
+        "description": "The iconic Roosevelt Island Tramway connecting the island to Manhattan, offering stunning aerial views of the city and the East River during the ride.",
+        "category": "Transportation",
+        "link": "https://rioc.ny.gov",
+        "subcategory": "",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.954178,
+          40.757446
+        ]
+      },
+      "id": 1
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "023709cb7f69ab746a63c537161e397a",
+        "RI_id": "2",
+        "place_name": "Foodtown of Roosevelt Island",
+        "mapbox_id": "dXJuOm1ieHBvaTpiYTZkZjc1Ny1iMTgwLTQwNWQtOGFhMy0wODliYzI2M2JlOTc",
+        "thumbnail": "Foodtown.png",
+        "maki": "grocery",
+        "address": "686 East Main Street, New York, New York 10044, United States",
+        "title": "Foodtown of Roosevelt Island",
+        "images": "Foodtown/foodtown-1.jpeg,Foodtown/foodtown-2.jpeg",
+        "tags": "Grocery",
+        "description": "A local grocery store providing fresh produce, household items, and a wide selection of groceries, serving the needs of the Roosevelt Island community.",
+        "category": "Retail & Convenience, Grocery",
+        "link": "https://www.foodtown.com/stores/foodtown-of-roosevelt-island",
+        "subcategory": null,
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.946994,
+          40.76477
+        ]
+      },
+      "id": 2
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "077ccfe2335194d59499e96ea2253ffd",
+        "RI_id": "3",
+        "place_name": "Island OM Yoga and Barre Studio",
+        "mapbox_id": "dXJuOm1ieHBvaTplNDY2ZGRkZC04NzYwLTQ0M2YtYTdjOC1lYjRmYmVmNWIwYjY",
+        "thumbnail": "IslandOM.png",
+        "maki": "marker",
+        "address": "521 Main Street, New York, New York 10044, United States",
+        "title": "OM Yoga & Barre Studio",
+        "images": "Yoga/yoga-1.jpeg,Yoga/yoga-2.jpeg,Yoga/yoga-3.jpeg",
+        "tags": "Activity, Yoga",
+        "description": "A fitness studio offering a variety of yoga and barre classes, promoting wellness, balance, and community in a peaceful setting.",
+        "category": "Retail & Convenience",
+        "link": "https://www.islandomnyc.com/",
+        "subcategory": "",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.950746,
+          40.761196
+        ]
+      },
+      "id": 3
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "0ab99ae90eeb6703bf09a9a87afd8c78",
+        "RI_id": "4",
+        "place_name": "Meditation Steps",
+        "mapbox_id": "dXJuOm1ieHBvaTo0NjgzMDEzMS04MTBkLTQ0MzctOGQ3Yi1hZTQ3OWM2OGEyZmY",
+        "thumbnail": "MeditationSteps.png",
+        "maki": "marker",
+        "address": "New York, NY 10044",
+        "title": "Meditation Steps",
+        "images": "MeditationSteps/meditation-2.jpeg,MeditationSteps/meditation-3.jpeg",
+        "tags": "Relaxation, Water views, Public Space",
+        "description": "Located along the river, the Meditation Steps provide a peaceful space for quiet reflection and mindfulness. It’s a serene spot to take a break and enjoy the island’s natural beauty.",
+        "category": "Parks & Recreation,Recreation",
+        "link": "https://rooseveltislander.blogspot.com/2012/11/roosevelt-island-meditation-steps.html",
+        "subcategory": "Things to do",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.95203,
+          40.760786
+        ]
+      },
+      "id": 4
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "0ed317adc998800c80ef9f7738836286",
+        "RI_id": "5",
+        "place_name": "Granny Annie's Bar & Kitchen",
+        "mapbox_id": "dXJuOm1ieHBvaTozZTY4YzRjNi05MmUxLTQ4ZTQtYWY2Ni0zZTE2NWZhMTg4Y2U",
+        "thumbnail": "GrannyAnnie.png",
+        "maki": "restaurant",
+        "address": "425 Main Street, New York, New York 10044, United States",
+        "title": "Granny Annie's Bar & Kitchen",
+        "images": "GrannyAnniesKitchenAndBar/granny-annie-1.jpeg,GrannyAnniesKitchenAndBar/granny-annie-2.jpeg,GrannyAnniesKitchenAndBar/granny-annie-3.jpeg",
+        "tags": "Italian,American",
+        "description": "A welcoming neighborhood pub, Granny Annie’s serves up American comfort food alongside a great selection of drinks. It’s a favorite for casual dining, with a cozy, laid-back atmosphere.",
+        "category": "Dining,Restaurant,Cafe",
+        "link": "https://grannyanniesnyc.com/",
+        "subcategory": null,
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.952842,
+          40.75861
+        ]
+      },
+      "id": 5
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "0ee13bf5ca8e98b62af4a183f0ddf47d",
+        "RI_id": "6",
+        "place_name": "NYC Ferry",
+        "mapbox_id": null,
+        "thumbnail": "Ferry.png",
+        "maki": "ferry",
+        "address": "E Main St, New York, NY 10044",
+        "title": "NYC Ferry",
+        "images": "Ferry/ferry-2.jpg",
+        "tags": "Ferry terminal",
+        "description": "A ferry service offering scenic transportation between Roosevelt Island and other city destinations, providing a unique way to travel.",
+        "category": "Transportation",
+        "link": "https://www.ferry.nyc/routes-and-schedules/landing/roosevelt-island/",
+        "subcategory": null,
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.95293,
+          40.756942
+        ]
+      },
+      "id": 6
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "18f6e244e90ae49f0d3556dc02763e51",
+        "RI_id": "7",
+        "place_name": "Library",
+        "mapbox_id": "dXJuOm1ieHBvaTpkNWVmZWNlMS05OTU3LTRkMWMtYWRlOS03ZGM2ZTdiNTllMGQ",
+        "thumbnail": "Library.png",
+        "maki": "library",
+        "address": "504 Main Street, New York, New York 10044, United States",
+        "title": "Library",
+        "images": "Library/library-1.jpeg,Library/library-2.jpeg,Library/library-3.jpeg",
+        "tags": "Library",
+        "description": "Roosevelt Island’s public library offers a wide range of books, media, and educational programs for all ages. It’s a hub of knowledge and a welcoming space for lifelong learning.",
+        "category": "Parks & Recreation",
+        "link": "https://en.wikipedia.org/wiki/Franklin_D._Roosevelt_Presidential_Library_and_Museum",
+        "subcategory": "Things to do",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.950674,
+          40.760821
+        ]
+      },
+      "id": 7
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "1a1983d6d10915d9c796a9bcced5c767",
+        "RI_id": "8",
+        "place_name": "Jack McManus Field",
+        "mapbox_id": "dXJuOm1ieHBvaTozNWJjMmJlZi1jNzlmLTQ1MWMtOWRhMy04YzMyZmRjZDZjYzI",
+        "thumbnail": "Jack.png",
+        "maki": "playground",
+        "address": "729 Main St, New York, NY 10044",
+        "title": "Jack McManus Field",
+        "images": "Jack/jack-1.jpeg,Jack/jack-2.jpeg,Jack/jack-3.jpeg",
+        "tags": "Activity, Soccer,Exercise",
+        "description": "McManus Field (formerly known as Octagon Field). Permits are available for specific times. Apply online.",
+        "category": "Playground",
+        "link": "https://rioc.ny.gov/285/Fields",
+        "subcategory": "Things to do",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.945717,
+          40.767239
+        ]
+      },
+      "id": 8
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "1c8450056b983f0ecfe62e114259fdef",
+        "RI_id": "9",
+        "place_name": "Rivercross",
+        "mapbox_id": "dXJuOm1ieGFkci1pdHA6ZXlKMlpYSnphVzl1SWpvMUxDSmpZV3hzWW1GamF5STZiblZzYkN3aWNTSTZJalV6TVNCdFlXbHVJSE4wTENCT1pYY2dXVzl5YXlKOTox",
+        "thumbnail": "Rivercross.png",
+        "maki": "home",
+        "address": "531 Main Street, New York, New York 10044, United States",
+        "title": "Rivercross",
+        "images": "Rivercross/rivercross-1.png",
+        "tags": "Apartment",
+        "description": "One of Roosevelt Island’s earliest co-op buildings, Rivercross offers residents a tranquil and spacious living environment. Its large apartments and beautiful views make it a highly sought-after place to live.",
+        "category": "Hotels & Residences,Residence",
+        "link": null,
+        "subcategory": null,
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.950255,
+          40.761756
+        ]
+      },
+      "id": 9
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "226cedacb3d716ae6ef876b3a75ad9c5",
+        "RI_id": "10",
+        "place_name": "Motorgate Garage",
+        "mapbox_id": "dXJuOm1ieHBvaToxYWQ5MmE4Yy0wYWE1LTRhYjMtYjg2OS05NDljZjFlYTM1ZmI",
+        "thumbnail": "MotorgateGarage.png",
+        "maki": "parking-garage",
+        "address": "688 Main Street, New York, New York 10044, United States",
+        "title": "Motorgate Garage",
+        "images": "MotorgateGarage/motorgate-1.jpg,MotorgateGarage/motorgate-2.jpeg,MotorgateGarage/motorgate-3.jpeg",
+        "tags": "Parking, Electric Charging",
+        "description": "The island’s main parking facility, offering secure parking for residents and visitors, conveniently located near public transportation.",
+        "category": "Transportation",
+        "link": "https://rioc.ny.gov/299/Driving",
+        "subcategory": null,
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.947285,
+          40.764146
+        ]
+      },
+      "id": 10
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "25b62e7c6750352be99f8b99d5d7e371",
+        "RI_id": "11",
+        "place_name": "China 1 Kitchen",
+        "mapbox_id": "dXJuOm1ieHBvaTplMzc1YzA2YS04MzIxLTRkNWEtOWNhOC1hZjY1NzI4YTI2NjM",
+        "thumbnail": "China1.png",
+        "maki": "restaurant",
+        "address": "609 Main Street, New York, New York 10044, United States",
+        "title": "China 1 Kitchen",
+        "images": "China1/china1-1.jpeg,China1/china1-2.jpeg,China1/china1-3.jpeg",
+        "tags": "Chinese",
+        "description": "Offering a variety of flavorful Chinese take-out options, China 1 Kitchen is a go-to for quick, tasty meals. Specialties include savory stir-fries, fried rice, and dumplings.",
+        "category": "Dining,Restaurant",
+        "link": "https://www.china1kitchennewyork.com/?utm_source=gmb&utm_medium=website",
+        "subcategory": "",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.948998,
+          40.763191
+        ]
+      },
+      "id": 11
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "25f534bf237ee52137487eeb78658db2",
+        "RI_id": "12",
+        "place_name": "Roosevelt Island Lighthouse",
+        "mapbox_id": "dXJuOm1ieHBvaTozZmY0MjIzNy0yMDg0LTQ5MGItYjQyZi0yYmU3ZDlhMzgzMWQ",
+        "thumbnail": "Lighthouse.png",
+        "maki": "lighthouse",
+        "address": "Lighthouse Park, Roosevelt Island, New York, 10044, United States",
+        "title": "RI Lighthouse",
+        "images": "LightHouse/lighthouse-1.jpg,LightHouse/lighthouse-2.jpeg,LightHouse/lighthouse-3.jpeg",
+        "tags": "Landmark",
+        "description": "A historical lighthouse located at the northern tip of the island, offering picturesque views of the river and the city. It’s a popular landmark for visitors and locals alike.",
+        "category": "Parks & Recreation",
+        "link": "https://rioc.ny.gov/179/The-Lighthouse",
+        "subcategory": "Highlights",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.940185,
+          40.772838
+        ]
+      },
+      "id": 12
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "279376f2ed06180caab16aca64999488",
+        "RI_id": "13",
+        "place_name": "NYC Health & Hospital / Coler ",
+        "mapbox_id": "dXJuOm1ieHBvaTpiZTQ2YzE4My1hYWYwLTQ1ZTAtYWJlYS0xZjM2Yjg2MDQzMTA",
+        "thumbnail": "Coler.png",
+        "maki": "hospital",
+        "address": "900 Main Street, New York, New York 10044, United States",
+        "title": "NYC Health & Hospital / Coler ",
+        "images": "Coler/coler-1.jpeg,Coler/coler-2.jpeg",
+        "tags": "Rehab",
+        "description": "A healthcare facility offering long-term care and rehabilitation services for the community, with a focus on patient care and recovery.",
+        "category": "Public Services",
+        "link": "https://www.nychealthandhospitals.org/locations/coler/",
+        "subcategory": null,
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.942155,
+          40.770289
+        ]
+      },
+      "id": 13
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "286ddb2e9722972d1ab83c3f7a79acc4",
+        "RI_id": "14",
+        "place_name": "Anything At All",
+        "mapbox_id": "dXJuOm1ieHBvaTo5OTgzZDIyYS02ZDA0LTQ5OTYtOTRhYS02M2YwOTI2MDhkODQ",
+        "thumbnail": "AnythingAtAll.png",
+        "maki": "restaurant",
+        "address": "22 North Loop Road, New York, New York 10044, United States",
+        "title": "Anything At All",
+        "images": "AnythingAtAll/anything-at-all-1.jpeg,AnythingAtAll/anything-at-all-2.jpeg,AnythingAtAll/anything-at-all-3.jpeg",
+        "tags": "",
+        "description": "A trendy, contemporary American restaurant offering creative seasonal dishes and craft cocktails. Located within the Graduate Hotel, it’s perfect for a stylish meal with scenic views of the East River.",
+        "category": "Dining,Restaurant",
+        "link": "https://graduatehotels.com/new-york/restaurant/anything-at-all/",
+        "subcategory": "",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.955658,
+          40.756274
+        ]
+      },
+      "id": 14
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "2a9df9c767fd9368e1f01d4599b628d8",
+        "RI_id": "15",
+        "place_name": "Pickleball Courts",
+        "mapbox_id": "",
+        "thumbnail": "Pickleball-Court.png",
+        "maki": "playground",
+        "address": "895 E Main St, New York, NY 10044",
+        "title": "Pickleball Courts",
+        "images": "Pickleball/pickleball-1.jpeg,Pickleball/pickleball-2.jpeg",
+        "tags": "Activity, Pickleball",
+        "description": "Designated courts for pickleball, a popular paddle sport that combines elements of tennis, badminton, and ping-pong. The courts are a great spot for players of all skill levels to enjoy this fast-growing sport.",
+        "category": "Parks & Recreation",
+        "link": "https://rioc.ny.gov/661/Pickleball-Courts",
+        "subcategory": "Things to do",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.954135,
+          40.755942
+        ]
+      },
+      "id": 15
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "2d72efec965bddc7f87ea49d58fca1a5",
+        "RI_id": "16",
+        "place_name": "Roosevelt Island Cleaners",
+        "mapbox_id": "dXJuOm1ieGFkcjo0OGRhZGIwNi1iOGZjLTQ4NjAtOTUzYy00NDQwZjY5Yjc1MGE",
+        "thumbnail": "Cleaners.png",
+        "maki": null,
+        "address": "571 Main St, New York, NY 10044",
+        "title": "Roosevelt Island Cleaners",
+        "images": "Cleaners/IslandCleaners-1.jpg",
+        "tags": "",
+        "description": "Another local dry cleaning service known for efficient and professional clothing care services, catering to the island’s residents.",
+        "category": "Retail & Convenience",
+        "link": null,
+        "subcategory": "",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.949661,
+          40.762464
+        ]
+      },
+      "id": 16
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "2f44dce2e2463adfab6df7fc39b8334d",
+        "RI_id": "17",
+        "place_name": "Wildlife Santuary",
+        "mapbox_id": "dXJuOm1ieHBvaTowMmIyY2ZjMi00YWE4LTRmOGUtODM3ZC0xZThjZGI0YjAxNmI",
+        "thumbnail": "Wildlife.png",
+        "maki": "animal-shelter",
+        "address": "1 Southpoint Park, New York, New York 10044, United States",
+        "title": "Wildlife Santuary",
+        "images": "Wildlife/wildlife-1.jpg,Wildlife/wildlife-2.jpeg,Wildlife/wildlife-3.jpeg",
+        "tags": "Nature, Animals",
+        "description": "A protected natural space where visitors can observe and appreciate the island’s diverse wildlife, including a variety of bird species.",
+        "category": "Parks & Recreation",
+        "link": "https://www.wildlifefreedomfoundation.org/",
+        "subcategory": "Things to do",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.959239,
+          40.751701
+        ]
+      },
+      "id": 17
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "3619dc32e131cd43fb9c30c6c191f32a",
+        "RI_id": "18",
+        "place_name": "Theater and Dance Alliance",
+        "mapbox_id": "dXJuOm1ieHBvaTo5MzBhZjlhNS1hNzA3LTQ0Y2ItYjdhZC04MDY4MGI0Y2FlZGY",
+        "thumbnail": "Mainstreet.png",
+        "maki": "theatre",
+        "address": "548 Main St, New York, NY 10044",
+        "title": "Theater and Dance Alliance",
+        "images": "Mainstreet/mainstreet-2.png",
+        "tags": "Theatre",
+        "description": "A performing arts organization offering classes, workshops, and performances in theater and dance for all ages. It’s a cultural hub for artistic expression on the island.",
+        "category": "Parks & Recreation",
+        "link": "https://www.mstda.org/",
+        "subcategory": "Things to do",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.949531,
+          40.761758
+        ]
+      },
+      "id": 18
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "367160969f3b0047c47dafc545fb7b7b",
+        "RI_id": "19",
+        "place_name": "Riverwalk Commons",
+        "mapbox_id": "dXJuOm1ieHBvaToyM2QyYjliMi1mNDBkLTRkMmMtYTEyMC04YjIyMzE3NzAxNWQ",
+        "thumbnail": "RiverwalkCommons.png",
+        "maki": "dog-park",
+        "address": "431 Main St, New York, NY 10044",
+        "title": "RW Commons",
+        "images": "RiverwalkCommons/riverwalk-commons-2.jpeg,RiverwalkCommons/riverwalk-commons-3.jpeg",
+        "tags": "Relaxation, Pets, Dog Run, Grill, Picnic",
+        "description": "A beautifully landscaped park in the heart of the Riverwalk neighborhood. It’s the perfect place to relax outdoors, with seating areas, walking paths, and peaceful green spaces.",
+        "category": "Parks & Recreation",
+        "link": "",
+        "subcategory": "Things to do",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.952794,
+          40.759049
+        ]
+      },
+      "id": 19
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "368f0892b279a2e7dc0e1d4b7e73137b",
+        "RI_id": "20",
+        "place_name": "Capobianco Field",
+        "mapbox_id": "dXJuOm1ieGFkcjo1YTc5ZmRkYS0zZjBkLTRmMTItODU0ZC03MWMyMWM2ODljY2M",
+        "thumbnail": "Capobianco.png",
+        "maki": "baseball",
+        "address": "Capobianco Field",
+        "title": "Capobianco Field",
+        "images": "Capobianco/capobianco-1.jpeg,Capobianco/capobianco-2.jpeg",
+        "tags": "Activity, Baseball",
+        "description": "A large, open green space often used for sports, community events, and recreational activities. It’s a popular gathering spot for both organized games and casual outdoor fun.",
+        "category": "Parks & Recreation",
+        "link": "https://rioc.ny.gov/285/Fields",
+        "subcategory": "Things to do",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.948326,
+          40.762884
+        ]
+      },
+      "id": 20
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "39b2889d253927bf81dad45c701927a0",
+        "RI_id": "21",
+        "place_name": "The Graduate Hotel",
+        "mapbox_id": "dXJuOm1ieHBvaTo4ZWNiNjg4Yy1jYmZjLTRmMjctYjhmNi02MDEwYzA0ZjJkYjI",
+        "thumbnail": "GraduateHotel.png",
+        "maki": "lodging",
+        "address": "22 North Loop Road, New York, New York 10044, United States",
+        "title": "Graduate Hotel",
+        "images": "Graduate/graduate-1.jpeg,Graduate/graduate-2.jpeg,Graduate/graduate-3.jpeg",
+        "tags": "Hotel",
+        "description": "A stylish and modern hotel on the Cornell Tech campus, The Graduate is known for its creative design, tech-forward amenities, and sweeping views of the city and river. It’s a favorite for both short-term stays and events.",
+        "category": "Hotels & Residences",
+        "link": "https://graduatehotels.com/new-york/",
+        "subcategory": "Highlights",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.955518,
+          40.756229
+        ]
+      },
+      "id": 21
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "3bc72941bd20bcdcaf7c85e4701fbbf7",
+        "RI_id": "22",
+        "place_name": "Prestige Garment Care",
+        "mapbox_id": "dXJuOm1ieGFkcjo0ZWViMmFkMS0xNzc3LTQyOTEtYjVlMC0wZWEwYmQyNzA0MDA",
+        "thumbnail": "Prestige.png",
+        "maki": null,
+        "address": "455 Main Street, New York, New York 10044, United States",
+        "title": "Prestige Garment Care",
+        "images": "PrestigeGarments/PrestigeCleaners-1.png",
+        "tags": "",
+        "description": "A local dry cleaning service offering expert garment care, laundry, and alterations for the Roosevelt Island community.",
+        "category": "Retail & Convenience",
+        "link": null,
+        "subcategory": "",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.952538,
+          40.759268
+        ]
+      },
+      "id": 22
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "3bfad38a45927f5b3309ec5dfe4ce959",
+        "RI_id": "23",
+        "place_name": "Blackwell House",
+        "mapbox_id": "dXJuOm1ieHBvaToyZWQxZGMwOS0zNDhmLTQ4NjgtYTVlNC1lYmQ0ZWMxN2MxOGM",
+        "thumbnail": "BlackwellHouse.png",
+        "maki": "marker",
+        "address": "500 Main Street, New York, 10044, United States",
+        "title": "Blackwell House",
+        "images": "TheBlackwellHouse/blackwell-1.jpeg,TheBlackwellHouse/blackwell-2.jpeg,TheBlackwellHouse/blackwell-3.jpeg",
+        "tags": "Landmark, Historical",
+        "description": "One of Roosevelt Island’s oldest buildings, Blackwell House is a historical gem that offers a glimpse into the island’s rich past. It now serves as a museum and community gathering spot, preserving its historical significance.",
+        "category": "Parks & Recreation",
+        "link": "https://rihs.us/landmark-structures/blackwell-house/",
+        "subcategory": "Highlights",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.951127,
+          40.760359
+        ]
+      },
+      "id": 23
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "42dfecd79d9cbc5bd69bfa10f0923c8a",
+        "RI_id": "24",
+        "place_name": "Subway Restaurant",
+        "mapbox_id": "dXJuOm1ieGFkcjo3NWEwNDFkMS1hMGVmLTQyMTEtOGYzZi04ZWM4Nzc3ZGI0ZWM",
+        "thumbnail": "Subway.png",
+        "maki": "restaurant",
+        "address": "513 Main St, Roosevelt Island, NY 10044",
+        "title": "Subway Restaurant",
+        "images": "Subway/subway-1.jpeg,Subway/subway-2.png",
+        "tags": "Fast Food",
+        "description": "A well-known chain offering customizable sandwiches and salads made to order. It’s a quick and affordable option for lunch or dinner, conveniently located for island residents and visitors.",
+        "category": "Dining",
+        "link": "https://restaurants.subway.com/united-states/ny/roosevelt-island/513-main-street?utm_source=yxt-goog&utm_medium=local&utm_term=acq&utm_content=53750&utm_campaign=evergreen-2020",
+        "subcategory": null,
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.950913,
+          40.761063
+        ]
+      },
+      "id": 24
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "4308b09abe551d0b444dc0d29cb17db3",
+        "RI_id": "25",
+        "place_name": "Visitor Center",
+        "mapbox_id": "dXJuOm1ieHBvaTo4NTUyMzcyZS05NjY0LTQzZTItODYzYS04NWQ4MTgyOTI5Y2M",
+        "thumbnail": "VisitorCenter.png",
+        "maki": "marker",
+        "address": "Main St, New York, NY 10044",
+        "title": "Visitor Center",
+        "images": "VisitorKiosk/visitor-kiosk-1.jpeg,VisitorKiosk/visitor-kiosk-2.jpeg,VisitorKiosk/visitor-kiosk-3.jpeg",
+        "tags": "",
+        "description": "The island’s main information hub, providing maps, brochures, and guidance for tourists and new residents exploring the area.",
+        "category": "Public Services",
+        "link": "https://rihs.us/visitor-center-kiosk/",
+        "subcategory": "Things to do",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.954673,
+          40.757627
+        ]
+      },
+      "id": 25
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "439309b4acf8a0f2f41e127bfae7588d",
+        "RI_id": "26",
+        "place_name": "Girl Puzzle Monument Honoring Nellie Bly",
+        "mapbox_id": "dXJuOm1ieHBvaTo4ZjU2MTYxZi0zMGNlLTRhZTgtYjkxNC0wY2IyMDBhMWU3NjM",
+        "thumbnail": "Puzzle.png",
+        "maki": "monument",
+        "address": "900 Main Street, New York, New York 10044, United States",
+        "title": "Girls Puzzle Monument",
+        "images": "Puzzle/puzzle-1.jpeg,Puzzle/puzzle-2.jpeg,Puzzle/puzzle-3.jpeg",
+        "tags": "Art,Monument",
+        "description": "This striking monument honors journalist Nellie Bly and highlights women’s contributions to society. The Girl Puzzle is both an art installation and a symbol of resilience, courage, and empowerment.",
+        "category": "Parks & Recreation",
+        "link": "https://www.thegirlpuzzle.com/",
+        "subcategory": "Highlights",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.940468,
+          40.772477
+        ]
+      },
+      "id": 26
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "43cfd972524e94c75c68ff6c6a963bad",
+        "RI_id": "27",
+        "place_name": "Racket Club",
+        "mapbox_id": "dXJuOm1ieHBvaTpmZTJkMDgwYS0zZTI3LTQ5NmMtYTc4My0xMjgxMTFkYzI4ZGY",
+        "thumbnail": "RacquetClub.png",
+        "maki": "tennis",
+        "address": "281 W Main St, New York, NY 10044",
+        "title": "Racket Club",
+        "images": "RacquetClub/racquetclub-1.jpeg,RacquetClub/racquetclub-2.jpeg,RacquetClub/racquetclub-3.jpeg",
+        "tags": "Activity, Tennis",
+        "description": "A private tennis and squash club offering lessons, court rentals, and social events for members. The club provides a welcoming environment for players of all levels to enjoy their favorite racquet sports.",
+        "category": "Parks & Recreation",
+        "link": "https://advantagetennisclubs.com/",
+        "subcategory": "Things to do",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.955186,
+          40.756953
+        ]
+      },
+      "id": 27
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "471ae22984c1cf77367ccc738a05c994",
+        "RI_id": "28",
+        "place_name": "Riverwalk Point",
+        "mapbox_id": "dXJuOm1ieHBvaToxNDdhMDAyZi0yN2FhLTRmM2EtYWY4Zi03MjE1MTMyMTc1ZDc",
+        "thumbnail": "RiverwalkPoint.png",
+        "maki": "home",
+        "address": "480 Main Street, New York, New York 10044, United States",
+        "title": "Riverwalk Point",
+        "images": "RiverwalkPoint/riverwalk-point-1.jpeg,RiverwalkPoint/riverwalk-point-2.jpeg,RiverwalkPoint/riverwalk-point-3.jpeg",
+        "tags": "Residential Building,Apartment",
+        "description": "This luxury residential building is part of the Riverwalk complex, offering upscale rental apartments with top-tier amenities and impressive river views, all within a vibrant, walkable community.",
+        "category": "Hotels & Residences,Residence",
+        "link": "https://www.relatedrentals.com/apartment-rentals/new-york-city/roosevelt-island/riverwalk-point",
+        "subcategory": null,
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.95124,
+          40.759485
+        ]
+      },
+      "id": 28
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "4e184399b9edbf2fb8968bd186b55a87",
+        "RI_id": "30",
+        "place_name": "Lighthouse Park Public Restroom",
+        "mapbox_id": null,
+        "thumbnail": "LighthouseRR.png",
+        "maki": "toilet",
+        "address": "Lighthouse Park, 900 Main St, New York, NY 10044",
+        "title": "Lighthouse Park Public Restroom",
+        "images": "LighthouseRestroom/lighthouse-restroom-1.jpeg,LighthouseRestroom/lighthouse-restroom-2.jpeg",
+        "tags": "",
+        "description": "There is no current description for this point of interest.  Work in progress with island partners to provide an accurate description.",
+        "category": "Restrooms",
+        "link": null,
+        "subcategory": null,
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.940418,
+          40.771106
+        ]
+      },
+      "id": 29
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "59d743d094a43695421df136eb2bceac",
+        "RI_id": "31",
+        "place_name": "Manhattan Healing Forest",
+        "mapbox_id": "",
+        "thumbnail": "ManhattanHealingForest.png",
+        "maki": "natural",
+        "address": "Southpoint Park, Roosevelt Island, NY 10044",
+        "title": "Healing Forest",
+        "images": "ManhattanHealingForest/manhattan-healing-forest-1.jpg",
+        "tags": "Forest, nature",
+        "description": "A tranquil escape on the island, the Manhattan Healing Forest features peaceful walking paths and a serene natural setting. It’s designed to promote relaxation and wellness through nature.",
+        "category": "Parks & Recreation",
+        "link": "https://www.sugiproject.com/forests/manhattan-healing-forest",
+        "subcategory": "Highlights",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.958003,
+          40.752624
+        ]
+      },
+      "id": 30
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "5ad9b4d171f64a1008e1d33bf2853c79",
+        "RI_id": "32",
+        "place_name": "Octagon Tennis Courts",
+        "mapbox_id": "dXJuOm1ieHBvaTpmZjc0YzYyMS1mNjk2LTRhMWMtOGE1Ny1iMTUyYWQ5Mjk5MDM",
+        "thumbnail": "OctagonTennisCourt.png",
+        "maki": "tennis",
+        "address": "888 Main St, New York, NY 10044",
+        "title": "Octagon Tennis Courts",
+        "images": "OctagonTennisCourt/octagon-tennis-1.jpeg,OctagonTennisCourt/octagon-tennis-3.jpeg",
+        "tags": "Activity, Tennis",
+        "description": "Public tennis courts located near The Octagon, offering residents and visitors a well-maintained space for recreational tennis. The courts are available for reservation and offer scenic views.",
+        "category": "Parks & Recreation",
+        "link": "https://www.rioc.ny.gov/399/Tennis-Information",
+        "subcategory": "Things to do",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.943183,
+          40.768334
+        ]
+      },
+      "id": 31
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "5d74316f3f609c979b7cfe0d937001dd",
+        "RI_id": "33",
+        "place_name": "Panorama Room",
+        "mapbox_id": "dXJuOm1ieHBvaTphZTFlMzgyYS02YWU2LTRkM2MtODMyMC0wYWRlZDVjZTc1MTM",
+        "thumbnail": "PanoramaRoom.png",
+        "maki": "bar",
+        "address": "22 North Loop Road, New York, New York 10044, United States",
+        "title": "Panorama Room",
+        "images": "PanoramaRoom/panorama-room-1.jpeg,PanoramaRoom/panorama-room-3.jpeg",
+        "tags": "Bar, Water Views",
+        "description": "Located at the top of The Graduate Hotel, the Panorama Room is a rooftop bar offering stunning 360-degree views of Manhattan and the East River. It’s known for its craft cocktails and luxurious atmosphere.",
+        "category": "Dining,Restaurant",
+        "link": "https://graduatehotels.com/new-york/restaurant/panorama-room/",
+        "subcategory": "Things to do",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.95563,
+          40.756347
+        ]
+      },
+      "id": 32
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "5e3553af6294a2a2de90b2c13909ed71",
+        "RI_id": "34",
+        "place_name": "Fusion Salon",
+        "mapbox_id": "dXJuOm1ieGFkcjo3Njc1ZDFkZi01Y2E1LTRhMzEtOTk0ZS1jOGFkY2ZjNDkxNmE",
+        "thumbnail": "FusionSalon.png",
+        "maki": null,
+        "address": "523 Main Street, New York, New York 10044, United States",
+        "title": "Fusion Salon",
+        "images": "FusionSalon/FusionSalon-1.png,FusionSalon/FusionSalon-2.png",
+        "tags": "",
+        "description": "A full-service salon offering haircuts, coloring, and beauty treatments, providing professional services for men and women.",
+        "category": "Retail & Convenience",
+        "link": null,
+        "subcategory": "",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.950601,
+          40.761242
+        ]
+      },
+      "id": 33
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "63cf3179beb127a67af077naexb47de0f",
+        "RI_id": "35",
+        "place_name": "Riverwalk Crossing",
+        "mapbox_id": "dXJuOm1ieHBvaToxNGNlYzI1NS1mZWY0LTRlZDMtOTIxNS00NTZkZjAxN2Q2Y2I",
+        "thumbnail": "RiverwalkCrossings.png",
+        "maki": "home",
+        "address": "405 Main St, New York, NY 10044",
+        "title": "Riverwalk Crossing",
+        "images": "RiverwalkCrossing/riverwalk-crossing-3.jpeg",
+        "tags": "Apartment",
+        "description": "A residential tower offering luxurious living spaces with modern amenities. Riverwalk Crossing is part of the Riverwalk complex, providing scenic views and a vibrant community atmosphere.",
+        "category": "Hotels & Residences,Residence",
+        "link": "https://www.relatedrentals.com/apartment-rentals/new-york-city/roosevelt-island/riverwalk-crossing",
+        "subcategory": "",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.953716,
+          40.757858
+        ]
+      },
+      "id": 34
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "65b7a4228f982a68514b3e4af226232d",
+        "RI_id": "36",
+        "place_name": "Four Freedoms Park Public Restrooms",
+        "mapbox_id": null,
+        "thumbnail": "FourFreedomRR.png",
+        "maki": "toilet",
+        "address": "Southpoint Park, S Loop Rd, W Loop Rd, New York, NY 10044",
+        "title": "Four Freedoms Park Public Restrooms",
+        "images": "FourFreedom/four-freedom-1.jpeg,FourFreedom/four-freedom-2.jpeg,FourFreedom/four-freedom-3.jpeg",
+        "tags": "",
+        "description": "There is no current description for this point of interest.  Work in progress with island partners to provide an accurate description.",
+        "category": "Restrooms",
+        "link": null,
+        "subcategory": null,
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.960523,
+          40.75061
+        ]
+      },
+      "id": 35
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "69677e0e2b75a14bc550681cdc3c66ad",
+        "RI_id": "37",
+        "place_name": "Ship Pier",
+        "mapbox_id": "dXJuOm1ieHBvaTo0NjExZjdjZS04NTMyLTQyMTctYWFiNy02OGIwZGM5ZTFhNzc",
+        "thumbnail": "ShipPier.png",
+        "maki": "marker",
+        "address": "851 Main Street, New York, New York 10044, United States",
+        "title": "RI Ship Pier",
+        "images": "ShipPier/shippier-2.jpeg,ShipPier/shippier-3.jpeg",
+        "tags": "Water Views",
+        "description": "A small pier offering a spot to enjoy waterfront views and access to recreational boating activities along the East River.",
+        "category": "Parks & Recreation",
+        "link": "",
+        "subcategory": "Highlights",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.945759,
+          40.76824
+        ]
+      },
+      "id": 36
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "6b3689e871b2f75bbe4071765085cd7d",
+        "RI_id": "38",
+        "place_name": "Cornell Tech Campus",
+        "mapbox_id": "dXJuOm1ieHBvaTo0MjVjYTdkMi1hYTc1LTQ5YTQtOTc4OC1lM2E3YTI0OTZlOTY",
+        "thumbnail": "Cornell-Tech.png",
+        "maki": "college",
+        "address": "2 W Loop Road, New York, New York 10044, United States",
+        "title": "Cornell Tech",
+        "images": "CornellTech/cornell-tech-1.jpeg,CornellTech/cornell-tech-2.jpeg,CornellTech/cornell-tech-3.jpeg",
+        "tags": "University, Architecture",
+        "description": "A state-of-the-art educational institution, Cornell Tech is a hub of innovation and technology research. Its sleek, modern campus offers a glimpse into the future of education and tech development.",
+        "category": "Parks & Recreation",
+        "link": "https://tech.cornell.edu/campus/",
+        "subcategory": "Highlights",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.956233,
+          40.755779
+        ]
+      },
+      "id": 37
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "6ce0e241f78990e25eca0ac3d075b03e",
+        "RI_id": "39",
+        "place_name": "Starbucks",
+        "mapbox_id": "dXJuOm1ieHBvaTpjMjZlY2Q3MS1hODgyLTRmMjYtOGNiNS0xMmViZDUyMjUwODk",
+        "thumbnail": "Starbucks.png",
+        "maki": "cafe",
+        "address": "455 Main St, New York, NY 10044",
+        "title": "Starbucks",
+        "images": "Starbucks/starbucks-1.jpeg,Starbucks/starbucks-2.jpeg,Starbucks/starbucks-3.jpg",
+        "tags": "Coffee ",
+        "description": "The world-renowned coffeehouse offers its signature coffee drinks, teas, and snacks. With a relaxed vibe, it’s an ideal place for a quick caffeine fix or to unwind with friends.",
+        "category": "Dining,Cafe",
+        "link": "https://www.starbucks.com/store-locator/store/7098/roosevelt-island-455-main-street-new-york-ny-10044-us",
+        "subcategory": null,
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.952929,
+          40.75931
+        ]
+      },
+      "id": 38
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "701322e29a0eabb0740cca563a27ce85",
+        "RI_id": "40",
+        "place_name": "Zhongzhong Noodles",
+        "mapbox_id": "dXJuOm1ieHBvaTowYzdiYzA2Ni0yYmVkLTQ3MmMtOGNmNy00ODg1MWU2NjY4YTE",
+        "thumbnail": "Zhongzhong.png",
+        "maki": "restaurant",
+        "address": "568 Main Street, New York, New York 10044, United States",
+        "title": "Zhongzhong Noodles",
+        "images": "ZhongZhongNoodles/zhongzhong-1.jpeg,ZhongZhongNoodles/zhongzhong-3.jpeg",
+        "tags": "Fast Food",
+        "description": "Offering authentic Chinese noodle dishes, Zhongzhong Noodles specializes in hand-pulled noodles and flavorful broths. It’s a cozy spot that’s perfect for warming up with a hearty meal.",
+        "category": "Dining,Restaurant",
+        "link": "https://www.zhongzhong.us/",
+        "subcategory": null,
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.949209,
+          40.762602
+        ]
+      },
+      "id": 39
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "70965c2b737a63c451f57da8fee1b682",
+        "RI_id": "41",
+        "place_name": "Island Rolls N Bowls",
+        "mapbox_id": "dXJuOm1ieGFkcjphNzZiMDljNy0xZWMyLTQzN2QtYmMxYy1lOGE1NmY2N2U1MTI",
+        "thumbnail": "RollsNBowls.png",
+        "maki": null,
+        "address": "503 Main Street, New York, New York 10044, United States",
+        "title": "Island Rolls N Bowls",
+        "images": "RollsNBowls/rb-1.png,RollsNBowls/rb-2.jpg",
+        "tags": "Sushi",
+        "description": "Specializing in customizable sushi rolls and fresh poke bowls, this spot is perfect for a quick, healthy meal. The vibrant flavors and fresh ingredients make it a standout choice for island dining.",
+        "category": "Dining,Restaurant",
+        "link": null,
+        "subcategory": null,
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.951156,
+          40.760832
+        ]
+      },
+      "id": 40
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "721d54b392341e0f1d3676b08681987f",
+        "RI_id": "42",
+        "place_name": "Octagon Park",
+        "mapbox_id": "dXJuOm1ieGFkcjo5ZWM3NzZmZC1lOWVkLTQ2ZTgtOTdlOS1mY2NjNmIzMThhOGM",
+        "thumbnail": "OctagonPark.png",
+        "maki": "park-alt1",
+        "address": "851 Main Street, New York, New York 10044, United States",
+        "title": "Octagon Park",
+        "images": "OctagonPlayground/octagon-park-1.avif,OctagonPlayground/octagon-park-3.jpeg",
+        "tags": "Park, Picnic, Activity, Children",
+        "description": "A community park near The Octagon, offering playgrounds, sports facilities, and open spaces for picnics or casual outdoor activities. It’s a great spot for families and active residents.",
+        "category": "Parks & Recreation",
+        "link": "https://rioc.ny.gov/180/The-Octagon",
+        "subcategory": "Things to do",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.944769,
+          40.769131
+        ]
+      },
+      "id": 41
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "72be67218daaa5b21728ad7f67ad2333",
+        "RI_id": "43",
+        "place_name": "Firefighters Field",
+        "mapbox_id": "dXJuOm1ieHBvaTo5ZjA3Njk2NC0xNTMwLTQxYzEtOGRlNi0zMDUxYjliNDk1MTY",
+        "thumbnail": "FirefightersField.png",
+        "maki": "baseball",
+        "address": "405 Main St, New York, NY 10044",
+        "title": "Firefighters Field",
+        "images": "Firefighters/firefighters-2.jpeg,Firefighters/firefighters-3.jpeg",
+        "tags": "Activity, Baseball, Soccer",
+        "description": "A wide-open field used for a variety of sports and recreational activities, Firefighters Field is a great space for community events, local sports leagues, and casual outdoor fun.",
+        "category": "Parks & Recreation",
+        "link": "https://rioc.ny.gov/facilities/facility/details/Firefighters-Field-4",
+        "subcategory": "Things to do",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.953065,
+          40.757481
+        ]
+      },
+      "id": 42
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "73956a7a0fb84cfd6f3284829bb4d882",
+        "RI_id": "44",
+        "place_name": "Roosevelt Island Gardens",
+        "mapbox_id": "dXJuOm1ieHBvaToyMGE5ZTkyNS03NGYyLTRhYjMtYjgzNi1iMmIyNmE1ZmJlMmU",
+        "thumbnail": "Garden.png",
+        "maki": "garden",
+        "address": "Main St, New York, NY, 10044",
+        "title": "RI Gardens",
+        "images": "Garden/garden-1.jpg",
+        "tags": "Garden",
+        "description": "A series of lovely garden spaces offering a peaceful environment for relaxation, surrounded by seasonal flowers, greenery, and open areas for enjoyment.",
+        "category": "Parks & Recreation",
+        "link": "https://www.rigarden.org/",
+        "subcategory": "Highlights",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.944883,
+          40.767184
+        ]
+      },
+      "id": 43
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "7652077680b2b10a08212e5e82f6245c",
+        "RI_id": "45",
+        "place_name": "Octagon Dog Run",
+        "mapbox_id": "dXJuOm1ieHBvaTo4ZGVlZDg5Ni0zMzJiLTRhYzAtOGMxOC0wNThhZTNhNjU2N2U",
+        "thumbnail": "OctagonDogRun.png",
+        "maki": "dog-park",
+        "address": "East Road, New York, New York 10044, United States",
+        "title": "Octagon Dog Run",
+        "images": "OctagonDogRun/octagon-dogrun-3.jpeg",
+        "tags": "Pets",
+        "description": "A fenced-in dog run located near The Octagon, offering plenty of space for dogs to play off-leash. Benches and water stations make it a convenient spot for pet owners to relax while their dogs socialize.",
+        "category": "Parks & Recreation",
+        "link": "https://trysincere.com/dog-park/octagon-dog-run-10044",
+        "subcategory": "Things to do",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.941391,
+          40.769405
+        ]
+      },
+      "id": 44
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "7661868f396038f6ae7350f11f21fbf6",
+        "RI_id": "46",
+        "place_name": "Public Safety Department",
+        "mapbox_id": "dXJuOm1ieGFkcjpmMGUzYTdjZC03YzNlLTQwM2UtYmFkMi0wMGNlNmI3NzdmN2Q",
+        "thumbnail": "PublicSafetyDept.png",
+        "maki": "",
+        "address": "550 Main Street, New York, New York 10044, United States",
+        "title": "Public Safety Department",
+        "images": "PublicSafetyDept/psd-1.jpg",
+        "tags": null,
+        "description": "The island’s dedicated law enforcement and public safety team, ensuring a safe and secure environment for residents and visitors.",
+        "category": "Public Services",
+        "link": null,
+        "subcategory": "",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.949649,
+          40.761878
+        ]
+      },
+      "id": 45
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "77506a4081a2b2a2a430f9512a3f288d",
+        "RI_id": "47",
+        "place_name": "Gallery RIVAA",
+        "mapbox_id": "dXJuOm1ieHBvaTowZmViMzFlOC1jNWI2LTQ4ZDUtOTc2ZS1jODI2OThjOWQzODc",
+        "thumbnail": "RIVAA.png",
+        "maki": "art-gallery",
+        "address": "527 Main Street, New York, New York 10044, United States",
+        "title": "Gallery RIVAA",
+        "images": "RIVAA/rivaa-3.jpeg",
+        "tags": "Arts, Culture",
+        "description": "A contemporary art gallery showcasing works from local and international artists, fostering a creative space for art lovers and collectors.",
+        "category": "Retail & Convenience",
+        "link": "https://www.rivaagallery.org/",
+        "subcategory": "Things to do",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.950493,
+          40.761394
+        ]
+      },
+      "id": 46
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "7c32082a470ae8f9e695d2d467f84bcb",
+        "RI_id": "48",
+        "place_name": "We Are One Boutique and Gifts",
+        "mapbox_id": "dXJuOm1ieGFkcjoyMDg2YjNiMi1kZDlmLTRhYzEtOGQ5ZS02MDJjNzIwZTA4MTM",
+        "thumbnail": "oneBoutique.png",
+        "maki": null,
+        "address": "599 Main Street, New York, New York 10044, United States",
+        "title": "We Are One Boutique and Gifts",
+        "images": "WeAreOneBoutique/onBoutique-1.jpg",
+        "tags": "",
+        "description": "A charming boutique offering unique gifts, home decor, and accessories, perfect for finding thoughtful and creative items.",
+        "category": "Retail & Convenience",
+        "link": null,
+        "subcategory": "",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.94913,
+          40.763069
+        ]
+      },
+      "id": 47
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "8066ca635a922c8cd3b529c97c56040e",
+        "RI_id": "49",
+        "place_name": "Citi Bike: Southpoint Park",
+        "mapbox_id": "dXJuOm1ieHBvaTphNmJjMzk4ZC00OWI0LTQyYjYtYWFjMi0wYmU2ZTRmMWZkYWE",
+        "thumbnail": "CitibikeSouthpoint.png",
+        "maki": "bicycle",
+        "address": "New York, NY 10044",
+        "title": "Citi Bike Southpoint",
+        "images": "CitibikeSouthPoint/citibike-southpt-3.jpeg",
+        "tags": "Biking, Activity",
+        "description": "A bike-sharing station located near Southpoint Park, providing quick access to scenic rides around the island.",
+        "category": "Transportation",
+        "link": "",
+        "subcategory": "Things to do",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.958619,
+          40.753722
+        ]
+      },
+      "id": 48
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "83f3179beb127a67af077daeab57da0f",
+        "RI_id": "50",
+        "place_name": "Chapel of The Good Shepherd Bell",
+        "mapbox_id": "dXJuOm1ieHBvaTo4M2ZiZDU1NS04YjRmLTRjNzItYjhhMS02MWM0ZjgzOTZkNjg",
+        "thumbnail": "Chapel.png",
+        "maki": "religious-christian",
+        "address": "543 Main Street, New York, 10044, United States",
+        "title": "Chapel of Good Shepherd",
+        "images": "Chapel/chapel-1.jpeg,Chapel/chapel-2.jpeg,Chapel/chapel-3.jpeg",
+        "tags": "Landmark, Historical",
+        "description": "A historical chapel located on the island, this serene space is used for religious services, community gatherings, and moments of quiet reflection. The bell is a unique feature that adds to its charm.",
+        "category": "Parks & Recreation",
+        "link": "https://en.wikipedia.org/wiki/Chapel_of_the_Good_Shepherd_(Roosevelt_Island)",
+        "subcategory": "Highlights",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.950042,
+          40.761786
+        ]
+      },
+      "id": 49
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "8922d469fc5e73b2cd06180e5c94e680",
+        "RI_id": "51",
+        "place_name": "Pony Baseball Field",
+        "mapbox_id": "dXJuOm1ieHBvaTo3MzMyZmJiYy0wZjAwLTRkMzctODQ1ZS0xNjA1Njk0MjRkNzQ",
+        "thumbnail": "Pony.png",
+        "maki": "playground",
+        "address": "888 Main Street, New York, New York 10044, United States",
+        "title": "Pony Baseball Field",
+        "images": "Pony/pony-1.jpeg,Pony/pony-2.jpeg,Pony/pony-3.jpeg",
+        "tags": "Activity, Baseball, Playground",
+        "description": "A youth baseball field that hosts local leagues and community events. It’s a space that fosters teamwork, sportsmanship, and a love for the game in young players.",
+        "category": "Parks & Recreation",
+        "link": "https://rioc.ny.gov/285/Fields",
+        "subcategory": "Things to do",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.943622,
+          40.767822
+        ]
+      },
+      "id": 50
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "8cb7b5a2f2aebfc089e6000d663957bb",
+        "RI_id": "52",
+        "place_name": "PS 217 Roosevelt Island School",
+        "mapbox_id": "dXJuOm1ieHBvaTpkMDJlMTlhMC1jMjRhLTQ5NzUtYTFkNS0yOTllMjUwMWJjYWU",
+        "thumbnail": "School.png",
+        "maki": "school",
+        "address": "645 Main Street, New York, New York 10044, United States",
+        "title": "PS 217 School",
+        "images": "School/school-1.jpeg,School/school-2.jpeg,School/school-3.jpeg",
+        "tags": "",
+        "description": "",
+        "category": "School",
+        "link": "https://www.schools.nyc.gov/schools/M217",
+        "subcategory": null,
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.948049,
+          40.764064
+        ]
+      },
+      "id": 51
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "9cd664dc2b4563788716cb7ae2461578",
+        "RI_id": "54",
+        "place_name": "Manhattan Park Pool Club",
+        "mapbox_id": "dXJuOm1ieHBvaTo4MzgzMmU3NS1jYmM5LTQ4NDEtOWJkMy04ZTNjMWE0YTk4ZDE",
+        "thumbnail": "Pool.png",
+        "maki": "swimming",
+        "address": "36 River Road, New York, New York 10044, United States",
+        "title": "Pool Club",
+        "images": "PoolClub/poolclub-1.jpg,PoolClub/poolclub-2.jpg,PoolClub/poolclub-3.jpeg",
+        "tags": "Pool, Activity",
+        "description": "A seasonal retreat offering a large pool, sun lounges, and a vibrant atmosphere. The Manhattan Park Pool Club is the perfect summer spot for relaxation and social events.",
+        "category": "Parks & Recreation",
+        "link": "https://secretnyc.co/roosevelt-island-pool/",
+        "subcategory": "Things to do",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.946778,
+          40.766279
+        ]
+      },
+      "id": 52
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "9d85ca25c8c1771477d1653745d7227e",
+        "RI_id": "55",
+        "place_name": "Manhattan Park",
+        "mapbox_id": "dXJuOm1ieHBvaTowYWFlNTgxNC00ZWI0LTQwODYtYmVlMi0zYWEzYzdkNWI5YjU",
+        "thumbnail": "ManhattanPark.png",
+        "maki": "home",
+        "address": "30 River Road, New York, New York 10044, United States",
+        "title": "Manhattan Park",
+        "images": "ManhattanPark/manhattan-park-1.jpeg,ManhattanPark/manhattan-park-2.jpeg",
+        "tags": "Apartment",
+        "description": "A vibrant residential community, Manhattan Park is known for its colorful public art installations, modern apartments, and expansive outdoor spaces. It’s an ideal living spot for those seeking a mix of culture and convenience.",
+        "category": "Hotels & Residences,Residence",
+        "link": "https://manhattanpark.com/",
+        "subcategory": null,
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.946942,
+          40.766044
+        ]
+      },
+      "id": 53
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "9e3b547f7acbfd78492058e6abb9f07e",
+        "RI_id": "56",
+        "place_name": "Sportspark Athletic Complex",
+        "mapbox_id": "dXJuOm1ieHBvaToxMTNjODVkZi04MmY3LTRlZGItOWFiNS1kMDcwN2ZjODc5N2U",
+        "thumbnail": "Sportspark.png",
+        "maki": "swimming",
+        "address": "250 Main St, New York, NY 10044",
+        "title": "Sportspark Athletic Complex",
+        "images": "Sportspark/sportspark-2.jpeg",
+        "tags": "Activity, Basketball, Swimming",
+        "description": "A versatile indoor athletic facility offering a range of recreational activities, including swimming, basketball, and fitness programs for all ages.",
+        "category": "Parks & Recreation",
+        "link": "https://rioc.ny.gov/290/SportsPark",
+        "subcategory": "Things to do",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.954992,
+          40.756444
+        ]
+      },
+      "id": 54
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "9e6ee7295511386ed3b4a2151ed0906b",
+        "RI_id": "57",
+        "place_name": "The Sanctuary",
+        "mapbox_id": "dXJuOm1ieHBvaTpkY2QxMjIxNS05OTQyLTRkNzAtYjY2My01YmFiMjYxNjlkYjY",
+        "thumbnail": "Sanctuary.png",
+        "maki": "restaurant",
+        "address": "851 Main Street, New York, New York 10044, United States",
+        "title": "The Sanctuary",
+        "images": "Sanctuary/sanctuary-1.jpeg,Sanctuary/sanctuary-2.jpeg,Sanctuary/sanctuary-3.jpeg",
+        "tags": "Event",
+        "description": "A unique event space, The Sanctuary is a former church repurposed to host weddings, concerts, and community events in a stunning and historical setting.",
+        "category": "Parks & Recreation",
+        "link": "https://thesanctuaryri.com/",
+        "subcategory": "",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.945064,
+          40.768505
+        ]
+      },
+      "id": 55
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "9f1e1b7c5b21dee4d34972afa50bd5ef",
+        "RI_id": "58",
+        "place_name": "F Train Subway Station",
+        "mapbox_id": null,
+        "thumbnail": "SubwayStation.png",
+        "maki": "rail",
+        "address": "New York, NY 10044",
+        "title": "Subway Station",
+        "images": "Subway-TrainStation/subway-ri-1.jpeg,Subway-TrainStation/subway-ri-2.jpeg",
+        "tags": "subway",
+        "description": "The Roosevelt Island subway station, providing access to the F train for easy travel between Manhattan and Queens.",
+        "category": "Transportation",
+        "link": null,
+        "subcategory": null,
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.953313,
+          40.759153
+        ]
+      },
+      "id": 56
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a21065676aaa4357933b4060c63b5cf3",
+        "RI_id": "59",
+        "place_name": "Smallpox Memorial Hospital",
+        "mapbox_id": "dXJuOm1ieHBvaTpkYjA2Mzk5Zi1jMmE1LTQ1NmEtODUwZi1hNTA4MDc0NTEzNjQ",
+        "thumbnail": "SmallpoxHospital.png",
+        "maki": "marker",
+        "address": "E Rd, New York, NY 10044",
+        "title": "Smallpox Memorial Hospital",
+        "images": "Smallpox/smallpox-1.png,Smallpox/smallpox-2.png",
+        "tags": "Landmark",
+        "description": "The haunting ruins of a 19th-century hospital that once treated smallpox patients. It’s a fascinating historical site that evokes the island’s past.",
+        "category": "Parks & Recreation",
+        "link": "https://www.theruin.org/",
+        "subcategory": "Highlights",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.959683,
+          40.751643
+        ]
+      },
+      "id": 57
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a3dd67994810cf04237726b00b7cc3ae",
+        "RI_id": "60",
+        "place_name": "Blackwell Playground",
+        "mapbox_id": "dXJuOm1ieHBvaToyM2RjNzNmZC05MDZmLTRlNWQtOTcyNC00OGVlNzE0NWY5MTE",
+        "thumbnail": "BlackwellPlayground-1.png",
+        "maki": "playground",
+        "address": " 500 Main St, New York, NY 10044",
+        "title": "Blackwell Playground",
+        "images": "BlackwellPlayground/blackwell-playground-2.jpeg,BlackwellPlayground/blackwell-playground-3.jpeg",
+        "tags": "Activity, Children,Playground",
+        "description": "This family-friendly playground offers slides, swings, and climbing structures, making it a favorite spot for children and parents alike. It’s the perfect place for outdoor fun and active play.",
+        "category": "Parks & Recreation",
+        "link": "",
+        "subcategory": "Things to do",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.950403,
+          40.760168
+        ]
+      },
+      "id": 58
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a4989b62907ab9066a89dd8297415a5f",
+        "RI_id": "61",
+        "place_name": "Riverwalk Park",
+        "mapbox_id": "dXJuOm1ieHBvaTpiNTVjMzZhMC02NGM5LTQwOTQtODliMC1lZGZiMTRkMzcxMmU",
+        "thumbnail": "RiverwalkPark.png",
+        "maki": "home",
+        "address": "460 Main St, New York, NY 10044",
+        "title": "Riverwalk Park",
+        "images": "RiverwalkPark/riverwalk-park-2.jpeg,RiverwalkPark/riverwalk-park-3.jpeg",
+        "tags": "Residence",
+        "description": "Riverwalk Park offers modern, elegantly designed homes with East River views. Residents enjoy exclusive amenities, including a fitness center, children’s playroom, riverfront terrace, and attended lobby, all in a vibrant neighborhood.",
+        "category": "Hotels & Residences,Residence",
+        "link": "https://www.liveriverwalkpark.com/",
+        "subcategory": null,
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.951903,
+          40.759033
+        ]
+      },
+      "id": 59
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "b0f13e21de9576488f51483d6e7f5d35",
+        "RI_id": "62",
+        "place_name": "Riverwalk Heights",
+        "mapbox_id": "dXJuOm1ieGFkcjo0OWNlOTViMC01YzNlLTQ0ZjItOGJkNi0xYjIxYWU4NzFkYWE",
+        "thumbnail": "RiverwalkHeights.png",
+        "maki": null,
+        "address": "430 Main Street, New York, New York 10044, United States",
+        "title": "Riverwalk Heights",
+        "images": "RiverwalkHeights/RiverwalkHeights-1.jpg,RiverwalkHeights/RiverwalkHeights-3.jpg",
+        "tags": "Residential Building, Apartment",
+        "description": "A luxury residential tower that combines modern living with exceptional amenities, Riverwalk Heights offers stunning views, high-end finishes, and a convenient location within the Riverwalk neighborhood.",
+        "category": "Hotels & Residences,Residence",
+        "link": null,
+        "subcategory": "Residences",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.95192,
+          40.75845
+        ]
+      },
+      "id": 60
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "b352b3cdc3662a6f3d2e7683fb44278b",
+        "RI_id": "63",
+        "place_name": "Day Nursery",
+        "mapbox_id": "dXJuOm1ieHBvaTpmNDY3YmQ0OS00M2ZmLTQ0NzgtYTU4NC03NjlkMWJjYmM1OGY",
+        "thumbnail": "Nursery.png",
+        "maki": "marker",
+        "address": "4 River Road, New York, New York 10044, United States",
+        "title": "Day Nursery",
+        "images": "Nursery/nursery-2.jpeg",
+        "tags": "Daycare",
+        "description": "At Roosevelt Island Day Nursery, we believe children are born competent and curious, and that school is a place where children grow emotionally, socially and intellectually in a warm and supportive environment.",
+        "category": "Nursery",
+        "link": "http://www.ridn.org/",
+        "subcategory": null,
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.947992,
+          40.764432
+        ]
+      },
+      "id": 61
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "b4538f051961387beba81e68cd1695e1",
+        "RI_id": "64",
+        "place_name": "Bread and Butter Market",
+        "mapbox_id": "dXJuOm1ieGFkcjo2OTNhOWYyZC1iNDdmLTQ4YWUtOThkYi0wMzQyMzNjN2ExMTU",
+        "thumbnail": "BreadnButter.png",
+        "maki": null,
+        "address": "579 Main Street, New York, New York 10044, United States",
+        "title": "Bread and Butter Market",
+        "images": "BreadAndButter/BreadNButter-2.png",
+        "tags": "Food",
+        "description": "This cozy neighborhood grocery store provides fresh produce, pantry staples, and gourmet snacks. It's a convenient stop for residents and visitors alike, catering to everyday needs.",
+        "category": "Dining,Restaurant",
+        "link": null,
+        "subcategory": null,
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.949551,
+          40.762617
+        ]
+      },
+      "id": 62
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "b5938b0891c1dd7c3699b09211fb829c",
+        "RI_id": "65",
+        "place_name": "Table Tennis Court",
+        "mapbox_id": null,
+        "thumbnail": "TTCourt.png",
+        "maki": "table-tennis",
+        "address": "New York, NY 10044",
+        "title": "Table Tennis Court",
+        "images": "TTCourt/ttcourt-3.jpeg",
+        "tags": "Activity, Table Tennis",
+        "description": "An outdoor space with tables for ping-pong, providing a fun and active spot for recreational play. It’s a popular area for social games.",
+        "category": "Parks & Recreation",
+        "link": "https://www.georgebraithwaite.com/",
+        "subcategory": "Things to do",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.94802,
+          40.763506
+        ]
+      },
+      "id": 63
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "bd2495e171a1bc05e0d9c78e9a41c01f",
+        "RI_id": "66",
+        "place_name": "Lighthouse Park",
+        "mapbox_id": "dXJuOm1ieGFkcjo2OTE2ZTNmYi00ZGQxLTQ3NTMtYjljZi00ZTg4MGI0ZDQzNmQ",
+        "thumbnail": "LighthousePark.png",
+        "maki": "park-alt1",
+        "address": "910 Main St, New York, NY 10044",
+        "title": "Lighthouse Park",
+        "images": "LightHouse/lighthouse-1.jpg,LightHouse/lighthouse-2.jpeg,LightHouse/lighthouse-3.jpeg",
+        "tags": "Landmark",
+        "description": "Above the waters of the East River at the northernmost stretch of Roosevelt Island, shines the fifty foot high Lighthouse. It was built in 1872 by inmates of the penitentiary with stone extracted from the island.",
+        "category": "Highlights",
+        "link": "https://rioc.ny.gov/179/The-Lighthouse",
+        "subcategory": "",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.941158,
+          40.771773
+        ]
+      },
+      "id": 64
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "c40be9e73c8a0c34fe37e6d70d9bfdd6",
+        "RI_id": "68",
+        "place_name": "Nisi",
+        "mapbox_id": "dXJuOm1ieHBvaTplMDkzYTBiYS00MDc2LTQ1OWYtOTQ2MS05OWY1ZjZjOTAwN2Y",
+        "thumbnail": "NISI.png",
+        "maki": "restaurant",
+        "address": "549 Main Street, New York, New York 10044, United States",
+        "title": "Nisi",
+        "images": "Nisi/nisi-1.jpeg",
+        "tags": "American",
+        "description": "A modern diner with a diverse menu, Nisi blends classic American diner fare with Greek specialties. From hearty breakfasts to satisfying dinners, it’s a reliable spot for any meal of the day.",
+        "category": "Dining,Restaurant",
+        "link": "http://www.nisikitchen.com/",
+        "subcategory": "",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.949935,
+          40.762023
+        ]
+      },
+      "id": 65
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "c4154679efc1decf3e535f894932483e",
+        "RI_id": "69",
+        "place_name": "Island House",
+        "mapbox_id": "dXJuOm1ieHBvaToxZGQ1ZGVhNC1mNmEzLTQ5MTItYjY1MS01ZDAxNmU1YmExNmM",
+        "thumbnail": "IslandHouse.png",
+        "maki": "home",
+        "address": "555 Main Street,New York 10044, United States",
+        "title": "Island House",
+        "images": "IslandHouse/island-house-1.jpeg,IslandHouse/island-house-3.jpeg",
+        "tags": "Apartment",
+        "description": "A residential complex offering spacious apartments and a range of amenities, Island House provides a peaceful living environment with spectacular views of the East River and Manhattan skyline.",
+        "category": "Hotels & Residences,Residence",
+        "link": "https://www.islandhousenyc.com/",
+        "subcategory": null,
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.950455,
+          40.762395
+        ]
+      },
+      "id": 66
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "c4a72990c84d0a18d8d477f3f833ab71",
+        "RI_id": "70",
+        "place_name": "The Cafe at Cornell Tech",
+        "mapbox_id": "dXJuOm1ieHBvaTo0OGY3NDA5Ny0wODFlLTRlYTItYTJhMC00NGVmZGM2ZGYwNDE",
+        "thumbnail": "Cornell-Cafe.png",
+        "maki": "cafe",
+        "address": "2 West Loop Road, New York, New York 10044, United States",
+        "title": "The Cafe at Cornell Tech",
+        "images": "CornellCafe/cornell-cafe-1.jpeg,CornellCafe/cornell-cafe-2.jpeg,CornellCafe/cornell-cafe-3.jpeg",
+        "tags": "Coffee",
+        "description": "Operated by Constellation Culinary Group, The Café @ Cornell Tech brings to Roosevelt Island tasty and hearty options for breakfast, and lunch. This bright and sunny café offers a chance to start the day off with a strong cup of Parliament Coffee or Espresso. Breakfast options ranging from croissants and muffins to eggs and pancakes. For lunch, sandwiches, salads, personal gluten free crust pizzas/flat-breads, soups, bowls and hot entrees.",
+        "category": "Cafe",
+        "link": "https://thecafe.tech.cornell.edu/",
+        "subcategory": null,
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.952663,
+          40.759201
+        ]
+      },
+      "id": 67
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "c9bb71c618b06d942e18ad75cf0591d1",
+        "RI_id": "71",
+        "place_name": "Duane Reade Pharmacy",
+        "mapbox_id": "dXJuOm1ieHBvaTo3MWI3MjZiYi0xYTk0LTQ4MTgtOWFiOS0yYzE4ZjEyYTBhNGM",
+        "thumbnail": "Duane-Reade.png",
+        "maki": "pharmacy",
+        "address": "425 Main Street, New York, New York 10044, United States",
+        "title": "Duane Reade Pharmacy",
+        "images": "DuaneReade/duanereade-1.jpeg,DuaneReade/duanereade-2.jpeg",
+        "tags": "Pharmacy",
+        "description": "A local pharmacy offering a wide range of health products, prescriptions, and everyday essentials for residents and visitors.",
+        "category": "Retail & Convenience",
+        "link": "https://www.walgreens.com/locator/walgreens-425+main+st-new+york-ny-10044/id=14386",
+        "subcategory": null,
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.953366,
+          40.758867
+        ]
+      },
+      "id": 68
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "cadcad42acce1e88b7c15b132e6b920c",
+        "RI_id": "72",
+        "place_name": "Roosevelt Landings",
+        "mapbox_id": "dXJuOm1ieHBvaToxNDdhMDAyZi0yN2FhLTRmM2EtYWY4Zi03MjE1MTMyMTc1ZDc",
+        "thumbnail": "Landings.png",
+        "maki": "home",
+        "address": "510 Main Street,New York 10044, United States",
+        "title": "The Landings",
+        "images": "Landings/landings-2.jpeg,Landings/landings-3.jpeg",
+        "tags": "Residential Building",
+        "description": "A sprawling residential complex offering affordable housing options, Roosevelt Landings is conveniently located and provides spacious apartments with easy access to public transportation and the waterfront.",
+        "category": "Hotels & Residences,Residence",
+        "link": "https://quintetnyc.com/the-landings/",
+        "subcategory": null,
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.950271,
+          40.761021
+        ]
+      },
+      "id": 69
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "cc37e5afdf1d0db52910325cef058538",
+        "RI_id": "73",
+        "place_name": "ND Nails Spa",
+        "mapbox_id": "dXJuOm1ieGFkcjo4MjIyODM4MS1hZTA1LTQwMzQtYTk4ZS04ODJmYjc2ZGZhMDE",
+        "thumbnail": "NDNails.png",
+        "maki": null,
+        "address": "570 Main Street, New York, New York 10044, United States",
+        "title": "ND Nails Spa",
+        "images": "NDNails/no_image.png",
+        "tags": "",
+        "description": "A nail salon offering manicures, pedicures, and beauty treatments in a relaxing and welcoming atmosphere.",
+        "category": "Retail & Convenience",
+        "link": null,
+        "subcategory": "",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.949252,
+          40.762654
+        ]
+      },
+      "id": 70
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "cee1dee42c92585fe43736fd15d58213",
+        "RI_id": "74",
+        "place_name": "Citi Bike Motorgate",
+        "mapbox_id": "",
+        "thumbnail": "Citibike-Motorgate.png",
+        "maki": "bicycle",
+        "address": "New York, NY 10044",
+        "title": "Citi Bike Motorgate",
+        "images": "CitibikeMotorgate/citibike-motorgate-1.jpeg,CitibikeMotorgate/citibike-motorgate-2.jpeg",
+        "tags": "Biking, Activity",
+        "description": "A convenient bike-sharing station located near the Motorgate Garage, offering an easy way to explore the island by bike.",
+        "category": "Transportation",
+        "link": "",
+        "subcategory": "Things to do",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.947752,
+          40.763919
+        ]
+      },
+      "id": 71
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "cf56d00f1f9d3bf55ec7648696dd688b",
+        "RI_id": "75",
+        "place_name": "Piccolo Trattoria",
+        "mapbox_id": "dXJuOm1ieHBvaTo5ZDNhNTVkYi0zN2RhLTRkZmQtODI5Yi1jYTYyZGQ3NTRlOGY",
+        "thumbnail": "Piccolo.png",
+        "maki": "restaurant",
+        "address": "455 Main St, New York, NY 10044",
+        "title": "Piccolo Trattoria",
+        "images": "Piccolo/piccolo-2.jpeg",
+        "tags": "Pizza",
+        "description": "Piccolo Trattoria brings authentic Italian flavors to the island, offering everything from wood-fired pizzas to homemade pasta. The warm, inviting ambiance makes it perfect for a romantic night out or family dinner.",
+        "category": "Dining,Restaurant",
+        "link": "https://piccolopizza.online/",
+        "subcategory": null,
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.952663,
+          40.759201
+        ]
+      },
+      "id": 72
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "cf94e70d2215534f0fff152309cccc17",
+        "RI_id": "76",
+        "place_name": "Westview",
+        "mapbox_id": "dXJuOm1ieGFkcjo3Y2ZiMWM3MS1mZmNkLTQwODQtYjUxOS00ZDhkNjAwMzBhZWY",
+        "thumbnail": "WestView.png",
+        "maki": null,
+        "address": "625 Main Street, New York, New York 10044, United States",
+        "title": "Westview",
+        "images": "WestView/WestView-1.jpg,WestView/WestView-2.jpg",
+        "tags": "Apartment",
+        "description": "A residential community providing modern, affordable living on Roosevelt Island, Westview offers spacious apartments with family-friendly facilities and scenic views, making it a popular choice for city dwellers.",
+        "category": "Hotels & Residences,Residence",
+        "link": null,
+        "subcategory": "",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.948748,
+          40.763432
+        ]
+      },
+      "id": 73
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "d3835e709e74ef280a5a528ecdaab40a",
+        "RI_id": "77",
+        "place_name": "Handball Courts",
+        "mapbox_id": "",
+        "thumbnail": "HandballCourt.png",
+        "maki": "baseball",
+        "address": "New York, NY 10044",
+        "title": "Handball Courts",
+        "images": "HandballCourt/handball-1.jpeg,HandballCourt/handball-2.jpeg",
+        "tags": "Activity, Table Tennis,Playground",
+        "description": "Outdoor handball courts providing a space for local players to enjoy this fast-paced, competitive sport. It’s a popular spot for both casual games and serious play.",
+        "category": "Parks & Recreation",
+        "link": "",
+        "subcategory": "Things to do",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.947793,
+          40.763302
+        ]
+      },
+      "id": 74
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "d4af39ec5d2ace15784226f97e5fd576",
+        "RI_id": "78",
+        "place_name": "United States Postal Service",
+        "mapbox_id": "dXJuOm1ieHBvaToyYzM2NmRmOS02NWIzLTQ5NDEtODgwMi1kNGRlYmVhZjBjOTM",
+        "thumbnail": "USPS.png",
+        "maki": "marker",
+        "address": "694 Main St, New York, NY 10044",
+        "title": "United States Postal Service",
+        "images": "USPS/usps-1.png",
+        "tags": "Postal service",
+        "description": "Providing essential postal services for the island’s residents, including mailing, shipping, and package handling.",
+        "category": "Retail & Convenience",
+        "link": "https://www.usps.com/",
+        "subcategory": null,
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.946579,
+          40.765152
+        ]
+      },
+      "id": 75
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "d5920caa6bee81536f937f1d1a0221eb",
+        "RI_id": "79",
+        "place_name": "Roosevelt Pups",
+        "mapbox_id": "dXJuOm1ieGFkcjo0N2FiMDM5Yy0zMTI3LTQ4NTctYTE2YS0zZGMzZmQ3NmMyZTg",
+        "thumbnail": "pups.png",
+        "maki": null,
+        "address": "544 Main Street, New York, New York 10044, United States",
+        "title": "Roosevelt Pups",
+        "images": "Pups/pups-1.jpeg,Pups/pups-2.jpg,Pups/pups-3.jpeg",
+        "tags": "",
+        "description": "A dog grooming salon offering a range of grooming services to keep pets looking and feeling their best.",
+        "category": "Retail & Convenience",
+        "link": null,
+        "subcategory": "",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.949739,
+          40.761705
+        ]
+      },
+      "id": 76
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "d9851b95c7437d8b589fcb223248490d",
+        "RI_id": "80",
+        "place_name": "Franklin D. Roosevelt Four Freedoms Park",
+        "mapbox_id": "dXJuOm1ieHBvaTo3NWY2ZGJjNC1iZmNmLTRkMDUtODE3NS04MTgwZjVjNmQwYTU",
+        "thumbnail": "FourFreedom.png",
+        "maki": "park-alt1",
+        "address": "1 FDR Four Freedoms Park",
+        "title": "Four Freedoms Park",
+        "images": "FourFreedom/four-freedom-2.jpeg,FourFreedom/four-freedom-3.jpeg,FourFreedom/four-freedom-1.jpeg",
+        "tags": "Park, Picnic",
+        "description": "A stunning waterfront park located at the southern tip of Roosevelt Island, this memorial is dedicated to FDR’s Four Freedoms speech. The park offers sweeping views of Manhattan and a peaceful space for reflection.",
+        "category": "Parks & Recreation",
+        "link": "https://www.fdrfourfreedomspark.org/",
+        "subcategory": "Highlights",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.960523,
+          40.75061
+        ]
+      },
+      "id": 77
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "daf3b874cdaeb71742043491398bca89",
+        "RI_id": "81",
+        "place_name": "RI Letters",
+        "mapbox_id": null,
+        "thumbnail": "RI-Letters.png",
+        "maki": null,
+        "address": "Main St, New York, NY 10044",
+        "title": "RI Letters",
+        "images": "RiLetters/ri-1.jpeg,RiLetters/ri-2.jpeg,RiLetters/ri-3.jpeg",
+        "tags": "",
+        "description": "An iconic Roosevelt Island photo opportunity, these oversized letters spell out \"RI\" and capture the island’s identity. Visitors and locals alike stop here to snap photos with this fun, symbolic landmark.",
+        "category": "Parks & Recreation",
+        "link": null,
+        "subcategory": "Highlights",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.954615,
+          40.757395
+        ]
+      },
+      "id": 78
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "e29fce6c7c8280e916fed5d379139d79",
+        "RI_id": "84",
+        "place_name": "Wholesome Factory Market",
+        "mapbox_id": "dXJuOm1ieHBvaTo3YTQwNTUxNy03YjYwLTQwOGQtYTg3OC03YWZmYWQ1MTliNGU",
+        "thumbnail": "Wholesome.png",
+        "maki": "grocery",
+        "address": "530 Main Street, New York, New York 10044, United States",
+        "title": "Wholesome Factory Market",
+        "images": "Wholesome/wholesome-1.jpeg,Wholesome/wholesome-2.jpeg,Wholesome/wholesome-3.jpeg",
+        "tags": "",
+        "description": "This organic grocery store is known for its selection of healthy, natural products. Shoppers can find everything from fresh produce to specialty organic items, making it a go-to spot for mindful eating.",
+        "category": "Dining,Restaurant",
+        "link": "",
+        "subcategory": null,
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.950102,
+          40.761345
+        ]
+      },
+      "id": 79
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "e473b9559eb5312d77ed2ea22bd22a90",
+        "RI_id": "85",
+        "place_name": "ME Mediterranean Eatery",
+        "mapbox_id": "dXJuOm1ieGFkcjo2NDExNjk5ZS1jNjI3LTRkODktYjdhYy05OWE5ODAxZTFlNjY",
+        "thumbnail": "Med-Eatery.png",
+        "maki": null,
+        "address": "548 Main Street, New York, New York 10044, United States",
+        "title": "ME Mediterranean Eatery",
+        "images": "Mediterranean/Med-eatery-1.jpg",
+        "tags": "Food",
+        "description": "This local gem offers an array of Mediterranean delights, from fresh salads to hearty shawarma plates. With its flavorful dishes and friendly atmosphere, it’s a favorite among residents and visitors.",
+        "category": "Dining,Restaurant",
+        "link": "https://www.eatatme.com/",
+        "subcategory": null,
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.949378,
+          40.761732
+        ]
+      },
+      "id": 80
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "eb3f6833e6a96a805a74254aaff9e611",
+        "RI_id": "86",
+        "place_name": "Island Kids",
+        "mapbox_id": "dXJuOm1ieHBvaTo2ZTljZjhlNi04N2U0LTRkNDctOWVhZC03YWU5YjdkM2QzNTY",
+        "thumbnail": "IslandKids.png",
+        "maki": "marker",
+        "address": "536 Main St, New York, NY 10044",
+        "title": "Island Kids",
+        "images": "IslandKids/IslandKids.png",
+        "tags": "Club,Kids",
+        "description": "A community-focused children’s center offering educational programs, daycare, and fun activities. It’s a nurturing environment where kids can learn, play, and grow.",
+        "category": "Parks & Recreation",
+        "link": "http://www.islandkids.org/",
+        "subcategory": "",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.949329,
+          40.761045
+        ]
+      },
+      "id": 81
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "f0db823d8eabe3f3969efe0a22a355cc",
+        "RI_id": "88",
+        "place_name": "Fuji East Japanese Bistro",
+        "mapbox_id": "dXJuOm1ieHBvaTo3OTNhOTFiZS1hOWMxLTRmN2MtOTE5OS1iNzE2N2M5YTdmMDI",
+        "thumbnail": "FujiBistro.png",
+        "maki": "restaurant-sushi",
+        "address": "455 Main Street, New York, New York 10044, United States",
+        "title": "Fuji East Japanese Bistro",
+        "images": "FujiBistro/fuji-bistro-1.jpeg,FujiBistro/fuji-bistro-2.jpeg,FujiBistro/fuji-bistro-3.jpeg",
+        "tags": "Japanese, Sushi",
+        "description": "Japanese bistro with a sleek, clubby vibe serving sushi, teriyaki, udon, soba & tempura.",
+        "category": "Restaurant",
+        "link": "https://www.fujieast.com/",
+        "subcategory": null,
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.952383,
+          40.759082
+        ]
+      },
+      "id": 82
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "f176598146e708bf6ae989c676412f03",
+        "RI_id": "89",
+        "place_name": "FDR Hope Memorial",
+        "mapbox_id": null,
+        "thumbnail": "HopeMemorial.png",
+        "maki": null,
+        "address": "Roosevelt Island, NY 10044",
+        "title": "FDR Hope Memorial",
+        "images": "FDRHopeMemorial/HopeMemorial-1.jpg,FDRHopeMemorial/HopeMemorial-2.png",
+        "tags": "Memorial",
+        "description": "This poignant monument honors Franklin D. Roosevelt and his legacy of perseverance. It’s a beautiful space dedicated to FDR’s impact on human rights and his enduring message of hope.",
+        "category": "Parks & Recreation",
+        "link": null,
+        "subcategory": "Highlights",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.959305,
+          40.752235
+        ]
+      },
+      "id": 83
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "f1963a5ccdfb947b8a42699c2f5c72bd",
+        "RI_id": "90",
+        "place_name": "Strecker Memorial Laboratory",
+        "mapbox_id": "dXJuOm1ieHBvaTozN2FjZWMwNi1jMTc1LTQ3NGUtYThmYS1hZWUxOTZjZDUwMDk",
+        "thumbnail": "Strecker.png",
+        "maki": "marker",
+        "address": "Southern Roosevelt Island, New York, 10044, US",
+        "title": "Strecker Memorial Lab",
+        "images": "Strecker/strecker-1.jpeg,Strecker/strecker-2.jpeg,Strecker/strecker-3.jpeg",
+        "tags": "History",
+        "description": "A historical building that once served as a medical research facility, now a reminder of Roosevelt Island’s rich medical history.",
+        "category": "Parks & Recreation",
+        "link": "https://en.wikipedia.org/wiki/Strecker_Memorial_Laboratory",
+        "subcategory": "Highlights",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.958229,
+          40.752334
+        ]
+      },
+      "id": 84
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "f690df8c6b2974e3cfb6c99d935064a2",
+        "RI_id": "91",
+        "place_name": "Island Wine and Spirits",
+        "mapbox_id": "dXJuOm1ieHBvaTo0ZjA2Yzc1MC1mODgxLTRlMjctYjU5MS05NTRmMTRlZjMzYmM",
+        "thumbnail": "islandWine.png",
+        "maki": "beer",
+        "address": "605 Main Street, New York, New York 10044, United States",
+        "title": "Island Wine and Spirits",
+        "images": "IslandWine/island-1.png",
+        "tags": "Wine, Spirits",
+        "description": "A local shop specializing in a curated selection of wines, liquors, and craft spirits, perfect for finding the right drink for any occasion.",
+        "category": "Retail & Convenience",
+        "link": "",
+        "subcategory": null,
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.949035,
+          40.763167
+        ]
+      },
+      "id": 85
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "f6a82b54b42c8556884c44c443b7e2d5",
+        "RI_id": "92",
+        "place_name": "Island Discount Store",
+        "mapbox_id": "dXJuOm1ieGFkcjo4YmMzMzIzOS1mNjI3LTQ0ZjQtOTU0Ni1mZWViZmM5MzVhYWM",
+        "thumbnail": "IslandDiscount.png",
+        "maki": null,
+        "address": "563 Main Street, New York, New York 10044, United States",
+        "title": "Island Discount Store",
+        "images": "IslandDiscount/IslandDiscount-1.png,IslandDiscount/IslandDiscount-2.png",
+        "tags": "",
+        "description": "A neighborhood shop offering a range of affordable products, from household goods to clothing, making everyday shopping easy and accessible.",
+        "category": "Retail & Convenience",
+        "link": null,
+        "subcategory": "",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.949725,
+          40.762307
+        ]
+      },
+      "id": 86
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "f7da32c6b96719131bd7673c6ecc750a",
+        "RI_id": "93",
+        "place_name": "The Octagon",
+        "mapbox_id": "dXJuOm1ieHBvaTpjODJmNWE3Ni0zOGYzLTQ5MmQtOWU2Zi0yMjU2Y2ZhZjk0MWE",
+        "thumbnail": "Octagon.png",
+        "maki": "home",
+        "address": "888 Main Street,New York 10044, United States",
+        "title": "The Octagon",
+        "images": "Octagon/octagon-1.jpeg,Octagon/octagon-2.jpeg,Octagon/octagon-3.jpeg",
+        "tags": "Apartment",
+        "description": "Housed in a historical landmark, The Octagon offers eco-friendly luxury apartments surrounded by lush green spaces. It boasts high-end amenities, including a pool and fitness center, while maintaining its historic charm.",
+        "category": "Hotels & Residences,Residence",
+        "link": "https://octagonnyc.com/",
+        "subcategory": null,
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.942912,
+          40.768884
+        ]
+      },
+      "id": 87
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fb77da10856580bfd6282fe287079672",
+        "RI_id": "94",
+        "place_name": "Music and Playstation",
+        "mapbox_id": "",
+        "thumbnail": "Music.png",
+        "maki": "music",
+        "address": "507 Main St, New York, NY 10044",
+        "title": "Playstation",
+        "images": "Music/music-1.JPG",
+        "tags": "Music",
+        "description": "A community space providing music lessons, creative play, and performing arts programs for children, encouraging creativity and learning.",
+        "category": "Retail & Convenience",
+        "link": "https://www.mstda.org/",
+        "subcategory": "Things to do",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.951014,
+          40.761041
+        ]
+      },
+      "id": 88
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fc8bd5aa7cc9f93160751834a8e48207",
+        "RI_id": "95",
+        "place_name": "Eleanor's Pier",
+        "mapbox_id": "",
+        "thumbnail": "EleanorsPier.png",
+        "maki": "marker",
+        "address": "W Rd, New York, NY 10044",
+        "title": "Eleanor's Pier",
+        "images": "EleanorPier/eleanor-1.jpeg,EleanorPier/eleanor-2.jpeg",
+        "tags": "Relaxation, Water views, Public Space",
+        "description": "A scenic spot along the East River, Elenor’s Pier is ideal for peaceful walks, fishing, or simply enjoying views of the water. It’s a quiet escape from the city’s hustle and bustle.",
+        "category": "Parks & Recreation",
+        "link": "https://rooseveltislander.blogspot.com/2014/07/eleanors-pier-roosevelt-islands-version.html",
+        "subcategory": "Things to do",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.953204,
+          40.759898
+        ]
+      },
+      "id": 89
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fe8db8dbcb488e7f608f76cd27ae802b",
+        "RI_id": "96",
+        "place_name": "Southpoint Park",
+        "mapbox_id": "dXJuOm1ieGFkcjo0N2Q4ZjI1OS0yZTJlLTQzNjQtYmVmNi05NGIyMWZjYjlkY2U",
+        "thumbnail": "SouthpointPark.png",
+        "maki": "park-alt1",
+        "address": "Southpoint Park, Roosevelt Island",
+        "title": "Southpoint Park",
+        "images": "SouthpointPark/southpoint-2.jpeg,SouthpointPark/southpoint-3.jpeg",
+        "tags": "Park, Picnic",
+        "description": "A spacious park offering scenic waterfront views, walking paths, and open green areas for recreation. It’s a peaceful spot for a leisurely stroll or a family outing.",
+        "category": "Parks & Recreation",
+        "link": "https://rioc.ny.gov/516/Southpoint-Park-Public-Walkthroughs",
+        "subcategory": "Things to do",
+        "color": null,
+        "path": null,
+        "labelOffset": null,
+        "pathHighlightImages": null,
+        "labelAnchor": null,
+        "pathHighlightCoordinates": null,
+        "city": null,
+        "postal_code": null,
+        "country": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.957929,
+          40.752692
+        ]
+      },
+      "id": 90
+    }
+  ]
+}
