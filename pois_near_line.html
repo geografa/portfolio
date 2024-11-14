@@ -125,12 +125,16 @@
               "line-cap": "butt",
             },
             paint: {
-              "line-color": [
-                "case",
-                ["boolean", ["feature-state", "selected"], false],
-                "#a7d3a8", // Color when selected
-                "#333", // Default color
-              ],
+              "line-color":
+                // use the 'color' property to style the line
+                ["get", "color"],
+
+              // [
+              //   "case",
+              //   ["boolean", ["feature-state", "selected"], false],
+              //   "#a7d3a8", // Color when selected
+              //   "#333", // Default color
+              // ],
               "line-width": [
                 "case",
                 ["boolean", ["feature-state", "selected"], false],
