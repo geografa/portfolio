@@ -236,11 +236,10 @@
       const map = new mapboxgl.Map({
         container: "map",
         style: "mapbox://styles/grafa/cm3yvsw8q00k301rd6m646wil",
-        center: [-61.763149, 20.725394],
+        center: [-57.867159, 23.807591],
         zoom: 1,
         bearing: 0,
-        pitch: 0,
-        hash: true,
+        pitch: 13,
       });
 
       let companies; // Declare companies in the global scope
@@ -330,10 +329,19 @@
           link.href = "#";
           link.className = "title";
           link.id = `link-${company.properties.id}`;
+
+          // Add a star next to the description if the styleUrl is "icon-1899-0288D1"
+          let desc = "";
+          if (company.properties.desc) {
+            desc =
+              company.properties.styleUrl === "#icon-1899-0288D1"
+                ? `${company.properties.desc} ✅`
+                : company.properties.desc;
+          }
+
           link.innerHTML =
-            `${company.properties.name}` +
-            " &middot; " +
-            `${company.properties.desc}`;
+            `${company.properties.name}` + (desc ? ` &middot; ${desc}` : "");
+
           const details = listing.appendChild(document.createElement("div"));
           link.addEventListener("click", function () {
             for (const feature of data.features) {
@@ -367,13 +375,21 @@
        * Create a Mapbox GL JS `Popup`.
        **/
       function createPopUp(currentFeature) {
-        const popUps = document.getElementsByClassName("mapboxgl-popup");
-        if (popUps[0]) popUps[0].remove();
-        const popup = new mapboxgl.Popup({ closeOnClick: true })
+        const description = currentFeature.properties.desc
+          ? `<p>${currentFeature.properties.desc}</p>`
+          : "";
+
+        const popupContent = `
+    <h3>${currentFeature.properties.name}</h3>
+    ${description}
+    <a href="${currentFeature.properties.url}" target="_blank">
+      <img src="./img/climate/lt-link.svg" alt="link to website" width="20" height="20">
+    </a>
+  `;
+
+        new mapboxgl.Popup()
           .setLngLat(currentFeature.geometry.coordinates)
-          .setHTML(
-            `<h3>${currentFeature.properties.name}</h3><p>${currentFeature.properties.desc} <a href="${currentFeature.properties.url}" target="_blank"><img src="./img/climate/lt-link.svg" alt="link to website" width="20" height="20"></a></p>`
-          )
+          .setHTML(popupContent)
           .addTo(map);
       }
 
@@ -412,7 +428,6 @@
         const listings = document.getElementById("listings");
         listings.innerHTML = "";
         // Clear the markers
-        console.log(companies);
         companies.features.forEach((company) => {
           const marker = document.getElementById(
             `marker-${company.properties.id}`

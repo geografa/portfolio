@@ -1,28 +1,37 @@
 const fs = require("fs");
 const path = require("path");
+const togeojson = require("@tmcw/togeojson");
+const { DOMParser } = require("xmldom");
 
-// Path to the climate_companies.geojson file
-const filePath = path.join(__dirname, "climate_companies.geojson");
+// Path to the KML file
+const kmlFilePath = path.join(__dirname, "Climate Solutions Companies.kml");
 
-// Read the GeoJSON file
-fs.readFile(filePath, "utf8", (err, data) => {
+// Path to the output GeoJSON file
+const geojsonFilePath = path.join(__dirname, "climate_companies.geojson");
+
+// Read the KML file
+fs.readFile(kmlFilePath, "utf8", (err, data) => {
   if (err) {
-    console.error("Error reading the file:", err);
+    console.error("Error reading the KML file:", err);
     return;
   }
 
-  // Parse the GeoJSON data
-  let geojson = JSON.parse(data);
+  // Parse the KML data
+  const kml = new DOMParser().parseFromString(data, "text/xml");
+
+  // Convert KML to GeoJSON
+  const geojson = togeojson.kml(kml);
 
   // Initialize a counter for unique IDs
   let idCounter = 1;
 
   // Iterate through each feature
   geojson.features.forEach((feature) => {
-    if (
-      feature.properties &&
-      typeof feature.properties.description === "string"
-    ) {
+    // Filter properties to only include name, description, and styleUrl
+    const { name, description, styleUrl } = feature.properties;
+    feature.properties = { name, description, styleUrl };
+
+    if (typeof feature.properties.description === "string") {
       // Split the description value at '|'
       const parts = feature.properties.description.split("|");
       if (parts.length > 1) {
@@ -42,12 +51,17 @@ fs.readFile(filePath, "utf8", (err, data) => {
     feature.properties.id = idCounter++;
   });
 
-  // Write the updated GeoJSON back to the file
-  fs.writeFile(filePath, JSON.stringify(geojson, null, 2), "utf8", (err) => {
-    if (err) {
-      console.error("Error writing the file:", err);
-      return;
+  // Write the updated GeoJSON to the file
+  fs.writeFile(
+    geojsonFilePath,
+    JSON.stringify(geojson, null, 2),
+    "utf8",
+    (err) => {
+      if (err) {
+        console.error("Error writing the GeoJSON file:", err);
+        return;
+      }
+      console.log("GeoJSON file has been created and updated successfully.");
     }
-    console.log("File has been updated successfully.");
-  });
+  );
 });
