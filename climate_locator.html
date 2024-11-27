@@ -2,8 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Climate Company Locator</title>
+    <title>Climate Solutions Worldwide</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+
     <link
       href="https://api.mapbox.com/mapbox-gl-js/v3.8.0/mapbox-gl.css"
       rel="stylesheet"
@@ -36,14 +41,6 @@
         width: 100%;
       }
 
-      h1 {
-        font-size: 22px;
-        margin: 0;
-        font-weight: 400;
-        line-height: 20px;
-        padding: 20px 2px;
-      }
-
       a {
         color: #404040;
         text-decoration: none;
@@ -51,6 +48,22 @@
 
       a:hover {
         color: #101010;
+      }
+
+      .header {
+        position: absolute;
+        z-index: 1;
+        text-align: center;
+        font-family: "Geologica", sans-serif;
+        line-height: 60px;
+        padding: 0 0px;
+        color: #eaff00;
+        font-family: "Geologica", sans-serif;
+        font-size: 1.2em;
+        font-weight: 800;
+        /* margin-left: 16px; */
+        line-height: 0.5em;
+        width: 100%;
       }
 
       .heading {
@@ -175,6 +188,30 @@
       .mapboxgl-popup-content div {
         padding: 10px;
       }
+      .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
+        border-top-color: #eaff00;
+      }
+      .mapboxgl-popup-anchor-top .mapboxgl-popup-tip {
+        border-bottom-color: #eaff00;
+      }
+      .mapboxgl-popup-anchor-left .mapboxgl-popup-tip {
+        border-right-color: #eaff00;
+      }
+      .mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
+        border-left-color: #eaff00;
+      }
+      .mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip {
+        border-bottom-color: #eaff00;
+      }
+      .mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip {
+        border-bottom-color: #eaff00;
+      }
+      .mapboxgl-popup-anchor-bottom-left .mapboxgl-popup-tip {
+        border-top-color: #eaff00;
+      }
+      .mapboxgl-popup-anchor-bottom-right .mapboxgl-popup-tip {
+        border-top-color: #eaff00;
+      }
 
       /* search */
       #search {
@@ -220,9 +257,11 @@
   </head>
 
   <body>
+    <div id="header" class="header">
+      <h2>Climate Solutions Worldwide</h2>
+    </div>
     <div class="footer">
       <div class="heading">
-        <!-- <h1>Climate Companies</h1> -->
         <!-- add a simple search bar -->
         <input id="search" type="text" placeholder="Search..." />
         <button id="clear-search" class="circle-x">x</button>
