@@ -1,0 +1,45 @@
+{
+  "searchResults": {
+    "empty": false,
+    "firstSuggestion": null,
+    "matches": [
+      {
+        "color": "006CB7",
+        "description": "Via 30Th Av / 31St St",
+        "directions": [
+          {
+            "destination": "ASTORIA 27 AV via 31 ST",
+            "directionId": "0",
+            "hasUpcomingScheduledService": true,
+            "polylines": [
+              "igwwFtokbMIIMMYUaAw@GEIIMICCEEs@k@GCc@[]C}AsAu@m@MMK[g@iAQSGEa@Wu@s@WYm@w@[_@i@u@EIGQGwAAYg@s@Uc@KSwAsBKO}@mAMKYO}Aw@sB_Aa@]a@m@sByCcAaAc@e@IGOIQOOMYUOOTONKDC\\CFA\\@V@L@LBFBFBXTLJFJBF?D@F?DAHADCDCFE@E@I@CAICSQGIGK?I?M@KJc@BI@Y?IBQLUpD{IRg@Ri@jAyDfA_EBMXP~A|@jCvA|C|ApAv@^VNPB@tC`Dn@r@pA|A~FvGPRL[n@eB@SxAoDPc@rByEPe@Pc@nCyGRg@`HvGRPHHHHDBDDJHBBBDNLDOlAsDL_@Vu@FOFQBEZ}@@I`A_DlAiDr@{BLg@X{@BIf@yA`ClBNHXNRSTUXOjAq@Oo@[iAm@_CSu@Ma@CGCGCGCGSw@Mg@Q]_@c@i@k@QQKM[][]m@o@{BiCUYSYmAyB]e@a@a@{C{BACUQIIwDqCEESOOImB{AuAeAECSOKKcDcCuB}A?AWSQMyFiEECWQMMOKe@]cFyDCCUQQMg@_@oAaAeDeC{BcBEEYUgBsAuHuFc@]GEOKMK_D_CACcEaDsBwAUQCFi@tA]x@IR}@lCs@jBO^Qh@Uj@M^iAzCIVyB`G{BjGMZyBfGk@`BKZoBlFOb@OZ}AdDWj@o@hA}@]QKaBw@eD}AOI}A`HGRw@pDy@pD"
+            ],
+            "stops": null
+          },
+          {
+            "destination": "ROOSEVELT ISLAND via 31 ST",
+            "directionId": "1",
+            "hasUpcomingScheduledService": true,
+            "polylines": [
+              "c|zwF`lgbMf@{Bv@qDJe@xAoG^PtCtAxAr@XN|@\\n@iAVk@|AeDN[~BqGL_@h@}AfCcHd@oAtA{DbCyG|@aCJYL_@Tk@`@iAr@kBHUr@wBHSJUz@yBBGTPrBvAjDnCVPtCxBJHLJNJj@b@tHtFjAz@ZVXT`ChBdDdCnA`ARNRNPLXTbFxD^XDBNJLL\\TfFzDPLPLVRtB~AnCtBRLJJXRtAdAzAjAPNNHRNrDpCHDHHVTzCzBLLRR\\d@lAxBRXTXzBhCl@n@v@z@JLCF_@~@Sj@BV^|ABDFDc@nAM\\y@jC]pAa@pAkA|CeAbDgAbDeAbDgB|Ek@i@uFmFcA_AGGiDeDuA`D_AzBO\\oArCi@tAk@hAyAhCmA|BOXqA}Ao@s@yCcDOQYSECqAw@}C}Ac@UgBaAyBoACLgA~DkAxDSh@Sf@qDzIMTOROXEJMZAHAH@HBHDFPTVTLJH@H?HAJGBE@EDI@I?OAGAGIOMQYUICICKCMCUAQ?S?SBI@KBWHEDITIGm@k@AAsAiAyAmAEEaB}A{@s@CGEIEOAUK_BCQESIQGQIKc@c@sAuAa@_@][c@]o@k@]a@]Zy@r@WRORWd@q@|Aw@pAuAyBMo@AMASBa@AMCOKKIMUKMCKCO?IBKNAN?NFLZ`@XRFBH?LEPG",
+              "ouywFl_ibMp@m@d@a@",
+              "meywF`oibMfBbBJHlAbA",
+              "w|xwF|vibMLL`@^",
+              "}zxwFrxibMNNXTNLPNXPb@d@bA`ArBxC`@l@`@\\rB~@jB`AJDLJ|@lAbBbCJRTb@f@r@tBa@pBdBbDzCHFf@t@jC~DX{@n@mBDGLEF?JDFHd@t@ZVBDDBHDFBDDx@f@NJNLPTBFBHBVb@x@LPRVFHf@b@jHzGj@f@~AhBJLFF@J?LM^sAdDIPCBO@E?IGQQ_@YgA}@{@i@]SIGg@_@kAeAmAgAgAcAYUSQu@o@"
+            ],
+            "stops": null
+          }
+        ],
+        "id": "MTABC_Q102",
+        "longName": "Astoria - Roosevelt Island",
+        "shortName": "Q102",
+        "type": 3
+      }
+    ],
+    "queryLat": null,
+    "queryLon": null,
+    "resultType": "RouteResult",
+    "routeFilter": [],
+    "suggestions": []
+  }
+}

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Voted</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <style>
+      #features {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 30%;
+        overflow: auto;
+        background: rgba(255, 255, 255, 0.8);
+      }
+      #map canvas {
+        cursor: crosshair;
+      }
+    </style>
+    <div id="map"></div>
+    <pre id="features"></pre>
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiZ292d2hpeiIsImEiOiIxNTM0NGM2MjYwZmFjMWNiNGE3NTY4YTA5MTU4MjIyMiJ9.lPZaEuDk8-CRHWCB0ABdRg";
+
+      const map = new mapboxgl.Map({
+        container: "map",
+        // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+        style: "mapbox://styles/mapbox/light-v11",
+        center: [-79.97142140611606, 35.943945325097175],
+        zoom: 9.01515857219848,
+        bearing: 0,
+        pitch: 0,
+        hash: true,
+      });
+
+      map.on("load", () => {
+        // Add the vector tileset as a source.
+        map.addSource("voter-source", {
+          type: "vector",
+          url: "mapbox://govwhiz.nc_voters",
+        });
+
+        const colorStatus = ["red", "green", "blue"];
+        const voteStatus = ["ytv", "requested", "voted"];
+
+        // all features
+        map.addLayer(
+          {
+            id: "voter-layer-all",
+            type: "circle",
+            source: "voter-source",
+            "source-layer": "nc_voters_mapbox",
+            cluster: true,
+            clusterRadius: 80,
+            clusterProperties: {
+              // keep separate counts for each status in a cluster
+              ytv: ["+", ["case", ["==", ["get", "ytv"], 1], 1, 0]],
+              requested: ["+", ["case", ["==", ["get", "requested"], 1], 1, 0]],
+              voted: ["+", ["case", ["==", ["get", "voted"], 1], 1, 0]],
+            },
+            paint: {
+              // Make circles larger as the user zooms from z12 to z22.
+              "circle-radius": {
+                base: 1.75,
+                stops: [
+                  [9, 14],
+                  [16, 5],
+                  [22, 12],
+                ],
+              },
+              // Color circles by ethnicity, using a `match` expression.
+              "circle-color": [
+                "case",
+                ["==", ["get", "ytv"], 1],
+                "red",
+                ["==", ["get", "requested"], 1],
+                "green",
+                ["==", ["get", "voted"], 1],
+                "blue",
+                "black",
+              ],
+            },
+          },
+          // Place polygons under labels, roads and buildings.
+          "poi-label"
+        );
+
+        const markers = {};
+        let markersOnScreen = {};
+
+        function updateMarkers() {
+          const newMarkers = {};
+          const features = map.querySourceFeatures("voter-source");
+
+          // for every cluster on the screen, create an HTML marker for it (if we didn't yet),
+          // and add it to the map if it's not there already
+          for (const feature of features) {
+            const coords = feature.geometry.coordinates;
+            const props = feature.properties;
+            if (!props.cluster) continue;
+            const id = props.cluster_id;
+
+            let marker = markers[id];
+            if (!marker) {
+              const el = createDonutChart(props);
+              marker = markers[id] = new mapboxgl.Marker({
+                element: el,
+              }).setLngLat(coords);
+            }
+            newMarkers[id] = marker;
+
+            if (!markersOnScreen[id]) marker.addTo(map);
+          }
+          // for every marker we've added previously, remove those that are no longer visible
+          for (const id in markersOnScreen) {
+            if (!newMarkers[id]) markersOnScreen[id].remove();
+          }
+          markersOnScreen = newMarkers;
+        }
+        // after the GeoJSON data is loaded, update markers on the screen on every frame
+        map.on("render", () => {
+          if (!map.isSourceLoaded("voter-source")) return;
+          updateMarkers();
+        });
+
+        // for each layer in the layers array add a layer to the map with the corresponding color from the colorStatus array and the corresponding status from the status array as a filter for the layer
+        voteStatus.forEach((layer, i) => {
+          console.log(voteStatus[i]);
+          map.addLayer(
+            {
+              id: "voter-layer-" + layer,
+              type: "circle",
+              source: "voter-source",
+              "source-layer": "nc_voters_mapbox",
+              paint: {
+                // Make circles larger as the user zooms from z12 to z22.
+                "circle-radius": {
+                  base: 1.75,
+                  stops: [
+                    [9, 14],
+                    [16, 5],
+                    [22, 12],
+                  ],
+                },
+                // Color circles by
+                "circle-color": colorStatus[i],
+              },
+              // if the colorstatus = 1 then the filter is the status is requested
+              filter: ["==", voteStatus[i], 1],
+            },
+            // Place polygons under labels, roads and buildings.
+            "poi-label"
+          );
+        });
+
+        // map.queryRenderedFeatures({ layers: ["voter-layer-all"] });
+        // When a hover event occurs on a feature in the voter-layer layer, write the results to the features div
+        map.on("click", "voter-layer-all", (e) => {
+          document.getElementById("features").innerHTML = JSON.stringify(
+            e.features[0].properties,
+            null,
+            2
+          );
+        });
+      });
+    </script>
+  </body>
+</html>

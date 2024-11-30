@@ -30,21 +30,16 @@
   <body>
     <div id="map"></div>
     <script>
-      // URL restricted token. Get your own here: https://account.mapbox.com/access-tokens/
+      // replace token
       mapboxgl.accessToken =
         "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
       const map = new mapboxgl.Map({
         container: "map",
         style: "mapbox://styles/grafa/cm2j8r92p00o001poad6rcgx1",
         center: [-73.9476124207415, 40.764188545927084],
-        zoom: 17.51914627878748,
-        bearing: -8.015013832885643,
-        pitch: 43.20676444579841,
-      });
-
-      // Set the map's standard style to 'dawn'
-      map.on("style.load", () => {
-        map.setConfigProperty("basemap", "lightPreset", "dawn");
+        zoom: 17.5191462,
+        bearing: -8.0150138,
+        pitch: 43.2067644,
       });
 
       // Fetch the GeoJSON from whatever linestring you have for now. Later, use an API to fetch the data.
@@ -74,7 +69,7 @@
           });
           // Extract coordinates from the route data
           const coordinates = data.features[0].geometry.coordinates;
-          // Add the train source
+          // Add the bus source
           map.addSource("bus-source", {
             type: "geojson",
             data: {
@@ -83,7 +78,7 @@
                 {
                   type: "Feature",
                   geometry: {
-                    // start the train at the first coordinate
+                    // start the bus at the first coordinate
                     coordinates: coordinates[0],
                     type: "Point",
                   },
@@ -92,9 +87,9 @@
               ],
             },
           });
-          // Add the train model (exported GLB from Spline)
+          // Add the bus model (exported GLB from Spline)
           map.addModel("bus-model", "./models/bus.glb");
-          // Make a train layer with the model source
+          // Make a bus layer with the model source
           map.addLayer({
             id: "bus-layer",
             type: "model",
@@ -105,7 +100,7 @@
             paint: {
               // scale it to the right size and set the rotation
               "model-scale": [5, 5, 5],
-              "model-rotation": [0, 0, 155],
+              "model-rotation": [0, 0, 0],
               "model-translation": [0, 0, 0],
             },
           });
@@ -121,8 +116,8 @@
             const y = point1[1] + (point2[1] - point1[1]) * t;
             return [x, y];
           }
-          // Function to animate the train
-          function animateTrain() {
+          // Function to animate the bus
+          function animateBus() {
             frameCount++;
             if (frameCount % speedFactor === 0) {
               t += 0.1 / interpolationSteps;
@@ -136,7 +131,7 @@
                 coordinates[nextIndex],
                 t
               );
-              // Set the train's position to the new coordinates
+              // Set the bus's position to the new coordinates
               map.getSource("bus-source").setData({
                 type: "FeatureCollection",
                 features: [
@@ -150,7 +145,7 @@
                   },
                 ],
               });
-              // Iterate over the path to get the bearing from the current point to the next point and then set the train's rotation
+              // Iterate over the path to get the bearing from the current point to the next point and then set the bus's rotation
               const bearing = turf.bearing(
                 turf.point(coordinates[currentIndex]),
                 turf.point(coordinates[nextIndex])
@@ -159,20 +154,20 @@
               map.setPaintProperty(
                 "bus-layer",
                 "model-rotation",
-                // set the train's rotation
+                // set the bus's rotation
                 [0, 0, rotation]
               );
-              // use a map.easeTo to follow the train
+              // use a map.easeTo to follow the bus
               map.easeTo({
                 center: newCoordinates,
                 bearing: rotation,
               });
             }
             // Request the next frame of the animation
-            requestAnimationFrame(animateTrain);
+            requestAnimationFrame(animateBus);
           }
           // Start the animation
-          animateTrain();
+          animateBus();
         });
       });
     </script>

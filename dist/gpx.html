@@ -73,9 +73,11 @@
         "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg"; // Replace with your Mapbox token
       const map = new mapboxgl.Map({
         container: "map",
-        style: "mapbox://styles/mapbox/dark-v11",
-        center: [-122.59433263758712, 45.479778781189],
-        zoom: 9,
+        style: "mapbox://styles/grafa/clv5n2soe00iz01og6vhn279m",
+        center: [-122.66190204323371, 45.471939290607224],
+        zoom: 14.393460889531665,
+        bearing: 82.63249498543382,
+        pitch: 41.316247492716954,
         projection: "mercator",
       });
 
@@ -116,7 +118,11 @@
         const geojson = toGeoJSON.gpx(gpx);
 
         // create an empty geojson object
-        const heartRateGeojson = {
+        const heartRatePoints = {
+          type: "FeatureCollection",
+          features: [],
+        };
+        const heartRateLines = {
           type: "FeatureCollection",
           features: [],
         };
@@ -138,11 +144,22 @@
           const hexBoundary = h3.cellToBoundary(h3Index);
           //   console.log(hexBoundary);
 
-          // push the coords to the heartRateGeojson object
-          heartRateGeojson.features.push({
+          // push the coords to the heartRatePoints object
+          heartRatePoints.features.push({
             type: "Feature",
             geometry: {
               type: "Point",
+              coordinates: coords,
+            },
+            properties: {
+              coordTimes: coordTime,
+              heartRates: heartrate,
+            },
+          });
+          heartRateLines.features.push({
+            type: "Feature",
+            geometry: {
+              type: "LineString",
               coordinates: coords,
             },
             properties: {
@@ -176,10 +193,9 @@
             pitch: 45,
             bearing: 90,
           });
+          console.log(heartRateLines);
         }
-        // get the length of the route in meters
-        const length = turf.length(geojson, { units: "meters" });
-        // Visualize the GeoJSON on the map
+
         // if the source already exists, use setData else addSource
         if (map.getSource("route")) {
           map.getSource("route").setData(geojson);
@@ -194,21 +210,21 @@
         if (map.getLayer("route")) {
           map.setLayoutProperty("route", "visibility", "visible");
         } else {
-          map.addLayer({
-            id: "route-blur",
-            type: "line",
-            source: "route",
-            layout: {
-              "line-join": "round",
-              "line-cap": "round",
-            },
-            paint: {
-              "line-color": "#bada55",
-              "line-width": 10,
-              "line-opacity": 0.8,
-              "line-blur": 5,
-            },
-          });
+          // map.addLayer({
+          //   id: "route-blur",
+          //   type: "line",
+          //   source: "route",
+          //   layout: {
+          //     "line-join": "round",
+          //     "line-cap": "round",
+          //   },
+          //   paint: {
+          //     "line-color": "#bada55",
+          //     "line-width": 10,
+          //     "line-opacity": 0.8,
+          //     "line-blur": 5,
+          //   },
+          // });
           map.addLayer({
             id: "route",
             type: "line",
@@ -216,63 +232,57 @@
             layout: {
               "line-join": "round",
               "line-cap": "round",
+              // add an offset that uses a linear expression to give heights using the heartrate
+              // "line-z-offset": ["*", ["get", "heartRates"], 0.2],
             },
             paint: {
-              "line-color": "#bada55",
-              "line-width": 2,
+              "line-color": "yellow",
+              "line-width": 3,
             },
           });
 
-          // create a map layer for the heartRateGeojson object
+          // create a map layer for the heartRatePoints object
           map.addSource("heartRate", {
             type: "geojson",
-            data: heartRateGeojson,
+            data: heartRatePoints,
           });
           map.addLayer({
             id: "heartRate",
-            type: "circle",
+            type: "symbol",
             source: "heartRate",
-            paint: {
-              "circle-radius": 5,
-              "circle-color": [
-                "interpolate",
-                ["linear"],
-                ["get", "heartRates"],
-                90,
-                "#bada55",
-                150,
-                "yellow",
-                200,
-                "#ff0000",
-              ],
+            layout: {
+              "icon-image": "mapbox-square",
+              // "icon-size": 1.5,
+              // "icon-allow-overlap": true,
+              // "icon-ignore-placement": true,
             },
           });
-          map.addSource("heartRatePoly-source", {
-            type: "geojson",
-            data: heartRatePolys,
-          });
-          map.addLayer({
-            id: "heartRatePoly-layer",
-            type: "fill-extrusion",
-            source: "heartRatePoly-source",
-            paint: {
-              // use the heart rate to determine the color of the extrusion
-              "fill-extrusion-color": [
-                "interpolate",
-                ["linear"],
-                ["get", "heartRates"],
-                90,
-                "#bada55",
-                150,
-                "yellow",
-                200,
-                "#ff0000",
-              ],
-              "fill-extrusion-opacity": 0.5,
-              // use the heart rate to determine the height of the extrusion
-              "fill-extrusion-height": ["*", ["get", "heartRates"], 0.2],
-            },
-          });
+          // map.addSource("heartRatePoly-source", {
+          //   type: "geojson",
+          //   data: heartRatePolys,
+          // });
+          // map.addLayer({
+          //   id: "heartRatePoly-layer",
+          //   type: "fill-extrusion",
+          //   source: "heartRatePoly-source",
+          //   paint: {
+          //     // use the heart rate to determine the color of the extrusion
+          //     "fill-extrusion-color": [
+          //       "interpolate",
+          //       ["linear"],
+          //       ["get", "heartRates"],
+          //       90,
+          //       "#bada55",
+          //       150,
+          //       "yellow",
+          //       200,
+          //       "#ff0000",
+          //     ],
+          //     "fill-extrusion-opacity": 0.5,
+          //     // use the heart rate to determine the height of the extrusion
+          //     "fill-extrusion-height": ["*", ["get", "heartRates"], 0.2],
+          //   },
+          // });
           document.getElementById("toggle").checked = true;
 
           const popup = new mapboxgl.Popup({

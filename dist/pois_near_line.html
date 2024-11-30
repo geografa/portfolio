@@ -2,16 +2,16 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Display a map on a webpage</title>
+    <title>POIs Nearest to Selected Path</title>
     <meta
       name="viewport"
       content="initial-scale=1,maximum-scale=1,user-scalable=no"
     />
     <link
-      href="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.css"
+      href="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.css"
       rel="stylesheet"
     />
-    <script src="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.js"></script>
     <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
     <style>
       body {
@@ -28,8 +28,8 @@
         font-family: "Inter", sans-serif;
         position: absolute;
         background: rgba(36, 36, 36, 0.8);
-        padding: 10px;
-        color: #f0f0f0;
+        padding: 20px;
+        color: #d3d3cb;
         z-index: 1;
       }
       .menu-item {
@@ -37,12 +37,70 @@
         padding: 5px;
       }
       .menu-item:hover {
-        background: #23646a;
+        text-decoration: underline;
+        color: #a7d3a8;
       }
       /* selected menu item */
       .menu-item.selected {
         background: #23646a;
         color: white;
+      }
+      /* popups */
+
+      .mapboxgl-popup {
+        max-width: 400px;
+        font: 12px/20px "Helvetica Neue", Arial, Helvetica, sans-serif;
+        padding-bottom: 10px;
+      }
+      .mapboxgl-popup,
+      img {
+        max-width: 100%;
+      }
+      .mapboxgl-popup-content {
+        border-radius: 10px;
+        color: #ffffff;
+        background: #23646a;
+      }
+      .mapboxgl-popup-content img {
+        background-color: rgba(255, 255, 255, 1);
+        /* max-width: 66px; */
+        position: relative;
+        left: 0px;
+        margin: 10px 0px;
+        border: solid 0.5px #e7e0d4;
+        border-radius: 10px;
+      }
+      .mapboxgl-popup-content a {
+        color: #ffffff;
+        line-height: 2em;
+      }
+      .mapboxgl-popup-content h2,
+      p {
+        margin-bottom: 5px;
+      }
+      .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
+        border-top-color: #23646a;
+      }
+      .mapboxgl-popup-anchor-top .mapboxgl-popup-tip {
+        border-bottom-color: #23646a;
+      }
+      .mapboxgl-popup-anchor-left .mapboxgl-popup-tip {
+        border-right-color: #23646a;
+      }
+      .mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
+        border-left-color: #23646a;
+      }
+      .mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip {
+        border-bottom-color: #23646a;
+      }
+      .mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip {
+        border-bottom-color: #23646a;
+      }
+      .mapboxgl-popup-anchor-bottom-left .mapboxgl-popup-tip {
+        border-top-color: #23646a;
+      }
+      .mapboxgl-popup-anchor-bottom-right .mapboxgl-popup-tip {
+        border-top-color: #23646a;
       }
     </style>
   </head>
@@ -61,9 +119,9 @@
       const map = new mapboxgl.Map({
         container: "map", // container ID
         style: "mapbox://styles/mapbox/light-v11", // style URL
-        center: [-73.951266, 40.760393],
+        center: [-73.949017, 40.76146],
         zoom: 14,
-        bearing: 0,
+        bearing: -58,
         pitch: 0,
         hash: true,
       });
@@ -158,16 +216,60 @@
           menuItems.forEach((item) => {
             item.addEventListener("click", (e) => {
               const selectedPath = e.target.id;
-              // Remove the 'selected' class from all menu items
-              menuItems.forEach((item) => {
-                item.classList.remove("selected");
-              });
-              // Add the 'selected' class to the clicked menu item
-              e.target.classList.add("selected");
-              // Perform actions based on the selected path
-              console.log(`Selected path: ${selectedPath}`);
-              // Highlight the selected path on the map
-              highlightPath(selectedPath);
+
+              // Check if the clicked menu item is already selected
+              if (e.target.classList.contains("selected")) {
+                // Remove the 'selected' class from the clicked menu item
+                e.target.classList.remove("selected");
+
+                // Reset the feature state for all paths
+                const allPaths = map.queryRenderedFeatures({
+                  layers: ["line-layer"],
+                });
+                allPaths.forEach((path) => {
+                  map.setFeatureState(
+                    {
+                      source: "line-source",
+                      id: path.id,
+                    },
+                    {
+                      selected: false,
+                    }
+                  );
+                });
+
+                // Reset the feature state for all POIs
+                const allPOIs = map.queryRenderedFeatures({
+                  layers: ["poi-layer"],
+                });
+                allPOIs.forEach((poi) => {
+                  map.setFeatureState(
+                    {
+                      source: "poi-source",
+                      id: poi.id,
+                    },
+                    {
+                      selected: false,
+                    }
+                  );
+                });
+
+                console.log(`Deselected path: ${selectedPath}`);
+              } else {
+                // Remove the 'selected' class from all menu items
+                menuItems.forEach((item) => {
+                  item.classList.remove("selected");
+                });
+
+                // Add the 'selected' class to the clicked menu item
+                e.target.classList.add("selected");
+
+                // Perform actions based on the selected path
+                console.log(`Selected path: ${selectedPath}`);
+
+                // Highlight the selected path on the map
+                highlightPath(selectedPath);
+              }
             });
           });
         }
@@ -211,10 +313,10 @@
           line.geometry.coordinates.forEach((coord) => {
             bounds.extend(coord);
           });
-          map.fitBounds(bounds, {
-            padding: 100,
-            zoom: 15,
-          });
+          // map.fitBounds(bounds, {
+          //   padding: 100,
+          //   zoom: 15,
+          // });
         }
         // Function to select POIs within a certain distance from the selected path
         function selectPOIs(pathId) {

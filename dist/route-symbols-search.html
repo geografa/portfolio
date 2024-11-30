@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Route with Symbol Layer</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.js"></script>
+    <script
+      id="search-js"
+      defer
+      src="https://api.mapbox.com/search-js/v1.0.0-beta.21/web.js"
+    ></script>
+    <script src="https://unpkg.com/@mapbox/polyline"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+      #sidebar {
+        position: absolute;
+        z-index: 1;
+        background: rgb(19 162 160 / 40%);
+        opacity: 0.8;
+        padding: 0.75em;
+        /* width: 20%; */
+        font-family: "Helvetica Neue", "Arial Narrow", Arial, sans-serif;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      #sidebar a {
+        color: rgb(232, 249, 47);
+      }
+      /* .input-container {
+        display: flex;
+        justify-content: space-between;
+      } */
+      .location-input {
+        width: 120px;
+        padding: 0.5em;
+        margin: 0.5em 0;
+        /* center the input */
+        display: inline;
+      }
+      .button {
+        padding: 0.5em;
+        margin: 0.5em 0;
+        width: 120px;
+        border-radius: 10px;
+        background-color: rgb(19 162 160 / 70%);
+        color: #fff;
+        /* /* align in the center with flex */
+        align-self: center;
+      }
+      .removeButton {
+        padding: 0.5em;
+        display: inline;
+      }
+
+      #resetButton {
+        margin-top: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <div id="sidebar">
+      <div id="search-box-container"></div>
+      <p>Route</p>
+      <button id="createRouteButton" class="button">Create Route</button>
+      <button id="resetButton" class="button">Reset</button>
+    </div>
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
+      const map = new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/grafa/clv5n2soe00iz01og6vhn279m",
+        center: [-73.94918451252114, 40.766370360271196],
+        zoom: 12.296732090632224,
+        bearing: 0,
+        pitch: 0,
+        hash: true,
+      });
+
+      const customLine = {
+        type: "FeatureCollection",
+        features: [],
+      };
+      const customPoints = {
+        type: "FeatureCollection",
+        features: [],
+      };
+
+      map.on("load", () => {
+        map.addSource("custom-line-source", {
+          type: "geojson",
+          data: customLine,
+        });
+        map.addLayer({
+          id: "custom-line-layer",
+          type: "line",
+          source: "custom-line-source",
+          layout: {
+            "line-join": "round",
+            "line-cap": "round",
+          },
+          paint: {
+            "line-color": "magenta",
+            "line-width": 12,
+            "line-emissive-strength": 5,
+            "line-opacity": 0.5,
+            "line-blur": 12,
+          },
+        });
+        map.addSource("custom-points-source", {
+          type: "geojson",
+          data: customPoints,
+        });
+
+        map.addLayer({
+          id: "custom-points-layer",
+          type: "symbol",
+          source: "custom-points-source",
+          layout: {
+            "icon-image": "orange-circle-lg",
+            "text-field": ["get", "title"],
+            "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+            "text-offset": [0, -0.6],
+            "text-anchor": "top",
+          },
+          paint: {
+            // "symbol-z-offset": 50,
+            "text-color": "white",
+          },
+        });
+
+        // search along the route
+      });
+
+      const markerArray = [];
+
+      map.on("click", (e) => {
+        const newFeature = {
+          type: "Feature",
+          geometry: {
+            type: "Point",
+            coordinates: [e.lngLat.lng, e.lngLat.lat],
+          },
+          properties: {
+            title: (markerArray.length + 1).toString(),
+          },
+        };
+
+        customPoints.features.push(newFeature);
+        map.getSource("custom-points-source").setData(customPoints);
+
+        markerArray.push(newFeature);
+
+        // ==============================
+        let container = document.createElement("div");
+        container.className = "input-container";
+
+        let input = document.createElement("input");
+        input.value = JSON.stringify(markerArray.length);
+        input.id = JSON.stringify(markerArray.length - 1);
+        input.className = "location-input";
+
+        let removeButton = document.createElement("li");
+        // add the image to the remove button element
+        removeButton.innerHTML = "⛔️";
+
+        removeButton.className = "removeButton";
+        // when the remove button is hovered over, change the cursor to a pointer
+        removeButton.style.cursor = "pointer";
+        removeButton.onclick = () => {
+          const index = parseInt(input.id);
+          customPoints.features.splice(index, 1);
+          map.getSource("custom-points-source").setData(customPoints);
+          markerArray[index].properties.title = "";
+          markerArray.splice(index, 1);
+          container.remove();
+        };
+
+        container.appendChild(input);
+        container.appendChild(removeButton);
+        document.getElementById("sidebar").appendChild(container);
+      });
+
+      //   if the input is changed, update the markerArray with the new coordinates
+      document.getElementById("sidebar").onchange = (e) => {
+        // set the title property of the marker to the new value
+        markerArray[parseInt(e.target.id)].properties.title = e.target.value;
+        // use setData to update the marker on the map
+        map.getSource("custom-points-source").setData(customPoints);
+      };
+
+      //if the reset button is clicked, remove all the input elements and markers from the map. if a route line exists, remove it
+      document.getElementById("resetButton").onclick = () => {
+        markerArray.length = 0;
+        customPoints.features.length = 0;
+        map.getSource("custom-points-source").setData(customPoints);
+        document.querySelectorAll(".location-input").forEach((input) => {
+          input.remove();
+        });
+        document.querySelectorAll(".removeButton").forEach((button) => {
+          button.remove();
+        });
+        // remove the route line if it exists
+        if (map.getSource("custom-line-source")) {
+          //set the data of the source to an empty FeatureCollection
+          map.getSource("custom-line-source").setData({
+            type: "FeatureCollection",
+            features: [],
+          });
+        }
+      };
+
+      //=========================== ROUTING ==============================
+
+      createRouteButton.onclick = () => {
+        const coordinates = markerArray.map((marker) => ({
+          lng: marker.geometry.coordinates[0],
+          lat: marker.geometry.coordinates[1],
+        }));
+        // if two or more markers exist, fetch the route data from the Mapbox Directions API else return
+        if (coordinates.length < 2) {
+          console.log("Please add at least two markers to create a route");
+          return;
+        }
+        const coordinatesString = coordinates
+          .map((coordinate) => `${coordinate.lng},${coordinate.lat}`)
+          .join(";");
+        getDirections(coordinatesString);
+
+        // when the route is created, fit the map to the route bounds
+        const bounds = coordinates.reduce(
+          (bounds, coord) => bounds.extend(coord),
+          new mapboxgl.LngLatBounds(coordinates[0], coordinates[0])
+        );
+        map.fitBounds(bounds, {
+          padding: 40,
+          pitch: 60,
+        });
+      };
+      // ============================== SEARCH ==============================
+      // add an empty div to append the search box to
+
+      const script = document.getElementById("search-js");
+      // wait for the Mapbox Search JS script to load before using it
+      script.onload = function () {
+        // instantiate a search box instance
+        const searchBox = new mapboxsearch.MapboxSearchBox();
+
+        // set the mapbox access token, search box API options
+        searchBox.accessToken = mapboxgl.accessToken;
+        searchBox.options = {
+          // use only categories
+          countries: "us",
+          types: "category",
+          limit: 5,
+          route: true,
+        };
+
+        // set the mapboxgl library to use for markers and enable the marker functionality
+        searchBox.mapboxgl = mapboxgl;
+        searchBox.marker = true;
+
+        // bind the search box instance to the map instance
+        searchBox.bindMap(map);
+
+        // add the search box instance to the DOM
+        document.getElementById("search-box-container").appendChild(searchBox);
+      };
+
+      //   create a separate directions api function to fetch the route data from the Mapbox Directions API
+
+      const getDirections = (coordinatesString) => {
+        fetch(
+          `https://api.mapbox.com/directions/v5/mapbox/driving/${coordinatesString}?geometries=polyline&overview=full&access_token=${mapboxgl.accessToken}`
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            const encodedPolyline = data.routes[0].geometry; // Assuming the encoded polyline is in the geometry field
+            // Decode the encoded polyline to an array of coordinates
+            const coordinates = polyline.decode(encodedPolyline);
+
+            // Convert the coordinates to GeoJSON format
+            const geojsonData = {
+              type: "Feature",
+              geometry: {
+                type: "LineString",
+                coordinates: coordinates.map((coord) => [coord[1], coord[0]]), // Swap lat/lng to lng/lat
+              },
+            };
+
+            // if the source exists, use setData to update the source, otherwise use addSource to add the source
+            if (map.getSource("custom-line-source")) {
+              map.getSource("custom-line-source").setData(geojsonData);
+            } else {
+              map.addSource("custom-line-source", {
+                type: "geojson",
+                data: geojsonData,
+              });
+            }
+
+            // You can now use the geojsonData as needed
+            console.log("GeoJSON Data:", geojsonData);
+            console.log("Polyline Data:", encodedPolyline);
+
+            return encodedPolyline;
+          });
+      };
+    </script>
+  </body>
+</html>

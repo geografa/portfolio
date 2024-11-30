@@ -1,0 +1,1117 @@
+{
+  "type": "FeatureCollection",
+  "name": "selected_pdx-routes-data-for-all-vehicles-in-2024-Q3",
+  "crs": {
+    "type": "name",
+    "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "b392e0dfc2f86795ae937f734165496e",
+        "percentage": 0.3,
+        "displayCount": "1,600",
+        "count": 1600
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.665953, 45.529477],
+          [-122.666044, 45.529399]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "f7b246aa9d0672cd9bc0fa499511d265",
+        "percentage": 0.3,
+        "displayCount": "1,800",
+        "count": 1800
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.665784, 45.530903],
+          [-122.665783, 45.530795]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "4d908274f43c142988e862fa443d0ee0",
+        "percentage": 0.4,
+        "displayCount": "2,100",
+        "count": 2100
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666744, 45.533051],
+          [-122.666746, 45.533322],
+          [-122.666739, 45.533958],
+          [-122.666736, 45.53422],
+          [-122.666736, 45.534255]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "4ed080fb0d96497fbe6676b8dec79682",
+        "percentage": 0.4,
+        "displayCount": "2,200",
+        "count": 2200
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666744, 45.533051],
+          [-122.66661, 45.532904],
+          [-122.666342, 45.532689],
+          [-122.666252, 45.532614],
+          [-122.666177, 45.532547],
+          [-122.66611, 45.532476],
+          [-122.666056, 45.532413],
+          [-122.665994, 45.532328],
+          [-122.665948, 45.532254],
+          [-122.665906, 45.532185],
+          [-122.665862, 45.532111],
+          [-122.665837, 45.53204],
+          [-122.665811, 45.531959],
+          [-122.665798, 45.531895],
+          [-122.665789, 45.531836],
+          [-122.665785, 45.531788],
+          [-122.665781, 45.531704],
+          [-122.665783, 45.53128],
+          [-122.665784, 45.530903]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "4433505cd7972642216058b9c47e7b0a",
+        "percentage": 0.5,
+        "displayCount": "2,700",
+        "count": 2700
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666672, 45.542314],
+          [-122.666718, 45.542424],
+          [-122.666722, 45.542563],
+          [-122.666722, 45.542758]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "2125eea970d65de637e054c2b469e393",
+        "percentage": 0.5,
+        "displayCount": "2,800",
+        "count": 2800
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666722, 45.542758],
+          [-122.666719, 45.542821]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "33c3866a30f5326b30e987671ed057e3",
+        "percentage": 0.5,
+        "displayCount": "2,800",
+        "count": 2800
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666717, 45.542928],
+          [-122.666696, 45.543197],
+          [-122.666662, 45.543275]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "cdc868b3f3cad3af2dac495849cb2a50",
+        "percentage": 0.5,
+        "displayCount": "2,800",
+        "count": 2800
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666736, 45.534255],
+          [-122.666737, 45.534302],
+          [-122.666738, 45.534371]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "523887ca3da16beaa3f5b263957f0661",
+        "percentage": 0.5,
+        "displayCount": "2,900",
+        "count": 2900
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666719, 45.542821],
+          [-122.666717, 45.542928]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "2962d688e22f71d23a245042769cda60",
+        "percentage": 0.5,
+        "displayCount": "3,000",
+        "count": 3000
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666637, 45.542927],
+          [-122.666641, 45.54308],
+          [-122.666645, 45.543209],
+          [-122.666662, 45.543275]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "c2782e35538ab52b6064c94fba2923c8",
+        "percentage": 0.5,
+        "displayCount": "3,000",
+        "count": 3000
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666672, 45.542314],
+          [-122.666651, 45.542414],
+          [-122.66664, 45.542568],
+          [-122.666638, 45.54276]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "f00a9b2e4d5e5cfcdac3ade8386b9ab2",
+        "percentage": 0.5,
+        "displayCount": "3,100",
+        "count": 3100
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666638, 45.54276],
+          [-122.666636, 45.542859]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "57cbd3488c37940fbad3d32aa874c3ec",
+        "percentage": 0.5,
+        "displayCount": "3,200",
+        "count": 3200
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666636, 45.542859],
+          [-122.666637, 45.542927]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "2c2109c113511959941776e44cc037fa",
+        "percentage": 0.7,
+        "displayCount": "3,900",
+        "count": 3900
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666736, 45.553318],
+          [-122.666737, 45.553398]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "23a77169b8220cb772ee0eac5bd81f90",
+        "percentage": 0.7,
+        "displayCount": "4,000",
+        "count": 4000
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666737, 45.553398],
+          [-122.666737, 45.553453],
+          [-122.666746, 45.554279]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "59ced6292359f9f8129314d0fb49e9a8",
+        "percentage": 0.7,
+        "displayCount": "4,000",
+        "count": 4000
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.665783, 45.530795],
+          [-122.665779, 45.5307]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "6ffea7b36a7bbfeac9cc433739f5cdbb",
+        "percentage": 0.7,
+        "displayCount": "4,300",
+        "count": 4300
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666735, 45.553252],
+          [-122.666736, 45.553318]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "e6cd4dd893f89d8def9845515584635a",
+        "percentage": 0.7,
+        "displayCount": "4,300",
+        "count": 4300
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666723, 45.552053],
+          [-122.666723, 45.552116]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "f9a713f007344638ec1e0a84533f051c",
+        "percentage": 0.7,
+        "displayCount": "4,300",
+        "count": 4300
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666723, 45.552116],
+          [-122.666724, 45.552188],
+          [-122.666735, 45.553252]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "1c2c1b208824f37268b59b3b1f0bf434",
+        "percentage": 0.8,
+        "displayCount": "4,400",
+        "count": 4400
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666723, 45.551974],
+          [-122.666723, 45.552053]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "1ac76dd7dfdbd71152c1711009801eef",
+        "percentage": 0.8,
+        "displayCount": "4,500",
+        "count": 4500
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.665779, 45.530253],
+          [-122.665778, 45.530204],
+          [-122.665778, 45.530162],
+          [-122.66578, 45.530088],
+          [-122.665782, 45.530016],
+          [-122.665784, 45.529963]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "2d9e4afbed8c130a10cdc9c23a71a6a6",
+        "percentage": 0.8,
+        "displayCount": "4,500",
+        "count": 4500
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666711, 45.550857],
+          [-122.666711, 45.550926],
+          [-122.666714, 45.551134]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "35d3cfd7792857a82f1f1a7362213f17",
+        "percentage": 0.8,
+        "displayCount": "4,500",
+        "count": 4500
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.66672, 45.551738],
+          [-122.666723, 45.551974]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "703c0a2759043187043ddb31ad69d433",
+        "percentage": 0.8,
+        "displayCount": "4,500",
+        "count": 4500
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666714, 45.551134],
+          [-122.66672, 45.551738]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "fd7adbab12d745ce4af4056063e4b0e7",
+        "percentage": 0.8,
+        "displayCount": "4,500",
+        "count": 4500
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.66671, 45.55079],
+          [-122.666711, 45.550857]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "6cf0403f2a2260aab6799bfc236d4168",
+        "percentage": 0.8,
+        "displayCount": "4,600",
+        "count": 4600
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666738, 45.534371],
+          [-122.666738, 45.534415],
+          [-122.666739, 45.534449],
+          [-122.666738, 45.53465],
+          [-122.666737, 45.535023],
+          [-122.666736, 45.535074],
+          [-122.666736, 45.535106]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "9b3185112cc55721a7241d9441627cb3",
+        "percentage": 0.8,
+        "displayCount": "4,800",
+        "count": 4800
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666709, 45.550712],
+          [-122.66671, 45.55079]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "b22e99cb330a2eb79aed149c4ef1cffa",
+        "percentage": 0.8,
+        "displayCount": "4,800",
+        "count": 4800
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.665779, 45.5307],
+          [-122.66578, 45.530673],
+          [-122.665795, 45.530613],
+          [-122.665805, 45.530568],
+          [-122.665813, 45.530503],
+          [-122.665813, 45.530471],
+          [-122.665813, 45.530429],
+          [-122.665813, 45.530404],
+          [-122.665804, 45.530368],
+          [-122.665786, 45.530334],
+          [-122.665778, 45.530294],
+          [-122.665779, 45.530253]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "31d346190f09d2eae31a10f5c1a9d93f",
+        "percentage": 0.8,
+        "displayCount": "4,900",
+        "count": 4900
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.665784, 45.529963],
+          [-122.665783, 45.529905],
+          [-122.665791, 45.529781],
+          [-122.665813, 45.529607],
+          [-122.665822, 45.529588],
+          [-122.665852, 45.529561],
+          [-122.665953, 45.529477]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "beeb842506c1219d22afc3a9546d8b7b",
+        "percentage": 0.8,
+        "displayCount": "4,900",
+        "count": 4900
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666736, 45.535106],
+          [-122.666714, 45.535149],
+          [-122.666672, 45.53523],
+          [-122.666674, 45.535359]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "0432393e5d8883e595eb68614b3c6b3c",
+        "percentage": 0.9,
+        "displayCount": "5,100",
+        "count": 5100
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666666, 45.538047],
+          [-122.666666, 45.538108]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "7b8f31917649ccf8c0fd621511b17189",
+        "percentage": 0.9,
+        "displayCount": "5,100",
+        "count": 5100
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666699, 45.549531],
+          [-122.666699, 45.549605],
+          [-122.6667, 45.549663],
+          [-122.666709, 45.550712]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "16d948fde6137383f46faa1b5ed655c7",
+        "percentage": 0.9,
+        "displayCount": "5,200",
+        "count": 5200
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666689, 45.548984],
+          [-122.666689, 45.549086]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "293eedb96b14caea77e3408dba95c260",
+        "percentage": 0.9,
+        "displayCount": "5,200",
+        "count": 5200
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666689, 45.549086],
+          [-122.666693, 45.549235],
+          [-122.666697, 45.549461],
+          [-122.666699, 45.549531]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "2b060072e48c01c31e043afa33ee7e76",
+        "percentage": 0.9,
+        "displayCount": "5,300",
+        "count": 5300
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666664, 45.537075],
+          [-122.666666, 45.537979],
+          [-122.666666, 45.538047]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "2c3db4b0e304b0846dfec78bf891627d",
+        "percentage": 0.9,
+        "displayCount": "5,300",
+        "count": 5300
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666674, 45.535359],
+          [-122.666689, 45.535624],
+          [-122.666693, 45.536448],
+          [-122.666693, 45.536515]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "9268063ffbf039024faafcef70548d15",
+        "percentage": 0.9,
+        "displayCount": "5,300",
+        "count": 5300
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666668, 45.540436],
+          [-122.666675, 45.540547]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "c0739558546dde68db20dddc2e8b320e",
+        "percentage": 0.9,
+        "displayCount": "5,300",
+        "count": 5300
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666693, 45.536515],
+          [-122.66669, 45.536582],
+          [-122.666664, 45.537075]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "24dac721aa019b882d9a4b296fe47547",
+        "percentage": 0.9,
+        "displayCount": "5,400",
+        "count": 5400
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666667, 45.539277],
+          [-122.666667, 45.53952],
+          [-122.666667, 45.53959]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "45716e74940d568f2b6465d9c0e2c60a",
+        "percentage": 0.9,
+        "displayCount": "5,400",
+        "count": 5400
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666666, 45.539001],
+          [-122.666667, 45.539277]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "58af1dc106edc14483fca6df3d045a12",
+        "percentage": 0.9,
+        "displayCount": "5,400",
+        "count": 5400
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666657, 45.539966],
+          [-122.666657, 45.540332],
+          [-122.666668, 45.540436]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "67084f4fada7400301edca2ef84a6d32",
+        "percentage": 0.9,
+        "displayCount": "5,400",
+        "count": 5400
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666667, 45.53959],
+          [-122.666657, 45.539966]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "97d74e7c67fe2eb36deb165d27368a78",
+        "percentage": 0.9,
+        "displayCount": "5,400",
+        "count": 5400
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666661, 45.548262],
+          [-122.666665, 45.54833],
+          [-122.666689, 45.548984]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "c8ff9538f0511389dff1c0105bf54d12",
+        "percentage": 0.9,
+        "displayCount": "5,400",
+        "count": 5400
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666675, 45.540547],
+          [-122.666679, 45.540911],
+          [-122.666677, 45.540981]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "c9e9b8323b3a97230329aec93e066157",
+        "percentage": 0.9,
+        "displayCount": "5,500",
+        "count": 5500
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666677, 45.540981],
+          [-122.666675, 45.541057]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "f1afc142895f08ac1d388e1789272397",
+        "percentage": 0.9,
+        "displayCount": "5,500",
+        "count": 5500
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666666, 45.538108],
+          [-122.666666, 45.539001]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "090c9e8899a13994acee3cc961ffa860",
+        "percentage": 1.0,
+        "displayCount": "5,600",
+        "count": 5600
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666631, 45.543886],
+          [-122.66663, 45.543926],
+          [-122.666628, 45.544212],
+          [-122.666634, 45.544526]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "96c9ef91d142cdc69168c6bd426654a9",
+        "percentage": 1.0,
+        "displayCount": "5,600",
+        "count": 5600
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666634, 45.544526],
+          [-122.666629, 45.544633]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "0a8b10d2a788b3294cdba79094614cc5",
+        "percentage": 1.0,
+        "displayCount": "5,700",
+        "count": 5700
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666629, 45.544633],
+          [-122.66663, 45.544683],
+          [-122.66663, 45.54471],
+          [-122.666631, 45.545055]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "3d136827c14c5e0bc08b431a25b5a75b",
+        "percentage": 1.0,
+        "displayCount": "5,700",
+        "count": 5700
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666631, 45.545055],
+          [-122.666632, 45.545288],
+          [-122.666633, 45.545355]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "60526eedbd303cbda453ee225724b147",
+        "percentage": 1.0,
+        "displayCount": "5,700",
+        "count": 5700
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666635, 45.543799],
+          [-122.666631, 45.543886]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "818bb652a28bfed07cab040d5e927da8",
+        "percentage": 1.0,
+        "displayCount": "5,700",
+        "count": 5700
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666635, 45.546071],
+          [-122.666639, 45.546138],
+          [-122.666659, 45.546432],
+          [-122.666678, 45.54672],
+          [-122.666678, 45.546789]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "aa676887a78b09226c0badbf89734a2a",
+        "percentage": 1.0,
+        "displayCount": "5,700",
+        "count": 5700
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666678, 45.546789],
+          [-122.666678, 45.546858],
+          [-122.666677, 45.547414],
+          [-122.666677, 45.547459]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "b02d549530d208ac65731058122626f0",
+        "percentage": 1.0,
+        "displayCount": "5,700",
+        "count": 5700
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666633, 45.545355],
+          [-122.666633, 45.545417],
+          [-122.666635, 45.546003],
+          [-122.666635, 45.546071]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "c69711e416006ec968740c9b00b5e3ac",
+        "percentage": 1.0,
+        "displayCount": "5,800",
+        "count": 5800
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666675, 45.541057],
+          [-122.666674, 45.54112],
+          [-122.666671, 45.541606]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "e265cbad55f9bac86621f651f9bd8f88",
+        "percentage": 1.0,
+        "displayCount": "5,800",
+        "count": 5800
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666671, 45.541898],
+          [-122.666672, 45.542314]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "e2e0868806564c2709c7176e0f8a0e87",
+        "percentage": 1.0,
+        "displayCount": "5,800",
+        "count": 5800
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666671, 45.541606],
+          [-122.666671, 45.541898]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "84737693563ef72982c53324e89e3208",
+        "percentage": 1.0,
+        "displayCount": "5,900",
+        "count": 5900
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666662, 45.543275],
+          [-122.66666, 45.543501],
+          [-122.666657, 45.543711],
+          [-122.666635, 45.543799]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "9c874ca5d5e9fd3fd6d26524208d7d27",
+        "percentage": 1.0,
+        "displayCount": "5,900",
+        "count": 5900
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666677, 45.547459],
+          [-122.666678, 45.547501]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "North Williams Avenue",
+        "geometryId": "a8a55b8dc7924645e85c201493b74708",
+        "percentage": 1.2,
+        "displayCount": "6,800",
+        "count": 6800
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-122.666678, 45.547501],
+          [-122.666671, 45.547846],
+          [-122.666656, 45.548015],
+          [-122.66666, 45.54819],
+          [-122.666661, 45.548262]
+        ]
+      }
+    }
+  ]
+}

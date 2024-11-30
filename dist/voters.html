@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Join local JSON data with vector tile geometries</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20yaHZoNzdiMGZ0NTJucHhxeGF0Z2R5ZCJ9.5jOwx5lc6_Jq67Rs1g1ojQ";
+      const map = new mapboxgl.Map({
+        container: "map",
+        // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+        style: "mapbox://styles/mapbox/light-v11",
+        center: [-77.07494115772653, 40.101713788658856],
+        zoom: 9.285904354299664,
+        bearing: 0,
+        pitch: 0,
+        hash: true,
+      });
+
+      const data = [
+        { numerical_voter_id: "4777505", ytv: "1", requested: "0", voted: "0" },
+        {
+          numerical_voter_id: "10326130",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "11146567",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "70544067",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100000121",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100000321",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100000921",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100002521",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100002721",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100002822",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100003021",
+          ytv: "0",
+          requested: "0",
+          voted: "1",
+        },
+        {
+          numerical_voter_id: "100003221",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100003521",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100003721",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100003921",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100004421",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100005021",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100005221",
+          ytv: "0",
+          requested: "0",
+          voted: "1",
+        },
+        {
+          numerical_voter_id: "100005421",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100005721",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100042428",
+          ytv: "0",
+          requested: "1",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100112621",
+          ytv: "0",
+          requested: "1",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100127221",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100134821",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100136221",
+          ytv: "0",
+          requested: "1",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100136521",
+          ytv: "0",
+          requested: "1",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100142421",
+          ytv: "0",
+          requested: "0",
+          voted: "1",
+        },
+        {
+          numerical_voter_id: "100150021",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100151321",
+          ytv: "0",
+          requested: "1",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100152121",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100155921",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100158521",
+          ytv: "0",
+          requested: "0",
+          voted: "1",
+        },
+        {
+          numerical_voter_id: "100161821",
+          ytv: "0",
+          requested: "0",
+          voted: "1",
+        },
+        {
+          numerical_voter_id: "100167621",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100182521",
+          ytv: "0",
+          requested: "0",
+          voted: "1",
+        },
+        {
+          numerical_voter_id: "100201621",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100203821",
+          ytv: "0",
+          requested: "1",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100210221",
+          ytv: "0",
+          requested: "1",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100210321",
+          ytv: "0",
+          requested: "1",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100210421",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100219721",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100224621",
+          ytv: "0",
+          requested: "0",
+          voted: "1",
+        },
+        {
+          numerical_voter_id: "100225921",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100229621",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100230721",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100231121",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100238521",
+          ytv: "0",
+          requested: "0",
+          voted: "1",
+        },
+        {
+          numerical_voter_id: "100240221",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100241921",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100245221",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100249621",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100250721",
+          ytv: "0",
+          requested: "0",
+          voted: "1",
+        },
+        {
+          numerical_voter_id: "100268921",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100270921",
+          ytv: "0",
+          requested: "1",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100273921",
+          ytv: "0",
+          requested: "0",
+          voted: "1",
+        },
+        {
+          numerical_voter_id: "100274621",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100282821",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100283121",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100283721",
+          ytv: "0",
+          requested: "1",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100285021",
+          ytv: "0",
+          requested: "0",
+          voted: "1",
+        },
+        {
+          numerical_voter_id: "100304121",
+          ytv: "0",
+          requested: "0",
+          voted: "1",
+        },
+        {
+          numerical_voter_id: "100305821",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100308521",
+          ytv: "0",
+          requested: "1",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100310521",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100312121",
+          ytv: "0",
+          requested: "1",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100313521",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100314721",
+          ytv: "0",
+          requested: "0",
+          voted: "1",
+        },
+        {
+          numerical_voter_id: "100318821",
+          ytv: "0",
+          requested: "0",
+          voted: "1",
+        },
+        {
+          numerical_voter_id: "100321721",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100324221",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100324867",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100325021",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100327721",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100331636",
+          ytv: "0",
+          requested: "1",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100338521",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100342321",
+          ytv: "0",
+          requested: "1",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100345521",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100351421",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100351621",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100353638",
+          ytv: "0",
+          requested: "1",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100353738",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100354021",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100355121",
+          ytv: "0",
+          requested: "0",
+          voted: "1",
+        },
+        {
+          numerical_voter_id: "100357721",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100360621",
+          ytv: "0",
+          requested: "1",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100364121",
+          ytv: "0",
+          requested: "1",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100365821",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100366221",
+          ytv: "0",
+          requested: "0",
+          voted: "1",
+        },
+        {
+          numerical_voter_id: "100368721",
+          ytv: "0",
+          requested: "0",
+          voted: "1",
+        },
+        {
+          numerical_voter_id: "100369721",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100369921",
+          ytv: "0",
+          requested: "0",
+          voted: "1",
+        },
+        {
+          numerical_voter_id: "100371221",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100371321",
+          ytv: "0",
+          requested: "1",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100372021",
+          ytv: "0",
+          requested: "0",
+          voted: "1",
+        },
+        {
+          numerical_voter_id: "100373621",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100374121",
+          ytv: "0",
+          requested: "1",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100376221",
+          ytv: "0",
+          requested: "1",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100378321",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100379667",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+        {
+          numerical_voter_id: "100380521",
+          ytv: "1",
+          requested: "0",
+          voted: "0",
+        },
+      ];
+      console.log(data);
+
+      map.on("load", () => {
+        map.addSource("voter-source", {
+          type: "vector",
+          url: "mapbox://grafa.4ydi4bp3",
+        });
+
+        const matchExpression = ["match", ["get", "numerical_voter_id"]];
+
+        // Calculate color values for each row based on values in the data
+        for (const row of data) {
+          // Convert the range of data values to a suitable color
+          // multiply [row["voted"]] by 255 to get the color value
+          const green = row["voted"] * 255;
+          const blue = row["requested"] * 255;
+          const red = row["ytv"] * 255;
+          const color = `rgb(${red}, ${green}, ${blue})`;
+          matchExpression.push(row["numerical_voter_id"], color);
+        }
+
+        // Last value is the default, used where there is no data
+        matchExpression.push("rgba(0, 0, 0, 0)");
+
+        map.addLayer({
+          id: "voter-join",
+          type: "circle",
+          source: "voter-source",
+          "source-layer": "voter-id-details",
+          paint: {
+            "circle-color": matchExpression,
+            "circle-radius": [
+              "interpolate",
+              ["linear"],
+              ["zoom"],
+              3,
+              5,
+              11,
+              12,
+            ],
+          },
+        });
+
+        // add a popop on click
+        const popup = new mapboxgl.Popup({
+          closeButton: false,
+          closeOnClick: true,
+        });
+        map.on("click", "voter-join", (e) => {
+          const coordinates = e.features[0].geometry.coordinates.slice();
+          // create a description where the numerical_voter_id in the data variable matches the feature's numerical_voter_id and displays the values from teh voter-join layer
+          const description =
+            "<h3>Voter ID: " +
+            e.features[0].properties.numerical_voter_id +
+            "</h3>" +
+            "<p>YTV: " +
+            e.features[0].properties.ytv +
+            "<p>Requested: " +
+            e.features[0].properties.requested +
+            "<p>Voted: " +
+            e.features[0].properties.voted +
+            "</p>" +
+            "<p>Full Name: </p>" +
+            e.features[0].properties.full_name +
+            "<p>Party Affiliation: </p>" +
+            e.features[0].properties.party_affiliation +
+            "<p>Birth date: </p>" +
+            e.features[0].properties.birth_date;
+
+          popup.setLngLat(coordinates).setHTML(description).addTo(map);
+        });
+      });
+    </script>
+  </body>
+</html>

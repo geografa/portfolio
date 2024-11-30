@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Live MTA Bus Positions</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@7/turf.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
+      const map = new mapboxgl.Map({
+        container: "map",
+        // style: "mapbox://styles/grafa/cm2j8r92p00o001poad6rcgx1",
+        style: "mapbox://styles/mapbox/light-v10",
+        center: [-73.94918451252114, 40.766370360271196],
+        zoom: 12.296732090632224,
+        bearing: 0,
+        pitch: 0,
+        hash: true,
+      });
+      // Fetch the GeoJSON from whatever linestring you have for now. Later, use an API to fetch the data.
+      async function fetchGeoJSON() {
+        const response = await fetch("./data/tcp/trips.geojson");
+        const data = await response.json();
+        return data;
+      }
+      map.on("load", async () => {
+        const lineData = await fetchGeoJSON();
+
+        map.addSource("path", {
+          type: "geojson",
+          data: lineData,
+        });
+        map.addLayer({
+          id: "path-layer",
+          type: "line",
+          source: "path",
+          layout: {
+            "line-join": "round",
+            "line-cap": "round",
+          },
+          paint: {
+            "line-color": "#3887be",
+            "line-width": 5,
+          },
+        });
+        // add an empty source for the buses
+        map.addSource("bus-source", {
+          type: "geojson",
+          data: {
+            type: "FeatureCollection",
+            features: [],
+          },
+        });
+        // Add the bus model (exported GLB from Spline)
+        map.addModel("bus-model", "./models/bus.glb");
+        map.addLayer({
+          id: "bus-layer",
+          type: "model",
+          source: "bus-source",
+          layout: {
+            "model-id": "bus-model",
+          },
+          paint: {
+            "model-scale": [25, 25, 25], // scale the bus model
+            "model-rotation": [0, 0, 0], // rotate the bus model
+            "model-translation": [0, 0, 0],
+          },
+        });
+        // create popup for bus information
+        const popup = new mapboxgl.Popup({
+          closeButton: false,
+          closeOnClick: true,
+        });
+
+        map.on("click", "bus-layer", (e) => {
+          const { id, line, destination, bearing } = e.features[0].properties;
+          const coordinates = e.features[0].geometry.coordinates.slice();
+          const busInfo = document.createElement("div");
+          busInfo.innerHTML = `
+            <h3>Bus ${id}</h3>
+            <p>Line: ${line}</p>
+            <p>Destination: ${destination}</p>
+            <p>Bearing: ${bearing}</p>
+          `;
+          popup.setLngLat(coordinates).setDOMContent(busInfo).addTo(map);
+        });
+
+        // Replace with your actual API key
+        const MTA_API_KEY = "2e3a2a47-da8b-401f-a290-47ca4145858f";
+        const BASE_URL =
+          "http://bustime.mta.info/api/siri/vehicle-monitoring.json";
+        // Parameters for the API request
+        const params = new URLSearchParams({
+          key: MTA_API_KEY,
+          VehicleMonitoringDetailLevel: "calls",
+          LineRef: "MTABC_Q102", // Replace with the desired bus line
+        });
+
+        const previousPositions = {};
+
+        async function updateBusLocations() {
+          try {
+            const response = await fetch(`${BASE_URL}?${params.toString()}`);
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            const features =
+              data.Siri.ServiceDelivery.VehicleMonitoringDelivery[0].VehicleActivity.map(
+                (vehicle) => {
+                  const { Longitude, Latitude } =
+                    vehicle.MonitoredVehicleJourney.VehicleLocation;
+                  const point = turf.point([Longitude, Latitude]);
+                  const snapped = turf.nearestPointOnLine(lineData, point);
+                  const vehicleId = vehicle.MonitoredVehicleJourney.VehicleRef;
+
+                  return {
+                    type: "Feature",
+                    geometry: snapped.geometry,
+                    properties: {
+                      id: vehicleId,
+                      line: vehicle.MonitoredVehicleJourney.PublishedLineName,
+                      destination:
+                        vehicle.MonitoredVehicleJourney.DestinationName,
+                      bearing: vehicle.MonitoredVehicleJourney.Bearing,
+                    },
+                  };
+                }
+              );
+            const snappedPoints = turf.nearestPointOnLine(
+              lineData,
+              features[0]
+            );
+            console.log(
+              "snappedPoints:",
+              snappedPoints.geometry.coordinates[0]
+            );
+            // check each vehicle's position and update the previous position if it has moved since the last update
+            features.forEach((feature) => {
+              previousPositions[feature.properties.id] = {
+                Longitude: feature.geometry.coordinates[0],
+                Latitude: feature.geometry.coordinates[1],
+              };
+            });
+
+            // if the bus has moved, alert the user
+            if (
+              snappedPoints.geometry.coordinates[0] !==
+                features[0].geometry.coordinates[0] &&
+              snappedPoints.geometry.coordinates[1] !==
+                features[0].geometry.coordinates[1]
+            ) {
+              console.log("Bus has moved!");
+            }
+
+            // if (
+            //   previousPositions.MTABC_7439 &&
+            //   previousPositions.MTABC_7439.Longitude !==
+            //     features[0].geometry.coordinates[0] &&
+            //   previousPositions.MTABC_7439.Latitude !==
+            //     features[0].geometry.coordinates[1]
+            // ) {
+            //   alert("Bus has moved!");
+            // }
+
+            // if current position is different as the previous position, create a line between the two points and animate the bus along the line (using the line distance) with a duration of 10 seconds
+            if (previousPositions) {
+              features.forEach((feature) => {
+                const previousPosition =
+                  previousPositions[feature.properties.id];
+                const previousPoint = turf.point([
+                  previousPosition.Longitude,
+                  previousPosition.Latitude,
+                ]);
+                const previousSnapped = turf.nearestPointOnLine(
+                  lineData,
+                  previousPoint
+                );
+                const distance = turf.distance(
+                  previousSnapped.geometry.coordinates,
+                  feature.geometry.coordinates
+                );
+                const duration = 10000;
+                map.setFeatureState(
+                  {
+                    source: "bus-source",
+                    id: feature.properties.id,
+                  },
+                  {
+                    duration,
+                    distance,
+                  }
+                );
+              });
+            }
+            map.getSource("bus-source").setData({
+              type: "FeatureCollection",
+              features,
+            });
+          } catch (error) {
+            console.error("Error:", error);
+          }
+        }
+        // Initial call to update bus locations
+        updateBusLocations();
+        // Update bus locations every 10 seconds
+        setInterval(updateBusLocations, 10000);
+      });
+    </script>
+  </body>
+</html>

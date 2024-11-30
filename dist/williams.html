@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Mississippi Street</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.8.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.8.0/mapbox-gl.js"></script>
+    <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+      .menu {
+        font-family: "Inter", sans-serif;
+        position: absolute;
+        background: rgba(36, 36, 36, 0.8);
+        padding: 20px;
+        color: #d3d3cb;
+        z-index: 1;
+      }
+      .menu-item {
+        cursor: pointer;
+        padding: 5px;
+      }
+      .menu-item:hover {
+        text-decoration: underline;
+        color: #a7d3a8;
+      }
+      /* selected menu item */
+      .menu-item.selected {
+        background: #23646a;
+        color: white;
+      }
+      /* popups */
+
+      .mapboxgl-popup {
+        max-width: 400px;
+        font: 12px/20px "Helvetica Neue", Arial, Helvetica, sans-serif;
+        padding-bottom: 10px;
+      }
+      .mapboxgl-popup,
+      img {
+        max-width: 100%;
+      }
+      .mapboxgl-popup-content {
+        border-radius: 10px;
+        color: #ffffff;
+        background: #23646a;
+      }
+      .mapboxgl-popup-content img {
+        background-color: rgba(255, 255, 255, 1);
+        /* max-width: 66px; */
+        position: relative;
+        left: 0px;
+        margin: 10px 0px;
+        border: solid 0.5px #e7e0d4;
+        border-radius: 10px;
+      }
+      .mapboxgl-popup-content a {
+        color: #ffffff;
+        line-height: 2em;
+      }
+      .mapboxgl-popup-content h2,
+      p {
+        margin-bottom: 5px;
+      }
+      .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
+        border-top-color: #23646a;
+      }
+      .mapboxgl-popup-anchor-top .mapboxgl-popup-tip {
+        border-bottom-color: #23646a;
+      }
+      .mapboxgl-popup-anchor-left .mapboxgl-popup-tip {
+        border-right-color: #23646a;
+      }
+      .mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
+        border-left-color: #23646a;
+      }
+      .mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip {
+        border-bottom-color: #23646a;
+      }
+      .mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip {
+        border-bottom-color: #23646a;
+      }
+      .mapboxgl-popup-anchor-bottom-left .mapboxgl-popup-tip {
+        border-top-color: #23646a;
+      }
+      .mapboxgl-popup-anchor-bottom-right .mapboxgl-popup-tip {
+        border-top-color: #23646a;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="menu">
+      <div class="menu-item" id="0">North Path</div>
+      <div class="menu-item" id="1">Art Path</div>
+      <div class="menu-item" id="2">Historical Path</div>
+      <div class="menu-item" id="3">Park Path</div>
+      <div class="menu-item" id="4">Nature Path</div>
+    </div>
+    <div id="map"></div>
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
+      const map = new mapboxgl.Map({
+        container: "map", // container ID
+        // style: "mapbox://styles/mapbox/light-v11", // style URL
+        center: [-122.675818, 45.55119],
+        zoom: 16,
+        bearing: -90,
+        pitch: 0,
+        hash: true,
+      });
+
+      const fetchPOIs = () => {
+        return fetch("./data/tcp/RI-POI.geojson")
+          .then((response) => response.json())
+          .then((data) => {
+            poiData = data;
+          });
+      };
+      const fetchPaths = () => {
+        return fetch("./data/tcp/RI-Paths.geojson")
+          .then((response) => response.json())
+          .then((data) => {
+            pathData = data;
+          });
+      };
+
+      map.on("load", () => {
+        fetchPOIs().then(() => {
+          map.addSource("poi-source", {
+            type: "geojson",
+            data: poiData,
+          });
+          map.addLayer({
+            id: "poi-layer",
+            type: "circle",
+            source: "poi-source",
+            paint: {
+              "circle-radius": [
+                "case",
+                ["boolean", ["feature-state", "selected"], false],
+                6, // Radius when selected
+                4, // Default radius
+              ],
+              "circle-color": [
+                "case",
+                ["boolean", ["feature-state", "selected"], false],
+                "#23646a",
+                "#a7d3a8",
+              ],
+              "circle-stroke-width": 2,
+              "circle-stroke-color": "#fff",
+            },
+          });
+        });
+        fetchPaths().then(() => {
+          map.addSource("line-source", {
+            type: "geojson",
+            data: pathData,
+          });
+          map.addLayer({
+            id: "line-layer",
+            type: "line",
+            source: "line-source",
+            layout: {
+              "line-join": "round",
+              "line-cap": "butt",
+            },
+            paint: {
+              "line-color":
+                // use the 'color' property to style the line
+                ["get", "color"],
+
+              // [
+              //   "case",
+              //   ["boolean", ["feature-state", "selected"], false],
+              //   "#a7d3a8", // Color when selected
+              //   "#333", // Default color
+              // ],
+              "line-width": [
+                "case",
+                ["boolean", ["feature-state", "selected"], false],
+                4, // Width when selected
+                1, // Default width
+              ],
+              "line-opacity": [
+                "case",
+                ["boolean", ["feature-state", "selected"], false],
+                1, // Opacity when selected
+                0.2, // Default opacity
+              ],
+              "line-dasharray": [2, 1],
+            },
+          });
+        });
+
+        // Function to add event listeners to menu items
+        function addMenuListeners() {
+          const menuItems = document.querySelectorAll(".menu-item");
+          menuItems.forEach((item) => {
+            item.addEventListener("click", (e) => {
+              const selectedPath = e.target.id;
+
+              // Check if the clicked menu item is already selected
+              if (e.target.classList.contains("selected")) {
+                // Remove the 'selected' class from the clicked menu item
+                e.target.classList.remove("selected");
+
+                // Reset the feature state for all paths
+                const allPaths = map.queryRenderedFeatures({
+                  layers: ["line-layer"],
+                });
+                allPaths.forEach((path) => {
+                  map.setFeatureState(
+                    {
+                      source: "line-source",
+                      id: path.id,
+                    },
+                    {
+                      selected: false,
+                    }
+                  );
+                });
+
+                // Reset the feature state for all POIs
+                const allPOIs = map.queryRenderedFeatures({
+                  layers: ["poi-layer"],
+                });
+                allPOIs.forEach((poi) => {
+                  map.setFeatureState(
+                    {
+                      source: "poi-source",
+                      id: poi.id,
+                    },
+                    {
+                      selected: false,
+                    }
+                  );
+                });
+
+                console.log(`Deselected path: ${selectedPath}`);
+              } else {
+                // Remove the 'selected' class from all menu items
+                menuItems.forEach((item) => {
+                  item.classList.remove("selected");
+                });
+
+                // Add the 'selected' class to the clicked menu item
+                e.target.classList.add("selected");
+
+                // Perform actions based on the selected path
+                console.log(`Selected path: ${selectedPath}`);
+
+                // Highlight the selected path on the map
+                highlightPath(selectedPath);
+              }
+            });
+          });
+        }
+
+        // Function to highlight the selected path on the map
+        function highlightPath(pathId) {
+          map.setFeatureState(
+            {
+              source: "line-source",
+              id: pathId,
+            },
+            {
+              selected: true,
+            }
+          );
+          console.log(`Highlighted path: ${pathId}`);
+          // Reset the feature state for all other paths
+          const allPaths = map.queryRenderedFeatures({
+            layers: ["line-layer"],
+          });
+          allPaths.forEach((path) => {
+            if (String(path.id) !== String(pathId)) {
+              map.setFeatureState(
+                {
+                  source: "line-source",
+                  id: path.id,
+                },
+                {
+                  selected: false,
+                }
+              );
+            }
+          });
+          // Select POIs within a certain distance from the selected path
+          selectPOIs(pathId);
+          // Fit the map to the bounds of the selected path
+          const line = map
+            .querySourceFeatures("line-source")
+            .find((feature) => String(feature.id) === String(pathId));
+          const bounds = new mapboxgl.LngLatBounds();
+          line.geometry.coordinates.forEach((coord) => {
+            bounds.extend(coord);
+          });
+          // map.fitBounds(bounds, {
+          //   padding: 100,
+          //   zoom: 15,
+          // });
+        }
+        // Function to select POIs within a certain distance from the selected path
+        function selectPOIs(pathId) {
+          // Get the line feature from the source
+          const lineSource = map.getSource("line-source");
+          const lineData = lineSource._data; // Access the GeoJSON data directly
+          const line = lineData.features.find(
+            (feature) => String(feature.id) === String(pathId)
+          );
+
+          if (!line) return;
+
+          // Get the POIs from the source
+          const poiSource = map.getSource("poi-source");
+          const poiData = poiSource._data; // Access the GeoJSON data directly
+
+          poiData.features.forEach((poi) => {
+            const poiPoint = poi.geometry.coordinates;
+            const nearestPoint = turf.nearestPointOnLine(line, poiPoint, {
+              units: "meters",
+            });
+
+            if (nearestPoint.properties.dist < 50) {
+              map.setFeatureState(
+                {
+                  source: "poi-source",
+                  id: poi.id,
+                },
+                {
+                  selected: true,
+                }
+              );
+              console.log(
+                JSON.stringify({
+                  poi: poi.properties.name,
+                  distance: nearestPoint.properties.dist,
+                })
+              );
+            } else {
+              map.setFeatureState(
+                {
+                  source: "poi-source",
+                  id: poi.id,
+                },
+                {
+                  selected: false,
+                }
+              );
+            }
+          });
+
+          // Update the source data to trigger a re-render
+          poiSource.setData(poiData);
+        }
+        addMenuListeners();
+      });
+      // make a popup appear when a user clicks on a POI marker and display all of the attributes
+      const popup = new mapboxgl.Popup({
+        offset: 25,
+        closeButton: false,
+        closeOnClick: true,
+      });
+      map.on("mouseenter", "poi-layer", (e) => {
+        const poi = e.features[0];
+
+        popup
+          .addTo(map)
+          .setLngLat(poi.geometry.coordinates)
+          .setHTML(
+            `<h3>${poi.properties.place_name}</h3><p>${poi.properties.description}</p>`
+          );
+        map.getCanvas().style.cursor = "pointer";
+      });
+      // Change the cursor to a pointer when the mouse is over the POI layer.
+      map.on("mouseleave", "poi-layer", () => {
+        map.getCanvas().style.cursor = "";
+        popup.remove();
+      });
+    </script>
+  </body>
+</html>
