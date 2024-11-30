@@ -112,7 +112,7 @@
               source: "timezone-source",
               paint: {
                 "fill-color": "#088",
-                "fill-outline-color": "#000",
+                "fill-outxe-color": "#000",
                 // use feature state to show a tooltip when the user hovers over a timezone
                 // create a zoom expression to make opacity 0.7 at z3 and 0.1 at z10
                 "fill-opacity": [
@@ -145,6 +145,8 @@
                 "line-color": "#3a9e9e",
                 "line-width": 1,
                 "line-opacity": 0.5,
+              },
+              layout: {
                 "line-join": "round",
                 "line-cap": "round",
               },
@@ -162,6 +164,7 @@
       // create an event listener for the geocoder result and set the targetTime div to the timezone of geocoded location
       geocoder.on("result", (e) => {
         const currentTime = moment();
+        console.log(currentTime);
         // check if a timezone is already highlighted and remove the highlight
         map.setFilter("timezone-highlighted", ["in", "name", ""]);
         const coords = e.result.geometry.coordinates;

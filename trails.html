@@ -8,10 +8,10 @@
       content="initial-scale=1,maximum-scale=1,user-scalable=no"
     />
     <link
-      href="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.css"
+      href="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.css"
       rel="stylesheet"
     />
-    <script src="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@turf/turf@7/turf.min.js"></script>
     <style>
       body {
@@ -38,7 +38,7 @@
         z-index: 1;
       }
       @media (max-width: 600px) {
-        /*         make the legend a modal */
+        /*make the legend a modal */
         #legend {
           position: fixed;
           top: 0;
@@ -74,14 +74,12 @@
         user-select: none;
         /* scroll overflow */
       }
-
       /* Hide the browser's default radio button */
       .container input {
         position: absolute;
         opacity: 0;
         cursor: pointer;
       }
-
       /* Create a custom radio button */
       .checkmark {
         position: absolute;
@@ -92,29 +90,24 @@
         background-color: #ddd;
         border-radius: 50%;
       }
-
       /* On mouse-over, add a grey background color */
       .container:hover input ~ .checkmark {
         background-color: #939393;
       }
-
       /* When the radio button is checked, add a blue background */
       .container input:checked ~ .checkmark {
         background-color: #2196f3;
       }
-
       /* Create the indicator (the dot/circle - hidden when not checked) */
       .checkmark:after {
         content: "";
         position: absolute;
         display: none;
       }
-
       /* Show the indicator (dot/circle) when checked */
       .container input:checked ~ .checkmark:after {
         display: block;
       }
-
       /* Style the indicator (dot/circle) */
       .container .checkmark:after {
         top: 9px;
@@ -127,40 +120,14 @@
     </style>
   </head>
   <body>
-    <script id="__bs_script__">
-      //<![CDATA[
-      (function () {
-        try {
-          var script = document.createElement("script");
-          if ("async") {
-            script.async = true;
-          }
-          script.src = "/browser-sync/browser-sync-client.js?v=3.0.2".replace(
-            "HOST",
-            location.hostname
-          );
-          if (document.body) {
-            document.body.appendChild(script);
-          } else if (document.head) {
-            document.head.appendChild(script);
-          }
-        } catch (e) {
-          console.error("Browsersync: could not append script tag", e);
-        }
-      })();
-      //]]>
-    </script>
-
-    <!--  inactive legend for demo purposes only  -->
     <div id="legend">
       <h2>Trails of Washington Park</h2>
       <h3>Portland Oregon</h3>
     </div>
     <div id="map"></div>
-
     <script>
       mapboxgl.accessToken =
-        "pk.eyJ1IjoiZmlyZWZseWhlYWx0aCIsImEiOiJjbHE1ZXAwNDUwMHhlMmxqc2tmMGV6cjRtIn0.dTlIXwpuOO1XJaK8tNihPw";
+        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
       const map = new mapboxgl.Map({
         container: "map",
         // Choose from Mapbox's core styles, or make your own style with Mapbox Studio

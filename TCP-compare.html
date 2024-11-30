@@ -64,21 +64,19 @@
         container: "TCP",
         // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
         style: "mapbox://styles/grafa/cm2kpsiex001n01q1f4t6fzxi",
-        center: [-73.93871400252102, 40.770872069981635],
-        zoom: 15.151757812416122,
+        center: [-74, 40.77],
+        zoom: 15,
         bearing: 35,
         pitch: 0,
-        hash: true,
       });
 
       const mapboxMap = new mapboxgl.Map({
         container: "mapbox",
         style: "mapbox://styles/grafa/cm2j8r92p00o001poad6rcgx1",
-        center: [-73.93871400252102, 40.770872069981635],
-        zoom: 15.151757812416122,
+        center: [-74, 40.77],
+        zoom: 15,
         bearing: 35,
         pitch: 0,
-        hash: true,
       });
 
       // create a GeoJSON point at -73.9877250694322, 40.75628141310625
@@ -116,9 +114,130 @@
           },
           paint: {
             "model-scale": [37.4, 37.4, 37.4],
-            "model-rotation": [0, 0, 35],
+            "model-rotation": [0, 0, 34],
             // "model-translation": [0, 0, 10],
             // "model-emissive-strength": 1,
+          },
+        });
+      });
+
+      const lighthouse = {
+        type: "FeatureCollection",
+        features: [
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [-73.94018294138814, 40.772842357109596],
+            },
+            properties: {},
+            id: 0,
+          },
+        ],
+      };
+
+      // fetch the ri_trees.geojson from ./data/tcp/ri_trees.geojson
+      const getTrees = async () => {
+        const response = await fetch("./data/tcp/ri_trees.geojson");
+        const data = await response.json();
+        // get the count of the features in the GeoJSON
+        console.log(data.features.length);
+        return data;
+      };
+
+      mapboxMap.on("load", () => {
+        getTrees().then((data) => {
+          // add tree model source
+          mapboxMap.addSource("tree-model-source", {
+            type: "geojson",
+            data: data,
+          });
+          mapboxMap.addModel("tree_model", "./models/tree-deciduous.glb");
+          mapboxMap.addLayer({
+            id: "tree-model-layer",
+            type: "model",
+            source: "tree-model-source",
+            layout: {
+              "model-id": "tree_model",
+            },
+            paint: {
+              "model-scale": [1, 1, 1],
+              "model-rotation": [0, 0, 0],
+              "model-emissive-strength": 0.1,
+            },
+          });
+        });
+
+        mapboxMap.setConfigProperty("basemap", "lightPreset", "day");
+        // Add a directional light
+        mapboxMap.setLights([
+          {
+            id: "sun_light",
+            type: "directional",
+            properties: {
+              color: "rgba(255.0, 255, 255, 1.0)",
+              intensity: 0.2,
+              direction: [90.0, 40.0],
+              "cast-shadows": true,
+              "shadow-intensity": 1,
+            },
+          },
+        ]);
+        mapboxMap.addSource("eraser", {
+          type: "geojson",
+          data: {
+            type: "FeatureCollection",
+            features: [
+              {
+                type: "Feature",
+                properties: {},
+                geometry: {
+                  coordinates: [
+                    [
+                      [-73.94022837812295, 40.77287184858454],
+                      [-73.94022837812295, 40.77280639744333],
+                      [-73.94013056617861, 40.77280639744333],
+                      [-73.94013056617861, 40.77287184858454],
+                      [-73.94022837812295, 40.77287184858454],
+                    ],
+                  ],
+                  type: "Polygon",
+                },
+              },
+            ],
+          },
+        });
+        mapboxMap.addLayer({
+          id: "eraser",
+          type: "clip",
+          source: "eraser",
+          layout: {
+            "clip-layer-types": ["symbol", "model"],
+          },
+        });
+        // add a model layer to the map
+        mapboxMap.addSource("model-source", {
+          type: "geojson",
+          data: lighthouse,
+        });
+
+        // I see that a network request is made to this URL.
+        mapboxMap.addModel(
+          "lh_model",
+          "./models/roosevelt_island_lighthouse.glb"
+        );
+
+        mapboxMap.addLayer({
+          id: "lh-model-layer",
+          type: "model",
+          source: "model-source",
+          layout: {
+            "model-id": "lh_model",
+          },
+          paint: {
+            "model-scale": [100, 100, 100],
+            "model-rotation": [0, 0, 0],
+            "model-emissive-strength": 0.1,
           },
         });
       });
@@ -128,7 +247,7 @@
 
       const map = new mapboxgl.Compare(TCPMap, mapboxMap, container, {
         // Set this to enable comparing two maps by mouse movement:
-        // mousemove: true
+        // mousemove: true,
       });
     </script>
   </body>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Display a map on a webpage</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+      #sidebar {
+        position: absolute;
+        z-index: 1;
+        background: #333;
+        opacity: 0.8;
+        padding: 0.75em;
+        width: 30%;
+      }
+      #sidebar p {
+        font-family: "Helvetica Neue", "Arial Narrow", Arial, sans-serif;
+        color: #fff;
+      }
+      #sidebar a {
+        color: rgb(232, 249, 47);
+      }
+      .location-input {
+        width: 80px;
+        padding: 0.5em;
+        margin: 0.5em 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="sidebar">
+      <p>Routes</p>
+      <button id="createRouteButton" style="display: none">Create Route</button>
+    </div>
+    <div id="map"></div>
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
+      const map = new mapboxgl.Map({
+        container: "map", // container ID
+        style: "mapbox://styles/mapbox/light-v11", // style URL
+        center: [-122.65640379807041, 45.53316039686476],
+        zoom: 13.298084073693808,
+        bearing: 0,
+        pitch: 0,
+      });
+
+      //   const fetchCustomData = () => {
+      //     return fetch(
+      //       "./data/cykel/selected_pdx-routes-data-for-all-vehicles-in-2024-Q3.geojson"
+      //     )
+      //       .then((response) => response.json())
+      //       .then((data) => {
+      //         customData = data;
+      //       });
+      //   };
+
+      const customData = {
+        type: "FeatureCollection",
+        features: [
+          {
+            type: "Feature",
+            properties: {},
+            geometry: {
+              coordinates: [],
+              type: "LineString",
+            },
+          },
+        ],
+      };
+      map.on("load", () => {
+        map.addSource("custom-data", {
+          type: "geojson",
+          data: customData,
+        });
+        map.addLayer({
+          id: "custom-data",
+          type: "line",
+          source: "custom-data",
+          layout: {
+            "line-join": "round",
+            "line-cap": "round",
+          },
+          paint: {
+            "line-color": "magenta",
+            "line-width": 2,
+          },
+        });
+      });
+      // create a marker variable to store the marker
+      let marker;
+      const markerArray = [];
+
+      // create a function that listens for a click event on the map and returns the coordinates in the console
+      map.on("click", (e) => {
+        const marker = // add a marker with its corresponding number
+          new mapboxgl.Marker({ color: "red", draggable: true, text: "1" })
+            .setLngLat(e.lngLat)
+            .addTo(map);
+
+        markerArray.push(marker);
+
+        // create a new input element and set the value to the coordinates of the click event
+        let input = document.createElement("input");
+        input.value = JSON.stringify(markerArray.length - 1);
+        input.id = JSON.stringify(markerArray.length - 1);
+        input.className = "location-input";
+
+        // append the input element to the sidebar
+        document.getElementById("sidebar").appendChild(input);
+
+        // add a small 'x' next to the input element that when clicked, removes the input element and the marker from the map and the markerArray
+        let removeButton = document.createElement("button");
+        removeButton.innerHTML = "Remove";
+        removeButton.onclick = () => {
+          const index = parseInt(input.id);
+          // remove the marker from the map
+          markerArray[index].remove();
+          // remove the marker from the array
+          markerArray.splice(index, 1);
+          // remove the input and button elements
+          input.remove();
+          removeButton.remove();
+          // update the IDs of the remaining markers and inputs
+          for (let i = index; i < markerArray.length; i++) {
+            document.getElementById(i + 1).id = i;
+            document.getElementById(i).value = i;
+          }
+          console.log(markerArray);
+        };
+        document.getElementById("sidebar").appendChild(removeButton);
+        if (markerArray.length > 1) {
+          document.getElementById("createRouteButton").style.display = "block";
+        }
+      });
+
+      //   allow the markers to be draggable and update the coordinates of the marker when it is dragged to a new location
+
+      createRouteButton.onclick = () => {
+        const coordinates = markerArray.map((marker) => marker.getLngLat());
+        // if two or more markers exist, fetch the route data from the Mapbox Directions API else return
+        if (coordinates.length < 2) {
+          console.log("Please add at least two markers to create a route");
+          return;
+        }
+        const coordinatesString = coordinates
+          .map((coordinate) => `${coordinate.lng},${coordinate.lat}`)
+          .join(";");
+        fetch(
+          `https://api.mapbox.com/directions/v5/mapbox/cycling/${coordinatesString}?geometries=geojson&access_token=${mapboxgl.accessToken}`
+        )
+          .then((response) => response.json())
+          .then((data) =>
+            // if the source exists, use setData to update the source, otherwise use addSource to add the source
+            map.getSource("custom-data")
+              ? map.getSource("custom-data").setData(data.routes[0].geometry)
+              : map.addSource("custom-data", {
+                  type: "geojson",
+                  data: data.routes[0].geometry,
+                })
+          );
+      };
+    </script>
+  </body>
+</html>

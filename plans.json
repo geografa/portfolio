@@ -1,0 +1,64 @@
+{
+  "plans": [
+    {
+      "id": 0,
+      "name": "Free",
+      "price": 0,
+      "currency": "USD",
+      "duration": 30,
+      "feature_flags": {
+        "advanced_filtering": false,
+        "all_48_lines": false,
+        "detailed_location_info": false,
+        "description": "Free plan for 30 days",
+        "email_support": false,
+        "free_trial": true
+      }
+    },
+    {
+      "id": 1,
+      "name": "Basic",
+      "price": 10,
+      "currency": "USD",
+      "duration": 30,
+      "feature_flags": {
+        "advanced_filtering": true,
+        "all_48_lines": true,
+        "detailed_location_info": false,
+        "description": "Basic plan for 30 days",
+        "email_support": true,
+        "free_trial": true
+      }
+    },
+    {
+      "id": 2,
+      "name": "Pro",
+      "price": 20,
+      "currency": "USD",
+      "duration": 30,
+      "feature_flags": {
+        "advanced_filtering": true,
+        "all_48_lines": true,
+        "detailed_location_info": true,
+        "description": "Pro plan for 30 days",
+        "email_support": true,
+        "free_trial": true
+      }
+    },
+    {
+      "id": 3,
+      "name": "Enterprise",
+      "price": 30,
+      "currency": "USD",
+      "duration": 30,
+      "feature_flags": {
+        "advanced_filtering": true,
+        "all_48_lines": true,
+        "detailed_location_info": true,
+        "description": "Enterprise plan for 30 days",
+        "email_support": true,
+        "free_trial": true
+      }
+    }
+  ]
+}

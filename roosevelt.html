@@ -49,7 +49,7 @@
 
       // Fetch the GeoJSON from whatever linestring you have for now. Later, use an API to fetch the data.
       async function fetchGeoJSON() {
-        const response = await fetch("./data/roosevelt.geojson");
+        const response = await fetch("./data/tcp/q102_.geojson");
         const data = await response.json();
         return data;
       }
