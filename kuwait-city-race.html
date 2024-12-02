@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Display a map on a webpage</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+      #style-switcher {
+        position: absolute;
+        font-family: Arial, sans-serif;
+        top: 10px;
+        right: 10px;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <div id="style-switcher">
+      <label for="style-select">Map Style:</label>
+      <select id="style-select">
+        <option value="mapbox://styles/grafa/cjk3kdva70j8z2so2ggsxonwi">
+          Runner
+        </option>
+        <option value="mapbox://styles/mapbox/satellite-v9">Satellite</option>
+        <option value="mapbox://styles/mapbox/light-v10">Light</option>
+        <option value="mapbox://styles/mapbox/dark-v10">Dark</option>
+      </select>
+    </div>
+
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
+      const map = new mapboxgl.Map({
+        container: "map", // container ID
+        // style: "mapbox://styles/mapbox/light-v11", // style URL
+        center: [47.979115, 29.379643],
+        zoom: 13,
+        bearing: 0,
+        pitch: 0,
+      });
+
+      const fetchCustomData = () => {
+        const urls = [
+          "./data/kuwait/4k.geojson",
+          "./data/kuwait/10k.geojson",
+          "./data/kuwait/42k.geojson",
+        ];
+
+        const fetchPromises = urls.map((url) =>
+          fetch(url).then((response) => response.json())
+        );
+        console.log(fetchPromises);
+
+        return Promise.all(fetchPromises);
+      };
+      map.on("load", () => {
+        fetchCustomData().then((data) => {
+          const [geojson1, geojson2, geojson3] = data;
+          map.addSource("custom-data-1", {
+            type: "geojson",
+            data: geojson1,
+          });
+          map.addLayer({
+            id: "custom-layer-1",
+            type: "line",
+            source: "custom-data-1",
+            layout: {
+              "line-join": "round",
+              "line-cap": "round",
+            },
+            paint: {
+              "line-color": "blue",
+              "line-width": 8,
+              "line-offset": 4,
+              "line-opacity": 0.6,
+            },
+          });
+          map.addSource("custom-data-2", {
+            type: "geojson",
+            data: geojson2,
+          });
+          map.addLayer({
+            id: "custom-layer-2",
+            type: "line",
+            source: "custom-data-2",
+            layout: {
+              "line-join": "round",
+              "line-cap": "round",
+            },
+            paint: {
+              "line-color": "red",
+              "line-width": 8,
+              "line-offset": 4,
+              "line-opacity": 0.6,
+            },
+          });
+
+          map.addSource("custom-data-3", {
+            type: "geojson",
+            data: geojson3,
+          });
+          map.addLayer({
+            id: "custom-layer-3",
+            type: "line",
+            source: "custom-data-3",
+            layout: {
+              "line-join": "round",
+              "line-cap": "round",
+            },
+            paint: {
+              "line-color": "green",
+              "line-width": 8,
+              "line-offset": -4,
+              "line-opacity": 0.6,
+            },
+          });
+        });
+      });
+      // Style switcher
+      document
+        .getElementById("style-select")
+        .addEventListener("change", (event) => {
+          const selectedStyle = event.target.value;
+          map.setStyle(selectedStyle);
+
+          // Re-add the custom layers after the style has been changed
+          map.on("style.load", () => {
+            fetchCustomData().then((data) => {
+              const [geojson1, geojson2, geojson3] = data;
+
+              map.addSource("custom-data-1", {
+                type: "geojson",
+                data: geojson1,
+              });
+              map.addLayer({
+                id: "custom-layer-1",
+                type: "line",
+                source: "custom-data-1",
+                layout: {
+                  "line-join": "round",
+                  "line-cap": "round",
+                },
+                paint: {
+                  "line-color": "blue",
+                  "line-width": 8,
+                },
+              });
+
+              map.addSource("custom-data-2", {
+                type: "geojson",
+                data: geojson2,
+              });
+              map.addLayer({
+                id: "custom-layer-2",
+                type: "line",
+                source: "custom-data-2",
+                layout: {
+                  "line-join": "round",
+                  "line-cap": "round",
+                },
+                paint: {
+                  "line-color": "#FF0000",
+                  "line-width": 4,
+                },
+              });
+
+              map.addSource("custom-data-3", {
+                type: "geojson",
+                data: geojson3,
+              });
+              map.addLayer({
+                id: "custom-layer-3",
+                type: "line",
+                source: "custom-data-3",
+                layout: {
+                  "line-join": "round",
+                  "line-cap": "round",
+                },
+                paint: {
+                  "line-color": "green",
+                  "line-width": 8,
+                  "line-offset": -4,
+                  "line-opacity": 0.6,
+                },
+              });
+            });
+          });
+        });
+    </script>
+  </body>
+</html>
