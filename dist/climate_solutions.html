@@ -28,16 +28,19 @@
       }
       .footer {
         position: absolute;
-        height: 40%;
-        width: 100%;
+        height: 100vh;
         bottom: 0;
-        left: 0;
-        overflow: hidden;
+        /* left: 0; */
+        /* overflow: hidden; */
+        width: 30%;
+        z-index: 1;
+        overflow-y: scroll;
+        backdrop-filter: blur(11px);
       }
 
       .map {
         position: absolute;
-        height: 60%;
+        height: 100%;
         width: 100%;
       }
 
@@ -50,19 +53,16 @@
         color: #101010;
       }
 
-      .header {
-        position: absolute;
+      .heading-title {
+        position: relative;
         z-index: 1;
         text-align: center;
-        font-family: "Geologica", sans-serif;
-        line-height: 60px;
         padding: 0 0px;
         color: #eaff00;
         font-family: "Geologica", sans-serif;
         font-size: 1.2em;
         font-weight: 800;
-        /* margin-left: 16px; */
-        line-height: 0.5em;
+        line-height: 1.75em;
         width: 100%;
       }
 
@@ -73,15 +73,17 @@
         padding: 0 10px;
         background-color: #333;
         color: #fff;
-        position: relative;
-        width: 100%;
-        height: fit-content;
+        /* position: fixed; */
+        /* width: 37%; */
+        /* height: fit-content; */
       }
 
       .listings {
-        height: 80vh;
+        height: 93vh;
+        /* top: 10px; */
         overflow: auto;
-        padding-bottom: 0;
+        /* padding-bottom: 27px; */
+        backdrop-filter: blur(11px);
       }
 
       .listings .item {
@@ -97,7 +99,7 @@
 
       .listings .item .title {
         display: block;
-        color: #03094d;
+        color: #f8ffa5;
         font-weight: 700;
       }
 
@@ -107,11 +109,11 @@
 
       .listings .item.active .title,
       .listings .item .title:hover {
-        color: #3aa6e0;
+        color: #eaff01;
       }
 
       .listings .item.active {
-        background-color: #f8f8f8;
+        background-color: rgba(0, 0, 0, 0.6);
       }
 
       ::-webkit-scrollbar {
@@ -126,7 +128,7 @@
       }
 
       ::-webkit-scrollbar-thumb {
-        background: #03094d;
+        background: #333;
         border-radius: 0;
       }
       /* add a infowindow that is in the upper left */
@@ -227,22 +229,10 @@
       }
 
       .circle-x {
-        position: absolute;
-        z-index: 1;
-        display: inline-block;
-        top: 20px;
-        right: 20px;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        background-color: #ddd;
-        color: #333;
-        font-size: 10px;
-        /* font-weight: bold; */
-        text-align: center;
-        border: none;
-        cursor: pointer;
         font-family: Arial, Helvetica, sans-serif;
+        position: relative;
+        padding: 4px;
+        border-radius: 10px;
       }
 
       .circle-x:hover {
@@ -253,18 +243,25 @@
         background-color: #333; /* Add a darker background color when clicked on */
         color: #ddd;
       }
+      /* media queries */
+      @media (max-width: 600px) {
+        .footer {
+          width: 100%;
+          top: 57%;
+        }
+      }
     </style>
   </head>
 
   <body>
-    <div id="header" class="header">
-      <h2>Climate Solutions Worldwide</h2>
-    </div>
     <div class="footer">
+      <div id="heading-title" class="heading-title">
+        <h2>Climate Solutions Worldwide</h2>
+      </div>
       <div class="heading">
         <!-- add a simple search bar -->
         <input id="search" type="text" placeholder="Search..." />
-        <button id="clear-search" class="circle-x">x</button>
+        <button id="clear-search" class="circle-x">clear</button>
       </div>
       <div id="listings" class="listings"></div>
     </div>
@@ -418,12 +415,14 @@
           ? `<p>${currentFeature.properties.desc}</p>`
           : "";
 
+        const website = currentFeature.properties.url
+          ? `<a href="${currentFeature.properties.url}" target="_blank"><img src="./img/climate/lt-link.svg" alt="link to website" width="20" height="20"></a>`
+          : "";
+
         const popupContent = `
     <h3>${currentFeature.properties.name}</h3>
     ${description}
-    <a href="${currentFeature.properties.url}" target="_blank">
-      <img src="./img/climate/lt-link.svg" alt="link to website" width="20" height="20">
-    </a>
+    ${website}
   `;
 
         new mapboxgl.Popup()
