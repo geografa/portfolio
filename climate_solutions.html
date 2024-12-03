@@ -337,9 +337,9 @@
         new mapboxgl.Popup()
           .setLngLat(coordinates)
           .setHTML(
-            `<h3>${name}</h3>${
-              desc ? `<p>${desc}</p>` : ""
-            }<a href="${url}" target="_blank"><img src="./img/climate/lt-link.svg" alt="link to website" class="link"></a>`
+            `<h3>${name}</h3>${desc ? `<p>${desc}</p>` : ""}<a href="${
+              url ? url : ""
+            }" target="_blank"><img src="./img/climate/lt-link.svg" alt="link to website" width="20" height="20"></a>`
           )
           .addTo(map);
       });
