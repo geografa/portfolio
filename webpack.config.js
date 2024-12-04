@@ -1,6 +1,7 @@
-const path = require("path");
+import path from "path";
+import Dotenv from "dotenv-webpack";
 
-module.exports = {
+export default {
   mode: "development",
   entry: "./src/main.js",
   devtool: "inline-source-map",
@@ -9,7 +10,7 @@ module.exports = {
   },
   output: {
     filename: "bundle.js",
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve("dist"),
   },
   module: {
     rules: [
@@ -18,5 +19,13 @@ module.exports = {
         use: ["style-loader", "css-loader"],
       },
     ],
+  },
+  plugins: [new Dotenv()],
+  resolve: {
+    fallback: {
+      path: "path-browserify",
+      os: "os-browserify/browser",
+      crypto: "crypto-browserify",
+    },
   },
 };
