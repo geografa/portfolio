@@ -166,8 +166,13 @@
               ],
               "circle-stroke-width": 2,
               "circle-stroke-color": "#fff",
+              "circle-opacity": 0,
             },
           });
+          map.setPaintProperty("poi-layer", "circle-opacity-transition", {
+            duration: 1000,
+          });
+          map.setPaintProperty("poi-layer", "circle-opacity", 1);
         });
         fetchPaths().then(() => {
           map.addSource("line-source", {
