@@ -104,7 +104,6 @@
         });
 
         // add the model layer and specify the appropriate `slot` to ensure the symbols are rendered correctly.
-
         map.addLayer({
           id: "custom-model",
           type: "model",
@@ -118,57 +117,6 @@
           },
         });
       });
-
-      // map.on("style.load", () => {
-      //   // set the light preset to be in dusk mode.
-      //   map.setConfigProperty("basemap", "lightPreset", "day");
-
-      //   // add a geojson source with a polygon to be used in the clip layer.
-
-      //   // add a geojson source which specifies the custom model to be used by the model layer.
-      //   map.addSource("custom-model", {
-      //     type: "geojson",
-      //     data: {
-      //       type: "Feature",
-      //       properties: {
-      //         "model-uri": "http://localhost:8080/models/cellars.glb",
-      //       },
-      //       geometry: {
-      //         type: "Point",
-      //         coordinates: [-98.48154785679674, 29.44235903399378],
-      //       },
-      //     },
-      //   });
-
-      //   // add the clip layer and configure it to also remove symbols and trees.
-      //   // `clip-layer-scope` layout property is used to specify that only models from the Mapbox Standard Style should be clipped.
-      //   // this will prevent the newly added model from getting clipped.
-      //   // map.addLayer({
-      //   //   id: "eraser",
-      //   //   type: "clip",
-      //   //   source: "eraser",
-      //   //   layout: {
-      //   //     // specify the layer types to be removed by this clip layer
-      //   //     "clip-layer-types": ["symbol", "model"],
-      //   //     "clip-layer-scope": ["basemap"],
-      //   //   },
-      //   // });
-
-      //   // add the model layer and specify the appropriate `slot` to ensure the symbols are rendered correctly.
-
-      //   map.addLayer({
-      //     id: "custom-model",
-      //     type: "model",
-      //     source: "custom-model",
-      //     layout: {
-      //       "model-id": ["get", "model-uri"],
-      //     },
-      //     paint: {
-      //       "model-opacity": 0.6,
-      //       "model-scale": [1, 1, 1],
-      //     },
-      //   });
-      // });
     </script>
   </body>
 </html>
