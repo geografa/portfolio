@@ -2,16 +2,16 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Model Template</title>
+    <title>Use a clip layer to replace a landmark on the map</title>
     <meta
       name="viewport"
       content="initial-scale=1,maximum-scale=1,user-scalable=no"
     />
     <link
-      href="https://api.mapbox.com/mapbox-gl-js/v3.9.2/mapbox-gl.css"
+      href="https://api.mapbox.com/mapbox-gl-js/v3.9.3/mapbox-gl.css"
       rel="stylesheet"
     />
-    <script src="https://api.mapbox.com/mapbox-gl-js/v3.9.2/mapbox-gl.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.9.3/mapbox-gl.js"></script>
     <style>
       body {
         margin: 0;
@@ -23,48 +23,31 @@
         bottom: 0;
         width: 100%;
       }
-      button {
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        z-index: 1;
-      }
     </style>
   </head>
   <body>
-    <button id="fly">zoom to feature</button>
     <div id="map"></div>
     <script>
       mapboxgl.accessToken =
-        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
-      const map = new mapboxgl.Map({
-        container: "map", // container ID
-        center: [-84.35961982657636, 33.768037782141406],
-        zoom: 10.246041914952606,
-        bearing: 0,
-        pitch: 0,
-      });
+        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2ptYjNtZWxnMDBrdDNwbnVicGJzOWg2NyJ9.9OulyCe3kEqMAXPbx1mKUA";
 
-      // Set the map's standard style to 'night'
+      const start = [-98.48154785679674, 29.44235903399378];
+      const map = (window.map = new mapboxgl.Map({
+        container: "map",
+        center: start,
+        zoom: 17.6,
+        pitch: 60,
+        bearing: -50,
+        minZoom: 16,
+        maxZoom: 19.5,
+        projection: "mercator",
+      }));
+
       map.on("style.load", () => {
+        // set the light preset to be in dusk mode.
         map.setConfigProperty("basemap", "lightPreset", "day");
-      });
 
-      const start = {
-        type: "FeatureCollection",
-        features: [
-          {
-            type: "Feature",
-            properties: {},
-            geometry: {
-              coordinates: [-84.24422588528103, 33.84775316997576],
-              type: "Point",
-            },
-          },
-        ],
-      };
-      map.on("load", () => {
-        // clip the orig building out
+        // add a geojson source with a polygon to be used in the clip layer.
         map.addSource("eraser", {
           type: "geojson",
           data: {
@@ -76,11 +59,11 @@
                 geometry: {
                   coordinates: [
                     [
-                      [-84.24439424502802, 33.84783068847902],
-                      [-84.24434548530697, 33.84770920065344],
-                      [-84.24401045883432, 33.84779019255606],
-                      [-84.24405449987279, 33.84793650031577],
-                      [-84.24439424502802, 33.84783068847902],
+                      [-98.48088223527135, 29.442087315936718],
+                      [-98.48088223527135, 29.44174579544635],
+                      [-98.48033677805154, 29.44174579544635],
+                      [-98.48033677805154, 29.442087315936718],
+                      [-98.48088223527135, 29.442087315936718],
                     ],
                   ],
                   type: "Polygon",
@@ -89,98 +72,102 @@
             ],
           },
         });
+
+        // add a geojson source which specifies the custom model to be used by the model layer.
+        map.addSource("custom-model", {
+          type: "geojson",
+          data: {
+            type: "Feature",
+            properties: {
+              "model-uri": "http://localhost:8080/models/bottling_dept.glb",
+            },
+            geometry: {
+              type: "Point",
+              coordinates: start,
+            },
+          },
+        });
+
+        // add the clip layer and configure it to also remove symbols and trees.
+        // `clip-layer-scope` layout property is used to specify that only models from the Mapbox Standard Style should be clipped.
+        // this will prevent the newly added model from getting clipped.
         map.addLayer({
           id: "eraser",
           type: "clip",
           source: "eraser",
           layout: {
+            // specify the layer types to be removed by this clip layer
             "clip-layer-types": ["symbol", "model"],
+            "clip-layer-scope": ["basemap"],
           },
         });
 
-        // Add a model source and layer displaying the location
-        // Extract coordinates from the data
-        // Add the source
-        map.addSource("model-source", {
-          type: "geojson",
-          data: start,
-        });
-        // Add the  model (exported GLB from Spline)
-        map.addModel("field-model", "./models/field.glb");
-        // Make a layer with the model source
+        // add the model layer and specify the appropriate `slot` to ensure the symbols are rendered correctly.
+
         map.addLayer({
-          id: "model-layer",
+          id: "custom-model",
           type: "model",
-          source: "model-source",
+          source: "custom-model",
           layout: {
-            "model-id": "model-id",
+            "model-id": ["get", "model-uri"],
           },
           paint: {
-            // scale it to the right size and set the rotation
-            "model-scale": [1, 1, 1],
-            "model-rotation": [0, 0, 163],
-            "model-translation": [3, -8, 0],
-            "model-emissive-strength": 0.5,
-          },
-        });
-        // Add the  model (exported GLB from Spline)
-        map.addModel(
-          "waffle-model-windows",
-          "./models/waffle_house_windows.glb"
-        );
-        // Make a layer with the model source
-        map.addLayer({
-          id: "waffle-layer-windows",
-          type: "model",
-          source: "waffle-source",
-          layout: {
-            "model-id": "waffle-model-windows",
-          },
-          paint: {
-            "model-scale": [1, 1, 1],
-            "model-rotation": [0, 0, 163],
-            "model-translation": [3, -8, 0],
-            "model-emissive-strength": 3,
-          },
-        });
-        map.addModel("waffle-light-model", "./models/waffle-light.glb");
-        // Make a train layer with the model source
-        map.addLayer({
-          id: "waffle-light-layer",
-          type: "model",
-          source: "waffle-source",
-          layout: {
-            "model-id": "waffle-light-model",
-          },
-          paint: {
-            "model-scale": [1, 1, 1],
-            "model-rotation": [0, 0, 163],
-            "model-translation": [3, -8, 0],
-            "model-emissive-strength": 3,
-            // "model-height-based-emissive-strength-multiplier": [1, 1, 1, 1, 0],
+            "model-opacity": 1,
+            // "model-scale": [1, 1, 1],
           },
         });
       });
-      document.getElementById("fly").addEventListener("click", function () {
-        map.flyTo({
-          center: [-84.24423955818719, 33.847842857680206],
-          zoom: 20.5,
-          bearing: 109,
-          pitch: 72,
-          essential: true,
-        });
-      });
-      map.on("moveend", () => {
-        // when the map is done moving, make the "model-emissive-strength" property of the layer
-        // equal a random number from 1 to 5 (inclusive) on a 1 second interval to make the model "pulse"
-        setInterval(() => {
-          map.setPaintProperty(
-            "waffle-light-layer",
-            "model-emissive-strength",
-            Math.random() * 4
-          );
-        }, 100);
-      });
+
+      // map.on("style.load", () => {
+      //   // set the light preset to be in dusk mode.
+      //   map.setConfigProperty("basemap", "lightPreset", "day");
+
+      //   // add a geojson source with a polygon to be used in the clip layer.
+
+      //   // add a geojson source which specifies the custom model to be used by the model layer.
+      //   map.addSource("custom-model", {
+      //     type: "geojson",
+      //     data: {
+      //       type: "Feature",
+      //       properties: {
+      //         "model-uri": "http://localhost:8080/models/cellars.glb",
+      //       },
+      //       geometry: {
+      //         type: "Point",
+      //         coordinates: [-98.48154785679674, 29.44235903399378],
+      //       },
+      //     },
+      //   });
+
+      //   // add the clip layer and configure it to also remove symbols and trees.
+      //   // `clip-layer-scope` layout property is used to specify that only models from the Mapbox Standard Style should be clipped.
+      //   // this will prevent the newly added model from getting clipped.
+      //   // map.addLayer({
+      //   //   id: "eraser",
+      //   //   type: "clip",
+      //   //   source: "eraser",
+      //   //   layout: {
+      //   //     // specify the layer types to be removed by this clip layer
+      //   //     "clip-layer-types": ["symbol", "model"],
+      //   //     "clip-layer-scope": ["basemap"],
+      //   //   },
+      //   // });
+
+      //   // add the model layer and specify the appropriate `slot` to ensure the symbols are rendered correctly.
+
+      //   map.addLayer({
+      //     id: "custom-model",
+      //     type: "model",
+      //     source: "custom-model",
+      //     layout: {
+      //       "model-id": ["get", "model-uri"],
+      //     },
+      //     paint: {
+      //       "model-opacity": 0.6,
+      //       "model-scale": [1, 1, 1],
+      //     },
+      //   });
+      // });
     </script>
   </body>
 </html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Get coordinates of the mouse pointer</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.9.3/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.9.3/mapbox-gl.js"></script>
+    <script src="https://unpkg.com/@turf/turf/turf.min.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.0/mapbox-gl-draw.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.0/mapbox-gl-draw.css"
+      type="text/css"
+    />
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+      .calculation-box {
+        height: 75px;
+        width: 150px;
+        position: absolute;
+        bottom: 40px;
+        left: 10px;
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 15px;
+        text-align: center;
+      }
+      p {
+        font-family: "Arial";
+        margin: 0;
+        font-size: 13px;
+      }
+      .distance {
+        font-size: 2em;
+      }
+    </style>
+  </head>
+  <body>
+    <style type="text/css">
+      #info {
+        display: table;
+        position: relative;
+        margin: 0px auto;
+        word-wrap: anywhere;
+        white-space: pre-wrap;
+        padding: 10px;
+        border: none;
+        border-radius: 3px;
+        font-size: 12px;
+        text-align: center;
+        color: #222;
+        background: #fff;
+      }
+    </style>
+    <div id="map"></div>
+    <div class="calculation-box">
+      <p>Draw a line using the draw tools.</p>
+      <div id="calculated-distance"></div>
+    </div>
+
+    <pre id="info"></pre>
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2ptYjNtZWxnMDBrdDNwbnVicGJzOWg2NyJ9.9OulyCe3kEqMAXPbx1mKUA";
+
+      const start = [-98.48154801193317, 29.442359404239582];
+      const map = new mapboxgl.Map({
+        container: "map", // container id
+        // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+        // style: "mapbox://styles/mapbox/streets-v12",
+        center: start, // starting position
+        zoom: 17,
+        bearing: 0,
+        pitch: 0,
+      });
+
+      map.on("click", (e) => {
+        (document.getElementById("info").innerHTML =
+          // `e.lngLat` is the longitude, latitude geographical position of the event.
+          // just get the longitude and latitude values
+          e.lngLat.lng + ", " + e.lngLat.lat),
+          null,
+          2;
+      });
+
+      map.on("style.load", () => {
+        // set the light preset to be in dusk mode.
+        map.setConfigProperty("basemap", "lightPreset", "day");
+        // add a geojson source which specifies the custom model to be used by the model layer.
+        map.addSource("custom-model", {
+          type: "geojson",
+          data: {
+            type: "Feature",
+            properties: {
+              "model-uri": "http://localhost:8080/models/gcp.glb",
+            },
+            geometry: {
+              type: "Point",
+              coordinates: start, // starting position
+            },
+          },
+        });
+
+        map.addLayer({
+          id: "custom-model",
+          type: "model",
+          source: "custom-model",
+          layout: {
+            "model-id": ["get", "model-uri"],
+          },
+          paint: {
+            "model-opacity": 0.6,
+          },
+        });
+      });
+
+      const draw = new MapboxDraw({
+        displayControlsDefault: false,
+        controls: {
+          line_string: true,
+          trash: true,
+        },
+      });
+      map.addControl(draw);
+
+      map.on("draw.create", updateDistance);
+      map.on("draw.delete", updateDistance);
+      map.on("draw.update", updateDistance);
+
+      function updateDistance(e) {
+        var data = draw.getAll();
+        var answer = document.getElementById("calculated-distance");
+        if (data.features.length > 0) {
+          var distance = turf.length(data);
+          // restrict to area to 2 decimal points
+          var distance = distance * 1000;
+          answer.innerHTML =
+            '<p class="distance"><strong>' + distance + "</strong> meters</p>";
+        } else {
+          answer.innerHTML = "";
+          if (e.type !== "draw.delete")
+            alert("Use the draw tools to draw a line!");
+        }
+      }
+    </script>
+  </body>
+</html>
