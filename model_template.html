@@ -31,7 +31,7 @@
       mapboxgl.accessToken =
         "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2ptYjNtZWxnMDBrdDNwbnVicGJzOWg2NyJ9.9OulyCe3kEqMAXPbx1mKUA";
 
-      const start = [-98.48154785679674, 29.44235903399378];
+      const start = [-98.48078799475206, 29.442000388014748];
       const map = (window.map = new mapboxgl.Map({
         container: "map",
         center: start,
@@ -80,7 +80,7 @@
             type: "Feature",
             properties: {
               "model-uri":
-                "https://geografa.github.io/portfolio/models/bottling_dept.glb",
+                "http://localhost:8080/models/bottling_dept_centered.glb",
             },
             geometry: {
               type: "Point",
@@ -104,6 +104,7 @@
         });
 
         // add the model layer and specify the appropriate `slot` to ensure the symbols are rendered correctly.
+
         map.addLayer({
           id: "custom-model",
           type: "model",
