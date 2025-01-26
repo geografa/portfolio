@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Add 3D model</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.9.3/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.9.3/mapbox-gl.js"></script>
+    <script src="https://unpkg.com/@turf/turf/turf.min.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.0/mapbox-gl-draw.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.0/mapbox-gl-draw.css"
+      type="text/css"
+    />
+    <!-- Load the `mapbox-gl-geocoder` plugin. -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.3/mapbox-gl-geocoder.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.3/mapbox-gl-geocoder.css"
+      type="text/css"
+    />
+    <!-- add a color picker -->
+    <script src="https://unpkg.com/vanilla-picker@2"></script>
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+
+      #sidebar {
+        font-family: "Futura", sans-serif;
+        position: absolute;
+        /* round corners */
+        border-radius: 8px;
+        top: 10px;
+        left: 10px;
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 15px;
+        text-align: left;
+      }
+      #sidebar h3 {
+        margin-top: 10px;
+        margin-bottom: 5px;
+        font-size: 0.7em;
+      }
+
+      #copy-button {
+        margin-top: 10px;
+        cursor: pointer;
+        background: #007bff;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+      }
+      .copy-box {
+        font-size: 0.75em;
+        font-family: monospace;
+        position: relative;
+        word-wrap: anywhere;
+        white-space: pre-wrap;
+        padding: 10px;
+        /* inset border */
+        border: 1px solid #b1b1b1;
+        text-align: left;
+        color: #222;
+        background: #e6e6e6;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <div id="sidebar" style="display: none">
+      <div id="upload-model">
+        <h3>Add link to model</h3>
+        <input type="text" id="model-uri" value="" />
+        <button id="update-model">Update</button>
+      </div>
+      <div>
+        <h3>Coordinates:</h3>
+        <div id="coords" class="copy-box"></div>
+      </div>
+      <h3>Rotate</h3>
+      <input
+        id="slider-rotate"
+        type="range"
+        min="0"
+        max="360"
+        step="1"
+        value="0"
+      />
+      <label id="model-rotate-text"></label>
+
+      <h3>Scale</h3>
+      <input
+        id="slider-scale"
+        type="range"
+        min="1"
+        max="10"
+        step="0.1"
+        value="1"
+      />
+      <label id="model-scale-text"></label>
+
+      <div id="color-picker">
+        <h3>Color</h3>
+        <input id="model-color-text" class="copy-box" type="text" value="" />
+      </div>
+      <div>
+        <h3>Model Properties</h3>
+        <div id="modelProps" class="copy-box"></div>
+        <button id="copy-button">Copy</button>
+      </div>
+    </div>
+
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2ptYjNtZWxnMDBrdDNwbnVicGJzOWg2NyJ9.9OulyCe3kEqMAXPbx1mKUA";
+
+      // top left corner of the GCP base
+      const start = [-122.67134991690358, 45.53285089130583];
+      let modelUri = "http://localhost:8080/models/_test.glb";
+      const map = new mapboxgl.Map({
+        container: "map",
+        center: start, // starting position
+        zoom: 17,
+        bearing: 0,
+        pitch: 0,
+        hash: true,
+      });
+      map.addControl(
+        new MapboxGeocoder({
+          accessToken: mapboxgl.accessToken,
+          mapboxgl: mapboxgl,
+        })
+      );
+
+      map.on("click", (e) => {
+        document.getElementById("sidebar").style.display = "block";
+
+        (document.getElementById("coords").innerHTML =
+          // `e.lngLat` is the longitude, latitude geographical position of the event.
+          // just get the longitude and latitude values
+          e.lngLat.lng + ", " + e.lngLat.lat),
+          null,
+          2;
+      });
+      // listen for the update button click event and update the model uri value
+      document.getElementById("update-model").addEventListener("click", () => {
+        // get the coordinates of the model from the input fields in the sidebar
+        let coords = document.getElementById("coords").textContent;
+
+        modelUri = document.getElementById("model-uri").value;
+        console.log(modelUri);
+        // if the source exists, update the source data and layer
+        if (map.getSource("custom-model")) {
+          map.getSource("custom-model").setData({
+            type: "Feature",
+            properties: {
+              "model-uri": modelUri,
+            },
+            geometry: {
+              type: "Point",
+              coordinates: coords.split(","),
+            },
+          });
+        }
+      });
+      document.getElementById("copy-button").addEventListener("click", () => {
+        const coords = document.getElementById("coords").textContent;
+        navigator.clipboard
+          .writeText(coords)
+          .then(() => {
+            alert("Coordinates copied to clipboard!");
+          })
+          .catch((err) => {
+            console.error("Failed to copy: ", err);
+          });
+      });
+
+      map.on("style.load", () => {
+        // set the light preset to be in day mode.
+        map.setConfigProperty("basemap", "lightPreset", "day");
+      });
+
+      // add a 3D model to the map
+      map.on("click", (e) => {
+        // if the source does not exist, create a new one and add the layer
+        if (!map.getSource("custom-model")) {
+          map.addSource("custom-model", {
+            type: "geojson",
+            data: {
+              type: "Feature",
+              properties: {
+                "model-uri": modelUri,
+              },
+              geometry: {
+                type: "Point",
+                coordinates: [e.lngLat.lng, e.lngLat.lat],
+              },
+            },
+          });
+          map.addLayer({
+            id: "custom-model",
+            type: "model",
+            source: "custom-model",
+            layout: {
+              "model-id": ["get", "model-uri"],
+            },
+            paint: {
+              "model-color-mix-intensity": 0.1,
+              "model-color": "rgba(0,0, 0, 1)",
+              "model-scale": [1, 1, 1],
+              "model-rotation": [0, 0, 0],
+            },
+          });
+
+          // if the source exists, update the source data and layer
+        } else {
+          map.getSource("custom-model").setData({
+            type: "Feature",
+            properties: {
+              "model-uri": modelUri,
+            },
+            geometry: {
+              type: "Point",
+              coordinates: [e.lngLat.lng, e.lngLat.lat],
+            },
+          });
+        }
+        // Check if the layer exists before getting its properties
+        if (map.getLayer("custom-model")) {
+          const modelProps = map.getLayer("custom-model").paint;
+          document.getElementById("modelProps").innerHTML = JSON.stringify(
+            modelProps,
+            null,
+            2
+          );
+        } else {
+          document.getElementById("modelProps").innerHTML =
+            "Layer does not exist.";
+        }
+      });
+
+      // create a function that updates the model's rotation and scale based on the slider values in the sidebar
+      document
+        .getElementById("slider-rotate")
+        .addEventListener("input", (e) => {
+          const rotate = parseFloat(e.target.value); // Ensure the value is a number
+          map.setPaintProperty("custom-model", "model-rotation", [
+            0,
+            0,
+            rotate,
+          ]);
+
+          document.getElementById(
+            "model-rotate-text"
+          ).textContent = `${rotate}`;
+        });
+      document.getElementById("slider-scale").addEventListener("input", (e) => {
+        const scale = parseFloat(e.target.value); // Ensure the value is a number
+
+        map.setPaintProperty("custom-model", "model-scale", [
+          scale,
+          scale,
+          scale,
+        ]);
+        document.getElementById("model-scale-text").textContent = `${scale}`;
+      });
+      // if the slider-scale value is changed, or the slider-rotate value is changed, update the modelProps value
+      document.getElementById("slider-rotate").addEventListener("input", () => {
+        const modelProps = map.getLayer("custom-model").paint;
+        document.getElementById("modelProps").innerHTML = JSON.stringify(
+          modelProps,
+          null,
+          2
+        );
+      });
+      document.getElementById("slider-scale").addEventListener("input", () => {
+        const modelProps = map.getLayer("custom-model").paint;
+        document.getElementById("modelProps").innerHTML = JSON.stringify(
+          modelProps,
+          null,
+          2
+        );
+      });
+
+      // create a function that updates the model's color based on the color picker value in the sidebar
+      const picker = new Picker({
+        parent: document.getElementById("color-picker"),
+        popup: "bottom",
+        color: "0,255,0,1",
+      });
+
+      //   const colorString = colorArray.join(",");
+      //   console.log(colorString); // Output: "255,0,0,1"
+      picker.onChange = function (color) {
+        console.log(color.rgbaString); // Output: "rgba(255,0,0,1)"
+        map.setPaintProperty("custom-model", "model-color", color.rgbaString);
+        // set the value of the color picker input to the selected color value
+        document.getElementById("model-color-text").value = color.rgbaString;
+      };
+      // add the color picker value to the modelProps value when the color picker value is changed
+      document
+        .getElementById("model-color-text")
+        .addEventListener("input", () => {
+          const modelProps = map.getLayer("custom-model").paint;
+          document.getElementById("modelProps").innerHTML = JSON.stringify(
+            modelProps,
+            null,
+            2
+          );
+        });
+    </script>
+  </body>
+</html>
