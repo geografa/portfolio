@@ -1,6 +1,6 @@
 import "./style.css";
 import { initializeMap } from "./mapModule.js";
-import { toggleSidebar } from "./sideBar.js";
+
 import { spinGlobe } from "./spinGlobe.js";
 import { highLightHex } from "./highLightHex.js";
 //
@@ -39,7 +39,7 @@ map.on("load", async () => {
     },
     "waterway-label"
   );
-  toggleSidebar(map);
+
   spinGlobe(map);
   highLightHex(map);
 });
