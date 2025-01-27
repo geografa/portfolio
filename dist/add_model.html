@@ -26,6 +26,11 @@
       href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.3/mapbox-gl-geocoder.css"
       type="text/css"
     />
+    <!-- font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <!-- add a color picker -->
     <script src="https://unpkg.com/vanilla-picker@2"></script>
 
@@ -78,11 +83,32 @@
         color: #222;
         background: #e6e6e6;
       }
+      img {
+        width: 60px;
+        /* margin-bottom: 10px; */
+      }
+      #logo {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.2em;
+        font-weight: 600;
+        width: 200px;
+        color: #23646a;
+      }
+      #logo a {
+        color: #23646a;
+        text-decoration: none;
+      }
     </style>
   </head>
   <body>
     <div id="map"></div>
     <div id="sidebar" style="display: none">
+      <div id="logo">
+        <a href="https://geografa.io/"
+          ><img src="./img/logo-geografa.png" alt="geografa.io" />
+          geografa.io</a
+        >
+      </div>
       <div id="upload-model">
         <h3>Link to model</h3>
         <input type="text" id="model-uri" value="" />
@@ -138,7 +164,7 @@
         "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2ptYjNtZWxnMDBrdDNwbnVicGJzOWg2NyJ9.9OulyCe3kEqMAXPbx1mKUA";
       // top left corner of the model's base
       const start = [-122.67134991690358, 45.53285089130583];
-      let modelUri = "http://localhost:8080/models/_test.glb"; // swap for your model
+      let modelUri = "https://geografa.github.io/portfolio/models/_test.glb"; // swap for your model
       const map = new mapboxgl.Map({
         container: "map",
         center: start, // starting position
@@ -188,7 +214,7 @@
         navigator.clipboard
           .writeText(coords)
           .then(() => {
-            alert("Coordinates copied to clipboard!");
+            alert("Properties copied to clipboard");
           })
           .catch((err) => {
             console.error("Failed to copy: ", err);
