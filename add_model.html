@@ -40,7 +40,6 @@
         bottom: 0;
         width: 100%;
       }
-
       #sidebar {
         font-family: "Futura", sans-serif;
         position: absolute;
@@ -57,7 +56,6 @@
         margin-bottom: 5px;
         font-size: 0.7em;
       }
-
       #copy-button {
         margin-top: 10px;
         cursor: pointer;
@@ -84,10 +82,9 @@
   </head>
   <body>
     <div id="map"></div>
-
     <div id="sidebar" style="display: none">
       <div id="upload-model">
-        <h3>Add link to model</h3>
+        <h3>Link to model</h3>
         <input type="text" id="model-uri" value="" />
         <button id="update-model">Update</button>
       </div>
@@ -105,7 +102,6 @@
         value="0"
       />
       <label id="model-rotate-text"></label>
-
       <h3>Scale</h3>
       <input
         id="slider-scale"
@@ -116,6 +112,16 @@
         value="1"
       />
       <label id="model-scale-text"></label>
+      <h3>Color Intensity</h3>
+      <input
+        id="slider-intensity"
+        type="range"
+        min="0"
+        max="1"
+        step="0.1"
+        value="0.1"
+      />
+      <label id="model-intensity-text"></label>
 
       <div id="color-picker">
         <h3>Color</h3>
@@ -127,14 +133,12 @@
         <button id="copy-button">Copy</button>
       </div>
     </div>
-
     <script>
       mapboxgl.accessToken =
         "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2ptYjNtZWxnMDBrdDNwbnVicGJzOWg2NyJ9.9OulyCe3kEqMAXPbx1mKUA";
-
-      // top left corner of the GCP base
+      // top left corner of the model's base
       const start = [-122.67134991690358, 45.53285089130583];
-      let modelUri = "http://localhost:8080/models/_test.glb";
+      let modelUri = "http://localhost:8080/models/_test.glb"; // swap for your model
       const map = new mapboxgl.Map({
         container: "map",
         center: start, // starting position
@@ -150,23 +154,21 @@
         })
       );
 
-      map.on("click", (e) => {
-        document.getElementById("sidebar").style.display = "block";
-
-        (document.getElementById("coords").innerHTML =
-          // `e.lngLat` is the longitude, latitude geographical position of the event.
-          // just get the longitude and latitude values
-          e.lngLat.lng + ", " + e.lngLat.lat),
-          null,
-          2;
-      });
       // listen for the update button click event and update the model uri value
       document.getElementById("update-model").addEventListener("click", () => {
         // get the coordinates of the model from the input fields in the sidebar
         let coords = document.getElementById("coords").textContent;
 
         modelUri = document.getElementById("model-uri").value;
-        console.log(modelUri);
+        // perform error checking to ensure the model uri is not empty and the coordinates are valid before updating the model source
+        if (modelUri === "") {
+          alert("Please enter a valid model URI.");
+          return;
+        }
+        if (coords === "") {
+          alert("Please click on the map to set the model's coordinates.");
+          return;
+        }
         // if the source exists, update the source data and layer
         if (map.getSource("custom-model")) {
           map.getSource("custom-model").setData({
@@ -182,7 +184,7 @@
         }
       });
       document.getElementById("copy-button").addEventListener("click", () => {
-        const coords = document.getElementById("coords").textContent;
+        const modelProps = document.getElementById("coords").textContent;
         navigator.clipboard
           .writeText(coords)
           .then(() => {
@@ -200,6 +202,14 @@
 
       // add a 3D model to the map
       map.on("click", (e) => {
+        document.getElementById("sidebar").style.display = "block";
+
+        (document.getElementById("coords").innerHTML =
+          // `e.lngLat` is the longitude, latitude geographical position of the event.
+          // just get the longitude and latitude values
+          e.lngLat.lng + ", " + e.lngLat.lat),
+          null,
+          2;
         // if the source does not exist, create a new one and add the layer
         if (!map.getSource("custom-model")) {
           map.addSource("custom-model", {
@@ -282,6 +292,20 @@
         ]);
         document.getElementById("model-scale-text").textContent = `${scale}`;
       });
+      document
+        .getElementById("slider-intensity")
+        .addEventListener("input", (e) => {
+          const intensity = parseFloat(e.target.value); // Ensure the value is a number
+
+          map.setPaintProperty(
+            "custom-model",
+            "model-color-mix-intensity",
+            intensity
+          );
+          document.getElementById(
+            "model-intensity-text"
+          ).textContent = `${intensity}`;
+        });
       // if the slider-scale value is changed, or the slider-rotate value is changed, update the modelProps value
       document.getElementById("slider-rotate").addEventListener("input", () => {
         const modelProps = map.getLayer("custom-model").paint;
@@ -299,16 +323,22 @@
           2
         );
       });
-
+      document
+        .getElementById("slider-intensity")
+        .addEventListener("input", () => {
+          const modelProps = map.getLayer("custom-model").paint;
+          document.getElementById("modelProps").innerHTML = JSON.stringify(
+            modelProps,
+            null,
+            2
+          );
+        });
       // create a function that updates the model's color based on the color picker value in the sidebar
       const picker = new Picker({
         parent: document.getElementById("color-picker"),
         popup: "bottom",
         color: "0,255,0,1",
       });
-
-      //   const colorString = colorArray.join(",");
-      //   console.log(colorString); // Output: "255,0,0,1"
       picker.onChange = function (color) {
         console.log(color.rgbaString); // Output: "rgba(255,0,0,1)"
         map.setPaintProperty("custom-model", "model-color", color.rgbaString);
@@ -319,9 +349,9 @@
       document
         .getElementById("model-color-text")
         .addEventListener("input", () => {
-          const modelProps = map.getLayer("custom-model").paint;
+          const modelPaintProps = map.getLayer("custom-model").paint;
           document.getElementById("modelProps").innerHTML = JSON.stringify(
-            modelProps,
+            modelPaintProps,
             null,
             2
           );
