@@ -126,7 +126,11 @@
       </div>
       <div id="upload-model">
         <h3>Link to model</h3>
-        <input type="text" id="model-uri" value="" />
+        <input
+          type="text"
+          id="model-uri"
+          value="http://localhost:8080/models/van.glb"
+        />
         <button id="update-model">Update</button>
       </div>
       <div>
@@ -187,7 +191,7 @@
         "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2ptYjNtZWxnMDBrdDNwbnVicGJzOWg2NyJ9.9OulyCe3kEqMAXPbx1mKUA";
       // top left corner of the model's base
       const start = [-122.67134991690358, 45.53285089130583];
-      let modelUri = "https://geografa.github.io/portfolio/models/_test.glb"; // swap for your model
+      let modelUri = "http://localhost:8080/models/van.glb";
       const map = new mapboxgl.Map({
         container: "map",
         center: start, // starting position
@@ -203,10 +207,33 @@
         })
       );
 
+      const showModal = (modalId) => {
+        document.getElementById(modalId).style.display = "block";
+      };
+
+      const hideModal = (modalId) => {
+        document.getElementById(modalId).style.display = "none";
+      };
+
+      const updateModelProps = () => {
+        if (map.getLayer("custom-model")) {
+          const modelPaintProps = map.getLayer("custom-model").paint;
+          document.getElementById("modelProps").innerHTML = JSON.stringify(
+            modelPaintProps,
+            null,
+            2
+          );
+        } else {
+          document.getElementById("modelProps").innerHTML =
+            "Layer does not exist.";
+        }
+      };
+
       // listen for the update button click event and update the model uri value
       document.getElementById("update-model").addEventListener("click", () => {
         // get the coordinates of the model from the input fields in the sidebar
         let coords = document.getElementById("coords").textContent;
+        let modelUri = document.getElementById("model-uri").value;
 
         modelUri = document.getElementById("model-uri").value;
         // perform error checking to ensure the model uri is not empty and the coordinates are valid before updating the model source
@@ -233,9 +260,10 @@
         }
       });
       document.getElementById("copy-button").addEventListener("click", () => {
-        const modelProps = document.getElementById("coords").textContent;
+        const modelProps = document.getElementById("modelProps").textContent;
+        console.log(modelProps);
         navigator.clipboard
-          .writeText(coords)
+          .writeText(modelProps)
           .then(() => {
             alert("Properties copied to clipboard");
           })
@@ -326,7 +354,6 @@
             0,
             rotate,
           ]);
-
           document.getElementById(
             "model-rotate-text"
           ).textContent = `${rotate}`;
@@ -407,13 +434,12 @@
         });
       // Show the intro modal when the page loads
       window.onload = () => {
-        document.getElementById("intro-modal").style.display = "block";
+        showModal("intro-modal");
       };
 
       // Close the modal when the button is clicked
       document.getElementById("close-modal").addEventListener("click", () => {
-        document.getElementById("intro-modal").style.display = "none";
-        // remove map blur
+        hideModal("intro-modal");
         document.getElementById("map").style.filter = "none";
       });
     </script>
