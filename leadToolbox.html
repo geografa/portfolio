@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>TL-TBX</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.9.3/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.9.3/mapbox-gl.js"></script>
+    <!-- Load the `mapbox-gl-geocoder` plugin. -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.3/mapbox-gl-geocoder.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.3/mapbox-gl-geocoder.css"
+      type="text/css"
+    />
+    <style>
+      /* add color variables for the circles */
+      :root {
+        --ltb-new-lead: #86d688;
+        --ltb-demo: #688fd6;
+        --ltb-inquiry: #d66868;
+        --ltb-yellow: #d6d668;
+        --ltb-purple: #d668d6;
+        --ltb-orange: #d6a668;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      #map {
+        width: 100%;
+        height: 500px;
+      }
+      /* add crosshair imgage to center of map div */
+      .custom-marker {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000000' width='24px' height='24px'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E");
+        background-size: 24px 24px;
+        background-repeat: no-repeat;
+        background-position: center;
+        transform: translate(-50%, -50%);
+        background-color: rgba(255, 0, 0, 0.411);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+
+      #coord-input-field {
+        position: relative;
+        top: 10px;
+        right: 10px;
+        z-index: 1;
+        background-color: white;
+        padding: 10px;
+        border-radius: 10px;
+      }
+      #coord-input-field input {
+        width: 30%;
+        margin-left: 20px;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+      }
+
+      /* user controls */
+      #controls {
+        position: absolute;
+        bottom: 40px;
+        left: 10px;
+        z-index: 10;
+        background-color: white;
+        padding: 10px;
+        border-radius: 10px;
+        width: 260px;
+        max-width: 240px;
+      }
+      .opportunities {
+        list-style-type: none;
+        padding: 0;
+      }
+      .opportunities li {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+      .opportunities li label {
+        margin-right: 10px;
+      }
+      /* The switch - the box around the slider */
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 49px;
+        height: 20px;
+      }
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: 0.4s;
+      }
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 15px;
+        width: 15px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        transition: 0.4s;
+      }
+      input:checked + .slider .lead {
+        background-color: #86d688;
+      }
+      input:checked + .slider .lead_inquiry {
+        background-color: #39a00c;
+      }
+      input:checked + .slider .demo {
+        background-color: #f29f05;
+      }
+
+      input:checked + .slider:before {
+        -webkit-transform: translateX(28px);
+        -ms-transform: translateX(28px);
+        transform: translateX(28px);
+      }
+
+      /* Rounded sliders */
+      .slider.round {
+        border-radius: 34px;
+      }
+
+      .slider.round:before {
+        border-radius: 50%;
+      }
+
+      /* add contact */
+      .add-contact-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 10px;
+        cursor: pointer;
+      }
+      /* create a horizontal line that is grey and 80% width in the container */
+      hr {
+        border: 0;
+        border-top: 1px solid #ccc;
+        width: 80%;
+        margin: 10px auto;
+        border-color: #5d5d5d;
+      }
+      .add-contact-container img {
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.3/mapbox-gl-geocoder.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.3/mapbox-gl-geocoder.css"
+      type="text/css"
+    />
+    <div id="map">
+      <div id="controls">
+        <h2>Opportunities</h2>
+        <ul class="opportunities" id="opportunities-list"></ul>
+        <hr />
+        <div class="add-contact-container" id="add-contact">
+          <img src="img/add-button.png" alt="add button" />
+          <span class="add-contact">Locate New Lead</span>
+        </div>
+      </div>
+    </div>
+    <div id="coord-input-field">
+      <input type="text" name="" id="gps-coords" />
+    </div>
+
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2ptYjNtZWxnMDBrdDNwbnVicGJzOWg2NyJ9.9OulyCe3kEqMAXPbx1mKUA";
+      const map = new mapboxgl.Map({
+        container: "map",
+        // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+        style: "mapbox://styles/grafa/cm6h1ok55008g01re2fbd47ks",
+        center: [-122.105074, 37.468428],
+        zoom: 10,
+        bearing: 0,
+        pitch: 0,
+      });
+
+      const opportunities = [
+        { name: "New Lead", color: "#a7d3a8", layerId: "lead-layer" },
+        {
+          name: "New Lead Inquiry",
+          color: "#19a447",
+          layerId: "lead-inquiry-layer",
+        },
+        { name: "Demo", color: "#ec6157", layerId: "demo-layer" },
+        // Add more opportunities as needed
+      ];
+
+      const opportunitiesList = document.getElementById("opportunities-list");
+
+      opportunities.forEach((opportunity, index) => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+    <label class="switch">
+      <input type="checkbox" id="opportunity-${index}" />
+      <span class="slider round"></span>
+    </label>
+    ${opportunity.name}
+  `;
+        opportunitiesList.appendChild(li);
+
+        // Add event listener to change color when checked
+        const checkbox = li.querySelector(`#opportunity-${index}`);
+        checkbox.addEventListener("change", (event) => {
+          const slider = event.target.nextElementSibling;
+          if (event.target.checked) {
+            slider.style.backgroundColor = opportunity.color;
+            map.setLayoutProperty(opportunity.layerId, "visibility", "visible");
+          } else {
+            slider.style.backgroundColor = "#ccc";
+            map.setLayoutProperty(opportunity.layerId, "visibility", "none");
+          }
+        });
+      });
+      const url = "https://services.leadconnectorhq.com/contacts/search";
+      const options = {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer pit-b9abe7c9-a76c-4e6d-b8c3-4d4777ebff10",
+          Version: "2021-07-28",
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: '{"locationId":"vmVbiiFxcFwGxrxjotMf","page":1,"pageLimit":20,"sort":[{"field":"firstNameLowerCase","direction":"desc"}]}',
+      };
+      const customData = {
+        features: [],
+        type: "FeatureCollection",
+      };
+      //create color codes for the different opportunities
+      // const ltb_green = "#a7d3a8";
+      // const ltb_blue = "#3886bd";
+      // const ltb_red = "#ec6157";
+      // const ltb_yellow = "#eaff01";
+      // const ltb_purple = "#ff3eff";
+
+      // Add controls to the map.
+      map.addControl(new mapboxgl.NavigationControl());
+      map.addControl(
+        new mapboxgl.GeolocateControl({
+          positionOptions: { enableHighAccuracy: true },
+          trackUserLocation: true,
+        })
+      );
+      map.addControl(
+        new MapboxGeocoder({
+          accessToken: mapboxgl.accessToken,
+          mapboxgl: mapboxgl,
+          placeholder: "Search for a location",
+          marker: true,
+          country: "US",
+          bbox: [-123.897371, 36.700924, -118.607454, 39.242375],
+        }),
+        "top-left"
+      );
+
+      // ====================
+
+      // wait for the map to load then fetch the data from the API
+      map.on("load", () => {
+        const stage = ["lead", "lead-inquiry", "demo"];
+        fetch(url, options)
+          .then((response) => response.json())
+          .then((data) => {
+            // if the contacts are fetched successfully and each contact has an opportunity
+            // then create a feature for each contact and add it to the customData object
+            if (!data.contacts || data.contacts.opportunities === null) {
+              return;
+            }
+            console.log(data.contacts);
+            data.contacts.forEach((contact) => {
+              const contactName =
+                contact.firstNameLowerCase + "\n" + contact.lastNameLowerCase;
+
+              const stage = contact.opportunities;
+
+              const coordinatesField = contact.customFields;
+
+              coordinatesField.forEach((field) => {
+                if (field.id === "VyePc8cM7iupVOBiZBHY") {
+                  const coordinatesArray = field.value.split(",").map(Number);
+                  // create icons for the different stage of opportunities
+                  let iconColor = "#19a447";
+                  // let iconColor;
+                  // if (stage === "open") {
+                  //   iconColor = "#a7d3a8";
+                  // } else if (stage === "lead-inquiry") {
+                  //   iconColor = "#19a447";
+                  // } else if (stage === "closed") {
+                  //   iconColor = "#ec6157";
+                  // } else {
+                  //   iconColor = "#eaff01";
+                  // }
+
+                  customData.features.push({
+                    type: "Feature",
+                    properties: {
+                      title: contactName,
+                      stage: stage,
+                      icon: iconColor,
+                    },
+                    geometry: {
+                      coordinates: coordinatesArray,
+                      type: "Point",
+                    },
+                  });
+                }
+              });
+            });
+
+            map.addSource("custom-data", {
+              type: "geojson",
+              data: customData,
+            });
+
+            // map.addLayer({
+            //   id: "custom-layer",
+            //   type: "circle",
+            //   source: "custom-data",
+            //   paint: {
+            //     "circle-radius": 6,
+            //     "circle-color": ["get", "icon"],
+            //   },
+            // });
+
+            // create a layer for each stage of opportunity and set the visibility to none
+            stage.forEach((stage) => {
+              map.addLayer({
+                id: `${stage}-layer`,
+                type: "circle",
+                source: "custom-data",
+                paint: {
+                  "circle-radius": 6,
+                  "circle-color": ["get", "icon"],
+                  // outline
+                  "circle-stroke-width": 1,
+                  "circle-stroke-color": "#fff",
+                },
+                // filter: ["==", "stage", stage],
+                layout: {
+                  // visibility: "none",
+                },
+              });
+            });
+            map.getStyle().layers.forEach((layer) => {
+              console.log(layer.id);
+            });
+          })
+          .catch((error) => {
+            console.error("Error fetching data:", error);
+          });
+      });
+
+      const popup = new mapboxgl.Popup({
+        closeButton: false,
+        closeOnClick: true,
+      });
+
+      // add popup for each layer of opportunity when the user clicks on a point on the map
+
+      let marker;
+
+      document.getElementById("add-contact").addEventListener("click", () => {
+        // Remove existing marker if it exists
+        if (marker) {
+          marker.remove();
+        }
+        // Create a custom HTML element for the marker
+        const el = document.createElement("div");
+        el.className = "custom-marker";
+        // Add a new draggable marker to the map
+        marker = new mapboxgl.Marker({
+          draggable: true,
+          element: el,
+        })
+          .setLngLat(map.getCenter())
+          .addTo(map);
+
+        // Update the input field with the marker's coordinates
+        const updateCoords = () => {
+          const lngLat = marker.getLngLat();
+          // update div ID to "VyePc8cM7iupVOBiZBHY" in production
+          document.getElementById("gps-coords").value = // fixed to 6 decimal places
+            lngLat.lng.toFixed(6) + ", " + lngLat.lat.toFixed(6);
+          // Dispatch an input event to update the form field
+          document
+            .getElementById("gps-coords")
+            .dispatchEvent(new Event("input"));
+        };
+
+        // Initial update of the coordinates
+        updateCoords();
+
+        // Update the coordinates when the marker is dragged
+        marker.on("dragend", updateCoords);
+      });
+    </script>
+  </body>
+</html>
