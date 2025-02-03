@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>tlb</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.9.3/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.9.3/mapbox-gl.js"></script>
+    <!-- Load the `mapbox-gl-geocoder` plugin. -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.3/mapbox-gl-geocoder.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.3/mapbox-gl-geocoder.css"
+      type="text/css"
+    />
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      #map {
+        width: 100%;
+        height: 600px;
+      }
+      /* add target image to center of map div */
+      .custom-marker {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000000' width='24px' height='24px'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E");
+        background-size: 24px 24px;
+        background-repeat: no-repeat;
+        background-position: center;
+        transform: translate(-50%, -50%);
+        background-color: rgba(255, 0, 0, 0.411);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+      /* add a div to hold the input field */
+      #coord-input-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+        align-items: center;
+        z-index: 10;
+      }
+      #gps-coords {
+        background-color: #e9e9e9;
+        color: #acacac;
+        font-size: 1em;
+        border: none;
+        width: 70%;
+      }
+
+      /* user controls */
+      #controls {
+        position: absolute;
+        bottom: 40px;
+        left: 10px;
+        z-index: 1;
+        background-color: white;
+        padding: 10px;
+        border-radius: 10px;
+        width: 260px;
+        max-width: 240px;
+      }
+
+      .opportunities {
+        list-style-type: none;
+        padding: 0;
+      }
+      .opportunities li {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+      .opportunities li label {
+        margin-right: 10px;
+      }
+      /* The switch - the box around the slider */
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 49px;
+        height: 20px;
+      }
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: 0.4s;
+      }
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 15px;
+        width: 15px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        transition: 0.4s;
+      }
+
+      input:checked + .slider:before {
+        -webkit-transform: translateX(28px);
+        -ms-transform: translateX(28px);
+        transform: translateX(28px);
+      }
+
+      /* Rounded sliders */
+      .slider.round {
+        border-radius: 34px;
+      }
+
+      .slider.round:before {
+        border-radius: 50%;
+      }
+
+      /* add contact */
+      .add-contact-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+      /* create a horizontal line that is grey and 80% width in the container */
+      hr {
+        border: 0;
+        border-top: 1px solid #ccc;
+        width: 80%;
+        margin: 10px auto;
+        border-color: #5d5d5d;
+      }
+      .add-contact-container img {
+        margin-right: 10px;
+      }
+      /* popup styles */
+      .mapboxgl-popup {
+        max-width: 200px;
+        font: 12px/20px "Helvetica Neue", Arial, Helvetica, sans-serif;
+      }
+      .mapboxgl-popup h3 {
+        /* background-color: #3498db; */
+        color: #000;
+        margin: 0;
+        display: block;
+        padding: 10px;
+        border-radius: 3px 3px 0 0;
+        font-weight: 700;
+      }
+      .mapboxgl-popup-content {
+        padding: 10px;
+        border-radius: 0 0 3px 3px;
+        border: 1px solid #ccc;
+        border-top: 0;
+      }
+
+      /* Dropdown Button */
+      .dropbtn {
+        background-color: #ccc;
+        color: white;
+        /* padding: 16px; */
+        /* font-size: 16px; */
+        border: none;
+        cursor: pointer;
+      }
+
+      /* Dropdown button on hover & focus */
+      .dropbtn:hover,
+      .dropbtn:focus {
+        background-color: rgb(156, 68, 73);
+      }
+
+      /* The container <div> - needed to position the dropdown content */
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      /* Dropdown Content (Hidden by Default) */
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+      }
+
+      /* Links inside the dropdown */
+      .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+
+      /* Change color of dropdown links on hover */
+      .dropdown-content a:hover {
+        background-color: #ddd;
+      }
+
+      /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+      .show {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map">
+      <div id="controls">
+        <h2>Opportunities</h2>
+        <p>Stage</p>
+        <ul class="opportunities" id="opportunities-list"></ul>
+        <hr />
+        <div class="add-contact-container" id="add-contact">
+          <img
+            src="https://geografa.github.io/portfolio/img/add-button.png"
+            alt="add button"
+          />
+          <span class="add-contact">New Lead</span>
+        </div>
+        <div id="coord-input-container">
+          <div id="gps-coords"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2ptYjNtZWxnMDBrdDNwbnVicGJzOWg2NyJ9.9OulyCe3kEqMAXPbx1mKUA";
+      const map = new mapboxgl.Map({
+        container: "map",
+        // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+        style: "mapbox://styles/grafa/cm6h1ok55008g01re2fbd47ks",
+        center: [-122.105074, 37.468428],
+        zoom: 10,
+        bearing: 0,
+        pitch: 0,
+      });
+
+      const url = "https://services.leadconnectorhq.com/contacts/search";
+      const options = {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer pit-b9abe7c9-a76c-4e6d-b8c3-4d4777ebff10",
+          Version: "2021-07-28",
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: '{"locationId":"vmVbiiFxcFwGxrxjotMf","page":1,"pageLimit":40,"sort":[{"field":"firstNameLowerCase","direction":"desc"}]}',
+      };
+      const legend_new_lead_found = "#a7d3a8";
+      const legend_new_lead_inquiry = "#19a447";
+      const legend_demo = "#ec6157";
+      const legend_contacted_lead = "#bada55";
+      const legend_unable_to_contact_lead = "#94b1c6";
+      const legend_no_show = "#f8b552";
+      const legend_cancelled = "#f30";
+      const legend_demo_set = "#F45555";
+      const legend_showed = "#f8b552";
+      const legend_not_interested_not_yet_ready = "#f8b552";
+      const legend_quote_requested = "#f8b552";
+      const legend_quote_sent = "#f8b552";
+      const legend_unqualified_not_a_good_fit = "#f8b552";
+      const legend_sold = "#3886bd";
+
+      async function fetchOpportunities() {
+        const layerColors = {
+          new_lead_found: legend_new_lead_found,
+          new_lead_inquiry: legend_new_lead_inquiry,
+          demo: legend_demo,
+          contacted_lead: legend_contacted_lead,
+          unable_to_contact_lead: legend_unable_to_contact_lead,
+          no_show: legend_no_show,
+          canceled: legend_cancelled,
+          demo_set: legend_demo_set,
+          showed: legend_showed,
+          not_interested_not_yet_ready: legend_not_interested_not_yet_ready,
+          quote_requested: legend_quote_requested,
+          quote_sent: legend_quote_sent,
+          unqualified_not_a_good_fit: legend_unqualified_not_a_good_fit,
+          sold: legend_sold,
+
+          // Add more mappings as needed
+        };
+
+        const pipelinesURL =
+          "https://services.leadconnectorhq.com/opportunities/pipelines?locationId=vmVbiiFxcFwGxrxjotMf";
+        const pipelinesOptions = {
+          method: "GET",
+          headers: {
+            Authorization: "Bearer pit-b9abe7c9-a76c-4e6d-b8c3-4d4777ebff10",
+            Version: "2021-07-28",
+            Accept: "application/json",
+          },
+        };
+
+        try {
+          const response = await fetch(pipelinesURL, pipelinesOptions);
+          const data = await response.json();
+          const opportunities = data.pipelines[6].stages.map((stage) => {
+            // convert name to lowercase and replace all the spaces with dashes
+            stage.layerId = stage.name.toLowerCase().replace(/\s/g, "_");
+
+            // Set the color based on the layer name
+            const color = layerColors[stage.layerId] || "#000000"; // Default to black if not found
+            return {
+              name: stage.name,
+              position: stage.position,
+              color: color,
+              layerId: stage.layerId,
+            };
+          });
+          const opportunitiesList =
+            document.getElementById("opportunities-list");
+          opportunities.forEach((opportunity, index) => {
+            console.log("opportunity", opportunity);
+            // only show the opportunities in a certain position
+            const showPosition = [0, 1, 3, 4, 5, 6, 7];
+            if (!showPosition.includes(opportunity.position)) {
+              return;
+            }
+            const li = document.createElement("li");
+            li.innerHTML = `
+                      <label class="switch">
+                      <input type="checkbox" id="opportunity-${index}" checked/>
+                      <span class="slider round"></span>
+                      </label>
+                      ${opportunity.name}
+                  `;
+            opportunitiesList.appendChild(li);
+
+            // Add event listener to change color when checked
+            const checkbox = li.querySelector(`#opportunity-${index}`);
+            // initialize the slider color to the opportunity color
+            const slider = checkbox.nextElementSibling;
+            slider.style.backgroundColor = opportunity.color;
+
+            checkbox.addEventListener("change", (event) => {
+              // const slider = event.target.nextElementSibling;
+              if (event.target.checked) {
+                slider.style.backgroundColor = opportunity.color;
+                map.setLayoutProperty(
+                  opportunity.layerId,
+                  "visibility",
+                  "visible"
+                );
+              } else {
+                slider.style.backgroundColor = "#ccc";
+                map.setLayoutProperty(
+                  opportunity.layerId,
+                  "visibility",
+                  "none"
+                );
+              }
+            });
+          });
+
+          return data;
+        } catch (error) {
+          console.error("Error fetching pipelines:", error);
+        }
+      }
+
+      // Make API call to fetch contacts
+      async function fetchContactsData() {
+        // create empty featureCollection object to store the fetched data
+
+        const featureCollection = {
+          features: [],
+          type: "FeatureCollection",
+        };
+        try {
+          const response = await fetch(url, options);
+          const data = await response.json();
+          const contacts = data.contacts.filter(
+            (contact) => contact.opportunities
+          );
+          const pipelines = await fetchOpportunities();
+          //   console.log("pipelines", pipelines);
+
+          //   contacts[28].customFields[2].id
+          // loop through the contacts and get the coordinates array from the customFields array
+          contacts.forEach((contact) => {
+            // console.log("contact", contact);
+            const coordinates = contact.customFields.find(
+              (field) => field.id === "VyePc8cM7iupVOBiZBHY"
+            );
+
+            if (coordinates) {
+              const stageId = contact.opportunities[0].pipelineStageId;
+              //   console.log("stageId", stageId);
+              const stage = pipelines.pipelines[6].stages.find(
+                (stage) => stage.id === stageId
+              );
+              featureCollection.features.push({
+                type: "Feature",
+                geometry: {
+                  type: "Point",
+                  coordinates: coordinates.value.split(",").map(Number),
+                },
+                properties: {
+                  title: `${contact.firstNameLowerCase} ${contact.lastNameLowerCase}`,
+                  stage: stage ? stage.name : "Unknown",
+                },
+              });
+            }
+          });
+
+          return featureCollection;
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      }
+      function createStageLayer(stage, layerId) {
+        map.addLayer({
+          id: layerId,
+          type: "circle",
+          source: "contacts",
+          paint: {
+            "circle-radius": 6,
+            "circle-color": stage.color,
+          },
+          filter: ["==", ["get", "stage"], stage.name],
+        });
+      }
+      function initializeMap() {
+        // Add controls to the map.
+        map.addControl(new mapboxgl.NavigationControl());
+        map.addControl(
+          new mapboxgl.GeolocateControl({
+            positionOptions: { enableHighAccuracy: true },
+            trackUserLocation: true,
+          })
+        );
+        map.addControl(
+          new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken,
+            mapboxgl: mapboxgl,
+            placeholder: "Search for a location",
+            marker: true,
+            country: "US",
+            bbox: [-123.897371, 36.700924, -118.607454, 39.242375],
+          }),
+          "top-left"
+        );
+        map.on("load", () => {
+          fetchContactsData().then((featureCollection) => {
+            console.log("featureCollection", featureCollection);
+            map.addSource("contacts", {
+              type: "geojson",
+              data: featureCollection,
+            });
+            map.addLayer({
+              id: "new_lead_found",
+              type: "circle",
+              source: "contacts",
+              paint: {
+                // Increase the size of the circle; z6: 5, z10: 10
+                "circle-radius": [
+                  "interpolate",
+                  ["linear"],
+                  ["zoom"],
+                  0,
+                  1,
+                  6,
+                  5,
+                  10,
+                  10,
+                ],
+                "circle-color": legend_new_lead_found,
+                "circle-stroke-width": 1,
+                "circle-stroke-color": "#fff",
+              },
+              filter: ["==", "stage", "New Lead Found"],
+            });
+            map.addLayer({
+              id: "new_lead_inquiry",
+              type: "circle",
+              source: "contacts",
+              paint: {
+                "circle-radius": 10,
+                "circle-color": legend_new_lead_inquiry,
+                "circle-stroke-width": 1,
+                "circle-stroke-color": "#fff",
+              },
+              filter: ["==", "stage", "New lead Inquiry"],
+            });
+            map.addLayer({
+              id: "contacted_lead",
+              type: "circle",
+              source: "contacts",
+              paint: {
+                "circle-radius": 10,
+                "circle-color": legend_contacted_lead,
+                "circle-stroke-width": 1,
+                "circle-stroke-color": "#fff",
+              },
+              filter: ["==", "stage", "Contacted Lead"],
+            });
+            map.addLayer({
+              id: "unable_to_contact_lead",
+              type: "circle",
+              source: "contacts",
+              paint: {
+                "circle-radius": 10,
+                "circle-color": legend_unable_to_contact_lead,
+                "circle-stroke-width": 1,
+                "circle-stroke-color": "#fff",
+              },
+              filter: ["==", "stage", "Unable to Contact Lead"],
+            });
+          });
+          map.on("zoom", () => {
+            const zoomLevel = map.getZoom();
+            let opacity = 0.3;
+
+            if (zoomLevel > 10) {
+              opacity = 0.1; // Decrease opacity when zoomed in
+            } else if (zoomLevel > 5) {
+              opacity = 0.3; // Intermediate opacity
+            }
+
+            map.setPaintProperty("background", "background-opacity", opacity);
+          });
+        });
+      }
+      initializeMap();
+
+      const popup = new mapboxgl.Popup({
+        closeButton: false,
+        closeOnClick: true,
+      });
+      map.on("click", (e) => {
+        const features = map.queryRenderedFeatures(e.point, {
+          layers: ["new_lead_found", "new_lead_inquiry", "contacted_lead"],
+        });
+
+        if (!features.length) {
+          return;
+        }
+        function changeStage() {
+          // add event listener to the button to toggle the dropdown content when clicked
+          document.getElementById("stageMenu").classList.toggle("show");
+        }
+
+        const feature = features[0];
+        popup.setLngLat(feature.geometry.coordinates).setHTML(`
+                  <h3>${feature.properties.title}</h3>
+                  <div class="dropdown">
+                    <button id="changeStage" class="dropbtn">${feature.properties.stage}</button>
+                    <div id="stageMenu" class="dropdown-content">
+                        <a href="#">Lead</a>
+                        <a href="#">Lead Inquiry</a>
+                        <a href="#">Demo</a>
+                        <a href="#">Closed</a>
+                    </div>
+                    </div>
+                `);
+
+        popup.addTo(map);
+        /* When the user clicks on the button, toggle between hiding and showing the dropdown content */
+
+        //   Close the dropdown menu if the user clicks outside of it
+        window.onclick = function (event) {
+          if (!event.target.matches(".dropbtn")) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+              var openDropdown = dropdowns[i];
+              if (openDropdown.classList.contains("show")) {
+                openDropdown.classList.remove("show");
+              }
+            }
+          }
+        };
+      });
+
+      // ====================
+
+      // add popup for each layer of opportunity when the user clicks on a point on the map
+      //   map.on("click", (e) => {
+      //     const features = map.queryRenderedFeatures(e.point, {
+      //       layers: ["new_lead_found", "lead-inquiry-layer", "demo-layer"],
+      //     });
+
+      //     if (!features.length) {
+      //       return;
+      //     }
+
+      //     const feature = features[0];
+      //     popup.setLngLat(feature.geometry.coordinates).setHTML(`
+      //             <h3>${feature.properties.title}</h3>
+      //             <div class="dropdown">
+      //               <button onclick="changeStage()" class="dropbtn">${feature.properties}</button>
+      //               <div id="stageMenu" class="dropdown-content">
+      //                 <a href="#">Lead</a>
+      //                 <a href="#">Lead Inquiry</a>
+      //                 <a href="#">Demo</a>
+      //                 <a href="#">Closed</a>
+      //               </div>
+      //             </div>
+      //           `);
+      //     popup.addTo(map);
+      //   });
+
+      /* When the user clicks on the button, toggle between hiding and showing the dropdown content */
+      //   function changeStage() {
+      //     document.getElementById("stageMenu").classList.toggle("show");
+      //   }
+
+      // Close the dropdown menu if the user clicks outside of it
+      //   window.onclick = function (event) {
+      //     if (!event.target.matches(".dropbtn")) {
+      //       var dropdowns = document.getElementsByClassName("dropdown-content");
+      //       var i;
+      //       for (i = 0; i < dropdowns.length; i++) {
+      //         var openDropdown = dropdowns[i];
+      //         if (openDropdown.classList.contains("show")) {
+      //           openDropdown.classList.remove("show");
+      //         }
+      //       }
+      //     }
+      //   };
+
+      //   let marker;
+
+      //   document.getElementById("add-contact").addEventListener("click", () => {
+      //     // Remove existing marker if it exists
+      //     if (marker) {
+      //       marker.remove();
+      //     }
+      //     // Create a custom HTML element for the marker
+      //     const el = document.createElement("div");
+      //     el.className = "custom-marker";
+      //     // Add a new draggable marker to the map
+      //     marker = new mapboxgl.Marker({
+      //       draggable: true,
+      //       element: el,
+      //     })
+      //       .setLngLat(map.getCenter())
+      //       .addTo(map);
+
+      //     // Update the input field with the marker's coordinates
+      //     const updateCoords = () => {
+      //       const lngLat = marker.getLngLat();
+      //       const coords = lngLat.lng.toFixed(6);
+
+      //       // update div ID to "VyePc8cM7iupVOBiZBHY" in production
+      //       document.getElementById("gps-coords").textContent = // fixed to 6 decimal places
+      //         lngLat.lng.toFixed(6) + ", " + lngLat.lat.toFixed(6);
+      //       // Dispatch an input event to update the form field
+      //       document
+      //         .getElementById("gps-coords")
+      //         .dispatchEvent(new Event("input"));
+      //     };
+
+      // Initial update of the coordinates
+      // updateCoords();
+
+      // Update the coordinates when the marker is dragged
+      // marker.on("dragend", updateCoords);
+      //   });
+    </script>
+  </body>
+</html>
