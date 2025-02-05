@@ -56,6 +56,7 @@
         border: none;
         width: 70%;
       }
+
       /* user legend */
       #legend {
         position: absolute;
@@ -221,11 +222,14 @@
           />
           <span class="add-contact">New Lead</span>
         </div>
+        <!-- comment out below in prod -->
         <div id="coord-input-container">
           <div id="gps-coords"></div>
+          <!-- end -->
         </div>
       </div>
     </div>
+
     <script>
       mapboxgl.accessToken =
         "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2ptYjNtZWxnMDBrdDNwbnVicGJzOWg2NyJ9.9OulyCe3kEqMAXPbx1mKUA";
@@ -248,8 +252,46 @@
           "Content-Type": "application/json",
           Accept: "application/json",
         },
-        body: '{"locationId":"vmVbiiFxcFwGxrxjotMf","page":1,"pageLimit":40,"sort":[{"field":"firstNameLowerCase","direction":"desc"}]}',
       };
+
+      async function fetchContactsData(page = 1, pageLimit = 100) {
+        const requestBody = {
+          locationId: "vmVbiiFxcFwGxrxjotMf",
+          page: page,
+          pageLimit: pageLimit,
+          sort: [{ field: "firstNameLowerCase", direction: "desc" }],
+        };
+
+        options.body = JSON.stringify(requestBody);
+
+        try {
+          const response = await fetch(url, options);
+          const data = await response.json();
+          return data.contacts;
+        } catch (error) {
+          console.error("Error fetching contacts data:", error);
+        }
+      }
+
+      async function fetchAllContacts() {
+        let allContacts = [];
+        let page = 1;
+        let pageLimit = 100;
+        let hasMorePages = true;
+
+        while (hasMorePages) {
+          const contacts = await fetchContactsData(page, pageLimit);
+          if (contacts.length > 0) {
+            allContacts = allContacts.concat(contacts);
+            page++;
+          } else {
+            hasMorePages = false;
+          }
+        }
+        // console.log("allContacts", allContacts);
+        return allContacts;
+      }
+
       const stageColors = {
         new_lead_found: "#a7d3a8",
         new_lead_inquiry: "#19a447",
@@ -285,10 +327,11 @@
           const opportunities = data.pipelines[6].stages.map((stage) => {
             // convert name to lowercase and replace all the spaces with dashes
             stage.layerId = stage.name.toLowerCase().replace(/\s/g, "_");
-            console.log("stage: ", stage.layerId);
             // Set the color based on the layer name
             const color = stageColors[stage.layerId] || "#000000"; // Default to black if not found
+            console.log("stage", stage);
             return {
+              id: stage.id,
               name: stage.name,
               position: stage.position,
               color: color,
@@ -306,12 +349,12 @@
             }
             const li = document.createElement("li");
             li.innerHTML = `
-                      <label class="switch">
-                      <input type="checkbox" id="opportunity-${index}" checked/>
-                      <span class="slider round"></span>
-                      </label>
-                      ${opportunity.name}
-                  `;
+                        <label class="switch">
+                        <input type="checkbox" id="opportunity-${index}" checked/>
+                        <span class="slider round"></span>
+                        </label>
+                        ${opportunity.name}
+                    `;
             opportunitiesList.appendChild(li);
             // Add event listener to change color when checked
             const checkbox = li.querySelector(`#opportunity-${index}`);
@@ -337,59 +380,14 @@
               }
             });
           });
-          return data;
+          return opportunities;
         } catch (error) {
           console.error("Error fetching pipelines:", error);
         }
       }
-      // Make API call to fetch contacts
-      async function fetchContactsData() {
-        // create empty featureCollection object to store the fetched data
-        const featureCollection = {
-          features: [],
-          type: "FeatureCollection",
-        };
-        try {
-          const response = await fetch(url, options);
-          const data = await response.json();
-          //   console.log("data", data);
-          const contacts = data.contacts.filter(
-            (contact) => contact.opportunities
-          );
-          const pipelines = await fetchOpportunities();
-          // loop through the contacts and get the coordinates array from the customFields array
-          contacts.forEach((contact) => {
-            // console.log("contact", contact.businessName);
-            const coordinates = contact.customFields.find(
-              (field) => field.id === "VyePc8cM7iupVOBiZBHY" // the custom field ID for the coordinates
-            );
-            if (coordinates) {
-              const stageId = contact.opportunities[0].pipelineStageId;
-              //   console.log("stageId", stageId);
-              const stage = pipelines.pipelines[6].stages.find(
-                (stage) => stage.id === stageId
-              );
-              featureCollection.features.push({
-                type: "Feature",
-                geometry: {
-                  type: "Point",
-                  coordinates: coordinates.value.split(",").map(Number),
-                },
-                properties: {
-                  title: `${contact.firstNameLowerCase} ${contact.lastNameLowerCase}`,
-                  stage: stage ? stage.name : "Unknown",
-                  layerID: stage ? stage.layerId : "unknown",
-                },
-              });
-            }
-          });
-          return featureCollection;
-        } catch (error) {
-          console.error("Error fetching data:", error);
-        }
-      }
-      function initializeMap() {
-        // Add controls to the map.
+
+      // Fetch all contacts and add them to the map
+      async function initializeMap() {
         map.addControl(new mapboxgl.NavigationControl());
         map.addControl(
           new mapboxgl.GeolocateControl({
@@ -397,172 +395,78 @@
             trackUserLocation: true,
           })
         );
-        map.addControl(
-          new MapboxGeocoder({
-            accessToken: mapboxgl.accessToken,
-            mapboxgl: mapboxgl,
-            placeholder: "Search for a location",
-            marker: true,
-            country: "US",
-            bbox: [-123.897371, 36.700924, -118.607454, 39.242375],
-          }),
-          "top-left"
-        );
-        map.on("load", () => {
-          fetchContactsData().then((featureCollection) => {
-            console.log("featureCollection", featureCollection);
-            map.addSource("contacts", {
-              type: "geojson",
-              data: featureCollection,
-            });
-            // add layers for each stage (refactor for one layer function)
-            map.addLayer({
-              id: "new_lead_found",
-              type: "circle",
-              source: "contacts",
-              paint: {
-                // Increase the size of the circle; z6: 5, z10: 10
-                "circle-radius": [
-                  "interpolate",
-                  ["linear"],
-                  ["zoom"],
-                  0,
-                  1,
-                  6,
-                  5,
-                  10,
-                  10,
-                ],
-                "circle-color": stageColors.new_lead_found,
-                "circle-stroke-width": 1,
-                "circle-stroke-color": "#fff",
-              },
-              filter: ["==", "stage", "New Lead Found"],
-            });
-            map.addLayer({
-              id: "new_lead_inquiry",
-              type: "circle",
-              source: "contacts",
-              paint: {
-                "circle-radius": [
-                  "interpolate",
-                  ["linear"],
-                  ["zoom"],
-                  0,
-                  1,
-                  6,
-                  5,
-                  10,
-                  10,
-                ],
-                "circle-color": stageColors.new_lead_inquiry,
-                "circle-stroke-width": 1,
-                "circle-stroke-color": "#fff",
-              },
-              filter: ["==", "stage", "New lead Inquiry"],
-            });
-            map.addLayer({
-              id: "contacted_lead",
-              type: "circle",
-              source: "contacts",
-              paint: {
-                "circle-radius": [
-                  "interpolate",
-                  ["linear"],
-                  ["zoom"],
-                  0,
-                  1,
-                  6,
-                  5,
-                  10,
-                  10,
-                ],
-                "circle-color": stageColors.contacted_lead,
-                "circle-stroke-width": 1,
-                "circle-stroke-color": "#fff",
-              },
-              filter: ["==", "stage", "Contacted Lead"],
-            });
-            map.addLayer({
-              id: "unable_to_contact_lead",
-              type: "circle",
-              source: "contacts",
-              paint: {
-                "circle-radius": [
-                  "interpolate",
-                  ["linear"],
-                  ["zoom"],
-                  0,
-                  1,
-                  6,
-                  5,
-                  10,
-                  10,
-                ],
-                "circle-color": stageColors.unable_to_contact_lead,
-                "circle-stroke-width": 1,
-                "circle-stroke-color": "#fff",
-              },
-              filter: ["==", "stage", "Unable to Contact Lead"],
-            });
-            map.addLayer({
-              id: "contacted_decision_maker",
-              type: "circle",
-              source: "contacts",
-              paint: {
-                "circle-radius": [
-                  "interpolate",
-                  ["linear"],
-                  ["zoom"],
-                  0,
-                  1,
-                  6,
-                  5,
-                  10,
-                  10,
-                ],
-                "circle-color": stageColors.contacted_decision_maker,
-                "circle-stroke-width": 1,
-                "circle-stroke-color": "#fff",
-              },
-              filter: ["==", "stage", "Contacted Decision Maker"],
-            });
-            map.addLayer({
-              id: "canceled",
-              type: "circle",
-              source: "contacts",
-              paint: {
-                "circle-radius": [
-                  "interpolate",
-                  ["linear"],
-                  ["zoom"],
-                  0,
-                  1,
-                  6,
-                  5,
-                  10,
-                  10,
-                ],
-                "circle-color": stageColors.canceled,
-                "circle-stroke-width": 1,
-                "circle-stroke-color": "#fff",
-              },
-              filter: ["==", "stage", "Canceled"],
-            });
-          });
-          // Change the background color based on the zoom level
-          map.on("zoom", () => {
-            const zoomLevel = map.getZoom();
-            let opacity = 0.3; // Default opacity
-            if (zoomLevel > 10) {
-              opacity = 0.1; // Decrease opacity when zoomed in
-            } else if (zoomLevel > 5) {
-              opacity = 0.3; // Intermediate opacity
+
+        map.on("load", async () => {
+          const allContacts = await fetchAllContacts();
+          const pipelines = await fetchOpportunities();
+
+          // Filter contacts to only those with opportunities
+          const contactsWithOpportunities = allContacts.filter(
+            (contact) =>
+              contact.opportunities && contact.opportunities.length > 0
+          );
+
+          // console.log(
+          //   `Found ${contactsWithOpportunities.length} contacts with opportunities`
+          // );
+
+          const featureCollection = {
+            type: "FeatureCollection",
+            features: [],
+          };
+
+          contactsWithOpportunities.forEach((contact) => {
+            const coordinates = contact.customFields.find(
+              (field) => field.id === "VyePc8cM7iupVOBiZBHY"
+            );
+            const stageId = contact.opportunities[0]?.pipelineStageId;
+            const stage = pipelines.find((stage) => stage.id === stageId);
+
+            if (coordinates?.value && stage) {
+              const [lng, lat] = coordinates.value.split(",").map(Number);
+
+              // Only add feature if coordinates are valid numbers
+              if (!isNaN(lng) && !isNaN(lat)) {
+                featureCollection.features.push({
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [lng, lat],
+                  },
+                  properties: {
+                    title: `${contact.firstNameLowerCase} ${contact.lastNameLowerCase}`,
+                    stage: stage.name,
+                    layerId: stage.layerId,
+                    stageColor: stage.color,
+                  },
+                });
+              }
             }
-            map.setPaintProperty("background", "background-opacity", opacity);
+          });
+
+          map.addSource("contacts", {
+            type: "geojson",
+            data: featureCollection,
+          });
+
+          // Add a layer for each stage
+          pipelines.forEach((stage) => {
+            map.addLayer({
+              id: stage.layerId,
+              type: "circle",
+              source: "contacts",
+              paint: {
+                "circle-radius": 8,
+                "circle-color": stage.color,
+                "circle-stroke-width": 1,
+                "circle-stroke-color": "#ffffff",
+              },
+              filter: ["==", ["get", "layerId"], stage.layerId],
+            });
           });
         });
       }
+
       initializeMap();
 
       const popup = new mapboxgl.Popup({
@@ -574,7 +478,7 @@
           layers: [
             "new_lead_found",
             "new_lead_inquiry",
-            "contacted_lead",
+            // "contacted_lead",
             "unable_to_contact_lead",
             "contacted_decision_maker",
             "canceled",
@@ -589,20 +493,20 @@
         const feature = features[0];
         // if the layer clicked matches the color of the stage, show the dropbtn with the stage name and same color
         popup.setLngLat(feature.geometry.coordinates).setHTML(`
-            <h3>${feature.properties.title}</h3>
-            <div class="dropdown">
-              <button onclick="changeStage()" class="dropbtn" style="background-color: ${
-                stageColors[feature.layer.id]
-              }">${feature.properties.stage}</button>
-              <div id="stageMenu" class="dropdown-content"> 
-                <a href="#">New Lead Found</a>
-                <a href="#">New Lead Inquiry</a>
-                <a href="#">Contacted</a>
-                <a href="#">Demo</a>
-                <a href="#">Closed</a>
+              <h3>${feature.properties.title}</h3>
+              <div class="dropdown">
+                <button onclick="changeStage()" class="dropbtn" style="background-color: ${
+                  stageColors[feature.layer.id]
+                }">${feature.properties.stage}</button>
+                <div id="stageMenu" class="dropdown-content">
+                  <a href="#">New Lead Found</a>
+                  <a href="#">New Lead Inquiry</a>
+                  <a href="#">Contacted</a>
+                  <a href="#">Demo</a>
+                  <a href="#">Closed</a>
+                </div>
               </div>
-            </div>
-          `); // add more stages as needed
+            `); // add more stages as needed
 
         popup.addTo(map);
         //   Close the dropdown menu if the user clicks outside of it
@@ -645,15 +549,19 @@
         // Update the input field with the marker's coordinates
         const updateCoords = () => {
           const lngLat = marker.getLngLat();
-          const coords = lngLat.lng.toFixed(6);
+          const coords = lngLat.lng.toFixed(6) + ", " + lngLat.lat.toFixed(6);
 
           // update div ID to "VyePc8cM7iupVOBiZBHY" in production
+
+          // Update the coordinates in the div with the ID "gps-coords"
           document.getElementById("gps-coords").textContent = // fixed to 6 decimal places
             lngLat.lng.toFixed(6) + ", " + lngLat.lat.toFixed(6);
           // Dispatch an input event to update the form field
+          console.log("lngLat", lngLat);
           document
             .getElementById("gps-coords")
             .dispatchEvent(new Event("input"));
+          //   document.getElementById("VyePc8cM7iupVOBiZBHY").value = coords;
         };
 
         // Initial update of the coordinates
