@@ -87,7 +87,7 @@
         top: 10px;
         right: 10px;
         cursor: pointer;
-        width: 20px;
+        width: 16px;
       }
 
       .tab {
@@ -190,23 +190,26 @@
         border-radius: 50%;
       }
       /* add contact */
+      .custom-map-control {
+        position: absolute;
+        top: 160px;
+        right: 10px;
+        z-index: 10;
+        background-color: #c76e60;
+        border-radius: 6px;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+        padding: 6px;
+        font-size: 12px;
+        line-height: 20px;
+        width: 30px;
+      }
       .add-contact-container {
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
       }
-      /* create a horizontal line that is grey and 80% width in the container */
-      hr {
-        border: 0;
-        border-top: 1px solid #ccc;
-        width: 80%;
-        margin: 10px auto;
-        border-color: #5d5d5d;
-      }
-      .add-contact-container img {
-        margin-right: 10px;
-      }
+
       /* popup styles */
       .mapboxgl-popup {
         max-width: 200px;
@@ -217,12 +220,10 @@
         color: #000;
         margin: 0;
         display: block;
-        padding-left: 10px;
         font-weight: 700;
       }
       .mapboxgl-popup p {
         margin: 0;
-        padding-left: 10px;
         font-weight: 400;
       }
       .mapboxgl-popup-content {
@@ -230,53 +231,6 @@
         border-radius: 10px;
         border: 1px solid #ccc;
         border-top: 0;
-      }
-      .popup_stage {
-        padding-left: 10px;
-      }
-      /* Dropdown Button */
-      .dropbtn {
-        background-color: #53825b;
-        color: white;
-        /* padding: 16px; */
-        /* font-size: 16px; */
-        border: none;
-        cursor: pointer;
-      }
-      /* Dropdown button on hover & focus */
-      /* .dropbtn:hover,
-      .dropbtn:focus {
-        background-color: rgb(156, 68, 73);
-      } */
-      /* The container <div> - needed to position the dropdown content */
-      .dropdown {
-        position: relative;
-        display: inline-block;
-      }
-      /* Dropdown Content (Hidden by Default) */
-      .dropdown-content {
-        display: none;
-        position: absolute;
-        padding-left: 10px;
-        background-color: #f1f1f1;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-        z-index: 1;
-      }
-      /* Links inside the dropdown */
-      .dropdown-content a {
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-      }
-      /* Change color of dropdown links on hover */
-      .dropdown-content a:hover {
-        background-color: #ddd;
-      }
-      /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-      .show {
-        display: block;
       }
 
       /* add media query to show a menu instead of the legend that will open and close the legend when it is clicked */
@@ -300,6 +254,14 @@
   </head>
   <body>
     <div id="map">
+      <div class="custom-map-control">
+        <div class="add-contact-container" id="add-contact">
+          <img
+            src="https://geografa.github.io/portfolio/img/add-button.png"
+            alt="add button"
+          />
+        </div>
+      </div>
       <img
         src="https://geografa.github.io/portfolio/img/menu-icon.png"
         id="menu-icon"
@@ -354,23 +316,6 @@
             <h3>Customer</h3>
             <ul id="opportunities-list-customer" class="opportunities"></ul>
           </div>
-        </div>
-        <!-- 
-
-        <p>Stage</p>
-        <ul class="opportunities" id="opportunities-list"></ul> -->
-        <hr />
-        <div class="add-contact-container" id="add-contact">
-          <img
-            src="https://geografa.github.io/portfolio/img/add-button.png"
-            alt="add button"
-          />
-          <span class="add-contact">New Lead</span>
-        </div>
-        <!-- comment out below in prod -->
-        <div id="coord-input-container">
-          <div id="gps-coords"></div>
-          <!-- end -->
         </div>
       </div>
     </div>
@@ -467,22 +412,18 @@
         uploaded: "#1AF221",
         unable_to_contact: "#A7D3C9",
         pending_access: "#05DFAC",
-
         pending_decision_maker: "#02CBD9",
         decision_maker: "#00EEFF",
-
         no_show: "#B2E0F6",
         canceled: "#68A4D8",
         scheduled: "#04A0FA",
         demo_complete: "#0A508C",
-
         not_interested: "#FFFDBE",
         seasonal: "#EBE64E",
         in_trial: "#EBCC4E",
         quote_requested: "#C7A665",
         quote_sent: "#FF9C07",
         not_a_good_fit: "#918C82",
-
         on_demand: "#BA4730",
         routed: "#FF330A",
         // Add more mappings as needed
@@ -604,7 +545,6 @@
           };
 
           contactsWithOpportunities.forEach((contact) => {
-            console.log(contact);
             // convert the first name to titlecase with the toTitleCase function
             contact.firstNameLowerCase = toTitleCase(
               contact.firstNameLowerCase
@@ -772,7 +712,6 @@
       function forwardGeocoder(query) {
         const matchingFeatures = [];
         for (const feature of featureCollection.features) {
-          console.log(feature.properties);
           // Handle queries with different capitalization
           // than the source data by calling toLowerCase().
           if (feature.properties.firstNameLowerCase) {
@@ -811,14 +750,19 @@
           const lngLat = marker.getLngLat();
           const coords = lngLat.lng.toFixed(6) + ", " + lngLat.lat.toFixed(6);
 
-          // update div ID "gps-coords" to "VyePc8cM7iupVOBiZBHY" in production
-          document.getElementById("gps-coords").textContent = // fixed to 6 decimal places
-            lngLat.lng.toFixed(6) + ", " + lngLat.lat.toFixed(6);
-          // Dispatch an input event to update the form field
-          document
-            .getElementById("gps-coords")
-            .dispatchEvent(new Event("input"));
-          // document.getElementById("VyePc8cM7iupVOBiZBHY").value = coords;
+          // // update div ID "gps-coords" to "VyePc8cM7iupVOBiZBHY" in production
+          // document.getElementById("gps-coords").textContent = // fixed to 6 decimal places
+          //   lngLat.lng.toFixed(6) + ", " + lngLat.lat.toFixed(6);
+          // // Dispatch an input event to update the form field
+          // document
+          //   .getElementById("gps-coords")
+          //   .dispatchEvent(new Event("input"));
+          if (document.getElementById("VyePc8cM7iupVOBiZBHY")) {
+            document.getElementById("VyePc8cM7iupVOBiZBHY").value = coords;
+            console.log("Coordinates updated to: ", coords);
+          } else {
+            console.log("No input field found with ID 'VyePc8cM7iupVOBiZBHY'");
+          }
         };
 
         // Initial update of the coordinates
