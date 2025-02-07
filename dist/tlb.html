@@ -631,7 +631,9 @@
                   .toLowerCase()
                   .includes(query.toLowerCase())
               ) {
-                feature["place_name"] = feature.properties.title;
+                feature[
+                  "place_name"
+                ] = `🔵 ${feature.properties.title} - ${feature.properties.companyName}`;
                 feature["center"] = feature.geometry.coordinates;
                 feature["place_type"] = ["place"];
                 matchingFeatures.push(feature);
