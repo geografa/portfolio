@@ -58,6 +58,17 @@
       }
 
       /* user legend */
+      #menu-icon {
+        /* display: none; */
+        position: absolute;
+        bottom: 50px;
+        left: 10px;
+        z-index: 1;
+        /* background-color: white; */
+        padding: 10px;
+        border-radius: 10px;
+        cursor: pointer;
+      }
       #legend {
         position: absolute;
         bottom: 40px;
@@ -68,11 +79,63 @@
         border-radius: 10px;
         width: 260px;
         max-width: 240px;
+        overflow-y: scroll;
+        max-height: 500px;
       }
+      .closemenu {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+        width: 20px;
+      }
+
+      .tab {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+      }
+
+      .tab button {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+      }
+
+      .tab button:hover {
+        background-color: #ddd;
+      }
+
+      .tab button.active {
+        background-color: #ccc;
+      }
+
+      .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        border: 1px solid #ccc;
+        border-top: none;
+      }
+
+      .opportunity-section {
+        border: 1px solid #ccc;
+        margin: 10px;
+        padding: 10px;
+      }
+
+      .opportunity-title {
+        font-weight: bold;
+      }
+
       .opportunities {
         list-style-type: none;
         padding: 0;
       }
+
       .opportunities li {
         display: flex;
         align-items: center;
@@ -159,9 +222,12 @@
       }
       .mapboxgl-popup-content {
         padding: 10px;
-        border-radius: 0 0 3px 3px;
+        border-radius: 15px;
         border: 1px solid #ccc;
         border-top: 0;
+      }
+      .popup_stage {
+        padding-left: 10px;
       }
       /* Dropdown Button */
       .dropbtn {
@@ -186,6 +252,7 @@
       .dropdown-content {
         display: none;
         position: absolute;
+        padding-left: 10px;
         background-color: #f1f1f1;
         min-width: 160px;
         box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -206,14 +273,87 @@
       .show {
         display: block;
       }
+
+      /* add media query to show a menu instead of the legend that will open and close the legend when it is clicked */
+      @media (max-width: 600px) {
+        #legend {
+          display: none;
+        }
+        #menu-icon {
+          display: block;
+          position: absolute;
+          bottom: 30px;
+          left: 10px;
+          z-index: 1;
+          /* background-color: white; */
+          padding: 10px;
+          border-radius: 10px;
+          cursor: pointer;
+        }
+      }
     </style>
   </head>
   <body>
     <div id="map">
+      <img
+        src="https://geografa.github.io/portfolio/img/menu-icon.png"
+        id="menu-icon"
+        alt="Menu"
+      />
       <div id="legend">
         <h2>Opportunities</h2>
+        <!-- add closemenu image to hide the legend -->
+        <div id="closemenu">
+          <img
+            src="https://geografa.github.io/portfolio/img/closemenu.png"
+            alt="close menu"
+            class="closemenu"
+          />
+        </div>
+
+        <div class="tab">
+          <button class="tablinks" onclick="openSection(event, 'Leads')">
+            Leads
+          </button>
+          <button class="tablinks" onclick="openSection(event, 'Contacted')">
+            Contacted
+          </button>
+          <button class="tablinks" onclick="openSection(event, 'Demos')">
+            Demos
+          </button>
+          <button class="tablinks" onclick="openSection(event, 'Decisions')">
+            Decisions
+          </button>
+          <button class="tablinks" onclick="openSection(event, 'Customer')">
+            Customer
+          </button>
+        </div>
+        <div id="opportunities-container">
+          <div id="Leads" class="tabcontent">
+            <h3>Leads</h3>
+            <ul id="opportunities-list-leads" class="opportunities"></ul>
+          </div>
+          <div id="Contacted" class="tabcontent">
+            <h3>Contacted</h3>
+            <ul id="opportunities-list-contacted" class="opportunities"></ul>
+          </div>
+          <div id="Demos" class="tabcontent">
+            <h3>Demos</h3>
+            <ul id="opportunities-list-demos" class="opportunities"></ul>
+          </div>
+          <div id="Decisions" class="tabcontent">
+            <h3>Decisions</h3>
+            <ul id="opportunities-list-decisions" class="opportunities"></ul>
+          </div>
+          <div id="Customer" class="tabcontent">
+            <h3>Customer</h3>
+            <ul id="opportunities-list-customer" class="opportunities"></ul>
+          </div>
+        </div>
+        <!-- 
+
         <p>Stage</p>
-        <ul class="opportunities" id="opportunities-list"></ul>
+        <ul class="opportunities" id="opportunities-list"></ul> -->
         <hr />
         <div class="add-contact-container" id="add-contact">
           <img
@@ -254,6 +394,20 @@
         },
       };
 
+      function openSection(evt, sectionName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(sectionName).style.display = "block";
+        evt.currentTarget.className += " active";
+      }
+
       async function fetchContactsData(page = 1, pageLimit = 100) {
         const requestBody = {
           locationId: "vmVbiiFxcFwGxrxjotMf",
@@ -288,26 +442,33 @@
             hasMorePages = false;
           }
         }
-        // console.log("allContacts", allContacts);
         return allContacts;
       }
 
       const stageColors = {
-        new_lead_found: "#a7d3a8",
-        new_lead_inquiry: "#19a447",
-        demo: "#ec6157",
-        contacted_lead: "#bada55",
-        contacted_decision_maker: "#32742C",
-        unable_to_contact_lead: "#94b1c6",
-        no_show: "#E54028",
-        canceled: "#cf1431",
-        demo_set: "#2EA7C9",
-        showed: "#3886bd",
-        not_interested_not_yet_ready: "#e0dccb",
-        quote_requested: "#f8b552",
-        quote_sent: "#f8b552",
-        unqualified_not_a_good_fit: "#f8b552",
-        sold: "#ecbe13",
+        new: "#A7D3A8",
+        inquiry: "#19a447",
+        uploaded: "#1AF221",
+        unable_to_contact: "#A7D3C9",
+        pending_access: "#05DFAC",
+
+        pending_decision_maker: "#02CBD9",
+        decision_maker: "#00EEFF",
+
+        no_show: "#B2E0F6",
+        canceled: "#68A4D8",
+        scheduled: "#04A0FA",
+        demo_complete: "#0A508C",
+
+        not_interested: "#FFFDBE",
+        seasonal: "#EBE64E",
+        in_trial: "#EBCC4E",
+        quote_requested: "#C7A665",
+        quote_sent: "#FF9C07",
+        not_a_good_fit: "#918C82",
+
+        on_demand: "#BA4730",
+        routed: "#FF330A",
         // Add more mappings as needed
       };
       async function fetchOpportunities() {
@@ -327,9 +488,10 @@
           const opportunities = data.pipelines[6].stages.map((stage) => {
             // convert name to lowercase and replace all the spaces with dashes
             stage.layerId = stage.name.toLowerCase().replace(/\s/g, "_");
-            // Set the color based on the layer name
-            const color = stageColors[stage.layerId] || "#000000"; // Default to black if not found
-            console.log("stage", stage);
+            // console.log(stage.layerId);
+            // if the stage.layerId is not in the stageColors object, set it to a default color of #ccc
+            const color = stageColors[stage.layerId] || "#ccc";
+
             return {
               id: stage.id,
               name: stage.name,
@@ -338,31 +500,43 @@
               layerId: stage.layerId,
             };
           });
-          const opportunitiesList =
-            document.getElementById("opportunities-list");
+
+          const sections = {
+            Leads: [0, 1, 2, 3, 4],
+            Contacted: [5, 6],
+            Demos: [7, 8, 9, 10],
+            Decisions: [11, 12, 13, 14, 15, 16],
+            Customer: [17, 18],
+          };
+
           opportunities.forEach((opportunity, index) => {
-            // console.log("opportunity", opportunity);
-            // only show the opportunities in a certain position from Smash Leads Pipeline https://app.theleadtoolbox.com/v2/location/vmVbiiFxcFwGxrxjotMf/opportunities/pipeline
-            const showPosition = [0, 1, 3, 6, 7, 8, 9, 10, 11, 16];
-            if (!showPosition.includes(opportunity.position)) {
-              return;
-            }
             const li = document.createElement("li");
             li.innerHTML = `
-                        <label class="switch">
+                    <label class="switch">
                         <input type="checkbox" id="opportunity-${index}" checked/>
                         <span class="slider round"></span>
-                        </label>
-                        ${opportunity.name}
-                    `;
+                    </label>
+                    ${opportunity.name}
+                `;
+
+            let sectionTitle;
+            for (const [title, positions] of Object.entries(sections)) {
+              if (positions.includes(opportunity.position)) {
+                sectionTitle = title;
+                break;
+              }
+            }
+
+            const opportunitiesList = document.getElementById(
+              `opportunities-list-${sectionTitle.toLowerCase()}`
+            );
             opportunitiesList.appendChild(li);
-            // Add event listener to change color when checked
+
             const checkbox = li.querySelector(`#opportunity-${index}`);
-            // initialize the slider color to the opportunity color
             const slider = checkbox.nextElementSibling;
             slider.style.backgroundColor = opportunity.color;
+
             checkbox.addEventListener("change", (event) => {
-              // const slider = event.target.nextElementSibling;
               if (event.target.checked) {
                 slider.style.backgroundColor = opportunity.color;
                 map.setLayoutProperty(
@@ -379,6 +553,55 @@
                 );
               }
             });
+
+            // Open the first tab by default
+            document.querySelector(".tab button").click();
+
+            // const opportunitiesList =
+            //   document.getElementById("opportunities-list");
+            // opportunities.forEach((opportunity, index) => {
+            //   // only show the opportunities in a certain position from Smash Leads Pipeline https://app.theleadtoolbox.com/v2/location/vmVbiiFxcFwGxrxjotMf/opportunities/pipeline
+            //   // each section is an array of the stage positions
+            //   const leads = [0, 1, 2, 3, 4];
+            //   const contacted = [5, 6];
+            //   const demos = [7, 8, 9, 10];
+            //   const decisions = [11, 12, 13, 14, 15, 16];
+            //   const customer = [17, 18];
+            // if (!showPosition.includes(opportunity.position)) {
+            //   return;
+            // }
+            // const li = document.createElement("li");
+            // li.innerHTML = `
+            //             <label class="switch">
+            //             <input type="checkbox" id="opportunity-${index}" checked/>
+            //             <span class="slider round"></span>
+            //             </label>
+            //             ${opportunity.name}
+            //         `;
+            // opportunitiesList.appendChild(li);
+            // // Add event listener to change color when checked
+            // const checkbox = li.querySelector(`#opportunity-${index}`);
+            // // initialize the slider color to the opportunity color
+            // const slider = checkbox.nextElementSibling;
+            // slider.style.backgroundColor = opportunity.color;
+            // checkbox.addEventListener("change", (event) => {
+            //   // const slider = event.target.nextElementSibling;
+            //   if (event.target.checked) {
+            //     slider.style.backgroundColor = opportunity.color;
+            //     map.setLayoutProperty(
+            //       opportunity.layerId,
+            //       "visibility",
+            //       "visible"
+            //     );
+            //   } else {
+            //     slider.style.backgroundColor = "#ccc";
+            //     map.setLayoutProperty(
+            //       opportunity.layerId,
+            //       "visibility",
+            //       "none"
+            //     );
+            //   }
+            // });
           });
           return opportunities;
         } catch (error) {
@@ -406,10 +629,6 @@
               contact.opportunities && contact.opportunities.length > 0
           );
 
-          // console.log(
-          //   `Found ${contactsWithOpportunities.length} contacts with opportunities`
-          // );
-
           const featureCollection = {
             type: "FeatureCollection",
             features: [],
@@ -435,6 +654,7 @@
                   },
                   properties: {
                     title: `${contact.firstNameLowerCase} ${contact.lastNameLowerCase}`,
+                    companyName: `${contact.companyName}`,
                     stage: stage.name,
                     layerId: stage.layerId,
                     stageColor: stage.color,
@@ -443,6 +663,40 @@
               }
             }
           });
+
+          function forwardGeocoder(query) {
+            var matchingFeatures = [];
+            for (var i = 0; i < featureCollection.features.length; i++) {
+              var feature = featureCollection.features[i];
+              console.log(feature.properties);
+              if (
+                feature.properties.title
+                  .toLowerCase()
+                  .includes(query.toLowerCase()) || // search by company name
+                feature.properties.companyName
+                  .toLowerCase()
+                  .includes(query.toLowerCase())
+              ) {
+                feature["place_name"] = feature.properties.title;
+                feature["center"] = feature.geometry.coordinates;
+                feature["place_type"] = ["place"];
+                matchingFeatures.push(feature);
+              }
+            }
+            return matchingFeatures;
+          }
+          map.addControl(
+            new MapboxGeocoder({
+              accessToken: mapboxgl.accessToken,
+              mapboxgl: mapboxgl,
+              placeholder: "Search for a location",
+              localGeocoder: forwardGeocoder,
+              marker: true,
+              country: "US",
+              bbox: [-123.897371, 36.700924, -118.607454, 39.242375],
+            }),
+            "top-left"
+          );
 
           map.addSource("contacts", {
             type: "geojson",
@@ -456,7 +710,17 @@
               type: "circle",
               source: "contacts",
               paint: {
-                "circle-radius": 8,
+                "circle-radius": [
+                  "interpolate",
+                  ["linear"],
+                  ["zoom"],
+                  0,
+                  1,
+                  6,
+                  3,
+                  18,
+                  10,
+                ],
                 "circle-color": stage.color,
                 "circle-stroke-width": 1,
                 "circle-stroke-color": "#ffffff",
@@ -476,12 +740,25 @@
       map.on("click", (e) => {
         const features = map.queryRenderedFeatures(e.point, {
           layers: [
-            "new_lead_found",
-            "new_lead_inquiry",
-            // "contacted_lead",
-            "unable_to_contact_lead",
-            "contacted_decision_maker",
+            "new",
+            "inquiry",
+            "uploaded",
+            "unable_to_contact",
+            "pending_access",
+            "pending_decision_maker",
+            "decision_maker",
+            "no_show",
             "canceled",
+            "scheduled",
+            "demo_complete",
+            "not_interested",
+            "seasonal",
+            "in_trial",
+            "quote_requested",
+            "quote_sent",
+            "not_a_good_fit",
+            "on_demand",
+            "routed",
             // Add more layers as needed
           ],
         });
@@ -507,6 +784,27 @@
                 </div>
               </div>
             `); // add more stages as needed
+        // popup.setLngLat(feature.geometry.coordinates).setHTML(`
+        //       <h3>${feature.properties.title}</h3>
+        //       <div class="dropdown">
+        //         <button onclick="changeStage()" class="dropbtn" style="background-color: ${
+        //           stageColors[feature.layer.id]
+        //         }">${feature.properties.stage}</button>
+        //         <div id="stageMenu" class="dropdown-content">
+        //           <a href="#">New Lead Found</a>
+        //           <a href="#">New Lead Inquiry</a>
+        //           <a href="#">Contacted</a>
+        //           <a href="#">Demo</a>
+        //           <a href="#">Closed</a>
+        //         </div>
+        //       </div>
+        //     `); // add more stages as needed
+        popup.setLngLat(feature.geometry.coordinates).setHTML(`
+              <h3>${feature.properties.title}</h3>
+              <div class="popup_stage">${feature.properties.stage}
+                <p><a href="#">edit</a></p>
+              </div>
+            `); // add more stages as needed
 
         popup.addTo(map);
         //   Close the dropdown menu if the user clicks outside of it
@@ -523,6 +821,25 @@
           }
         };
       });
+
+      function forwardGeocoder(query) {
+        const matchingFeatures = [];
+        for (const feature of featureCollection.features) {
+          console.log(feature.properties);
+          // Handle queries with different capitalization
+          // than the source data by calling toLowerCase().
+          if (feature.properties.firstNameLowerCase) {
+            feature[
+              "place_name"
+            ] = `✅ ${feature.properties.firstNameLowerCase}`;
+            feature["center"] = feature.geometry.coordinates;
+            feature["place_type"] = ["poi"];
+            matchingFeatures.push(feature);
+          }
+        }
+        return matchingFeatures;
+      }
+
       function changeStage() {
         // add event listener to the button to toggle the dropdown content when clicked
         document.getElementById("stageMenu").classList.toggle("show");
@@ -557,11 +874,10 @@
           document.getElementById("gps-coords").textContent = // fixed to 6 decimal places
             lngLat.lng.toFixed(6) + ", " + lngLat.lat.toFixed(6);
           // Dispatch an input event to update the form field
-          console.log("lngLat", lngLat);
           document
             .getElementById("gps-coords")
             .dispatchEvent(new Event("input"));
-          //   document.getElementById("VyePc8cM7iupVOBiZBHY").value = coords;
+          // document.getElementById("VyePc8cM7iupVOBiZBHY").value = coords;
         };
 
         // Initial update of the coordinates
@@ -569,6 +885,23 @@
 
         // Update the coordinates when the marker is dragged
         marker.on("dragend", updateCoords);
+      });
+
+      // Toggle legend visibility when menu icon is clicked
+      const menuIcon = document.getElementById("menu-icon");
+      const legend = document.getElementById("legend");
+      menuIcon.addEventListener("click", () => {
+        if (legend.style.display === "none" || legend.style.display === "") {
+          legend.style.display = "block";
+        } else {
+          legend.style.display = "none";
+        }
+      });
+      // listen for the closemenu click event and hide the legend
+      document.getElementById("closemenu").addEventListener("click", () => {
+        legend.style.display = "none";
+        // display the menu icon
+        menuIcon.style.display = "block";
       });
     </script>
   </body>
