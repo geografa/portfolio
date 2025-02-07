@@ -77,8 +77,8 @@
         background-color: white;
         padding: 10px;
         border-radius: 10px;
-        width: 260px;
-        max-width: 240px;
+        width: 350px;
+        max-width: 350px;
         overflow-y: scroll;
         max-height: 500px;
       }
@@ -97,6 +97,7 @@
       }
 
       .tab button {
+        font-size: 0.8em;
         background-color: inherit;
         float: left;
         border: none;
@@ -553,55 +554,8 @@
                 );
               }
             });
-
             // Open the first tab by default
             document.querySelector(".tab button").click();
-
-            // const opportunitiesList =
-            //   document.getElementById("opportunities-list");
-            // opportunities.forEach((opportunity, index) => {
-            //   // only show the opportunities in a certain position from Smash Leads Pipeline https://app.theleadtoolbox.com/v2/location/vmVbiiFxcFwGxrxjotMf/opportunities/pipeline
-            //   // each section is an array of the stage positions
-            //   const leads = [0, 1, 2, 3, 4];
-            //   const contacted = [5, 6];
-            //   const demos = [7, 8, 9, 10];
-            //   const decisions = [11, 12, 13, 14, 15, 16];
-            //   const customer = [17, 18];
-            // if (!showPosition.includes(opportunity.position)) {
-            //   return;
-            // }
-            // const li = document.createElement("li");
-            // li.innerHTML = `
-            //             <label class="switch">
-            //             <input type="checkbox" id="opportunity-${index}" checked/>
-            //             <span class="slider round"></span>
-            //             </label>
-            //             ${opportunity.name}
-            //         `;
-            // opportunitiesList.appendChild(li);
-            // // Add event listener to change color when checked
-            // const checkbox = li.querySelector(`#opportunity-${index}`);
-            // // initialize the slider color to the opportunity color
-            // const slider = checkbox.nextElementSibling;
-            // slider.style.backgroundColor = opportunity.color;
-            // checkbox.addEventListener("change", (event) => {
-            //   // const slider = event.target.nextElementSibling;
-            //   if (event.target.checked) {
-            //     slider.style.backgroundColor = opportunity.color;
-            //     map.setLayoutProperty(
-            //       opportunity.layerId,
-            //       "visibility",
-            //       "visible"
-            //     );
-            //   } else {
-            //     slider.style.backgroundColor = "#ccc";
-            //     map.setLayoutProperty(
-            //       opportunity.layerId,
-            //       "visibility",
-            //       "none"
-            //     );
-            //   }
-            // });
           });
           return opportunities;
         } catch (error) {
@@ -868,9 +822,7 @@
           const lngLat = marker.getLngLat();
           const coords = lngLat.lng.toFixed(6) + ", " + lngLat.lat.toFixed(6);
 
-          // update div ID to "VyePc8cM7iupVOBiZBHY" in production
-
-          // Update the coordinates in the div with the ID "gps-coords"
+          // update div ID "gps-coords" to "VyePc8cM7iupVOBiZBHY" in production
           document.getElementById("gps-coords").textContent = // fixed to 6 decimal places
             lngLat.lng.toFixed(6) + ", " + lngLat.lat.toFixed(6);
           // Dispatch an input event to update the form field
