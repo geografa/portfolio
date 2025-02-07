@@ -217,13 +217,17 @@
         color: #000;
         margin: 0;
         display: block;
-        padding: 10px;
-        border-radius: 3px 3px 0 0;
+        padding-left: 10px;
         font-weight: 700;
+      }
+      .mapboxgl-popup p {
+        margin: 0;
+        padding-left: 10px;
+        font-weight: 400;
       }
       .mapboxgl-popup-content {
         padding: 10px;
-        border-radius: 15px;
+        border-radius: 10px;
         border: 1px solid #ccc;
         border-top: 0;
       }
@@ -394,6 +398,17 @@
           Accept: "application/json",
         },
       };
+
+      // create a function that converts a series of words to title case
+      function toTitleCase(str) {
+        // if the string is empty, return an empty string
+        if (str === "" || str === null || str === undefined) {
+          return "";
+        }
+        return str.replace(/\w\S*/g, function (txt) {
+          return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        });
+      }
 
       function openSection(evt, sectionName) {
         var i, tabcontent, tablinks;
@@ -589,6 +604,13 @@
           };
 
           contactsWithOpportunities.forEach((contact) => {
+            console.log(contact);
+            // convert the first name to titlecase with the toTitleCase function
+            contact.firstNameLowerCase = toTitleCase(
+              contact.firstNameLowerCase
+            );
+            contact.lastNameLowerCase = toTitleCase(contact.lastNameLowerCase);
+
             const coordinates = contact.customFields.find(
               (field) => field.id === "VyePc8cM7iupVOBiZBHY"
             );
@@ -622,7 +644,6 @@
             var matchingFeatures = [];
             for (var i = 0; i < featureCollection.features.length; i++) {
               var feature = featureCollection.features[i];
-              console.log(feature.properties);
               if (
                 feature.properties.title
                   .toLowerCase()
@@ -724,42 +745,12 @@
         }
 
         const feature = features[0];
+
         // if the layer clicked matches the color of the stage, show the dropbtn with the stage name and same color
         popup.setLngLat(feature.geometry.coordinates).setHTML(`
-              <h3>${feature.properties.title}</h3>
-              <div class="dropdown">
-                <button onclick="changeStage()" class="dropbtn" style="background-color: ${
-                  stageColors[feature.layer.id]
-                }">${feature.properties.stage}</button>
-                <div id="stageMenu" class="dropdown-content">
-                  <a href="#">New Lead Found</a>
-                  <a href="#">New Lead Inquiry</a>
-                  <a href="#">Contacted</a>
-                  <a href="#">Demo</a>
-                  <a href="#">Closed</a>
-                </div>
-              </div>
-            `); // add more stages as needed
-        // popup.setLngLat(feature.geometry.coordinates).setHTML(`
-        //       <h3>${feature.properties.title}</h3>
-        //       <div class="dropdown">
-        //         <button onclick="changeStage()" class="dropbtn" style="background-color: ${
-        //           stageColors[feature.layer.id]
-        //         }">${feature.properties.stage}</button>
-        //         <div id="stageMenu" class="dropdown-content">
-        //           <a href="#">New Lead Found</a>
-        //           <a href="#">New Lead Inquiry</a>
-        //           <a href="#">Contacted</a>
-        //           <a href="#">Demo</a>
-        //           <a href="#">Closed</a>
-        //         </div>
-        //       </div>
-        //     `); // add more stages as needed
-        popup.setLngLat(feature.geometry.coordinates).setHTML(`
-              <h3>${feature.properties.title}</h3>
-              <div class="popup_stage">${feature.properties.stage}
-                <p><a href="#">edit</a></p>
-              </div>
+              <h3>${feature.properties.companyName}</h3>
+              <p>${feature.properties.title}</p>
+              
             `); // add more stages as needed
 
         popup.addTo(map);
@@ -796,10 +787,6 @@
         return matchingFeatures;
       }
 
-      function changeStage() {
-        // add event listener to the button to toggle the dropdown content when clicked
-        document.getElementById("stageMenu").classList.toggle("show");
-      }
       // Add a new contact when the New Lead button is clicked
       let marker;
 
