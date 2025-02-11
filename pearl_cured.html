@@ -74,7 +74,42 @@
         hash: true,
       }));
 
+      // fetch trees from ./data/san_antonio_trees.geojson
+      const getTrees = async () => {
+        const response = await fetch("./data/san_antonio_trees.geojson");
+        const data = await response.json();
+        return data;
+      };
+
       map.on("style.load", () => {
+        // add the trees as a source to the map
+        getTrees().then((data) => {
+          map.addModel("model-conifer", "./models/tree-conifer.glb");
+          map.addModel("model-deciduous", "./models/tree-deciduous.glb");
+          map.addSource("trees", {
+            type: "geojson",
+            data: data,
+          });
+
+          // add a layer for the trees
+          map.addLayer({
+            id: "trees",
+            type: "model",
+            source: "trees",
+            layout: {
+              "model-id": "model-deciduous",
+              // [
+              //   "match",
+              //   ["get", "FUNCTIONAL_TYPE"],
+              //   "Broadleaf deciduous",
+              //   "model-deciduous",
+              //   "Coniferous evergreen",
+              //   "model-conifer",
+              //   "model-conifer",
+              // ],
+            },
+          });
+        });
         // set the light preset to be in dusk mode.
         map.setConfigProperty("basemap", "lightPreset", "day");
 
