@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Use a clip layer to replace a landmark on the map</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.9.3/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.9.3/mapbox-gl.js"></script>
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+      .cured {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 1;
+      }
+      .bottling {
+        position: absolute;
+        top: 40px;
+        left: 10px;
+        z-index: 1;
+      }
+      .emma {
+        position: absolute;
+        top: 70px;
+        left: 10px;
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cured">
+      <button id="cured">Cured Department</button>
+    </div>
+    <div class="bottling">
+      <button id="bottling">Bottling Department</button>
+    </div>
+    <div class="emma">
+      <button id="emma">Hotel Emma</button>
+    </div>
+
+    <div id="map"></div>
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2ptYjNtZWxnMDBrdDNwbnVicGJzOWg2NyJ9.9OulyCe3kEqMAXPbx1mKUA";
+
+      const start_cured = [-98.47996783687654, 29.441887287342766];
+      const start_bottling = [-98.4808014337685, 29.44199890225623];
+      const map = (window.map = new mapboxgl.Map({
+        container: "map",
+        center: start_cured,
+        zoom: 17.6,
+        pitch: 60,
+        bearing: -50,
+        minZoom: 16,
+        // maxZoom: 19.5,
+        projection: "mercator",
+        hash: true,
+      }));
+
+      map.on("style.load", () => {
+        // set the light preset to be in dusk mode.
+        map.setConfigProperty("basemap", "lightPreset", "day");
+
+        // add a geojson source with a polygon to be used in the clip layer.
+        map.addSource("eraser", {
+          type: "geojson",
+          data: {
+            type: "FeatureCollection",
+            features: [
+              {
+                type: "Feature",
+                properties: {},
+                geometry: {
+                  coordinates: [
+                    [
+                      [-98.47977856402079, 29.44208036225737],
+                      [-98.4799360112728, 29.442083649223036],
+                      [-98.47996728504165, 29.44204702303108],
+                      [-98.47997699069445, 29.442004762023814],
+                      [-98.479997480405, 29.441877039761224],
+                      [-98.47983949395054, 29.441839004791177],
+                      [-98.47976939757156, 29.442020257728302],
+                      [-98.47977856402079, 29.44208036225737],
+                    ],
+                  ],
+                  type: "Polygon",
+                },
+              },
+              {
+                type: "Feature",
+                properties: {},
+                geometry: {
+                  coordinates: [
+                    [
+                      [-98.4808388967579, 29.44203613425634],
+                      [-98.4808388967579, 29.441779220077038],
+                      [-98.48037561568647, 29.441779220077038],
+                      [-98.48037561568647, 29.44203613425634],
+                      [-98.4808388967579, 29.44203613425634],
+                    ],
+                  ],
+                  type: "Polygon",
+                },
+              },
+            ],
+          },
+        });
+
+        // add a geojson source which specifies the custom model to be used by the model layer.
+        map.addSource("source-cured", {
+          type: "geojson",
+          data: {
+            type: "Feature",
+            properties: {
+              "model-uri":
+                // "http://localhost:8080/models/bottling_dept_centered.glb",
+                "http://localhost:8080/models/pearl_cured.glb",
+            },
+            geometry: {
+              type: "Point",
+              coordinates: start_cured,
+            },
+          },
+        });
+        map.addSource("source-bottling", {
+          type: "geojson",
+          data: {
+            type: "Feature",
+            properties: {
+              "model-uri":
+                // "http://localhost:8080/models/bottling_dept_centered.glb",
+                "http://localhost:8080/models/pearl_bottling_dept.glb",
+            },
+            geometry: {
+              type: "Point",
+              coordinates: start_bottling,
+            },
+          },
+        });
+
+        // add the clip layer and configure it to also remove symbols and trees.
+        // `clip-layer-scope` layout property is used to specify that only models from the Mapbox Standard Style should be clipped.
+        // this will prevent the newly added model from getting clipped.
+        map.addLayer({
+          id: "eraser",
+          type: "clip",
+          source: "eraser",
+          layout: {
+            // specify the layer types to be removed by this clip layer
+            "clip-layer-types": ["symbol", "model"],
+            "clip-layer-scope": ["basemap"],
+          },
+        });
+
+        // add the model layer and specify the appropriate `slot` to ensure the symbols are rendered correctly.
+
+        map.addLayer({
+          id: "layer-cured",
+          type: "model",
+          source: "source-cured",
+          layout: {
+            "model-id": ["get", "model-uri"],
+          },
+          paint: {
+            "model-color-mix-intensity": 0.1,
+            "model-color": "rgba(0,0, 0, 1)",
+            "model-scale": [1, 1, 1],
+            "model-rotation": [0, 0, 11],
+          },
+        });
+        map.addLayer({
+          id: "layer-bottling",
+          type: "model",
+          source: "source-bottling",
+          layout: {
+            "model-id": ["get", "model-uri"],
+          },
+          paint: {
+            "model-color-mix-intensity": 0.1,
+            "model-color": "rgba(0,0, 0, 1)",
+            "model-scale": [1, 1, 1],
+            "model-rotation": [0, 0, 0],
+          },
+        });
+      });
+      // add a button to fly to the feature
+      document.getElementById("cured").addEventListener("click", function () {
+        map.flyTo({
+          center: start_cured,
+          zoom: 19.5,
+          bearing: -162,
+          pitch: 72,
+          essential: true,
+        });
+      });
+      document
+        .getElementById("bottling")
+        .addEventListener("click", function () {
+          map.flyTo({
+            center: start_bottling,
+            zoom: 19.5,
+            bearing: -119,
+            pitch: 60,
+            essential: true,
+          });
+        });
+      document.getElementById("emma").addEventListener("click", function () {
+        map.flyTo({
+          center: [-98.480938, 29.442539],
+          zoom: 19,
+          bearing: -50,
+          pitch: 60,
+          essential: true,
+        });
+      });
+    </script>
+  </body>
+</html>
