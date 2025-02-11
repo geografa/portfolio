@@ -117,7 +117,7 @@
   </head>
   <body>
     <div id="map"></div>
-    <div id="sidebar" style="display: none">
+    <div id="sidebar">
       <div id="logo">
         <a href="https://geografa.io/"
           ><img src="./img/logo-geografa.png" alt="geografa.io" /> eografa.io</a
@@ -125,7 +125,11 @@
       </div>
       <div id="upload-model">
         <h3>Link to model</h3>
-        <input type="text" id="model-uri" value="" />
+        <input
+          type="text"
+          id="model-uri"
+          value="https://geografa.github.io/portfolio/models/van.glb"
+        />
         <button id="update-model">Update</button>
       </div>
       <div>
@@ -159,9 +163,19 @@
         min="0"
         max="1"
         step="0.1"
-        value="0.1"
+        value="0"
       />
       <label id="model-intensity-text"></label>
+      <h3>Opacity</h3>
+      <input
+        id="slider-opacity"
+        type="range"
+        min="0"
+        max="1"
+        step="0.1"
+        value="1"
+      />
+      <label id="model-opacity-text"></label>
 
       <div id="color-picker">
         <h3>Color</h3>
@@ -176,9 +190,10 @@
     <!-- intro -->
     <div id="intro-modal">
       <h2>Add a Model to the Map</h2>
-      <p>1. Click anywhere to get started and position the model.</p>
-      <p>2. Swap the model for another (GLB/GLTF format)</p>
-      <p>3. Adjust the properties as needed.</p>
+      <p>1. Double-click anywhere to get started and position the model.</p>
+      <p>2. Link to a different model (GLB/GLTF format).</p>
+      <p>3. Clip (remove) existing buildings with the draw polygon tool.</p>
+      <p>4. Adjust the properties as needed.</p>
       <button id="close-modal">Get Started</button>
     </div>
     <script>
@@ -347,7 +362,8 @@
         (document.getElementById("coords").innerHTML =
           // `e.lngLat` is the longitude, latitude geographical position of the event.
           // just get the longitude and latitude values
-          e.lngLat.lng + ", " + e.lngLat.lat),
+          // set e.lngLat.lng + ", " + e.lngLat.lat) to 6 decimal places
+          e.lngLat.lng.toFixed(8) + ", " + e.lngLat.lat.toFixed(8)),
           null,
           2;
         // if the source does not exist, create a new one and add the layer
@@ -373,10 +389,11 @@
               "model-id": ["get", "model-uri"],
             },
             paint: {
-              "model-color-mix-intensity": 0.1,
+              "model-color-mix-intensity": 0,
               "model-color": "rgba(0,0, 0, 1)",
               "model-scale": [1, 1, 1],
               "model-rotation": [0, 0, 0],
+              "model-opacity": 1,
             },
           });
 
@@ -445,6 +462,16 @@
             "model-intensity-text"
           ).textContent = `${intensity}`;
         });
+      document
+        .getElementById("slider-opacity")
+        .addEventListener("input", (e) => {
+          const opacity = parseFloat(e.target.value); // Ensure the value is a number
+
+          map.setPaintProperty("custom-model", "model-opacity", opacity);
+          document.getElementById(
+            "model-opacity-text"
+          ).textContent = `${opacity}`;
+        });
       // if the slider-scale value is changed, or the slider-rotate value is changed, update the modelProps value
       document.getElementById("slider-rotate").addEventListener("input", () => {
         const modelProps = map.getLayer("custom-model").paint;
@@ -464,6 +491,16 @@
       });
       document
         .getElementById("slider-intensity")
+        .addEventListener("input", () => {
+          const modelProps = map.getLayer("custom-model").paint;
+          document.getElementById("modelProps").innerHTML = JSON.stringify(
+            modelProps,
+            null,
+            2
+          );
+        });
+      document
+        .getElementById("slider-opacity")
         .addEventListener("input", () => {
           const modelProps = map.getLayer("custom-model").paint;
           document.getElementById("modelProps").innerHTML = JSON.stringify(
