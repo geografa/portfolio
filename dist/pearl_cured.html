@@ -81,6 +81,16 @@
         return data;
       };
 
+      // add geolocaation control to the map
+      map.addControl(
+        new mapboxgl.GeolocateControl({
+          positionOptions: {
+            enableHighAccuracy: true,
+          },
+          trackUserLocation: true,
+        })
+      );
+
       map.on("style.load", () => {
         // add the trees as a source to the map
         getTrees().then((data) => {
@@ -166,7 +176,7 @@
             properties: {
               "model-uri":
                 // "http://localhost:8080/models/bottling_dept_centered.glb",
-                "http://localhost:8080/models/pearl_cured.glb",
+                "https://geografa.github.io/portfolio/models/pearl_cured.glb",
             },
             geometry: {
               type: "Point",
@@ -180,8 +190,8 @@
             type: "Feature",
             properties: {
               "model-uri":
-                // "http://localhost:8080/models/bottling_dept_centered.glb",
-                "http://localhost:8080/models/pearl_bottling_dept.glb",
+                // "http://localhost:8080/models/pearl_bottling_dept.glb",
+                "https://geografa.github.io/portfolio/models/pearl_bottling_dept.glb",
             },
             geometry: {
               type: "Point",
