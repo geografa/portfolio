@@ -125,11 +125,7 @@
       </div>
       <div id="upload-model">
         <h3>Link to model</h3>
-        <input
-          type="text"
-          id="model-uri"
-          value="https://geografa.github.io/portfolio/models/van.glb"
-        />
+        <input type="text" id="model-uri" value="" />
         <button id="update-model">Update</button>
       </div>
       <div>
@@ -190,7 +186,7 @@
         "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2ptYjNtZWxnMDBrdDNwbnVicGJzOWg2NyJ9.9OulyCe3kEqMAXPbx1mKUA";
       // top left corner of the model's base
       const start = [-122.67134991690358, 45.53285089130583];
-      let modelUri = "https://geografa.github.io/portfolio/models/van.glb";
+      let modelUri;
       const map = new mapboxgl.Map({
         container: "map",
         center: start, // starting position
@@ -199,6 +195,22 @@
         pitch: 0,
         hash: true,
       });
+      // draw tools
+      //  create an empty feature collection called eraseArea to store the drawn polygon
+      let eraseArea = {
+        type: "FeatureCollection",
+        features: [],
+      };
+      const draw = new MapboxDraw({
+        displayControlsDefault: false,
+        controls: {
+          polygon: true,
+          trash: true,
+        },
+      });
+      map.addControl(draw);
+
+      // geocoder
       map.addControl(
         new MapboxGeocoder({
           accessToken: mapboxgl.accessToken,
@@ -227,6 +239,25 @@
             "Layer does not exist.";
         }
       };
+
+      // disable the double click zoom
+      map.doubleClickZoom.disable();
+
+      // create a function that listens to the draw.create event and updates the eraseArea feature collection with the drawn polygon
+      map.on("draw.create", (e) => {
+        eraseArea = e.features[0].geometry;
+        // get the coordinates of the drawn polygon and update the eraseArea feature collection
+        map.getSource("eraser").setData({
+          type: "FeatureCollection",
+          features: [
+            {
+              type: "Feature",
+              properties: {},
+              geometry: eraseArea,
+            },
+          ],
+        });
+      });
 
       // listen for the update button click event and update the model uri value
       document.getElementById("update-model").addEventListener("click", () => {
@@ -275,10 +306,43 @@
         // set the light preset to be in day mode.
         map.setConfigProperty("basemap", "lightPreset", "day");
       });
+      map.on("load", () => {
+        // add the eraser source and layer to the map
+        map.addSource("eraser", {
+          type: "geojson",
+          data: eraseArea,
+        });
+        map.addLayer({
+          id: "eraser-fill",
+          type: "fill",
+          source: "eraser",
+          layout: {},
+          paint: {
+            "fill-color": "rgba(0,255,220,0.5)",
+            "fill-opacity": 0.5,
+          },
+        });
+        map.addLayer({
+          id: "eraser",
+          type: "clip",
+          source: "eraser",
+          layout: {
+            // specify the layer types to be removed by this clip layer
+            "clip-layer-types": ["symbol", "model"],
+            "clip-layer-scope": ["basemap"],
+          },
+          paint: {
+            "fill-color": "rgba(0,255,220,0.5)",
+            "fill-opacity": 0.5,
+          },
+        });
+      });
 
       // add a 3D model to the map
-      map.on("click", (e) => {
+      map.on("dblclick", (e) => {
         document.getElementById("sidebar").style.display = "block";
+        // get the current model uri value
+        modelUri = document.getElementById("model-uri").value;
 
         (document.getElementById("coords").innerHTML =
           // `e.lngLat` is the longitude, latitude geographical position of the event.
