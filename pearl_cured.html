@@ -48,17 +48,69 @@
         left: 10px;
         z-index: 1;
       }
+      .modal {
+        /* display: none; */
+        position: fixed;
+        z-index: 1;
+
+        bottom: 0;
+        width: 100%;
+        height: 200px;
+        overflow: auto;
+        background-color: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+          0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        backdrop-filter: blur(5px);
+      }
+      .modal-content {
+        /* position: relative; */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .closemodal {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+        width: 16px;
+      }
+      .directions-link {
+        /* display: none; */
+        cursor: pointer;
+        color: rgb(182, 73, 0);
+        text-decoration: underline;
+      }
     </style>
   </head>
   <body>
-    <div class="cured">
-      <button id="cured">Cured</button>
-    </div>
-    <div class="bottling">
-      <button id="bottling">Bottling Department</button>
-    </div>
-    <div class="emma">
-      <button id="emma">Hotel Emma</button>
+    <div id="modal" class="modal">
+      <div id="closemodal">
+        <img
+          src="https://geografa.github.io/portfolio/img/closemenu.png"
+          alt="close menu"
+          class="closemodal"
+        />
+      </div>
+      <div class="modal-content">
+        <!-- place details -->
+        <div class="place-details">
+          <!-- Use variable for heading <h2>Cured</h2> -->
+          <h2>The Pearl</h2>
+        </div>
+
+        <!-- links to zoom  -->
+        <!-- <div class="cured">
+          <div id="cured">Cured</div>
+        </div>
+        <div class="bottling">
+          <div id="bottling">Bottling Department</div>
+        </div>
+        <div class="emma">
+          <div id="emma">Hotel Emma</div>
+        </div> -->
+      </div>
     </div>
 
     <div id="map"></div>
@@ -68,6 +120,8 @@
 
       const start_cured = [-98.47996783687654, 29.441887287342766];
       const start_bottling = [-98.4808014337685, 29.44199890225623];
+      const start_cellar = [-98.48100799, 29.44213212];
+
       const map = (window.map = new mapboxgl.Map({
         container: "map",
         style: "mapbox://styles/grafa/cm4noofna009j01s5gji15azp",
@@ -205,14 +259,12 @@
             slot: "bottom",
           });
         }
-        // overwrite the get-directions-link with the duration and distance of the route
-        popup.setHTML(
-          `<div>Duration: ${Math.floor(
-            data.duration / 60
-          )} minutes</div><div>Distance: ${Math.floor(
-            data.distance
-          )} meters</div>`
-        );
+        // add the duration and distance to the modal content
+        document.querySelector(
+          ".place-details"
+        ).innerHTML += `<p>Duration: ${Math.floor(
+          data.duration / 60
+        )} minutes</p>`;
       }
 
       fetchCustomData().then(() => {
@@ -225,7 +277,8 @@
             mapboxgl: mapboxgl,
             // keep to the bounds of san antonio tx
             bbox: [-98.7, 29.2, -98.2, 29.7],
-          })
+          }),
+          "top-left"
         );
       });
 
@@ -338,6 +391,21 @@
             },
           },
         });
+        map.addSource("source-cellar", {
+          type: "geojson",
+          data: {
+            type: "Feature",
+            properties: {
+              "model-uri":
+                // "http://localhost:8080/models/pearl_bottling_dept.glb",
+                "https://geografa.github.io/portfolio/models/pearl_sign.glb",
+            },
+            geometry: {
+              type: "Point",
+              coordinates: start_cellar,
+            },
+          },
+        });
 
         // add the clip layer and configure it to also remove symbols and trees.
         // `clip-layer-scope` layout property is used to specify that only models from the Mapbox Standard Style should be clipped.
@@ -383,6 +451,21 @@
             "model-rotation": [0, 0, 0],
           },
         });
+        map.addLayer({
+          id: "layer-cellar",
+          type: "model",
+          source: "source-cellar",
+          layout: {
+            "model-id": ["get", "model-uri"],
+          },
+          paint: {
+            "model-color-mix-intensity": 0,
+            "model-color": "rgba(0,0, 0, 1)",
+            "model-scale": [1.2, 1.2, 1.2],
+            "model-rotation": [0, 0, 278],
+            "model-opacity": 1,
+          },
+        });
         // add the pearl locations to the map as a source and layer
         getLocations().then((data) => {
           map.addSource("pearl-locations", {
@@ -424,9 +507,12 @@
             "line-cap": "round",
           },
           paint: {
-            "line-color": "#f02432",
-            "line-width": 8,
+            "line-color": "#0d5bc1",
+            "line-width": 12,
             "line-opacity": 0.7,
+            // dash line effect
+            // make the line dash so the dashes look like circles
+            "line-dasharray": [0.02, 1.6],
           },
         });
       });
@@ -442,7 +528,7 @@
           [e.point.x - 5, e.point.y - 5],
           [e.point.x + 5, e.point.y + 5],
         ];
-        const description = `<a href="#" id="get-directions-link">Get Directions</a>`;
+        const description = `<a href="#" class="directions-link">Get Directions</a>`;
 
         // Find features intersecting the bounding box.
         const selectedFeatures = map.queryRenderedFeatures(bbox, {
@@ -451,29 +537,23 @@
         if (selectedFeatures.length > 0) {
           const feature = selectedFeatures[0];
           const featureName = feature.properties.title;
-          popup
-            .setLngLat(feature.geometry.coordinates)
-            .setHTML(description)
-            .addTo(map);
-        } else {
-          return;
+          const featureCoordinates = feature.geometry.coordinates.slice();
+          // add place details to the place-details div in the modal
+          document.querySelector(
+            ".place-details"
+          ).innerHTML = `<h2>${featureName}</h2> ${description}`;
+          // listen for the click event on the directions link and call the getDirections function
+          // get the start location from the geolocate control if it is set or use the default start location
+          document
+            .querySelector(".directions-link")
+            .addEventListener("click", () => {
+              if (start) {
+                getDirections(start, featureCoordinates);
+              } else {
+                getDirections([-98.479825, 29.442216], featureCoordinates);
+              }
+            });
         }
-        // Add event listener to the link in the popup
-
-        document
-          .getElementById("get-directions-link")
-          .addEventListener("click", (event) => {
-            // get the user's current location from the geolocation control and use it as the starting point
-
-            event.preventDefault();
-
-            const end = selectedFeatures[0].geometry.coordinates;
-            if (start) {
-              getDirections(start, end);
-            } else {
-              alert("Please enable geolocation to use this feature");
-            }
-          });
       });
 
       // add a button to fly to the feature
