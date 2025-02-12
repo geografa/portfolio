@@ -146,6 +146,17 @@
 
       geolocate.on("geolocate", (e) => {
         start = [e.coords.longitude, e.coords.latitude];
+        // set the initial map position to the center:[-98.479825,29.442216],
+        // zoom:17,
+        // bearing:-80,
+        // pitch:41,
+        map.flyTo({
+          center: [-98.479825, 29.442216],
+          zoom: 17,
+          bearing: -80,
+          pitch: 41,
+          essential: true,
+        });
       });
       // Define the getDirections function
       async function getDirections(start, end) {
@@ -383,8 +394,8 @@
             type: "symbol",
             source: "pearl-locations",
             layout: {
-              "icon-image": "mapbox-circle",
-              "icon-size": 1.5,
+              "icon-image": "mapbox-heart",
+              "icon-size": 0.7,
               "icon-allow-overlap": true,
               "text-field": ["get", "title"],
               "text-font": ["Open Sans Bold", "Arial Unicode MS Bold"],
@@ -394,6 +405,8 @@
             },
             paint: {
               "text-color": "rgba(0,0,0,1)",
+              "text-halo-color": "rgba(255,255,255,1)",
+              "text-halo-width": 1,
             },
           });
         });
@@ -420,7 +433,7 @@
 
       const popup = new mapboxgl.Popup({
         closeButton: false,
-        closeOnClick: false,
+        closeOnClick: true,
       });
 
       map.on("click", (e) => {
@@ -442,8 +455,11 @@
             .setLngLat(feature.geometry.coordinates)
             .setHTML(description)
             .addTo(map);
+        } else {
+          return;
         }
         // Add event listener to the link in the popup
+
         document
           .getElementById("get-directions-link")
           .addEventListener("click", (event) => {
@@ -452,7 +468,11 @@
             event.preventDefault();
 
             const end = selectedFeatures[0].geometry.coordinates;
-            getDirections(start, end);
+            if (start) {
+              getDirections(start, end);
+            } else {
+              alert("Please enable geolocation to use this feature");
+            }
           });
       });
 
@@ -460,9 +480,9 @@
       document.getElementById("cured").addEventListener("click", function () {
         map.flyTo({
           center: start_cured,
-          zoom: 19.5,
+          zoom: 18.5,
           bearing: -162,
-          pitch: 72,
+          pitch: 65,
           essential: true,
         });
       });
