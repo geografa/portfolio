@@ -1,0 +1,61 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-98.48070866500912, 29.442532419256068]
+      },
+      "properties": { "title": "Southerleigh" }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-98.4811253136982, 29.44250092088555]
+      },
+      "properties": { "title": "Hotel Emma" }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-98.48125203381827, 29.44226795002642]
+      },
+      "properties": { "title": "The Cellar" }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-98.48057199515897, 29.442015611393956]
+      },
+      "properties": { "title": "Bottling Department Food Hall" }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-98.47982346728351, 29.44212352787379]
+      },
+      "properties": { "title": "Cured" }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-98.48003248109508, 29.442346149704477]
+      },
+      "properties": { "title": "Bakery Lorraine" }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-98.47951133138722, 29.44307620031003]
+      },
+      "properties": { "title": "Pearl Stable Auditorum" }
+    }
+  ]
+}
