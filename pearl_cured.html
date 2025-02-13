@@ -35,7 +35,7 @@
         font-family: "Popins", sans-serif;
         /* display: none; */
         position: fixed;
-        z-index: 1;
+        z-index: 3;
         bottom: 0;
         /* round the top corners */
         border-top-left-radius: 20px;
@@ -127,6 +127,10 @@
         cursor: pointer;
         color: rgb(182, 73, 0);
         text-decoration: underline;
+      }
+      /* mb-- controls */
+      .mapboxgl-ctrl-bottom-right {
+        z-index: 3;
       }
     </style>
   </head>
@@ -455,7 +459,7 @@
             properties: {
               "model-uri":
                 // "http://localhost:8080/models/pearl_bottling_dept.glb",
-                "https://geografa.github.io/portfolio/models/pearl_sign.glb",
+                "https://geografa.github.io/portfolio/models/pearl_cellar.glb",
             },
             geometry: {
               type: "Point",
