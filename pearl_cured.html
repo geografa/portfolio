@@ -30,46 +30,79 @@
         bottom: 0;
         width: 100%;
       }
-      .cured {
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        z-index: 1;
-      }
-      .bottling {
-        position: absolute;
-        top: 40px;
-        left: 10px;
-        z-index: 1;
-      }
-      .emma {
-        position: absolute;
-        top: 70px;
-        left: 10px;
-        z-index: 1;
-      }
+
       .modal {
+        font-family: "Popins", sans-serif;
         /* display: none; */
         position: fixed;
         z-index: 1;
-
         bottom: 0;
+        /* round the top corners */
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
         width: 100%;
-        height: 200px;
+        height: 400px;
         overflow: auto;
-        background-color: rgba(255, 255, 255, 0.8);
+        background-image: url("https://media.mapme.com/places/72d09a64-fb52-4aa8-91e8-6e7a191d2429/gallery/c1005c39-7ce7-4c0d-9236-ba038c8ada97.hd"),
+          linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 1),
+            rgba(255, 255, 255, 0.95),
+            rgba(255, 255, 255, 0.65)
+          );
+        background-size: cover;
+        background-blend-mode: overlay;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
           0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        backdrop-filter: blur(5px);
+      }
+      .hidden {
+        /* transfomr the modal to be lower */
+        transform: translateY(280px);
+      }
+      .modal-header {
+        display: block;
+        /* justify-content: space-between; */
+        padding: 20px;
+      }
+
+      .modal-header img {
+        width: 20%;
+        height: auto;
+      }
+      .modal-header h2 {
+        margin-bottom: 0;
+        color: rgb(182, 73, 0);
+      }
+      .modal-header h3 {
+        font-size: 1rem;
+        font-weight: 400;
+        color: rgb(94, 94, 94);
+        margin-top: 8px;
       }
       .modal-content {
-        /* position: relative; */
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        align-items: flex-start;
+        flex-direction: row;
+        padding: 10px;
+        font-family: "Popins", sans-serif;
+        padding-left: 20px;
       }
-      .closemodal {
+
+      .modal-content p {
+        padding: 10px;
+        font-size: 1rem;
+        font-weight: 200;
+        line-height: 1.5;
+        color: rgb(94, 94, 94);
+      }
+      .close-modal {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+        width: 16px;
+      }
+      .open-modal {
         position: absolute;
         top: 10px;
         right: 10px;
@@ -90,27 +123,17 @@
         <img
           src="https://geografa.github.io/portfolio/img/closemenu.png"
           alt="close menu"
-          class="closemodal"
+          class="close-modal"
         />
       </div>
-      <div class="modal-content">
+      <div class="modal-header">
         <!-- place details -->
         <div class="place-details">
           <!-- Use variable for heading <h2>Cured</h2> -->
           <h2>The Pearl</h2>
         </div>
-
-        <!-- links to zoom  -->
-        <!-- <div class="cured">
-          <div id="cured">Cured</div>
-        </div>
-        <div class="bottling">
-          <div id="bottling">Bottling Department</div>
-        </div>
-        <div class="emma">
-          <div id="emma">Hotel Emma</div>
-        </div> -->
       </div>
+      <div class="modal-content"></div>
     </div>
 
     <div id="map"></div>
@@ -125,14 +148,14 @@
       const map = (window.map = new mapboxgl.Map({
         container: "map",
         style: "mapbox://styles/grafa/cm4noofna009j01s5gji15azp",
-        center: start_cured,
-        zoom: 17.6,
-        pitch: 60,
-        bearing: -50,
+        center: [-98.480747, 29.442041],
+        zoom: 17,
+        bearing: 13,
+        pitch: 45,
         minZoom: 16,
         // maxZoom: 19.5,
         projection: "mercator",
-        hash: true,
+        // hash: true,
       }));
 
       // fetch trees from ./data/san_antonio_trees.geojson
@@ -220,9 +243,9 @@
         );
         const json = await query.json();
         const data = json.routes[0];
-        const route = data.geometry.coordinates;
+        let route = data.geometry.coordinates;
 
-        const geojson = {
+        let geojson = {
           type: "Feature",
           properties: {},
           geometry: {
@@ -258,13 +281,22 @@
             },
             slot: "bottom",
           });
+          // get the bounds of the geojson route and fit the map to it
+          const bounds = route.reduce(function (bounds, coord) {
+            return bounds.extend(coord);
+          }, new mapboxgl.LngLatBounds(route[0], route[0]));
+          map.fitBounds(bounds, {
+            padding: 20,
+          });
         }
         // add the duration and distance to the modal content
         document.querySelector(
-          ".place-details"
+          ".modal-header"
         ).innerHTML += `<p>Duration: ${Math.floor(
           data.duration / 60
         )} minutes</p>`;
+        // move the modal lower by adding the hidden class
+        document.querySelector(".modal").classList.add("hidden");
       }
 
       fetchCustomData().then(() => {
@@ -528,7 +560,6 @@
           [e.point.x - 5, e.point.y - 5],
           [e.point.x + 5, e.point.y + 5],
         ];
-        const description = `<a href="#" class="directions-link">Get Directions</a>`;
 
         // Find features intersecting the bounding box.
         const selectedFeatures = map.queryRenderedFeatures(bbox, {
@@ -536,12 +567,27 @@
         });
         if (selectedFeatures.length > 0) {
           const feature = selectedFeatures[0];
-          const featureName = feature.properties.title;
+          const detailsImg = feature.properties.image;
+          const details =
+            "<h2>" +
+            feature.properties.title +
+            "</h2>" +
+            "<h3>" +
+            feature.properties.heading +
+            "</h3><a href='#' class='directions-link'>" +
+            feature.properties.address +
+            "</a>";
           const featureCoordinates = feature.geometry.coordinates.slice();
           // add place details to the place-details div in the modal
+          document.querySelector(".modal-header").innerHTML = `${details}`;
           document.querySelector(
-            ".place-details"
-          ).innerHTML = `<h2>${featureName}</h2> ${description}`;
+            ".modal-content"
+          ).innerHTML = `<p>${feature.properties.description}</p>`;
+          // change the background of the modal to the image of the place and the same gradients
+          document.querySelector(
+            ".modal"
+          ).style.backgroundImage = `url(${detailsImg}), linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.65))`;
+
           // listen for the click event on the directions link and call the getDirections function
           // get the start location from the geolocate control if it is set or use the default start location
           document
@@ -556,35 +602,13 @@
         }
       });
 
-      // add a button to fly to the feature
-      document.getElementById("cured").addEventListener("click", function () {
-        map.flyTo({
-          center: start_cured,
-          zoom: 18.5,
-          bearing: -162,
-          pitch: 65,
-          essential: true,
-        });
-      });
-      document
-        .getElementById("bottling")
-        .addEventListener("click", function () {
-          map.flyTo({
-            center: start_bottling,
-            zoom: 19.5,
-            bearing: -119,
-            pitch: 60,
-            essential: true,
-          });
-        });
-      document.getElementById("emma").addEventListener("click", function () {
-        map.flyTo({
-          center: [-98.480938, 29.442539],
-          zoom: 19,
-          bearing: -50,
-          pitch: 60,
-          essential: true,
-        });
+      // if the modal already has the class hidden, remove it and show the modal else add the hidden class to the modal when clicking the close button
+      document.querySelector(".close-modal").addEventListener("click", () => {
+        if (document.querySelector(".modal").classList.contains("hidden")) {
+          document.querySelector(".modal").classList.remove("hidden");
+        } else {
+          document.querySelector(".modal").classList.add("hidden");
+        }
       });
     </script>
   </body>
