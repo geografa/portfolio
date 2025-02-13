@@ -115,10 +115,12 @@
       }
       .open-modal {
         position: absolute;
+        display: none;
+        /* center the arrow */
         top: 10px;
-        right: 10px;
+        margin: auto 46%;
         cursor: pointer;
-        width: 16px;
+        width: 32px;
       }
       .directions-link {
         /* display: none; */
@@ -135,6 +137,13 @@
           src="https://geografa.github.io/portfolio/img/closemenu.png"
           alt="close menu"
           class="close-modal"
+        />
+        <!-- add chevron for up arrow -->
+        <img
+          src="./img/chevron.svg"
+          alt="up arrow"
+          class="open-modal"
+          style="display: none"
         />
       </div>
       <div class="modal-header">
@@ -311,6 +320,8 @@
         )}</p> minute(s) away`;
         // move the modal lower by adding the hidden class
         document.querySelector(".modal").classList.add("hidden");
+        document.querySelector(".open-modal").style.display = "block";
+        document.querySelector(".close-modal").style.display = "none";
       }
 
       fetchCustomData().then(() => {
@@ -708,13 +719,17 @@
         }
       });
 
-      // if the modal already has the class hidden, remove it and show the modal else add the hidden class to the modal when clicking the close button
+      // if the modal is visible, hide it when the close button is clicked.
+      // if the modal is hidden, show it when the open button is clicked.
       document.querySelector(".close-modal").addEventListener("click", () => {
-        if (document.querySelector(".modal").classList.contains("hidden")) {
-          document.querySelector(".modal").classList.remove("hidden");
-        } else {
-          document.querySelector(".modal").classList.add("hidden");
-        }
+        document.querySelector(".modal").classList.add("hidden");
+        document.querySelector(".open-modal").style.display = "block";
+        document.querySelector(".close-modal").style.display = "none";
+      });
+      document.querySelector(".open-modal").addEventListener("click", () => {
+        document.querySelector(".modal").classList.remove("hidden");
+        document.querySelector(".open-modal").style.display = "none";
+        document.querySelector(".close-modal").style.display = "block";
       });
     </script>
   </body>
