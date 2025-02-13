@@ -79,6 +79,17 @@
         color: rgb(94, 94, 94);
         margin-top: 8px;
       }
+      .modal-header .duration {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        background-color: #b64900;
+        color: white;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 30px;
+        font-size: 1rem;
+      }
       .modal-content {
         display: flex;
         align-items: flex-start;
@@ -292,9 +303,9 @@
         // add the duration and distance to the modal content
         document.querySelector(
           ".modal-header"
-        ).innerHTML += `<p>Duration: ${Math.floor(
+        ).innerHTML += `<br><p class="duration" >${Math.floor(
           data.duration / 60
-        )} minutes</p>`;
+        )}</p> minute(s) away`;
         // move the modal lower by adding the hidden class
         document.querySelector(".modal").classList.add("hidden");
       }
