@@ -67,7 +67,8 @@
       }
 
       .modal-header img {
-        width: 26px;
+        width: 32px;
+        margin-left: 10px;
       }
       .modal-header h2 {
         display: inline;
@@ -344,8 +345,11 @@
         const geocoder = new MapboxGeocoder({
           accessToken: mapboxgl.accessToken,
           localGeocoder: forwardGeocoder,
+          // local only returns results from the forwardGeocoder function
+          localGeocoderOnly: true,
           zoom: 14,
           placeholder: "Where to?",
+          marker: false,
           mapboxgl: mapboxgl,
           limit: 3,
           // keep to the bounds of san antonio tx
@@ -576,10 +580,20 @@
             source: "pearl-locations",
             layout: {
               "icon-image": "pearl-sign-xxx",
-              "icon-size": 0.7,
+              "icon-size": 0.5,
+              "text-field": ["get", "title"],
+              "text-font": ["Open Sans Bold", "Arial Unicode MS Bold"],
+              "text-size": 12,
+              "text-offset": [0, 1],
+              "text-anchor": "top",
+              "text-justify": "auto",
+              // "text-allow-overlap": true,
             },
             paint: {
               "symbol-z-offset": 20,
+              "text-color": "rgb(0, 0, 0)",
+              "text-halo-color": "rgba(255, 255, 255, 0.8)",
+              "text-halo-width": 2,
             },
           });
         });
