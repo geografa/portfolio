@@ -8,10 +8,10 @@
       content="initial-scale=1,maximum-scale=1,user-scalable=no"
     />
     <link
-      href="https://api.mapbox.com/mapbox-gl-js/v3.9.3/mapbox-gl.css"
+      href="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.css"
       rel="stylesheet"
     />
-    <script src="https://api.mapbox.com/mapbox-gl-js/v3.9.3/mapbox-gl.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.js"></script>
     <!-- Load the `mapbox-gl-geocoder` plugin. -->
     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.3/mapbox-gl-geocoder.min.js"></script>
     <link
@@ -192,9 +192,14 @@
       mapboxgl.accessToken =
         "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2ptYjNtZWxnMDBrdDNwbnVicGJzOWg2NyJ9.9OulyCe3kEqMAXPbx1mKUA";
 
-      const start_cured = [-98.47996783687654, 29.441887287342766];
-      const start_bottling = [-98.4808014337685, 29.44199890225623];
-      const start_cellar = [-98.48100799, 29.44213212];
+      const gcp_cured = {
+        center: [-98.479896, 29.442027],
+        zoom: 19,
+        bearing: -151,
+        pitch: 53,
+      };
+      const gcp_bottling = [-98.4808014337685, 29.44199890225623];
+      const gcp_cellar = [-98.48100799, 29.44213212];
 
       const map = (window.map = new mapboxgl.Map({
         container: "map",
@@ -461,7 +466,7 @@
             },
             geometry: {
               type: "Point",
-              coordinates: start_cured,
+              coordinates: gcp_cured.center,
             },
           },
         });
@@ -475,7 +480,7 @@
             },
             geometry: {
               type: "Point",
-              coordinates: start_bottling,
+              coordinates: gcp_bottling,
             },
           },
         });
@@ -489,7 +494,7 @@
             },
             geometry: {
               type: "Point",
-              coordinates: start_cellar,
+              coordinates: gcp_cellar,
             },
           },
         });
@@ -579,7 +584,7 @@
             type: "symbol",
             source: "pearl-locations",
             layout: {
-              "icon-image": "pearl-sign-xxx",
+              "icon-image": "pearl-icon",
               "icon-size": 0.5,
               "text-field": ["get", "title"],
               "text-font": ["Open Sans Bold", "Arial Unicode MS Bold"],
@@ -590,10 +595,11 @@
               // "text-allow-overlap": true,
             },
             paint: {
-              "symbol-z-offset": 20,
+              // "symbol-z-offset": 20,
               "text-color": "rgb(0, 0, 0)",
               "text-halo-color": "rgba(255, 255, 255, 0.8)",
               "text-halo-width": 2,
+              "symbol-z-offset": 20,
             },
           });
         });
