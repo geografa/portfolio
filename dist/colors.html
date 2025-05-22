@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Display a map on a webpage</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+        const colors = colors: {
+        'orange-main': '#EE8A51',
+        'orange-dark': '#EC7D3E',
+        'orange-tint': '#F7ECE6',
+        'orange-accent': '#C14F0E',
+        'orange-accent-2': '#E17233',
+        'orange-accent-3': '#e78050',
+        'orange-accent-4': '#944110',
+        'orange-20': 'rgba(236,125,62,0.2)',
+        'orange-10': 'rgba(236,125,62,0.1)',
+        'blue-main': '#3D9CC8',
+        'blue-main-over-bg': '#1f7eaa',
+        'blue-dark': '#378CB4',
+        'blue-navy': '#031E75',
+        'blue-tint': '#E5EFF4',
+        'blue-light': '#F3F5F9',
+        'blue-add': '#285193',
+        'blue-accent': '#2E7EA6',
+        blue: '#2B7599',
+        'blue-20': 'rgba(61, 156, 200, 0.2)',
+        'blue-10': 'rgba(61, 156, 200, 0.1)',
+        'green-accent': '#42621D',
+        'green-main': '#6EA430',
+        'green-dark': '#63942B',
+        'green-tint': '#EAF0E5',
+        'green-success': '#42621D',
+        'green-20': 'rgba(110, 164, 48, 0.2)',
+        'green-10': 'rgba(110, 164, 48, 0.1)',
+        'mint-accent': '#385F5F',
+        'mint-main': '#518A8A',
+        'mint-dark': '#497C7C',
+        'mint-tint': '#E7EDEE',
+        'mint-20': 'rgba(81, 138, 138, 0.2)',
+        'mint-10': 'rgba(81, 138, 138, 0.1)',
+        'purple-accent': '#773570',
+        'purple-main': '#a3619c',
+        'purple-dark': '#6B3065',
+        'purple-tint': '#e8d8e6',
+        'purple-20': 'rgba(119, 53, 112, 0.2)',
+        'purple-10': 'rgba(119, 53, 112, 0.1)',
+        'gray-main': '#F1F2F5',
+        'gray-lighter': '#d3d3d3',
+        'gray-light': '#F9F9F9',
+        'gray-dark': '#4A4A4A',
+        'gray-plus': '#747474',
+        'gray-medium': '#ACACAC',
+        'gray-2': '#F9FAFC',
+        'gray-3': '#F1F2F5',
+        'gray-4': '#F4F4F4',
+        'gray-5': '#818181',
+        'gray-6': '#F2F2F2',
+        'gray-7': '#d9dce3',
+        'gray-8': '#e6e6e6',
+        'gray-9': '#b3b3b3',
+        black: '#000',
+        white: '#fff',
+        'white-20': 'rgba(255,255,255,0.2)',
+        'white-70': 'rgba(255,255,255,0.7)',
+        'transparent-add-10': 'rgba(40, 81, 147, 0.1)',
+        'transparent-blue-10': 'rgba(43, 117, 153, 0.1)',
+        yellow: '#d9b305',
+        'red-alt-1': '#752727',
+        'red-alt-2': '#8F2F2F',
+        'red-alt-3': '#B77373',
+        'red-alt-4': '#F55151',
+        'red-alt-5': '#F59A9A',
+        'red-alt-6': '#EDE6E6',
+        'green-alt-1': '#9DBF88',
+        'green-alt-2': '#87B171',
+        'green-alt-3': '#62A60A',
+        'green-alt-4': '#4E8508',
+        'green-alt-5': '#35592A',
+        'green-alt-6': '#2b4a21',
+        'mint-alt-1': '#d1edea',
+        'mint-alt-2': '#afe3de',
+        'mint-alt-3': '#89ccc6',
+        'mint-alt-4': '#69a6a2',
+        'mint-alt-5': '#417d80',
+        'mint-alt-6': '#274D4D',
+        'yellow-alt-1': '#dec888',
+        'yellow-alt-2': '#d3bb6f',
+        'yellow-alt-3': '#d9b303',
+        'yellow-alt-4': '#ae8f05',
+        'yellow-alt-5': '#7f682a',
+        'yellow-alt-6': '#6e5a23',
+        'purple-alt-1': '#e8d8e6',
+        'purple-alt-2': '#d1b0cd',
+        'purple-alt-3': '#ba89b5',
+        'purple-alt-4': '#a3619c',
+        'purple-alt-5': '#8c3a83',
+        'purple-alt-6': '#44385e',
+        'blue-alt-1': '#88B5C4',
+        'blue-alt-2': '#69AAC3',
+        'blue-alt-3': '#3D9CC8',
+        'blue-alt-4': '#2C6D8C',
+        'blue-alt-5': '#235365',
+        'blue-alt-6': '#1c4352',
+        'navyblue-alt-1': '#1D224D',
+        'navyblue-alt-2': '#272D66',
+        'navyblue-alt-3': '#656A95',
+        'navyblue-alt-4': '#4E5ACC',
+        'navyblue-alt-5': '#8B91CC',
+        'navyblue-alt-6': '#D9DBE8',
+        'orange-alt-1': '#feedde',
+        'orange-alt-2': '#fdbe85',
+        'orange-alt-3': '#fd8d3c',
+        'orange-alt-4': '#e6550d',
+        'orange-alt-5': '#a63603',
+        'orange-alt-6': '#703518',
+        'brown-alt-1': '#d5d0c5',
+        'brown-alt-2': '#bea291',
+        'brown-alt-3': '#a37560',
+        'brown-alt-4': '#854a2e',
+        'gray-alt-1': '#a9abaf',
+        'gray-alt-2': '#90959d',
+        'gray-alt-3': '#6b7078',
+        'gray-alt-4': '#4e4f4f',
+      };
+      	mapboxgl.accessToken = 'pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2ptYjNtZWxnMDBrdDNwbnVicGJzOWg2NyJ9.9OulyCe3kEqMAXPbx1mKUA';
+          const map = new mapboxgl.Map({
+              container: 'map', // container ID
+              center: [-74.5, 40], // starting position [lng, lat]
+              zoom: 9 // starting zoom
+          });
+    </script>
+  </body>
+</html>
