@@ -1,6 +1,7 @@
 node_modules
 .DS_Store
 fonts
+bak
 tmp
 archive
 /dist/exports
