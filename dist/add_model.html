@@ -212,6 +212,16 @@
         <h3>Coordinates:</h3>
         <div id="coords" class="copy-box"></div>
       </div>
+      <h3>Adjust Shadow</h3>
+      <input
+        id="slider-light"
+        type="range"
+        min="0"
+        max="360"
+        step="1"
+        value="0"
+      />
+      <label id="model-light-text"></label>
       <h3>Rotate</h3>
       <input
         id="slider-rotate"
@@ -407,7 +417,52 @@
         // set the light preset to be in day mode.
         map.setConfigProperty("basemap", "lightPreset", "day");
       });
+      modelUri = document.getElementById("model-uri").value;
       map.on("load", () => {
+        const mapCenter = map.getCenter();
+        if (!map.getSource("custom-model")) {
+          map.addSource("custom-model", {
+            type: "geojson",
+            data: {
+              type: "Feature",
+              properties: {
+                "model-uri": modelUri,
+              },
+              geometry: {
+                type: "Point",
+                coordinates: [mapCenter.lng, mapCenter.lat],
+              },
+            },
+          });
+          map.addLayer({
+            id: "custom-model",
+            type: "model",
+            source: "custom-model",
+            layout: {
+              "model-id": ["get", "model-uri"],
+            },
+            paint: {
+              "model-color-mix-intensity": 0,
+              "model-color": "rgba(0,0, 0, 1)",
+              "model-scale": [1, 1, 1],
+              "model-rotation": [0, 0, 0],
+              "model-opacity": 1,
+              // emissive color
+              "model-emissive-strength": 1,
+            },
+          });
+        } else {
+          map.getSource("custom-model").setData({
+            type: "Feature",
+            properties: {
+              "model-uri": modelUri,
+            },
+            geometry: {
+              type: "Point",
+              coordinates: [mapCenter.lng, mapCenter.lat],
+            },
+          });
+        }
         // add the eraser source and layer to the map
         map.addSource("eraser", {
           type: "geojson",
@@ -446,9 +501,10 @@
 
       // add a 3D model to the map
       map.on("dblclick", (e) => {
+        // update the current value of the model uri
+        modelUri = document.getElementById("model-uri").value;
         document.getElementById("copy-button").style.display = "inline";
         // get the current model uri value
-        modelUri = document.getElementById("model-uri").value;
 
         (document.getElementById("coords").innerHTML =
           // `e.lngLat` is the longitude, latitude geographical position of the event.
@@ -457,52 +513,17 @@
           e.lngLat.lng.toFixed(8) + ", " + e.lngLat.lat.toFixed(8)),
           null,
           2;
-        // if the source does not exist, create a new one and add the layer
-        if (!map.getSource("custom-model")) {
-          map.addSource("custom-model", {
-            type: "geojson",
-            data: {
-              type: "Feature",
-              properties: {
-                "model-uri": modelUri,
-              },
-              geometry: {
-                type: "Point",
-                coordinates: [e.lngLat.lng, e.lngLat.lat],
-              },
-            },
-          });
-          map.addLayer({
-            id: "custom-model",
-            type: "model",
-            source: "custom-model",
-            layout: {
-              "model-id": ["get", "model-uri"],
-            },
-            paint: {
-              "model-color-mix-intensity": 0,
-              "model-color": "rgba(0,0, 0, 1)",
-              "model-scale": [1, 1, 1],
-              "model-rotation": [0, 0, 0],
-              "model-opacity": 1,
-              // emissive color
-              "model-emissive-strength": 1,
-            },
-          });
+        map.getSource("custom-model").setData({
+          type: "Feature",
+          properties: {
+            "model-uri": modelUri,
+          },
+          geometry: {
+            type: "Point",
+            coordinates: [e.lngLat.lng, e.lngLat.lat],
+          },
+        });
 
-          // if the source exists, update the source data and layer
-        } else {
-          map.getSource("custom-model").setData({
-            type: "Feature",
-            properties: {
-              "model-uri": modelUri,
-            },
-            geometry: {
-              type: "Point",
-              coordinates: [e.lngLat.lng, e.lngLat.lat],
-            },
-          });
-        }
         // Check if the layer exists before getting its properties
         if (map.getLayer("custom-model")) {
           const modelProps = map.getLayer("custom-model").paint;
@@ -515,6 +536,20 @@
           document.getElementById("modelProps").innerHTML =
             "Layer does not exist.";
         }
+      });
+      // create a function that updates the model's light direction based on the slider value in the sidebar
+      document.getElementById("slider-light").addEventListener("input", (e) => {
+        const light = parseFloat(e.target.value); // Ensure the value is a number
+        map.setLights([
+          {
+            id: "directional",
+            type: "directional",
+            properties: {
+              direction: [light, 45],
+            },
+          },
+        ]);
+        document.getElementById("model-light-text").textContent = `${light}`;
       });
 
       // create a function that updates the model's rotation and scale based on the slider values in the sidebar
