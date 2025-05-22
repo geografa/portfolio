@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Display buildings in 3D</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+      #year {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background-color: white;
+        padding: 5px;
+        border-radius: 5px;
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <!-- add a dropdown selector for 1970,1980,1990,2000,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023 -->
+    <select id="year">
+      <option value="2023" selected>Population per acres | Select Year</option>
+      <option value="2023">2023</option>
+      <option value="2022">2022</option>
+      <option value="2021">2021</option>
+      <option value="2020">2020</option>
+      <option value="2019">2019</option>
+      <option value="2018">2018</option>
+      <option value="2017">2017</option>
+      <option value="2016">2016</option>
+      <option value="2015">2015</option>
+      <option value="2014">2014</option>
+      <option value="2013">2013</option>
+      <option value="2012">2012</option>
+      <option value="2011">2011</option>
+      <option value="2010">2010</option>
+      <option value="2000">2000</option>
+      <option value="1990">1990</option>
+      <option value="1980">1980</option>
+      <option value="1970">1970</option>
+    </select>
+
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoibXRjLXZpdGFsLXNpZ25zIiwiYSI6ImNsb3hpbnlzazAzbDYyam53dHpqb2picmYifQ.GB_Cs9vXzDq-hulF9LXbNw";
+      const map = new mapboxgl.Map({
+        // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+        style: "mapbox://styles/mtc-vital-signs/cm90vpfit00ar01skfp3g8cv9",
+        center: [-122.443423, 37.766703],
+        zoom: 11,
+        bearing: 0,
+        pitch: 42,
+        container: "map",
+        antialias: true,
+      });
+
+      const yearSelector = document.getElementById("year");
+      yearSelector.addEventListener("change", (e) => {
+        const selectedYear = e.target.value;
+        // Update the filter for the layer based on the selected year and extrude with the new value
+        map.setPaintProperty("population-tracts-3d", "fill-extrusion-height", [
+          "step",
+          ["get", `population_${selectedYear}`],
+          0,
+          2000,
+          400,
+          4000,
+          800,
+          6000,
+          1200,
+          8000,
+          1600,
+          10000,
+          2000,
+        ]);
+        // map.setLayoutProperty("population-tracts-3d-line", "line-z-offset", [
+        //   "step",
+        //   ["get", `population_${selectedYear}`],
+        //   0,
+        //   2000,
+        //   400,
+        //   4000,
+        //   800,
+        //   6000,
+        //   1200,
+        //   8000,
+        //   1600,
+        //   10000,
+        //   2000,
+        // ]);
+
+        console.log(
+          `Filter set to population_${selectedYear} between 0 and 400`
+        );
+      });
+
+      // Add popup on click
+      map.on("click", "population-tracts-3d", (e) => {
+        const coordinates = e.lngLat;
+
+        // Get the currently selected year from the dropdown
+        const selectedYear = yearSelector.value;
+
+        // Dynamically access the population property for the selected year
+        const population =
+          e.features[0].properties[`population_${selectedYear}`];
+
+        // Create and display the popup
+        new mapboxgl.Popup()
+          .setLngLat(coordinates)
+          .setHTML(
+            `<h3>Population Density (${selectedYear})</h3><p>${population} people per acre</p>`
+          )
+          .addTo(map);
+      });
+
+      map.on("style.load", () => {
+        // the source mtc-vital-signs.population_tracts as a vector tileset
+        // contains the population density data for each census tract
+        // in San Francisco.
+        map.addSource("population-tracts", {
+          type: "vector",
+          url: "mapbox://mtc-vital-signs.population_tracts",
+        });
+
+        map.addLayer({
+          id: "population-tracts-3d",
+          source: "population-tracts",
+          "source-layer": "population_tracts",
+          type: "fill-extrusion",
+          paint: {
+            "fill-extrusion-color": [
+              "interpolate",
+              ["linear"],
+              ["get", "population_2023"],
+              0,
+              "#ea9e76",
+              2000,
+              "#e09063",
+              4000,
+              "#ec7428",
+              7000,
+              "#bd5d21",
+              10000,
+              "#843f1d",
+            ],
+            "fill-extrusion-vertical-gradient": true,
+            "fill-extrusion-opacity": 0.6,
+          },
+        });
+        // map.addLayer({
+        //   id: "population-tracts-3d-line",
+        //   type: "line",
+        //   source: "population-tracts",
+        //   "source-layer": "population_tracts",
+        //   layout: {
+        //     "line-join": "none",
+        //     "line-z-offset": 0,
+        //   },
+        //   paint: {
+        //     "line-color": "#fff",
+        //     "line-width": 2,
+        //     "line-opacity": 0.5,
+        //   },
+        // });
+      });
+    </script>
+  </body>
+</html>
