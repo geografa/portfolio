@@ -210,55 +210,6 @@
         border-radius: 0;
       }
 
-      .marker {
-        border: none;
-        cursor: pointer;
-        height: 56px;
-        width: 56px;
-        background-image: url("./img/copa/ball.png");
-      }
-
-      /* search */
-      #search {
-        margin: 0 25%;
-        display: inline;
-        padding: 8px 12px;
-        font-size: 12px;
-        font-family: "Source Sans Pro", "Helvetica Neue", sans-serif;
-        border-radius: 10px;
-        width: 35%;
-      }
-
-      #search-listings {
-        padding: 40px 20px;
-        opacity: 0.7;
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        top: 190px;
-        width: 100%;
-        background-color: #0e0e1e;
-        z-index: 1;
-        display: none;
-        border-radius: 10px;
-      }
-
-      #search-listings a {
-        color: whitesmoke;
-      }
-
-      #clear-search {
-        position: relative;
-        right: 25%;
-        top: 0;
-        padding: 8px 12px;
-        font-size: 10px;
-        font-family: "Source Sans Pro", "Helvetica Neue", sans-serif;
-        color: #fff;
-        background: none;
-        border: none;
-      }
-
       /* polaroid */
       /* Polaroid Frame on Images by masmalven.com */
       figure,
@@ -790,36 +741,36 @@
       function addMarkers() {
         /* For each feature in the GeoJSON object above: */
         for (const marker of venues.features) {
-          /* Create a div element for the marker. */
-          const el = document.createElement("div");
-          /* Assign a unique `id` to the marker. */
-          el.id = `marker-${marker.properties.id}`;
-          /* Assign the `marker` class to each marker for styling. */
-          el.className = "marker";
+          /* Add a layer for the marker using the 'football' icon from the style JSON. */
+          map.addLayer({
+            id: `marker-${marker.properties.id}`,
+            type: "symbol",
+            source: {
+              type: "geojson",
+              data: {
+                type: "Feature",
+                geometry: marker.geometry,
+                properties: {},
+              },
+            },
+            layout: {
+              "icon-image": "football", // Use the 'football' icon
+              "icon-size": 0.7, // Adjust the size of the icon
+              "icon-anchor": "bottom", // Anchor the icon to the bottom
+            },
+          });
 
           /**
-           * Create a marker using the div element
-           * defined above and add it to the map.
-           **/
-          new mapboxgl.Marker(el, { offset: [0, -25] })
-            .setLngLat(marker.geometry.coordinates)
-            .addTo(map);
-
-          /**
-           * Listen to the element and when it is clicked, do three things:
+           * Listen to the marker and when it is clicked, do three things:
            * 1. Fly to the point
-           * 2. Close all other popups and display popup for clicked venue
-           * 3. Highlight listing in sidebar (and remove highlight for all other listings)
+           * 2. Highlight listing in sidebar (and remove highlight for all other listings)
            **/
-          el.addEventListener("click", (e) => {
-            // buildLocationList(venues);
+          map.on("click", `marker-${marker.properties.id}`, () => {
             /* Fly to the point */
             flyToVenue(marker);
-            /* Close all other popups and display popup for clicked venue */
+
             /* Highlight listing in sidebar */
             const activeItem = document.getElementsByClassName("active");
-            // e.stopPropagation();
-            // e.preventDefault();
             if (activeItem[0]) {
               activeItem[0].classList.remove("active");
             }
@@ -914,67 +865,6 @@
           zoom: 12,
         });
       }
-
-      // search
-      const searchElement = document.getElementById("search");
-      const clearButton = document.getElementById("clear-search");
-
-      clearButton.addEventListener("click", function () {
-        // Clear the search input
-        searchElement.value = "";
-        // Clear the listings
-        const listings = document.getElementById("listings");
-      });
-
-      searchElement.addEventListener("input", function (e) {
-        const value = e.target.value;
-        // display the search listings below the search bar
-        const searchListings = document.getElementById("search-listings");
-        // display the search listings div
-        searchListings.style.display = "block";
-        searchListings.innerHTML = "";
-        // filter the venues
-        const filteredVenues = venues.features.filter((venue) => {
-          return venue.properties.CityNick.toLowerCase().includes(
-            value.toLowerCase()
-          );
-        });
-        // add the filtered venues to the search listings
-        filteredVenues.forEach((venue) => {
-          const searchListing = searchListings.appendChild(
-            document.createElement("div")
-          );
-          searchListing.className = "item";
-          searchListing.innerHTML = `<a href="#" class="title"><h2>${venue.properties.CityNick}</h2></a>`;
-          searchListing.addEventListener("click", function (e) {
-            // hide the search listings after click
-            searchListings.style.display = "none";
-            // Prevent the default action
-            e.preventDefault();
-
-            // Find the listing in the sidebar
-            const listing = document.getElementById(
-              `listing-${venue.properties.id}`
-            );
-
-            // If the listing exists
-            if (listing) {
-              // Add the 'active' class to the listing
-              const activeItem = document.getElementsByClassName("active");
-              if (activeItem[0]) {
-                activeItem[0].classList.remove("active");
-              }
-              listing.classList.add("active");
-
-              // Scroll the listing into view
-              listing.scrollIntoView({ behavior: "smooth", block: "center" });
-            }
-
-            // Fly to the venue and create a popup
-            flyToVenue(venue);
-          });
-        });
-      });
     </script>
   </body>
 </html>

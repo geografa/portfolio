@@ -10,10 +10,10 @@
     />
 
     <link
-      href="https://api.mapbox.com/mapbox-gl-js/v3.8.0/mapbox-gl.css"
+      href="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.css"
       rel="stylesheet"
     />
-    <script src="https://api.mapbox.com/mapbox-gl-js/v3.8.0/mapbox-gl.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.js"></script>
 
     <style>
       body {
@@ -28,14 +28,13 @@
       }
       .footer {
         position: absolute;
-        height: 100vh;
-        bottom: 0;
-        /* left: 0; */
-        /* overflow: hidden; */
+        height: 90vh;
+        top: 0;
         width: 30%;
         z-index: 1;
-        overflow-y: scroll;
-        backdrop-filter: blur(11px);
+        /* overflow-y: scroll; */
+        background-color: #333;
+        /* backdrop-filter: blur(11px); */
       }
 
       .map {
@@ -57,7 +56,7 @@
         position: relative;
         z-index: 1;
         text-align: center;
-        padding: 0 0px;
+        padding: 0;
         color: #eaff00;
         font-family: "Geologica", sans-serif;
         font-size: 1.2em;
@@ -79,11 +78,12 @@
       }
 
       .listings {
-        height: 93vh;
+        height: 60vh;
         /* top: 10px; */
-        overflow: auto;
+        overflow-y: scroll;
         /* padding-bottom: 27px; */
-        backdrop-filter: blur(11px);
+        /* backdrop-filter: blur(11px); */
+        background-color: rgba(79, 79, 79, 0.8);
       }
 
       .listings .item {
@@ -101,6 +101,7 @@
         display: block;
         color: #f8ffa5;
         font-weight: 700;
+        font-size: 0.8em;
       }
 
       .listings .item .title small {
@@ -130,18 +131,6 @@
       ::-webkit-scrollbar-thumb {
         background: #333;
         border-radius: 0;
-      }
-      /* add a infowindow that is in the upper left */
-      .info {
-        position: absolute;
-        width: 33%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        overflow: auto;
-        background-color: #f8f8f8;
-        padding: 10px;
-        z-index: 1;
       }
 
       /* Marker tweaks */
@@ -232,15 +221,15 @@
         font-family: Arial, Helvetica, sans-serif;
         position: relative;
         padding: 4px;
-        border-radius: 10px;
+        border-radius: 6px;
       }
 
       .circle-x:hover {
-        background-color: #834747; /* Darker background color on hover */
-        color: #ddd;
+        background-color: #ffffff; /* Darker background color on hover */
+        color: #333;
       }
       .circle-x:active {
-        background-color: #333; /* Add a darker background color when clicked on */
+        background-color: #9c9c9c; /* Add a darker background color when clicked on */
         color: #ddd;
       }
       /* media queries */
@@ -256,7 +245,8 @@
   <body>
     <div class="footer">
       <div id="heading-title" class="heading-title">
-        <h2>Climate Solutions Worldwide</h2>
+        <h2>Climate Solution Companies</h2>
+        <p></p>
       </div>
       <div class="heading">
         <!-- add a simple search bar -->
