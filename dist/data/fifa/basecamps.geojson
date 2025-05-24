@@ -3,7 +3,7 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Pachuca CF Pachuca Estadio Hidalgo",
+        "name": "Pachuca Estadio Hidalgo",
         "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
@@ -15,7 +15,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Palm Beach Gardens Gardens North County District Park"
+        "name": "Palm Beach Gardens North County District Park",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-80.115762, 26.850397],
@@ -26,8 +27,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "US Air Force Academy, Colorado Springs",
-        "image": "../../../img/fifa/Colorado Springs US Air Force Academy.jpg"
+        "name": "US Air Force Academy",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-104.892855, 39.014708],
@@ -38,7 +39,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Harder Stadium, Santa Barbara CA"
+        "name": "Harder Stadium",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-119.854342, 34.420597],
@@ -49,7 +51,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Orlando City SC Training Grounds at Osceola Heritage Park"
+        "name": "Orlando City SC Training Grounds",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-81.365427, 28.29939],
@@ -60,7 +63,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "DBU, Dallas"
+        "name": "DBU, Dallas",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-96.944739, 32.709972],
@@ -71,7 +75,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Baylor School, Chattanooga"
+        "name": "Baylor School",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-85.333222, 35.092691],
@@ -82,7 +87,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Myrtle Beach Coastal Carolina University"
+        "name": "Coastal Carolina University",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-78.995547, 33.799919],
@@ -93,7 +99,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Tucson Kino Sports Complex"
+        "name": "Kino Sports Complex",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-110.933948, 32.174653],
@@ -104,7 +111,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "New York New Jersey Rutgers University"
+        "name": "Rutgers University",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-74.175777, 40.739709],
@@ -115,7 +123,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "FC Dallas Stadium, Dallas"
+        "name": "FC Dallas Stadium",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-96.835514, 33.156844],
@@ -126,7 +135,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "UNC Chapel Hill"
+        "name": "UNC Chapel Hill",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-79.044453, 35.908691],
@@ -137,7 +147,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Louisville Champions Park"
+        "name": "Champions Park",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-85.709212, 38.269605],
@@ -148,7 +159,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Kennesaw State University"
+        "name": "Kennesaw State University",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-84.570929, 34.030132],
@@ -159,7 +171,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Philadelphia Philadelphia Union"
+        "name": "Philadelphia Union",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-75.379127, 39.832734],
@@ -170,7 +183,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Mercer University, Macon"
+        "name": "Mercer University",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-83.64653, 32.826907],
@@ -181,7 +195,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Mexico City Centro de Alto Rendimiento CAR"
+        "name": "Centro de Alto Rendimiento CAR",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-99.141421, 19.244617],
@@ -192,7 +207,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Indianapolis Westfield Grand Park Sports Campus"
+        "name": "Westfield Grand Park Sports Campus",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-86.150216, 40.062758],
@@ -203,7 +219,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Spokane Gonzaga University"
+        "name": "Gonzaga University",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-117.402122, 47.664819],
@@ -214,7 +231,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Saint Louis University"
+        "name": "Saint Louis University",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-90.230378, 38.63471],
@@ -225,7 +243,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Monterrey Rayados Training Centre"
+        "name": "Rayados Training Centre",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-100.182093, 25.461863],
@@ -236,7 +255,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Santa Barbara Westmont College"
+        "name": "Westmont College",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-119.663989, 34.447458],
@@ -247,7 +267,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Herriman RSL Training Centre"
+        "name": "Herriman RSL Training Centre",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-111.977204, 40.484447],
@@ -258,7 +279,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Houston Houston Sports Park"
+        "name": "Houston Sports Park",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-95.395286, 29.635733],
@@ -269,7 +291,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Oklahoma City University of Oklahoma"
+        "name": "University of Oklahoma",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-97.448747, 35.188362],
@@ -280,7 +303,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Tampa Waters Sportsplex"
+        "name": "Waters Sportsplex",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-82.543012, 28.023741],
@@ -291,7 +315,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "University of South Carolina, Columbia "
+        "name": "University of South Carolina",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-81.02479, 33.987814],
@@ -302,7 +327,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Kansas City Sporting KC Training Centre"
+        "name": "Sporting KC Training Centre",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-94.803958, 39.126346],
@@ -313,7 +339,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Kansas City KC Current Training Facility"
+        "name": "KC Current Training Facility",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-94.636559, 39.165205],
@@ -324,7 +351,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Columbus Crew Performance Centre, Columbus"
+        "name": "Columbus Crew Performance Centre",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-82.992469, 40.009013],
@@ -335,7 +363,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Torreon Club Santos Facilities"
+        "name": "Torreon Club Santos Facilities",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-103.380353, 25.626433],
@@ -346,7 +375,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Mexico City La Nueva Casa del Futbol Toluca"
+        "name": "La Nueva Casa del Futbol Toluca",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-99.58894, 19.361112],
@@ -357,7 +387,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "State College Penn State University Jeffrey Field"
+        "name": "Penn State University Jeffrey Field",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-77.860517, 40.810387],
@@ -368,7 +399,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Renton Seattle Sounders FC Performance Centre and Clubhouse"
+        "name": "Sounders FC Performance Centre",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-122.23606, 47.46095],
@@ -379,7 +411,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Boise State University"
+        "name": "Boise State University",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-116.202966, 43.600261],
@@ -390,7 +423,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Port St Lucie RPS Soccer Academy"
+        "name": "Port St Lucie RPS Soccer Academy",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-80.311209, 27.24669],
@@ -401,7 +435,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Florida Atlantic University"
+        "name": "Florida Atlantic University",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-80.101647, 26.376137],
@@ -412,7 +447,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Oakland University, Metro Detroit"
+        "name": "Oakland University",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-83.209013, 42.673622],
@@ -423,7 +459,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "FC Cincinnati Training Facility, Cincinnati"
+        "name": "FC Cincinnati Training Facility",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-84.270795, 39.169355],
@@ -434,7 +471,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Queretaro La Loma Centro Deportivo Queretaro"
+        "name": "La Loma Centro Deportivo Queretaro",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-100.424267, 20.672786],
@@ -445,7 +483,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Atlanta United Training Centre"
+        "name": "Atlanta United Training Centre",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-84.498024, 33.933392],
@@ -456,7 +495,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Portland University of Portland"
+        "name": "Portland University of Portland",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-122.72729, 45.574795],
@@ -467,7 +507,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "St Louis CITY High Performance Centre"
+        "name": "CITY High Performance Centre",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-90.211511, 38.628935],
@@ -478,7 +519,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Irvine Great Park Sports Complex"
+        "name": "Great Park Sports Complex",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-117.739318, 33.674348],
@@ -489,7 +531,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "High Point Carolina Core Elite Performance Centre"
+        "name": "Carolina Core Elite Performance Centre",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-80.046134, 36.006779],
@@ -500,7 +543,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Birmingham Legion FC Training Facility"
+        "name": "Legion FC Training Facility",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-86.66207, 33.3711],
@@ -511,7 +555,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Mesa Arizona Athletic Grounds"
+        "name": "Arizona Athletic Grounds",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-111.626386, 33.29744],
@@ -522,7 +567,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Totyota Field, San Antonio TX"
+        "name": "Toyota Field",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-98.39458, 29.539396],
@@ -533,7 +579,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Pachuca CF Pachuca Universidad Del Futbol"
+        "name": "Pachuca CF Pachuca Universidad Del Futbol",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-98.811654, 20.138502],
@@ -544,7 +591,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "New York New Jersey Atlantic City Stockton University"
+        "name": "Atlantic City Stockton University",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-74.532332, 39.489324],
@@ -555,7 +603,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Episcopal High School, Alexandria VA"
+        "name": "Episcopal High School",
+        "image": "pachuca-cf-pachuca-estadio-hidalgo.jpg"
       },
       "geometry": {
         "coordinates": [-77.097414, 38.824907],

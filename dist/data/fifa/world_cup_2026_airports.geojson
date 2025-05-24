@@ -1,0 +1,440 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.4277,
+          33.6407
+        ]
+      },
+      "properties": {
+        "airport_name": "Hartsfield\u2013Jackson Atlanta International Airport",
+        "iata_code": "ATL",
+        "stadium": "Mercedes-Benz Stadium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.0052,
+          42.3656
+        ]
+      },
+      "properties": {
+        "airport_name": "Boston Logan International Airport",
+        "iata_code": "BOS",
+        "stadium": "Gillette Stadium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.4363,
+          41.724
+        ]
+      },
+      "properties": {
+        "airport_name": "T.F. Green Airport",
+        "iata_code": "PVD",
+        "stadium": "Gillette Stadium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -97.0403,
+          32.8998
+        ]
+      },
+      "properties": {
+        "airport_name": "Dallas/Fort Worth International Airport",
+        "iata_code": "DFW",
+        "stadium": "AT&T Stadium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.8518,
+          32.8471
+        ]
+      },
+      "properties": {
+        "airport_name": "Dallas Love Field",
+        "iata_code": "DAL",
+        "stadium": "AT&T Stadium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -95.3414,
+          29.9902
+        ]
+      },
+      "properties": {
+        "airport_name": "George Bush Intercontinental Airport",
+        "iata_code": "IAH",
+        "stadium": "NRG Stadium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -95.2789,
+          29.6454
+        ]
+      },
+      "properties": {
+        "airport_name": "William P. Hobby Airport",
+        "iata_code": "HOU",
+        "stadium": "NRG Stadium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -94.7139,
+          39.2976
+        ]
+      },
+      "properties": {
+        "airport_name": "Kansas City International Airport",
+        "iata_code": "MCI",
+        "stadium": "GEHA Field at Arrowhead Stadium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.4085,
+          33.9416
+        ]
+      },
+      "properties": {
+        "airport_name": "Los Angeles International Airport",
+        "iata_code": "LAX",
+        "stadium": "SoFi Stadium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.1526,
+          33.817
+        ]
+      },
+      "properties": {
+        "airport_name": "Long Beach Airport",
+        "iata_code": "LGB",
+        "stadium": "SoFi Stadium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.2906,
+          25.7959
+        ]
+      },
+      "properties": {
+        "airport_name": "Miami International Airport",
+        "iata_code": "MIA",
+        "stadium": "Hard Rock Stadium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.1449,
+          26.0726
+        ]
+      },
+      "properties": {
+        "airport_name": "Fort Lauderdale\u2013Hollywood International Airport",
+        "iata_code": "FLL",
+        "stadium": "Hard Rock Stadium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.1745,
+          40.6895
+        ]
+      },
+      "properties": {
+        "airport_name": "Newark Liberty International Airport",
+        "iata_code": "EWR",
+        "stadium": "MetLife Stadium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.874,
+          40.7769
+        ]
+      },
+      "properties": {
+        "airport_name": "LaGuardia Airport",
+        "iata_code": "LGA",
+        "stadium": "MetLife Stadium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.7781,
+          40.6413
+        ]
+      },
+      "properties": {
+        "airport_name": "John F. Kennedy International Airport",
+        "iata_code": "JFK",
+        "stadium": "MetLife Stadium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.2411,
+          39.8744
+        ]
+      },
+      "properties": {
+        "airport_name": "Philadelphia International Airport",
+        "iata_code": "PHL",
+        "stadium": "Lincoln Financial Field"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.8135,
+          40.2767
+        ]
+      },
+      "properties": {
+        "airport_name": "Trenton\u2013Mercer Airport",
+        "iata_code": "TTN",
+        "stadium": "Lincoln Financial Field"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.929,
+          37.3639
+        ]
+      },
+      "properties": {
+        "airport_name": "San Jose International Airport",
+        "iata_code": "SJC",
+        "stadium": "Levi\u2019s Stadium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.379,
+          37.6213
+        ]
+      },
+      "properties": {
+        "airport_name": "San Francisco International Airport",
+        "iata_code": "SFO",
+        "stadium": "Levi\u2019s Stadium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.2216,
+          37.7126
+        ]
+      },
+      "properties": {
+        "airport_name": "Oakland International Airport",
+        "iata_code": "OAK",
+        "stadium": "Levi\u2019s Stadium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.3088,
+          47.4502
+        ]
+      },
+      "properties": {
+        "airport_name": "Seattle\u2013Tacoma International Airport",
+        "iata_code": "SEA",
+        "stadium": "Lumen Field"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.3017,
+          47.5316
+        ]
+      },
+      "properties": {
+        "airport_name": "Boeing Field/King County International Airport",
+        "iata_code": "BFI",
+        "stadium": "Lumen Field"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.0721,
+          19.4361
+        ]
+      },
+      "properties": {
+        "airport_name": "Mexico City International Airport",
+        "iata_code": "MEX",
+        "stadium": "Estadio Azteca"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -98.9713,
+          19.7556
+        ]
+      },
+      "properties": {
+        "airport_name": "Felipe \u00c1ngeles International Airport",
+        "iata_code": "NLU",
+        "stadium": "Estadio Azteca"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.3112,
+          20.5218
+        ]
+      },
+      "properties": {
+        "airport_name": "Guadalajara International Airport",
+        "iata_code": "GDL",
+        "stadium": "Estadio Akron"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -100.107,
+          25.7785
+        ]
+      },
+      "properties": {
+        "airport_name": "Monterrey International Airport",
+        "iata_code": "MTY",
+        "stadium": "Estadio BBVA"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.6306,
+          43.6777
+        ]
+      },
+      "properties": {
+        "airport_name": "Toronto Pearson International Airport",
+        "iata_code": "YYZ",
+        "stadium": "BMO Field"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.3962,
+          43.6275
+        ]
+      },
+      "properties": {
+        "airport_name": "Billy Bishop Toronto City Airport",
+        "iata_code": "YTZ",
+        "stadium": "BMO Field"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -123.183,
+          49.1951
+        ]
+      },
+      "properties": {
+        "airport_name": "Vancouver International Airport",
+        "iata_code": "YVR",
+        "stadium": "BC Place"
+      }
+    }
+  ]
+}

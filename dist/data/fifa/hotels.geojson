@@ -1,0 +1,49 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-122.677668, 45.518771]
+      },
+      "properties": {
+        "name": "Nines Hotel",
+        "city": "Portland, OR"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-84.359564, 33.846033]
+      },
+      "properties": {
+        "name": "JW Marriott Atlanta Buckhead Hotel",
+        "city": "Atlanta, GA"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [38.815375, -77.043364]
+      },
+      "properties": {
+        "name": "Hotel AKA",
+        "city": "Alexandria, VA"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-84.368183, 33.845634]
+      },
+      "properties": {
+        "name": "InterContinental Buckhead Atlanta by IHG",
+        "city": "Atlanta, GA"
+      }
+    }
+  ]
+}
