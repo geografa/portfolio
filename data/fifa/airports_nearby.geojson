@@ -1189,7 +1189,7 @@
         "elevation": 8466,
         "tz": "America/Mexico_City"
       },
-      "geometry": { "type": "Point", "coordinates": [20.526909, -103.306057] }
+      "geometry": { "type": "Point", "coordinates": [-103.306057, 20.526909] }
     }
   ]
 }
