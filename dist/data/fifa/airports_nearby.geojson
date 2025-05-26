@@ -1178,6 +1178,18 @@
         "tz": "America/Mexico_City"
       },
       "geometry": { "type": "Point", "coordinates": [-99.566002, 19.337099] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "iata": "GDL",
+        "name": "Guadalajara International Airport",
+        "city": "Guadalajara",
+        "state": "Mexico",
+        "elevation": 8466,
+        "tz": "America/Mexico_City"
+      },
+      "geometry": { "type": "Point", "coordinates": [20.526909, -103.306057] }
     }
   ]
 }
