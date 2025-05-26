@@ -129,7 +129,7 @@
       .container {
         position: absolute;
         font-family: "Poppins", sans-serif;
-        background-color: #e5f0fa;
+        background-color: #fff;
         padding: 10px;
         border-radius: 10px;
         top: 8px;
@@ -164,11 +164,11 @@
       }
       .heading p {
         font-family: "Arial Narrow Bold", sans-serif;
-        text-transform: uppercase;
         padding-bottom: 2em;
-        font-weight: 600;
+        font-weight: 400;
         font-size: 0.5em;
         color: var(--primary);
+        text-align: center;
       }
       .byline {
         font-size: 0.6rem;
@@ -229,7 +229,7 @@
           /* margin-top: 10px; */
           position: absolute;
           font-family: "Poppins", sans-serif;
-          background-color: #e5f0fa;
+          background-color: #fff;
           /* background-image: url("./img/football-player.svg"); */
           /* background-repeat: no-repeat; */
           /* background-position: center; */
@@ -256,6 +256,7 @@
     <div class="container">
       <div class="heading">
         <h2>Travel Times</h2>
+        <p>Host stadiums, basecamps, hotels, and airports.</p>
         <img src="./img/fifa/sq-stadium.svg" alt="stadium" />
         <img src="./img/fifa/sq-soccer.svg" alt="basecamp" />
         <img src="./img/fifa/sq-hotel.svg" alt="hotel" />
@@ -284,7 +285,8 @@
         "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
       const initialMapSettings = {
         container: "map", // container ID
-        style: "mapbox://styles/grafa/cmay4ip6t005801syee6v02fu", // FWC26 Stadiums and Basecamps
+        style: "mapbox://styles/grafa/cmb5lcz4m00hp01sy4uamgt72", //Travel Times
+        // style: "mapbox://styles/grafa/cmay4ip6t005801syee6v02fu", // FWC26 Stadiums and Basecamps
         center: [-99.937616, 37.524855],
         zoom: 3,
         bearing: 0,
@@ -426,8 +428,6 @@
           dest3.join(","),
         ].join(";");
 
-        console.log("Matrix API request URL:", coords);
-
         // sources=0 (the first coordinate is the source), destinations=1;2;3
         const url = `https://api.mapbox.com/directions-matrix/v1/mapbox/driving/${coords}?sources=0&destinations=1;2;3&annotations=distance,duration&access_token=${accessToken}`;
 
@@ -518,23 +518,6 @@
           closeButton: false,
           closeOnClick: true,
         });
-
-        // add a click event to the basecamp layer
-        map.on("click", "basecamp-layer", (e) => {
-          map.getCanvas().style.cursor = "pointer";
-          const coordinates = e.lngLat;
-          const name = e.features[0].properties.name;
-
-          //   const image = e.features[0].properties.image;
-          const venueInfo = `<h3>${name}</h3>`;
-
-          // Overwrite the details panel
-          document.getElementById("details-name").textContent = name || "";
-          document.getElementById("details-city").textContent = "";
-          //   document.getElementById(
-          //     "details-image"
-          //   ).innerHTML = `<img src="./img/fifa/${image}" alt="${image}" />`;
-        });
       });
       // add a click event to the airports layer
       map.on("click", "airports-layer", (e) => {
@@ -562,17 +545,23 @@
             // Stadiums layer: show duration and miles for each destination
             document.getElementById(
               "distance-stadium"
-            ).innerHTML = `<img src="./img/fifa/sq-stadium.svg" alt="stadium"> ${secondsToMinutes(
+            ).innerHTML = `<img src="./img/fifa/sq-stadium.svg" alt="stadium"> ${
+              nearest.featureLayer1.properties.name
+            }: ${secondsToMinutes(
               matrixResult.durations[0][0]
             )} min / ${metersToMiles(matrixResult.distances[0][0])} mi`;
             document.getElementById(
               "distance-basecamp"
-            ).innerHTML = `<img src="./img/fifa/sq-soccer.svg" alt="soccer" /> ${secondsToMinutes(
+            ).innerHTML = `<img src="./img/fifa/sq-soccer.svg" alt="soccer" /> ${
+              nearest.featureLayer2.properties.name
+            }: ${secondsToMinutes(
               matrixResult.durations[0][1]
             )} min / ${metersToMiles(matrixResult.distances[0][1])} mi`;
             document.getElementById(
               "distance-hotel"
-            ).innerHTML = `<img src="./img/fifa/sq-hotel.svg" alt="hotel"/> ${secondsToMinutes(
+            ).innerHTML = `<img src="./img/fifa/sq-hotel.svg" alt="hotel"/> ${
+              nearest.featureLayer3.properties.name
+            }: ${secondsToMinutes(
               matrixResult.durations[0][2]
             )} min / ${metersToMiles(matrixResult.distances[0][2])} mi`;
             if (document.getElementById("distance-airport")) {
@@ -622,17 +611,23 @@
           .then((matrixResult) => {
             document.getElementById(
               "distance-stadium"
-            ).innerHTML = `<img src="./img/fifa/sq-stadium.svg" alt="stadium"> ${secondsToMinutes(
+            ).innerHTML = `<img src="./img/fifa/sq-stadium.svg" alt="stadium"> ${
+              nearest.featureLayer1.properties.name
+            }: ${secondsToMinutes(
               matrixResult.durations[0][0]
             )} min / ${metersToMiles(matrixResult.distances[0][0])} mi`;
             document.getElementById(
               "distance-airport"
-            ).innerHTML = `<img src="./img/fifa/sq-airport.svg" alt="airport" /> ${secondsToMinutes(
+            ).innerHTML = `<img src="./img/fifa/sq-airport.svg" alt="airport" /> ${
+              nearest.featureLayer2.properties.name
+            }: ${secondsToMinutes(
               matrixResult.durations[0][1]
             )} min / ${metersToMiles(matrixResult.distances[0][1])} mi`;
             document.getElementById(
               "distance-hotel"
-            ).innerHTML = `<img src="./img/fifa/sq-hotel.svg" alt="hotel"/> ${secondsToMinutes(
+            ).innerHTML = `<img src="./img/fifa/sq-hotel.svg" alt="hotel"/> ${
+              nearest.featureLayer3.properties.name
+            }: ${secondsToMinutes(
               matrixResult.durations[0][2]
             )} min / ${metersToMiles(matrixResult.distances[0][2])} mi`;
             // if document.getElementById("distance-basecamp") exists, empty it
@@ -679,17 +674,23 @@
           .then((matrixResult) => {
             document.getElementById(
               "distance-stadium"
-            ).innerHTML = `<img src="./img/fifa/sq-stadium.svg" alt="stadium"> ${secondsToMinutes(
+            ).innerHTML = `<img src="./img/fifa/sq-stadium.svg" alt="stadium"> ${
+              nearest.featureLayer1.properties.name
+            }: ${secondsToMinutes(
               matrixResult.durations[0][0]
             )} min / ${metersToMiles(matrixResult.distances[0][0])} mi`;
             document.getElementById(
               "distance-airport"
-            ).innerHTML = `<img src="./img/fifa/sq-airport.svg" alt="airport" /> ${secondsToMinutes(
+            ).innerHTML = `<img src="./img/fifa/sq-airport.svg" alt="airport" /> ${
+              nearest.featureLayer2.properties.name
+            }: ${secondsToMinutes(
               matrixResult.durations[0][1]
             )} min / ${metersToMiles(matrixResult.distances[0][1])} mi`;
             document.getElementById(
               "distance-basecamp"
-            ).innerHTML = `<img src="./img/fifa/sq-soccer.svg" alt="soccer" /> ${secondsToMinutes(
+            ).innerHTML = `<img src="./img/fifa/sq-soccer.svg" alt="soccer" /> ${
+              nearest.featureLayer3.properties.name
+            }: ${secondsToMinutes(
               matrixResult.durations[0][2]
             )} min / ${metersToMiles(matrixResult.distances[0][2])} mi`;
             // if document.getElementById("distance-hotel") exists, empty it
@@ -724,6 +725,12 @@
           basecampData,
           hotelsData
         );
+        map.flyTo({
+          center: clickedFeature.geometry.coordinates,
+          zoom: 17,
+          pitch: 60,
+          bearing: 0,
+        });
 
         // Call the matrix function
         getMatrix1x4(
@@ -736,17 +743,23 @@
           .then((matrixResult) => {
             document.getElementById(
               "distance-airport"
-            ).innerHTML = `<img src="./img/fifa/sq-airport.svg" alt="airport" /> ${secondsToMinutes(
+            ).innerHTML = `<img src="./img/fifa/sq-airport.svg" alt="airport" /> ${
+              nearest.featureLayer1.properties.name
+            }: ${secondsToMinutes(
               matrixResult.durations[0][0]
             )} min / ${metersToMiles(matrixResult.distances[0][0])} mi`;
             document.getElementById(
               "distance-basecamp"
-            ).innerHTML = `<img src="./img/fifa/sq-soccer.svg" alt="soccer" /> ${secondsToMinutes(
+            ).innerHTML = `<img src="./img/fifa/sq-soccer.svg" alt="soccer" /> ${
+              nearest.featureLayer2.properties.name
+            }: ${secondsToMinutes(
               matrixResult.durations[0][1]
             )} min / ${metersToMiles(matrixResult.distances[0][1])} mi`;
             document.getElementById(
               "distance-hotel"
-            ).innerHTML = `<img src="./img/fifa/sq-hotel.svg" alt="hotel"/> ${secondsToMinutes(
+            ).innerHTML = `<img src="./img/fifa/sq-hotel.svg" alt="hotel"/> ${
+              nearest.featureLayer3.properties.name
+            }: ${secondsToMinutes(
               matrixResult.durations[0][2]
             )} min / ${metersToMiles(matrixResult.distances[0][2])} mi`;
             // if document.getElementById("distance-stadium") exists, empty it
@@ -762,8 +775,7 @@
         const coordinates = e.lngLat;
         const name = clickedFeature.properties.name;
 
-        document.getElementById("details-name").innerHTML =
-          '<img src="./img/fifa/sq-stadium.svg" alt="stadium"/>' + name || "";
+        document.getElementById("details-name").innerHTML = name || "";
       });
       map.on("mouseenter", "stadiums-layer", () => {
         map.getCanvas().style.cursor = "pointer";

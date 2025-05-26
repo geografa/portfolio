@@ -25,7 +25,7 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "The Westin Dallas Stonebriar Golf Resort & Spa"
+        "name": "The Westin Dallas Stonebriar"
       },
       "geometry": {
         "coordinates": [-96.841493, 33.091721],
@@ -80,7 +80,7 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Hotel Kansas City - The Unbound Collection by Hyatt"
+        "name": "The Unbound Collection by Hyatt"
       },
       "geometry": {
         "coordinates": [-94.584581, 39.098908],
@@ -136,7 +136,7 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Grand Fiesta Americana Guadalajara Country Club"
+        "name": "Grand Fiesta Americana"
       },
       "geometry": {
         "coordinates": [-103.376509, 20.70312],
