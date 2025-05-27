@@ -14,10 +14,10 @@
       rel="stylesheet"
     />
     <link
-      href="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.css"
+      href="https://api.mapbox.com/mapbox-gl-js/v3.11.0/mapbox-gl.css"
       rel="stylesheet"
     />
-    <script src="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.11.0/mapbox-gl.js"></script>
     <script src="https://unpkg.com/h3-js"></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.3/mapbox-gl-geocoder.min.js"></script>
     <link
@@ -110,17 +110,6 @@
       }
       .mapboxgl-popup-anchor-bottom-right .mapboxgl-popup-tip {
         border-top-color: rgba(233, 233, 12, 0.78);
-      }
-
-      .ball-marker {
-        display: block;
-        border: none;
-        cursor: pointer;
-        height: 52px;
-        width: 40px;
-        /* anchor the marker to 20px above the circle */
-        transform: translate(-50%, -50%);
-        background-image: url("./img/copa/ball.png");
       }
 
       /* HEADER */
@@ -282,7 +271,8 @@
         "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
       const map = new mapboxgl.Map({
         container: "map", // container ID
-        style: "mapbox://styles/grafa/cm16yuubd01us01q1di3e2soy", // style URL
+        style: "mapbox://styles/grafa/cmay4ip6t005801syee6v02fu", // style URL
+        // style: "mapbox://styles/grafa/cm16yuubd01us01q1di3e2soy", // style URL
         center: [-3.7117168210813816, 40.43230337239106],
         zoom: 3,
         bearing: 0,
@@ -356,6 +346,15 @@
                   8,
                 ],
                 "circle-color": "#e9e90c",
+                "circle-opacity": [
+                  "interpolate",
+                  ["linear"],
+                  ["zoom"],
+                  5,
+                  1,
+                  17,
+                  0,
+                ],
                 "circle-stroke-width": 2,
                 "circle-stroke-color": "#fff",
                 "circle-stroke-opacity": [
@@ -366,7 +365,10 @@
                   0,
                   10,
                   1,
+                  17,
+                  0,
                 ],
+                "circle-emissive-strength": 1,
               },
               layout: {
                 visibility: "none",
@@ -409,6 +411,7 @@
                   10,
                   1,
                 ],
+                "circle-emissive-strength": 1,
               },
               layout: {
                 visibility: "none",
@@ -467,6 +470,7 @@
                     7,
                     0,
                   ],
+                  "fill-emissive-strength": 1,
                 },
                 layout: {
                   visibility: "visible",
@@ -506,11 +510,7 @@
             });
             return data;
           });
-        map.on("moveend", () => {
-          document.querySelectorAll(".ball-marker").forEach((marker) => {
-            marker.remove();
-          });
-        });
+
         // supplement the geocoder with the venues data
         function forwardGeocoder(query) {
           const matchingFeatures = [];
@@ -544,10 +544,13 @@
         });
 
         geocoder.on("result", (e) => {
-          // clear any markers on the map
-          document.querySelectorAll(".ball-marker").forEach((marker) => {
-            marker.remove();
+          // zoom to the result
+          map.flyTo({
+            center: e.result.center,
+            zoom: 17,
+            pitch: 60,
           });
+
           // Check if the density layer is not visible, make it visible and set the viz-menu radio button to 4
           if (
             map.getLayoutProperty("venues-icons-layer", "visibility") === "none"
@@ -559,11 +562,6 @@
               "visible"
             );
             document.getElementById("tab-2").checked = true;
-
-            // Add the ball-marker to the map at the geocoder result coordinates
-            let marker = document.createElement("div");
-            marker.className = "ball-marker";
-            new mapboxgl.Marker(marker).setLngLat(e.result.center).addTo(map);
 
             // Set the hex radio button to not checked and make the hex layer not visible
             map.setLayoutProperty("venues-hex-layer", "visibility", "none");
@@ -578,9 +576,6 @@
             document.getElementById("tab-3").checked = false;
           } else {
             // If the density layer is already visible, just add the new marker
-            let marker = document.createElement("div");
-            marker.className = "ball-marker";
-            new mapboxgl.Marker(marker).setLngLat(e.result.center).addTo(map);
           }
         });
         document.getElementById("geocoder").appendChild(geocoder.onAdd(map));
