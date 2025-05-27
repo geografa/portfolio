@@ -161,7 +161,7 @@
       }
       .heading p {
         font-family: "Arial Narrow Bold", sans-serif;
-        padding-bottom: 2em;
+        padding-bottom: 1.2em;
         font-weight: 400;
         font-size: 0.5em;
         color: var(--primary);
@@ -196,7 +196,7 @@
         line-height: 2em;
         padding: 10px;
         color: var(--primary-dark);
-        margin-top: 30px;
+        /* margin-top: 30px; */
       }
       #details-name {
         font-size: 1.5rem;
@@ -208,18 +208,35 @@
         width: 300px;
         height: auto;
       }
+      #modal-arrow {
+        width: 30px;
+        height: 20px;
+        /* margin-left: 10px; */
+        margin-top: 30px;
+        display: none;
+      }
+      #icons {
+        display: flex;
+        justify-content: center;
+        text-align: left;
+        margin-top: 0;
+      }
 
       /* media queries */
       @media only screen and (max-width: 600px) {
+        #modal-toggle {
+          display: block;
+          position: absolute;
+          /* center */
+          bottom: 10px;
+          left: 50%;
+          transform: translateX(-50%);
+        }
         .geocoder {
-          /* position: relative; */
-          margin-top: 30px;
-          /* width: 80%; */
-          /* bottom: 80px; */
           display: flex;
           justify-content: center;
-          /* align-items: center; */
           text-align: left;
+          margin-top: 0;
         }
         .container {
           text-align: center;
@@ -239,12 +256,21 @@
           width: 90%;
         }
         #details {
-          position: relative;
-          line-height: 2em;
-          padding: 10px;
           color: var(--primary-dark);
-          margin-top: 30px;
           text-align: left;
+        }
+        #details p {
+          font-size: 0.75rem;
+          font-weight: 400;
+          color: var(--primary-dark);
+          width: 100%;
+        }
+        #modal-arrow {
+          width: 30px;
+          height: 20px;
+          /* margin-left: 10px; */
+          margin-top: 30px;
+          display: block;
         }
       }
     </style>
@@ -254,10 +280,12 @@
       <div class="heading">
         <h2>Travel Times</h2>
         <p>Host stadiums, basecamps, hotels, and airports.</p>
-        <img src="./img/fifa/sq-stadium.svg" alt="stadium" />
-        <img src="./img/fifa/sq-soccer.svg" alt="basecamp" />
-        <img src="./img/fifa/sq-hotel.svg" alt="hotel" />
-        <img src="./img/fifa/sq-airport.svg" alt="airport" />
+        <div id="icons">
+          <img src="./img/fifa/sq-stadium.svg" alt="stadium" />
+          <img src="./img/fifa/sq-soccer.svg" alt="basecamp" />
+          <img src="./img/fifa/sq-hotel.svg" alt="hotel" />
+          <img src="./img/fifa/sq-airport.svg" alt="airport" />
+        </div>
       </div>
       <div id="geocoder" class="geocoder"></div>
 
@@ -273,6 +301,42 @@
         <div>
           <span id="details-image" class="details-image"></span>
         </div>
+      </div>
+      <div>
+        <!-- Modal Toggle Button -->
+        <button
+          id="modal-toggle"
+          style="background: none; border: none; cursor: pointer"
+        >
+          <img id="modal-arrow" src="./img/fifa/open.svg" alt="Open details" />
+        </button>
+        <script>
+          // Modal open/close logic
+          const modalToggle = document.getElementById("modal-toggle");
+          const detailsPanel = document.getElementById("details");
+          const modalArrow = document.getElementById("modal-arrow");
+          let modalOpen = true;
+
+          modalToggle.addEventListener("click", () => {
+            modalOpen = !modalOpen;
+            if (modalOpen) {
+              detailsPanel.style.display = "block";
+              modalArrow.src = "./img/fifa/open.svg";
+              modalArrow.alt = "Open details";
+              // hide the geocoder and icons
+              document.getElementById("geocoder").style.display = "flex";
+              document.getElementById("icons").style.display = "flex";
+            } else {
+              // detailsPanel.style.display = "none";
+              modalArrow.src = "./img/fifa/close.svg";
+              modalArrow.alt = "Close details";
+              // show the geocoder and icons
+              document.getElementById("geocoder").style.display = "none";
+              document.getElementById("icons").style.display = "none";
+              document.getElementById("details").style.display = "none";
+            }
+          });
+        </script>
       </div>
     </div>
 
@@ -578,7 +642,7 @@
 
         // Overwrite the details panel
         document.getElementById("details-name").textContent = IATA || "";
-        document.getElementById("details-city").textContent = name || "";
+        document.getElementById("details-city").textContent = "";
       });
       map.on("mouseenter", "airports-layer", () => {
         map.getCanvas().style.cursor = "pointer";
@@ -836,6 +900,16 @@
           center: e.result.center,
           zoom: 12,
         });
+        // hide the h2 heading and the geocoder the icons
+        // document.querySelector(".heading h2").style.display = "none";
+        document.getElementById("icons").style.display = "none";
+        // hide the geocoder
+        // document.getElementById("geocoder").style.display = "none";
+        // show the details panel
+        document.getElementById("details").style.display = "block";
+        // switch arrow to close
+        modalArrow.src = "./img/fifa/close.svg";
+        modalArrow.alt = "Close details";
       });
     </script>
   </body>
