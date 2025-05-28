@@ -39,6 +39,35 @@
         bearing: 0,
         pitch: 0,
       });
+      map.on("load", () => {
+        // use navigator.geolocation to get the user's current position and log it to the console
+        if (navigator.geolocation) {
+          // use watchPosition to get the user's current position and heading to set the camera position
+          navigator.geolocation.watchPosition(
+            (position) => {
+              const { latitude, longitude, heading } = position.coords;
+              console.log("User's current position:", {
+                latitude,
+                longitude,
+                heading,
+              });
+              console.log(position.toJSON().coords.heading);
+              // Optionally, you can orient the camera to the user's location
+              map.setCenter([longitude, latitude]);
+            },
+            (error) => {
+              console.error("Error getting user's location:", error);
+            },
+            {
+              enableHighAccuracy: true,
+              maximumAge: 0,
+              timeout: 5000,
+            }
+          );
+        } else {
+          console.error("Geolocation is not supported by this browser.");
+        }
+      });
 
       // Add geolocate control to the map.
       map.addControl(
@@ -56,34 +85,6 @@
       map.on("geolocate", (e) => {
         console.log("User's location:", e.coords);
         // Optionally, you can orient the camera to the user's location
-        if (navigator.geolocation) {
-          navigator.geolocation.watchPosition(
-            (position) => {
-              const lng = position.coords.longitude;
-              const lat = position.coords.latitude;
-              const heading = position.coords.heading; // in degrees (0–360)
-
-              // Move marker
-
-              // Update map camera
-              map.easeTo({
-                center: [lng, lat],
-                bearing: heading || 0, // fallback to 0 if heading is null
-                duration: 1000,
-              });
-            },
-            (error) => {
-              console.error("Error watching position:", error);
-            },
-            {
-              enableHighAccuracy: true,
-              maximumAge: 0,
-              timeout: 10000,
-            }
-          );
-        } else {
-          alert("Geolocation not supported by your browser.");
-        }
       });
     </script>
   </body>
