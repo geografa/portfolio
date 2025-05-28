@@ -65,7 +65,7 @@
               // use map.easeTo to orient the camera to the user's current position and heading
               map.easeTo({
                 center: [longitude, latitude],
-                bearing: heading || 0, // Use heading if available, otherwise default to 0
+                bearing: heading, // Use heading if available, otherwise default to 0
                 duration: 1000,
               });
               document.getElementById("info").innerHTML = `
