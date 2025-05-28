@@ -63,10 +63,22 @@
               });
               console.log(position.toJSON().coords.heading);
               // use map.easeTo to orient the camera to the user's current position and heading
+              // Store last known heading if available
+              if (typeof window.lastHeading === "undefined") {
+                window.lastHeading = 0;
+              }
+              const currentHeading =
+                typeof heading === "number" && !isNaN(heading)
+                  ? heading
+                  : window.lastHeading;
+              if (typeof heading === "number" && !isNaN(heading)) {
+                window.lastHeading = heading;
+              }
               map.easeTo({
                 center: [longitude, latitude],
-                bearing: heading, // Use heading if available, otherwise default to 0
+                bearing: currentHeading,
                 duration: 1000,
+                pitch: 50,
               });
               document.getElementById("info").innerHTML = `
                 <strong>Current Position:</strong><br>
