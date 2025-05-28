@@ -23,10 +23,20 @@
         bottom: 0;
         width: 100%;
       }
+      #info {
+        position: absolute;
+        top: 10px;
+        background-color: white;
+        padding: 10px;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        z-index: 1;
+      }
     </style>
   </head>
   <body>
     <div id="map"></div>
+    <div id="info"></div>
     <script>
       mapboxgl.accessToken =
         "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
@@ -54,6 +64,12 @@
               console.log(position.toJSON().coords.heading);
               // Optionally, you can orient the camera to the user's location
               map.setCenter([longitude, latitude]);
+              document.getElementById("info").innerHTML = `
+                <strong>Current Position:</strong><br>
+                Latitude: ${latitude}<br>
+                Longitude: ${longitude}<br>
+                Heading: ${heading ? heading.toFixed(2) : "N/A"}
+              `;
             },
             (error) => {
               console.error("Error getting user's location:", error);
