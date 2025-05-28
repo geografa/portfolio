@@ -52,6 +52,39 @@
           showUserHeading: true,
         })
       );
+      // add a listener for the 'geolocate' event to getCurrentPosition and orient the camera to follow the user
+      map.on("geolocate", (e) => {
+        console.log("User's location:", e.coords);
+        // Optionally, you can orient the camera to the user's location
+        if (navigator.geolocation) {
+          navigator.geolocation.watchPosition(
+            (position) => {
+              const lng = position.coords.longitude;
+              const lat = position.coords.latitude;
+              const heading = position.coords.heading; // in degrees (0–360)
+
+              // Move marker
+
+              // Update map camera
+              map.easeTo({
+                center: [lng, lat],
+                bearing: heading || 0, // fallback to 0 if heading is null
+                duration: 1000,
+              });
+            },
+            (error) => {
+              console.error("Error watching position:", error);
+            },
+            {
+              enableHighAccuracy: true,
+              maximumAge: 0,
+              timeout: 10000,
+            }
+          );
+        } else {
+          alert("Geolocation not supported by your browser.");
+        }
+      });
     </script>
   </body>
 </html>
