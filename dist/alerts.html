@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Weather API</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+
+    <script
+      defer
+      src="https://cdn.aerisapi.com/sdk/js/latest/aerisweather.min.js"
+    ></script>
+  </head>
+  <body>
+    <script>
+      window.addEventListener("load", () => {
+        const client_id = "rXM6oZ1t1mS0dmJc19tZi";
+        const client_secret = "LSwZQ5hwluiMeXVpJUy3AfiqdbepA6mhE58VaQzn";
+
+        const aeris = new AerisWeather(client_id, client_secret);
+
+        const request = aeris
+          .api()
+          .endpoint("alerts")
+          .format("geojson")
+          .place("minneapolis,mn")
+          .limit(10);
+        request.get().then((result) => {
+          console.log(result);
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Add multiple geometries from one GeoJSON source</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.11.1/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.11.1/mapbox-gl.js"></script>
+    <!-- add turfjs -->
+    <script src="https://unpkg.com/@turf/turf@6.5.0/turf.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoibXRjLXZpdGFsLXNpZ25zIiwiYSI6ImNsb3hpbnlzazAzbDYyam53dHpqb2picmYifQ.GB_Cs9vXzDq-hulF9LXbNw";
+      const map = new mapboxgl.Map({
+        container: "map",
+        // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+        style: "mapbox://styles/mapbox/light-v10",
+        center: [-122.435882, 37.781712],
+        zoom: 7,
+        minZoom: 7,
+        maxZoom: 11,
+        bearing: 0,
+        pitch: 0,
+      });
+      const geojson = {
+        type: "FeatureCollection",
+        features: [
+          {
+            type: "Feature",
+            properties: { name: "SF", population: 1000000 },
+            geometry: {
+              coordinates: [-122.44444042058474, 37.77521500006972],
+              type: "Point",
+            },
+          },
+          {
+            type: "Feature",
+            properties: { name: "SF", population: 500000 },
+            geometry: {
+              coordinates: [-122.44444042058474, 37.77521500006972],
+              type: "Point",
+            },
+          },
+          {
+            type: "Feature",
+            properties: { name: "SF2", population: 500000 },
+            geometry: {
+              coordinates: [-121.878188, 37.335678],
+              type: "Point",
+            },
+          },
+          {
+            type: "Feature",
+            properties: { name: "Oakland", population: 250000 },
+            geometry: {
+              coordinates: [-121.910391, 37.748785],
+              type: "Point",
+            },
+          },
+          {
+            type: "Feature",
+            properties: { name: "Oakland", population: 10000 },
+            geometry: {
+              coordinates: [-122.18222, 37.439224],
+              type: "Point",
+            },
+          },
+        ],
+      };
+
+      map.on("load", () => {
+        map.addSource("cities", {
+          type: "geojson",
+          data: geojson,
+        });
+
+        // create circles using turf.circle(center, radius, options);
+        // const circles = {
+        //   type: "FeatureCollection",
+        //   features: geojson.features.map((feature) => {
+        //     const center = turf.point(feature.geometry.coordinates);
+        //     const options = {
+        //       steps: 100,
+        //       units: "miles",
+        //       properties: feature.properties,
+        //     };
+        //     const population = feature.properties.population;
+        //     const normalizedPopulation = Math.max(
+        //       1,
+        //       Math.min(10, (population / 1000000) * 10)
+        //     );
+        //     const radius = normalizedPopulation; // Radius is scaled from 1 to 10 based on population
+        //     return turf.circle(center, radius, options);
+        //   }),
+        // };
+
+        // add circles to map
+        // map.addSource("cities", {
+        //   type: "geojson",
+        //   data: circles,
+        // });
+        // add layer for circle
+        // map.addLayer({
+        //   id: "circle-layer",
+        //   type: "fill",
+        //   source: "circle",
+        //   paint: {
+        //     "fill-color": "#B42222",
+        //     "fill-opacity": 0.3,
+        //   },
+        // });
+
+        map.addLayer({
+          id: "circle-layer2",
+          type: "circle",
+          source: "cities",
+          paint: {
+            "circle-color": "blue",
+            "circle-radius": [
+              "interpolate",
+              ["linear"],
+              ["zoom"],
+              7,
+              [
+                "max",
+                3,
+                ["*", 40, ["sqrt", ["/", ["get", "population"], 1000000]]],
+              ],
+              11,
+              [
+                "max",
+                3,
+                ["*", 160, ["sqrt", ["/", ["get", "population"], 1000000]]],
+              ],
+            ],
+            "circle-opacity": 0.3,
+          },
+        });
+
+        // add popup on click for population
+        map.on("click", "circle-layer", (e) => {
+          const population = e.features[0].properties.population;
+          new mapboxgl.Popup()
+            .setLngLat(e.lngLat)
+            .setHTML(`Population: ${population}`)
+            .addTo(map);
+        });
+      });
+    </script>
+  </body>
+</html>

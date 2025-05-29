@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Color-Coded Circles and Heatmap</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.js"></script>
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6.5.0/turf.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+      /* make popup opacity 0.8 and with rounded corners */
+
+      .mapboxgl-popup {
+        max-width: 400px;
+        font: 12px/20px "Helvetica Neue", Arial, Helvetica, sans-serif;
+        padding-bottom: 10px;
+      }
+      .mapboxgl-popup,
+      img {
+        max-width: 100%;
+      }
+      .mapboxgl-popup-content {
+        border-radius: 10px;
+        color: #23646a;
+        background: rgba(255, 255, 255, 0.9);
+      }
+
+      .mapboxgl-popup-content a {
+        color: #23646a;
+        line-height: 2em;
+      }
+      .mapboxgl-popup-content h2,
+      p {
+        margin-bottom: 5px;
+      }
+      .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
+        border-top-color: #ffffff;
+      }
+      .mapboxgl-popup-anchor-top .mapboxgl-popup-tip {
+        border-bottom-color: #ffffff;
+      }
+      .mapboxgl-popup-anchor-left .mapboxgl-popup-tip {
+        border-right-color: #ffffff;
+      }
+      .mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
+        border-left-color: #ffffff;
+      }
+      .mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip {
+        border-bottom-color: #ffffff;
+      }
+      .mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip {
+        border-bottom-color: #ffffff;
+      }
+      .mapboxgl-popup-anchor-bottom-left .mapboxgl-popup-tip {
+        border-top-color: #ffffff;
+      }
+      .mapboxgl-popup-anchor-bottom-right .mapboxgl-popup-tip {
+        border-top-color: #ffffff;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <!-- make a toggle switch for layers -->
+    <div
+      style="
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: white;
+        padding: 10px;
+        border-radius: 5px;
+      "
+    >
+      <label>
+        <input type="checkbox" id="toggle-heatmap" checked />
+        Show Heatmap
+      </label>
+      <label>
+        <input type="checkbox" id="toggle-circles" checked />
+        Show Circles
+      </label>
+    </div>
+
+    <script>
+      // Your Mapbox access token here
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
+
+      // Fetch the GeoJSON data
+      const url = "./data/pdxboom/PDXBOOM.geojson";
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+          // Create a map
+          const map = new mapboxgl.Map({
+            container: "map",
+            style: "mapbox://styles/mapbox/dark-v10",
+            center: [-122.623672, 45.487419], // Default center
+            zoom: 12,
+            hash: true,
+          });
+
+          map.on("load", () => {
+            // Add the GeoJSON data as a source
+            map.addSource("pdxboom", {
+              type: "geojson",
+              data: data,
+            });
+
+            // Add a circle layer with color coding based on the "icon" attribute
+            map.addLayer(
+              {
+                id: "pdxboom-circles",
+                type: "circle",
+                source: "pdxboom",
+                paint: {
+                  "circle-radius": [
+                    "match",
+                    ["get", "icon"],
+                    "very loud",
+                    6,
+                    "loud",
+                    4,
+                    "noticeable",
+                    2,
+                    "did not hear it",
+                    1,
+                    2, // Default radius
+                  ],
+                  "circle-color": [
+                    "match",
+                    ["get", "icon"],
+                    "very loud",
+                    "#FF0000", // Red
+                    "loud",
+                    "#FF4500", // Orange Red
+                    "noticeable",
+                    "#FF6347", // Tomato
+                    "did not hear it",
+                    "#FF69B4", // Hot Pink
+                    "#FFC0CB", // Pink (Default)
+                  ],
+                  // "circle-stroke-color": "#333",
+                  // "circle-stroke-width": 1,
+                },
+              },
+              "waterway-label"
+            );
+
+            // Add a heatmap layer
+            map.addLayer(
+              {
+                id: "pdxboom-heatmap",
+                type: "heatmap",
+                source: "pdxboom",
+                maxzoom: 15,
+                paint: {
+                  "heatmap-weight": [
+                    "interpolate",
+                    ["linear"],
+                    ["get", "weight"],
+                    0,
+                    0,
+                    1,
+                    1,
+                  ],
+                  "heatmap-intensity": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    0,
+                    1,
+                    11,
+                    5,
+                  ],
+                  "heatmap-color": [
+                    "interpolate",
+                    ["linear"],
+                    ["heatmap-density"],
+                    0,
+                    "rgba(33,102,172,0)",
+                    0.2,
+                    "rgb(103,169,207)",
+                    0.4,
+                    "rgb(209,229,240)",
+                    0.6,
+                    "rgb(253,219,199)",
+                    0.8,
+                    "rgb(239,138,98)",
+                    1,
+                    "rgb(178,24,43)",
+                  ],
+                  "heatmap-radius": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    0,
+                    3,
+                    11,
+                    30,
+                  ],
+                  "heatmap-opacity": [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    0,
+                    1,
+                    11,
+                    0.5,
+                  ],
+                },
+              },
+              "pdxboom-circles"
+            );
+            // Add popup on hover
+            const popup = new mapboxgl.Popup({
+              closeButton: false,
+              closeOnClick: false,
+            });
+
+            map.on("mouseenter", "pdxboom-circles", (e) => {
+              // Change the cursor to a pointer
+              map.getCanvas().style.cursor = "pointer";
+
+              // Get the feature properties
+              const coordinates = e.features[0].geometry.coordinates.slice();
+              const { name, description } = e.features[0].properties;
+
+              // Check if description exists and is not empty
+              if (description) {
+                // Set the popup content
+                popup
+                  .setLngLat(coordinates)
+                  .setHTML(`<strong>${name}</strong><p>${description}</p>`)
+                  .addTo(map);
+              }
+            });
+
+            map.on("mouseleave", "pdxboom-circles", () => {
+              // Reset the cursor
+              map.getCanvas().style.cursor = "";
+              popup.remove();
+            });
+
+            // Optional: Fly to the center of the data
+            const bounds = turf.bbox(data);
+            map.fitBounds(bounds, { padding: 20 });
+            // toggle heatmap and circles
+            // Toggle heatmap and circles layers
+            document
+              .getElementById("toggle-heatmap")
+              .addEventListener("change", function (e) {
+                const heatmapLayer = "pdxboom-heatmap";
+                if (e.target.checked) {
+                  map.setLayoutProperty(heatmapLayer, "visibility", "visible");
+                } else {
+                  map.setLayoutProperty(heatmapLayer, "visibility", "none");
+                }
+              });
+
+            document
+              .getElementById("toggle-circles")
+              .addEventListener("change", function (e) {
+                const circlesLayer = "pdxboom-circles";
+                if (e.target.checked) {
+                  map.setLayoutProperty(circlesLayer, "visibility", "visible");
+                } else {
+                  map.setLayoutProperty(circlesLayer, "visibility", "none");
+                }
+              });
+          });
+        })
+        .catch((error) => console.error("Error fetching GeoJSON:", error));
+    </script>
+  </body>
+</html>

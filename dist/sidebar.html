@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Point Sidebar</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.9.3/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.9.3/mapbox-gl.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@7/turf.min.js"></script>
+
+    <style>
+        body {
+        margin: 0;
+        padding: 0;
+        }
+        #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        }
+        #sidebar {
+        font-family: "Inter", sans-serif;
+        position: absolute;
+        color: aliceblue;
+        top: 50%;
+        left: 0;
+        width: 200px;
+        height: 40%;
+        background-color: rgb(56 56 56 / 70%);
+        backdrop-filter: blur(10px);
+        padding: 0 10px;
+        z-index: 1;
+        overflow-y: scroll;
+        }
+        #sidebar h2 {
+            margin: 0;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 1.5rem;
+            border-bottom: 1px solid #fff;
+        }
+        li {
+            list-style: none;
+            padding: 10px 0;
+            border-bottom: 1px solid #fff;
+        }
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        .checkbox {
+            display: none;
+        }
+        .switch-label {
+            display: block;
+            width: 100%;
+            height: 20px;
+            background: #ccc;
+            border-radius: 999px;
+            position: relative;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .switch-label::after
+        {
+            content: "";
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 26px;
+            height: 26px;
+            background: #fff;
+            border-radius: 999px;
+            transform: translateX(0);
+        }
+        .toggle-slider {
+            content: "";
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 15px;
+            height: 15px;
+            background: #fff;
+            border-radius: 999px;
+            transition: left 0.2s;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="map">
+      <div id="sidebar">
+        <h2>Sidebar</h2>
+        <!-- add the listings here -->
+        <div class="toggle-switch">
+          <input type="checkbox" class="checkbox" id="checkbox" />
+          <label for="checkbox" class="switch-label">
+            <div class="toggle-slider"></div>
+          </label>
+      </div>
+    </div>
+
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
+      const map = new mapboxgl.Map({
+        container: "map", // container ID
+        center: [-122.430162, 37.720313],
+        zoom: 9,
+        bearing: 0,
+        pitch: 0,
+      });
+      map.on("style.load", () => {
+        map.setConfigProperty("basemap", "lightPreset", "day");
+      });
+      const addGeoJSONSource = (map, sourceId, data) => {
+        map.addSource(sourceId, {
+          type: "geojson",
+          data: data,
+        });
+      };
+      const stage = [
+        "lead",
+        "opportunity",
+        "proposal",
+        "negotiation",
+        "closed",
+      ];
+      const addPointLayer = (map, layerId, sourceId, layout, paint) => {
+        map.addLayer({
+          id: layerId,
+          type: "circle",
+          source: sourceId,
+          layout: layout,
+          paint: paint,
+        });
+      };
+
+      //   function to create 30 random points in the SF bay area
+      const bounds = [
+        -122.515869140625, 37.562991043203394, -122.3480224609375,
+        37.83237156432127,
+      ];
+      const points = turf.randomPoint(100, {
+        bbox: bounds,
+      });
+      // push properties to each point feature
+      points.features.forEach((point, index) => {
+        // console.log(stage[Math.floor(Math.random() * stage.length)]);
+        point.properties = {
+          stage: stage[Math.floor(Math.random() * stage.length)],
+          index: index,
+        };
+      });
+
+      map.on("load", () => {
+        addGeoJSONSource(map, "point-source", {
+          type: "FeatureCollection",
+          features: points.features,
+        });
+
+        const pointLayout = {
+          visibility: "visible",
+        };
+        const pointPaint = {
+          "circle-radius": 5,
+          "circle-color": [
+            "match",
+            ["get", "stage"],
+            "lead",
+            "green",
+            "opportunity",
+            "darkgreen",
+            "proposal",
+            "orange",
+            "negotiation",
+            "red",
+            "closed",
+            "black",
+            "white",
+          ],
+          "circle-stroke-color": "#fff",
+          "circle-stroke-width": 1,
+        };
+
+        addPointLayer(
+          map,
+          "point-layer",
+          "point-source",
+          pointLayout,
+          pointPaint
+        );
+      });
+
+      map.on("click", "point-layer", (e) => {
+        const coordinates = e.features[0].geometry.coordinates.slice();
+        const stage = e.features[0].properties.stage;
+        const index = e.features[0].properties.index;
+        new mapboxgl.Popup()
+          .setLngLat(coordinates)
+          .setHTML(`Stage: ${stage} <br> Index: ${index}`)
+          .addTo(map);
+      });
+      // when the toggle switch is clicked, toggle the visibility of the point layer
+        document.getElementById("checkbox").addEventListener("change", (e) => {
+            const visibility = map.getLayoutProperty("point-layer", "visibility");
+            if (visibility === "visible") {
+            map.setLayoutProperty("point-layer", "visibility", "none");
+            } else {
+            map.setLayoutProperty("point-layer", "visibility", "visible");
+            }
+        });
+    </script>
+  </body>
+</html>

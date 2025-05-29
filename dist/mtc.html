@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Load data from an external GeoJSON file</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.11.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.11.0/mapbox-gl.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoibXRjLXZpdGFsLXNpZ25zIiwiYSI6ImNsb3hpbnlzazAzbDYyam53dHpqb2picmYifQ.GB_Cs9vXzDq-hulF9LXbNw";
+      const map = new mapboxgl.Map({
+        container: "map", // container ID
+        // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+        style: "mapbox://styles/mtc-vital-signs/cm8yxo8g7003k01sr3tcd38uk", // style URL
+        projection: "globe", // Display the map as a globe, since satellite-v9 defaults to Mercator
+        center: [-121.797392, 37.888112],
+        zoom: 8,
+        bearing: 0,
+        pitch: 0,
+        hash: true,
+      });
+      const popup = new mapboxgl.Popup({
+        closeButton: false,
+        closeOnClick: false,
+      });
+      //   when the circle is clicked, show the popup and attributes for the clicked circle
+      map.on("click", "earthquakes-layer", (e) => {
+        // Copy coordinates array.
+        const coordinates = e.features[0].geometry.coordinates.slice();
+
+        // use these properties to create a popup. Example: "hub_type": "1. Regional Downtown",
+        // "rank_all": 3,
+        // "eq_flag": 0,
+        // "clmt_score": 63.6618281252139,
+        // "system_typ": "2. Light Rail",
+        // "hct_stn_nm": "King St & 4Th St",
+        // "raw_name": "Transit Center - Caltrain Station",
+        const description = `
+        <strong>Hub Type:</strong> ${e.features[0].properties.hub_type}<br />
+        <strong>Rank:</strong> ${e.features[0].properties.rank_all}<br />
+        <strong>Transit System Type:</strong> ${e.features[0].properties.system_typ}<br />
+        <strong>Transit System Name:</strong> ${e.features[0].properties.raw_name}<br />
+        <strong>Transit System Station Name:</strong> ${e.features[0].properties.hct_stn_nm}<br />
+        <strong>Climate Score:</strong> ${e.features[0].properties.clmt_score}<br />`;
+
+        // Ensure that if the map is zoomed out such that multiple
+        // symbols are visible, the popup appears over the clicked symbol.
+        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+          coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+        }
+
+        popup.setLngLat(coordinates).setHTML(description).addTo(map);
+      });
+
+      //   create a firstSymbolLayerID variable to store the first symbol layer ID
+
+      let firstSymbolLayerID = null;
+      map.on("style.load", () => {
+        // Iterate through the layers in the style
+        map.getStyle().layers.forEach((layer) => {
+          // Check if the layer is a symbol layer
+          if (layer.type === "symbol") {
+            // Store the ID of the first symbol layer
+            firstSymbolLayerID = layer.id;
+            return;
+          }
+        });
+      });
+
+      map.on("style.load", () => {
+        map.setFog({}); // Set the default atmosphere style
+      });
+
+      map.on("load", () => {
+        map.addSource("earthquakes", {
+          type: "geojson",
+          // Use a URL for the value for the `data` property.
+          data: "https://services3.arcgis.com/i2dkYWmb4wHvYPda/arcgis/rest/services/mtc_mobility_hubs_2020/FeatureServer/0/query?f=geojson&where=1%3D1&returnGeometry=true&spatialRel=esriSpatialRelIntersects&outFields=*&maxRecordCountFactor=4&outSR=4326&resultOffset=0&resultRecordCount=8000&cacheHint=true&quantizationParameters=%7B%22mode%22%3A%22view%22%2C%22originPosition%22%3A%22upperLeft%22%2C%22tolerance%22%3A1.0583354500042312%2C%22extent%22%3A%7B%22xmin%22%3A-123.013563241%2C%22ymin%22%3A37.00338076000003%2C%22xmax%22%3A-121.56102389799996%2C%22ymax%22%3A38.79791304400004%2C%22spatialReference%22%3A%7B%22wkid%22%3A4326%2C%22latestWkid%22%3A4326%7D%7D%7D",
+        });
+
+        map.addLayer(
+          {
+            id: "earthquakes-layer",
+            type: "circle",
+            source: "earthquakes",
+            paint: {
+              "circle-radius": 4,
+              "circle-stroke-width": 2,
+              "circle-color": "blue",
+              "circle-stroke-color": "white",
+            },
+          },
+          firstSymbolLayerID
+        );
+      });
+    </script>
+  </body>
+</html>

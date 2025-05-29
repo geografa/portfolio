@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Load Cities on Map</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.js"></script>
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6.5.0/turf.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+      .mapboxgl-popup {
+        max-width: 400px;
+        font: 12px/20px "Helvetica Neue", Arial, Helvetica, sans-serif;
+        padding-bottom: 10px;
+      }
+      .mapboxgl-popup-content {
+        border-radius: 10px;
+        color: #23646a;
+        background: rgba(255, 255, 255, 0.9);
+      }
+      .mapboxgl-popup-content a {
+        color: #23646a;
+        line-height: 2em;
+      }
+      .mapboxgl-popup-content h2,
+      p {
+        margin-bottom: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <script>
+      // Your Mapbox access token here
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
+
+      // Create the map
+      const map = new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/mapbox/dark-v10",
+        center: [-122.4097, 37.7368],
+        zoom: 7,
+        minZoom: 7,
+        maxZoom: 11,
+        projection: "globe",
+        hash: true,
+      });
+
+      // Fetch the GeoJSON data and load it on the map
+      const url = "./data/vital-signs/cities.json"; // Update with your GeoJSON file path
+      map.on("load", () => {
+        fetch(url)
+          .then((response) => response.json())
+          .then((data) => {
+            // determine the max year
+            const maxYear = data.reduce((max, city) => {
+              return Math.max(max, parseInt(city.max_year));
+            }, 0);
+            console.log("Max Year:", maxYear);
+            // determine the lowest total_units_avg_annual
+            const minTotalUnits = data.reduce((min, city) => {
+              return Math.min(min, parseFloat(city.total_units_avg_annual));
+            }, Infinity);
+            console.log("Min Total Units:", minTotalUnits);
+            // determine the highest total_units_avg_annual
+            const maxTotalUnits = data.reduce((max, city) => {
+              return Math.max(max, parseFloat(city.total_units_avg_annual));
+            }, -Infinity);
+            console.log("Max Total Units:", maxTotalUnits);
+            // Add the GeoJSON data as a source
+            // format the data response to a feature collection
+            const formattedData = {
+              type: "FeatureCollection",
+              features: data
+                .filter((city) => city.max_year === "2024")
+                .map((city) => ({
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: city.geometry.coordinates,
+                  },
+                  properties: {
+                    name: city.jurisdiction,
+                    description: parseFloat(city.total_units_avg_annual),
+                  },
+                })),
+            };
+            // Add the formatted data as a source
+            map.addSource("cities", {
+              type: "geojson",
+              data: formattedData,
+            });
+            console.log("Formatted Data:", formattedData);
+            // Add a circle layer for the cities
+            map.addLayer({
+              id: "cities",
+              type: "circle",
+              source: "cities",
+              paint: {
+                "circle-radius":
+                  // [
+                  //   "sqrt",
+                  //   ["/", ["to-number", ["get", "description"]], 1],
+                  // ],
+                  [
+                    "interpolate",
+                    ["linear"],
+                    ["zoom"],
+                    7,
+                    [
+                      "interpolate",
+                      ["linear"],
+                      ["get", "description"],
+                      minTotalUnits,
+                      2,
+                      maxTotalUnits,
+                      20,
+                    ],
+                    11,
+                    [
+                      "interpolate",
+                      ["linear"],
+                      ["get", "description"],
+                      minTotalUnits,
+                      2,
+                      maxTotalUnits,
+                      80,
+                    ],
+                  ],
+                "circle-color": "#007cbf",
+                "circle-stroke-width": 1,
+                "circle-stroke-color": "#ffffff",
+                "circle-opacity": 0.5,
+              },
+            });
+
+            // Add popup on hover
+            const popup = new mapboxgl.Popup({
+              closeButton: false,
+              closeOnClick: false,
+            });
+
+            map.on("mouseenter", "cities", (e) => {
+              // Change the cursor style as a UI indicator
+              map.getCanvas().style.cursor = "pointer";
+
+              // Get the coordinates and properties of the hovered feature
+              const coordinates = e.features[0].geometry.coordinates.slice();
+              const { name, description } = e.features[0].properties;
+
+              // Set the popup content and display it
+              popup
+                .setLngLat(coordinates)
+                .setHTML(`<strong>${name}</strong><p>${description}</p>`)
+                .addTo(map);
+            });
+
+            map.on("mouseleave", "cities", () => {
+              // Reset the cursor and remove the popup
+              map.getCanvas().style.cursor = "";
+              popup.remove();
+            });
+          })
+          .catch((error) => console.error("Error fetching GeoJSON:", error));
+      });
+    </script>
+  </body>
+</html>

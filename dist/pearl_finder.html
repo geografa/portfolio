@@ -36,7 +36,7 @@
         position: fixed;
         z-index: 3;
         border-radius: 20px;
-        width: 50%;
+        /* width: 50%; */
         top: 60%;
         left: 50%;
         transform: translateX(-50%);
@@ -45,7 +45,7 @@
         background: linear-gradient(
           180deg,
           rgba(255, 255, 255, 1) 50%,
-          rgba(255, 255, 255, 0.6) 100%
+          rgba(255, 255, 255, 0.9) 100%
         );
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
           0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -95,7 +95,7 @@
       .modal-content {
         display: flex;
         align-items: flex-start;
-        flex-direction: row;
+        flex-direction: column;
         flex-wrap: wrap;
         /* padding: 10px; */
         font-family: "Popins", sans-serif;
@@ -107,6 +107,22 @@
         font-size: 0.8rem;
         line-height: 1.5;
         color: rgb(94, 94, 94);
+      }
+      .modal-content a {
+        text-decoration: none;
+        color: #b64900;
+        font-weight: 600;
+      }
+      .modal-content a:hover {
+        text-decoration: underline;
+      }
+      .modal-content .description {
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+      .modal-content .reservation {
+        margin-top: 10px;
+        margin-bottom: 10px;
       }
       .close-modal {
         position: absolute;
@@ -200,10 +216,12 @@
       };
       const gcp_bottling = [-98.4808014337685, 29.44199890225623];
       const gcp_cellar = [-98.48100799, 29.44213212];
+      const gcp_bakery = [-98.48009422, 29.44210473];
 
       const map = (window.map = new mapboxgl.Map({
         container: "map",
-        style: "mapbox://styles/grafa/cm4noofna009j01s5gji15azp",
+        // style: "mapbox://styles/grafa/cm4noofna009j01s5gji15azp", // original style
+        style: "mapbox://styles/grafa/cm7jnenon00l101sogksz1q9n", // test buildings
         center: [-98.480747, 29.442041],
         zoom: 17,
         bearing: 13,
@@ -352,7 +370,7 @@
           localGeocoder: forwardGeocoder,
           // local only returns results from the forwardGeocoder function
           localGeocoderOnly: true,
-          zoom: 14,
+          zoom: 18,
           placeholder: "Where to?",
           marker: false,
           mapboxgl: mapboxgl,
@@ -361,9 +379,11 @@
           bbox: [-98.7, 29.2, -98.2, 29.7],
         });
         document.getElementById("geocoder").appendChild(geocoder.onAdd(map));
+        // geocoder.on('result'
       });
 
       map.on("load", () => {
+        const lineBaseWidth = 8;
         // add the trees as a source to the map
         getTrees().then((data) => {
           map.addModel("model-conifer", "./models/tree-conifer.glb");
@@ -451,10 +471,25 @@
                   type: "Polygon",
                 },
               },
+              {
+                type: "Feature",
+                properties: {},
+                geometry: {
+                  coordinates: [
+                    [
+                      [-98.48015819463826, 29.44222633799039],
+                      [-98.48015819463826, 29.441985517479267],
+                      [-98.4800502788872, 29.441985517479267],
+                      [-98.4800502788872, 29.44222633799039],
+                      [-98.48015819463826, 29.44222633799039],
+                    ],
+                  ],
+                  type: "Polygon",
+                },
+              },
             ],
           },
         });
-
         // add a geojson source which specifies the custom model to be used by the model layer.
         map.addSource("source-cured", {
           type: "geojson",
@@ -470,13 +505,15 @@
             },
           },
         });
+        // add sources
         map.addSource("source-bottling", {
           type: "geojson",
           data: {
             type: "Feature",
             properties: {
               "model-uri":
-                "https://geografa.github.io/portfolio/models/pearl_bottling_dept.glb",
+                "http://localhost:8080/models/pearl_bottling_dept.glb",
+              // "https://geografa.github.io/portfolio/models/pearl_bottling_dept.glb",
             },
             geometry: {
               type: "Point",
@@ -489,8 +526,7 @@
           data: {
             type: "Feature",
             properties: {
-              "model-uri":
-                "https://geografa.github.io/portfolio/models/pearl_cellar.glb",
+              "model-uri": "http://localhost:8080/models/pearl_cellars.glb",
             },
             geometry: {
               type: "Point",
@@ -498,7 +534,30 @@
             },
           },
         });
-
+        map.addSource("source-bakery", {
+          type: "geojson",
+          data: {
+            type: "Feature",
+            properties: {
+              "model-uri":
+                // "https://geografa.github.io/portfolio/models/pearl_bakery.glb",
+                "http://localhost:8080/models/pearl_bakery.glb",
+            },
+            geometry: {
+              type: "Point",
+              coordinates: gcp_bakery,
+            },
+          },
+        });
+        map.addSource("grounds", {
+          type: "geojson",
+          data: "./data/pearl/ground.geojson",
+        });
+        map.addSource("route", {
+          type: "geojson",
+          lineMetrics: true,
+          data: route,
+        });
         // add the clip layer and configure it to also remove symbols and trees.
         // `clip-layer-scope` layout property is used to specify that only models from the Mapbox Standard Style should be clipped.
         // this will prevent the newly added model from getting clipped.
@@ -558,58 +617,45 @@
             "model-opacity": 1,
           },
         });
-        // add the pearl locations to the map as a source and layer
-        map.addModel("model-pearl", "./models/pearl_sign_sm.glb");
-        getLocations().then((data) => {
-          map.addSource("pearl-locations", {
-            type: "geojson",
-            data: data,
-          });
-          // map.addLayer({
-          //   id: "pearl-model-layer",
-          //   type: "model",
-          //   source: "pearl-locations",
-          //   layout: {
-          //     "model-id": "model-pearl",
-          //   },
-          //   paint: {
-          //     "model-scale": [10, 10, 10],
-          //     "model-rotation": [0, 0, 0],
-          //     // emissive strength
-          //     "model-emissive-strength": 1,
-          //   },
-          // });
-          map.addLayer({
-            id: "pearl-symbol-layer",
-            type: "symbol",
-            source: "pearl-locations",
-            layout: {
-              "icon-image": "pearl-icon",
-              "icon-size": 0.5,
-              "text-field": ["get", "title"],
-              "text-font": ["Open Sans Bold", "Arial Unicode MS Bold"],
-              "text-size": 12,
-              "text-offset": [0, 1],
-              "text-anchor": "top",
-              "text-justify": "auto",
-              // "text-allow-overlap": true,
-            },
-            paint: {
-              // "symbol-z-offset": 20,
-              "text-color": "rgb(0, 0, 0)",
-              "text-halo-color": "rgba(255, 255, 255, 0.8)",
-              "text-halo-width": 2,
-              "symbol-z-offset": 20,
-            },
-          });
+        map.addLayer({
+          id: "layer-bakery",
+          type: "model",
+          source: "source-bakery",
+          layout: {
+            "model-id": ["get", "model-uri"],
+          },
+          paint: {
+            "model-color-mix-intensity": 0,
+            "model-color": "rgba(0,0, 0, 1)",
+            "model-scale": [1, 1, 1],
+            "model-rotation": [0, 0, 11],
+            "model-opacity": 1,
+            "model-emissive-strength": 1,
+          },
         });
-        map.addSource("route", {
-          type: "geojson",
-          lineMetrics: true,
-          data: route,
+        map.addLayer({
+          id: "grounds-fill",
+          type: "fill",
+          source: "grounds",
+          // "source-layer": "Pearl_Features",
+          layout: {},
+          paint: {
+            "fill-color": "rgba(159, 10, 10, 0.2)",
+            "fill-outline-color": "rgba(0, 0, 0, 0.1)",
+          },
+          slot: "bottom",
         });
-        const lineBaseWidth = 8;
-
+        map.addLayer({
+          id: "grounds-pattern",
+          type: "fill",
+          source: "grounds",
+          // "source-layer": "Pearl_Features",
+          layout: {},
+          paint: {
+            "fill-pattern": "brick",
+          },
+          slot: "bottom",
+        });
         map.addLayer({
           id: "route",
           type: "line",
@@ -718,6 +764,39 @@
           },
           slot: "middle",
         });
+        // add the pearl locations to the map as a source and layer
+        map.addModel("model-pearl", "./models/pearl_sign_sm.glb");
+
+        getLocations().then((data) => {
+          map.addSource("pearl-locations", {
+            type: "geojson",
+            data: data,
+          });
+
+          map.addLayer({
+            id: "pearl-symbol-layer",
+            type: "symbol",
+            source: "pearl-locations",
+            layout: {
+              "icon-image": "pearl-icon",
+              "icon-size": 0.5,
+              "text-field": ["get", "title"],
+              "text-font": ["Open Sans Bold", "Arial Unicode MS Bold"],
+              "text-size": 12,
+              "text-offset": [0, 1],
+              "text-anchor": "top",
+              "text-justify": "auto",
+              // "text-allow-overlap": true,
+            },
+            paint: {
+              // "symbol-z-offset": 20,
+              "text-color": "rgb(0, 0, 0)",
+              "text-halo-color": "rgba(255, 255, 255, 0.8)",
+              "text-halo-width": 2,
+              "symbol-z-offset": 20,
+            },
+          });
+        });
       });
 
       const popup = new mapboxgl.Popup({
@@ -752,7 +831,7 @@
           const details =
             "<p class='description'>" +
             feature.properties.business_hours +
-            "</p><p><a href='" +
+            "</p><p class='reservation'><a href='" +
             feature.properties.link +
             "'>Reservations</a></p>";
 
