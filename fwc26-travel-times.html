@@ -159,6 +159,7 @@
         font-weight: 400;
         font-style: normal;
       }
+
       .heading p {
         font-family: "Arial Narrow Bold", sans-serif;
         padding-bottom: 1.2em;
@@ -182,7 +183,6 @@
       .geocoder {
         position: relative;
         z-index: 1;
-        margin-top: 30px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -193,21 +193,16 @@
       /* details */
       #details {
         position: relative;
-        line-height: 2em;
         padding: 10px;
+        line-height: 2em;
         color: var(--primary-dark);
-        /* margin-top: 30px; */
       }
-      #details-name {
-        font-size: 1.5rem;
-        font-weight: 800;
-        color: var(--primary-dark);
-        /* width: 50%; */
-      }
+
       .details-image img {
         width: 300px;
         height: auto;
       }
+
       #modal-arrow {
         width: 30px;
         height: 20px;
@@ -259,6 +254,7 @@
           color: var(--primary-dark);
           text-align: left;
         }
+
         #details p {
           font-size: 0.75rem;
           font-weight: 400;
@@ -290,14 +286,13 @@
       <div id="geocoder" class="geocoder"></div>
 
       <div id="details">
-        <div>
-          <h3 id="details-name"></h3>
-          <p id="details-city"></p>
-          <p id="distance-stadium"></p>
-          <p id="distance-airport"></p>
-          <p id="distance-basecamp"></p>
-          <p id="distance-hotel"></p>
-        </div>
+        <h3 id="details-name"></h3>
+        <p id="details-city"></p>
+        <p id="distance-stadium"></p>
+        <p id="distance-airport"></p>
+        <p id="distance-basecamp"></p>
+        <p id="distance-hotel"></p>
+
         <div>
           <span id="details-image" class="details-image"></span>
         </div>
@@ -900,11 +895,6 @@
           center: e.result.center,
           zoom: 12,
         });
-        // hide the h2 heading and the geocoder the icons
-        // document.querySelector(".heading h2").style.display = "none";
-        document.getElementById("icons").style.display = "none";
-        // hide the geocoder
-        // document.getElementById("geocoder").style.display = "none";
         // show the details panel
         document.getElementById("details").style.display = "block";
         // switch arrow to close
