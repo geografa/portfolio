@@ -2,791 +2,184 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>The Lead Toolbox</title>
+    <title>Leads and Dumpsters</title>
     <meta
       name="viewport"
       content="initial-scale=1,maximum-scale=1,user-scalable=no"
     />
     <link
-      href="https://api.mapbox.com/mapbox-gl-js/v3.9.3/mapbox-gl.css"
+      href="https://api.mapbox.com/mapbox-gl-js/v3.12.0/mapbox-gl.css"
       rel="stylesheet"
     />
-    <script src="https://api.mapbox.com/mapbox-gl-js/v3.9.3/mapbox-gl.js"></script>
-    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.3/mapbox-gl-geocoder.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.3/mapbox-gl-geocoder.css"
-      type="text/css"
-    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.12.0/mapbox-gl.js"></script>
     <style>
       body {
         margin: 0;
         padding: 0;
-        font-family: Arial, Helvetica, sans-serif;
       }
       #map {
-        width: 100%;
-        height: 600px;
-      }
-      /* add target image to center of map div */
-      .custom-marker {
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000000' width='24px' height='24px'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E");
-        background-size: 24px 24px;
-        background-repeat: no-repeat;
-        background-position: center;
-        transform: translate(-50%, -50%);
-        background-color: rgba(255, 0, 0, 0.411);
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        cursor: pointer;
-      }
-      /* add a div to hold the input field */
-      #coord-input-container {
-        display: flex;
-        justify-content: center;
-        margin-top: 10px;
-        align-items: center;
-        z-index: 10;
-      }
-      #gps-coords {
-        background-color: #e9e9e9;
-        color: #acacac;
-        font-size: 1em;
-        border: none;
-        width: 70%;
-      }
-
-      /* user legend */
-      #menu-icon {
-        /* display: none; */
         position: absolute;
-        bottom: 50px;
-        left: 10px;
-        z-index: 1;
-        /* background-color: white; */
-        padding: 10px;
-        border-radius: 10px;
-        cursor: pointer;
-      }
-      #legend {
-        position: absolute;
-        bottom: 40px;
-        left: 10px;
-        z-index: 1;
-        background-color: white;
-        padding: 10px;
-        border-radius: 10px;
-        width: 350px;
-        max-width: 350px;
-        overflow-y: scroll;
-        max-height: 500px;
-      }
-      .closemenu {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        cursor: pointer;
-        width: 16px;
-      }
-
-      .tab {
-        overflow: hidden;
-        border: 1px solid #ccc;
-        background-color: #f1f1f1;
-      }
-
-      .tab button {
-        font-size: 0.8em;
-        background-color: inherit;
-        float: left;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        padding: 14px 16px;
-        transition: 0.3s;
-      }
-
-      .tab button:hover {
-        background-color: #ddd;
-      }
-
-      .tab button.active {
-        background-color: #ccc;
-      }
-
-      .tabcontent {
-        display: none;
-        padding: 6px 12px;
-        border: 1px solid #ccc;
-        border-top: none;
-      }
-
-      .opportunity-section {
-        border: 1px solid #ccc;
-        margin: 10px;
-        padding: 10px;
-      }
-
-      .opportunity-title {
-        font-weight: bold;
-      }
-
-      .opportunities {
-        list-style-type: none;
-        padding: 0;
-      }
-
-      .opportunities li {
-        display: flex;
-        align-items: center;
-        margin-bottom: 10px;
-      }
-      .opportunities li label {
-        margin-right: 10px;
-      }
-      /* The switch - the box around the slider */
-      .switch {
-        position: relative;
-        display: inline-block;
-        width: 49px;
-        height: 20px;
-      }
-      .switch input {
-        opacity: 0;
-        width: 0;
-        height: 0;
-      }
-      .slider {
-        position: absolute;
-        cursor: pointer;
         top: 0;
-        left: 0;
-        right: 0;
         bottom: 0;
-        background-color: #ccc;
-        transition: 0.4s;
-      }
-      .slider:before {
-        position: absolute;
-        content: "";
-        height: 15px;
-        width: 15px;
-        left: 3px;
-        bottom: 3px;
-        background-color: white;
-        transition: 0.4s;
-      }
-      input:checked + .slider:before {
-        -webkit-transform: translateX(28px);
-        -ms-transform: translateX(28px);
-        transform: translateX(28px);
-      }
-      /* Rounded sliders */
-      .slider.round {
-        border-radius: 34px;
-      }
-      .slider.round:before {
-        border-radius: 50%;
-      }
-      /* add contact */
-      .custom-map-control {
-        position: absolute;
-        top: 160px;
-        right: 10px;
-        z-index: 10;
-        background-color: #c76e60;
-        border-radius: 6px;
-        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-        padding: 6px;
-        font-size: 12px;
-        line-height: 20px;
-        width: 30px;
-      }
-      .add-contact-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-      }
-
-      /* popup styles */
-      .mapboxgl-popup {
-        max-width: 200px;
-        font: 12px/20px "Helvetica Neue", Arial, Helvetica, sans-serif;
-      }
-      .mapboxgl-popup h3 {
-        /* background-color: #3498db; */
-        color: #000;
-        margin: 0;
-        display: block;
-        font-weight: 700;
-      }
-      .mapboxgl-popup p {
-        margin: 0;
-        font-weight: 400;
-      }
-      .mapboxgl-popup-content {
-        padding: 10px;
-        border-radius: 10px;
-        border: 1px solid #ccc;
-        border-top: 0;
-      }
-
-      /* add media query to show a menu instead of the legend that will open and close the legend when it is clicked */
-      @media (max-width: 600px) {
-        #legend {
-          display: none;
-        }
-        #menu-icon {
-          display: block;
-          position: absolute;
-          bottom: 30px;
-          left: 10px;
-          z-index: 1;
-          /* background-color: white; */
-          padding: 10px;
-          border-radius: 10px;
-          cursor: pointer;
-        }
+        width: 100%;
       }
     </style>
   </head>
   <body>
-    <div id="map">
-      <div class="custom-map-control">
-        <div class="add-contact-container" id="add-contact">
-          <img
-            src="https://geografa.github.io/portfolio/img/add-button.png"
-            alt="add button"
-          />
-        </div>
-      </div>
-      <img
-        src="https://geografa.github.io/portfolio/img/menu-icon.png"
-        id="menu-icon"
-        alt="Menu"
-      />
-      <div id="legend">
-        <h2>Opportunities</h2>
-        <!-- add closemenu image to hide the legend -->
-        <div id="closemenu">
-          <img
-            src="https://geografa.github.io/portfolio/img/closemenu.png"
-            alt="close menu"
-            class="closemenu"
-          />
-        </div>
-
-        <div class="tab">
-          <button class="tablinks" onclick="openSection(event, 'Leads')">
-            Leads
-          </button>
-          <button class="tablinks" onclick="openSection(event, 'Contacted')">
-            Contacted
-          </button>
-          <button class="tablinks" onclick="openSection(event, 'Demos')">
-            Demos
-          </button>
-          <button class="tablinks" onclick="openSection(event, 'Decisions')">
-            Decisions
-          </button>
-          <button class="tablinks" onclick="openSection(event, 'Customer')">
-            Customer
-          </button>
-        </div>
-        <div id="opportunities-container">
-          <div id="Leads" class="tabcontent">
-            <h3>Leads</h3>
-            <ul id="opportunities-list-leads" class="opportunities"></ul>
-          </div>
-          <div id="Contacted" class="tabcontent">
-            <h3>Contacted</h3>
-            <ul id="opportunities-list-contacted" class="opportunities"></ul>
-          </div>
-          <div id="Demos" class="tabcontent">
-            <h3>Demos</h3>
-            <ul id="opportunities-list-demos" class="opportunities"></ul>
-          </div>
-          <div id="Decisions" class="tabcontent">
-            <h3>Decisions</h3>
-            <ul id="opportunities-list-decisions" class="opportunities"></ul>
-          </div>
-          <div id="Customer" class="tabcontent">
-            <h3>Customer</h3>
-            <ul id="opportunities-list-customer" class="opportunities"></ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
+    <div id="map"></div>
     <script>
       mapboxgl.accessToken =
-        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY2ptYjNtZWxnMDBrdDNwbnVicGJzOWg2NyJ9.9OulyCe3kEqMAXPbx1mKUA";
+        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
       const map = new mapboxgl.Map({
-        container: "map",
-        // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+        container: "map", // container ID
+        center: [-122.141657, 37.404275],
         style: "mapbox://styles/grafa/cm6h1ok55008g01re2fbd47ks",
-        center: [-122.265587, 37.487199],
-        zoom: 9,
+        zoom: 14,
         bearing: 0,
         pitch: 0,
       });
 
-      const url = "https://services.leadconnectorhq.com/contacts/search";
-      const options = {
-        method: "POST",
-        headers: {
-          Authorization: "Bearer pit-b9abe7c9-a76c-4e6d-b8c3-4d4777ebff10",
-          Version: "2021-07-28",
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      };
-
-      // create a function that converts a series of words to title case
-      function toTitleCase(str) {
-        // if the string is empty, return an empty string
-        if (str === "" || str === null || str === undefined) {
-          return "";
-        }
-        return str.replace(/\w\S*/g, function (txt) {
-          return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-        });
-      }
-
-      function openSection(evt, sectionName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-          tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-          tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-        document.getElementById(sectionName).style.display = "block";
-        evt.currentTarget.className += " active";
-      }
-
-      async function fetchContactsData(page = 1, pageLimit = 100) {
-        const requestBody = {
-          locationId: "vmVbiiFxcFwGxrxjotMf",
-          page: page,
-          pageLimit: pageLimit,
-          sort: [{ field: "firstNameLowerCase", direction: "desc" }],
-        };
-
-        options.body = JSON.stringify(requestBody);
-
-        try {
-          const response = await fetch(url, options);
-          const data = await response.json();
-          return data.contacts;
-        } catch (error) {
-          console.error("Error fetching contacts data:", error);
-        }
-      }
-
-      async function fetchAllContacts() {
-        let allContacts = [];
-        let page = 1;
-        let pageLimit = 100;
-        let hasMorePages = true;
-
-        while (hasMorePages) {
-          const contacts = await fetchContactsData(page, pageLimit);
-          if (contacts.length > 0) {
-            allContacts = allContacts.concat(contacts);
-            page++;
-          } else {
-            hasMorePages = false;
-          }
-        }
-        return allContacts;
-      }
-
-      const stageColors = {
-        new: "#A7D3A8",
-        inquiry: "#19a447",
-        uploaded: "#1AF221",
-        unable_to_contact: "#A7D3C9",
-        pending_access: "#05DFAC",
-        pending_decision_maker: "#02CBD9",
-        decision_maker: "#00EEFF",
-        no_show: "#B2E0F6",
-        canceled: "#68A4D8",
-        scheduled: "#04A0FA",
-        demo_complete: "#0A508C",
-        not_interested: "#FFFDBE",
-        seasonal: "#EBE64E",
-        in_trial: "#EBCC4E",
-        quote_requested: "#C7A665",
-        quote_sent: "#FF9C07",
-        not_a_good_fit: "#918C82",
-        on_demand: "#BA4730",
-        routed: "#FF330A",
-        // Add more mappings as needed
-      };
-      async function fetchOpportunities() {
-        const pipelinesURL =
-          "https://services.leadconnectorhq.com/opportunities/pipelines?locationId=vmVbiiFxcFwGxrxjotMf";
-        const pipelinesOptions = {
-          method: "GET",
-          headers: {
-            Authorization: "Bearer pit-b9abe7c9-a76c-4e6d-b8c3-4d4777ebff10",
-            Version: "2021-07-28",
-            Accept: "application/json",
-          },
-        };
-        try {
-          const response = await fetch(pipelinesURL, pipelinesOptions);
-          const data = await response.json();
-          const opportunities = data.pipelines[6].stages.map((stage) => {
-            // convert name to lowercase and replace all the spaces with dashes
-            stage.layerId = stage.name.toLowerCase().replace(/\s/g, "_");
-            // console.log(stage.layerId);
-            // if the stage.layerId is not in the stageColors object, set it to a default color of #ccc
-            const color = stageColors[stage.layerId] || "#ccc";
-
-            return {
-              id: stage.id,
-              name: stage.name,
-              position: stage.position,
-              color: color,
-              layerId: stage.layerId,
-            };
-          });
-
-          const sections = {
-            Leads: [0, 1, 2, 3, 4],
-            Contacted: [5, 6],
-            Demos: [7, 8, 9, 10],
-            Decisions: [11, 12, 13, 14, 15, 16],
-            Customer: [17, 18],
-          };
-
-          opportunities.forEach((opportunity, index) => {
-            const li = document.createElement("li");
-            li.innerHTML = `
-                    <label class="switch">
-                        <input type="checkbox" id="opportunity-${index}" checked/>
-                        <span class="slider round"></span>
-                    </label>
-                    ${opportunity.name}
-                `;
-
-            let sectionTitle;
-            for (const [title, positions] of Object.entries(sections)) {
-              if (positions.includes(opportunity.position)) {
-                sectionTitle = title;
-                break;
-              }
-            }
-
-            const opportunitiesList = document.getElementById(
-              `opportunities-list-${sectionTitle.toLowerCase()}`
-            );
-            opportunitiesList.appendChild(li);
-
-            const checkbox = li.querySelector(`#opportunity-${index}`);
-            const slider = checkbox.nextElementSibling;
-            slider.style.backgroundColor = opportunity.color;
-
-            checkbox.addEventListener("change", (event) => {
-              if (event.target.checked) {
-                slider.style.backgroundColor = opportunity.color;
-                map.setLayoutProperty(
-                  opportunity.layerId,
-                  "visibility",
-                  "visible"
-                );
-              } else {
-                slider.style.backgroundColor = "#ccc";
-                map.setLayoutProperty(
-                  opportunity.layerId,
-                  "visibility",
-                  "none"
-                );
-              }
+      const loadLeadsLayer = () => {
+        // fetch GeoJSON data from the ./dist/data/tlb/lead.geojson file
+        fetch("./data/tlb/lead.geojson")
+          .then((response) => response.json())
+          .then((data) => {
+            // Add the GeoJSON data as a source
+            map.addSource("leads", {
+              type: "geojson",
+              data: data,
             });
-            // Open the first tab by default
-            document.querySelector(".tab button").click();
-          });
-          return opportunities;
-        } catch (error) {
-          console.error("Error fetching pipelines:", error);
-        }
-      }
 
-      // Fetch all contacts and add them to the map
-      async function initializeMap() {
-        map.addControl(new mapboxgl.NavigationControl());
-        map.addControl(
-          new mapboxgl.GeolocateControl({
-            positionOptions: { enableHighAccuracy: true },
-            trackUserLocation: true,
-          })
-        );
-
-        map.on("load", async () => {
-          const allContacts = await fetchAllContacts();
-          const pipelines = await fetchOpportunities();
-
-          // Filter contacts to only those with opportunities
-          const contactsWithOpportunities = allContacts.filter(
-            (contact) =>
-              contact.opportunities && contact.opportunities.length > 0
-          );
-
-          const featureCollection = {
-            type: "FeatureCollection",
-            features: [],
-          };
-
-          contactsWithOpportunities.forEach((contact) => {
-            // convert the first name to titlecase with the toTitleCase function
-            contact.firstNameLowerCase = toTitleCase(
-              contact.firstNameLowerCase
-            );
-            contact.lastNameLowerCase = toTitleCase(contact.lastNameLowerCase);
-
-            const coordinates = contact.customFields.find(
-              (field) => field.id === "VyePc8cM7iupVOBiZBHY"
-            );
-            const stageId = contact.opportunities[0]?.pipelineStageId;
-            const stage = pipelines.find((stage) => stage.id === stageId);
-
-            if (coordinates?.value && stage) {
-              const [lng, lat] = coordinates.value.split(",").map(Number);
-
-              // Only add feature if coordinates are valid numbers
-              if (!isNaN(lng) && !isNaN(lat)) {
-                featureCollection.features.push({
-                  type: "Feature",
-                  geometry: {
-                    type: "Point",
-                    coordinates: [lng, lat],
-                  },
-                  properties: {
-                    title: `${contact.firstNameLowerCase} ${contact.lastNameLowerCase}`,
-                    companyName: `${contact.companyName}`,
-                    stage: stage.name,
-                    layerId: stage.layerId,
-                    stageColor: stage.color,
-                  },
-                });
-              }
-            }
-          });
-
-          function forwardGeocoder(query) {
-            var matchingFeatures = [];
-            for (var i = 0; i < featureCollection.features.length; i++) {
-              var feature = featureCollection.features[i];
-              if (
-                feature.properties.title
-                  .toLowerCase()
-                  .includes(query.toLowerCase()) || // search by company name
-                feature.properties.companyName
-                  .toLowerCase()
-                  .includes(query.toLowerCase())
-              ) {
-                feature[
-                  "place_name"
-                ] = `🔵 ${feature.properties.title} - ${feature.properties.companyName}`;
-                feature["center"] = feature.geometry.coordinates;
-                feature["place_type"] = ["place"];
-                matchingFeatures.push(feature);
-              }
-            }
-            return matchingFeatures;
-          }
-          map.addControl(
-            new MapboxGeocoder({
-              accessToken: mapboxgl.accessToken,
-              mapboxgl: mapboxgl,
-              placeholder: "Search for a location",
-              localGeocoder: forwardGeocoder,
-              marker: true,
-              country: "US",
-              bbox: [-123.897371, 36.700924, -118.607454, 39.242375],
-            }),
-            "top-left"
-          );
-
-          map.addSource("contacts", {
-            type: "geojson",
-            data: featureCollection,
-          });
-
-          // Add a layer for each stage
-          pipelines.forEach((stage) => {
+            // Add a layer to visualize the leads
             map.addLayer({
-              id: stage.layerId,
+              id: "leads-layer",
               type: "circle",
-              source: "contacts",
+              source: "leads",
               paint: {
-                "circle-radius": [
-                  "interpolate",
-                  ["linear"],
-                  ["zoom"],
-                  0,
-                  1,
-                  6,
-                  3,
-                  18,
-                  10,
-                ],
-                "circle-color": stage.color,
-                "circle-stroke-width": 1,
+                "circle-radius": 8,
+                "circle-color": "#007cbf",
                 "circle-stroke-color": "#ffffff",
+                "circle-stroke-width": 2,
               },
-              filter: ["==", ["get", "layerId"], stage.layerId],
             });
-          });
-        });
-      }
+          })
+          .catch((error) =>
+            console.error("Error loading GeoJSON data:", error)
+          );
+      };
 
-      initializeMap();
+      //   load the dumpster layer from the ./data/tlb/dumpsters.geojson file
+      const loadDumpstersLayer = () => {
+        fetch("./data/tlb/dumpsters.geojson")
+          .then((response) => response.json())
+          .then((data) => {
+            // Add the GeoJSON data as a source
+            map.addSource("dumpsters", {
+              type: "geojson",
+              data: data,
+              cluster: true, // Enable clustering
+            });
 
-      const popup = new mapboxgl.Popup({
-        closeButton: false,
-        closeOnClick: true,
-      });
-      map.on("click", (e) => {
-        const features = map.queryRenderedFeatures(e.point, {
-          layers: [
-            "new",
-            "inquiry",
-            "uploaded",
-            "unable_to_contact",
-            "pending_access",
-            "pending_decision_maker",
-            "decision_maker",
-            "no_show",
-            "canceled",
-            "scheduled",
-            "demo_complete",
-            "not_interested",
-            "seasonal",
-            "in_trial",
-            "quote_requested",
-            "quote_sent",
-            "not_a_good_fit",
-            "on_demand",
-            "routed",
-            // Add more layers as needed
-          ],
-        });
+            // Add a layer to visualize the dumpsters with conditional styling based on capacity
+            map.addLayer({
+              id: "dumpsters-capacity-layer",
+              type: "circle",
+              source: "dumpsters",
+              paint: {
+                "circle-radius": 12,
+                "circle-color": [
+                  "case",
+                  ["<=", ["get", "capacity"], 0.49],
+                  "#00ff00",
+                  [
+                    "all",
+                    [">=", ["get", "capacity"], 0.5],
+                    ["<=", ["get", "capacity"], 0.74],
+                  ],
+                  "#ffff00",
+                  "#ff0000",
+                ],
+                "circle-opacity": 0.7,
+                "circle-stroke-color": "#ffffff",
+                "circle-stroke-width": 2,
+              },
+            });
+            // add a layer that just shows dumpsters with circle and grey fill radius of 2 no conditionals
+            map.addLayer({
+              id: "dumpsters-layer",
+              type: "circle",
+              source: "dumpsters",
+              paint: {
+                "circle-radius": 2,
+                "circle-color": "#333",
+              },
+            });
+            // add cluster layer for dumpsters
+            map.addLayer({
+              id: "dumpsters-cluster-layer",
+              type: "circle",
+              source: "dumpsters",
+              filter: ["has", "point_count"],
+              paint: {
+                "circle-color": "#51bbd6",
+                "circle-radius": 20,
+                "circle-stroke-color": "#ffffff",
+                "circle-stroke-width": 2,
+              },
+            });
+            // add cluster count layer for dumpsters
+            map.addLayer({
+              id: "dumpsters-cluster-count-layer",
+              type: "symbol",
+              source: "dumpsters",
+              filter: ["has", "point_count"],
+              layout: {
+                "text-field": "{point_count_abbreviated}",
+                "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
+                "text-size": 12,
+              },
+              paint: {
+                "text-color": "#ffffff",
+              },
+            });
+            // add a popup on click for dumpsters
+            map.on("click", "dumpsters-layer", (e) => {
+              const coordinates = e.features[0].geometry.coordinates.slice();
+              const capacity = e.features[0].properties.capacity;
 
-        if (!features.length) {
-          return;
-        }
+              // Ensure the popup is anchored to the correct coordinates
+              new mapboxgl.Popup()
+                .setLngLat(coordinates)
+                .setHTML(
+                  `<strong>Capacity:</strong> ${capacity ? capacity : "N/A"}<br>
+                  <strong>Address:</strong> ${
+                    e.features[0].properties.address
+                      ? e.features[0].properties.address
+                      : "N/A"
+                  }<br>
+                  <strong>Route:</strong> ${
+                    e.features[0].properties.route
+                      ? e.features[0].properties.route
+                      : "N/A"
+                  }<br>
+                  <a href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
+                    e.features[0].geometry.coordinates[1] +
+                      "," +
+                      e.features[0].geometry.coordinates[0]
+                  )}" target="_blank">Route</a>`
+                )
+                .addTo(map);
+            });
+            // add a popup on click for dumpsters cluster
+          })
+          .catch((error) =>
+            console.error("Error loading GeoJSON data:", error)
+          );
+      };
 
-        const feature = features[0];
-
-        // if the layer clicked matches the color of the stage, show the dropbtn with the stage name and same color
-        popup.setLngLat(feature.geometry.coordinates).setHTML(`
-              <h3>${feature.properties.companyName}</h3>
-              <p>${feature.properties.title}</p>
-              
-            `); // add more stages as needed
-
-        popup.addTo(map);
-        //   Close the dropdown menu if the user clicks outside of it
-        window.onclick = function (event) {
-          if (!event.target.matches(".dropbtn")) {
-            var dropdowns = document.getElementsByClassName("dropdown-content");
-            var i;
-            for (i = 0; i < dropdowns.length; i++) {
-              var openDropdown = dropdowns[i];
-              if (openDropdown.classList.contains("show")) {
-                openDropdown.classList.remove("show");
-              }
-            }
-          }
-        };
-      });
-
-      function forwardGeocoder(query) {
-        const matchingFeatures = [];
-        for (const feature of featureCollection.features) {
-          // Handle queries with different capitalization
-          // than the source data by calling toLowerCase().
-          if (feature.properties.firstNameLowerCase) {
-            feature[
-              "place_name"
-            ] = `✅ ${feature.properties.firstNameLowerCase}`;
-            feature["center"] = feature.geometry.coordinates;
-            feature["place_type"] = ["poi"];
-            matchingFeatures.push(feature);
-          }
-        }
-        return matchingFeatures;
-      }
-
-      // Add a new contact when the New Lead button is clicked
-      let marker;
-
-      document.getElementById("add-contact").addEventListener("click", () => {
-        // Remove existing marker if it exists
-        if (marker) {
-          marker.remove();
-        }
-        // Create a custom HTML element for the marker
-        const el = document.createElement("div");
-        el.className = "custom-marker";
-        // Add a new draggable marker to the map
-        marker = new mapboxgl.Marker({
-          draggable: true,
-          element: el,
-        })
-          .setLngLat(map.getCenter())
-          .addTo(map);
-
-        // Update the input field with the marker's coordinates
-        const updateCoords = () => {
-          const lngLat = marker.getLngLat();
-          const coords = lngLat.lng.toFixed(6) + ", " + lngLat.lat.toFixed(6);
-
-          // // update div ID "gps-coords" to "VyePc8cM7iupVOBiZBHY" in production
-          // document.getElementById("gps-coords").textContent = // fixed to 6 decimal places
-          //   lngLat.lng.toFixed(6) + ", " + lngLat.lat.toFixed(6);
-          // // Dispatch an input event to update the form field
-          // document
-          //   .getElementById("gps-coords")
-          //   .dispatchEvent(new Event("input"));
-          if (document.getElementById("VyePc8cM7iupVOBiZBHY")) {
-            document.getElementById("VyePc8cM7iupVOBiZBHY").value = coords;
-            console.log("Coordinates updated to: ", coords);
-          } else {
-            console.log("No input field found with ID 'VyePc8cM7iupVOBiZBHY'");
-          }
-        };
-
-        // Initial update of the coordinates
-        updateCoords();
-
-        // Update the coordinates when the marker is dragged
-        marker.on("dragend", updateCoords);
-      });
-
-      // Toggle legend visibility when menu icon is clicked
-      const menuIcon = document.getElementById("menu-icon");
-      const legend = document.getElementById("legend");
-      menuIcon.addEventListener("click", () => {
-        if (legend.style.display === "none" || legend.style.display === "") {
-          legend.style.display = "block";
-        } else {
-          legend.style.display = "none";
-        }
-      });
-      // listen for the closemenu click event and hide the legend
-      document.getElementById("closemenu").addEventListener("click", () => {
-        legend.style.display = "none";
-        // display the menu icon
-        menuIcon.style.display = "block";
+      map.on("load", () => {
+        loadLeadsLayer();
+        loadDumpstersLayer();
       });
     </script>
   </body>

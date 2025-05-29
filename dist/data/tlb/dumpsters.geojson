@@ -1,0 +1,70 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "COO1",
+        "capacity": 0.37,
+        "route": "Route: R1 (Monday)",
+        "address": "Address: 456 North Ave"
+      },
+      "geometry": {
+        "coordinates": [-122.14129402949678, 37.40615426412852],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "COO2",
+        "capacity": 0.82,
+        "route": "Route: R1 (Monday)",
+        "address": "Address: 456 North Ave"
+      },
+      "geometry": {
+        "coordinates": [-122.14120044929004, 37.40622253128211],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "COO3",
+        "capacity": 0.15,
+        "route": "Route: R1 (Monday)",
+        "address": "Address: 456 North Ave"
+      },
+      "geometry": {
+        "coordinates": [-122.13973715104764, 37.406089094374664],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "COO4",
+        "capacity": 0.63,
+        "route": "Route: R1 (Monday)",
+        "address": "Address: 456 North Ave"
+      },
+      "geometry": {
+        "coordinates": [-122.13968438216614, 37.40610073797511],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "COO5",
+        "capacity": 0.48,
+        "route": "Route: R1 (Monday)",
+        "address": "Address: 456 North Ave"
+      },
+      "geometry": {
+        "coordinates": [-122.13777865528948, 37.40360019929972],
+        "type": "Point"
+      }
+    }
+  ]
+}
