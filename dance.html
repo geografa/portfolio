@@ -30,17 +30,15 @@
 
     <script>
       mapboxgl.accessToken =
-        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
+        "pk.eyJ1IjoibXRjLXZpdGFsLXNpZ25zIiwiYSI6ImNsb3hpbnlzazAzbDYyam53dHpqb2picmYifQ.GB_Cs9vXzDq-hulF9LXbNw";
       // Use a minimal variant of the Mapbox Dark style, with certain features removed.
       const map = new mapboxgl.Map({
         // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
         style: "mapbox://styles/examples/cj68bstx01a3r2rndlud0pwpv",
-        center: {
-          lng: -74.0064,
-          lat: 40.7081,
-        },
-        zoom: 15,
-        pitch: 55,
+        center: [-122.439919, 37.747059],
+        zoom: 11,
+        bearing: 0,
+        pitch: 49,
         container: "map",
         antialias: true,
       });
@@ -49,25 +47,44 @@
 
       map.on("load", () => {
         const bins = 16;
-        const maxHeight = 200;
+        const maxHeight = 310;
         const binWidth = maxHeight / bins;
+
+        map.addSource("tracts", {
+          type: "vector",
+          url: "mapbox://mtc-vital-signs.population_tracts",
+        });
 
         // Divide the buildings into 16 bins based on their true height, using a layer filter.
         for (let i = 0; i < bins; i++) {
           map.addLayer({
-            id: `3d-buildings-${i}`,
-            source: "composite",
-            "source-layer": "building",
+            id: `tracts-${i}`,
+            source: "tracts",
+            "source-layer": "population_tracts",
             filter: [
               "all",
-              ["==", "extrude", "true"],
-              [">", "height", i * binWidth],
-              ["<=", "height", (i + 1) * binWidth],
+              ["!=", "extrude", "true"],
+              [">", "population_per_acre_2023", i * binWidth],
+              ["<=", "population_per_acre_2023", (i + 1) * binWidth],
             ],
             type: "fill-extrusion",
-            minzoom: 15,
+            // minzoom: 15,
             paint: {
-              "fill-extrusion-color": "#aaa",
+              "fill-extrusion-color": [
+                "interpolate",
+                ["linear"],
+                ["get", "population_per_acre_2023"],
+                0.10489815224150488,
+                "#ea9e76",
+                11,
+                "#e09063",
+                18,
+                "#ec7428",
+                40,
+                "#bd5d21",
+                68.98447952697929,
+                "#843f1d",
+              ],
               "fill-extrusion-height-transition": {
                 duration: 0,
                 delay: 0,
@@ -134,9 +151,9 @@
               for (let i = 0; i < bins; i++) {
                 avg += dataArray[i];
                 map.setPaintProperty(
-                  `3d-buildings-${i}`,
+                  `tracts-${i}`,
                   "fill-extrusion-height",
-                  10 + 4 * i + dataArray[i]
+                  10 + 4 * i + dataArray[i] * 10
                 );
               }
               avg /= bins;
@@ -146,10 +163,10 @@
               map.setBearing(now / 500);
               const hue = (now / 100) % 360;
               const saturation = Math.min(50 + avg / 4, 100);
-              map.setLight({
-                color: `hsl(${hue},${saturation}%,50%)`,
-                intensity: Math.min(1, (avg / 256) * 10),
-              });
+              // map.setLight({
+              //   color: `hsl(${hue},${saturation}%,50%)`,
+              //   intensity: Math.min(1, (avg / 256) * 10),
+              // });
 
               requestAnimationFrame(draw);
             }
