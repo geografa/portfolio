@@ -1,0 +1,7329 @@
+[
+  {
+    "jurisdiction": "Alameda",
+    "county": "Alameda",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "841",
+    "total_units_avg_annual": "84.1",
+    "sf_units": "821",
+    "sf_units_share": "0.976218787158145",
+    "mf_units": "20",
+    "mf_units_share": "0.023781212841854936",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.27077297660446, 37.773454455000106]
+    }
+  },
+  {
+    "jurisdiction": "Alameda",
+    "county": "Alameda",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "726",
+    "total_units_avg_annual": "72.6",
+    "sf_units": "652",
+    "sf_units_share": "0.8980716253443526",
+    "mf_units": "74",
+    "mf_units_share": "0.10192837465564739",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.27077297660446, 37.773454455000106]
+    }
+  },
+  {
+    "jurisdiction": "Alameda",
+    "county": "Alameda",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "1501",
+    "total_units_avg_annual": "150.1",
+    "sf_units": "478",
+    "sf_units_share": "0.31845436375749503",
+    "mf_units": "1023",
+    "mf_units_share": "0.681545636242505",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.27077297660446, 37.773454455000106]
+    }
+  },
+  {
+    "jurisdiction": "Alameda",
+    "county": "Alameda",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "1801",
+    "total_units_avg_annual": "360.2",
+    "sf_units": "413",
+    "sf_units_share": "0.22931704608550804",
+    "mf_units": "1388",
+    "mf_units_share": "0.7706829539144919",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.27077297660446, 37.773454455000106]
+    }
+  },
+  {
+    "jurisdiction": "Albany",
+    "county": "Alameda",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "44",
+    "total_units_avg_annual": "4.4",
+    "sf_units": "25",
+    "sf_units_share": "0.5681818181818182",
+    "mf_units": "19",
+    "mf_units_share": "0.4318181818181818",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.29568269992984, 37.890163961499994]
+    }
+  },
+  {
+    "jurisdiction": "Albany",
+    "county": "Alameda",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "116",
+    "total_units_avg_annual": "11.6",
+    "sf_units": "51",
+    "sf_units_share": "0.4396551724137931",
+    "mf_units": "65",
+    "mf_units_share": "0.5603448275862069",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.29568269992984, 37.890163961499994]
+    }
+  },
+  {
+    "jurisdiction": "Albany",
+    "county": "Alameda",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "226",
+    "total_units_avg_annual": "22.6",
+    "sf_units": "44",
+    "sf_units_share": "0.19469026548672566",
+    "mf_units": "182",
+    "mf_units_share": "0.8053097345132744",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.29568269992984, 37.890163961499994]
+    }
+  },
+  {
+    "jurisdiction": "Albany",
+    "county": "Alameda",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "119",
+    "total_units_avg_annual": "23.8",
+    "sf_units": "57",
+    "sf_units_share": "0.4789915966386555",
+    "mf_units": "62",
+    "mf_units_share": "0.5210084033613446",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.29568269992984, 37.890163961499994]
+    }
+  },
+  {
+    "jurisdiction": "Berkeley",
+    "county": "Alameda",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "587",
+    "total_units_avg_annual": "58.7",
+    "sf_units": "128",
+    "sf_units_share": "0.21805792163543442",
+    "mf_units": "459",
+    "mf_units_share": "0.7819420783645656",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.27793562589326, 37.8758629600001]
+    }
+  },
+  {
+    "jurisdiction": "Berkeley",
+    "county": "Alameda",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "2097",
+    "total_units_avg_annual": "209.7",
+    "sf_units": "137",
+    "sf_units_share": "0.0653314258464473",
+    "mf_units": "1960",
+    "mf_units_share": "0.9346685741535526",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.27793562589326, 37.8758629600001]
+    }
+  },
+  {
+    "jurisdiction": "Berkeley",
+    "county": "Alameda",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "1680",
+    "total_units_avg_annual": "168.0",
+    "sf_units": "203",
+    "sf_units_share": "0.12083333333333333",
+    "mf_units": "1477",
+    "mf_units_share": "0.8791666666666667",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.27793562589326, 37.8758629600001]
+    }
+  },
+  {
+    "jurisdiction": "Berkeley",
+    "county": "Alameda",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "1544",
+    "total_units_avg_annual": "308.8",
+    "sf_units": "155",
+    "sf_units_share": "0.10038860103626943",
+    "mf_units": "1389",
+    "mf_units_share": "0.8996113989637305",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.27793562589326, 37.8758629600001]
+    }
+  },
+  {
+    "jurisdiction": "Dublin",
+    "county": "Alameda",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "2485",
+    "total_units_avg_annual": "248.5",
+    "sf_units": "1158",
+    "sf_units_share": "0.4659959758551308",
+    "mf_units": "1327",
+    "mf_units_share": "0.5340040241448692",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.89051765624586, 37.721350016]
+    }
+  },
+  {
+    "jurisdiction": "Dublin",
+    "county": "Alameda",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "6405",
+    "total_units_avg_annual": "640.5",
+    "sf_units": "2457",
+    "sf_units_share": "0.3836065573770492",
+    "mf_units": "3948",
+    "mf_units_share": "0.6163934426229508",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.89051765624586, 37.721350016]
+    }
+  },
+  {
+    "jurisdiction": "Dublin",
+    "county": "Alameda",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "7563",
+    "total_units_avg_annual": "756.3",
+    "sf_units": "4528",
+    "sf_units_share": "0.5987042179029486",
+    "mf_units": "3035",
+    "mf_units_share": "0.4012957820970514",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.89051765624586, 37.721350016]
+    }
+  },
+  {
+    "jurisdiction": "Dublin",
+    "county": "Alameda",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "1947",
+    "total_units_avg_annual": "389.4",
+    "sf_units": "569",
+    "sf_units_share": "0.29224447868515663",
+    "mf_units": "1378",
+    "mf_units_share": "0.7077555213148433",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.89051765624586, 37.721350016]
+    }
+  },
+  {
+    "jurisdiction": "Emeryville",
+    "county": "Alameda",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "788",
+    "total_units_avg_annual": "78.8",
+    "sf_units": "11",
+    "sf_units_share": "0.013959390862944163",
+    "mf_units": "777",
+    "mf_units_share": "0.9860406091370558",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.29605724181916, 37.838485457500084]
+    }
+  },
+  {
+    "jurisdiction": "Emeryville",
+    "county": "Alameda",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "1860",
+    "total_units_avg_annual": "186.0",
+    "sf_units": "46",
+    "sf_units_share": "0.024731182795698924",
+    "mf_units": "1814",
+    "mf_units_share": "0.975268817204301",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.29605724181916, 37.838485457500084]
+    }
+  },
+  {
+    "jurisdiction": "Emeryville",
+    "county": "Alameda",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "1234",
+    "total_units_avg_annual": "123.4",
+    "sf_units": "7",
+    "sf_units_share": "0.005672609400324149",
+    "mf_units": "1227",
+    "mf_units_share": "0.9943273905996759",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.29605724181916, 37.838485457500084]
+    }
+  },
+  {
+    "jurisdiction": "Emeryville",
+    "county": "Alameda",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "1121",
+    "total_units_avg_annual": "224.2",
+    "sf_units": "8",
+    "sf_units_share": "0.007136485280999108",
+    "mf_units": "1113",
+    "mf_units_share": "0.9928635147190009",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.29605724181916, 37.838485457500084]
+    }
+  },
+  {
+    "jurisdiction": "Fremont",
+    "county": "Alameda",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "7496",
+    "total_units_avg_annual": "749.6",
+    "sf_units": "4175",
+    "sf_units_share": "0.5569637139807898",
+    "mf_units": "3321",
+    "mf_units_share": "0.44303628601921025",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.99537541560936, 37.5303549755]
+    }
+  },
+  {
+    "jurisdiction": "Fremont",
+    "county": "Alameda",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "3095",
+    "total_units_avg_annual": "309.5",
+    "sf_units": "1540",
+    "sf_units_share": "0.4975767366720517",
+    "mf_units": "1555",
+    "mf_units_share": "0.5024232633279483",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.99537541560936, 37.5303549755]
+    }
+  },
+  {
+    "jurisdiction": "Fremont",
+    "county": "Alameda",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "7452",
+    "total_units_avg_annual": "745.2",
+    "sf_units": "1872",
+    "sf_units_share": "0.25120772946859904",
+    "mf_units": "5580",
+    "mf_units_share": "0.748792270531401",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.99537541560936, 37.5303549755]
+    }
+  },
+  {
+    "jurisdiction": "Fremont",
+    "county": "Alameda",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "2689",
+    "total_units_avg_annual": "537.8",
+    "sf_units": "389",
+    "sf_units_share": "0.1446634436593529",
+    "mf_units": "2300",
+    "mf_units_share": "0.8553365563406471",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.99537541560936, 37.5303549755]
+    }
+  },
+  {
+    "jurisdiction": "Hayward",
+    "county": "Alameda",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "2844",
+    "total_units_avg_annual": "284.4",
+    "sf_units": "1754",
+    "sf_units_share": "0.6167369901547117",
+    "mf_units": "1090",
+    "mf_units_share": "0.3832630098452883",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.09143684942147, 37.625195003500004]
+    }
+  },
+  {
+    "jurisdiction": "Hayward",
+    "county": "Alameda",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "2875",
+    "total_units_avg_annual": "287.5",
+    "sf_units": "2506",
+    "sf_units_share": "0.8716521739130435",
+    "mf_units": "369",
+    "mf_units_share": "0.12834782608695652",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.09143684942147, 37.625195003500004]
+    }
+  },
+  {
+    "jurisdiction": "Hayward",
+    "county": "Alameda",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "4169",
+    "total_units_avg_annual": "416.9",
+    "sf_units": "3173",
+    "sf_units_share": "0.7610937874790118",
+    "mf_units": "996",
+    "mf_units_share": "0.23890621252098826",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.09143684942147, 37.625195003500004]
+    }
+  },
+  {
+    "jurisdiction": "Hayward",
+    "county": "Alameda",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "3619",
+    "total_units_avg_annual": "723.8",
+    "sf_units": "848",
+    "sf_units_share": "0.23431887261674494",
+    "mf_units": "2771",
+    "mf_units_share": "0.765681127383255",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.09143684942147, 37.625195003500004]
+    }
+  },
+  {
+    "jurisdiction": "Livermore",
+    "county": "Alameda",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "4780",
+    "total_units_avg_annual": "478.0",
+    "sf_units": "4362",
+    "sf_units_share": "0.9125523012552301",
+    "mf_units": "418",
+    "mf_units_share": "0.08744769874476988",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.75587137858065, 37.680453526500045]
+    }
+  },
+  {
+    "jurisdiction": "Livermore",
+    "county": "Alameda",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "3706",
+    "total_units_avg_annual": "370.6",
+    "sf_units": "2682",
+    "sf_units_share": "0.7236913113869401",
+    "mf_units": "1024",
+    "mf_units_share": "0.2763086886130599",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.75587137858065, 37.680453526500045]
+    }
+  },
+  {
+    "jurisdiction": "Livermore",
+    "county": "Alameda",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "2661",
+    "total_units_avg_annual": "266.1",
+    "sf_units": "1329",
+    "sf_units_share": "0.49943630214205187",
+    "mf_units": "1332",
+    "mf_units_share": "0.5005636978579482",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.75587137858065, 37.680453526500045]
+    }
+  },
+  {
+    "jurisdiction": "Livermore",
+    "county": "Alameda",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "378",
+    "total_units_avg_annual": "75.6",
+    "sf_units": "241",
+    "sf_units_share": "0.6375661375661376",
+    "mf_units": "137",
+    "mf_units_share": "0.36243386243386244",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.75587137858065, 37.680453526500045]
+    }
+  },
+  {
+    "jurisdiction": "Newark",
+    "county": "Alameda",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "852",
+    "total_units_avg_annual": "85.2",
+    "sf_units": "520",
+    "sf_units_share": "0.6103286384976526",
+    "mf_units": "332",
+    "mf_units_share": "0.38967136150234744",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.0255962133979, 37.52095199600005]
+    }
+  },
+  {
+    "jurisdiction": "Newark",
+    "county": "Alameda",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "240",
+    "total_units_avg_annual": "24.0",
+    "sf_units": "236",
+    "sf_units_share": "0.9833333333333333",
+    "mf_units": "4",
+    "mf_units_share": "0.016666666666666666",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.0255962133979, 37.52095199600005]
+    }
+  },
+  {
+    "jurisdiction": "Newark",
+    "county": "Alameda",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "1189",
+    "total_units_avg_annual": "118.9",
+    "sf_units": "901",
+    "sf_units_share": "0.7577796467619848",
+    "mf_units": "288",
+    "mf_units_share": "0.24222035323801513",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.0255962133979, 37.52095199600005]
+    }
+  },
+  {
+    "jurisdiction": "Newark",
+    "county": "Alameda",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "951",
+    "total_units_avg_annual": "190.2",
+    "sf_units": "659",
+    "sf_units_share": "0.6929547844374343",
+    "mf_units": "292",
+    "mf_units_share": "0.3070452155625657",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.0255962133979, 37.52095199600005]
+    }
+  },
+  {
+    "jurisdiction": "Oakland",
+    "county": "Alameda",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "5319",
+    "total_units_avg_annual": "531.9",
+    "sf_units": "2897",
+    "sf_units_share": "0.5446512502350066",
+    "mf_units": "2422",
+    "mf_units_share": "0.4553487497649934",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.20856924868653, 37.79228695600009]
+    }
+  },
+  {
+    "jurisdiction": "Oakland",
+    "county": "Alameda",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "10078",
+    "total_units_avg_annual": "1007.8",
+    "sf_units": "2050",
+    "sf_units_share": "0.20341337566977574",
+    "mf_units": "8028",
+    "mf_units_share": "0.7965866243302242",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.20856924868653, 37.79228695600009]
+    }
+  },
+  {
+    "jurisdiction": "Oakland",
+    "county": "Alameda",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "14250",
+    "total_units_avg_annual": "1425.0",
+    "sf_units": "1087",
+    "sf_units_share": "0.07628070175438596",
+    "mf_units": "13163",
+    "mf_units_share": "0.923719298245614",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.20856924868653, 37.79228695600009]
+    }
+  },
+  {
+    "jurisdiction": "Oakland",
+    "county": "Alameda",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "4560",
+    "total_units_avg_annual": "912.0",
+    "sf_units": "782",
+    "sf_units_share": "0.17149122807017544",
+    "mf_units": "3778",
+    "mf_units_share": "0.8285087719298245",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.20856924868653, 37.79228695600009]
+    }
+  },
+  {
+    "jurisdiction": "Piedmont",
+    "county": "Alameda",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "19",
+    "total_units_avg_annual": "1.9",
+    "sf_units": "19",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.23286765297718, 37.82270300500006]
+    }
+  },
+  {
+    "jurisdiction": "Piedmont",
+    "county": "Alameda",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "22",
+    "total_units_avg_annual": "2.2",
+    "sf_units": "22",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.23286765297718, 37.82270300500006]
+    }
+  },
+  {
+    "jurisdiction": "Piedmont",
+    "county": "Alameda",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "21",
+    "total_units_avg_annual": "2.1",
+    "sf_units": "14",
+    "sf_units_share": "0.6666666666666666",
+    "mf_units": "7",
+    "mf_units_share": "0.3333333333333333",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.23286765297718, 37.82270300500006]
+    }
+  },
+  {
+    "jurisdiction": "Piedmont",
+    "county": "Alameda",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "31",
+    "total_units_avg_annual": "6.2",
+    "sf_units": "31",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.23286765297718, 37.82270300500006]
+    }
+  },
+  {
+    "jurisdiction": "Pleasanton",
+    "county": "Alameda",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "4217",
+    "total_units_avg_annual": "421.7",
+    "sf_units": "3566",
+    "sf_units_share": "0.8456248517903723",
+    "mf_units": "651",
+    "mf_units_share": "0.1543751482096277",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.8714699036359, 37.661567013000116]
+    }
+  },
+  {
+    "jurisdiction": "Pleasanton",
+    "county": "Alameda",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "1905",
+    "total_units_avg_annual": "190.5",
+    "sf_units": "1590",
+    "sf_units_share": "0.8346456692913385",
+    "mf_units": "315",
+    "mf_units_share": "0.16535433070866143",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.8714699036359, 37.661567013000116]
+    }
+  },
+  {
+    "jurisdiction": "Pleasanton",
+    "county": "Alameda",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "2749",
+    "total_units_avg_annual": "274.9",
+    "sf_units": "699",
+    "sf_units_share": "0.25427428155692977",
+    "mf_units": "2050",
+    "mf_units_share": "0.7457257184430702",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.8714699036359, 37.661567013000116]
+    }
+  },
+  {
+    "jurisdiction": "Pleasanton",
+    "county": "Alameda",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "167",
+    "total_units_avg_annual": "33.4",
+    "sf_units": "137",
+    "sf_units_share": "0.8203592814371258",
+    "mf_units": "30",
+    "mf_units_share": "0.17964071856287425",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.8714699036359, 37.661567013000116]
+    }
+  },
+  {
+    "jurisdiction": "San Leandro",
+    "county": "Alameda",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "1350",
+    "total_units_avg_annual": "135.0",
+    "sf_units": "1295",
+    "sf_units_share": "0.9592592592592593",
+    "mf_units": "55",
+    "mf_units_share": "0.040740740740740744",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.15984643074925, 37.705264955000054]
+    }
+  },
+  {
+    "jurisdiction": "San Leandro",
+    "county": "Alameda",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "862",
+    "total_units_avg_annual": "86.2",
+    "sf_units": "782",
+    "sf_units_share": "0.9071925754060325",
+    "mf_units": "80",
+    "mf_units_share": "0.09280742459396751",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.15984643074925, 37.705264955000054]
+    }
+  },
+  {
+    "jurisdiction": "San Leandro",
+    "county": "Alameda",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "181",
+    "total_units_avg_annual": "18.1",
+    "sf_units": "52",
+    "sf_units_share": "0.287292817679558",
+    "mf_units": "129",
+    "mf_units_share": "0.712707182320442",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.15984643074925, 37.705264955000054]
+    }
+  },
+  {
+    "jurisdiction": "San Leandro",
+    "county": "Alameda",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "438",
+    "total_units_avg_annual": "87.6",
+    "sf_units": "112",
+    "sf_units_share": "0.2557077625570776",
+    "mf_units": "326",
+    "mf_units_share": "0.7442922374429224",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.15984643074925, 37.705264955000054]
+    }
+  },
+  {
+    "jurisdiction": "Unincorporated Alameda",
+    "county": "Alameda",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "3720",
+    "total_units_avg_annual": "372.0",
+    "sf_units": "2911",
+    "sf_units_share": "0.7825268817204301",
+    "mf_units": "809",
+    "mf_units_share": "0.2174731182795699",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.65335902515258, 37.648909015499996]
+    }
+  },
+  {
+    "jurisdiction": "Unincorporated Alameda",
+    "county": "Alameda",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "1825",
+    "total_units_avg_annual": "182.5",
+    "sf_units": "1177",
+    "sf_units_share": "0.6449315068493151",
+    "mf_units": "648",
+    "mf_units_share": "0.35506849315068495",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.65335902515258, 37.648909015499996]
+    }
+  },
+  {
+    "jurisdiction": "Unincorporated Alameda",
+    "county": "Alameda",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "941",
+    "total_units_avg_annual": "94.1",
+    "sf_units": "388",
+    "sf_units_share": "0.412327311370882",
+    "mf_units": "553",
+    "mf_units_share": "0.5876726886291179",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.65335902515258, 37.648909015499996]
+    }
+  },
+  {
+    "jurisdiction": "Unincorporated Alameda",
+    "county": "Alameda",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "581",
+    "total_units_avg_annual": "116.2",
+    "sf_units": "321",
+    "sf_units_share": "0.5524956970740104",
+    "mf_units": "260",
+    "mf_units_share": "0.4475043029259897",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.65335902515258, 37.648909015499996]
+    }
+  },
+  {
+    "jurisdiction": "Union City",
+    "county": "Alameda",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "2815",
+    "total_units_avg_annual": "281.5",
+    "sf_units": "2636",
+    "sf_units_share": "0.9364120781527531",
+    "mf_units": "179",
+    "mf_units_share": "0.06358792184724689",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.0397689542295, 37.599318003]
+    }
+  },
+  {
+    "jurisdiction": "Union City",
+    "county": "Alameda",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "2193",
+    "total_units_avg_annual": "219.3",
+    "sf_units": "1342",
+    "sf_units_share": "0.6119471044231646",
+    "mf_units": "851",
+    "mf_units_share": "0.38805289557683537",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.0397689542295, 37.599318003]
+    }
+  },
+  {
+    "jurisdiction": "Union City",
+    "county": "Alameda",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "631",
+    "total_units_avg_annual": "63.1",
+    "sf_units": "129",
+    "sf_units_share": "0.20443740095087162",
+    "mf_units": "502",
+    "mf_units_share": "0.7955625990491284",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.0397689542295, 37.599318003]
+    }
+  },
+  {
+    "jurisdiction": "Union City",
+    "county": "Alameda",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "59",
+    "total_units_avg_annual": "11.8",
+    "sf_units": "59",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.0397689542295, 37.599318003]
+    }
+  },
+  {
+    "jurisdiction": "Antioch",
+    "county": "Contra Costa",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "7395",
+    "total_units_avg_annual": "739.5",
+    "sf_units": "6956",
+    "sf_units_share": "0.9406355645706559",
+    "mf_units": "439",
+    "mf_units_share": "0.05936443542934415",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.79322838618607, 37.97431855300005]
+    }
+  },
+  {
+    "jurisdiction": "Antioch",
+    "county": "Contra Costa",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "4591",
+    "total_units_avg_annual": "459.1",
+    "sf_units": "4172",
+    "sf_units_share": "0.9087344805053366",
+    "mf_units": "419",
+    "mf_units_share": "0.09126551949466347",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.79322838618607, 37.97431855300005]
+    }
+  },
+  {
+    "jurisdiction": "Antioch",
+    "county": "Contra Costa",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "1484",
+    "total_units_avg_annual": "148.4",
+    "sf_units": "1243",
+    "sf_units_share": "0.8376010781671159",
+    "mf_units": "241",
+    "mf_units_share": "0.1623989218328841",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.79322838618607, 37.97431855300005]
+    }
+  },
+  {
+    "jurisdiction": "Antioch",
+    "county": "Contra Costa",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "2120",
+    "total_units_avg_annual": "424.0",
+    "sf_units": "1668",
+    "sf_units_share": "0.7867924528301887",
+    "mf_units": "452",
+    "mf_units_share": "0.21320754716981133",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.79322838618607, 37.97431855300005]
+    }
+  },
+  {
+    "jurisdiction": "Brentwood",
+    "county": "Contra Costa",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "5203",
+    "total_units_avg_annual": "520.3",
+    "sf_units": "4831",
+    "sf_units_share": "0.9285027868537382",
+    "mf_units": "372",
+    "mf_units_share": "0.07149721314626177",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.7167276332009, 37.9297615540001]
+    }
+  },
+  {
+    "jurisdiction": "Brentwood",
+    "county": "Contra Costa",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "9341",
+    "total_units_avg_annual": "934.1",
+    "sf_units": "8933",
+    "sf_units_share": "0.9563215929771973",
+    "mf_units": "408",
+    "mf_units_share": "0.0436784070228027",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.7167276332009, 37.9297615540001]
+    }
+  },
+  {
+    "jurisdiction": "Brentwood",
+    "county": "Contra Costa",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "3657",
+    "total_units_avg_annual": "365.7",
+    "sf_units": "3603",
+    "sf_units_share": "0.985233798195242",
+    "mf_units": "54",
+    "mf_units_share": "0.014766201804757998",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.7167276332009, 37.9297615540001]
+    }
+  },
+  {
+    "jurisdiction": "Brentwood",
+    "county": "Contra Costa",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "1375",
+    "total_units_avg_annual": "275.0",
+    "sf_units": "921",
+    "sf_units_share": "0.6698181818181819",
+    "mf_units": "454",
+    "mf_units_share": "0.3301818181818182",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.7167276332009, 37.9297615540001]
+    }
+  },
+  {
+    "jurisdiction": "Clayton",
+    "county": "Contra Costa",
+    "decade": "2000s",
+    "min_year": "2008",
+    "max_year": "2009",
+    "total_units": "0",
+    "total_units_avg_annual": "0.0",
+    "sf_units": "0",
+    "sf_units_share": "0.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.92934468400732, 37.93769153500005]
+    }
+  },
+  {
+    "jurisdiction": "Clayton",
+    "county": "Contra Costa",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "24",
+    "total_units_avg_annual": "2.4",
+    "sf_units": "24",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.92934468400732, 37.93769153500005]
+    }
+  },
+  {
+    "jurisdiction": "Clayton",
+    "county": "Contra Costa",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "27",
+    "total_units_avg_annual": "5.4",
+    "sf_units": "27",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.92934468400732, 37.93769153500005]
+    }
+  },
+  {
+    "jurisdiction": "Concord",
+    "county": "Contra Costa",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "1095",
+    "total_units_avg_annual": "109.5",
+    "sf_units": "864",
+    "sf_units_share": "0.7890410958904109",
+    "mf_units": "231",
+    "mf_units_share": "0.21095890410958903",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.00082289573612, 37.9733245370001]
+    }
+  },
+  {
+    "jurisdiction": "Concord",
+    "county": "Contra Costa",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "1948",
+    "total_units_avg_annual": "194.8",
+    "sf_units": "1203",
+    "sf_units_share": "0.6175564681724846",
+    "mf_units": "745",
+    "mf_units_share": "0.3824435318275154",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.00082289573612, 37.9733245370001]
+    }
+  },
+  {
+    "jurisdiction": "Concord",
+    "county": "Contra Costa",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "387",
+    "total_units_avg_annual": "38.7",
+    "sf_units": "197",
+    "sf_units_share": "0.5090439276485789",
+    "mf_units": "190",
+    "mf_units_share": "0.4909560723514212",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.00082289573612, 37.9733245370001]
+    }
+  },
+  {
+    "jurisdiction": "Concord",
+    "county": "Contra Costa",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "1143",
+    "total_units_avg_annual": "228.6",
+    "sf_units": "345",
+    "sf_units_share": "0.30183727034120733",
+    "mf_units": "798",
+    "mf_units_share": "0.6981627296587927",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.00082289573612, 37.9733245370001]
+    }
+  },
+  {
+    "jurisdiction": "Danville",
+    "county": "Contra Costa",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "3082",
+    "total_units_avg_annual": "308.2",
+    "sf_units": "2993",
+    "sf_units_share": "0.9711226476314082",
+    "mf_units": "89",
+    "mf_units_share": "0.028877352368591822",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.97424312926076, 37.813227526]
+    }
+  },
+  {
+    "jurisdiction": "Danville",
+    "county": "Contra Costa",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "517",
+    "total_units_avg_annual": "51.7",
+    "sf_units": "337",
+    "sf_units_share": "0.6518375241779497",
+    "mf_units": "180",
+    "mf_units_share": "0.3481624758220503",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.97424312926076, 37.813227526]
+    }
+  },
+  {
+    "jurisdiction": "Danville",
+    "county": "Contra Costa",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "527",
+    "total_units_avg_annual": "52.7",
+    "sf_units": "342",
+    "sf_units_share": "0.6489563567362429",
+    "mf_units": "185",
+    "mf_units_share": "0.3510436432637571",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.97424312926076, 37.813227526]
+    }
+  },
+  {
+    "jurisdiction": "Danville",
+    "county": "Contra Costa",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "279",
+    "total_units_avg_annual": "55.8",
+    "sf_units": "179",
+    "sf_units_share": "0.6415770609318996",
+    "mf_units": "100",
+    "mf_units_share": "0.35842293906810035",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.97424312926076, 37.813227526]
+    }
+  },
+  {
+    "jurisdiction": "El Cerrito",
+    "county": "Contra Costa",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "189",
+    "total_units_avg_annual": "18.9",
+    "sf_units": "54",
+    "sf_units_share": "0.2857142857142857",
+    "mf_units": "135",
+    "mf_units_share": "0.7142857142857143",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.29895829518237, 37.918019507500055]
+    }
+  },
+  {
+    "jurisdiction": "El Cerrito",
+    "county": "Contra Costa",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "66",
+    "total_units_avg_annual": "6.6",
+    "sf_units": "62",
+    "sf_units_share": "0.9393939393939394",
+    "mf_units": "4",
+    "mf_units_share": "0.06060606060606061",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.29895829518237, 37.918019507500055]
+    }
+  },
+  {
+    "jurisdiction": "El Cerrito",
+    "county": "Contra Costa",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "363",
+    "total_units_avg_annual": "36.3",
+    "sf_units": "68",
+    "sf_units_share": "0.18732782369146006",
+    "mf_units": "295",
+    "mf_units_share": "0.8126721763085399",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.29895829518237, 37.918019507500055]
+    }
+  },
+  {
+    "jurisdiction": "El Cerrito",
+    "county": "Contra Costa",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "255",
+    "total_units_avg_annual": "51.0",
+    "sf_units": "60",
+    "sf_units_share": "0.23529411764705882",
+    "mf_units": "195",
+    "mf_units_share": "0.7647058823529411",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.29895829518237, 37.918019507500055]
+    }
+  },
+  {
+    "jurisdiction": "Hercules",
+    "county": "Contra Costa",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "689",
+    "total_units_avg_annual": "68.9",
+    "sf_units": "327",
+    "sf_units_share": "0.4746008708272859",
+    "mf_units": "362",
+    "mf_units_share": "0.525399129172714",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.26680109848829, 38.00921901800009]
+    }
+  },
+  {
+    "jurisdiction": "Hercules",
+    "county": "Contra Costa",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "2060",
+    "total_units_avg_annual": "206.0",
+    "sf_units": "1694",
+    "sf_units_share": "0.8223300970873786",
+    "mf_units": "366",
+    "mf_units_share": "0.17766990291262136",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.26680109848829, 38.00921901800009]
+    }
+  },
+  {
+    "jurisdiction": "Hercules",
+    "county": "Contra Costa",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "691",
+    "total_units_avg_annual": "69.1",
+    "sf_units": "191",
+    "sf_units_share": "0.276410998552822",
+    "mf_units": "500",
+    "mf_units_share": "0.723589001447178",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.26680109848829, 38.00921901800009]
+    }
+  },
+  {
+    "jurisdiction": "Hercules",
+    "county": "Contra Costa",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "19",
+    "total_units_avg_annual": "3.8",
+    "sf_units": "19",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.26680109848829, 38.00921901800009]
+    }
+  },
+  {
+    "jurisdiction": "Lafayette",
+    "county": "Contra Costa",
+    "decade": "2000s",
+    "min_year": "2008",
+    "max_year": "2009",
+    "total_units": "31",
+    "total_units_avg_annual": "15.5",
+    "sf_units": "31",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.12377449946413, 37.89436101800008]
+    }
+  },
+  {
+    "jurisdiction": "Lafayette",
+    "county": "Contra Costa",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "459",
+    "total_units_avg_annual": "45.9",
+    "sf_units": "169",
+    "sf_units_share": "0.3681917211328976",
+    "mf_units": "290",
+    "mf_units_share": "0.6318082788671024",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.12377449946413, 37.89436101800008]
+    }
+  },
+  {
+    "jurisdiction": "Lafayette",
+    "county": "Contra Costa",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "173",
+    "total_units_avg_annual": "34.6",
+    "sf_units": "82",
+    "sf_units_share": "0.47398843930635837",
+    "mf_units": "91",
+    "mf_units_share": "0.5260115606936416",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.12377449946413, 37.89436101800008]
+    }
+  },
+  {
+    "jurisdiction": "Martinez",
+    "county": "Contra Costa",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "870",
+    "total_units_avg_annual": "87.0",
+    "sf_units": "863",
+    "sf_units_share": "0.9919540229885058",
+    "mf_units": "7",
+    "mf_units_share": "0.008045977011494253",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.12020200856774, 37.9984285275001]
+    }
+  },
+  {
+    "jurisdiction": "Martinez",
+    "county": "Contra Costa",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "376",
+    "total_units_avg_annual": "37.6",
+    "sf_units": "372",
+    "sf_units_share": "0.9893617021276596",
+    "mf_units": "4",
+    "mf_units_share": "0.010638297872340425",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.12020200856774, 37.9984285275001]
+    }
+  },
+  {
+    "jurisdiction": "Martinez",
+    "county": "Contra Costa",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "186",
+    "total_units_avg_annual": "18.6",
+    "sf_units": "141",
+    "sf_units_share": "0.7580645161290323",
+    "mf_units": "45",
+    "mf_units_share": "0.24193548387096775",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.12020200856774, 37.9984285275001]
+    }
+  },
+  {
+    "jurisdiction": "Martinez",
+    "county": "Contra Costa",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "186",
+    "total_units_avg_annual": "37.2",
+    "sf_units": "171",
+    "sf_units_share": "0.9193548387096774",
+    "mf_units": "15",
+    "mf_units_share": "0.08064516129032258",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.12020200856774, 37.9984285275001]
+    }
+  },
+  {
+    "jurisdiction": "Moraga",
+    "county": "Contra Costa",
+    "decade": "2000s",
+    "min_year": "2008",
+    "max_year": "2009",
+    "total_units": "5",
+    "total_units_avg_annual": "2.5",
+    "sf_units": "5",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.117493506797, 37.842036014000044]
+    }
+  },
+  {
+    "jurisdiction": "Moraga",
+    "county": "Contra Costa",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "119",
+    "total_units_avg_annual": "11.9",
+    "sf_units": "83",
+    "sf_units_share": "0.6974789915966386",
+    "mf_units": "36",
+    "mf_units_share": "0.3025210084033613",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.117493506797, 37.842036014000044]
+    }
+  },
+  {
+    "jurisdiction": "Moraga",
+    "county": "Contra Costa",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "12",
+    "total_units_avg_annual": "2.4",
+    "sf_units": "12",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.117493506797, 37.842036014000044]
+    }
+  },
+  {
+    "jurisdiction": "Oakley",
+    "county": "Contra Costa",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "3290",
+    "total_units_avg_annual": "329.0",
+    "sf_units": "2798",
+    "sf_units_share": "0.8504559270516717",
+    "mf_units": "492",
+    "mf_units_share": "0.14954407294832828",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.69046495799016, 37.994285554]
+    }
+  },
+  {
+    "jurisdiction": "Oakley",
+    "county": "Contra Costa",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "2010",
+    "total_units_avg_annual": "201.0",
+    "sf_units": "1817",
+    "sf_units_share": "0.9039800995024876",
+    "mf_units": "193",
+    "mf_units_share": "0.09601990049751244",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.69046495799016, 37.994285554]
+    }
+  },
+  {
+    "jurisdiction": "Oakley",
+    "county": "Contra Costa",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "1703",
+    "total_units_avg_annual": "340.6",
+    "sf_units": "1262",
+    "sf_units_share": "0.741045214327657",
+    "mf_units": "441",
+    "mf_units_share": "0.2589547856723429",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.69046495799016, 37.994285554]
+    }
+  },
+  {
+    "jurisdiction": "Orinda",
+    "county": "Contra Costa",
+    "decade": "2000s",
+    "min_year": "2008",
+    "max_year": "2009",
+    "total_units": "23",
+    "total_units_avg_annual": "11.5",
+    "sf_units": "23",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.17154168483685, 37.8803875115]
+    }
+  },
+  {
+    "jurisdiction": "Orinda",
+    "county": "Contra Costa",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "422",
+    "total_units_avg_annual": "42.2",
+    "sf_units": "356",
+    "sf_units_share": "0.8436018957345972",
+    "mf_units": "66",
+    "mf_units_share": "0.15639810426540285",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.17154168483685, 37.8803875115]
+    }
+  },
+  {
+    "jurisdiction": "Orinda",
+    "county": "Contra Costa",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "96",
+    "total_units_avg_annual": "19.2",
+    "sf_units": "94",
+    "sf_units_share": "0.9791666666666666",
+    "mf_units": "2",
+    "mf_units_share": "0.020833333333333332",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.17154168483685, 37.8803875115]
+    }
+  },
+  {
+    "jurisdiction": "Pinole",
+    "county": "Contra Costa",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "278",
+    "total_units_avg_annual": "27.8",
+    "sf_units": "183",
+    "sf_units_share": "0.658273381294964",
+    "mf_units": "95",
+    "mf_units_share": "0.34172661870503596",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.290130108944, 37.99397151500004]
+    }
+  },
+  {
+    "jurisdiction": "Pinole",
+    "county": "Contra Costa",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "195",
+    "total_units_avg_annual": "19.5",
+    "sf_units": "136",
+    "sf_units_share": "0.6974358974358974",
+    "mf_units": "59",
+    "mf_units_share": "0.30256410256410254",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.290130108944, 37.99397151500004]
+    }
+  },
+  {
+    "jurisdiction": "Pinole",
+    "county": "Contra Costa",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "11",
+    "total_units_avg_annual": "1.1",
+    "sf_units": "11",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.290130108944, 37.99397151500004]
+    }
+  },
+  {
+    "jurisdiction": "Pinole",
+    "county": "Contra Costa",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "49",
+    "total_units_avg_annual": "9.8",
+    "sf_units": "13",
+    "sf_units_share": "0.2653061224489796",
+    "mf_units": "36",
+    "mf_units_share": "0.7346938775510204",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.290130108944, 37.99397151500004]
+    }
+  },
+  {
+    "jurisdiction": "Pittsburg",
+    "county": "Contra Costa",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "1767",
+    "total_units_avg_annual": "176.7",
+    "sf_units": "1595",
+    "sf_units_share": "0.9026598754951896",
+    "mf_units": "172",
+    "mf_units_share": "0.09734012450481042",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.91387409664914, 38.01347253900004]
+    }
+  },
+  {
+    "jurisdiction": "Pittsburg",
+    "county": "Contra Costa",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "3662",
+    "total_units_avg_annual": "366.2",
+    "sf_units": "2562",
+    "sf_units_share": "0.699617695248498",
+    "mf_units": "1100",
+    "mf_units_share": "0.3003823047515019",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.91387409664914, 38.01347253900004]
+    }
+  },
+  {
+    "jurisdiction": "Pittsburg",
+    "county": "Contra Costa",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "2038",
+    "total_units_avg_annual": "203.8",
+    "sf_units": "1500",
+    "sf_units_share": "0.7360157016683022",
+    "mf_units": "538",
+    "mf_units_share": "0.26398429833169773",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.91387409664914, 38.01347253900004]
+    }
+  },
+  {
+    "jurisdiction": "Pittsburg",
+    "county": "Contra Costa",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "1069",
+    "total_units_avg_annual": "213.8",
+    "sf_units": "535",
+    "sf_units_share": "0.500467726847521",
+    "mf_units": "534",
+    "mf_units_share": "0.49953227315247895",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.91387409664914, 38.01347253900004]
+    }
+  },
+  {
+    "jurisdiction": "Pleasant Hill",
+    "county": "Contra Costa",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "231",
+    "total_units_avg_annual": "23.1",
+    "sf_units": "231",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.07761775572456, 37.95387352500004]
+    }
+  },
+  {
+    "jurisdiction": "Pleasant Hill",
+    "county": "Contra Costa",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "608",
+    "total_units_avg_annual": "60.8",
+    "sf_units": "262",
+    "sf_units_share": "0.4309210526315789",
+    "mf_units": "346",
+    "mf_units_share": "0.569078947368421",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.07761775572456, 37.95387352500004]
+    }
+  },
+  {
+    "jurisdiction": "Pleasant Hill",
+    "county": "Contra Costa",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "96",
+    "total_units_avg_annual": "9.6",
+    "sf_units": "96",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.07761775572456, 37.95387352500004]
+    }
+  },
+  {
+    "jurisdiction": "Pleasant Hill",
+    "county": "Contra Costa",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "279",
+    "total_units_avg_annual": "55.8",
+    "sf_units": "88",
+    "sf_units_share": "0.3154121863799283",
+    "mf_units": "191",
+    "mf_units_share": "0.6845878136200717",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.07761775572456, 37.95387352500004]
+    }
+  },
+  {
+    "jurisdiction": "Richmond",
+    "county": "Contra Costa",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "1817",
+    "total_units_avg_annual": "181.7",
+    "sf_units": "777",
+    "sf_units_share": "0.42762795817281235",
+    "mf_units": "1040",
+    "mf_units_share": "0.5723720418271877",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.32405380285248, 37.95392900500004]
+    }
+  },
+  {
+    "jurisdiction": "Richmond",
+    "county": "Contra Costa",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "2537",
+    "total_units_avg_annual": "253.7",
+    "sf_units": "1342",
+    "sf_units_share": "0.5289712258573118",
+    "mf_units": "1195",
+    "mf_units_share": "0.47102877414268823",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.32405380285248, 37.95392900500004]
+    }
+  },
+  {
+    "jurisdiction": "Richmond",
+    "county": "Contra Costa",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "1115",
+    "total_units_avg_annual": "111.5",
+    "sf_units": "409",
+    "sf_units_share": "0.3668161434977579",
+    "mf_units": "706",
+    "mf_units_share": "0.6331838565022422",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.32405380285248, 37.95392900500004]
+    }
+  },
+  {
+    "jurisdiction": "Richmond",
+    "county": "Contra Costa",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "433",
+    "total_units_avg_annual": "86.6",
+    "sf_units": "344",
+    "sf_units_share": "0.7944572748267898",
+    "mf_units": "89",
+    "mf_units_share": "0.20554272517321015",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.32405380285248, 37.95392900500004]
+    }
+  },
+  {
+    "jurisdiction": "San Pablo",
+    "county": "Contra Costa",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "321",
+    "total_units_avg_annual": "32.1",
+    "sf_units": "241",
+    "sf_units_share": "0.7507788161993769",
+    "mf_units": "80",
+    "mf_units_share": "0.24922118380062305",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.34694991434952, 37.96533751000009]
+    }
+  },
+  {
+    "jurisdiction": "San Pablo",
+    "county": "Contra Costa",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "828",
+    "total_units_avg_annual": "82.8",
+    "sf_units": "421",
+    "sf_units_share": "0.5084541062801933",
+    "mf_units": "407",
+    "mf_units_share": "0.4915458937198068",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.34694991434952, 37.96533751000009]
+    }
+  },
+  {
+    "jurisdiction": "San Pablo",
+    "county": "Contra Costa",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "136",
+    "total_units_avg_annual": "13.6",
+    "sf_units": "76",
+    "sf_units_share": "0.5588235294117647",
+    "mf_units": "60",
+    "mf_units_share": "0.4411764705882353",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.34694991434952, 37.96533751000009]
+    }
+  },
+  {
+    "jurisdiction": "San Pablo",
+    "county": "Contra Costa",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "82",
+    "total_units_avg_annual": "16.4",
+    "sf_units": "32",
+    "sf_units_share": "0.3902439024390244",
+    "mf_units": "50",
+    "mf_units_share": "0.6097560975609756",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.34694991434952, 37.96533751000009]
+    }
+  },
+  {
+    "jurisdiction": "San Ramon",
+    "county": "Contra Costa",
+    "decade": "1990s",
+    "min_year": "1991",
+    "max_year": "1999",
+    "total_units": "2998",
+    "total_units_avg_annual": "333.1111111111111",
+    "sf_units": "2195",
+    "sf_units_share": "0.7321547698465644",
+    "mf_units": "803",
+    "mf_units_share": "0.26784523015343564",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.95993560969958, 37.75818101950004]
+    }
+  },
+  {
+    "jurisdiction": "San Ramon",
+    "county": "Contra Costa",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "569",
+    "total_units_avg_annual": "56.9",
+    "sf_units": "496",
+    "sf_units_share": "0.8717047451669596",
+    "mf_units": "73",
+    "mf_units_share": "0.1282952548330404",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.95993560969958, 37.75818101950004]
+    }
+  },
+  {
+    "jurisdiction": "San Ramon",
+    "county": "Contra Costa",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "591",
+    "total_units_avg_annual": "59.1",
+    "sf_units": "256",
+    "sf_units_share": "0.43316412859560066",
+    "mf_units": "335",
+    "mf_units_share": "0.5668358714043993",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.95993560969958, 37.75818101950004]
+    }
+  },
+  {
+    "jurisdiction": "San Ramon",
+    "county": "Contra Costa",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "920",
+    "total_units_avg_annual": "184.0",
+    "sf_units": "193",
+    "sf_units_share": "0.20978260869565218",
+    "mf_units": "727",
+    "mf_units_share": "0.7902173913043479",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.95993560969958, 37.75818101950004]
+    }
+  },
+  {
+    "jurisdiction": "Unincorporated Contra Costa",
+    "county": "Contra Costa",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "11719",
+    "total_units_avg_annual": "1171.9",
+    "sf_units": "9715",
+    "sf_units_share": "0.8289956480928407",
+    "mf_units": "2004",
+    "mf_units_share": "0.17100435190715932",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.86639358097158, 37.89433051250005]
+    }
+  },
+  {
+    "jurisdiction": "Unincorporated Contra Costa",
+    "county": "Contra Costa",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "14564",
+    "total_units_avg_annual": "1456.4",
+    "sf_units": "11040",
+    "sf_units_share": "0.7580335072782203",
+    "mf_units": "3524",
+    "mf_units_share": "0.24196649272177972",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.86639358097158, 37.89433051250005]
+    }
+  },
+  {
+    "jurisdiction": "Unincorporated Contra Costa",
+    "county": "Contra Costa",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "5692",
+    "total_units_avg_annual": "569.2",
+    "sf_units": "3686",
+    "sf_units_share": "0.6475755446240338",
+    "mf_units": "2006",
+    "mf_units_share": "0.3524244553759663",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.86639358097158, 37.89433051250005]
+    }
+  },
+  {
+    "jurisdiction": "Unincorporated Contra Costa",
+    "county": "Contra Costa",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "1603",
+    "total_units_avg_annual": "320.6",
+    "sf_units": "893",
+    "sf_units_share": "0.5570804741110418",
+    "mf_units": "710",
+    "mf_units_share": "0.4429195258889582",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.86639358097158, 37.89433051250005]
+    }
+  },
+  {
+    "jurisdiction": "Walnut Creek",
+    "county": "Contra Costa",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "1038",
+    "total_units_avg_annual": "103.8",
+    "sf_units": "457",
+    "sf_units_share": "0.44026974951830444",
+    "mf_units": "581",
+    "mf_units_share": "0.5597302504816956",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.01826876903681, 37.89441202550004]
+    }
+  },
+  {
+    "jurisdiction": "Walnut Creek",
+    "county": "Contra Costa",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "1249",
+    "total_units_avg_annual": "124.9",
+    "sf_units": "353",
+    "sf_units_share": "0.28262610088070456",
+    "mf_units": "896",
+    "mf_units_share": "0.7173738991192954",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.01826876903681, 37.89441202550004]
+    }
+  },
+  {
+    "jurisdiction": "Walnut Creek",
+    "county": "Contra Costa",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "1945",
+    "total_units_avg_annual": "194.5",
+    "sf_units": "197",
+    "sf_units_share": "0.1012853470437018",
+    "mf_units": "1748",
+    "mf_units_share": "0.8987146529562982",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.01826876903681, 37.89441202550004]
+    }
+  },
+  {
+    "jurisdiction": "Walnut Creek",
+    "county": "Contra Costa",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "312",
+    "total_units_avg_annual": "62.4",
+    "sf_units": "132",
+    "sf_units_share": "0.4230769230769231",
+    "mf_units": "180",
+    "mf_units_share": "0.5769230769230769",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.01826876903681, 37.89441202550004]
+    }
+  },
+  {
+    "jurisdiction": "Belvedere",
+    "county": "Marin",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "21",
+    "total_units_avg_annual": "2.1",
+    "sf_units": "21",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.46734305023865, 37.873013492000055]
+    }
+  },
+  {
+    "jurisdiction": "Belvedere",
+    "county": "Marin",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "25",
+    "total_units_avg_annual": "2.5",
+    "sf_units": "25",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.46734305023865, 37.873013492000055]
+    }
+  },
+  {
+    "jurisdiction": "Belvedere",
+    "county": "Marin",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "28",
+    "total_units_avg_annual": "2.8",
+    "sf_units": "28",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.46734305023865, 37.873013492000055]
+    }
+  },
+  {
+    "jurisdiction": "Belvedere",
+    "county": "Marin",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "9",
+    "total_units_avg_annual": "1.8",
+    "sf_units": "9",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.46734305023865, 37.873013492000055]
+    }
+  },
+  {
+    "jurisdiction": "Corte Madera",
+    "county": "Marin",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "167",
+    "total_units_avg_annual": "16.7",
+    "sf_units": "167",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.51700839158713, 37.925020991000046]
+    }
+  },
+  {
+    "jurisdiction": "Corte Madera",
+    "county": "Marin",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "101",
+    "total_units_avg_annual": "10.1",
+    "sf_units": "22",
+    "sf_units_share": "0.21782178217821782",
+    "mf_units": "79",
+    "mf_units_share": "0.7821782178217822",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.51700839158713, 37.925020991000046]
+    }
+  },
+  {
+    "jurisdiction": "Corte Madera",
+    "county": "Marin",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "221",
+    "total_units_avg_annual": "22.1",
+    "sf_units": "42",
+    "sf_units_share": "0.19004524886877827",
+    "mf_units": "179",
+    "mf_units_share": "0.8099547511312217",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.51700839158713, 37.925020991000046]
+    }
+  },
+  {
+    "jurisdiction": "Corte Madera",
+    "county": "Marin",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "21",
+    "total_units_avg_annual": "4.2",
+    "sf_units": "21",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.51700839158713, 37.925020991000046]
+    }
+  },
+  {
+    "jurisdiction": "Fairfax",
+    "county": "Marin",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "33",
+    "total_units_avg_annual": "3.3",
+    "sf_units": "33",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.59213282607762, 37.992062992]
+    }
+  },
+  {
+    "jurisdiction": "Fairfax",
+    "county": "Marin",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "21",
+    "total_units_avg_annual": "2.1",
+    "sf_units": "19",
+    "sf_units_share": "0.9047619047619048",
+    "mf_units": "2",
+    "mf_units_share": "0.09523809523809523",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.59213282607762, 37.992062992]
+    }
+  },
+  {
+    "jurisdiction": "Fairfax",
+    "county": "Marin",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "82",
+    "total_units_avg_annual": "8.2",
+    "sf_units": "28",
+    "sf_units_share": "0.34146341463414637",
+    "mf_units": "54",
+    "mf_units_share": "0.6585365853658537",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.59213282607762, 37.992062992]
+    }
+  },
+  {
+    "jurisdiction": "Fairfax",
+    "county": "Marin",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "27",
+    "total_units_avg_annual": "5.4",
+    "sf_units": "27",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.59213282607762, 37.992062992]
+    }
+  },
+  {
+    "jurisdiction": "Larkspur",
+    "county": "Marin",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "146",
+    "total_units_avg_annual": "14.6",
+    "sf_units": "101",
+    "sf_units_share": "0.6917808219178082",
+    "mf_units": "45",
+    "mf_units_share": "0.3082191780821918",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.5320739355464, 37.93630349300004]
+    }
+  },
+  {
+    "jurisdiction": "Larkspur",
+    "county": "Marin",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "94",
+    "total_units_avg_annual": "9.4",
+    "sf_units": "78",
+    "sf_units_share": "0.8297872340425532",
+    "mf_units": "16",
+    "mf_units_share": "0.1702127659574468",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.5320739355464, 37.93630349300004]
+    }
+  },
+  {
+    "jurisdiction": "Larkspur",
+    "county": "Marin",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "137",
+    "total_units_avg_annual": "13.7",
+    "sf_units": "95",
+    "sf_units_share": "0.6934306569343066",
+    "mf_units": "42",
+    "mf_units_share": "0.30656934306569344",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.5320739355464, 37.93630349300004]
+    }
+  },
+  {
+    "jurisdiction": "Larkspur",
+    "county": "Marin",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "20",
+    "total_units_avg_annual": "4.0",
+    "sf_units": "20",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.5320739355464, 37.93630349300004]
+    }
+  },
+  {
+    "jurisdiction": "Mill Valley",
+    "county": "Marin",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "142",
+    "total_units_avg_annual": "14.2",
+    "sf_units": "135",
+    "sf_units_share": "0.9507042253521126",
+    "mf_units": "7",
+    "mf_units_share": "0.04929577464788732",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.54586456502709, 37.90790498899999]
+    }
+  },
+  {
+    "jurisdiction": "Mill Valley",
+    "county": "Marin",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "133",
+    "total_units_avg_annual": "13.3",
+    "sf_units": "118",
+    "sf_units_share": "0.8872180451127819",
+    "mf_units": "15",
+    "mf_units_share": "0.11278195488721804",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.54586456502709, 37.90790498899999]
+    }
+  },
+  {
+    "jurisdiction": "Mill Valley",
+    "county": "Marin",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "140",
+    "total_units_avg_annual": "14.0",
+    "sf_units": "131",
+    "sf_units_share": "0.9357142857142857",
+    "mf_units": "9",
+    "mf_units_share": "0.06428571428571428",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.54586456502709, 37.90790498899999]
+    }
+  },
+  {
+    "jurisdiction": "Mill Valley",
+    "county": "Marin",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "56",
+    "total_units_avg_annual": "11.2",
+    "sf_units": "50",
+    "sf_units_share": "0.8928571428571429",
+    "mf_units": "6",
+    "mf_units_share": "0.10714285714285714",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.54586456502709, 37.90790498899999]
+    }
+  },
+  {
+    "jurisdiction": "Novato",
+    "county": "Marin",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "1313",
+    "total_units_avg_annual": "131.3",
+    "sf_units": "1048",
+    "sf_units_share": "0.7981721249047982",
+    "mf_units": "265",
+    "mf_units_share": "0.20182787509520184",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.5444412397154, 38.09356300450004]
+    }
+  },
+  {
+    "jurisdiction": "Novato",
+    "county": "Marin",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "1963",
+    "total_units_avg_annual": "196.3",
+    "sf_units": "1536",
+    "sf_units_share": "0.782475802343352",
+    "mf_units": "427",
+    "mf_units_share": "0.217524197656648",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.5444412397154, 38.09356300450004]
+    }
+  },
+  {
+    "jurisdiction": "Novato",
+    "county": "Marin",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "416",
+    "total_units_avg_annual": "41.6",
+    "sf_units": "153",
+    "sf_units_share": "0.36778846153846156",
+    "mf_units": "263",
+    "mf_units_share": "0.6322115384615384",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.5444412397154, 38.09356300450004]
+    }
+  },
+  {
+    "jurisdiction": "Novato",
+    "county": "Marin",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "308",
+    "total_units_avg_annual": "61.6",
+    "sf_units": "86",
+    "sf_units_share": "0.2792207792207792",
+    "mf_units": "222",
+    "mf_units_share": "0.7207792207792207",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.5444412397154, 38.09356300450004]
+    }
+  },
+  {
+    "jurisdiction": "Ross",
+    "county": "Marin",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "24",
+    "total_units_avg_annual": "2.4",
+    "sf_units": "24",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.55959688546173, 37.96416799400006]
+    }
+  },
+  {
+    "jurisdiction": "Ross",
+    "county": "Marin",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "19",
+    "total_units_avg_annual": "1.9",
+    "sf_units": "19",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.55959688546173, 37.96416799400006]
+    }
+  },
+  {
+    "jurisdiction": "Ross",
+    "county": "Marin",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "11",
+    "total_units_avg_annual": "1.1",
+    "sf_units": "11",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.55959688546173, 37.96416799400006]
+    }
+  },
+  {
+    "jurisdiction": "Ross",
+    "county": "Marin",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "1",
+    "total_units_avg_annual": "0.2",
+    "sf_units": "1",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.55959688546173, 37.96416799400006]
+    }
+  },
+  {
+    "jurisdiction": "San Anselmo",
+    "county": "Marin",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "72",
+    "total_units_avg_annual": "7.2",
+    "sf_units": "70",
+    "sf_units_share": "0.9722222222222222",
+    "mf_units": "2",
+    "mf_units_share": "0.027777777777777776",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.57033780691664, 37.983406993000045]
+    }
+  },
+  {
+    "jurisdiction": "San Anselmo",
+    "county": "Marin",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "86",
+    "total_units_avg_annual": "8.6",
+    "sf_units": "73",
+    "sf_units_share": "0.8488372093023255",
+    "mf_units": "13",
+    "mf_units_share": "0.1511627906976744",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.57033780691664, 37.983406993000045]
+    }
+  },
+  {
+    "jurisdiction": "San Anselmo",
+    "county": "Marin",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "44",
+    "total_units_avg_annual": "4.4",
+    "sf_units": "44",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.57033780691664, 37.983406993000045]
+    }
+  },
+  {
+    "jurisdiction": "San Anselmo",
+    "county": "Marin",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "111",
+    "total_units_avg_annual": "22.2",
+    "sf_units": "81",
+    "sf_units_share": "0.7297297297297297",
+    "mf_units": "30",
+    "mf_units_share": "0.2702702702702703",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.57033780691664, 37.983406993000045]
+    }
+  },
+  {
+    "jurisdiction": "San Rafael",
+    "county": "Marin",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "1564",
+    "total_units_avg_annual": "156.4",
+    "sf_units": "602",
+    "sf_units_share": "0.38491048593350385",
+    "mf_units": "962",
+    "mf_units_share": "0.6150895140664961",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.50869140916643, 37.985836495000044]
+    }
+  },
+  {
+    "jurisdiction": "San Rafael",
+    "county": "Marin",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "815",
+    "total_units_avg_annual": "81.5",
+    "sf_units": "206",
+    "sf_units_share": "0.252760736196319",
+    "mf_units": "609",
+    "mf_units_share": "0.747239263803681",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.50869140916643, 37.985836495000044]
+    }
+  },
+  {
+    "jurisdiction": "San Rafael",
+    "county": "Marin",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "167",
+    "total_units_avg_annual": "16.7",
+    "sf_units": "114",
+    "sf_units_share": "0.6826347305389222",
+    "mf_units": "53",
+    "mf_units_share": "0.31736526946107785",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.50869140916643, 37.985836495000044]
+    }
+  },
+  {
+    "jurisdiction": "San Rafael",
+    "county": "Marin",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "122",
+    "total_units_avg_annual": "24.4",
+    "sf_units": "100",
+    "sf_units_share": "0.819672131147541",
+    "mf_units": "22",
+    "mf_units_share": "0.18032786885245902",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.50869140916643, 37.985836495000044]
+    }
+  },
+  {
+    "jurisdiction": "Sausalito",
+    "county": "Marin",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "85",
+    "total_units_avg_annual": "8.5",
+    "sf_units": "57",
+    "sf_units_share": "0.6705882352941176",
+    "mf_units": "28",
+    "mf_units_share": "0.32941176470588235",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.49371476646166, 37.858444447]
+    }
+  },
+  {
+    "jurisdiction": "Sausalito",
+    "county": "Marin",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "84",
+    "total_units_avg_annual": "8.4",
+    "sf_units": "52",
+    "sf_units_share": "0.6190476190476191",
+    "mf_units": "32",
+    "mf_units_share": "0.38095238095238093",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.49371476646166, 37.858444447]
+    }
+  },
+  {
+    "jurisdiction": "Sausalito",
+    "county": "Marin",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "26",
+    "total_units_avg_annual": "2.6",
+    "sf_units": "19",
+    "sf_units_share": "0.7307692307692307",
+    "mf_units": "7",
+    "mf_units_share": "0.2692307692307692",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.49371476646166, 37.858444447]
+    }
+  },
+  {
+    "jurisdiction": "Sausalito",
+    "county": "Marin",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "125",
+    "total_units_avg_annual": "25.0",
+    "sf_units": "51",
+    "sf_units_share": "0.408",
+    "mf_units": "74",
+    "mf_units_share": "0.592",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.49371476646166, 37.858444447]
+    }
+  },
+  {
+    "jurisdiction": "Tiburon",
+    "county": "Marin",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "307",
+    "total_units_avg_annual": "30.7",
+    "sf_units": "251",
+    "sf_units_share": "0.8175895765472313",
+    "mf_units": "56",
+    "mf_units_share": "0.18241042345276873",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.48348761518977, 37.89636449400008]
+    }
+  },
+  {
+    "jurisdiction": "Tiburon",
+    "county": "Marin",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "162",
+    "total_units_avg_annual": "16.2",
+    "sf_units": "159",
+    "sf_units_share": "0.9814814814814815",
+    "mf_units": "3",
+    "mf_units_share": "0.018518518518518517",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.48348761518977, 37.89636449400008]
+    }
+  },
+  {
+    "jurisdiction": "Tiburon",
+    "county": "Marin",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "46",
+    "total_units_avg_annual": "4.6",
+    "sf_units": "46",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.48348761518977, 37.89636449400008]
+    }
+  },
+  {
+    "jurisdiction": "Tiburon",
+    "county": "Marin",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "260",
+    "total_units_avg_annual": "52.0",
+    "sf_units": "260",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.48348761518977, 37.89636449400008]
+    }
+  },
+  {
+    "jurisdiction": "Unincorporated Marin",
+    "county": "Marin",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "1687",
+    "total_units_avg_annual": "168.7",
+    "sf_units": "1310",
+    "sf_units_share": "0.7765263781861292",
+    "mf_units": "377",
+    "mf_units_share": "0.2234736218138708",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.75341869889866, 38.06813993100003]
+    }
+  },
+  {
+    "jurisdiction": "Unincorporated Marin",
+    "county": "Marin",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "861",
+    "total_units_avg_annual": "86.1",
+    "sf_units": "729",
+    "sf_units_share": "0.8466898954703833",
+    "mf_units": "132",
+    "mf_units_share": "0.15331010452961671",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.75341869889866, 38.06813993100003]
+    }
+  },
+  {
+    "jurisdiction": "Unincorporated Marin",
+    "county": "Marin",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "271",
+    "total_units_avg_annual": "27.1",
+    "sf_units": "269",
+    "sf_units_share": "0.992619926199262",
+    "mf_units": "2",
+    "mf_units_share": "0.007380073800738007",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.75341869889866, 38.06813993100003]
+    }
+  },
+  {
+    "jurisdiction": "Unincorporated Marin",
+    "county": "Marin",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "228",
+    "total_units_avg_annual": "45.6",
+    "sf_units": "154",
+    "sf_units_share": "0.6754385964912281",
+    "mf_units": "74",
+    "mf_units_share": "0.32456140350877194",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.75341869889866, 38.06813993100003]
+    }
+  },
+  {
+    "jurisdiction": "American Canyon",
+    "county": "Napa",
+    "decade": "1990s",
+    "min_year": "1992",
+    "max_year": "1999",
+    "total_units": "254",
+    "total_units_avg_annual": "31.75",
+    "sf_units": "254",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.25920119363721, 38.1818095325001]
+    }
+  },
+  {
+    "jurisdiction": "American Canyon",
+    "county": "Napa",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "2602",
+    "total_units_avg_annual": "260.2",
+    "sf_units": "2241",
+    "sf_units_share": "0.861260568793236",
+    "mf_units": "361",
+    "mf_units_share": "0.13873943120676402",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.25920119363721, 38.1818095325001]
+    }
+  },
+  {
+    "jurisdiction": "American Canyon",
+    "county": "Napa",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "389",
+    "total_units_avg_annual": "38.9",
+    "sf_units": "96",
+    "sf_units_share": "0.2467866323907455",
+    "mf_units": "293",
+    "mf_units_share": "0.7532133676092545",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.25920119363721, 38.1818095325001]
+    }
+  },
+  {
+    "jurisdiction": "American Canyon",
+    "county": "Napa",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "246",
+    "total_units_avg_annual": "49.2",
+    "sf_units": "228",
+    "sf_units_share": "0.926829268292683",
+    "mf_units": "18",
+    "mf_units_share": "0.07317073170731707",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.25920119363721, 38.1818095325001]
+    }
+  },
+  {
+    "jurisdiction": "Calistoga",
+    "county": "Napa",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "172",
+    "total_units_avg_annual": "17.2",
+    "sf_units": "111",
+    "sf_units_share": "0.6453488372093024",
+    "mf_units": "61",
+    "mf_units_share": "0.3546511627906977",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.58351695344771, 38.5825280415001]
+    }
+  },
+  {
+    "jurisdiction": "Calistoga",
+    "county": "Napa",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "98",
+    "total_units_avg_annual": "9.8",
+    "sf_units": "84",
+    "sf_units_share": "0.8571428571428571",
+    "mf_units": "14",
+    "mf_units_share": "0.14285714285714285",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.58351695344771, 38.5825280415001]
+    }
+  },
+  {
+    "jurisdiction": "Calistoga",
+    "county": "Napa",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "109",
+    "total_units_avg_annual": "10.9",
+    "sf_units": "67",
+    "sf_units_share": "0.6146788990825688",
+    "mf_units": "42",
+    "mf_units_share": "0.3853211009174312",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.58351695344771, 38.5825280415001]
+    }
+  },
+  {
+    "jurisdiction": "Calistoga",
+    "county": "Napa",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "117",
+    "total_units_avg_annual": "23.4",
+    "sf_units": "25",
+    "sf_units_share": "0.21367521367521367",
+    "mf_units": "92",
+    "mf_units_share": "0.7863247863247863",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.58351695344771, 38.5825280415001]
+    }
+  },
+  {
+    "jurisdiction": "Napa",
+    "county": "Napa",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "2527",
+    "total_units_avg_annual": "252.7",
+    "sf_units": "2001",
+    "sf_units_share": "0.7918480411555204",
+    "mf_units": "526",
+    "mf_units_share": "0.20815195884447962",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.30344580035435, 38.29723054200005]
+    }
+  },
+  {
+    "jurisdiction": "Napa",
+    "county": "Napa",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "2317",
+    "total_units_avg_annual": "231.7",
+    "sf_units": "1248",
+    "sf_units_share": "0.5386275356063875",
+    "mf_units": "1069",
+    "mf_units_share": "0.4613724643936124",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.30344580035435, 38.29723054200005]
+    }
+  },
+  {
+    "jurisdiction": "Napa",
+    "county": "Napa",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "1641",
+    "total_units_avg_annual": "164.1",
+    "sf_units": "634",
+    "sf_units_share": "0.3863497867154174",
+    "mf_units": "1007",
+    "mf_units_share": "0.6136502132845826",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.30344580035435, 38.29723054200005]
+    }
+  },
+  {
+    "jurisdiction": "Napa",
+    "county": "Napa",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "691",
+    "total_units_avg_annual": "138.2",
+    "sf_units": "245",
+    "sf_units_share": "0.3545586107091172",
+    "mf_units": "446",
+    "mf_units_share": "0.6454413892908828",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.30344580035435, 38.29723054200005]
+    }
+  },
+  {
+    "jurisdiction": "St. Helena",
+    "county": "Napa",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "427",
+    "total_units_avg_annual": "42.7",
+    "sf_units": "274",
+    "sf_units_share": "0.6416861826697893",
+    "mf_units": "153",
+    "mf_units_share": "0.3583138173302108",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.4636794341285, 38.5046745440001]
+    }
+  },
+  {
+    "jurisdiction": "St. Helena",
+    "county": "Napa",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "110",
+    "total_units_avg_annual": "11.0",
+    "sf_units": "94",
+    "sf_units_share": "0.8545454545454545",
+    "mf_units": "16",
+    "mf_units_share": "0.14545454545454545",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.4636794341285, 38.5046745440001]
+    }
+  },
+  {
+    "jurisdiction": "St. Helena",
+    "county": "Napa",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "121",
+    "total_units_avg_annual": "12.1",
+    "sf_units": "105",
+    "sf_units_share": "0.8677685950413223",
+    "mf_units": "16",
+    "mf_units_share": "0.1322314049586777",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.4636794341285, 38.5046745440001]
+    }
+  },
+  {
+    "jurisdiction": "St. Helena",
+    "county": "Napa",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "55",
+    "total_units_avg_annual": "11.0",
+    "sf_units": "55",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.4636794341285, 38.5046745440001]
+    }
+  },
+  {
+    "jurisdiction": "Unincorporated Napa",
+    "county": "Napa",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "1235",
+    "total_units_avg_annual": "123.5",
+    "sf_units": "1171",
+    "sf_units_share": "0.9481781376518219",
+    "mf_units": "64",
+    "mf_units_share": "0.051821862348178135",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.32601383937549, 38.509614538000115]
+    }
+  },
+  {
+    "jurisdiction": "Unincorporated Napa",
+    "county": "Napa",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "879",
+    "total_units_avg_annual": "87.9",
+    "sf_units": "856",
+    "sf_units_share": "0.9738339021615472",
+    "mf_units": "23",
+    "mf_units_share": "0.026166097838452786",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.32601383937549, 38.509614538000115]
+    }
+  },
+  {
+    "jurisdiction": "Unincorporated Napa",
+    "county": "Napa",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "643",
+    "total_units_avg_annual": "64.3",
+    "sf_units": "643",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.32601383937549, 38.509614538000115]
+    }
+  },
+  {
+    "jurisdiction": "Unincorporated Napa",
+    "county": "Napa",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "897",
+    "total_units_avg_annual": "179.4",
+    "sf_units": "897",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.32601383937549, 38.509614538000115]
+    }
+  },
+  {
+    "jurisdiction": "Yountville",
+    "county": "Napa",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "175",
+    "total_units_avg_annual": "17.5",
+    "sf_units": "175",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.35802267690849, 38.39668054300001]
+    }
+  },
+  {
+    "jurisdiction": "Yountville",
+    "county": "Napa",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "52",
+    "total_units_avg_annual": "5.2",
+    "sf_units": "44",
+    "sf_units_share": "0.8461538461538461",
+    "mf_units": "8",
+    "mf_units_share": "0.15384615384615385",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.35802267690849, 38.39668054300001]
+    }
+  },
+  {
+    "jurisdiction": "Yountville",
+    "county": "Napa",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "25",
+    "total_units_avg_annual": "2.5",
+    "sf_units": "17",
+    "sf_units_share": "0.68",
+    "mf_units": "8",
+    "mf_units_share": "0.32",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.35802267690849, 38.39668054300001]
+    }
+  },
+  {
+    "jurisdiction": "Yountville",
+    "county": "Napa",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "12",
+    "total_units_avg_annual": "2.4",
+    "sf_units": "12",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.35802267690849, 38.39668054300001]
+    }
+  },
+  {
+    "jurisdiction": "San Francisco",
+    "county": "San Francisco",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "14503",
+    "total_units_avg_annual": "1450.3",
+    "sf_units": "1430",
+    "sf_units_share": "0.09860028959525616",
+    "mf_units": "13073",
+    "mf_units_share": "0.9013997104047439",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.44594955335921, 37.75984893600004]
+    }
+  },
+  {
+    "jurisdiction": "San Francisco",
+    "county": "San Francisco",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "21778",
+    "total_units_avg_annual": "2177.8",
+    "sf_units": "684",
+    "sf_units_share": "0.03140784277711452",
+    "mf_units": "21094",
+    "mf_units_share": "0.9685921572228855",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.44594955335921, 37.75984893600004]
+    }
+  },
+  {
+    "jurisdiction": "San Francisco",
+    "county": "San Francisco",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "34959",
+    "total_units_avg_annual": "3495.9",
+    "sf_units": "658",
+    "sf_units_share": "0.018822048685603134",
+    "mf_units": "34301",
+    "mf_units_share": "0.9811779513143969",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.44594955335921, 37.75984893600004]
+    }
+  },
+  {
+    "jurisdiction": "San Francisco",
+    "county": "San Francisco",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "13147",
+    "total_units_avg_annual": "2629.4",
+    "sf_units": "514",
+    "sf_units_share": "0.03909637179584696",
+    "mf_units": "12633",
+    "mf_units_share": "0.9609036282041531",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.44594955335921, 37.75984893600004]
+    }
+  },
+  {
+    "jurisdiction": "Atherton",
+    "county": "San Mateo",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "111",
+    "total_units_avg_annual": "11.1",
+    "sf_units": "111",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.20598709583334, 37.45044597300003]
+    }
+  },
+  {
+    "jurisdiction": "Atherton",
+    "county": "San Mateo",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "168",
+    "total_units_avg_annual": "16.8",
+    "sf_units": "168",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.20598709583334, 37.45044597300003]
+    }
+  },
+  {
+    "jurisdiction": "Atherton",
+    "county": "San Mateo",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "326",
+    "total_units_avg_annual": "32.6",
+    "sf_units": "326",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.20598709583334, 37.45044597300003]
+    }
+  },
+  {
+    "jurisdiction": "Atherton",
+    "county": "San Mateo",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "194",
+    "total_units_avg_annual": "38.8",
+    "sf_units": "194",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.20598709583334, 37.45044597300003]
+    }
+  },
+  {
+    "jurisdiction": "Belmont",
+    "county": "San Mateo",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "441",
+    "total_units_avg_annual": "44.1",
+    "sf_units": "338",
+    "sf_units_share": "0.7664399092970522",
+    "mf_units": "103",
+    "mf_units_share": "0.23356009070294784",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.29774504686266, 37.515704473500044]
+    }
+  },
+  {
+    "jurisdiction": "Belmont",
+    "county": "San Mateo",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "239",
+    "total_units_avg_annual": "23.9",
+    "sf_units": "128",
+    "sf_units_share": "0.5355648535564853",
+    "mf_units": "111",
+    "mf_units_share": "0.46443514644351463",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.29774504686266, 37.515704473500044]
+    }
+  },
+  {
+    "jurisdiction": "Belmont",
+    "county": "San Mateo",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "136",
+    "total_units_avg_annual": "13.6",
+    "sf_units": "64",
+    "sf_units_share": "0.47058823529411764",
+    "mf_units": "72",
+    "mf_units_share": "0.5294117647058824",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.29774504686266, 37.515704473500044]
+    }
+  },
+  {
+    "jurisdiction": "Belmont",
+    "county": "San Mateo",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "621",
+    "total_units_avg_annual": "124.2",
+    "sf_units": "54",
+    "sf_units_share": "0.08695652173913043",
+    "mf_units": "567",
+    "mf_units_share": "0.9130434782608695",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.29774504686266, 37.515704473500044]
+    }
+  },
+  {
+    "jurisdiction": "Brisbane",
+    "county": "San Mateo",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "416",
+    "total_units_avg_annual": "41.6",
+    "sf_units": "23",
+    "sf_units_share": "0.055288461538461536",
+    "mf_units": "393",
+    "mf_units_share": "0.9447115384615384",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.40609939299236, 37.690098959000096]
+    }
+  },
+  {
+    "jurisdiction": "Brisbane",
+    "county": "San Mateo",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "109",
+    "total_units_avg_annual": "10.9",
+    "sf_units": "89",
+    "sf_units_share": "0.8165137614678899",
+    "mf_units": "20",
+    "mf_units_share": "0.1834862385321101",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.40609939299236, 37.690098959000096]
+    }
+  },
+  {
+    "jurisdiction": "Brisbane",
+    "county": "San Mateo",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "104",
+    "total_units_avg_annual": "10.4",
+    "sf_units": "96",
+    "sf_units_share": "0.9230769230769231",
+    "mf_units": "8",
+    "mf_units_share": "0.07692307692307693",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.40609939299236, 37.690098959000096]
+    }
+  },
+  {
+    "jurisdiction": "Brisbane",
+    "county": "San Mateo",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "8",
+    "total_units_avg_annual": "1.6",
+    "sf_units": "8",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.40609939299236, 37.690098959000096]
+    }
+  },
+  {
+    "jurisdiction": "Burlingame",
+    "county": "San Mateo",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "348",
+    "total_units_avg_annual": "34.8",
+    "sf_units": "126",
+    "sf_units_share": "0.3620689655172414",
+    "mf_units": "222",
+    "mf_units_share": "0.6379310344827587",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.3644641553154, 37.58625247699999]
+    }
+  },
+  {
+    "jurisdiction": "Burlingame",
+    "county": "San Mateo",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "305",
+    "total_units_avg_annual": "30.5",
+    "sf_units": "168",
+    "sf_units_share": "0.5508196721311476",
+    "mf_units": "137",
+    "mf_units_share": "0.4491803278688525",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.3644641553154, 37.58625247699999]
+    }
+  },
+  {
+    "jurisdiction": "Burlingame",
+    "county": "San Mateo",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "572",
+    "total_units_avg_annual": "57.2",
+    "sf_units": "168",
+    "sf_units_share": "0.2937062937062937",
+    "mf_units": "404",
+    "mf_units_share": "0.7062937062937062",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.3644641553154, 37.58625247699999]
+    }
+  },
+  {
+    "jurisdiction": "Burlingame",
+    "county": "San Mateo",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "1296",
+    "total_units_avg_annual": "259.2",
+    "sf_units": "104",
+    "sf_units_share": "0.08024691358024691",
+    "mf_units": "1192",
+    "mf_units_share": "0.9197530864197531",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.3644641553154, 37.58625247699999]
+    }
+  },
+  {
+    "jurisdiction": "Colma",
+    "county": "San Mateo",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "20",
+    "total_units_avg_annual": "2.0",
+    "sf_units": "0",
+    "sf_units_share": "0.0",
+    "mf_units": "20",
+    "mf_units_share": "1.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.45617226898703, 37.67706997600006]
+    }
+  },
+  {
+    "jurisdiction": "Colma",
+    "county": "San Mateo",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "89",
+    "total_units_avg_annual": "8.9",
+    "sf_units": "73",
+    "sf_units_share": "0.8202247191011236",
+    "mf_units": "16",
+    "mf_units_share": "0.1797752808988764",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.45617226898703, 37.67706997600006]
+    }
+  },
+  {
+    "jurisdiction": "Colma",
+    "county": "San Mateo",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "75",
+    "total_units_avg_annual": "7.5",
+    "sf_units": "9",
+    "sf_units_share": "0.12",
+    "mf_units": "66",
+    "mf_units_share": "0.88",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.45617226898703, 37.67706997600006]
+    }
+  },
+  {
+    "jurisdiction": "Colma",
+    "county": "San Mateo",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "0",
+    "total_units_avg_annual": "0.0",
+    "sf_units": "0",
+    "sf_units_share": "0.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.45617226898703, 37.67706997600006]
+    }
+  },
+  {
+    "jurisdiction": "Daly City",
+    "county": "San Mateo",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "898",
+    "total_units_avg_annual": "89.8",
+    "sf_units": "666",
+    "sf_units_share": "0.7416481069042317",
+    "mf_units": "232",
+    "mf_units_share": "0.2583518930957684",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.48333755234346, 37.67853495300004]
+    }
+  },
+  {
+    "jurisdiction": "Daly City",
+    "county": "San Mateo",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "701",
+    "total_units_avg_annual": "70.1",
+    "sf_units": "399",
+    "sf_units_share": "0.5691868758915835",
+    "mf_units": "302",
+    "mf_units_share": "0.43081312410841655",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.48333755234346, 37.67853495300004]
+    }
+  },
+  {
+    "jurisdiction": "Daly City",
+    "county": "San Mateo",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "826",
+    "total_units_avg_annual": "82.6",
+    "sf_units": "426",
+    "sf_units_share": "0.5157384987893463",
+    "mf_units": "400",
+    "mf_units_share": "0.48426150121065376",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.48333755234346, 37.67853495300004]
+    }
+  },
+  {
+    "jurisdiction": "Daly City",
+    "county": "San Mateo",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "529",
+    "total_units_avg_annual": "105.8",
+    "sf_units": "198",
+    "sf_units_share": "0.3742911153119093",
+    "mf_units": "331",
+    "mf_units_share": "0.6257088846880907",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.48333755234346, 37.67853495300004]
+    }
+  },
+  {
+    "jurisdiction": "East Palo Alto",
+    "county": "San Mateo",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "177",
+    "total_units_avg_annual": "17.7",
+    "sf_units": "117",
+    "sf_units_share": "0.6610169491525424",
+    "mf_units": "60",
+    "mf_units_share": "0.3389830508474576",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.13615242644441, 37.468128440000044]
+    }
+  },
+  {
+    "jurisdiction": "East Palo Alto",
+    "county": "San Mateo",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "738",
+    "total_units_avg_annual": "73.8",
+    "sf_units": "416",
+    "sf_units_share": "0.5636856368563685",
+    "mf_units": "322",
+    "mf_units_share": "0.4363143631436314",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.13615242644441, 37.468128440000044]
+    }
+  },
+  {
+    "jurisdiction": "East Palo Alto",
+    "county": "San Mateo",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "110",
+    "total_units_avg_annual": "11.0",
+    "sf_units": "69",
+    "sf_units_share": "0.6272727272727273",
+    "mf_units": "41",
+    "mf_units_share": "0.37272727272727274",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.13615242644441, 37.468128440000044]
+    }
+  },
+  {
+    "jurisdiction": "East Palo Alto",
+    "county": "San Mateo",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "181",
+    "total_units_avg_annual": "36.2",
+    "sf_units": "45",
+    "sf_units_share": "0.24861878453038674",
+    "mf_units": "136",
+    "mf_units_share": "0.7513812154696132",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.13615242644441, 37.468128440000044]
+    }
+  },
+  {
+    "jurisdiction": "Foster City",
+    "county": "San Mateo",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "376",
+    "total_units_avg_annual": "37.6",
+    "sf_units": "127",
+    "sf_units_share": "0.3377659574468085",
+    "mf_units": "249",
+    "mf_units_share": "0.6622340425531915",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.26424685801587, 37.554549478000055]
+    }
+  },
+  {
+    "jurisdiction": "Foster City",
+    "county": "San Mateo",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "474",
+    "total_units_avg_annual": "47.4",
+    "sf_units": "4",
+    "sf_units_share": "0.008438818565400843",
+    "mf_units": "470",
+    "mf_units_share": "0.9915611814345991",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.26424685801587, 37.554549478000055]
+    }
+  },
+  {
+    "jurisdiction": "Foster City",
+    "county": "San Mateo",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "1015",
+    "total_units_avg_annual": "101.5",
+    "sf_units": "22",
+    "sf_units_share": "0.02167487684729064",
+    "mf_units": "993",
+    "mf_units_share": "0.9783251231527094",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.26424685801587, 37.554549478000055]
+    }
+  },
+  {
+    "jurisdiction": "Foster City",
+    "county": "San Mateo",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "50",
+    "total_units_avg_annual": "10.0",
+    "sf_units": "46",
+    "sf_units_share": "0.92",
+    "mf_units": "4",
+    "mf_units_share": "0.08",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.26424685801587, 37.554549478000055]
+    }
+  },
+  {
+    "jurisdiction": "Half Moon Bay",
+    "county": "San Mateo",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "380",
+    "total_units_avg_annual": "38.0",
+    "sf_units": "308",
+    "sf_units_share": "0.8105263157894737",
+    "mf_units": "72",
+    "mf_units_share": "0.18947368421052632",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.43519834216225, 37.47281846099999]
+    }
+  },
+  {
+    "jurisdiction": "Half Moon Bay",
+    "county": "San Mateo",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "376",
+    "total_units_avg_annual": "37.6",
+    "sf_units": "265",
+    "sf_units_share": "0.7047872340425532",
+    "mf_units": "111",
+    "mf_units_share": "0.29521276595744683",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.43519834216225, 37.47281846099999]
+    }
+  },
+  {
+    "jurisdiction": "Half Moon Bay",
+    "county": "San Mateo",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "338",
+    "total_units_avg_annual": "33.8",
+    "sf_units": "128",
+    "sf_units_share": "0.378698224852071",
+    "mf_units": "210",
+    "mf_units_share": "0.621301775147929",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.43519834216225, 37.47281846099999]
+    }
+  },
+  {
+    "jurisdiction": "Half Moon Bay",
+    "county": "San Mateo",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "63",
+    "total_units_avg_annual": "12.6",
+    "sf_units": "55",
+    "sf_units_share": "0.873015873015873",
+    "mf_units": "8",
+    "mf_units_share": "0.12698412698412698",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.43519834216225, 37.47281846099999]
+    }
+  },
+  {
+    "jurisdiction": "Hillsborough",
+    "county": "San Mateo",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "155",
+    "total_units_avg_annual": "15.5",
+    "sf_units": "155",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.35782007196619, 37.5554799740001]
+    }
+  },
+  {
+    "jurisdiction": "Hillsborough",
+    "county": "San Mateo",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "171",
+    "total_units_avg_annual": "17.1",
+    "sf_units": "171",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.35782007196619, 37.5554799740001]
+    }
+  },
+  {
+    "jurisdiction": "Hillsborough",
+    "county": "San Mateo",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "177",
+    "total_units_avg_annual": "17.7",
+    "sf_units": "177",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.35782007196619, 37.5554799740001]
+    }
+  },
+  {
+    "jurisdiction": "Hillsborough",
+    "county": "San Mateo",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "166",
+    "total_units_avg_annual": "33.2",
+    "sf_units": "166",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.35782007196619, 37.5554799740001]
+    }
+  },
+  {
+    "jurisdiction": "Menlo Park",
+    "county": "San Mateo",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "437",
+    "total_units_avg_annual": "43.7",
+    "sf_units": "387",
+    "sf_units_share": "0.88558352402746",
+    "mf_units": "50",
+    "mf_units_share": "0.11441647597254005",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.15943052068477, 37.46242997899999]
+    }
+  },
+  {
+    "jurisdiction": "Menlo Park",
+    "county": "San Mateo",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "342",
+    "total_units_avg_annual": "34.2",
+    "sf_units": "338",
+    "sf_units_share": "0.9883040935672515",
+    "mf_units": "4",
+    "mf_units_share": "0.011695906432748537",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.15943052068477, 37.46242997899999]
+    }
+  },
+  {
+    "jurisdiction": "Menlo Park",
+    "county": "San Mateo",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "1183",
+    "total_units_avg_annual": "118.3",
+    "sf_units": "350",
+    "sf_units_share": "0.2958579881656805",
+    "mf_units": "833",
+    "mf_units_share": "0.7041420118343196",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.15943052068477, 37.46242997899999]
+    }
+  },
+  {
+    "jurisdiction": "Menlo Park",
+    "county": "San Mateo",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "971",
+    "total_units_avg_annual": "194.2",
+    "sf_units": "185",
+    "sf_units_share": "0.19052523171987643",
+    "mf_units": "786",
+    "mf_units_share": "0.8094747682801235",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.15943052068477, 37.46242997899999]
+    }
+  },
+  {
+    "jurisdiction": "Millbrae",
+    "county": "San Mateo",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "229",
+    "total_units_avg_annual": "22.9",
+    "sf_units": "30",
+    "sf_units_share": "0.13100436681222707",
+    "mf_units": "199",
+    "mf_units_share": "0.868995633187773",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.40282510793257, 37.598175473]
+    }
+  },
+  {
+    "jurisdiction": "Millbrae",
+    "county": "San Mateo",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "397",
+    "total_units_avg_annual": "39.7",
+    "sf_units": "35",
+    "sf_units_share": "0.08816120906801007",
+    "mf_units": "362",
+    "mf_units_share": "0.9118387909319899",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.40282510793257, 37.598175473]
+    }
+  },
+  {
+    "jurisdiction": "Millbrae",
+    "county": "San Mateo",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "115",
+    "total_units_avg_annual": "11.5",
+    "sf_units": "48",
+    "sf_units_share": "0.41739130434782606",
+    "mf_units": "67",
+    "mf_units_share": "0.5826086956521739",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.40282510793257, 37.598175473]
+    }
+  },
+  {
+    "jurisdiction": "Millbrae",
+    "county": "San Mateo",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "403",
+    "total_units_avg_annual": "80.6",
+    "sf_units": "22",
+    "sf_units_share": "0.05459057071960298",
+    "mf_units": "381",
+    "mf_units_share": "0.9454094292803971",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.40282510793257, 37.598175473]
+    }
+  },
+  {
+    "jurisdiction": "Pacifica",
+    "county": "San Mateo",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "537",
+    "total_units_avg_annual": "53.7",
+    "sf_units": "342",
+    "sf_units_share": "0.6368715083798883",
+    "mf_units": "195",
+    "mf_units_share": "0.36312849162011174",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.47415243594222, 37.61658542500005]
+    }
+  },
+  {
+    "jurisdiction": "Pacifica",
+    "county": "San Mateo",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "256",
+    "total_units_avg_annual": "25.6",
+    "sf_units": "225",
+    "sf_units_share": "0.87890625",
+    "mf_units": "31",
+    "mf_units_share": "0.12109375",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.47415243594222, 37.61658542500005]
+    }
+  },
+  {
+    "jurisdiction": "Pacifica",
+    "county": "San Mateo",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "49",
+    "total_units_avg_annual": "4.9",
+    "sf_units": "43",
+    "sf_units_share": "0.8775510204081632",
+    "mf_units": "6",
+    "mf_units_share": "0.12244897959183673",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.47415243594222, 37.61658542500005]
+    }
+  },
+  {
+    "jurisdiction": "Pacifica",
+    "county": "San Mateo",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "26",
+    "total_units_avg_annual": "5.2",
+    "sf_units": "24",
+    "sf_units_share": "0.9230769230769231",
+    "mf_units": "2",
+    "mf_units_share": "0.07692307692307693",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.47415243594222, 37.61658542500005]
+    }
+  },
+  {
+    "jurisdiction": "Portola Valley",
+    "county": "San Mateo",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "79",
+    "total_units_avg_annual": "7.9",
+    "sf_units": "79",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.22564405004044, 37.369718468000094]
+    }
+  },
+  {
+    "jurisdiction": "Portola Valley",
+    "county": "San Mateo",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "99",
+    "total_units_avg_annual": "9.9",
+    "sf_units": "88",
+    "sf_units_share": "0.8888888888888888",
+    "mf_units": "11",
+    "mf_units_share": "0.1111111111111111",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.22564405004044, 37.369718468000094]
+    }
+  },
+  {
+    "jurisdiction": "Portola Valley",
+    "county": "San Mateo",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "95",
+    "total_units_avg_annual": "9.5",
+    "sf_units": "95",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.22564405004044, 37.369718468000094]
+    }
+  },
+  {
+    "jurisdiction": "Portola Valley",
+    "county": "San Mateo",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "57",
+    "total_units_avg_annual": "11.4",
+    "sf_units": "57",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.22564405004044, 37.369718468000094]
+    }
+  },
+  {
+    "jurisdiction": "Redwood City",
+    "county": "San Mateo",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "2291",
+    "total_units_avg_annual": "229.1",
+    "sf_units": "1079",
+    "sf_units_share": "0.47097337407245743",
+    "mf_units": "1212",
+    "mf_units_share": "0.5290266259275426",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.20394842347287, 37.500578958000084]
+    }
+  },
+  {
+    "jurisdiction": "Redwood City",
+    "county": "San Mateo",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "592",
+    "total_units_avg_annual": "59.2",
+    "sf_units": "170",
+    "sf_units_share": "0.28716216216216217",
+    "mf_units": "422",
+    "mf_units_share": "0.7128378378378378",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.20394842347287, 37.500578958000084]
+    }
+  },
+  {
+    "jurisdiction": "Redwood City",
+    "county": "San Mateo",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "3150",
+    "total_units_avg_annual": "315.0",
+    "sf_units": "304",
+    "sf_units_share": "0.09650793650793651",
+    "mf_units": "2846",
+    "mf_units_share": "0.9034920634920635",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.20394842347287, 37.500578958000084]
+    }
+  },
+  {
+    "jurisdiction": "Redwood City",
+    "county": "San Mateo",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "483",
+    "total_units_avg_annual": "96.6",
+    "sf_units": "189",
+    "sf_units_share": "0.391304347826087",
+    "mf_units": "294",
+    "mf_units_share": "0.6086956521739131",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.20394842347287, 37.500578958000084]
+    }
+  },
+  {
+    "jurisdiction": "San Bruno",
+    "county": "San Mateo",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "43",
+    "total_units_avg_annual": "4.3",
+    "sf_units": "39",
+    "sf_units_share": "0.9069767441860465",
+    "mf_units": "4",
+    "mf_units_share": "0.09302325581395349",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.4292752362653, 37.623431973000095]
+    }
+  },
+  {
+    "jurisdiction": "San Bruno",
+    "county": "San Mateo",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "1107",
+    "total_units_avg_annual": "110.7",
+    "sf_units": "229",
+    "sf_units_share": "0.2068654019873532",
+    "mf_units": "878",
+    "mf_units_share": "0.7931345980126467",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.4292752362653, 37.623431973000095]
+    }
+  },
+  {
+    "jurisdiction": "San Bruno",
+    "county": "San Mateo",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "109",
+    "total_units_avg_annual": "10.9",
+    "sf_units": "77",
+    "sf_units_share": "0.7064220183486238",
+    "mf_units": "32",
+    "mf_units_share": "0.29357798165137616",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.4292752362653, 37.623431973000095]
+    }
+  },
+  {
+    "jurisdiction": "San Bruno",
+    "county": "San Mateo",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "228",
+    "total_units_avg_annual": "45.6",
+    "sf_units": "94",
+    "sf_units_share": "0.41228070175438597",
+    "mf_units": "134",
+    "mf_units_share": "0.5877192982456141",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.4292752362653, 37.623431973000095]
+    }
+  },
+  {
+    "jurisdiction": "San Carlos",
+    "county": "San Mateo",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "271",
+    "total_units_avg_annual": "27.1",
+    "sf_units": "174",
+    "sf_units_share": "0.6420664206642066",
+    "mf_units": "97",
+    "mf_units_share": "0.35793357933579334",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.26126391439459, 37.49804447450004]
+    }
+  },
+  {
+    "jurisdiction": "San Carlos",
+    "county": "San Mateo",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "344",
+    "total_units_avg_annual": "34.4",
+    "sf_units": "112",
+    "sf_units_share": "0.32558139534883723",
+    "mf_units": "232",
+    "mf_units_share": "0.6744186046511628",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.26126391439459, 37.49804447450004]
+    }
+  },
+  {
+    "jurisdiction": "San Carlos",
+    "county": "San Mateo",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "486",
+    "total_units_avg_annual": "48.6",
+    "sf_units": "159",
+    "sf_units_share": "0.3271604938271605",
+    "mf_units": "327",
+    "mf_units_share": "0.6728395061728395",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.26126391439459, 37.49804447450004]
+    }
+  },
+  {
+    "jurisdiction": "San Carlos",
+    "county": "San Mateo",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "143",
+    "total_units_avg_annual": "28.6",
+    "sf_units": "115",
+    "sf_units_share": "0.8041958041958042",
+    "mf_units": "28",
+    "mf_units_share": "0.1958041958041958",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.26126391439459, 37.49804447450004]
+    }
+  },
+  {
+    "jurisdiction": "San Mateo",
+    "county": "San Mateo",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "1279",
+    "total_units_avg_annual": "127.9",
+    "sf_units": "165",
+    "sf_units_share": "0.12900703674745895",
+    "mf_units": "1114",
+    "mf_units_share": "0.870992963252541",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.31062174503177, 37.552471978000035]
+    }
+  },
+  {
+    "jurisdiction": "San Mateo",
+    "county": "San Mateo",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "1589",
+    "total_units_avg_annual": "158.9",
+    "sf_units": "257",
+    "sf_units_share": "0.1617369414726243",
+    "mf_units": "1332",
+    "mf_units_share": "0.8382630585273757",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.31062174503177, 37.552471978000035]
+    }
+  },
+  {
+    "jurisdiction": "San Mateo",
+    "county": "San Mateo",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "2186",
+    "total_units_avg_annual": "218.6",
+    "sf_units": "351",
+    "sf_units_share": "0.1605672461116194",
+    "mf_units": "1835",
+    "mf_units_share": "0.8394327538883806",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.31062174503177, 37.552471978000035]
+    }
+  },
+  {
+    "jurisdiction": "San Mateo",
+    "county": "San Mateo",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "686",
+    "total_units_avg_annual": "137.2",
+    "sf_units": "183",
+    "sf_units_share": "0.26676384839650147",
+    "mf_units": "503",
+    "mf_units_share": "0.7332361516034985",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.31062174503177, 37.552471978000035]
+    }
+  },
+  {
+    "jurisdiction": "South San Francisco",
+    "county": "San Mateo",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "970",
+    "total_units_avg_annual": "97.0",
+    "sf_units": "769",
+    "sf_units_share": "0.7927835051546391",
+    "mf_units": "201",
+    "mf_units_share": "0.20721649484536084",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.40704861635064, 37.653888975000044]
+    }
+  },
+  {
+    "jurisdiction": "South San Francisco",
+    "county": "San Mateo",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "1400",
+    "total_units_avg_annual": "140.0",
+    "sf_units": "421",
+    "sf_units_share": "0.3007142857142857",
+    "mf_units": "979",
+    "mf_units_share": "0.6992857142857143",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.40704861635064, 37.653888975000044]
+    }
+  },
+  {
+    "jurisdiction": "South San Francisco",
+    "county": "San Mateo",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "1124",
+    "total_units_avg_annual": "112.4",
+    "sf_units": "96",
+    "sf_units_share": "0.08540925266903915",
+    "mf_units": "1028",
+    "mf_units_share": "0.9145907473309609",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.40704861635064, 37.653888975000044]
+    }
+  },
+  {
+    "jurisdiction": "South San Francisco",
+    "county": "San Mateo",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "387",
+    "total_units_avg_annual": "77.4",
+    "sf_units": "119",
+    "sf_units_share": "0.30749354005167956",
+    "mf_units": "268",
+    "mf_units_share": "0.6925064599483204",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.40704861635064, 37.653888975000044]
+    }
+  },
+  {
+    "jurisdiction": "Unincorporated San Mateo",
+    "county": "San Mateo",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "1514",
+    "total_units_avg_annual": "151.4",
+    "sf_units": "1373",
+    "sf_units_share": "0.9068692206076618",
+    "mf_units": "141",
+    "mf_units_share": "0.09313077939233817",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.32852172396247, 37.368413911]
+    }
+  },
+  {
+    "jurisdiction": "Unincorporated San Mateo",
+    "county": "San Mateo",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "2387",
+    "total_units_avg_annual": "238.7",
+    "sf_units": "1773",
+    "sf_units_share": "0.7427733556765815",
+    "mf_units": "614",
+    "mf_units_share": "0.2572266443234185",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.32852172396247, 37.368413911]
+    }
+  },
+  {
+    "jurisdiction": "Unincorporated San Mateo",
+    "county": "San Mateo",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "705",
+    "total_units_avg_annual": "70.5",
+    "sf_units": "547",
+    "sf_units_share": "0.775886524822695",
+    "mf_units": "158",
+    "mf_units_share": "0.22411347517730495",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.32852172396247, 37.368413911]
+    }
+  },
+  {
+    "jurisdiction": "Unincorporated San Mateo",
+    "county": "San Mateo",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "559",
+    "total_units_avg_annual": "111.8",
+    "sf_units": "455",
+    "sf_units_share": "0.813953488372093",
+    "mf_units": "104",
+    "mf_units_share": "0.18604651162790697",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.32852172396247, 37.368413911]
+    }
+  },
+  {
+    "jurisdiction": "Woodside",
+    "county": "San Mateo",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "161",
+    "total_units_avg_annual": "16.1",
+    "sf_units": "161",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.25675635420976, 37.41642996750005]
+    }
+  },
+  {
+    "jurisdiction": "Woodside",
+    "county": "San Mateo",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "138",
+    "total_units_avg_annual": "13.8",
+    "sf_units": "138",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.25675635420976, 37.41642996750005]
+    }
+  },
+  {
+    "jurisdiction": "Woodside",
+    "county": "San Mateo",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "120",
+    "total_units_avg_annual": "12.0",
+    "sf_units": "120",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.25675635420976, 37.41642996750005]
+    }
+  },
+  {
+    "jurisdiction": "Woodside",
+    "county": "San Mateo",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "82",
+    "total_units_avg_annual": "16.4",
+    "sf_units": "82",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.25675635420976, 37.41642996750005]
+    }
+  },
+  {
+    "jurisdiction": "Campbell",
+    "county": "Santa Clara",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "834",
+    "total_units_avg_annual": "83.4",
+    "sf_units": "466",
+    "sf_units_share": "0.5587529976019184",
+    "mf_units": "368",
+    "mf_units_share": "0.4412470023980815",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.94960966818505, 37.28079847900005]
+    }
+  },
+  {
+    "jurisdiction": "Campbell",
+    "county": "Santa Clara",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "534",
+    "total_units_avg_annual": "53.4",
+    "sf_units": "443",
+    "sf_units_share": "0.8295880149812734",
+    "mf_units": "91",
+    "mf_units_share": "0.1704119850187266",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.94960966818505, 37.28079847900005]
+    }
+  },
+  {
+    "jurisdiction": "Campbell",
+    "county": "Santa Clara",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "631",
+    "total_units_avg_annual": "63.1",
+    "sf_units": "359",
+    "sf_units_share": "0.5689381933438986",
+    "mf_units": "272",
+    "mf_units_share": "0.43106180665610144",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.94960966818505, 37.28079847900005]
+    }
+  },
+  {
+    "jurisdiction": "Campbell",
+    "county": "Santa Clara",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "306",
+    "total_units_avg_annual": "61.2",
+    "sf_units": "183",
+    "sf_units_share": "0.5980392156862745",
+    "mf_units": "123",
+    "mf_units_share": "0.4019607843137255",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.94960966818505, 37.28079847900005]
+    }
+  },
+  {
+    "jurisdiction": "Cupertino",
+    "county": "Santa Clara",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "2057",
+    "total_units_avg_annual": "205.7",
+    "sf_units": "738",
+    "sf_units_share": "0.3587749149246475",
+    "mf_units": "1319",
+    "mf_units_share": "0.6412250850753525",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.06053573457032, 37.30954997500005]
+    }
+  },
+  {
+    "jurisdiction": "Cupertino",
+    "county": "Santa Clara",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "1387",
+    "total_units_avg_annual": "138.7",
+    "sf_units": "951",
+    "sf_units_share": "0.6856524873828407",
+    "mf_units": "436",
+    "mf_units_share": "0.3143475126171593",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.06053573457032, 37.30954997500005]
+    }
+  },
+  {
+    "jurisdiction": "Cupertino",
+    "county": "Santa Clara",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "914",
+    "total_units_avg_annual": "91.4",
+    "sf_units": "464",
+    "sf_units_share": "0.5076586433260394",
+    "mf_units": "450",
+    "mf_units_share": "0.4923413566739606",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.06053573457032, 37.30954997500005]
+    }
+  },
+  {
+    "jurisdiction": "Cupertino",
+    "county": "Santa Clara",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "317",
+    "total_units_avg_annual": "63.4",
+    "sf_units": "255",
+    "sf_units_share": "0.804416403785489",
+    "mf_units": "62",
+    "mf_units_share": "0.19558359621451105",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.06053573457032, 37.30954997500005]
+    }
+  },
+  {
+    "jurisdiction": "Gilroy",
+    "county": "Santa Clara",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "2732",
+    "total_units_avg_annual": "273.2",
+    "sf_units": "2225",
+    "sf_units_share": "0.8144216691068814",
+    "mf_units": "507",
+    "mf_units_share": "0.1855783308931186",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.59161771412239, 37.010243476000056]
+    }
+  },
+  {
+    "jurisdiction": "Gilroy",
+    "county": "Santa Clara",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "2767",
+    "total_units_avg_annual": "276.7",
+    "sf_units": "2181",
+    "sf_units_share": "0.7882182869533791",
+    "mf_units": "586",
+    "mf_units_share": "0.21178171304662088",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.59161771412239, 37.010243476000056]
+    }
+  },
+  {
+    "jurisdiction": "Gilroy",
+    "county": "Santa Clara",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "3475",
+    "total_units_avg_annual": "347.5",
+    "sf_units": "2181",
+    "sf_units_share": "0.6276258992805755",
+    "mf_units": "1294",
+    "mf_units_share": "0.37237410071942445",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.59161771412239, 37.010243476000056]
+    }
+  },
+  {
+    "jurisdiction": "Gilroy",
+    "county": "Santa Clara",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "734",
+    "total_units_avg_annual": "146.8",
+    "sf_units": "456",
+    "sf_units_share": "0.6212534059945504",
+    "mf_units": "278",
+    "mf_units_share": "0.3787465940054496",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.59161771412239, 37.010243476000056]
+    }
+  },
+  {
+    "jurisdiction": "Los Altos",
+    "county": "Santa Clara",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "437",
+    "total_units_avg_annual": "43.7",
+    "sf_units": "301",
+    "sf_units_share": "0.6887871853546911",
+    "mf_units": "136",
+    "mf_units_share": "0.3112128146453089",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.10883188908703, 37.367934473000034]
+    }
+  },
+  {
+    "jurisdiction": "Los Altos",
+    "county": "Santa Clara",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "649",
+    "total_units_avg_annual": "64.9",
+    "sf_units": "504",
+    "sf_units_share": "0.7765793528505393",
+    "mf_units": "145",
+    "mf_units_share": "0.22342064714946072",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.10883188908703, 37.367934473000034]
+    }
+  },
+  {
+    "jurisdiction": "Los Altos",
+    "county": "Santa Clara",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "984",
+    "total_units_avg_annual": "98.4",
+    "sf_units": "525",
+    "sf_units_share": "0.5335365853658537",
+    "mf_units": "459",
+    "mf_units_share": "0.46646341463414637",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.10883188908703, 37.367934473000034]
+    }
+  },
+  {
+    "jurisdiction": "Los Altos",
+    "county": "Santa Clara",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "491",
+    "total_units_avg_annual": "98.2",
+    "sf_units": "249",
+    "sf_units_share": "0.5071283095723014",
+    "mf_units": "242",
+    "mf_units_share": "0.49287169042769857",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.10883188908703, 37.367934473000034]
+    }
+  },
+  {
+    "jurisdiction": "Los Altos Hills",
+    "county": "Santa Clara",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "264",
+    "total_units_avg_annual": "26.4",
+    "sf_units": "264",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.1463449199984, 37.368146471500054]
+    }
+  },
+  {
+    "jurisdiction": "Los Altos Hills",
+    "county": "Santa Clara",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "268",
+    "total_units_avg_annual": "26.8",
+    "sf_units": "266",
+    "sf_units_share": "0.9925373134328358",
+    "mf_units": "2",
+    "mf_units_share": "0.007462686567164179",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.1463449199984, 37.368146471500054]
+    }
+  },
+  {
+    "jurisdiction": "Los Altos Hills",
+    "county": "Santa Clara",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "262",
+    "total_units_avg_annual": "26.2",
+    "sf_units": "260",
+    "sf_units_share": "0.9923664122137404",
+    "mf_units": "2",
+    "mf_units_share": "0.007633587786259542",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.1463449199984, 37.368146471500054]
+    }
+  },
+  {
+    "jurisdiction": "Los Altos Hills",
+    "county": "Santa Clara",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "85",
+    "total_units_avg_annual": "17.0",
+    "sf_units": "85",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.1463449199984, 37.368146471500054]
+    }
+  },
+  {
+    "jurisdiction": "Los Gatos",
+    "county": "Santa Clara",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "715",
+    "total_units_avg_annual": "71.5",
+    "sf_units": "417",
+    "sf_units_share": "0.5832167832167832",
+    "mf_units": "298",
+    "mf_units_share": "0.4167832167832168",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.94744988296067, 37.23179247099999]
+    }
+  },
+  {
+    "jurisdiction": "Los Gatos",
+    "county": "Santa Clara",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "724",
+    "total_units_avg_annual": "72.4",
+    "sf_units": "405",
+    "sf_units_share": "0.5593922651933702",
+    "mf_units": "319",
+    "mf_units_share": "0.44060773480662985",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.94744988296067, 37.23179247099999]
+    }
+  },
+  {
+    "jurisdiction": "Los Gatos",
+    "county": "Santa Clara",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "398",
+    "total_units_avg_annual": "39.8",
+    "sf_units": "340",
+    "sf_units_share": "0.8542713567839196",
+    "mf_units": "58",
+    "mf_units_share": "0.1457286432160804",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.94744988296067, 37.23179247099999]
+    }
+  },
+  {
+    "jurisdiction": "Los Gatos",
+    "county": "Santa Clara",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "808",
+    "total_units_avg_annual": "161.6",
+    "sf_units": "217",
+    "sf_units_share": "0.2685643564356436",
+    "mf_units": "591",
+    "mf_units_share": "0.7314356435643564",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.94744988296067, 37.23179247099999]
+    }
+  },
+  {
+    "jurisdiction": "Milpitas",
+    "county": "Santa Clara",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "3023",
+    "total_units_avg_annual": "302.3",
+    "sf_units": "1907",
+    "sf_units_share": "0.6308303010254714",
+    "mf_units": "1116",
+    "mf_units_share": "0.3691696989745286",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.88504159803736, 37.431363992500046]
+    }
+  },
+  {
+    "jurisdiction": "Milpitas",
+    "county": "Santa Clara",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "2105",
+    "total_units_avg_annual": "210.5",
+    "sf_units": "326",
+    "sf_units_share": "0.15486935866983373",
+    "mf_units": "1779",
+    "mf_units_share": "0.8451306413301662",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.88504159803736, 37.431363992500046]
+    }
+  },
+  {
+    "jurisdiction": "Milpitas",
+    "county": "Santa Clara",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "6425",
+    "total_units_avg_annual": "642.5",
+    "sf_units": "1462",
+    "sf_units_share": "0.22754863813229573",
+    "mf_units": "4963",
+    "mf_units_share": "0.7724513618677042",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.88504159803736, 37.431363992500046]
+    }
+  },
+  {
+    "jurisdiction": "Milpitas",
+    "county": "Santa Clara",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "1644",
+    "total_units_avg_annual": "328.8",
+    "sf_units": "177",
+    "sf_units_share": "0.10766423357664233",
+    "mf_units": "1467",
+    "mf_units_share": "0.8923357664233577",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.88504159803736, 37.431363992500046]
+    }
+  },
+  {
+    "jurisdiction": "Monte Sereno",
+    "county": "Santa Clara",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "101",
+    "total_units_avg_annual": "10.1",
+    "sf_units": "101",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.98986342332479, 37.239525472000054]
+    }
+  },
+  {
+    "jurisdiction": "Monte Sereno",
+    "county": "Santa Clara",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "106",
+    "total_units_avg_annual": "10.6",
+    "sf_units": "106",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.98986342332479, 37.239525472000054]
+    }
+  },
+  {
+    "jurisdiction": "Monte Sereno",
+    "county": "Santa Clara",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "73",
+    "total_units_avg_annual": "7.3",
+    "sf_units": "71",
+    "sf_units_share": "0.9726027397260274",
+    "mf_units": "2",
+    "mf_units_share": "0.0273972602739726",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.98986342332479, 37.239525472000054]
+    }
+  },
+  {
+    "jurisdiction": "Monte Sereno",
+    "county": "Santa Clara",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "74",
+    "total_units_avg_annual": "14.8",
+    "sf_units": "65",
+    "sf_units_share": "0.8783783783783784",
+    "mf_units": "9",
+    "mf_units_share": "0.12162162162162163",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.98986342332479, 37.239525472000054]
+    }
+  },
+  {
+    "jurisdiction": "Morgan Hill",
+    "county": "Santa Clara",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "2778",
+    "total_units_avg_annual": "277.8",
+    "sf_units": "2315",
+    "sf_units_share": "0.8333333333333334",
+    "mf_units": "463",
+    "mf_units_share": "0.16666666666666666",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.64811385156204, 37.129329985000055]
+    }
+  },
+  {
+    "jurisdiction": "Morgan Hill",
+    "county": "Santa Clara",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "1789",
+    "total_units_avg_annual": "178.9",
+    "sf_units": "1513",
+    "sf_units_share": "0.8457238680827278",
+    "mf_units": "276",
+    "mf_units_share": "0.1542761319172722",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.64811385156204, 37.129329985000055]
+    }
+  },
+  {
+    "jurisdiction": "Morgan Hill",
+    "county": "Santa Clara",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "3121",
+    "total_units_avg_annual": "312.1",
+    "sf_units": "2052",
+    "sf_units_share": "0.6574815764178148",
+    "mf_units": "1069",
+    "mf_units_share": "0.3425184235821852",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.64811385156204, 37.129329985000055]
+    }
+  },
+  {
+    "jurisdiction": "Morgan Hill",
+    "county": "Santa Clara",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "1378",
+    "total_units_avg_annual": "275.6",
+    "sf_units": "474",
+    "sf_units_share": "0.3439767779390421",
+    "mf_units": "904",
+    "mf_units_share": "0.6560232220609579",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.64811385156204, 37.129329985000055]
+    }
+  },
+  {
+    "jurisdiction": "Mountain View",
+    "county": "Santa Clara",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "1962",
+    "total_units_avg_annual": "196.2",
+    "sf_units": "1251",
+    "sf_units_share": "0.6376146788990825",
+    "mf_units": "711",
+    "mf_units_share": "0.3623853211009174",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.08137557919581, 37.4026599770001]
+    }
+  },
+  {
+    "jurisdiction": "Mountain View",
+    "county": "Santa Clara",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "1622",
+    "total_units_avg_annual": "162.2",
+    "sf_units": "1063",
+    "sf_units_share": "0.6553637484586929",
+    "mf_units": "559",
+    "mf_units_share": "0.344636251541307",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.08137557919581, 37.4026599770001]
+    }
+  },
+  {
+    "jurisdiction": "Mountain View",
+    "county": "Santa Clara",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "4803",
+    "total_units_avg_annual": "480.3",
+    "sf_units": "861",
+    "sf_units_share": "0.17926296064959402",
+    "mf_units": "3942",
+    "mf_units_share": "0.820737039350406",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.08137557919581, 37.4026599770001]
+    }
+  },
+  {
+    "jurisdiction": "Mountain View",
+    "county": "Santa Clara",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "2761",
+    "total_units_avg_annual": "552.2",
+    "sf_units": "390",
+    "sf_units_share": "0.14125316914161537",
+    "mf_units": "2371",
+    "mf_units_share": "0.8587468308583847",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.08137557919581, 37.4026599770001]
+    }
+  },
+  {
+    "jurisdiction": "Palo Alto",
+    "county": "Santa Clara",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "1900",
+    "total_units_avg_annual": "190.0",
+    "sf_units": "677",
+    "sf_units_share": "0.3563157894736842",
+    "mf_units": "1223",
+    "mf_units_share": "0.6436842105263157",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.18107465554517, 37.37705147100004]
+    }
+  },
+  {
+    "jurisdiction": "Palo Alto",
+    "county": "Santa Clara",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "2306",
+    "total_units_avg_annual": "230.6",
+    "sf_units": "989",
+    "sf_units_share": "0.42888117953165655",
+    "mf_units": "1317",
+    "mf_units_share": "0.5711188204683435",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.18107465554517, 37.37705147100004]
+    }
+  },
+  {
+    "jurisdiction": "Palo Alto",
+    "county": "Santa Clara",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "1528",
+    "total_units_avg_annual": "152.8",
+    "sf_units": "1045",
+    "sf_units_share": "0.6839005235602095",
+    "mf_units": "483",
+    "mf_units_share": "0.3160994764397906",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.18107465554517, 37.37705147100004]
+    }
+  },
+  {
+    "jurisdiction": "Palo Alto",
+    "county": "Santa Clara",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "635",
+    "total_units_avg_annual": "127.0",
+    "sf_units": "421",
+    "sf_units_share": "0.662992125984252",
+    "mf_units": "214",
+    "mf_units_share": "0.33700787401574805",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.18107465554517, 37.37705147100004]
+    }
+  },
+  {
+    "jurisdiction": "San Jose",
+    "county": "Santa Clara",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "28777",
+    "total_units_avg_annual": "2877.7",
+    "sf_units": "12468",
+    "sf_units_share": "0.4332626750529937",
+    "mf_units": "16309",
+    "mf_units_share": "0.5667373249470062",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.84100827837331, 37.29616047800005]
+    }
+  },
+  {
+    "jurisdiction": "San Jose",
+    "county": "Santa Clara",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "28327",
+    "total_units_avg_annual": "2832.7",
+    "sf_units": "6668",
+    "sf_units_share": "0.2353937939068733",
+    "mf_units": "21659",
+    "mf_units_share": "0.7646062060931267",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.84100827837331, 37.29616047800005]
+    }
+  },
+  {
+    "jurisdiction": "San Jose",
+    "county": "Santa Clara",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "27704",
+    "total_units_avg_annual": "2770.4",
+    "sf_units": "2414",
+    "sf_units_share": "0.08713543170661277",
+    "mf_units": "25290",
+    "mf_units_share": "0.9128645682933872",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.84100827837331, 37.29616047800005]
+    }
+  },
+  {
+    "jurisdiction": "San Jose",
+    "county": "Santa Clara",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "7503",
+    "total_units_avg_annual": "1500.6",
+    "sf_units": "1519",
+    "sf_units_share": "0.20245235239237638",
+    "mf_units": "5984",
+    "mf_units_share": "0.7975476476076236",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.84100827837331, 37.29616047800005]
+    }
+  },
+  {
+    "jurisdiction": "Santa Clara",
+    "county": "Santa Clara",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "2777",
+    "total_units_avg_annual": "277.7",
+    "sf_units": "915",
+    "sf_units_share": "0.329492257832193",
+    "mf_units": "1862",
+    "mf_units_share": "0.670507742167807",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.9599329422619, 37.370934986500004]
+    }
+  },
+  {
+    "jurisdiction": "Santa Clara",
+    "county": "Santa Clara",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "4900",
+    "total_units_avg_annual": "490.0",
+    "sf_units": "1668",
+    "sf_units_share": "0.3404081632653061",
+    "mf_units": "3232",
+    "mf_units_share": "0.6595918367346939",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.9599329422619, 37.370934986500004]
+    }
+  },
+  {
+    "jurisdiction": "Santa Clara",
+    "county": "Santa Clara",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "6565",
+    "total_units_avg_annual": "656.5",
+    "sf_units": "677",
+    "sf_units_share": "0.10312261995430312",
+    "mf_units": "5888",
+    "mf_units_share": "0.8968773800456968",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.9599329422619, 37.370934986500004]
+    }
+  },
+  {
+    "jurisdiction": "Santa Clara",
+    "county": "Santa Clara",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "3686",
+    "total_units_avg_annual": "737.2",
+    "sf_units": "160",
+    "sf_units_share": "0.04340748779164406",
+    "mf_units": "3526",
+    "mf_units_share": "0.956592512208356",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.9599329422619, 37.370934986500004]
+    }
+  },
+  {
+    "jurisdiction": "Saratoga",
+    "county": "Santa Clara",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "566",
+    "total_units_avg_annual": "56.6",
+    "sf_units": "566",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.02936595772876, 37.26698797400011]
+    }
+  },
+  {
+    "jurisdiction": "Saratoga",
+    "county": "Santa Clara",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "601",
+    "total_units_avg_annual": "60.1",
+    "sf_units": "412",
+    "sf_units_share": "0.6855241264559068",
+    "mf_units": "189",
+    "mf_units_share": "0.3144758735440932",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.02936595772876, 37.26698797400011]
+    }
+  },
+  {
+    "jurisdiction": "Saratoga",
+    "county": "Santa Clara",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "326",
+    "total_units_avg_annual": "32.6",
+    "sf_units": "326",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.02936595772876, 37.26698797400011]
+    }
+  },
+  {
+    "jurisdiction": "Saratoga",
+    "county": "Santa Clara",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "313",
+    "total_units_avg_annual": "62.6",
+    "sf_units": "305",
+    "sf_units_share": "0.9744408945686901",
+    "mf_units": "8",
+    "mf_units_share": "0.025559105431309903",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.02936595772876, 37.26698797400011]
+    }
+  },
+  {
+    "jurisdiction": "Sunnyvale",
+    "county": "Santa Clara",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "3294",
+    "total_units_avg_annual": "329.4",
+    "sf_units": "944",
+    "sf_units_share": "0.286581663630844",
+    "mf_units": "2350",
+    "mf_units_share": "0.7134183363691561",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.01672184773825, 37.390030983000045]
+    }
+  },
+  {
+    "jurisdiction": "Sunnyvale",
+    "county": "Santa Clara",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "2598",
+    "total_units_avg_annual": "259.8",
+    "sf_units": "1715",
+    "sf_units_share": "0.6601231716705158",
+    "mf_units": "883",
+    "mf_units_share": "0.33987682832948424",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.01672184773825, 37.390030983000045]
+    }
+  },
+  {
+    "jurisdiction": "Sunnyvale",
+    "county": "Santa Clara",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "5927",
+    "total_units_avg_annual": "592.7",
+    "sf_units": "2067",
+    "sf_units_share": "0.34874304032394127",
+    "mf_units": "3860",
+    "mf_units_share": "0.6512569596760587",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.01672184773825, 37.390030983000045]
+    }
+  },
+  {
+    "jurisdiction": "Sunnyvale",
+    "county": "Santa Clara",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "3853",
+    "total_units_avg_annual": "770.6",
+    "sf_units": "561",
+    "sf_units_share": "0.14560083052167141",
+    "mf_units": "3292",
+    "mf_units_share": "0.8543991694783286",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.01672184773825, 37.390030983000045]
+    }
+  },
+  {
+    "jurisdiction": "Unincorporated Santa Clara",
+    "county": "Santa Clara",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "1429",
+    "total_units_avg_annual": "142.9",
+    "sf_units": "1277",
+    "sf_units_share": "0.893631910426872",
+    "mf_units": "152",
+    "mf_units_share": "0.10636808957312806",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.91971650065106, 37.188819980000005]
+    }
+  },
+  {
+    "jurisdiction": "Unincorporated Santa Clara",
+    "county": "Santa Clara",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "1286",
+    "total_units_avg_annual": "128.6",
+    "sf_units": "1024",
+    "sf_units_share": "0.7962674961119751",
+    "mf_units": "262",
+    "mf_units_share": "0.20373250388802489",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.91971650065106, 37.188819980000005]
+    }
+  },
+  {
+    "jurisdiction": "Unincorporated Santa Clara",
+    "county": "Santa Clara",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "878",
+    "total_units_avg_annual": "87.8",
+    "sf_units": "602",
+    "sf_units_share": "0.6856492027334852",
+    "mf_units": "276",
+    "mf_units_share": "0.3143507972665148",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.91971650065106, 37.188819980000005]
+    }
+  },
+  {
+    "jurisdiction": "Unincorporated Santa Clara",
+    "county": "Santa Clara",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "543",
+    "total_units_avg_annual": "108.6",
+    "sf_units": "341",
+    "sf_units_share": "0.6279926335174953",
+    "mf_units": "202",
+    "mf_units_share": "0.3720073664825046",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.91971650065106, 37.188819980000005]
+    }
+  },
+  {
+    "jurisdiction": "Benicia",
+    "county": "Solano",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "880",
+    "total_units_avg_annual": "88.0",
+    "sf_units": "788",
+    "sf_units_share": "0.8954545454545455",
+    "mf_units": "92",
+    "mf_units_share": "0.10454545454545454",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.15689520560835, 38.075275531000045]
+    }
+  },
+  {
+    "jurisdiction": "Benicia",
+    "county": "Solano",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "777",
+    "total_units_avg_annual": "77.7",
+    "sf_units": "619",
+    "sf_units_share": "0.7966537966537967",
+    "mf_units": "158",
+    "mf_units_share": "0.20334620334620335",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.15689520560835, 38.075275531000045]
+    }
+  },
+  {
+    "jurisdiction": "Benicia",
+    "county": "Solano",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "60",
+    "total_units_avg_annual": "6.0",
+    "sf_units": "60",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.15689520560835, 38.075275531000045]
+    }
+  },
+  {
+    "jurisdiction": "Benicia",
+    "county": "Solano",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "18",
+    "total_units_avg_annual": "3.6",
+    "sf_units": "16",
+    "sf_units_share": "0.8888888888888888",
+    "mf_units": "2",
+    "mf_units_share": "0.1111111111111111",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.15689520560835, 38.075275531000045]
+    }
+  },
+  {
+    "jurisdiction": "Dixon",
+    "county": "Solano",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "1598",
+    "total_units_avg_annual": "159.8",
+    "sf_units": "1572",
+    "sf_units_share": "0.983729662077597",
+    "mf_units": "26",
+    "mf_units_share": "0.016270337922403004",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.83017384545072, 38.4564510890001]
+    }
+  },
+  {
+    "jurisdiction": "Dixon",
+    "county": "Solano",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "960",
+    "total_units_avg_annual": "96.0",
+    "sf_units": "555",
+    "sf_units_share": "0.578125",
+    "mf_units": "405",
+    "mf_units_share": "0.421875",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.83017384545072, 38.4564510890001]
+    }
+  },
+  {
+    "jurisdiction": "Dixon",
+    "county": "Solano",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "551",
+    "total_units_avg_annual": "55.1",
+    "sf_units": "431",
+    "sf_units_share": "0.7822141560798548",
+    "mf_units": "120",
+    "mf_units_share": "0.2177858439201452",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.83017384545072, 38.4564510890001]
+    }
+  },
+  {
+    "jurisdiction": "Dixon",
+    "county": "Solano",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "927",
+    "total_units_avg_annual": "185.4",
+    "sf_units": "701",
+    "sf_units_share": "0.756202804746494",
+    "mf_units": "226",
+    "mf_units_share": "0.24379719525350593",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.83017384545072, 38.4564510890001]
+    }
+  },
+  {
+    "jurisdiction": "Fairfield",
+    "county": "Solano",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "4833",
+    "total_units_avg_annual": "483.3",
+    "sf_units": "3326",
+    "sf_units_share": "0.6881853920960066",
+    "mf_units": "1507",
+    "mf_units_share": "0.3118146079039934",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.07661314340717, 38.235862552]
+    }
+  },
+  {
+    "jurisdiction": "Fairfield",
+    "county": "Solano",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "5999",
+    "total_units_avg_annual": "599.9",
+    "sf_units": "5083",
+    "sf_units_share": "0.8473078846474412",
+    "mf_units": "916",
+    "mf_units_share": "0.15269211535255875",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.07661314340717, 38.235862552]
+    }
+  },
+  {
+    "jurisdiction": "Fairfield",
+    "county": "Solano",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "3127",
+    "total_units_avg_annual": "312.7",
+    "sf_units": "2733",
+    "sf_units_share": "0.874000639590662",
+    "mf_units": "394",
+    "mf_units_share": "0.125999360409338",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.07661314340717, 38.235862552]
+    }
+  },
+  {
+    "jurisdiction": "Fairfield",
+    "county": "Solano",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "1939",
+    "total_units_avg_annual": "387.8",
+    "sf_units": "1404",
+    "sf_units_share": "0.7240845796802475",
+    "mf_units": "535",
+    "mf_units_share": "0.27591542031975247",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.07661314340717, 38.235862552]
+    }
+  },
+  {
+    "jurisdiction": "Rio Vista",
+    "county": "Solano",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "572",
+    "total_units_avg_annual": "57.2",
+    "sf_units": "541",
+    "sf_units_share": "0.9458041958041958",
+    "mf_units": "31",
+    "mf_units_share": "0.05419580419580419",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.70099803269503, 38.174232032000056]
+    }
+  },
+  {
+    "jurisdiction": "Rio Vista",
+    "county": "Solano",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "1928",
+    "total_units_avg_annual": "192.8",
+    "sf_units": "1926",
+    "sf_units_share": "0.9989626556016598",
+    "mf_units": "2",
+    "mf_units_share": "0.001037344398340249",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.70099803269503, 38.174232032000056]
+    }
+  },
+  {
+    "jurisdiction": "Rio Vista",
+    "county": "Solano",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "1157",
+    "total_units_avg_annual": "115.7",
+    "sf_units": "1157",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.70099803269503, 38.174232032000056]
+    }
+  },
+  {
+    "jurisdiction": "Rio Vista",
+    "county": "Solano",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "431",
+    "total_units_avg_annual": "86.2",
+    "sf_units": "423",
+    "sf_units_share": "0.9814385150812065",
+    "mf_units": "8",
+    "mf_units_share": "0.018561484918793503",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.70099803269503, 38.174232032000056]
+    }
+  },
+  {
+    "jurisdiction": "Suisun City",
+    "county": "Solano",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "1585",
+    "total_units_avg_annual": "158.5",
+    "sf_units": "1557",
+    "sf_units_share": "0.9823343848580441",
+    "mf_units": "28",
+    "mf_units_share": "0.017665615141955835",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.00778915650004, 38.247594054999986]
+    }
+  },
+  {
+    "jurisdiction": "Suisun City",
+    "county": "Solano",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "1173",
+    "total_units_avg_annual": "117.3",
+    "sf_units": "986",
+    "sf_units_share": "0.8405797101449275",
+    "mf_units": "187",
+    "mf_units_share": "0.15942028985507245",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.00778915650004, 38.247594054999986]
+    }
+  },
+  {
+    "jurisdiction": "Suisun City",
+    "county": "Solano",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "56",
+    "total_units_avg_annual": "5.6",
+    "sf_units": "46",
+    "sf_units_share": "0.8214285714285714",
+    "mf_units": "10",
+    "mf_units_share": "0.17857142857142858",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.00778915650004, 38.247594054999986]
+    }
+  },
+  {
+    "jurisdiction": "Suisun City",
+    "county": "Solano",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "161",
+    "total_units_avg_annual": "32.2",
+    "sf_units": "1",
+    "sf_units_share": "0.006211180124223602",
+    "mf_units": "160",
+    "mf_units_share": "0.9937888198757764",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.00778915650004, 38.247594054999986]
+    }
+  },
+  {
+    "jurisdiction": "Unincorporated Solano",
+    "county": "Solano",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "503",
+    "total_units_avg_annual": "50.3",
+    "sf_units": "487",
+    "sf_units_share": "0.9681908548707754",
+    "mf_units": "16",
+    "mf_units_share": "0.03180914512922465",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.79507541111265, 38.300857563000044]
+    }
+  },
+  {
+    "jurisdiction": "Unincorporated Solano",
+    "county": "Solano",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "508",
+    "total_units_avg_annual": "50.8",
+    "sf_units": "502",
+    "sf_units_share": "0.9881889763779528",
+    "mf_units": "6",
+    "mf_units_share": "0.011811023622047244",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.79507541111265, 38.300857563000044]
+    }
+  },
+  {
+    "jurisdiction": "Unincorporated Solano",
+    "county": "Solano",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "213",
+    "total_units_avg_annual": "21.3",
+    "sf_units": "213",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.79507541111265, 38.300857563000044]
+    }
+  },
+  {
+    "jurisdiction": "Unincorporated Solano",
+    "county": "Solano",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "281",
+    "total_units_avg_annual": "56.2",
+    "sf_units": "281",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.79507541111265, 38.300857563000044]
+    }
+  },
+  {
+    "jurisdiction": "Vacaville",
+    "county": "Solano",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "4745",
+    "total_units_avg_annual": "474.5",
+    "sf_units": "4037",
+    "sf_units_share": "0.8507903055848262",
+    "mf_units": "708",
+    "mf_units_share": "0.14920969441517387",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.97657249499191, 38.362966069]
+    }
+  },
+  {
+    "jurisdiction": "Vacaville",
+    "county": "Solano",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "4455",
+    "total_units_avg_annual": "445.5",
+    "sf_units": "2947",
+    "sf_units_share": "0.6615039281705949",
+    "mf_units": "1508",
+    "mf_units_share": "0.33849607182940517",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.97657249499191, 38.362966069]
+    }
+  },
+  {
+    "jurisdiction": "Vacaville",
+    "county": "Solano",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "2591",
+    "total_units_avg_annual": "259.1",
+    "sf_units": "2274",
+    "sf_units_share": "0.8776534156696256",
+    "mf_units": "317",
+    "mf_units_share": "0.12234658433037437",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.97657249499191, 38.362966069]
+    }
+  },
+  {
+    "jurisdiction": "Vacaville",
+    "county": "Solano",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "1455",
+    "total_units_avg_annual": "291.0",
+    "sf_units": "990",
+    "sf_units_share": "0.6804123711340206",
+    "mf_units": "465",
+    "mf_units_share": "0.31958762886597936",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-121.97657249499191, 38.362966069]
+    }
+  },
+  {
+    "jurisdiction": "Vallejo",
+    "county": "Solano",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "2364",
+    "total_units_avg_annual": "236.4",
+    "sf_units": "2051",
+    "sf_units_share": "0.8675972927241963",
+    "mf_units": "313",
+    "mf_units_share": "0.13240270727580372",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.2305061054402, 38.114958032000004]
+    }
+  },
+  {
+    "jurisdiction": "Vallejo",
+    "county": "Solano",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "3214",
+    "total_units_avg_annual": "321.4",
+    "sf_units": "2540",
+    "sf_units_share": "0.790292470441817",
+    "mf_units": "674",
+    "mf_units_share": "0.20970752955818295",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.2305061054402, 38.114958032000004]
+    }
+  },
+  {
+    "jurisdiction": "Vallejo",
+    "county": "Solano",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "484",
+    "total_units_avg_annual": "48.4",
+    "sf_units": "344",
+    "sf_units_share": "0.7107438016528925",
+    "mf_units": "140",
+    "mf_units_share": "0.2892561983471074",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.2305061054402, 38.114958032000004]
+    }
+  },
+  {
+    "jurisdiction": "Vallejo",
+    "county": "Solano",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "676",
+    "total_units_avg_annual": "135.2",
+    "sf_units": "136",
+    "sf_units_share": "0.20118343195266272",
+    "mf_units": "540",
+    "mf_units_share": "0.7988165680473372",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.2305061054402, 38.114958032000004]
+    }
+  },
+  {
+    "jurisdiction": "Cloverdale",
+    "county": "Sonoma",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "701",
+    "total_units_avg_annual": "70.1",
+    "sf_units": "612",
+    "sf_units_share": "0.8730385164051355",
+    "mf_units": "89",
+    "mf_units_share": "0.12696148359486448",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-123.01489740649879, 38.79569552550009]
+    }
+  },
+  {
+    "jurisdiction": "Cloverdale",
+    "county": "Sonoma",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "756",
+    "total_units_avg_annual": "75.6",
+    "sf_units": "721",
+    "sf_units_share": "0.9537037037037037",
+    "mf_units": "35",
+    "mf_units_share": "0.046296296296296294",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-123.01489740649879, 38.79569552550009]
+    }
+  },
+  {
+    "jurisdiction": "Cloverdale",
+    "county": "Sonoma",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "173",
+    "total_units_avg_annual": "17.3",
+    "sf_units": "20",
+    "sf_units_share": "0.11560693641618497",
+    "mf_units": "153",
+    "mf_units_share": "0.884393063583815",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-123.01489740649879, 38.79569552550009]
+    }
+  },
+  {
+    "jurisdiction": "Cloverdale",
+    "county": "Sonoma",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "297",
+    "total_units_avg_annual": "59.4",
+    "sf_units": "40",
+    "sf_units_share": "0.13468013468013468",
+    "mf_units": "257",
+    "mf_units_share": "0.8653198653198653",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-123.01489740649879, 38.79569552550009]
+    }
+  },
+  {
+    "jurisdiction": "Cotati",
+    "county": "Sonoma",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "270",
+    "total_units_avg_annual": "27.0",
+    "sf_units": "242",
+    "sf_units_share": "0.8962962962962963",
+    "mf_units": "28",
+    "mf_units_share": "0.1037037037037037",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.71517128227785, 38.32903301200005]
+    }
+  },
+  {
+    "jurisdiction": "Cotati",
+    "county": "Sonoma",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "492",
+    "total_units_avg_annual": "49.2",
+    "sf_units": "333",
+    "sf_units_share": "0.676829268292683",
+    "mf_units": "159",
+    "mf_units_share": "0.3231707317073171",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.71517128227785, 38.32903301200005]
+    }
+  },
+  {
+    "jurisdiction": "Cotati",
+    "county": "Sonoma",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "86",
+    "total_units_avg_annual": "8.6",
+    "sf_units": "86",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.71517128227785, 38.32903301200005]
+    }
+  },
+  {
+    "jurisdiction": "Cotati",
+    "county": "Sonoma",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "64",
+    "total_units_avg_annual": "12.8",
+    "sf_units": "58",
+    "sf_units_share": "0.90625",
+    "mf_units": "6",
+    "mf_units_share": "0.09375",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.71517128227785, 38.32903301200005]
+    }
+  },
+  {
+    "jurisdiction": "Healdsburg",
+    "county": "Sonoma",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "555",
+    "total_units_avg_annual": "55.5",
+    "sf_units": "374",
+    "sf_units_share": "0.6738738738738739",
+    "mf_units": "181",
+    "mf_units_share": "0.3261261261261261",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.86284889045643, 38.6214290230001]
+    }
+  },
+  {
+    "jurisdiction": "Healdsburg",
+    "county": "Sonoma",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "444",
+    "total_units_avg_annual": "44.4",
+    "sf_units": "308",
+    "sf_units_share": "0.6936936936936937",
+    "mf_units": "136",
+    "mf_units_share": "0.3063063063063063",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.86284889045643, 38.6214290230001]
+    }
+  },
+  {
+    "jurisdiction": "Healdsburg",
+    "county": "Sonoma",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "194",
+    "total_units_avg_annual": "19.4",
+    "sf_units": "188",
+    "sf_units_share": "0.9690721649484536",
+    "mf_units": "6",
+    "mf_units_share": "0.030927835051546393",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.86284889045643, 38.6214290230001]
+    }
+  },
+  {
+    "jurisdiction": "Healdsburg",
+    "county": "Sonoma",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "393",
+    "total_units_avg_annual": "78.6",
+    "sf_units": "162",
+    "sf_units_share": "0.4122137404580153",
+    "mf_units": "231",
+    "mf_units_share": "0.5877862595419847",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.86284889045643, 38.6214290230001]
+    }
+  },
+  {
+    "jurisdiction": "Petaluma",
+    "county": "Sonoma",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "4098",
+    "total_units_avg_annual": "409.8",
+    "sf_units": "3386",
+    "sf_units_share": "0.826256710590532",
+    "mf_units": "712",
+    "mf_units_share": "0.17374328940946804",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.62272386078011, 38.24409501100011]
+    }
+  },
+  {
+    "jurisdiction": "Petaluma",
+    "county": "Sonoma",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "1894",
+    "total_units_avg_annual": "189.4",
+    "sf_units": "1021",
+    "sf_units_share": "0.5390707497360084",
+    "mf_units": "873",
+    "mf_units_share": "0.46092925026399156",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.62272386078011, 38.24409501100011]
+    }
+  },
+  {
+    "jurisdiction": "Petaluma",
+    "county": "Sonoma",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "2522",
+    "total_units_avg_annual": "252.2",
+    "sf_units": "848",
+    "sf_units_share": "0.3362410785091198",
+    "mf_units": "1674",
+    "mf_units_share": "0.6637589214908802",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.62272386078011, 38.24409501100011]
+    }
+  },
+  {
+    "jurisdiction": "Petaluma",
+    "county": "Sonoma",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "1380",
+    "total_units_avg_annual": "276.0",
+    "sf_units": "427",
+    "sf_units_share": "0.3094202898550725",
+    "mf_units": "953",
+    "mf_units_share": "0.6905797101449276",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.62272386078011, 38.24409501100011]
+    }
+  },
+  {
+    "jurisdiction": "Rohnert Park",
+    "county": "Sonoma",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "1769",
+    "total_units_avg_annual": "176.9",
+    "sf_units": "1055",
+    "sf_units_share": "0.5963821368004523",
+    "mf_units": "714",
+    "mf_units_share": "0.4036178631995478",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.69896189434769, 38.34336651100004]
+    }
+  },
+  {
+    "jurisdiction": "Rohnert Park",
+    "county": "Sonoma",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "899",
+    "total_units_avg_annual": "89.9",
+    "sf_units": "94",
+    "sf_units_share": "0.10456062291434928",
+    "mf_units": "805",
+    "mf_units_share": "0.8954393770856507",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.69896189434769, 38.34336651100004]
+    }
+  },
+  {
+    "jurisdiction": "Rohnert Park",
+    "county": "Sonoma",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "1565",
+    "total_units_avg_annual": "156.5",
+    "sf_units": "767",
+    "sf_units_share": "0.49009584664536743",
+    "mf_units": "798",
+    "mf_units_share": "0.5099041533546326",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.69896189434769, 38.34336651100004]
+    }
+  },
+  {
+    "jurisdiction": "Rohnert Park",
+    "county": "Sonoma",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "988",
+    "total_units_avg_annual": "197.6",
+    "sf_units": "814",
+    "sf_units_share": "0.8238866396761133",
+    "mf_units": "174",
+    "mf_units_share": "0.17611336032388664",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.69896189434769, 38.34336651100004]
+    }
+  },
+  {
+    "jurisdiction": "Santa Rosa",
+    "county": "Sonoma",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "8063",
+    "total_units_avg_annual": "806.3",
+    "sf_units": "6311",
+    "sf_units_share": "0.7827111496961429",
+    "mf_units": "1752",
+    "mf_units_share": "0.2172888503038571",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.70882751798726, 38.45262052200004]
+    }
+  },
+  {
+    "jurisdiction": "Santa Rosa",
+    "county": "Sonoma",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "8078",
+    "total_units_avg_annual": "807.8",
+    "sf_units": "4908",
+    "sf_units_share": "0.6075761327061153",
+    "mf_units": "3170",
+    "mf_units_share": "0.3924238672938846",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.70882751798726, 38.45262052200004]
+    }
+  },
+  {
+    "jurisdiction": "Santa Rosa",
+    "county": "Sonoma",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "4602",
+    "total_units_avg_annual": "460.2",
+    "sf_units": "3283",
+    "sf_units_share": "0.7133854845719253",
+    "mf_units": "1319",
+    "mf_units_share": "0.28661451542807476",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.70882751798726, 38.45262052200004]
+    }
+  },
+  {
+    "jurisdiction": "Santa Rosa",
+    "county": "Sonoma",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "3837",
+    "total_units_avg_annual": "767.4",
+    "sf_units": "1195",
+    "sf_units_share": "0.3114412301277039",
+    "mf_units": "2642",
+    "mf_units_share": "0.688558769872296",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.70882751798726, 38.45262052200004]
+    }
+  },
+  {
+    "jurisdiction": "Sebastopol",
+    "county": "Sonoma",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "306",
+    "total_units_avg_annual": "30.6",
+    "sf_units": "272",
+    "sf_units_share": "0.8888888888888888",
+    "mf_units": "34",
+    "mf_units_share": "0.1111111111111111",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.83049663108935, 38.39897150800003]
+    }
+  },
+  {
+    "jurisdiction": "Sebastopol",
+    "county": "Sonoma",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "160",
+    "total_units_avg_annual": "16.0",
+    "sf_units": "117",
+    "sf_units_share": "0.73125",
+    "mf_units": "43",
+    "mf_units_share": "0.26875",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.83049663108935, 38.39897150800003]
+    }
+  },
+  {
+    "jurisdiction": "Sebastopol",
+    "county": "Sonoma",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "90",
+    "total_units_avg_annual": "9.0",
+    "sf_units": "78",
+    "sf_units_share": "0.8666666666666667",
+    "mf_units": "12",
+    "mf_units_share": "0.13333333333333333",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.83049663108935, 38.39897150800003]
+    }
+  },
+  {
+    "jurisdiction": "Sebastopol",
+    "county": "Sonoma",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "78",
+    "total_units_avg_annual": "15.6",
+    "sf_units": "78",
+    "sf_units_share": "1.0",
+    "mf_units": "0",
+    "mf_units_share": "0.0",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.83049663108935, 38.39897150800003]
+    }
+  },
+  {
+    "jurisdiction": "Sonoma",
+    "county": "Sonoma",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "687",
+    "total_units_avg_annual": "68.7",
+    "sf_units": "474",
+    "sf_units_share": "0.6899563318777293",
+    "mf_units": "213",
+    "mf_units_share": "0.31004366812227074",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.46115661814054, 38.29115252500005]
+    }
+  },
+  {
+    "jurisdiction": "Sonoma",
+    "county": "Sonoma",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "714",
+    "total_units_avg_annual": "71.4",
+    "sf_units": "482",
+    "sf_units_share": "0.6750700280112045",
+    "mf_units": "232",
+    "mf_units_share": "0.32492997198879553",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.46115661814054, 38.29115252500005]
+    }
+  },
+  {
+    "jurisdiction": "Sonoma",
+    "county": "Sonoma",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "329",
+    "total_units_avg_annual": "32.9",
+    "sf_units": "163",
+    "sf_units_share": "0.49544072948328266",
+    "mf_units": "166",
+    "mf_units_share": "0.5045592705167173",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.46115661814054, 38.29115252500005]
+    }
+  },
+  {
+    "jurisdiction": "Sonoma",
+    "county": "Sonoma",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "63",
+    "total_units_avg_annual": "12.6",
+    "sf_units": "57",
+    "sf_units_share": "0.9047619047619048",
+    "mf_units": "6",
+    "mf_units_share": "0.09523809523809523",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.46115661814054, 38.29115252500005]
+    }
+  },
+  {
+    "jurisdiction": "Unincorporated Sonoma",
+    "county": "Sonoma",
+    "decade": "1990s",
+    "min_year": "1990",
+    "max_year": "1999",
+    "total_units": "5361",
+    "total_units_avg_annual": "536.1",
+    "sf_units": "5036",
+    "sf_units_share": "0.9393769819063608",
+    "mf_units": "325",
+    "mf_units_share": "0.06062301809363925",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.85665244045958, 38.4815789440001]
+    }
+  },
+  {
+    "jurisdiction": "Unincorporated Sonoma",
+    "county": "Sonoma",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "3740",
+    "total_units_avg_annual": "374.0",
+    "sf_units": "3192",
+    "sf_units_share": "0.853475935828877",
+    "mf_units": "548",
+    "mf_units_share": "0.146524064171123",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.85665244045958, 38.4815789440001]
+    }
+  },
+  {
+    "jurisdiction": "Unincorporated Sonoma",
+    "county": "Sonoma",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "3132",
+    "total_units_avg_annual": "313.2",
+    "sf_units": "2748",
+    "sf_units_share": "0.8773946360153256",
+    "mf_units": "384",
+    "mf_units_share": "0.12260536398467432",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.85665244045958, 38.4815789440001]
+    }
+  },
+  {
+    "jurisdiction": "Unincorporated Sonoma",
+    "county": "Sonoma",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "1648",
+    "total_units_avg_annual": "329.6",
+    "sf_units": "1398",
+    "sf_units_share": "0.8483009708737864",
+    "mf_units": "250",
+    "mf_units_share": "0.15169902912621358",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.85665244045958, 38.4815789440001]
+    }
+  },
+  {
+    "jurisdiction": "Windsor",
+    "county": "Sonoma",
+    "decade": "1990s",
+    "min_year": "1992",
+    "max_year": "1999",
+    "total_units": "1936",
+    "total_units_avg_annual": "242.0",
+    "sf_units": "1688",
+    "sf_units_share": "0.871900826446281",
+    "mf_units": "248",
+    "mf_units_share": "0.128099173553719",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.80628492240093, 38.54249202000006]
+    }
+  },
+  {
+    "jurisdiction": "Windsor",
+    "county": "Sonoma",
+    "decade": "2000s",
+    "min_year": "2000",
+    "max_year": "2009",
+    "total_units": "1584",
+    "total_units_avg_annual": "158.4",
+    "sf_units": "1339",
+    "sf_units_share": "0.8453282828282829",
+    "mf_units": "245",
+    "mf_units_share": "0.15467171717171718",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.80628492240093, 38.54249202000006]
+    }
+  },
+  {
+    "jurisdiction": "Windsor",
+    "county": "Sonoma",
+    "decade": "2010s",
+    "min_year": "2010",
+    "max_year": "2019",
+    "total_units": "153",
+    "total_units_avg_annual": "15.3",
+    "sf_units": "93",
+    "sf_units_share": "0.6078431372549019",
+    "mf_units": "60",
+    "mf_units_share": "0.39215686274509803",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.80628492240093, 38.54249202000006]
+    }
+  },
+  {
+    "jurisdiction": "Windsor",
+    "county": "Sonoma",
+    "decade": "2020s",
+    "min_year": "2020",
+    "max_year": "2024",
+    "total_units": "339",
+    "total_units_avg_annual": "67.8",
+    "sf_units": "93",
+    "sf_units_share": "0.2743362831858407",
+    "mf_units": "246",
+    "mf_units_share": "0.7256637168141593",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.80628492240093, 38.54249202000006]
+    }
+  }
+]
