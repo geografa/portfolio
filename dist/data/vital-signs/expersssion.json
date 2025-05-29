@@ -1,0 +1,25 @@
+  "circle-radius": [
+                  "interpolate",
+                  ["linear"], // Use linear interpolation for smoother scaling
+                  ["zoom"], // Use zoom as the input for scaling
+                  7, // Minimum zoom level
+                  [
+                    "interpolate",
+                    ["linear"],
+                    ["number", ["get", "description"], 1], // Format "description" to a number
+                    0, // Minimum value
+                    2, // Minimum radius
+                    2629, // Maximum value
+                    20, // Maximum radius
+                  ],
+                  8, // Maximum zoom level
+                  [
+                    "interpolate",
+                    ["linear"],
+                    ["number", ["get", "description"], 1], // Format "description" to a number
+                    0, // Minimum value
+                    2, // Minimum radius
+                    2629, // Maximum value
+                    80, // Adjusted maximum radius to be proportional
+                  ],
+                ],
