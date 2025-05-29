@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>MapsGL SDK - Custom alert styles</title>
+    <meta
+      name="description"
+      content="Use custom alert layer styles to show different alert levels."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v2.8.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script
+      defer
+      src="https://api.mapbox.com/mapbox-gl-js/v2.8.0/mapbox-gl.js"
+    ></script>
+
+    <link
+      href="https://cdn.aerisapi.com/sdk/js/mapsgl/latest/aerisweather.mapsgl.css"
+      rel="stylesheet"
+    />
+    <script
+      defer
+      src="https://cdn.aerisapi.com/sdk/js/mapsgl/latest/aerisweather.mapsgl.js"
+    ></script>
+
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100vh;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <script>
+      window.addEventListener("load", () => {
+        mapboxgl.accessToken =
+          "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
+
+        const map = new mapboxgl.Map({
+          container: document.getElementById("map"),
+          style: "mapbox://styles/mapbox/light-v9",
+          center: [-96.33207, 40.60621],
+          zoom: 3,
+        });
+
+        const client_id = "rXM6oZ1t1mS0dmJc19tZi";
+        const client_secret = "LSwZQ5hwluiMeXVpJUy3AfiqdbepA6mhE58VaQzn";
+
+        const account = new aerisweather.mapsgl.Account(
+          client_id,
+          client_secret
+        );
+        const controller = new aerisweather.mapsgl.MapboxMapController(map, {
+          account,
+        });
+
+        // Set alert color based on severity/level
+        const determineAlertColor = (data) => {
+          const title = data.ADVISORY;
+
+          if (/warning|extreme/i.test(title)) return "#df1616";
+          if (/watch|severe/i.test(title)) return "#ff9600";
+          if (/advisory|moderate/i.test(title)) return "#009ac8";
+          if (/statement|alert|minor/i.test(title)) return "#808080";
+
+          return data.COLOR || "#000";
+        };
+
+        controller.on("load", () => {
+          controller.addWeatherLayer("alerts", {
+            paint: {
+              fill: {
+                color: (data) => {
+                  return determineAlertColor(data);
+                },
+                opacity: 0.5,
+              },
+              stroke: {
+                color: (data) => {
+                  return determineAlertColor(data);
+                },
+                opacity: 1,
+              },
+            },
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

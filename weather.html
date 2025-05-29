@@ -8,14 +8,22 @@
       content="initial-scale=1,maximum-scale=1,user-scalable=no"
     />
     <link
-      href="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.css"
+      href="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.css"
       rel="stylesheet"
     />
-    <script src="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.js"></script>
+
+    <link
+      href="https://cdn.aerisapi.com/sdk/js/mapsgl/latest/aerisweather.mapsgl.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.aerisapi.com/sdk/js/mapsgl/latest/aerisweather.mapsgl.js"></script>
+
     <style>
       body {
         margin: 0;
         padding: 0;
+        overflow: hidden;
       }
       #map {
         position: absolute;
@@ -23,72 +31,245 @@
         bottom: 0;
         width: 100%;
       }
+      /* Alert Ticker */
+      #news-ticker {
+        font-family: "Poppins", sans-serif;
+        font-size: 0.8em;
+        position: absolute;
+        z-index: 1;
+        bottom: 40px;
+        width: 98vw;
+        height: 40px;
+        background-color: rgba(239, 35, 3, 0.803);
+        color: white;
+        padding: 10px;
+        /* text-align: right; */
+      }
+      #news-ticker-text {
+        font-size: 24px;
+      }
+
+      .ticker {
+        display: flex;
+        flex-wrap: nowrap;
+      }
+      .ticker__list {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: flex-start;
+        animation: ticker 15s infinite linear;
+      }
+      .ticker:hover .ticker__list {
+        animation-play-state: paused;
+      }
+      .ticker__item {
+        margin-right: 20px;
+      }
+      @-moz-keyframes ticker {
+        100% {
+          transform: translateX(-100%);
+        }
+      }
+      @-webkit-keyframes ticker {
+        100% {
+          transform: translateX(-100%);
+        }
+      }
+      @-o-keyframes ticker {
+        100% {
+          transform: translateX(-100%);
+        }
+      }
+      @keyframes ticker {
+        100% {
+          transform: translateX(-100%);
+        }
+      }
+
+      /* div style for legend in upper right */
+      .legend {
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 3px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        font: 12px/20px "Helvetica Neue", Arial, Helvetica, sans-serif;
+        bottom: 120px;
+        padding: 10px;
+        position: absolute;
+        left: 10px;
+        width: 400px;
+        z-index: 1;
+      }
+      .legend img {
+        width: 100%;
+      }
     </style>
   </head>
   <body>
+    <!-- create a map div to hold text for a news ticker in the lower third -->
+
+    <div class="ticker" id="news-ticker">
+      <div class="ticker__list">
+        <div class="ticker__item">
+          <span
+            >*********** Winter Storm Warning: Heavy snow (5-9") and 40 mph wind
+            gusts in Alger County until 1 AM Sat. Difficult travel, low
+            visibility, and power outages possible.</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="legend" id="map-legend">
+      <img src="./img/weather/legend.png" alt="legend" />
+    </div>
+    <!-- create a map div to hold the map -->
     <div id="map"></div>
+
     <script>
+      // set access token for mapping library as needed
       mapboxgl.accessToken =
         "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
-      const videoStyle = {
-        version: 8,
-        sources: {
-          satellite: {
-            type: "raster",
-            url: "mapbox://mapbox.satellite",
-            tileSize: 256,
-          },
-          video: {
-            type: "video",
-            urls: ["./img/pwat_noaa.mp4"], // add coordinates to the video source to make it a 360 video
-            coordinates: [
-              [-180, 80],
-              [180, 80],
-              [180, -80],
-              [-180, -80],
-            ],
-          },
-        },
-        layers: [
-          {
-            id: "background",
-            type: "background",
-            paint: {
-              "background-color": "rgb(4,7,14)",
-            },
-          },
-          {
-            id: "satellite",
-            type: "raster",
-            source: "satellite",
-          },
-          {
-            id: "video",
-            type: "raster",
-            source: "video",
-          },
-        ],
-      };
+
       const map = new mapboxgl.Map({
-        container: "map",
-        minZoom: 0,
-        zoom: 1,
-        center: [-122.514426, 37.562984],
-        // bearing: -96,
-        style: videoStyle,
-        projection: "globe",
+        container: "map", // container ID
+        center: [-122.675818, 45.55119],
+        style: "mapbox://styles/grafa/cm7p7ti07007e01rd5bt8fce7",
+        center: [-94.457683, 38.890149],
+        projection: "mercator",
+        zoom: 3,
+        bearing: 0,
+        pitch: 0,
       });
 
-      let playingVideo = true;
+      map.on("load", () => {
+        const locations = [
+          { center: [-94.457683, 38.890149], zoom: 3, bearing: 0, pitch: 0 }, // lower 48
+          { center: [-122.675818, 45.55119], zoom: 5, bearing: 0, pitch: 0 }, // PNW
+          { center: [-84.094965, 30.446334], zoom: 5, bearing: 0, pitch: 0 }, // SE
+          { center: [-73.559121, 43.830768], zoom: 5, bearing: 0, pitch: 0 }, // NE
+          { center: [-82.034803, 42.278826], zoom: 5, bearing: 0, pitch: 0 }, // MIDWEST
+          { center: [-105.78207, 39.550051], zoom: 5, bearing: 0, pitch: 0 }, // ROCKIES
+          { center: [-119.417932, 36.778259], zoom: 5, bearing: 0, pitch: 0 }, // SW
+          { center: [-97.092877, 32.89748], zoom: 5, bearing: 0, pitch: 0 }, // TX
+        ];
 
-      map.on("click", () => {
-        playingVideo = !playingVideo;
+        let currentLocation = 0;
 
-        if (playingVideo) {
-          map.getSource("video").play();
-        } else {
-          map.getSource("video").pause();
+        function flyToNextLocation() {
+          const location = locations[currentLocation];
+          map.flyTo({
+            center: location.center,
+            zoom: location.zoom,
+            bearing: location.bearing,
+            pitch: location.pitch,
+            speed: 0.5,
+            curve: 1,
+          });
+
+          currentLocation = (currentLocation + 1) % locations.length;
+          setTimeout(flyToNextLocation, 8000); // Move to the next location every 6 seconds
         }
+
+        flyToNextLocation();
+      });
+
+      /**
+       * Set up your AerisWeather account and access keys for the SDK.
+       */
+
+      const client_id = "rXM6oZ1t1mS0dmJc19tZi";
+      const client_secret = "LSwZQ5hwluiMeXVpJUy3AfiqdbepA6mhE58VaQzn";
+      const account = new aerisweather.mapsgl.Account(client_id, client_secret);
+      /**
+       * Create a map controller that corresponds to the selected mapping library, passing in
+       * your `map` and `account` instances.
+       */
+      const controller = new aerisweather.mapsgl.MapboxMapController(map, {
+        account: account,
+        animation: {
+          duration: 3,
+          delay: 0,
+          endDelay: 0,
+          autoplay: true,
+          repeat: true,
+          enabled: true,
+        },
+        timeline: {
+          // start: new Date(Date.now() - 2 * 3600 * 1000),
+          // create a start date that is 4 hours ago
+          // and an end: that is now
+          start: new Date(Date.now() - 12 * 3600 * 1000),
+          end: new Date(Date.now() - 1 * 3600 * 1000),
+          alwaysPlayFromBeginning: true,
+        },
+        units: {
+          temperature: "F" | "C",
+          speed: "mph" | "km/h" | "m/s" | "kts",
+          pressure: "mb" | "inHg" | "hPa" | "Pa",
+          distance: "mi" | "km" | "ft" | "m",
+          height: "ft" | "m",
+          precipitation: "in" | "mm" | "cm" | "m" | "ft",
+          snowfall: "in" | "mm" | "cm" | "m" | "ft",
+          direction: "°",
+          time: "hr" | "min" | "sec" | "ms",
+          rate: "in/hr" | "mm/hr" | "mm/sec" | "dBZ",
+          concentration: "ppm" | "ug/m3",
+          ratio: "%",
+        },
+      });
+
+      // Adds a legend control to the map, returning the control instance
+      // const control = controller.addLegendControl("#map-legend");
+
+      /**
+       * Add functionality and data to your map once the controller's `load` event has been triggered.
+       */
+      controller.on("load", () => {
+        // update the timeline start and end using exact dates
+        // controller.timeline.startDate = new Date(2025, 1, 2, 17);
+        // controller.timeline.endDate = new Date.now();
+
+        // do stuff, like add weather layers
+        // controller.addWeatherLayer("temperatures");
+        // const mmToIn = aerisweather.mapsgl.units.mmToIn();
+
+        controller.addWeatherLayer("radar", {
+          data: {
+            quality: aerisweather.mapsgl.DataQuality.high,
+          },
+        });
+        const colorscale = aerisweather.mapsgl.styles.getColorScale("Turbo");
+        // set the setPaintProperty to the new colorscale
+        controller.setPaintProperty("precip", "fill-color", colorscale);
+        controller.timeline.startDate = new Date(Date.now() - 6 * 3600 * 1000);
+        controller.timeline.endDate = new Date(Date.now() - 1 * 3600 * 1000);
+
+        // add alerts layer
+        // Set alert color based on severity/level
+        const determineAlertColor = (data) => {
+          const title = data.ADVISORY;
+          console.log("title", data);
+
+          if (/warning|extreme/i.test(title)) return "#df1616";
+          if (/watch|severe/i.test(title)) return "#ff9600";
+          if (/advisory|moderate/i.test(title)) return "#009ac8";
+          if (/statement|alert|minor/i.test(title)) return "#808080";
+
+          return data.COLOR || "#000";
+        };
+        controller.addWeatherLayer("alerts", {
+          paint: {
+            fill: {
+              color: "#df1616",
+              opacity: 0.5,
+            },
+            stroke: {
+              color: "#f30",
+              opacity: 1,
+            },
+          },
+        });
+        console.log("controller", controller.getWeatherLayer("alerts"));
       });
     </script>
   </body>
