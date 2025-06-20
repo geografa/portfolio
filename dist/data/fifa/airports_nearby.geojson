@@ -191,19 +191,7 @@
       },
       "geometry": { "type": "Point", "coordinates": [-82.891899, 39.998001] }
     },
-    {
-      "type": "Feature",
-      "properties": {
-        "icao": "KCPM",
-        "iata": "CPM",
-        "name": "Compton Woodley Airport",
-        "city": "Compton",
-        "state": "California",
-        "elevation": 97,
-        "tz": "America/Los_Angeles"
-      },
-      "geometry": { "type": "Point", "coordinates": [-118.244003, 33.889999] }
-    },
+
     {
       "type": "Feature",
       "properties": {
@@ -338,19 +326,6 @@
     {
       "type": "Feature",
       "properties": {
-        "icao": "KFTY",
-        "iata": "FTY",
-        "name": "Fulton County Airport Brown Field",
-        "city": "Atlanta",
-        "state": "Georgia",
-        "elevation": 841,
-        "tz": "America/New_York"
-      },
-      "geometry": { "type": "Point", "coordinates": [-84.5214, 33.779099] }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "icao": "KFXE",
         "iata": "FXE",
         "name": "Fort Lauderdale Executive Airport",
@@ -391,19 +366,6 @@
     {
       "type": "Feature",
       "properties": {
-        "icao": "KHHR",
-        "iata": "HHR",
-        "name": "Jack Northrop Field Hawthorne Municipal Airport",
-        "city": "Hawthorne",
-        "state": "California",
-        "elevation": 66,
-        "tz": "America/Los_Angeles"
-      },
-      "geometry": { "type": "Point", "coordinates": [-118.334999, 33.922798] }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "icao": "KHOU",
         "iata": "HOU",
         "name": "William P Hobby Airport",
@@ -414,20 +376,6 @@
       },
       "geometry": { "type": "Point", "coordinates": [-95.2789, 29.645399] }
     },
-    {
-      "type": "Feature",
-      "properties": {
-        "icao": "KHWO",
-        "iata": "HWO",
-        "name": "North Perry Airport",
-        "city": "Hollywood",
-        "state": "Florida",
-        "elevation": 8,
-        "tz": "America/New_York"
-      },
-      "geometry": { "type": "Point", "coordinates": [-80.2407, 26.0012] }
-    },
-
     {
       "type": "Feature",
       "properties": {
@@ -720,19 +668,6 @@
     {
       "type": "Feature",
       "properties": {
-        "icao": "KPDK",
-        "iata": "PDK",
-        "name": "DeKalb Peachtree Airport",
-        "city": "Atlanta",
-        "state": "Georgia",
-        "elevation": 1003,
-        "tz": "America/New_York"
-      },
-      "geometry": { "type": "Point", "coordinates": [-84.302002, 33.875599] }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "icao": "KPDX",
         "iata": "PDX",
         "name": "Portland International Airport",
@@ -824,20 +759,6 @@
     {
       "type": "Feature",
       "properties": {
-        "icao": "KRNT",
-        "iata": "RNT",
-        "name": "Renton Municipal Airport",
-        "city": "Renton",
-        "state": "Washington",
-        "elevation": 32,
-        "tz": "America/Los_Angeles"
-      },
-      "geometry": { "type": "Point", "coordinates": [-122.216003, 47.493099] }
-    },
-
-    {
-      "type": "Feature",
-      "properties": {
         "icao": "KSAT",
         "iata": "SAT",
         "name": "San Antonio International Airport",
@@ -890,19 +811,6 @@
     {
       "type": "Feature",
       "properties": {
-        "icao": "KSFF",
-        "iata": "SFF",
-        "name": "Felts Field",
-        "city": "Spokane",
-        "state": "Oregon",
-        "elevation": 1953,
-        "tz": "America/Los_Angeles"
-      },
-      "geometry": { "type": "Point", "coordinates": [-117.322998, 47.6828] }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "icao": "KSJC",
         "iata": "SJC",
         "name": "Norman Y. Mineta San Jose International Airport",
@@ -925,19 +833,6 @@
         "tz": "America/Los_Angeles"
       },
       "geometry": { "type": "Point", "coordinates": [-118.450996, 34.0158] }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "icao": "KSNA",
-        "iata": "SNA",
-        "name": "John Wayne Airport-Orange County Airport",
-        "city": "Santa Ana",
-        "state": "California",
-        "elevation": 56,
-        "tz": "America/Los_Angeles"
-      },
-      "geometry": { "type": "Point", "coordinates": [-117.867996, 33.675701] }
     },
     {
       "type": "Feature",
@@ -978,19 +873,6 @@
         "tz": "America/New_York"
       },
       "geometry": { "type": "Point", "coordinates": [-74.060799, 40.850101] }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "icao": "KTOA",
-        "iata": "TOA",
-        "name": "Zamperini Field",
-        "city": "Torrance",
-        "state": "California",
-        "elevation": 103,
-        "tz": "America/Los_Angeles"
-      },
-      "geometry": { "type": "Point", "coordinates": [-118.339996, 33.803398] }
     },
     {
       "type": "Feature",
