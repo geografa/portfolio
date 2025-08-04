@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>City of Tucker - Pavement Condition Index (PCI) Map</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.11.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.11.0/mapbox-gl.js"></script>
+    <!-- Load the `mapbox-gl-geocoder` plugin. -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.1.0/mapbox-gl-geocoder.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.1.0/mapbox-gl-geocoder.css"
+      type="text/css"
+    />
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+      #legend {
+        position: absolute;
+        bottom: 40px;
+        left: 10px;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 10px;
+        border-radius: 5px;
+        outline: 0.7px solid #0a0a0a;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        z-index: 1;
+      }
+      .legend-item {
+        display: flex;
+        align-items: center;
+        margin-top: 6px;
+      }
+      .legend-item:first-of-type {
+        margin-top: 0;
+      }
+      .legend-color {
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        margin-right: 8px;
+        border-radius: 2px;
+      }
+      .legend-color.failed {
+        background: #d73027;
+      }
+      .legend-color.poor {
+        background: #fc8d59;
+      }
+      .legend-color.fair {
+        background: #fee08b;
+      }
+      .legend-color.good {
+        background: #d9ef8b;
+      }
+      .legend-color.excellent {
+        background: #1a9850;
+      }
+
+      .mapboxgl-popup {
+        max-width: 400px;
+        font: 14px/8px "Helvetica Neue", Arial, Helvetica, sans-serif;
+        padding-bottom: 10px;
+      }
+      .mapboxgl-popup,
+      img {
+        max-width: 100%;
+      }
+      .mapboxgl-popup-content {
+        border-radius: 10px;
+        color: #ffffff;
+        background: #23646a;
+      }
+      .mapboxgl-popup-content img {
+        background-color: rgba(255, 255, 255, 1);
+        /* max-width: 66px; */
+        position: relative;
+        left: 0px;
+        margin: 10px 0px;
+        border: solid 0.5px #e7e0d4;
+        border-radius: 10px;
+      }
+      .mapboxgl-popup-content a {
+        color: #ffffff;
+        line-height: 2em;
+      }
+      .mapboxgl-popup-content h2,
+      p {
+        margin-bottom: 0;
+      }
+      .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
+        border-top-color: #23646a;
+      }
+      .mapboxgl-popup-anchor-top .mapboxgl-popup-tip {
+        border-bottom-color: #23646a;
+      }
+      .mapboxgl-popup-anchor-left .mapboxgl-popup-tip {
+        border-right-color: #23646a;
+      }
+      .mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
+        border-left-color: #23646a;
+      }
+      .mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip {
+        border-bottom-color: #23646a;
+      }
+      .mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip {
+        border-bottom-color: #23646a;
+      }
+      .mapboxgl-popup-anchor-bottom-left .mapboxgl-popup-tip {
+        border-top-color: #23646a;
+      }
+      .mapboxgl-popup-anchor-bottom-right .mapboxgl-popup-tip {
+        border-top-color: #23646a;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="legend">
+      <h3>Pavement Condition Index (PCI)</h3>
+      <div class="legend-item">
+        <span class="legend-color failed"></span>
+        0-24: Failed
+      </div>
+      <div class="legend-item">
+        <span class="legend-color poor"></span>
+        25-49: Poor
+      </div>
+      <div class="legend-item">
+        <span class="legend-color fair"></span>
+        50-69: Fair
+      </div>
+      <div class="legend-item">
+        <span class="legend-color good"></span>
+        70-84: Good
+      </div>
+      <div class="legend-item">
+        <span class="legend-color excellent"></span>
+        85-100: Excellent
+      </div>
+    </div>
+    <div id="map"></div>
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
+      const map = new mapboxgl.Map({
+        container: "map", // container ID
+        style: "mapbox://styles/grafa/cmdxno67a009b01s7aizghti1", // style URL
+        center: [-84.200074, 33.850006],
+        zoom: 12,
+        bearing: 0,
+        pitch: 0,
+        minZoom: 10,
+        maxZoom: 17,
+      });
+
+      const fetchCustomData = () => {
+        return fetch("./data/tucker/Pavement_Condition_Index.geojson")
+          .then((response) => response.json())
+          .then((data) => {
+            customData = data;
+          });
+      };
+      map.on("load", () => {
+        let firstSymbolId;
+        const layers = map.getStyle().layers;
+        for (const layer of layers) {
+          if (layer.type === "symbol") {
+            firstSymbolId = layer.id;
+            break;
+          }
+        }
+        fetchCustomData().then(() => {
+          map.addSource("custom-data", {
+            type: "geojson",
+            data: customData,
+          });
+          map.addLayer(
+            {
+              id: "custom-data",
+              type: "line",
+              source: "custom-data",
+              slot: "middle",
+              layout: {
+                "line-join": "round",
+                "line-cap": "round",
+              },
+              paint: {
+                "line-color": [
+                  "case",
+                  [">=", ["get", "PCI_Cur"], 85],
+                  "#1a9850", // >=85: Excellent
+                  [">=", ["get", "PCI_Cur"], 70],
+                  "#d9ef8b", // 70-84: Good
+                  [">=", ["get", "PCI_Cur"], 50],
+                  "#fee08b", // 50-69: Fair
+                  [">=", ["get", "PCI_Cur"], 25],
+                  "#fc8d59", // 25-49: Poor
+                  [">=", ["get", "PCI_Cur"], 0],
+                  "#d73027", // 0-24: Failed
+                  "#66bd63", // default
+                ],
+                "line-width": [
+                  "interpolate",
+                  ["linear"],
+                  ["zoom"],
+                  12,
+                  8,
+                  17,
+                  12,
+                ],
+                "line-opacity": 0.4,
+                "line-blur": 2,
+              },
+            },
+            firstSymbolId // This puts the layer below road labels
+          );
+          map.addLayer({
+            id: "custom-data-centerline",
+            type: "line",
+            source: "custom-data",
+            slot: "middle",
+            layout: {
+              "line-join": "round",
+              "line-cap": "round",
+            },
+            paint: {
+              "line-color": [
+                "case",
+                [">=", ["get", "PCI_Cur"], 85],
+                "#1a9850", // >=85: Excellent
+                [">=", ["get", "PCI_Cur"], 70],
+                "#d9ef8b", // 70-84: Good
+                [">=", ["get", "PCI_Cur"], 50],
+                "#fee08b", // 50-69: Fair
+                [">=", ["get", "PCI_Cur"], 25],
+                "#fc8d59", // 25-49: Poor
+                [">=", ["get", "PCI_Cur"], 0],
+                "#d73027", // 0-24: Failed
+                "#66bd63", // default
+              ],
+              "line-width": ["interpolate", ["linear"], ["zoom"], 12, 3, 17, 8],
+              "line-opacity": 1,
+            },
+          });
+        });
+        // add popup on click
+        const popup = new mapboxgl.Popup({
+          closeButton: false,
+          closeOnClick: false,
+        });
+        map.on("mousemove", "custom-data", (e) => {
+          const coordinates = e.features[0].geometry.coordinates.slice();
+          const coords = coordinates;
+          let lng = 0,
+            lat = 0,
+            count = 0;
+          coords.forEach((coord) => {
+            lng += coord[0];
+            lat += coord[1];
+            count++;
+          });
+          const midpoint = [lng / count, lat / count];
+          console.log(midpoint);
+          const description = `<h3> ${e.features[0].properties.FULLNAME}</h3><br>
+          <strong>PCI:</strong> ${e.features[0].properties.PCI_Cur}`;
+          popup.setLngLat(midpoint).setHTML(description).addTo(map);
+        });
+        map.on("mouseleave", "custom-data", () => {
+          // popup.remove();
+        });
+      });
+      // Add the control to the map.
+      map.addControl(
+        new MapboxGeocoder({
+          accessToken: mapboxgl.accessToken,
+          useBrowserFocus: true,
+          mapboxgl: mapboxgl,
+          placeholder: "Search Tucker addresses",
+          bbox: [
+            -84.27165679418937, 33.79624226530508, -84.12849120581069,
+            33.90373591923138,
+          ], // [minX, minY, maxX, maxY]
+        })
+      );
+    </script>
+  </body>
+</html>
