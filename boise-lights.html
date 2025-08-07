@@ -143,6 +143,17 @@
           },
         });
       });
+      // Animate circle-emissive-strength to flicker every second (0-.2-1)
+      let emissiveValues = [0.75, 1, 1];
+      let emissiveIndex = 0;
+      setInterval(() => {
+        map.setPaintProperty(
+          "boise-lights",
+          "circle-emissive-strength",
+          emissiveValues[emissiveIndex]
+        );
+        emissiveIndex = (emissiveIndex + 1) % emissiveValues.length;
+      }, 400);
     </script>
   </body>
 </html>
