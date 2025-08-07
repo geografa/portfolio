@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Boise Lights</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
+      const map = new mapboxgl.Map({
+        style: "mapbox://styles/grafa/cme0m3w9n01b501qpb61gciuj", // style URL
+        container: "map", // container ID
+        center: [-116.226844, 43.598527],
+        zoom: 11,
+        bearing: 0,
+        pitch: 38,
+        minZoom: 11.2,
+        maxZoom: 17,
+        hash: true,
+      });
+
+      // add source and layer for the lights grafa.1q37clbn
+      map.on("load", () => {
+        map.addSource("boise-lights", {
+          type: "vector",
+          url: "mapbox://grafa.1q37clbn",
+        });
+        map.addLayer({
+          id: "boise-lights",
+          type: "circle",
+          source: "boise-lights",
+          "source-layer": "boise-streetlights",
+          paint: {
+            "circle-color": [
+              "case",
+              [">", ["to-number", ["get", "Kelvins"]], 6500],
+              "rgb(160, 210, 255)", // >6500 daylight
+              [">=", ["to-number", ["get", "Kelvins"]], 5000],
+              "rgb(201, 226, 255)", // 5000-6500 cool white
+              [">=", ["to-number", ["get", "Kelvins"]], 4000],
+              "rgb(255, 241, 224)", // 4000-5000 neutral white
+              [">=", ["to-number", ["get", "Kelvins"]], 3000],
+              "rgb(255, 197, 143)", // 3000-4000 warm white
+              "rgb(255, 138, 18)", // <3000 warm orange
+            ],
+            "circle-radius": [
+              "interpolate",
+              ["linear"],
+              ["zoom"],
+              9,
+              0.25,
+              13,
+              2,
+              16,
+              4,
+            ],
+            "circle-opacity": [
+              "interpolate",
+              ["linear"],
+              ["zoom"],
+              0,
+              0.15,
+              10,
+              0.5,
+              14,
+              1,
+            ],
+            "circle-emissive-strength": 1,
+          },
+        });
+        // add boise lights blurred background:
+        map.addLayer({
+          id: "boise-lights-blurred",
+          type: "circle",
+          source: "boise-lights",
+          "source-layer": "boise-streetlights",
+          paint: {
+            "circle-color": [
+              "case",
+              [">", ["to-number", ["get", "Kelvins"]], 6500],
+              "rgb(160, 210, 255)", // >6500 daylight
+              [">=", ["to-number", ["get", "Kelvins"]], 5000],
+              "rgb(201, 226, 255)", // 5000-6500 cool white
+              [">=", ["to-number", ["get", "Kelvins"]], 4000],
+              "rgb(255, 241, 224)", // 4000-5000 neutral white
+              [">=", ["to-number", ["get", "Kelvins"]], 3000],
+              "rgb(255, 197, 143)", // 3000-4000 warm white
+              "rgb(255, 138, 18)", // <3000 warm orange
+            ],
+            "circle-radius": [
+              "interpolate",
+              ["linear"],
+              ["zoom"],
+              14,
+              12,
+              16,
+              42,
+            ],
+            "circle-opacity": [
+              "interpolate",
+              ["linear"],
+              ["zoom"],
+              9,
+              0,
+              14,
+              0.18,
+              22,
+              1,
+            ],
+            "circle-blur": [
+              "interpolate",
+              ["linear"],
+              ["zoom"],
+              9,
+              0.5,
+              16,
+              2.5,
+            ],
+            "circle-emissive-strength": 1,
+          },
+        });
+      });
+    </script>
+  </body>
+</html>
