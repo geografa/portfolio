@@ -32,7 +32,7 @@
         "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
       const map = new mapboxgl.Map({
         container: "map", // container ID
-        style: "mapbox://styles/grafa/ckd6dcazo00l01is4jrzlodal", // style URL
+        style: "mapbox://styles/grafa/cmeirokur007p01s4497d86jb", // style URL
         center: [-122.59653751047995, 45.50109851654432],
         zoom: 10.988853792470117,
         bearing: 0,
@@ -40,60 +40,59 @@
         hash: true,
       });
       map.on("load", () => {
-        map.addSource("strava", {
-          type: "geojson",
-          data: "./data/strava-full-2022-08.geojson",
-        });
-
-        map.addLayer({
-          id: "strava",
-          type: "heatmap",
-          source: "strava",
-          maxzoom: 22,
-          paint: {
-            // Increase the heatmap weight
-            // Color ramp for heatmap.  Domain is 0 (low) to 1 (high).
-            // Begin color ramp
-            "heatmap-color": [
-              "interpolate",
-              ["linear"],
-              ["heatmap-density"],
-              // from 0 to 1 density, create rgb values that go from light blue to dark red
-              0,
-              "rgba(33,102,172,0)",
-              0.2,
-              "rgb(103,169,207)",
-              0.4,
-              "rgb(209,229,240)",
-              0.6,
-              "rgb(253,219,199)",
-              0.8,
-              "rgb(239,138,98)",
-              1,
-              "rgb(178,24,43)",
-            ],
-            // Adjust the heatmap radius by zoom level
-            "heatmap-radius": [
-              "interpolate",
-              ["linear"],
-              ["zoom"],
-              7,
-              6,
-              15,
-              20,
-            ],
-            // Transition from heatmap to circle layer by zoom level
-            "heatmap-opacity": [
-              "interpolate",
-              ["linear"],
-              ["zoom"],
-              7,
-              1,
-              19,
-              0,
-            ],
-          },
-        });
+        // map.addSource("strava", {
+        //   type: "geojson",
+        //   data: "./data/strava-full-2022-08.geojson",
+        // });
+        // map.addLayer({
+        //   id: "strava",
+        //   type: "heatmap",
+        //   source: "strava",
+        //   maxzoom: 22,
+        //   paint: {
+        //     // Increase the heatmap weight
+        //     // Color ramp for heatmap.  Domain is 0 (low) to 1 (high).
+        //     // Begin color ramp
+        //     "heatmap-color": [
+        //       "interpolate",
+        //       ["linear"],
+        //       ["heatmap-density"],
+        //       // from 0 to 1 density, create rgb values that go from light blue to dark red
+        //       0,
+        //       "rgba(33,102,172,0)",
+        //       0.2,
+        //       "rgb(103,169,207)",
+        //       0.4,
+        //       "rgb(209,229,240)",
+        //       0.6,
+        //       "rgb(253,219,199)",
+        //       0.8,
+        //       "rgb(239,138,98)",
+        //       1,
+        //       "rgb(178,24,43)",
+        //     ],
+        //     // Adjust the heatmap radius by zoom level
+        //     "heatmap-radius": [
+        //       "interpolate",
+        //       ["linear"],
+        //       ["zoom"],
+        //       7,
+        //       6,
+        //       15,
+        //       20,
+        //     ],
+        //     // Transition from heatmap to circle layer by zoom level
+        //     "heatmap-opacity": [
+        //       "interpolate",
+        //       ["linear"],
+        //       ["zoom"],
+        //       7,
+        //       1,
+        //       19,
+        //       0,
+        //     ],
+        //   },
+        // });
       });
     </script>
   </body>
