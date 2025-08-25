@@ -267,26 +267,51 @@
           closeOnClick: false,
         });
         map.on("mousemove", "custom-data", (e) => {
-          const coordinates = e.features[0].geometry.coordinates.slice();
-          const coords = coordinates;
+          const feature = e.features && e.features[0];
+          if (!feature) {
+            popup.remove();
+            return;
+          }
+          const coordinates = feature.geometry && feature.geometry.coordinates;
+          if (!coordinates || !Array.isArray(coordinates)) {
+            popup.remove();
+            return;
+          }
           let lng = 0,
             lat = 0,
             count = 0;
-          coords.forEach((coord) => {
-            lng += coord[0];
-            lat += coord[1];
-            count++;
+          coordinates.forEach((coord) => {
+            if (Array.isArray(coord) && coord.length >= 2) {
+              lng += coord[0];
+              lat += coord[1];
+              count++;
+            }
           });
+          if (count === 0) {
+            popup.remove();
+            return;
+          }
           const midpoint = [lng / count, lat / count];
-          console.log(midpoint);
-          const description = `<h3> ${e.features[0].properties.FULLNAME}</h3><br>
-          <strong>PCI:</strong> ${e.features[0].properties.PCI_Cur}`;
-          popup.setLngLat(midpoint).setHTML(description).addTo(map);
-        });
-        map.on("mouseleave", "custom-data", () => {
-          popup.remove();
+          const fullname = feature.properties && feature.properties.FULLNAME;
+          const pci = feature.properties && feature.properties.PCI_Cur;
+          let description = "";
+          if (fullname !== undefined) {
+            description += `<h3>${fullname}</h3><br>`;
+          }
+          if (pci !== undefined) {
+            description += `<strong>PCI:</strong> ${pci}`;
+          }
+          if (description) {
+            popup.setLngLat(midpoint).setHTML(description).addTo(map);
+          } else {
+            popup.remove();
+          }
         });
       });
+      map.on("mouseleave", "custom-data", () => {
+        popup.remove();
+      });
+
       // Add the control to the map.
       map.addControl(
         new MapboxGeocoder({
