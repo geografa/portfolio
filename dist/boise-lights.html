@@ -71,11 +71,11 @@
               ["linear"],
               ["zoom"],
               9,
-              0.25,
+              0.15,
               13,
-              2,
+              1.5,
               16,
-              4,
+              3,
             ],
             "circle-opacity": [
               "interpolate",
@@ -144,16 +144,16 @@
         });
       });
       // Animate circle-emissive-strength to flicker every second (0-.2-1)
-      let emissiveValues = [0.75, 1, 1];
+      let emissiveValues = [0.5, 1, 1];
       let emissiveIndex = 0;
       setInterval(() => {
         map.setPaintProperty(
-          "boise-lights",
+          "boise-lights-blurred",
           "circle-emissive-strength",
           emissiveValues[emissiveIndex]
         );
         emissiveIndex = (emissiveIndex + 1) % emissiveValues.length;
-      }, 400);
+      }, 800);
     </script>
   </body>
 </html>
