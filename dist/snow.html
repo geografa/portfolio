@@ -40,7 +40,7 @@
         // hash: true,
       });
 
-      map.on("style.load", () => {
+      map.on("load", () => {
         // map.setConfigProperty("basemap", "lightPreset", "dawn");
 
         // use an expression to transition some properties between zoom levels 11 and 13, preventing visibility when zoomed out
@@ -60,6 +60,29 @@
           "distortion-strength": 0.7,
           "center-thinning": 0, // Rain to be displayed on the whole screen area
         });
+        // Extract JSON representation of an existing layer
+        const layer = map
+          .getStyle()
+          .layers.find((layer) => layer.id === "poi-label");
+
+        // Add in a pitch condition to the existing layers filter
+        // so that it only renders when the pitch is low
+        const lowPitchFilter = ["all", layer.filter, ["<", ["pitch"], 60]];
+        map.setFilter("poi-label", lowPitchFilter);
+
+        // Add in styling for leader lines into the layer
+        layer.id = "poi-label-elevated";
+        // Add a leader line using `icon-image`
+        layer.layout["icon-image"] = "leader-line-bk";
+        layer.layout["icon-anchor"] = "bottom";
+        // Elevate the text using text-offset
+        layer.layout["text-offset"] = [0, -12.5];
+        // Set the filter to only render at high pitch
+        const highPitchFilter = ["all", layer.filter, [">=", ["pitch"], 60]];
+        layer.filter = highPitchFilter;
+
+        // Add in a new layer with the updated styling
+        map.addLayer(layer, "poi-label");
       });
     </script>
   </body>
