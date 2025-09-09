@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Get features under the mouse pointer</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+      .mapboxgl-popup-track-pointer {
+        border-radius: 10px;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <style>
+      #features {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 50%;
+        overflow: auto;
+        background: rgba(255, 255, 255, 0.8);
+      }
+    </style>
+    <div id="map"></div>
+
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY21lOWF2MHA4MG8wbzJsbzk4NXM2N3o5NiJ9.if0alZ4Emg9YZQEFTLjBcg";
+      const map = new mapboxgl.Map({
+        container: "map",
+        // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+        style: "mapbox://styles/mapbox/light-v9",
+        center: [-122.812694, 38.268988],
+        zoom: 10,
+        bearing: 0,
+        pitch: 0,
+      });
+
+      // add bridges layer grafa.individual_bridges
+      map.on("load", () => {
+        map.addSource("bridges", {
+          type: "vector",
+          url: "mapbox://grafa.individual_bridges",
+        });
+
+        map.addLayer({
+          id: "bridges",
+          type: "circle",
+          source: "bridges",
+          "source-layer": "hello_world",
+          paint: {
+            "circle-radius": [
+              "interpolate",
+              ["linear"],
+              ["get", "deck_width_m"],
+              0,
+              1,
+              10,
+              20,
+            ],
+            "circle-color": "#FF0000",
+            "circle-opacity": 0.2,
+          },
+        });
+        // add popup on click
+        const popup = new mapboxgl.Popup({
+          closeButton: false,
+          closeOnClick: false,
+        });
+        map.on("mouseenter", "bridges", (e) => {
+          const coordinates = e.features[0].geometry.coordinates.slice();
+          const properties = e.features[0].properties;
+          const popupContent = `
+            <strong>Year:</strong> ${properties.year_built}<br>
+            <strong>County:</strong> ${properties.county}<br>
+            <strong>Width (m):</strong> ${properties.deck_width_m}<br>
+            `;
+          popup.setLngLat(coordinates);
+          popup.setHTML(popupContent);
+          popup.addTo(map);
+          popup.trackPointer();
+        });
+        map.on("mouseleave", "bridges", () => {
+          map.getCanvas().style.cursor = "";
+          if (popup) {
+            popup.remove();
+            const popupEl = document.querySelector(".mapboxgl-popup");
+            if (popupEl) {
+              popupEl.style.display = "none";
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Count Trees</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.14.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.14.0/mapbox-gl.js"></script>
+    <!-- Load the `mapbox-gl-geocoder` plugin. -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.1.0/mapbox-gl-geocoder.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.1.0/mapbox-gl-geocoder.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="./styles/trees.css" type="text/css" />
+  </head>
+  <body>
+    <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.5.0/mapbox-gl-draw.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.5.0/mapbox-gl-draw.css"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <div id="map"></div>
+    <div class="statistics-box">
+      <canvas id="myChart"></canvas>
+      <div id="calculated-area"></div>
+    </div>
+
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
+      const map = new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/mapbox/standard",
+        center: [-122.669202, 45.568155],
+        zoom: 16,
+        bearing: -28,
+        pitch: 48,
+      });
+
+      const featureCollection = {
+        type: "FeatureCollection",
+        features: [],
+      };
+      const draw = new MapboxDraw({
+        displayControlsDefault: false,
+        controls: {
+          polygon: true,
+          trash: true,
+        },
+        // Set mapbox-gl-draw to draw by default.
+        // The user does not have to click the polygon control button first.
+        // defaultMode: "draw_polygon",
+        // polygon fill styles
+        styles: [
+          {
+            id: "gl-draw-polygon-fill",
+            type: "fill",
+            filter: ["all", ["==", "$type", "Polygon"]],
+            paint: {
+              "fill-color": "#3886bd", // Inactive fill color
+              "fill-outline-color": "#3886bd",
+              "fill-opacity": 0.4,
+            },
+          },
+          {
+            id: "gl-draw-polygon-fill-active",
+            type: "fill",
+            filter: [
+              "all",
+              ["==", "$type", "Polygon"],
+              ["==", "active", "true"],
+            ],
+            paint: {
+              "fill-color": "red", // Active fill color
+              "fill-outline-color": "red",
+              "fill-opacity": 0.5,
+            },
+          },
+        ],
+      });
+      map.addControl(draw);
+
+      const popup = new mapboxgl.Popup({
+        closeButton: false,
+        closeOnClick: true,
+      });
+      // Function to update the area and calculate points within the drawn polygon
+      const updateArea = (e) => {
+        document.querySelector(".statistics-box").style.display = "block";
+        const data = draw.getAll();
+        // Limit to one polygon at a time
+        if (data.features.length > 1) {
+          draw.delete(data.features[0].id); // Delete the first polygon
+          // Clear the chart
+          myChart.data.labels = [];
+          myChart.data.datasets[0].data = [];
+          myChart.data.datasets[0].backgroundColor = [];
+          myChart.update();
+        }
+        // If a polygon is drawn, calculate points within it
+        if (data.features.length > 0) {
+          const searchWithin = data.features[0]; // The drawn polygon
+          calculatePointsWithinPolygon(searchWithin);
+        }
+        // If no polygon exists, clear the statistics box and chart
+        else {
+          const answer = document.getElementById("calculated-area");
+          answer.innerHTML = "";
+          myChart.data.labels = [];
+          myChart.data.datasets[0].data = [];
+          myChart.data.datasets[0].backgroundColor = [];
+          myChart.update();
+        }
+      };
+
+      map.on("draw.create", updateArea);
+      map.on("draw.delete", () => {
+        updateArea();
+        document.querySelector(".statistics-box").style.display = "none";
+      });
+      map.on("draw.update", updateArea);
+
+      // get the geojson data and populate the featureCollection object
+      fetch("./data/portland/selected_trees.geojson")
+        .then((response) => response.json())
+        .then((data) => {
+          data.features.forEach((feature) => {
+            featureCollection.features.push(feature);
+          });
+        });
+
+      // Shared function to calculate points within a polygon and update the chart
+      const calculatePointsWithinPolygon = (polygon) => {
+        const points = featureCollection; // The points to check
+        const ptsWithin = turf.pointsWithinPolygon(points, polygon); // Points within the polygon
+        const count = ptsWithin.features.length; // Number of points within the polygon
+
+        // Categorize the trees by 'FUNCTIONAL_TYPE' and count them
+        const functionalTypeCounts = {};
+        const functionalTypeColors = {
+          "Broadleaf deciduous": "#ea9e76" /* burnt orange */,
+          "Broadleaf evergreen": "#d0f4c2" /* light green */,
+          "Coniferous deciduous": "#89ccc6" /* light blue */,
+          "Coniferous evergreen": "#417d80",
+        };
+
+        // Loop through the features and count by functional type
+        ptsWithin.features.forEach((feature) => {
+          const functionalType = feature.properties.FUNCTIONAL_TYPE;
+          if (functionalType) {
+            // Skip null values
+            if (!functionalTypeCounts[functionalType]) {
+              functionalTypeCounts[functionalType] = 0;
+            }
+            functionalTypeCounts[functionalType]++;
+          }
+        });
+
+        // Update the chart data
+        const labels = Object.keys(functionalTypeCounts);
+        const values = Object.values(functionalTypeCounts);
+        const colors = labels.map(
+          (label) => functionalTypeColors[label] || "#cccccc"
+        ); // Default to gray if no color is defined
+
+        myChart.data.labels = labels;
+        myChart.data.datasets[0].data = values;
+        myChart.data.datasets[0].backgroundColor = colors;
+        myChart.update();
+
+        // Update the calculated area display
+        const answer = document.getElementById("calculated-area");
+        answer.innerHTML = `<p class="count"><strong>${count}</strong> trees selected</p>`;
+      };
+
+      // add the source and layer to the map
+      map.on("load", () => {
+        map.setConfigProperty("basemap", "lightPreset", "dawn");
+
+        map.addModel("model-conifer", "./models/trees/pl-tree-conifer.glb");
+        map.addModel("model-deciduous", "./models/trees/pl-tree-deciduous.glb");
+
+        map.addSource("trees", {
+          type: "geojson",
+          data: featureCollection,
+        });
+        // a circle layer to represent the trees
+        map.addLayer({
+          id: "trees-circle-layer",
+          type: "circle",
+          source: "trees",
+          paint: {
+            "circle-radius": 6,
+            "circle-color": [
+              "match",
+              ["get", "FUNCTIONAL_TYPE"],
+              "Broadleaf deciduous",
+              "#ea9e76" /* burnt orange */,
+              "Broadleaf evergreen",
+              "#d0f4c2" /* light green */,
+              "Coniferous deciduous",
+              "#89ccc6" /* light blue */,
+              "Coniferous evergreen",
+              "#417d80",
+              "#cccccc" /* gray for null values */,
+            ],
+            "circle-opacity": 0.2,
+          },
+        });
+        map.addLayer({
+          id: "trees-layer",
+          type: "model",
+          source: "trees",
+          layout: {
+            "model-id": [
+              "match",
+              ["get", "FUNCTIONAL_TYPE"],
+              "Broadleaf deciduous",
+              "model-deciduous",
+              "Coniferous evergreen",
+              "model-conifer",
+              "Broadleaf evergreen",
+              "model-deciduous",
+              "Coniferous deciduous",
+              "model-conifer",
+              "model-deciduous",
+            ],
+          },
+          paint: {
+            "model-scale": [
+              // get the Size S, M, L and then set height to a value based on the size
+              "match",
+              ["get", "MATURE_SIZE"],
+              "S",
+              [1, 1, 1],
+              "M",
+              [2, 2, 2],
+              "L",
+              [3, 3, 3],
+              [2, 2, 2],
+            ],
+            "model-emissive-strength": 0.5, // change for other lighting effects
+            "model-color": [
+              "match",
+              ["get", "FUNCTIONAL_TYPE"],
+              "Broadleaf deciduous",
+              "#ea9e76" /* burnt orange */,
+              "Broadleaf evergreen",
+              "#d0f4c2" /* light green */,
+              "Coniferous deciduous",
+              "#89ccc6" /* light blue */,
+              "Coniferous evergreen",
+              "#417d80",
+              "#cccccc" /* gray for null values */,
+            ],
+          },
+        });
+
+        // Selected_Neighborhood_Boundaries.geojson as a source and layer
+        map.addSource("neighborhoods", {
+          type: "geojson",
+          data: "./data/portland/Selected_Neighborhood_Boundaries.geojson",
+        });
+
+        map.addLayer({
+          id: "neighborhoods-borders",
+          type: "line",
+          source: "neighborhoods",
+          layout: {},
+          paint: {
+            "line-color": "#088",
+            "line-width": 3,
+            "line-opacity": 0.5,
+          },
+        });
+        // add popups for trees
+        map.on("click", "trees-circle-layer", (e) => {
+          const props = e.features[0].properties;
+          const coordinates = e.features[0].geometry.coordinates.slice();
+          // Ensure the popup appears at the correct location
+          while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+          }
+
+          // Create a popup with the tree's properties
+          popup
+            .setLngLat(coordinates)
+            .setHTML(
+              `
+              <div>
+              <h3>${props.SPECIES}</h3>
+              <p><strong>Address:</strong> ${props.Address}</p>
+              <p><strong>Neighborhood:</strong> ${props.Neighborhood}</p>
+              <p><strong>Date Inventoried:</strong> ${new Date(
+                props.Date_Inventoried
+              ).toLocaleDateString()}</p>
+              <p><strong>Mature Size:</strong> ${props.MATURE_SIZE}</p>
+              <p><strong>Functional Type:</strong> ${props.FUNCTIONAL_TYPE}</p>
+              <p><strong>Diameter:</strong> ${props.DIAMETER} ft</p>
+              <p><strong>Condition:</strong> ${props.Condition}</p>
+              <p><strong>Site Type:</strong> ${props.Site_Type}</p>
+              <p><strong>Site Size:</strong> ${props.Site_Size}</p>
+              <p><strong>Site Width:</strong> ${props.Site_Width} ft</p>
+              <p><strong>Wires:</strong> ${props.Wires}</p>
+              <p><strong>Site Improvement:</strong> ${
+                props.SITE_IMPROVEMENT
+              }</p>
+              </div>
+            `
+            )
+            .addTo(map);
+        });
+        // Change the cursor to a pointer when hovering over the trees
+        map.on("mouseenter", "trees-circle-layer", () => {
+          map.getCanvas().style.cursor = "pointer";
+        });
+      });
+
+      // chart.js
+      const ctx = document.getElementById("myChart").getContext("2d");
+      const myChart = new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: [],
+          datasets: [
+            {
+              label: "Count",
+              data: [],
+              backgroundColor: [],
+              hoverOffset: 4,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: "bottom",
+              align: "start",
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
