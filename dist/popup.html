@@ -23,10 +23,10 @@
         bottom: 0;
         width: 100%;
       }
-      /* .mapboxgl-popup {
+      .mapboxgl-popup-track-pointer {
         border-radius: 10px;
         overflow: hidden;
-      } */
+      }
     </style>
   </head>
   <body>
@@ -88,11 +88,6 @@
           closeOnClick: false,
         });
         map.on("mouseenter", "bridges", (e) => {
-          // Remove popup if no features
-          if (!e.features.length) {
-            popup.remove();
-            return;
-          }
           const coordinates = e.features[0].geometry.coordinates.slice();
           const properties = e.features[0].properties;
           const popupContent = `
@@ -100,19 +95,19 @@
             <strong>County:</strong> ${properties.county}<br>
             <strong>Width (m):</strong> ${properties.deck_width_m}<br>
             `;
-          popup.setHTML(popupContent).addTo(map);
+          popup.setLngLat(coordinates);
+          popup.setHTML(popupContent);
+          popup.addTo(map);
           popup.trackPointer();
         });
         map.on("mouseleave", "bridges", () => {
           map.getCanvas().style.cursor = "";
-          //   const popup = document.querySelector(".mapboxgl-popup");
           if (popup) {
-            // popup.remove();
+            popup.remove();
             const popupEl = document.querySelector(".mapboxgl-popup");
             if (popupEl) {
               popupEl.style.display = "none";
             }
-            console.log("Popup removed");
           }
         });
       });
