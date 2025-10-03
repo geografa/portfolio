@@ -6,6 +6,7 @@ tmp
 archive
 /dist/exports
 /dist/data/archive
+/dist/data/tmp/
 /dist/data/tcp/
 .env
 /dist/img/fifa/all_maki_icons
