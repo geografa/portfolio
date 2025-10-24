@@ -130,6 +130,11 @@
         right: 10px;
         width: 14px;
         cursor: pointer;
+        content: "×";
+        font-size: 16px;
+        font-weight: bold;
+        color: #333;
+        display: none;
       }
       .open-modal {
         position: absolute;
@@ -381,8 +386,14 @@
         const lineBaseWidth = 8;
         // add the trees as a source to the map
         getTrees().then((data) => {
-          map.addModel("model-conifer", "./models/tree-conifer.glb");
-          map.addModel("model-deciduous", "./models/tree-oak.glb");
+          map.addModel(
+            "model-conifer",
+            "https://geografa.github.io/portfolio/models/trees/tree-conifer.glb"
+          );
+          map.addModel(
+            "model-deciduous",
+            "https://geografa.github.io/portfolio/models/trees/tree-oak.glb"
+          );
           map.addSource("trees", {
             type: "geojson",
             data: data,
@@ -492,7 +503,7 @@
             type: "Feature",
             properties: {
               "model-uri":
-
+                "https://geografa.github.io/portfolio/models/pearl_cured.glb",
             },
             geometry: {
               type: "Point",
@@ -508,7 +519,6 @@
             properties: {
               "model-uri":
                 "https://geografa.github.io/portfolio/models/pearl_bottling_dept.glb",
-
             },
             geometry: {
               type: "Point",
@@ -521,7 +531,8 @@
           data: {
             type: "Feature",
             properties: {
-              "model-uri": "https://geografa.github.io/portfolio/models/pearl_cellars.glb",
+              "model-uri":
+                "https://geografa.github.io/portfolio/models/pearl_cellars.glb",
             },
             geometry: {
               type: "Point",
@@ -660,7 +671,7 @@
           paint: {
             "line-color": "rgb(255, 41, 41)",
             // "line-width": 18,
-            "line-occlusion-opacity": 0.5,
+            "line-occlusion-opacity": 0.3,
             "line-pattern": "dot-blue",
             "line-width": [
               "interpolate",
