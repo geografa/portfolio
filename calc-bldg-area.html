@@ -1,0 +1,212 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Calculate Building Area</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.14.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.14.0/mapbox-gl.js"></script>
+    <!-- Load the `mapbox-gl-geocoder` plugin. -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.1.0/mapbox-gl-geocoder.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.1.0/mapbox-gl-geocoder.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="./styles/building-area.css" type="text/css" />
+  </head>
+  <body>
+    <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.5.0/mapbox-gl-draw.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.5.0/mapbox-gl-draw.css"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <div id="map"></div>
+    <div class="statistics-box">
+      <canvas id="myChart"></canvas>
+      <div id="calculated-area"></div>
+      <div class="reporting-suggestions">
+        <h4>Other reporting ideas</h4>
+        <ul>
+          <li>Estimated building height or floors</li>
+          <li>Floor area ratio (FAR)</li>
+          <li>Roof area for solar potential</li>
+          <li>Setback compliance checks</li>
+          <li>Parcel coverage percentage</li>
+        </ul>
+      </div>
+    </div>
+
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
+      const map = new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/mapbox/satellite-streets-v12",
+        center: [-122.669202, 45.568155],
+        zoom: 16,
+        bearing: -28,
+        pitch: 48,
+      });
+
+      const draw = new MapboxDraw({
+        displayControlsDefault: false,
+        controls: {
+          polygon: true,
+          trash: true,
+        },
+        // Set mapbox-gl-draw to draw by default.
+        // The user does not have to click the polygon control button first.
+        // defaultMode: "draw_polygon",
+        // polygon fill styles
+        styles: [
+          {
+            id: "gl-draw-polygon-fill",
+            type: "fill",
+            filter: ["all", ["==", "$type", "Polygon"]],
+            paint: {
+              "fill-color": "#3886bd", // Inactive fill color
+              "fill-outline-color": "#3886bd",
+              "fill-opacity": 0.4,
+            },
+          },
+          {
+            id: "gl-draw-polygon-fill-active",
+            type: "fill",
+            filter: [
+              "all",
+              ["==", "$type", "Polygon"],
+              ["==", "active", "true"],
+            ],
+            paint: {
+              "fill-color": "red", // Active fill color
+              "fill-outline-color": "red",
+              "fill-opacity": 0.5,
+            },
+          },
+        ],
+      });
+      map.addControl(draw);
+
+      // Function to update the area and calculate polygon metrics
+      const updateArea = (e) => {
+        document.querySelector(".statistics-box").style.display = "block";
+        const data = draw.getAll();
+        // Limit to one polygon at a time
+        if (data.features.length > 1) {
+          draw.delete(data.features[0].id); // Delete the first polygon
+          // Clear the chart
+          myChart.data.labels = [];
+          myChart.data.datasets[0].data = [];
+          myChart.data.datasets[0].backgroundColor = [];
+          myChart.update();
+        }
+        // If a polygon is drawn, calculate points within it
+        if (data.features.length > 0) {
+          const searchWithin = data.features[0]; // The drawn polygon
+          calculateAreaMetrics(searchWithin);
+        }
+        // If no polygon exists, clear the statistics box and chart
+        else {
+          const answer = document.getElementById("calculated-area");
+          answer.innerHTML = "";
+          myChart.data.labels = [];
+          myChart.data.datasets[0].data = [];
+          myChart.data.datasets[0].backgroundColor = [];
+          myChart.update();
+        }
+      };
+
+      map.on("draw.create", updateArea);
+      map.on("draw.delete", () => {
+        updateArea();
+        document.querySelector(".statistics-box").style.display = "none";
+      });
+      map.on("draw.update", updateArea);
+
+      const calculateAreaMetrics = (polygon) => {
+        const areaSqMeters = turf.area(polygon);
+        const areaSqFt = areaSqMeters * 10.7639104167;
+        const areaAcres = areaSqMeters / 4046.8564224;
+
+        const labels = ["Square feet", "Acres"];
+        const values = [areaSqFt, areaAcres];
+        const colors = ["#4c78a8", "#f58518"];
+
+        myChart.data.labels = labels;
+        myChart.data.datasets[0].data = values;
+        myChart.data.datasets[0].backgroundColor = colors;
+        myChart.update();
+
+        const answer = document.getElementById("calculated-area");
+        answer.innerHTML = `
+          <p class="count"><strong>${areaSqFt.toFixed(0)}</strong> sq ft</p>
+          <p class="count"><strong>${areaAcres.toFixed(4)}</strong> acres</p>
+        `;
+      };
+
+      // add the source and layer to the map
+      map.on("load", () => {
+        map.setConfigProperty("basemap", "lightPreset", "dawn");
+
+        // Selected_Neighborhood_Boundaries.geojson as a source and layer
+        map.addSource("neighborhoods", {
+          type: "geojson",
+          data: "./data/portland/Selected_Neighborhood_Boundaries.geojson",
+        });
+
+        map.addLayer({
+          id: "neighborhoods-borders",
+          type: "line",
+          source: "neighborhoods",
+          layout: {},
+          paint: {
+            "line-color": "#088",
+            "line-width": 3,
+            "line-opacity": 0.5,
+          },
+        });
+      });
+
+      // chart.js
+      const ctx = document.getElementById("myChart").getContext("2d");
+      const myChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: [],
+          datasets: [
+            {
+              label: "Area",
+              data: [],
+              backgroundColor: [],
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+          plugins: {
+            legend: {
+              position: "bottom",
+              align: "start",
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
