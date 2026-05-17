@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Locate the user</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.js"></script>
+    <script src="/mapbox-config.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+      #info {
+        position: absolute;
+        top: 10px;
+        background-color: white;
+        padding: 10px;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <div id="info"></div>
+    <script>
+      mapboxgl.accessToken = window.MAPBOX_ACCESS_TOKEN;
+      const map = new mapboxgl.Map({
+        container: "map", // container ID
+        // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+        style: "mapbox://styles/mapbox/streets-v12", // style URL
+        center: [-98.47835, 29.442163],
+        zoom: 15,
+        bearing: 0,
+        pitch: 0,
+      });
+      map.on("load", () => {
+        // use navigator.geolocation to get the user's current position and log it to the console
+        if (navigator.geolocation) {
+          // use watchPosition to get the user's current position and heading to set the camera position
+          navigator.geolocation.watchPosition(
+            (position) => {
+              const { latitude, longitude, heading } = position.coords;
+              console.log("User's current position:", {
+                latitude,
+                longitude,
+                heading,
+              });
+              console.log(position.toJSON().coords.heading);
+              // use map.easeTo to orient the camera to the user's current position and heading
+              map.easeTo({
+                center: [longitude, latitude],
+                bearing: heading, // Use heading if available, otherwise default to 0
+                duration: 1000,
+                pitch: 50,
+              });
+              document.getElementById("info").innerHTML = `
+                <strong>Current Position:</strong><br>
+                Latitude: ${latitude}<br>
+                Longitude: ${longitude}<br>
+                Heading: ${heading ? heading.toFixed(2) : "N/A"}
+              `;
+            },
+            (error) => {
+              console.error("Error getting user's location:", error);
+            },
+            {
+              enableHighAccuracy: true,
+              maximumAge: 1000,
+              timeout: 5000,
+            }
+          );
+        } else {
+          console.error("Geolocation is not supported by this browser.");
+        }
+      });
+
+      // Add geolocate control to the map.
+      map.addControl(
+        new mapboxgl.GeolocateControl({
+          positionOptions: {
+            enableHighAccuracy: true,
+          },
+          // When active the map will receive updates to the device's location as it changes.
+          trackUserLocation: true,
+          // Draw an arrow next to the location dot to indicate which direction the device is heading.
+          showUserHeading: true,
+        })
+      );
+      // add a listener for the 'geolocate' event to getCurrentPosition and orient the camera to follow the user
+      map.on("geolocate", (e) => {
+        console.log("User's location:", e.coords);
+        // Optionally, you can orient the camera to the user's location
+      });
+    </script>
+  </body>
+</html>

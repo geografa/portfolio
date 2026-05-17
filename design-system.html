@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Geografa — Design System v0.1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://api.fontshare.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Caveat:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Reenie+Beanie&family=Shadows+Into+Light+Two&display=swap" rel="stylesheet" />
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@300,400,500,600,700&f[]=cabinet-grotesk@400,500,700,800&f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
+
+<style>
+  /* =========================================================
+     DESIGN TOKENS — Recommended palette: "Coastal Linen"
+     ========================================================= */
+  :root {
+    /* Surfaces */
+    --bg:        #F4F2EC;     /* warm paper */
+    --bg-tint:  #ECEAE2;     /* sand */
+    --surface:  #FFFFFF;     /* card */
+    --surface-2:#F8F7F2;     /* subtle */
+
+    /* Ink */
+    --ink:      #14202B;     /* deep slate-blue */
+    --ink-2:    #2C3A4A;
+    --muted:    #5C6B7A;
+    --muted-2:  #8A95A1;
+    --hairline: #DEDAD0;
+    --grid:     rgba(20,32,43,.06);
+
+    /* Accents — cool with organic warmth */
+    --accent:        #3E6B89;   /* atlas blue */
+    --accent-soft:   #B7CDD9;
+    --accent-deep:   #2A4E66;
+    --warm:          #C97B5C;   /* terracotta — sparingly */
+    --warm-soft:     #E9C7B6;
+    --green:         #7E9A87;   /* sea glass */
+    --ochre:         #D4A55A;
+
+    /* Type */
+    --font-display: 'General Sans', 'Cabinet Grotesk', system-ui, -apple-system, sans-serif;
+    --font-body:    'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono:    'JetBrains Mono', ui-monospace, Menlo, monospace;
+    --font-hand:    'Caveat', 'Reenie Beanie', cursive;
+
+    /* Scale (modular, 1.250 minor third) */
+    --t-xs:   0.75rem;    /* 12 */
+    --t-sm:   0.875rem;   /* 14 */
+    --t-base: 1rem;       /* 16 */
+    --t-md:   1.125rem;   /* 18 */
+    --t-lg:   1.5rem;     /* 24 */
+    --t-xl:   2rem;       /* 32 */
+    --t-2xl:  2.75rem;    /* 44 */
+    --t-3xl:  3.75rem;    /* 60 */
+    --t-4xl:  5rem;       /* 80 */
+
+    /* Spacing (4px base) */
+    --s-1: 4px;  --s-2: 8px;   --s-3: 12px;  --s-4: 16px;
+    --s-5: 24px; --s-6: 32px;  --s-7: 48px;  --s-8: 64px;
+    --s-9: 96px; --s-10: 128px;
+
+    /* Radii */
+    --r-sm: 6px;  --r-md: 12px; --r-lg: 20px; --r-xl: 32px; --r-pill: 999px;
+
+    /* Motion */
+    --ease: cubic-bezier(.2,.7,.2,1);
+    --dur-1: 160ms;  --dur-2: 280ms;  --dur-3: 480ms;
+
+    /* Shadow (very soft) */
+    --shadow-1: 0 1px 2px rgba(20,32,43,.04), 0 4px 12px rgba(20,32,43,.04);
+    --shadow-2: 0 2px 4px rgba(20,32,43,.05), 0 12px 32px rgba(20,32,43,.06);
+  }
+
+  /* =========================================================
+     BASE
+     ========================================================= */
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; }
+  body {
+    font-family: var(--font-body);
+    font-size: var(--t-base);
+    line-height: 1.6;
+    color: var(--ink);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    position: relative;
+  }
+
+  /* Subtle paper grain overlay — fixed so layout stays clean */
+  body::before {
+    content:"";
+    position: fixed; inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.08 0 0 0 0 0.13 0 0 0 0 0.17 0 0 0 0.5 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/></svg>");
+    opacity: .35;
+    mix-blend-mode: multiply;
+  }
+
+  /* Faint cartographer's grid — only on hero */
+  .gridlines {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    mask-image: radial-gradient(ellipse at 30% 40%, black 30%, transparent 75%);
+  }
+
+  .container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 var(--s-6);
+    position: relative; z-index: 2;
+  }
+
+  /* =========================================================
+     TOP BAR
+     ========================================================= */
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(10px);
+    background: rgba(244,242,236,.72);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .topbar-inner {
+    display:flex; align-items:center; justify-content:space-between;
+    padding: var(--s-4) 0;
+  }
+  .brand {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: var(--t-md);
+    letter-spacing: -0.01em;
+    display:flex; align-items:center; gap: var(--s-2);
+  }
+  .brand .dot {
+    width:10px; height:10px; border-radius:50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 4px rgba(62,107,137,.12);
+  }
+  .nav {
+    display:flex; gap: var(--s-6);
+    font-size: var(--t-sm);
+    color: var(--muted);
+  }
+  .nav a {
+    color: inherit; text-decoration: none;
+    position: relative;
+    transition: color var(--dur-1) var(--ease);
+  }
+  .nav a:hover { color: var(--ink); }
+  .nav a.active { color: var(--ink); }
+  .nav a.active::after {
+    /* hand-drawn underline */
+    content:"";
+    position:absolute; left:-2px; right:-4px; bottom:-6px;
+    height: 6px;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 6' preserveAspectRatio='none'><path d='M1 4 C 18 1, 35 6, 52 3 S 78 4, 79 2' fill='none' stroke='%233E6B89' stroke-width='1.5' stroke-linecap='round'/></svg>") no-repeat center / 100% 100%;
+  }
+
+  /* =========================================================
+     HERO
+     ========================================================= */
+  .hero {
+    position: relative;
+    padding: var(--s-10) 0 var(--s-8);
+    overflow: hidden;
+  }
+  .hero .gridlines { z-index: 0; }
+  .hero .blob {
+    position:absolute; right:-80px; top: 20%;
+    width: 420px; height: 420px;
+    background: radial-gradient(circle at 30% 30%, var(--accent-soft), transparent 70%);
+    filter: blur(20px);
+    opacity:.6;
+    z-index: 0;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(2.5rem, 6.5vw, var(--t-4xl));
+    line-height: 1.04;
+    letter-spacing: -0.025em;
+    margin: 0 0 var(--s-5);
+    max-width: 18ch;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--accent);
+    position: relative;
+    white-space: nowrap;
+  }
+  .hero h1 em::after {
+    content:"";
+    position:absolute; left:-2px; right:-2px; bottom:-4px;
+    height: 8px;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 8' preserveAspectRatio='none'><path d='M1 5 C 25 1, 50 8, 75 4 S 99 5, 99 3' fill='none' stroke='%23C97B5C' stroke-width='2' stroke-linecap='round'/></svg>") no-repeat center / 100% 100%;
+  }
+  .hero .lede {
+    font-size: var(--t-md);
+    color: var(--muted);
+    max-width: 56ch;
+    margin: 0 0 var(--s-7);
+  }
+  .hand-note {
+    font-family: var(--font-hand);
+    color: var(--warm);
+    font-size: 1.6rem;
+    line-height: 1;
+    transform: rotate(-3deg);
+    display: inline-block;
+  }
+
+  /* =========================================================
+     SECTIONS
+     ========================================================= */
+  section.block {
+    padding: var(--s-9) 0;
+    border-top: 1px solid var(--hairline);
+  }
+  .eyebrow {
+    display:flex; align-items:center; gap: var(--s-3);
+    font-family: var(--font-mono);
+    font-size: var(--t-xs);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: var(--s-3);
+  }
+  .eyebrow::before {
+    content:"";
+    width: 24px; height: 1px; background: var(--muted);
+  }
+  h2.section-title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1.75rem, 3.4vw, var(--t-2xl));
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin: 0 0 var(--s-3);
+    max-width: 22ch;
+  }
+  .section-sub {
+    color: var(--muted);
+    max-width: 60ch;
+    margin: 0 0 var(--s-7);
+  }
+
+  /* =========================================================
+     COLOR
+     ========================================================= */
+  .palettes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--s-6);
+  }
+  @media (max-width: 900px) {
+    .palettes { grid-template-columns: 1fr; }
+  }
+  .palette {
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    padding: var(--s-5);
+    box-shadow: var(--shadow-1);
+    position: relative;
+  }
+  .palette.recommended::before {
+    content:"recommended";
+    position:absolute; top: -12px; left: var(--s-5);
+    background: var(--ink); color: var(--bg);
+    font-family: var(--font-mono);
+    font-size: 10px; letter-spacing: .14em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: var(--r-pill);
+  }
+  .palette h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: var(--t-lg);
+    margin: 0 0 var(--s-1);
+  }
+  .palette .meta {
+    font-family: var(--font-hand);
+    color: var(--accent);
+    font-size: 1.25rem;
+    line-height: 1;
+    margin-bottom: var(--s-4);
+    display:block;
+  }
+  .swatches {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--s-2);
+    margin-top: var(--s-4);
+  }
+  .sw {
+    aspect-ratio: 1/1.1;
+    border-radius: var(--r-sm);
+    border: 1px solid rgba(20,32,43,.06);
+    position: relative;
+    overflow: hidden;
+  }
+  .sw .hex {
+    position:absolute; bottom: 6px; left: 6px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: rgba(255,255,255,.85);
+    letter-spacing: .04em;
+  }
+  .sw.dark .hex { color: rgba(255,255,255,.92); }
+  .sw.light .hex { color: rgba(20,32,43,.7); }
+
+  /* =========================================================
+     TYPOGRAPHY
+     ========================================================= */
+  .type-stack {
+    display: grid;
+    gap: var(--s-6);
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  @media (max-width: 900px) {
+    .type-stack { grid-template-columns: 1fr; }
+  }
+  .type-card {
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    padding: var(--s-6);
+    box-shadow: var(--shadow-1);
+    position: relative;
+  }
+  .type-card.recommended {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px var(--accent), var(--shadow-2);
+  }
+  .type-card.recommended::before {
+    content:"recommended";
+    position:absolute; top:-12px; left: var(--s-5);
+    background: var(--accent); color: white;
+    font-family: var(--font-mono);
+    font-size: 10px; letter-spacing: .14em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: var(--r-pill);
+  }
+  .type-card h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: var(--t-lg);
+    margin: 0 0 var(--s-1);
+  }
+  .type-card .meta {
+    font-family: var(--font-mono);
+    font-size: var(--t-xs);
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    margin-bottom: var(--s-5);
+  }
+  .specimen { margin-top: var(--s-4); }
+  .specimen .display {
+    font-size: 2.4rem;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: var(--s-3);
+  }
+  .specimen .body {
+    font-size: var(--t-base);
+    color: var(--ink-2);
+    margin-bottom: var(--s-3);
+  }
+  .specimen .hand {
+    font-family: var(--font-hand);
+    font-size: 1.6rem;
+    color: var(--warm);
+    line-height: 1;
+  }
+
+  /* Type scale display */
+  .scale-list {
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    padding: var(--s-6);
+    margin-top: var(--s-6);
+  }
+  .scale-row {
+    display:flex; align-items: baseline; gap: var(--s-5);
+    padding: var(--s-3) 0;
+    border-bottom: 1px dashed var(--hairline);
+  }
+  .scale-row:last-child { border-bottom: none; }
+  .scale-row .label {
+    font-family: var(--font-mono);
+    font-size: var(--t-xs);
+    color: var(--muted);
+    width: 110px;
+    flex: none;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  .scale-row .sample { flex: 1; }
+  .scale-row .px {
+    font-family: var(--font-mono);
+    font-size: var(--t-xs);
+    color: var(--muted-2);
+  }
+  .s-display { font-family: var(--font-display); font-weight: 500; font-size: var(--t-3xl); line-height: 1; letter-spacing: -.025em;}
+  .s-h1 { font-family: var(--font-display); font-weight: 500; font-size: var(--t-2xl); line-height: 1.1;}
+  .s-h2 { font-family: var(--font-display); font-weight: 500; font-size: var(--t-xl); line-height: 1.2;}
+  .s-h3 { font-family: var(--font-display); font-weight: 500; font-size: var(--t-lg); line-height: 1.3;}
+  .s-body { font-size: var(--t-base); }
+  .s-small { font-size: var(--t-sm); color: var(--muted); }
+  .s-mono { font-family: var(--font-mono); font-size: var(--t-sm); }
+  .s-hand { font-family: var(--font-hand); font-size: 1.75rem; color: var(--warm); line-height:1;}
+
+  /* =========================================================
+     SPACING
+     ========================================================= */
+  .spacing {
+    display: grid; gap: var(--s-3);
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    padding: var(--s-6);
+  }
+  .space-row {
+    display: grid;
+    grid-template-columns: 80px 80px 1fr;
+    align-items: center;
+    gap: var(--s-4);
+    font-family: var(--font-mono);
+    font-size: var(--t-xs);
+    color: var(--muted);
+  }
+  .space-bar {
+    height: 12px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+    border-radius: var(--r-pill);
+  }
+
+  /* =========================================================
+     COMPONENTS
+     ========================================================= */
+  .btn {
+    display:inline-flex; align-items:center; gap: var(--s-2);
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: var(--t-sm);
+    letter-spacing: -0.005em;
+    padding: 12px 20px;
+    border-radius: var(--r-pill);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: transform var(--dur-1) var(--ease), background var(--dur-1) var(--ease), color var(--dur-1) var(--ease), border-color var(--dur-1) var(--ease);
+    text-decoration: none;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn-primary {
+    background: var(--ink); color: var(--bg);
+  }
+  .btn-primary:hover { background: var(--accent-deep); }
+  .btn-secondary {
+    background: var(--surface); color: var(--ink);
+    border-color: var(--hairline);
+  }
+  .btn-secondary:hover { border-color: var(--ink); }
+  .btn-ghost {
+    background: transparent; color: var(--ink);
+    padding: 12px 8px;
+  }
+  .btn-ghost:hover { color: var(--accent); }
+  .btn .arrow { transition: transform var(--dur-2) var(--ease); }
+  .btn:hover .arrow { transform: translateX(3px); }
+
+  .chip {
+    display:inline-flex; align-items:center; gap: 6px;
+    font-family: var(--font-mono);
+    font-size: var(--t-xs);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--accent-deep);
+    background: var(--accent-soft);
+    padding: 4px 10px;
+    border-radius: var(--r-pill);
+  }
+  .chip.warm { color: var(--warm); background: var(--warm-soft); }
+  .chip.green { color: #4F6A57; background: #D4E0CD; }
+
+  .demo-row {
+    display:flex; gap: var(--s-3); flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: var(--s-5);
+  }
+
+  /* Project card */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--s-5);
+  }
+  @media (max-width: 900px) {
+    .cards { grid-template-columns: 1fr; }
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    transition: transform var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease);
+    position: relative;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-2);
+  }
+  .card .thumb {
+    aspect-ratio: 4/3;
+    position: relative;
+    overflow: hidden;
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .card .thumb svg { width: 100%; height: 100%; display: block; }
+  .card .body { padding: var(--s-5); }
+  .card .meta {
+    display:flex; gap: var(--s-2); margin-bottom: var(--s-3);
+  }
+  .card h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: var(--t-md);
+    margin: 0 0 var(--s-2);
+    letter-spacing: -.01em;
+  }
+  .card p {
+    font-size: var(--t-sm);
+    color: var(--muted);
+    margin: 0 0 var(--s-4);
+  }
+  .card .read-more {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: var(--t-sm);
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 4px;
+  }
+  .card .read-more::after {
+    content:"";
+    position:absolute; left:0; right:0; bottom: -2px;
+    height: 5px;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 6' preserveAspectRatio='none'><path d='M1 4 C 18 1, 35 6, 52 3 S 78 4, 79 2' fill='none' stroke='%233E6B89' stroke-width='1.5' stroke-linecap='round'/></svg>") no-repeat center / 100% 100%;
+    transform: scaleX(0); transform-origin: left;
+    transition: transform var(--dur-2) var(--ease);
+  }
+  .card:hover .read-more::after { transform: scaleX(1); }
+
+  /* Asymmetric arrangement */
+  .asymmetric { position: relative; }
+  .asymmetric .card:nth-child(1) { transform: translateY(0); }
+  .asymmetric .card:nth-child(2) { transform: translateY(28px); }
+  .asymmetric .card:nth-child(3) { transform: translateY(-12px); }
+  @media (max-width: 900px) {
+    .asymmetric .card { transform: none !important; }
+  }
+
+  /* Map sample component */
+  .map-sample {
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-xl);
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 16/7;
+    box-shadow: var(--shadow-1);
+  }
+  .map-sample .map-bg {
+    position:absolute; inset: 0;
+    background:
+      radial-gradient(circle at 20% 30%, var(--accent-soft) 0%, transparent 35%),
+      radial-gradient(circle at 70% 60%, var(--warm-soft) 0%, transparent 40%),
+      linear-gradient(180deg, #EEF1F0, #F4F2EC);
+  }
+  .map-sample .legend {
+    position: absolute; left: var(--s-5); bottom: var(--s-5);
+    background: rgba(255,255,255,.85);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-md);
+    padding: var(--s-3) var(--s-4);
+    font-size: var(--t-xs);
+    font-family: var(--font-mono);
+    color: var(--ink-2);
+    line-height: 1.7;
+    min-width: 200px;
+  }
+  .legend .row { display:flex; align-items:center; gap: var(--s-2); }
+  .legend .dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  /* Footer */
+  footer.foot {
+    padding: var(--s-8) 0 var(--s-9);
+    border-top: 1px solid var(--hairline);
+    color: var(--muted);
+    font-size: var(--t-sm);
+    margin-top: var(--s-9);
+  }
+  footer .foot-row { display:flex; justify-content: space-between; align-items: center; gap: var(--s-5); flex-wrap: wrap;}
+  footer .hand-note { font-size: 1.4rem; }
+</style>
+</head>
+<body>
+
+<!-- ================ TOP BAR ================ -->
+<header class="topbar">
+  <div class="container topbar-inner">
+    <div class="brand">
+      <span class="dot"></span>
+      <span>Geografa</span>
+    </div>
+    <nav class="nav">
+      <a href="#" class="active">Work</a>
+      <a href="#">About</a>
+      <a href="#">Writing</a>
+      <a href="#">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ================ HERO ================ -->
+<section class="hero">
+  <div class="gridlines"></div>
+  <div class="blob"></div>
+  <div class="container">
+    <div class="eyebrow">Geografa · web-mapping, optimized</div>
+    <h1>Twenty years of <em>maps</em>, made for the web.</h1>
+    <p class="lede">I'm Rafa Gutierrez. Geografa is my dev shop for digital mapping — from environmental GIS in a previous life, to building Mapbox's startup technical-support engineering team, to a long, ongoing list of small experiments in the open.</p>
+    <div class="demo-row">
+      <a class="btn btn-primary" href="#work">See selected work <span class="arrow">→</span></a>
+      <a class="btn btn-secondary" href="mailto:rafa@geografa.io">Get in touch</a>
+      <span class="hand-note">— made on warm paper</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================ COLOR ================ -->
+<section class="block">
+  <div class="container">
+    <div class="eyebrow">01 · Color</div>
+    <h2 class="section-title">Three palettes, one direction.</h2>
+    <p class="section-sub">All three lean cool and airy, with one warm accent (terracotta, ochre, or rust) for life. Choose Coastal Linen for the most balanced read.</p>
+
+    <div class="palettes">
+
+      <!-- A: Coastal Linen -->
+      <div class="palette recommended">
+        <h3>Coastal Linen</h3>
+        <span class="meta">— paper, slate, clay</span>
+        <p style="font-size: var(--t-sm); color: var(--muted); margin: 0;">A warm linen background grounded with deep slate-blue and a single terracotta accent. Reads editorial, never sterile.</p>
+        <div class="swatches">
+          <div class="sw light" style="background:#F4F2EC"><span class="hex">#F4F2EC</span></div>
+          <div class="sw dark" style="background:#14202B"><span class="hex">#14202B</span></div>
+          <div class="sw dark" style="background:#3E6B89"><span class="hex">#3E6B89</span></div>
+          <div class="sw dark" style="background:#C97B5C"><span class="hex">#C97B5C</span></div>
+          <div class="sw light" style="background:#DEDAD0"><span class="hex">#DEDAD0</span></div>
+        </div>
+      </div>
+
+      <!-- B: Sea Glass -->
+      <div class="palette">
+        <h3>Sea Glass</h3>
+        <span class="meta" style="color:#7E9A87;">— glaucous, sage, ochre</span>
+        <p style="font-size: var(--t-sm); color: var(--muted); margin: 0;">Pale glaucous backgrounds with sea-glass green and a soft ochre highlight. Calm, coastal, slightly more playful.</p>
+        <div class="swatches">
+          <div class="sw light" style="background:#F1F4F2"><span class="hex">#F1F4F2</span></div>
+          <div class="sw dark" style="background:#14202B"><span class="hex">#14202B</span></div>
+          <div class="sw dark" style="background:#7E9A87"><span class="hex">#7E9A87</span></div>
+          <div class="sw dark" style="background:#D4A55A"><span class="hex">#D4A55A</span></div>
+          <div class="sw light" style="background:#D9DFD9"><span class="hex">#D9DFD9</span></div>
+        </div>
+      </div>
+
+      <!-- C: Atlas -->
+      <div class="palette">
+        <h3>Atlas</h3>
+        <span class="meta" style="color:#2C5F77;">— map paper, atlas blue, rust</span>
+        <p style="font-size: var(--t-sm); color: var(--muted); margin: 0;">Cartographer's paper with a deeper atlas blue and a saturated rust mark — the most map-forward of the three.</p>
+        <div class="swatches">
+          <div class="sw light" style="background:#FAF7F0"><span class="hex">#FAF7F0</span></div>
+          <div class="sw dark" style="background:#0F1B2D"><span class="hex">#0F1B2D</span></div>
+          <div class="sw dark" style="background:#2C5F77"><span class="hex">#2C5F77</span></div>
+          <div class="sw dark" style="background:#B45A3C"><span class="hex">#B45A3C</span></div>
+          <div class="sw light" style="background:#DCD8CD"><span class="hex">#DCD8CD</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================ TYPE ================ -->
+<section class="block">
+  <div class="container">
+    <div class="eyebrow">02 · Typography</div>
+    <h2 class="section-title">Humanist sans, with a handwritten footnote.</h2>
+    <p class="section-sub">Three pairings, all built from open-source families. The recommended pairing balances editorial calm (General Sans), exceptional UI legibility (Inter), and a small handwritten voice for asides (Caveat).</p>
+
+    <div class="type-stack">
+
+      <!-- Recommended -->
+      <div class="type-card recommended">
+        <h3>General Sans + Inter + Caveat</h3>
+        <div class="meta">Display · Body · Hand</div>
+        <div class="specimen">
+          <div class="display" style="font-family:'General Sans', sans-serif; font-weight:500;">Web-mapping, optimized.</div>
+          <div class="body" style="font-family:'Inter', sans-serif;">Twenty years of geospatial work — from environmental GIS to building Mapbox's startup technical-support engineering team, to a long list of small experiments in the open.</div>
+          <div class="hand">— from the field, hello!</div>
+        </div>
+      </div>
+
+      <!-- Alt 1 -->
+      <div class="type-card">
+        <h3>Cabinet Grotesk + Satoshi + Reenie Beanie</h3>
+        <div class="meta">Display · Body · Hand</div>
+        <div class="specimen">
+          <div class="display" style="font-family:'Cabinet Grotesk', sans-serif; font-weight:700;">Web-mapping, optimized.</div>
+          <div class="body" style="font-family:'Satoshi', sans-serif;">Twenty years of geospatial work — from environmental GIS to building Mapbox's startup technical-support engineering team, to a long list of small experiments in the open.</div>
+          <div class="hand" style="font-family:'Reenie Beanie', cursive; font-size:1.7rem;">— from the field, hello!</div>
+        </div>
+      </div>
+
+      <!-- Alt 2 -->
+      <div class="type-card">
+        <h3>Inter Display + Inter + Shadows Into Light</h3>
+        <div class="meta">Display · Body · Hand</div>
+        <div class="specimen">
+          <div class="display" style="font-family:'Inter', sans-serif; font-weight:600; letter-spacing:-.03em;">Web-mapping, optimized.</div>
+          <div class="body" style="font-family:'Inter', sans-serif;">Twenty years of geospatial work — from environmental GIS to building Mapbox's startup technical-support engineering team, to a long list of small experiments in the open.</div>
+          <div class="hand" style="font-family:'Shadows Into Light Two', cursive; font-size:1.4rem;">— from the field, hello!</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Type scale -->
+    <div class="scale-list" style="margin-top: var(--s-7);">
+      <div class="scale-row">
+        <span class="label">Display</span>
+        <span class="sample s-display">Geografa</span>
+        <span class="px">60 / 1.0 / -2.5%</span>
+      </div>
+      <div class="scale-row">
+        <span class="label">H1</span>
+        <span class="sample s-h1">Selected work, 2005–2026</span>
+        <span class="px">44 / 1.1 / -2%</span>
+      </div>
+      <div class="scale-row">
+        <span class="label">H2</span>
+        <span class="sample s-h2">FWC26 Travel Times</span>
+        <span class="px">32 / 1.2 / -1.5%</span>
+      </div>
+      <div class="scale-row">
+        <span class="label">H3</span>
+        <span class="sample s-h3">Simple Line Designer — a tiny tool for styling line layers</span>
+        <span class="px">24 / 1.3 / -1%</span>
+      </div>
+      <div class="scale-row">
+        <span class="label">Body</span>
+        <span class="sample s-body">Built on Mapbox GL with custom styles, vector tiles, and a tiny GeoJSON of every host venue and the surrounding airports.</span>
+        <span class="px">16 / 1.6</span>
+      </div>
+      <div class="scale-row">
+        <span class="label">Small</span>
+        <span class="sample s-small">Caption, helper text, secondary metadata.</span>
+        <span class="px">14 / 1.5</span>
+      </div>
+      <div class="scale-row">
+        <span class="label">Mono</span>
+        <span class="sample s-mono">— FILED UNDER · cartography, mapbox-gl, vector-tiles</span>
+        <span class="px">14 / 1.4</span>
+      </div>
+      <div class="scale-row">
+        <span class="label">Hand</span>
+        <span class="sample s-hand">— sketches, asides, anything in the margin</span>
+        <span class="px">28</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================ SPACING ================ -->
+<section class="block">
+  <div class="container">
+    <div class="eyebrow">03 · Spacing &amp; rhythm</div>
+    <h2 class="section-title">A 4-pixel base, eased into generous gutters.</h2>
+    <p class="section-sub">Pages breathe at section level (96–128px) and tighten inside cards. Use the scale below — never one-offs.</p>
+
+    <div class="spacing">
+      <div class="space-row"><span>--s-1</span><span>4px</span><span class="space-bar" style="width:4px;"></span></div>
+      <div class="space-row"><span>--s-2</span><span>8px</span><span class="space-bar" style="width:8px;"></span></div>
+      <div class="space-row"><span>--s-3</span><span>12px</span><span class="space-bar" style="width:12px;"></span></div>
+      <div class="space-row"><span>--s-4</span><span>16px</span><span class="space-bar" style="width:16px;"></span></div>
+      <div class="space-row"><span>--s-5</span><span>24px</span><span class="space-bar" style="width:24px;"></span></div>
+      <div class="space-row"><span>--s-6</span><span>32px</span><span class="space-bar" style="width:32px;"></span></div>
+      <div class="space-row"><span>--s-7</span><span>48px</span><span class="space-bar" style="width:48px;"></span></div>
+      <div class="space-row"><span>--s-8</span><span>64px</span><span class="space-bar" style="width:64px;"></span></div>
+      <div class="space-row"><span>--s-9</span><span>96px</span><span class="space-bar" style="width:96px;"></span></div>
+      <div class="space-row"><span>--s-10</span><span>128px</span><span class="space-bar" style="width:128px;"></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================ COMPONENTS ================ -->
+<section class="block">
+  <div class="container">
+    <div class="eyebrow">04 · Components</div>
+    <h2 class="section-title">A small set of well-behaved parts.</h2>
+    <p class="section-sub">Just enough to compose a portfolio: navigation, hero, project cards, tags, and a map sample. Each piece pulls from the same tokens above.</p>
+
+    <!-- Buttons + chips -->
+    <h3 style="font-family: var(--font-display); font-weight:500; font-size: var(--t-md); margin: 0 0 var(--s-3);">Buttons &amp; tags</h3>
+    <div class="demo-row">
+      <a class="btn btn-primary" href="#">Primary action <span class="arrow">→</span></a>
+      <a class="btn btn-secondary" href="#">Secondary</a>
+      <a class="btn btn-ghost" href="#">Ghost link →</a>
+      <span class="chip">Cartography</span>
+      <span class="chip warm">Mapbox GL</span>
+      <span class="chip green">Open source</span>
+    </div>
+
+    <!-- Cards -->
+    <h3 id="work" style="font-family: var(--font-display); font-weight:500; font-size: var(--t-md); margin: var(--s-7) 0 var(--s-3);">Selected work <span style="color:var(--muted); font-weight: 400;">— asymmetric layout</span></h3>
+    <div class="cards asymmetric">
+
+      <!-- FWC26 Travel Times -->
+      <article class="card">
+        <div class="thumb">
+          <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#B7CDD9"/>
+                <stop offset="1" stop-color="#F4F2EC"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="300" fill="url(#g1)"/>
+            <!-- isochrones -->
+            <g fill="none" stroke="#3E6B89" stroke-opacity=".55">
+              <path d="M200 150 m -120 0 a 120 70 0 1 0 240 0 a 120 70 0 1 0 -240 0" stroke-width="1"/>
+              <path d="M200 150 m -90 0 a 90 52 0 1 0 180 0 a 90 52 0 1 0 -180 0" stroke-width="1"/>
+              <path d="M200 150 m -60 0 a 60 35 0 1 0 120 0 a 60 35 0 1 0 -120 0" stroke-width="1"/>
+              <path d="M200 150 m -30 0 a 30 18 0 1 0 60 0 a 30 18 0 1 0 -60 0" stroke-width="1"/>
+            </g>
+            <!-- airplane path -->
+            <path d="M70 60 Q 200 30, 330 70" fill="none" stroke="#C97B5C" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <circle cx="200" cy="150" r="5" fill="#C97B5C"/>
+            <circle cx="330" cy="70" r="3" fill="#14202B"/>
+            <circle cx="70" cy="60" r="3" fill="#14202B"/>
+          </svg>
+        </div>
+        <div class="body">
+          <div class="meta"><span class="chip">Travel time</span><span class="chip warm">Mapbox GL</span></div>
+          <h3>FWC26 Travel Times</h3>
+          <p>Isochrones to every World Cup 2026 host venue — by car, transit, and air — across the U.S., Mexico, and Canada.</p>
+          <a class="read-more" href="./fwc26-travel-times.html">Open project →</a>
+        </div>
+      </article>
+
+      <!-- Strava Routes -->
+      <article class="card">
+        <div class="thumb">
+          <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="300" fill="#F1F4F2"/>
+            <!-- contour-like lines -->
+            <g fill="none" stroke="#7E9A87" stroke-opacity=".7">
+              <path d="M-20 220 C 80 180, 160 240, 250 200 S 380 180, 420 200" stroke-width="1.2"/>
+              <path d="M-20 200 C 70 160, 170 220, 260 180 S 380 160, 420 180" stroke-width="1.2"/>
+              <path d="M-20 180 C 70 140, 170 200, 260 160 S 380 140, 420 160" stroke-width="1.2"/>
+              <path d="M-20 160 C 70 120, 170 180, 260 140 S 380 120, 420 140" stroke-width="1.2"/>
+              <path d="M-20 140 C 70 100, 170 160, 260 120 S 380 100, 420 120" stroke-width="1.2"/>
+            </g>
+            <!-- trail line -->
+            <path d="M40 260 C 120 240, 160 180, 220 160 S 340 110, 380 80" fill="none" stroke="#C97B5C" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="380" cy="80" r="5" fill="#14202B"/>
+          </svg>
+        </div>
+        <div class="body">
+          <div class="meta"><span class="chip green">Strava</span><span class="chip">Pitch &amp; bearing</span></div>
+          <h3>Strava Routes</h3>
+          <p>Personal hikes, rides, and runs draped over terrain at a tilted 3D camera — every line told as elevation.</p>
+          <a class="read-more" href="./strava.html">Open project →</a>
+        </div>
+      </article>
+
+      <!-- Boise Lights -->
+      <article class="card">
+        <div class="thumb">
+          <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="300" fill="#0F1B2D"/>
+            <!-- street grid -->
+            <g stroke="#3E6B89" stroke-opacity=".4">
+              <path d="M0 80 L400 80" stroke-width=".7"/>
+              <path d="M0 140 L400 140" stroke-width=".7"/>
+              <path d="M0 200 L400 200" stroke-width=".7"/>
+              <path d="M0 260 L400 260" stroke-width=".7"/>
+              <path d="M80 0 L80 300" stroke-width=".7"/>
+              <path d="M170 0 L170 300" stroke-width=".7"/>
+              <path d="M260 0 L260 300" stroke-width=".7"/>
+              <path d="M340 0 L340 300" stroke-width=".7"/>
+            </g>
+            <!-- streetlight glows -->
+            <g>
+              <circle cx="80" cy="80" r="14" fill="#D4A55A" fill-opacity=".55"/>
+              <circle cx="80" cy="80" r="3" fill="#D4A55A"/>
+              <circle cx="170" cy="140" r="14" fill="#D4A55A" fill-opacity=".55"/>
+              <circle cx="170" cy="140" r="3" fill="#D4A55A"/>
+              <circle cx="260" cy="80" r="14" fill="#D4A55A" fill-opacity=".55"/>
+              <circle cx="260" cy="80" r="3" fill="#D4A55A"/>
+              <circle cx="340" cy="200" r="14" fill="#D4A55A" fill-opacity=".55"/>
+              <circle cx="340" cy="200" r="3" fill="#D4A55A"/>
+              <circle cx="80" cy="200" r="14" fill="#D4A55A" fill-opacity=".55"/>
+              <circle cx="80" cy="200" r="3" fill="#D4A55A"/>
+              <circle cx="260" cy="260" r="14" fill="#D4A55A" fill-opacity=".55"/>
+              <circle cx="260" cy="260" r="3" fill="#D4A55A"/>
+            </g>
+          </svg>
+        </div>
+        <div class="body">
+          <div class="meta"><span class="chip warm">Open data</span></div>
+          <h3>Boise Lights</h3>
+          <p>Every streetlight in Boise, Idaho, mapped at night — a soft glow at city scale built from open infrastructure data.</p>
+          <a class="read-more" href="./boise-lights.html">Open project →</a>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- More projects, condensed list -->
+    <div style="margin-top: var(--s-7); display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s-3) var(--s-7); max-width: 820px;">
+      <a href="./simple-line-designer.html" style="text-decoration:none; color:var(--ink); display:flex; justify-content:space-between; align-items:baseline; padding: var(--s-3) 0; border-bottom: 1px dashed var(--hairline);">
+        <span style="font-family:var(--font-display); font-weight:500;">Simple Line Designer</span>
+        <span style="font-family:var(--font-mono); font-size:var(--t-xs); color:var(--muted);">tool</span>
+      </a>
+      <a href="./model_swapper.html" style="text-decoration:none; color:var(--ink); display:flex; justify-content:space-between; align-items:baseline; padding: var(--s-3) 0; border-bottom: 1px dashed var(--hairline);">
+        <span style="font-family:var(--font-display); font-weight:500;">Model Swapper</span>
+        <span style="font-family:var(--font-mono); font-size:var(--t-xs); color:var(--muted);">3D</span>
+      </a>
+      <a href="./snow.html" style="text-decoration:none; color:var(--ink); display:flex; justify-content:space-between; align-items:baseline; padding: var(--s-3) 0; border-bottom: 1px dashed var(--hairline);">
+        <span style="font-family:var(--font-display); font-weight:500;">Custom Winter Style</span>
+        <span style="font-family:var(--font-mono); font-size:var(--t-xs); color:var(--muted);">style</span>
+      </a>
+      <a href="./orienteering.html" style="text-decoration:none; color:var(--ink); display:flex; justify-content:space-between; align-items:baseline; padding: var(--s-3) 0; border-bottom: 1px dashed var(--hairline);">
+        <span style="font-family:var(--font-display); font-weight:500;">Orienteering</span>
+        <span style="font-family:var(--font-mono); font-size:var(--t-xs); color:var(--muted);">field</span>
+      </a>
+      <a href="https://leftfut.com/" style="text-decoration:none; color:var(--ink); display:flex; justify-content:space-between; align-items:baseline; padding: var(--s-3) 0; border-bottom: 1px dashed var(--hairline);">
+        <span style="font-family:var(--font-display); font-weight:500;">Global Stadiums</span>
+        <span style="font-family:var(--font-mono); font-size:var(--t-xs); color:var(--muted);">leftfut.com</span>
+      </a>
+      <a href="https://www.fireflyhealth.com/firefly-nearby/" style="text-decoration:none; color:var(--ink); display:flex; justify-content:space-between; align-items:baseline; padding: var(--s-3) 0; border-bottom: 1px dashed var(--hairline);">
+        <span style="font-family:var(--font-display); font-weight:500;">Firefly Health · Nearby</span>
+        <span style="font-family:var(--font-mono); font-size:var(--t-xs); color:var(--muted);">client</span>
+      </a>
+      <a href="https://visitri.nyc/" style="text-decoration:none; color:var(--ink); display:flex; justify-content:space-between; align-items:baseline; padding: var(--s-3) 0; border-bottom: 1px dashed var(--hairline);">
+        <span style="font-family:var(--font-display); font-weight:500;">Visit Roosevelt Island</span>
+        <span style="font-family:var(--font-mono); font-size:var(--t-xs); color:var(--muted);">visitri.nyc</span>
+      </a>
+      <a href="./portland-trees.html" style="text-decoration:none; color:var(--ink); display:flex; justify-content:space-between; align-items:baseline; padding: var(--s-3) 0; border-bottom: 1px dashed var(--hairline);">
+        <span style="font-family:var(--font-display); font-weight:500;">Portland Street Trees</span>
+        <span style="font-family:var(--font-mono); font-size:var(--t-xs); color:var(--muted);">civic</span>
+      </a>
+      <a href="./marine.html" style="text-decoration:none; color:var(--ink); display:flex; justify-content:space-between; align-items:baseline; padding: var(--s-3) 0; border-bottom: 1px dashed var(--hairline);">
+        <span style="font-family:var(--font-display); font-weight:500;">Realtime Marine Tracking</span>
+        <span style="font-family:var(--font-mono); font-size:var(--t-xs); color:var(--muted);">live</span>
+      </a>
+      <a href="./climate_solutions.html" style="text-decoration:none; color:var(--ink); display:flex; justify-content:space-between; align-items:baseline; padding: var(--s-3) 0; border-bottom: 1px dashed var(--hairline);">
+        <span style="font-family:var(--font-display); font-weight:500;">Climate Solutions Companies</span>
+        <span style="font-family:var(--font-mono); font-size:var(--t-xs); color:var(--muted);">data</span>
+      </a>
+    </div>
+
+    <!-- Map sample -->
+    <h3 style="font-family: var(--font-display); font-weight:500; font-size: var(--t-md); margin: var(--s-9) 0 var(--s-3);">Map surface</h3>
+    <p style="color: var(--muted); max-width: 60ch; margin: 0 0 var(--s-4);">Map regions inherit the warm paper background. Legends and controls float as soft glassy cards.</p>
+    <div class="map-sample">
+      <div class="map-bg"></div>
+      <svg viewBox="0 0 1000 400" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;">
+        <!-- coastlines -->
+        <path d="M0 280 C 120 240, 200 320, 320 280 S 520 220, 640 260 S 860 320, 1000 280" fill="none" stroke="#3E6B89" stroke-width="1.4" stroke-opacity=".45"/>
+        <path d="M0 250 C 120 210, 200 290, 320 250 S 520 190, 640 230 S 860 290, 1000 250" fill="none" stroke="#3E6B89" stroke-width="1.2" stroke-opacity=".3"/>
+        <!-- routes -->
+        <path d="M120 200 Q 320 90, 520 180 T 880 140" fill="none" stroke="#C97B5C" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- pins -->
+        <circle cx="120" cy="200" r="6" fill="#14202B"/>
+        <circle cx="520" cy="180" r="6" fill="#14202B"/>
+        <circle cx="880" cy="140" r="6" fill="#C97B5C"/>
+      </svg>
+      <div class="legend">
+        <div style="text-transform:uppercase; letter-spacing:.12em; color:var(--muted); margin-bottom: 6px;">FWC26 · Travel times</div>
+        <div class="row"><span class="dot" style="background:#3E6B89"></span> Isochrone (4h drive)</div>
+        <div class="row"><span class="dot" style="background:#C97B5C"></span> Direct flight</div>
+        <div class="row"><span class="dot" style="background:#14202B"></span> Host venue</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================ MOTION ================ -->
+<section class="block">
+  <div class="container">
+    <div class="eyebrow">05 · Motion principles</div>
+    <h2 class="section-title">Quiet, never showy.</h2>
+    <p class="section-sub">Movement should feel like a page turning, not a UI flexing. Three durations, one easing curve.</p>
+    <div class="scale-list">
+      <div class="scale-row"><span class="label">Quick</span><span class="sample">Hover, focus, button press</span><span class="px">160ms · ease-out</span></div>
+      <div class="scale-row"><span class="label">Standard</span><span class="sample">Card lift, underline draw, tooltip</span><span class="px">280ms · ease-out</span></div>
+      <div class="scale-row"><span class="label">Section</span><span class="sample">Page entrance, hero blob drift</span><span class="px">480ms · ease-out</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================ FOOTER ================ -->
+<footer class="foot">
+  <div class="container foot-row">
+    <div>
+      <div class="brand" style="margin-bottom: 4px;">
+        <span class="dot"></span>
+        <span>Geografa · Rafa Gutierrez · Design System v0.1</span>
+      </div>
+      <span style="color: var(--muted-2); font-family: var(--font-mono); font-size: var(--t-xs);">portland, or  ·  rafa@geografa.io  ·  github.com/geografa</span>
+    </div>
+    <span class="hand-note">— made on warm paper</span>
+  </div>
+</footer>
+
+</body>
+</html>

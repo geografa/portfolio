@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Climate Solutions Worldwide</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.js"></script>
+    <script src="/mapbox-config.js"></script>
+
+    <style>
+      body {
+        color: #404040;
+        font: 400 15px/22px "Source Sans Pro", "Helvetica Neue", sans-serif;
+        margin: 0;
+        padding: 0;
+        -webkit-font-smoothing: antialiased;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      .footer {
+        position: absolute;
+        height: 90vh;
+        top: 0;
+        width: 30%;
+        z-index: 1;
+        /* overflow-y: scroll; */
+        background-color: #333;
+        /* backdrop-filter: blur(11px); */
+      }
+
+      .map {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+      }
+
+      a {
+        color: #404040;
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: #101010;
+      }
+
+      .heading-title {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        padding: 0;
+        color: #eaff00;
+        font-family: "Geologica", sans-serif;
+        font-size: 1.2em;
+        font-weight: 800;
+        line-height: 1.75em;
+        width: 100%;
+      }
+
+      .heading {
+        background: #fff;
+        border-bottom: 1px solid #eee;
+        line-height: 60px;
+        padding: 0 10px;
+        background-color: #333;
+        color: #fff;
+        /* position: fixed; */
+        /* width: 37%; */
+        /* height: fit-content; */
+      }
+
+      .listings {
+        height: 60vh;
+        /* top: 10px; */
+        overflow-y: scroll;
+        /* padding-bottom: 27px; */
+        /* backdrop-filter: blur(11px); */
+        background-color: rgba(79, 79, 79, 0.8);
+      }
+
+      .listings .item {
+        display: block;
+        border-bottom: 1px solid #eee;
+        padding: 10px;
+        text-decoration: none;
+      }
+
+      .listings .item:last-child {
+        border-bottom: none;
+      }
+
+      .listings .item .title {
+        display: block;
+        color: #f8ffa5;
+        font-weight: 700;
+        font-size: 0.8em;
+      }
+
+      .listings .item .title small {
+        font-weight: 400;
+      }
+
+      .listings .item.active .title,
+      .listings .item .title:hover {
+        color: #eaff01;
+      }
+
+      .listings .item.active {
+        background-color: rgba(0, 0, 0, 0.6);
+      }
+
+      ::-webkit-scrollbar {
+        width: 3px;
+        height: 3px;
+        border-left: 0;
+        background: rgb(0 0 0 / 10%);
+      }
+
+      ::-webkit-scrollbar-track {
+        background: none;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #333;
+        border-radius: 0;
+      }
+
+      /* Marker tweaks */
+      .mapboxgl-popup {
+      }
+
+      .mapboxgl-popup-close-button {
+        display: none;
+      }
+
+      .mapboxgl-popup-content {
+        background: none;
+        /* background-blend-mode: exclusion; */
+        backdrop-filter: blur(25px);
+        font: 600 15px/22px "Source Sans Pro", "Helvetica Neue", sans-serif;
+        width: 180px;
+        border-radius: 10px;
+
+        /* drop shadow */
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .mapboxgl-popup-content h3 {
+        background: #eaff00;
+        color: #000000;
+        margin: 0;
+        padding: 10px 20px;
+        border-radius: 10px 10px 0 0;
+        font-weight: 700;
+      }
+
+      .mapboxgl-popup-content p {
+        margin: 0;
+        padding: 10px;
+        font-weight: 400;
+        color: #fff;
+      }
+
+      .mapboxgl-popup-content .link {
+        width: 20px;
+        height: 20px;
+        margin-top: 10px;
+        margin-left: 10px;
+      }
+
+      .mapboxgl-popup-content div {
+        padding: 10px;
+      }
+      .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
+        border-top-color: #eaff00;
+      }
+      .mapboxgl-popup-anchor-top .mapboxgl-popup-tip {
+        border-bottom-color: #eaff00;
+      }
+      .mapboxgl-popup-anchor-left .mapboxgl-popup-tip {
+        border-right-color: #eaff00;
+      }
+      .mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
+        border-left-color: #eaff00;
+      }
+      .mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip {
+        border-bottom-color: #eaff00;
+      }
+      .mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip {
+        border-bottom-color: #eaff00;
+      }
+      .mapboxgl-popup-anchor-bottom-left .mapboxgl-popup-tip {
+        border-top-color: #eaff00;
+      }
+      .mapboxgl-popup-anchor-bottom-right .mapboxgl-popup-tip {
+        border-top-color: #eaff00;
+      }
+
+      /* search */
+      #search {
+        position: relative;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        font-family: "Source Sans Pro", "Helvetica Neue", sans-serif;
+        border-radius: 10px;
+      }
+
+      .circle-x {
+        font-family: Arial, Helvetica, sans-serif;
+        position: relative;
+        padding: 4px;
+        border-radius: 6px;
+      }
+
+      .circle-x:hover {
+        background-color: #ffffff; /* Darker background color on hover */
+        color: #333;
+      }
+      .circle-x:active {
+        background-color: #9c9c9c; /* Add a darker background color when clicked on */
+        color: #ddd;
+      }
+      /* media queries */
+      @media (max-width: 600px) {
+        .footer {
+          width: 100%;
+          top: 57%;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="footer">
+      <div id="heading-title" class="heading-title">
+        <h2>Climate Solution Companies</h2>
+        <p></p>
+      </div>
+      <div class="heading">
+        <!-- add a simple search bar -->
+        <input id="search" type="text" placeholder="Search..." />
+        <button id="clear-search" class="circle-x">clear</button>
+      </div>
+      <div id="listings" class="listings"></div>
+    </div>
+    <div id="map" class="map"></div>
+    <script>
+      mapboxgl.accessToken = window.MAPBOX_ACCESS_TOKEN;
+      const map = new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/grafa/cm3yvsw8q00k301rd6m646wil",
+        center: [-57.867159, 23.807591],
+        zoom: 1,
+        bearing: 0,
+        pitch: 13,
+      });
+
+      let companies; // Declare companies in the global scope
+
+      // fetch companies from ./data/climate/climate_companies.geojson
+      const getCompanies = async () => {
+        const response = await fetch(
+          "./data/climate/climate_companies.geojson"
+        );
+        const data = await response.json();
+        return data;
+      };
+      // Add the data to the map once the map is loaded
+      map.on("load", () => {
+        getCompanies().then((data) => {
+          companies = data;
+          map.addSource("companies", {
+            type: "geojson",
+            data: companies,
+          });
+
+          map.addLayer({
+            id: "company-layer",
+            type: "circle",
+            source: "companies",
+            paint: {
+              "circle-radius": [
+                "interpolate",
+                ["linear"],
+                ["zoom"],
+                1,
+                2,
+                6,
+                3,
+                12,
+                6,
+              ],
+              "circle-color": "#eaff00",
+            },
+          });
+
+          buildLocationList(companies);
+        });
+      });
+
+      // When a click event occurs on a feature in the companies layer, open a popup at the
+      // location of the feature, with description HTML from its properties.
+
+      map.on("click", "company-layer", (e) => {
+        const coordinates = e.features[0].geometry.coordinates.slice();
+        const { name, description, desc, url } = e.features[0].properties;
+
+        // Ensure that if the map is zoomed out such that multiple copies of the feature are visible,
+        // the popup appears over the copy being pointed to.
+        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+          coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+        }
+
+        new mapboxgl.Popup()
+          .setLngLat(coordinates)
+          .setHTML(
+            `<h3>${name}</h3>${desc ? `<p>${desc}</p>` : ""}<a href="${
+              url ? url : ""
+            }" target="_blank"><img src="./img/climate/lt-link.svg" alt="link to website" width="20" height="20"></a>`
+          )
+          .addTo(map);
+      });
+
+      map.on("mouseenter", "company-layer", () => {
+        map.getCanvas().style.cursor = "pointer";
+      });
+      map.on("mouseleave", "company-layer", () => {
+        map.getCanvas().style.cursor = "";
+      });
+
+      /**
+       * Add a listing for each company to the footer.
+       **/
+      const buildLocationList = (data) => {
+        data.features.forEach((company, i) => {
+          const listing = document
+            .getElementById("listings")
+            .appendChild(document.createElement("div"));
+          listing.id = `listing-${company.properties.id}`;
+          listing.className = "item";
+          const link = listing.appendChild(document.createElement("a"));
+          link.href = "#";
+          link.className = "title";
+          link.id = `link-${company.properties.id}`;
+
+          // Add a star next to the description if the styleUrl is "icon-1899-0288D1"
+          let desc = "";
+          if (company.properties.desc) {
+            desc =
+              company.properties.styleUrl === "#icon-1899-0288D1"
+                ? `${company.properties.desc} ✅`
+                : company.properties.desc;
+          }
+
+          link.innerHTML =
+            `${company.properties.name}` + (desc ? ` &middot; ${desc}` : "");
+
+          const details = listing.appendChild(document.createElement("div"));
+          link.addEventListener("click", function () {
+            for (const feature of data.features) {
+              if (feature.properties.id === company.properties.id) {
+                flyTocompany(feature);
+                createPopUp(feature);
+              }
+            }
+            const activeItem = document.getElementsByClassName("active");
+            if (activeItem[0]) {
+              activeItem[0].classList.remove("active");
+            }
+            this.parentNode.classList.add("active");
+          });
+        });
+      };
+
+      /**
+       * Use Mapbox GL JS's `flyTo` to move the camera smoothly
+       * a given center point.
+       **/
+      function flyTocompany(currentFeature) {
+        map.flyTo({
+          center: currentFeature.geometry.coordinates,
+          zoom: 12,
+          pitch: 60,
+        });
+      }
+
+      /**
+       * Create a Mapbox GL JS `Popup`.
+       **/
+      function createPopUp(currentFeature) {
+        const description = currentFeature.properties.desc
+          ? `<p>${currentFeature.properties.desc}</p>`
+          : "";
+
+        const website = currentFeature.properties.url
+          ? `<a href="${currentFeature.properties.url}" target="_blank"><img src="./img/climate/lt-link.svg" alt="link to website" width="20" height="20"></a>`
+          : "";
+
+        const popupContent = `
+    <h3>${currentFeature.properties.name}</h3>
+    ${description}
+    ${website}
+  `;
+
+        new mapboxgl.Popup()
+          .setLngLat(currentFeature.geometry.coordinates)
+          .setHTML(popupContent)
+          .addTo(map);
+      }
+
+      // search
+      const searchElement = document.getElementById("search");
+      const clearButton = document.getElementById("clear-search");
+
+      clearButton.addEventListener("click", function () {
+        // Clear the search input
+        searchElement.value = "";
+        // Clear the listings
+        const listings = document.getElementById("listings");
+        listings.innerHTML = "";
+        // Clear the markers
+        // companies.features.forEach((company) => {
+        //   const marker = document.getElementById(
+        //     `marker-${company.properties.id}`
+        //   );
+        //   if (marker) {
+        //     marker.remove();
+        //   }
+        // });
+        // add the listings again
+        buildLocationList(companies);
+      });
+
+      searchElement.addEventListener("input", function (e) {
+        const { value } = e.target;
+        const filteredCompanies = companies.features.filter((company) => {
+          return company.properties.name
+            .toLowerCase()
+            .includes(value.toLowerCase());
+        });
+
+        // Clear the listings
+        const listings = document.getElementById("listings");
+        listings.innerHTML = "";
+        // Clear the markers
+        companies.features.forEach((company) => {
+          const marker = document.getElementById(
+            `marker-${company.properties.id}`
+          );
+          if (marker) {
+            marker.remove();
+          }
+        });
+        // add the filtered listings
+        buildLocationList({ features: filteredCompanies });
+      });
+    </script>
+  </body>
+</html>
