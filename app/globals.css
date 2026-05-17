@@ -105,11 +105,9 @@ body::before {
     linear-gradient(90deg, var(--grid) 1px, transparent 1px);
   background-size: 48px 48px;
   pointer-events: none;
-  mask-image: radial-gradient(
-    ellipse at 30% 40%,
-    black 30%,
-    transparent 75%
-  );
+  mask-image: radial-gradient(ellipse at 30% 40%,
+      black 30%,
+      transparent 75%);
 }
 
 .container {
@@ -190,8 +188,7 @@ a {
   right: -4px;
   bottom: -6px;
   height: 6px;
-  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 6' preserveAspectRatio='none'><path d='M1 4 C 18 1, 35 6, 52 3 S 78 4, 79 2' fill='none' stroke='%233E6B89' stroke-width='1.5' stroke-linecap='round'/></svg>")
-    no-repeat center / 100% 100%;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 6' preserveAspectRatio='none'><path d='M1 4 C 18 1, 35 6, 52 3 S 78 4, 79 2' fill='none' stroke='%233E6B89' stroke-width='1.5' stroke-linecap='round'/></svg>") no-repeat center / 100% 100%;
 }
 
 .btn {
@@ -280,48 +277,74 @@ a {
 
 .hero {
   position: relative;
-  padding: var(--s-10) 0 var(--s-9);
   overflow: hidden;
 }
 
-.hero .gridlines {
-  z-index: 0;
+.hero--video {
+  display: flex;
+  align-items: flex-end;
+  min-height: min(88vh, 920px);
+  padding: var(--s-10) 0 var(--s-9);
+  color: #f4f2ec;
 }
 
-.hero .blob {
+.hero-media {
   position: absolute;
-  right: -100px;
-  top: 10%;
-  width: 540px;
-  height: 540px;
-  background: radial-gradient(
-    circle at 30% 30%,
-    var(--accent-soft),
-    transparent 70%
-  );
-  filter: blur(20px);
-  opacity: 0.55;
+  inset: 0;
   z-index: 0;
+  overflow: hidden;
 }
 
-.hero .blob-2 {
+.hero-video {
   position: absolute;
-  left: -120px;
-  bottom: -100px;
-  width: 380px;
-  height: 380px;
-  background: radial-gradient(
-    circle at 60% 40%,
-    var(--warm-soft),
-    transparent 70%
-  );
-  filter: blur(30px);
-  opacity: 0.45;
+  inset: 0;
   z-index: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
 }
 
-.hero .eyebrow {
+.hero-gradient {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  -webkit-backdrop-filter: blur(5px) saturate(1.15);
+  backdrop-filter: blur(5px) saturate(1.15);
+  background:
+    linear-gradient(to right,
+      rgba(20, 32, 43, 0.52) 0%,
+      rgba(20, 32, 43, 0.24) 42%,
+      rgba(20, 32, 43, 0.05) 100%,
+      transparent 60%),
+    linear-gradient(to top,
+      rgba(20, 32, 43, 0.45) 0%,
+      rgba(20, 32, 43, 0.1) 32%,
+      transparent 58%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.hero-actions {
+  display: flex;
+  gap: var(--s-3);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.hero--video .eyebrow {
   margin-bottom: var(--s-4);
+  color: rgba(244, 242, 236, 0.72);
+}
+
+.hero--video .eyebrow::before {
+  background: rgba(244, 242, 236, 0.45);
 }
 
 .eyebrow {
@@ -356,11 +379,22 @@ a {
   max-width: 18ch;
 }
 
+.hero--video h1 {
+  color: #f8f7f2;
+  text-shadow:
+    0 1px 2px rgba(20, 32, 43, 0.5),
+    0 8px 32px rgba(20, 32, 43, 0.45);
+}
+
 .hero h1 em {
   font-style: normal;
   color: var(--accent);
   position: relative;
   white-space: nowrap;
+}
+
+.hero--video h1 em {
+  color: var(--accent-soft);
 }
 
 .hero h1 em::after {
@@ -370,8 +404,11 @@ a {
   right: -2px;
   bottom: -4px;
   height: 8px;
-  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 8' preserveAspectRatio='none'><path d='M1 5 C 25 1, 50 8, 75 4 S 99 5, 99 3' fill='none' stroke='%23C97B5C' stroke-width='2' stroke-linecap='round'/></svg>")
-    no-repeat center / 100% 100%;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 8' preserveAspectRatio='none'><path d='M1 5 C 25 1, 50 8, 75 4 S 99 5, 99 3' fill='none' stroke='%23C97B5C' stroke-width='2' stroke-linecap='round'/></svg>") no-repeat center / 100% 100%;
+}
+
+.hero--video h1 em::after {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 8' preserveAspectRatio='none'><path d='M1 5 C 25 1, 50 8, 75 4 S 99 5, 99 3' fill='none' stroke='%23E9C7B6' stroke-width='2' stroke-linecap='round'/></svg>");
 }
 
 .hero .lede {
@@ -379,6 +416,75 @@ a {
   color: var(--muted);
   max-width: 56ch;
   margin: 0 0 var(--s-7);
+}
+
+.hero--video .lede {
+  color: rgba(244, 242, 236, 0.88);
+  text-shadow: 0 1px 12px rgba(20, 32, 43, 0.4);
+}
+
+.hero--video .hand-note {
+  color: var(--warm-soft);
+}
+
+.hero--video .btn-primary {
+  background: #f4f2ec;
+  color: var(--ink);
+}
+
+.hero--video .btn-primary:hover {
+  background: #fff;
+}
+
+.hero--video .btn-secondary {
+  background: rgba(244, 242, 236, 0.12);
+  color: #f4f2ec;
+  border-color: rgba(244, 242, 236, 0.35);
+  backdrop-filter: blur(8px);
+}
+
+.hero--video .btn-secondary:hover {
+  background: rgba(244, 242, 236, 0.2);
+  border-color: rgba(244, 242, 236, 0.55);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-video {
+    display: none;
+  }
+
+  .hero-gradient {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .hero--video {
+    background: linear-gradient(135deg,
+        var(--accent-deep) 0%,
+        var(--ink) 55%,
+        #1a2834 100%);
+  }
+}
+
+@media (max-width: 720px) {
+  .hero--video {
+    min-height: min(78vh, 720px);
+    padding-top: var(--s-9);
+  }
+
+  .hero-video {
+    object-position: 62% center;
+  }
+
+  .hero-gradient {
+    -webkit-backdrop-filter: blur(10px) saturate(1.1);
+    backdrop-filter: blur(10px) saturate(1.1);
+    background:
+      linear-gradient(to top,
+        rgba(20, 32, 43, 0.55) 0%,
+        rgba(20, 32, 43, 0.22) 40%,
+        transparent 72%);
+  }
 }
 
 .hand-note {
@@ -554,8 +660,7 @@ h2.section-title {
   right: 0;
   bottom: -2px;
   height: 5px;
-  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 6' preserveAspectRatio='none'><path d='M1 4 C 18 1, 35 6, 52 3 S 78 4, 79 2' fill='none' stroke='%233E6B89' stroke-width='1.5' stroke-linecap='round'/></svg>")
-    no-repeat center / 100% 100%;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 6' preserveAspectRatio='none'><path d='M1 4 C 18 1, 35 6, 52 3 S 78 4, 79 2' fill='none' stroke='%233E6B89' stroke-width='1.5' stroke-linecap='round'/></svg>") no-repeat center / 100% 100%;
   transform: scaleX(0);
   transform-origin: left;
   transition: transform var(--dur-2) var(--ease);
@@ -836,8 +941,7 @@ h2.section-title {
   right: 0;
   bottom: -6px;
   height: 10px;
-  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 8' preserveAspectRatio='none'><path d='M1 5 C 25 1, 50 8, 75 4 S 99 5, 99 3' fill='none' stroke='%23C97B5C' stroke-width='2' stroke-linecap='round'/></svg>")
-    no-repeat center / 100% 100%;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 8' preserveAspectRatio='none'><path d='M1 5 C 25 1, 50 8, 75 4 S 99 5, 99 3' fill='none' stroke='%23C97B5C' stroke-width='2' stroke-linecap='round'/></svg>") no-repeat center / 100% 100%;
 }
 
 .contact p {
