@@ -12,6 +12,7 @@
       rel="stylesheet"
     />
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.13.0/mapbox-gl.js"></script>
+    <script src="/mapbox-config.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@turf/turf@7/turf.min.js"></script>
     <style>
       body {
@@ -29,8 +30,7 @@
   <body>
     <div id="map"></div>
     <script>
-      mapboxgl.accessToken =
-        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
+      mapboxgl.accessToken = window.MAPBOX_ACCESS_TOKEN;
       const map = new mapboxgl.Map({
         container: "map", // container ID
         style: "mapbox://styles/grafa/cm2ctot6900vn01om655a5yda",

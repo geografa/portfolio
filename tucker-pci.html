@@ -12,6 +12,7 @@
       rel="stylesheet"
     />
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.11.0/mapbox-gl.js"></script>
+    <script src="/mapbox-config.js"></script>
     <!-- Load the `mapbox-gl-geocoder` plugin. -->
     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.1.0/mapbox-gl-geocoder.min.js"></script>
     <link
@@ -158,8 +159,7 @@
     </div>
     <div id="map"></div>
     <script>
-      mapboxgl.accessToken =
-        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
+      mapboxgl.accessToken = window.MAPBOX_ACCESS_TOKEN;
       const map = new mapboxgl.Map({
         container: "map", // container ID
         style: "mapbox://styles/grafa/cmdxno67a009b01s7aizghti1", // style URL

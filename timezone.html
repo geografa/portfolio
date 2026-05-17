@@ -18,6 +18,7 @@
       rel="stylesheet"
     />
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.js"></script>
+    <script src="/mapbox-config.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@turf/turf@7/turf.min.js"></script>
     <!-- include the Mapbox GL Geocoder plugin CSS -->
     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
@@ -26,9 +27,8 @@
       href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css"
       type="text/css"
     />
-    <!-- include moment.js -->
-    <script src="./js/moment-with-locales.js"></script>
-    <script src="./js/moment-timezone-with-data.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.30.1/min/moment-with-locales.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment-timezone@0.5.45/builds/moment-timezone-with-data.min.js"></script>
 
     <script src="https://unpkg.com/browser-geo-tz@0.1.0/dist/geotz.js"></script>
     <style>
@@ -82,8 +82,7 @@
     </div>
     <div id="map"></div>
     <script>
-      mapboxgl.accessToken =
-        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
+      mapboxgl.accessToken = window.MAPBOX_ACCESS_TOKEN;
       const map = new mapboxgl.Map({
         container: "map", // container ID
         style: "mapbox://styles/grafa/ckzssvb5u007n15p7tsvox2ax", // style URL

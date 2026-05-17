@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <meta charset="utf-8" />
@@ -12,6 +12,7 @@
       rel="stylesheet"
     />
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.js"></script>
+    <script src="/mapbox-config.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@turf/turf@7/turf.min.js"></script>
     <style>
       body {
@@ -126,12 +127,11 @@
     </div>
     <div id="map"></div>
     <script>
-      mapboxgl.accessToken =
-        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
+      mapboxgl.accessToken = window.MAPBOX_ACCESS_TOKEN;
       const map = new mapboxgl.Map({
         container: "map",
         // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-        style: "mapbox://styles/grafa/clolobt8m002l01r73orkhrgu",
+        style: "mapbox://styles/grafa/cm102ki7h01y801pq09u4a1ug",
         zoom: 16,
         pitch: 60,
         center: [-122.71197034995811, 45.51360311249525],
@@ -154,12 +154,12 @@
               ...new Set(
                 data.features
                   .map(
-                    (feature) => feature.properties.name
+                    (feature) => feature.properties.name,
                     // sort the names alphabetically
                   )
                   .sort((a, b) =>
-                    a.localeCompare(b, "en", { sensitivity: "base" })
-                  )
+                    a.localeCompare(b, "en", { sensitivity: "base" }),
+                  ),
               ),
             ];
 
@@ -208,19 +208,19 @@
                     .setPaintProperty(
                       "wa_park_trails_casing",
                       "line-color",
-                      "#fff"
+                      "#fff",
                     );
                   // map.fitBounds all the trails
                   map.fitBounds(
                     turf.bbox(
                       data.features.find(
-                        (feature) => feature.properties.name === name
-                      )
+                        (feature) => feature.properties.name === name,
+                      ),
                     ),
                     {
                       pitch: 60,
                       padding: { right: 50 },
-                    }
+                    },
                   );
                 } else {
                   map
@@ -229,26 +229,26 @@
                     .setPaintProperty(
                       "wa_park_trails",
                       "line-dasharray",
-                      [1, 3]
+                      [1, 3],
                     )
                     .setPaintProperty("wa_park_trails_casing", "line-width", 8)
                     // .setPaintProperty("wa_park_trails", "line-color", "#333")
                     .setPaintProperty(
                       "wa_park_trails_casing",
                       "line-color",
-                      "#ec6157"
+                      "#ec6157",
                     );
                   // fly to the bounds of the trail when the checkmark is clicked
                   map.fitBounds(
                     turf.bbox(
                       data.features.find(
-                        (feature) => feature.properties.name === name
-                      )
+                        (feature) => feature.properties.name === name,
+                      ),
                     ),
                     {
                       //   pitch: 60,
                       padding: 50,
-                    }
+                    },
                   );
                 }
                 // set the checkmark to the opposite of its current state

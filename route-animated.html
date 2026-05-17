@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <meta charset="utf-8" />
@@ -12,6 +12,7 @@
       rel="stylesheet"
     />
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.js"></script>
+    <script src="/mapbox-config.js"></script>
     <style>
       body {
         margin: 0;
@@ -79,11 +80,10 @@
       <button id="resetButton" class="button">Reset</button>
     </div>
     <script>
-      mapboxgl.accessToken =
-        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
+      mapboxgl.accessToken = window.MAPBOX_ACCESS_TOKEN;
       const map = new mapboxgl.Map({
         container: "map",
-        style: "mapbox://styles/grafa/clv5n2soe00iz01og6vhn279m",
+        style: "mapbox://styles/grafa/cm102ki7h01y801pq09u4a1ug",
         center: [-73.94918451252114, 40.766370360271196],
         zoom: 12.296732090632224,
         bearing: 0,
@@ -168,14 +168,14 @@
           // Update line-dasharray using the next value in dashArraySequence. The
           // divisor in the expression `timestamp / 50` controls the animation speed.
           const newStep = parseInt(
-            (timestamp / 100) % dashArraySequence.length
+            (timestamp / 100) % dashArraySequence.length,
           );
 
           if (newStep !== step) {
             map.setPaintProperty(
               "custom-line-layer",
               "line-dasharray",
-              dashArraySequence[step]
+              dashArraySequence[step],
             );
             step = newStep;
           }
@@ -282,7 +282,7 @@
           .map((coordinate) => `${coordinate.lng},${coordinate.lat}`)
           .join(";");
         fetch(
-          `https://api.mapbox.com/directions/v5/mapbox/driving/${coordinatesString}?geometries=geojson&overview=full&access_token=${mapboxgl.accessToken}`
+          `https://api.mapbox.com/directions/v5/mapbox/driving/${coordinatesString}?geometries=geojson&overview=full&access_token=${mapboxgl.accessToken}`,
         )
           .then((response) => response.json())
           .then((data) =>
@@ -294,12 +294,12 @@
               : map.addSource("custom-line-source", {
                   type: "geojson",
                   data: data.routes[0].geometry,
-                })
+                }),
           );
         // when the route is created, fit the map to the route bounds
         const bounds = coordinates.reduce(
           (bounds, coord) => bounds.extend(coord),
-          new mapboxgl.LngLatBounds(coordinates[0], coordinates[0])
+          new mapboxgl.LngLatBounds(coordinates[0], coordinates[0]),
         );
         map.fitBounds(bounds, {
           padding: 40,

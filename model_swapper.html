@@ -12,6 +12,7 @@
       rel="stylesheet"
     />
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.9.3/mapbox-gl.js"></script>
+    <script src="/mapbox-config.js"></script>
     <script src="https://unpkg.com/@turf/turf/turf.min.js"></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.0/mapbox-gl-draw.js"></script>
     <link
@@ -204,7 +205,7 @@
         <input
           type="text"
           id="model-uri"
-          value="https://geografa.github.io/portfolio/models/van.glb"
+          value="/models/van.glb"
         />
         <button id="update-model">Update</button>
       </div>
@@ -264,7 +265,7 @@
 
       <div id="logo" class="logo">
         <a href="https://geografa.io/"
-          ><img src="./img/logo-geografa.png" alt="geografa.io"
+          ><img src="./img/logo-geografa.svg" alt="geografa.io"
         /></a>
         geografa.io
       </div>
@@ -281,14 +282,15 @@
       <button id="close-modal">Get Started</button>
     </div>
     <script>
-      mapboxgl.accessToken =
-        "pk.eyJ1IjoiZ3JhZmEiLCJhIjoiY20wdTdlcTM3MTRsZDJxcGxmcW85MzQxMCJ9.H-wLHlLXdbtIQ9R1zsDuJg";
+      mapboxgl.accessToken = window.MAPBOX_ACCESS_TOKEN;
       // top left corner of the model's base
       const start = [-77.036679, 38.896945];
       let modelUri;
       const map = new mapboxgl.Map({
         container: "map",
-        style: "mapbox://styles/grafa/cm4noofna009j01s5gji15azp",
+        // style: "mapbox://styles/grafa/cm4noofna009j01s5gji15azp",
+        style: "mapbox://styles/grafa/cmh0wpbck002l01spd3c08pnl", // tmep style
+        // style: "mapbox://styles/grafa/cmhartmw1000d01rg898ng33a", // tmep style
         center: start, // starting position
         zoom: 17,
         bearing: -24,
