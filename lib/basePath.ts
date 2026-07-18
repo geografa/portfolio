@@ -3,7 +3,7 @@
  * Leave empty for root deployment (e.g. custom domain or user.github.io).
  * If you use GitHub **project** pages (user.github.io/repo/), set to `"/repo"`.
  */
-export const BASE_PATH = "";
+export const BASE_PATH = "/portfolio";
 
 /** Absolute path to a static demo HTML file (same origin). */
 export function exampleHtmlSrc(slug: string): string {
