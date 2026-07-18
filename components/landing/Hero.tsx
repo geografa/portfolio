@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { HandNote } from "@/components/ui/HandNote";
+import { BASE_PATH } from "@/lib/basePath";
 
 export function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -31,7 +32,7 @@ export function Hero() {
           loop
           playsInline
           preload="auto"
-          src="/img/maphero.mp4"
+          src={`${BASE_PATH}/img/maphero.mp4`}
         />
         <div className="hero-gradient" />
       </div>
